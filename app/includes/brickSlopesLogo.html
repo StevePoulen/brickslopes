@@ -1,0 +1,53 @@
+<?php 
+  function createBrickSlopesLogo($fontSize, $fontColor="blueFont") {
+    $capsFont = "font-size: {$fontSize}em;";
+    $smallFontNumber = $fontSize * .8;
+    $smallFont = "font-size: {$smallFontNumber}em;";
+    echo "
+      <span class='{$fontColor} bold'>
+        <span style='{$capsFont}'>B</span><span style='{$smallFont}'>RICK</span><span style='{$capsFont}'>S</span><span style='{$smallFont}'>LOPES</span>
+      </span>
+    ";
+  } 
+
+  function stylizePages($text1) {
+    echo $output = createBrickSlopesText($text1, 1, 'blackFont', "");
+  }
+
+  function stylizeText($text1, $text2="") {
+    $output = createBrickSlopesText($text1, 1, 'blackFont', "");
+    if ($text2 != "") {
+       $output .= "<p>" . createBrickSlopesText($text2, 1, 'blackFont', "");
+    }
+
+    echo $output;
+  }
+
+  function createBrickSlopesText($text, $fontSize=1, $fontColor="blueFont", $eventImageText="eventImageText") {
+    $capsFont = "font-size: {$fontSize}em;";
+    $smallFontNumber = $fontSize * .8;
+    $smallFont = "font-size: {$smallFontNumber}em;";
+    $outputWord = "";
+    $text = preg_replace('/-/', '- ', $text);
+    $text = preg_replace('/\*/', '* ', $text);
+    $text = preg_replace("/\>/", '> ', $text);
+    $wordArray = preg_split('/\s/', $text);
+
+    foreach ($wordArray as $word) {
+      $newWord = str_split($word);
+      $firstLetter = strToUpper(array_shift($newWord));
+      $remainder = strToUpper(join($newWord, ""));
+      $outputWord .= "<span style='{$capsFont}'>" . $firstLetter . "</span><span style='{$smallFont}'>" . $remainder . "</span>";
+      $outputWord .= "&nbsp;";
+    }
+
+    $outputWord = preg_replace('/-<\/span>&nbsp;/', '-</span>', $outputWord);
+    $outputWord = preg_replace('/\*<\/span>&nbsp;/', '</span>', $outputWord);
+
+    return "
+      <span class='{$fontColor} bold {$eventImageText}'>
+        {$outputWord}
+      </span>
+    ";
+  } 
+?>

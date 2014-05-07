@@ -1,0 +1,7 @@
+{
+  "name": "brickslopes",
+  "description": "The website for BrickSlopes, A LEGO Fan Event",
+  "require": {
+    "php": ">=5.3.0"
+  }
+}

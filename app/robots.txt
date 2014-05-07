@@ -1,0 +1,8 @@
+User-agent: *
+Disallow: /cgi/
+Disallow: /css/
+Disallow: /controllers/
+Disallow: /images/
+Disallow: /includes/
+Disallow: /models/
+Disallow: /views/

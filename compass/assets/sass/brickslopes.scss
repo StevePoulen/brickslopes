@@ -1,0 +1,421 @@
+@import url('/css/afols.css');
+@import url('/css/payment.css');
+
+body {
+  background-color: #000000;
+  font-family: "arial";
+}
+
+/* CSS Reset for Anchor tags - Becasue IE is stupid*/
+img { 
+	border:0;
+	}
+
+a{
+color:000000;
+text-decoration:none;
+	
+}
+
+a:link
+{
+color:000000;
+text-decoration:none;
+}
+
+a:hover
+{
+color:000000;
+text-decoration:none;
+}
+
+a:active
+{
+color:000000;
+text-decoration:none;	
+}
+
+a:visited
+{
+color:000000;
+text-decoration:none;	
+}
+
+#brickslopes {
+  position: relative;
+  top: 0px;
+  left: 0px;
+  width: 1250px;
+  min-height: 815px;
+  overflow: none;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+#header {
+  position: relative;
+  top: 0px;
+  left: 0px;
+  width: 1230px;
+  height: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  border: 0px solid white;
+}
+
+#eventContainer {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  width: 750px;
+  height: 100px;
+}
+
+#splashPageDashboard {
+  position: relative;
+  top: 25px;
+  left: 0px;
+  width: 1200px;
+  height: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  border: 0px solid red;
+}
+
+div#splashPage{
+  position: absolute;
+  width: 1200px;
+  height: 600px;
+  top: 0px;
+  left: 0px;
+  text-align: center;
+  display: table;
+  border: 0px solid blue;
+  background: white;
+  border-radius: 10px;
+}
+
+div#splashPage div#splashText {
+  position: absolute;
+  border: 0px solid yellow;
+  top: 5px;
+  left: 5px;
+  height: 400px;
+  width: 425px;
+  border-radius: 10px;
+  padding: 5px;
+  font-size: 2.05em;
+  text-align: center;
+  color: black;
+  background: white;
+}
+
+div#splashPage div.splashTextHome {
+  position: absolute;
+  border-radius: 10px;
+  right: 60px;
+  bottom: 25px;
+  padding: 10px;
+  font-size: 2.0em;
+  text-align: center;
+  height: 535px;
+  width: 630px;
+  color: black;
+  background: white;
+  vertical-align: middle;
+  z-index: 5;
+  border: 5px solid #35469A;
+}
+
+div#splashTextWhat #sponsorText {
+  position: absolute;
+  padding-top: 5px;
+  bottom: 10px;
+  right: 60px;
+  height: 35px;
+  width: 300px;
+  border: 5px solid #FF0500;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+#logo {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+.communicationLogos {
+  width: 50px;
+  height: 50px;
+}
+
+div#splashPage {
+  position: absolute;
+  top: 0px;
+  width: 1200px;
+  border: 5px solid #35469A;
+  background: white;
+}
+
+#copyright {
+  position: relative;
+  bottom: 0px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 25px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: 1200px;
+  height: auto;
+  z-index: 2;
+  color: white;
+  text-align: center;
+}
+
+.largeFont {
+  font-size: 1.75em;
+}
+
+.oneEMFont, .starWarsFont {
+  font-size: 1.25em;
+}
+
+.eventsFont {
+  font-size: 1.0em;
+}
+
+.mediumFont {
+  font-size: .80em;
+}
+
+.smallFont {
+  font-size: .60em;
+}
+
+.tinnyFont {
+  font-size: .25em;
+}
+
+div#splashPage div#splashFigBatman {
+  position: absolute;
+  z-index: 5;
+  height: 50px;
+  bottom: 250px;
+  left: -35px;
+}
+
+div#splashTexthome div#splashFigJackSparrow {
+  position: absolute;
+  z-index: 5;
+  height: 50px;
+  bottom: 250px;
+  right: -95px;
+}
+
+div#splashPage div#splashFigSuperMan {
+  position: absolute;
+  z-index: 5;
+  height: 50px;
+  width: 100px;
+  bottom: 155px;
+  left: -35px;
+}
+
+div#splashPage div#publicTickets {
+  position: absolute;
+  z-index: 2;
+  height: 225px;
+  bottom: 25px;
+  width: 400px;
+  left: 15px;
+  border: 5px solid #35469A;
+  border-radius: 10px;
+}
+
+div#publicTickets div#publicTicketsText {
+  position: absolute;
+  z-index: 2;
+  top: 10px;
+  right: 7px;
+  height: 125px;
+  bottom: 25px;
+  width: 300px;
+  border: 0px solid black;
+  border-radius: 10px;
+}
+
+div#splashPageDashboard div#afolRegistration {
+  position: absolute;
+  z-index: 4;
+  left: 0px;
+  height: 50px;
+  bottom: 5px;
+  width: 1200px;
+  background-color: white;
+  border: 5px solid #35469A;
+  border-radius: 10px;
+  text-align: center;
+}
+
+div#afolRegistration span#afolRegistrationText {
+  position: absolute;
+  left: 10px;
+  top: 8px;
+  width: 450px;
+  border: 0px solid #35469A;
+}
+
+div#afolRegistration div#starWarsFlyIn {
+  position: absolute;
+  right: 50px;
+  top: 2px;
+  height: 50px;
+  width: 300px;
+  border: 0px solid #FF0500;
+}
+
+div#afolRegistration div#starWarsPic {
+  position: absolute;
+  right: 415px;
+  bottom: 50px;
+  height: 50px;
+  width: 100px;
+  border: 0px solid #FF0500;
+}
+
+img#batman {
+  height: 200px;
+}
+
+div#afolRegistration div#afolRegistrationImage {
+  position: absolute;
+  left: 450px;
+  top: -12px;
+  height: 50px;
+  width: 100px;
+  border: 0px solid #FF0500;
+}
+
+img#superman {
+  height: 175px;
+}
+
+img#miniAFOLRegistrationImage {
+  height: 75px;
+}
+
+img#miniStarWars {
+  height: 125px;
+}
+
+label.normalFont {
+  color: black;
+}
+
+label.errorFont {
+  color: red;
+}
+
+.mocListContainer {
+  width: 960px;
+  border: 0px solid black;
+}
+
+.singleMocListContainer {
+  width: 960px;
+  height: 75px;
+  border: 1px solid black;
+  margin-bottom: 25px;
+  border-radius: 10px;
+}
+
+div.mocListTitle {
+  position: relative;
+  width: 550px;
+  border: 0px solid black;
+  text-align: center;
+  font-size: 1.50em;
+  float: left;
+  padding-top: 10px;
+  height: auto;
+}
+
+div.mocListBuilder {
+  position: relative;
+  width: 400px;
+  border: 0px solid black;
+  text-align: center;
+  font-size: 1.25em;
+  float: left;
+  padding-top: 10px;
+  height: auto;
+}
+
+table.guestList {
+  width: 750px;
+  border: 0px solid black;
+}
+
+td.guestListName {
+  width: 400px;
+  border: 0px solid black;
+  text-align: center;
+  font-size: 1.50em;
+  padding-top: 25px;
+}
+
+td.guestListState {
+  width: 350px;
+  border: 0px solid black;
+  text-align: center;
+  font-size: 1.50em;
+  padding-top: 25px;
+}
+
+table.vendorList {
+  width: 750px;
+  border: 0px solid black;
+}
+
+td.vendorName {
+  width: 600px;
+  border: 0px solid black;
+  text-align: center;
+  font-size: 1.50em;
+  padding-top: 25px;
+}
+
+td.vendorBoothNumber {
+  width: 150px;
+  border: 0px solid black;
+  text-align: center;
+  font-size: 1.25em;
+  padding-top: 25px;
+}
+
+.blueFont {
+  color: #35469A;
+}
+
+span.whiteFont {
+  color: #FFFFFF;
+}
+
+span.redFont {
+  color: #FF0500;
+}
+
+.bold{
+  font-weight: bold;
+}
+
+.italic {
+  font-style:italic;
+}
+
+/* 
+  BrickSlopes Blue -> #1224FC and 93, 86, 1, 0 / 85, 62, 3, 0 35469A
+  BrickSlopes Red -> #FF0500 and 0, 98, 100, 0
+*/

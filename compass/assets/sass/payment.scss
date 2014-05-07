@@ -1,0 +1,45 @@
+#dashboard #paypalForm {
+  position: relative;
+  margin-top: 25px;
+  right: 0px;
+  width: 400px;
+  height: auto;
+  text-align: center;
+  border: 5px solid #3364A6;
+}
+
+.paymentBackground {
+  background: #DDDDDD;
+}
+
+.paymentFontOne {
+  font-size: 16px;
+  height: 25px;
+}
+
+.paymentFontTwo {
+  font-size: 12px;
+  height: 15px;
+}
+
+#paypalForm .payment {
+  position: relative;
+  left: 25px;
+  width: 350px;
+  padding-top: 5px;
+  border-radius: 5px;
+  text-align: left;
+}
+
+.payment #description {
+  position: absolute;
+  left: 0px;
+  padding-left: 10px;
+  height: 5px;
+}
+
+.payment #amount {
+  position: absolute;
+  right: 0px;
+  padding-right: 10px;
+}

@@ -1,0 +1,538 @@
+
+#brickslopes #dashboard {
+  position: relative;
+  top: 35px;
+  width: 1220px;
+  height: 650px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#dashboard #sidebar {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  width: 200px;
+  min-height: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+div#eventDashboard div#dashboardCloseButton, div#reserveStarWarsSet div#reserveCloseButton {
+  position: absolute;
+  background: url("/images/closeButton_blue.png") no-repeat scroll 0px center transparent;
+  background-size: 40px 40px;
+  height: 40px;
+  width: 40px;
+  z-index: 6;
+  top: -20px;
+  right: -20px;
+  cursor: pointer;
+}
+
+div#dashboardText {
+  min-height: 500px;
+  position: relative;
+  margin-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  display: table;
+}
+
+span#dashboardText {
+  border-radius:25px;
+  padding: 15px;
+  position: relative;
+  font-size: 100%;
+  text-align: left;
+  width: 924px;
+  color: black;
+  background: white;
+  display: table;
+  line-height: normal;  
+  display: table-cell;
+  vertical-align: middle;
+  border: 0px solid red;
+}
+
+#eventSwag li {
+  list-style-type: disc;
+  text-align: left;
+  font-size: 1.25em;
+  padding-bottom: 5px;
+}
+
+#dashboardText div#eventSwag {
+  border-radius:25px;
+  position: absolute;
+  height: auto;
+  width: 450px;
+  right: 20px;
+  top: 150px;
+  border: 1px solid black;
+  z-index: 1;
+  background: white;
+  padding-left: 10px;
+}
+
+#panes {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  width: 1238px;
+  height: 615px;
+  border: 0px solid yellow;
+}
+
+#eventContainer {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  width: 750px;
+  height: 100px;
+}
+
+.textEvents {
+  position: relative;
+  float: left;
+  width: 75px;
+  height: 50px;
+  text-align: center;
+  top: 25px;
+  margin-left: 10px;
+  line-height: 100px;
+  display: table;
+}
+
+.textEventsSpan {
+  color: white;
+  display: inline-block;
+  vertical-align: middle;
+  line-height: normal;  
+  display: table-cell;
+  vertical-align: middle;
+  font-size: 150%;
+  text-align: left;
+}
+
+.eventPane {
+  position: relative;
+  float: left;
+  width: 300px;
+  height: 200px;
+  margin: 0 5 5 0;
+  cursor: pointer;
+  border: 2px solid white;
+  border-radius: 12px;
+}
+
+.eventImage {
+  position: relative;
+  width: 300px;
+  height: 200px;
+  z-index: 2;
+  background-color: black;
+  color: white;
+  text-align: center;
+  font-size: 150%;
+  border-radius: 10px;
+}
+
+.eventImageText {
+  position: relative;
+  top: 85px;
+  text-align: center;
+}
+
+.eventBrickSlopesLogo {
+  position: absolute;
+  z-index: 2;
+  left: 1px;
+  bottom: 2px;
+  background-image:url("/images/logo/brickSlopes_noword_50px.png");
+  background-size: 40px 40px;
+  height: 40px;
+  width: 40px;
+}
+
+.keynotePane {
+  /*background-image:url("/images/keynote/Gary_03.jpg");*/
+  background-size:300px 250px;
+  background-repeat:no-repeat;
+  color: white;
+}
+
+.afolPane {
+  /*background-image:url("/images/panes/afolRegistration.png");*/
+  background-size:300px 250px;
+  background-repeat:no-repeat;
+  color: white;
+}
+
+.schedulePane {
+  /*background-image:url("/images/panes/schedule.jpg");*/
+  background-size:300px 250px;
+  background-repeat:no-repeat;
+  color: white;
+}
+
+.mocListPane {
+  /*background-image:url("/images/panes/moclist.jpg");*/
+  background-size:300px 250px;
+  background-repeat:no-repeat;
+  color: white;
+}
+
+.starWarsPane {
+  /*background-image:url("/images/panes/floorplan.jpg");*/
+  background-size:300px 250px;
+  background-repeat:no-repeat;
+  color: white;
+}
+
+.amenitiesPane {
+  /*background-image:url("/images/panes/amenities.jpg");*/
+  background-size:300px 250px;
+  background-repeat:no-repeat;
+  color: white;
+}
+
+.hotelPane {
+  /*background-image:url("/images/panes/amenities.jpg");*/
+  background-size:300px 250px;
+  background-repeat:no-repeat;
+  color: white;
+}
+
+.travelPane {
+  /*background-image:url("/images/panes/amenities.jpg");*/
+  background-size:300px 250px;
+  background-repeat:no-repeat;
+  color: white;
+}
+
+.vendorsPane {
+  /*background-image:url("/images/panes/vendors.jpg");*/
+  background-size:300px 250px;
+  background-repeat:no-repeat;
+  color: white;
+}
+
+.volunteersPane {
+  /*background-image:url("/images/panes/scoutVolunteers.jpg");*/
+  background-size:300px 250px;
+  background-repeat:no-repeat;
+  color: white;
+}
+
+.faqPane {
+  /*background-image:url("/images/panes/FAQ.jpg");*/
+  background-size:300px 250px;
+  background-repeat:no-repeat;
+  color: white;
+}
+
+.mocRegistrationPane {
+  /*background-image:url("/images/events/mocEvents.jpg");*/
+  background-size:300px 250px;
+  background-repeat:no-repeat;
+  color: white;
+}
+
+.mocRegistrationSmallPane {
+  background-image:url("/images/events/mocRegistration_small.jpg");
+  background-size:250px 100px;
+  background-repeat:no-repeat;
+  background-position:right bottom;
+  color: black;
+}
+
+.eventLogo {
+  height: 250px;
+  width: 300px;
+}
+
+.eventText {
+  position: relative;
+  width: 280px;
+  height: 140px;
+  padding: 10px;
+  padding-top: 50px;
+  z-index: 2;
+  /*
+  background-color: #35469A;
+  color: white;
+  */
+  background-color: white;
+  color: black;
+  font-size: 2em;
+  border-radius: 10px;
+}
+
+div.mocFeed {
+  text-align: center;
+  margin-bottom: 25px;
+  height: auto;
+  width: auto;
+}
+
+div.flickr_badge_image img {
+  width: 200px;
+  height: 200px;
+}
+
+#brickslopes #eventDashboard {
+  position: relative;
+  top: 35px;
+  width: 1024px;
+  min-height: 650px;
+  height: auto;
+  background-color: white;
+  border-radius:25px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+div#mocRegistrationCard {
+  position: absolute;
+  top: 50px;
+  right: 10px;
+  height: 300px;
+  width: 500px;
+  margin-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  border: 1px solid #35469A;
+  border-radius: 10px;
+}
+
+div#mocRegistrationCatagoriesCard {
+  position: absolute;
+  top: 360px;
+  right: 10px;
+  height: 250px;
+  width: 500px;
+  margin-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  border: 1px solid #35469A;
+  border-radius: 10px;
+}
+
+.sampleFont {
+  position: absolute;
+  font-size: 7em;
+  height: 100px;
+  width: 500px;
+  padding-top: 75px;
+  z-index: 0;
+  color: black;
+  opacity: .1;
+}
+
+#sampleMocTitle {
+  position: absolute;
+  top: 65px;
+  z-index: 1;
+  font-size: 3em;
+  width: 450px;
+  left: 25px;
+  height: 200px;
+  text-align: center;
+  border: 0px solid red;
+}
+
+#sampleCreator {
+  position: absolute;
+  width: 500px;
+  text-align: center;
+  bottom: 40px;
+  z-index: 1;
+  font-size: 1em;
+  border: 0px solid red;
+}
+
+#sampleDisplayName {
+  position: absolute;
+  width: 500px;
+  text-align: center;
+  bottom: 5px;
+  z-index: 1;
+  font-size: 1.5em;
+  border: 0px solid red;
+}
+
+#sampleBrickSlopesLogo {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+}
+
+.mainStarWarsContainer {
+  position: relative;
+  border: 0px solid red;
+  height: 100px;
+  width: 1005px;
+}
+
+.singleStarWarsContainer {
+  position: relative;
+  width: 490px;
+  height: 100px;
+  border: 1px solid black;
+  float: left;
+  margin-bottom: 25px;
+  margin-right: 10px;
+  border-radius: 5px;
+}
+
+.starWarsTextContainer {
+  position: absolute;
+  height: 100px;
+  width: 380px;
+  top: 0px;
+  left: 110px;
+  border: 0px solid green;
+}
+
+.starWarsImageContainer {
+  position: absolute;
+  top: 0px;
+  left: 5px;
+  height: 100px;
+  width: 100px;
+  border: 0px solid green;
+}
+
+.starWarsTextContainer .starWarsReserved {
+  position: absolute;
+  bottom: 2px;
+  left: 5px;
+  height: 18px;
+  padding: 3px;
+  width: 300px;
+  border: 0px solid green;
+  cursor: pointer;
+  z-index: 10;
+  border-radius: 5px;
+}
+
+.starWarsImage {
+  height: 100px;
+  width: 100px;
+}
+
+.starWarsReservedImage {
+  height: 200px;
+  width: 200px;
+}
+
+.evenStarWarsBackground, .evenMocList {
+  background-color: white;
+}
+
+.oddStarWarsBackground, .oddMocList {
+  background-color: #CCCCCC;
+}
+
+.starWarsReservedBackground {
+  background-color: #44AA44;
+}
+
+.starWarsAvailableBackground {
+  background-color: #DD1111;
+}
+
+.starWarsTally {
+  width: 970px;
+  height: 100px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid black;
+  margin-bottom: 10px;
+}
+
+.starWarsTallyText {
+  width: auto;
+  height: auto;
+  text-align: center;
+  font-size: 1.10em;
+}
+
+.individualStarWarsTally {
+  padding-top: 25px;
+  float: left;
+  width: 320px;
+  text-align: center;
+  font-size: 2em;
+}
+
+#reserveStarWarsSet {
+  position: absolute;
+  width: 500px;
+  height: 550px;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 25px;
+  z-index: 25;
+  left: 250px;
+  top: 25px;
+  padding: 10px;
+}
+
+#reserveStarWarsSetText {
+  width: 460px;
+  border: 0px solid red;
+}
+
+.reservedStarWarsSetDiv, .registeredMocDiv {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.keynote, .venue {
+  position: relative;
+  border: 0px solid black;
+  text-align: left;
+  font-size: 1.50em;
+  padding-top: 25px;
+  padding-left: 25px;
+}
+
+.keynoteSmall, .venueSmall {
+  width: 500px;
+}
+
+.keynoteLarge, .venueLarge {
+  width: 900px;
+}
+
+#keynoteImageHolder, #venueImageHolder {
+  position: absolute;
+  right: 35px;
+  top: 100px;
+}
+
+#keynoteImage, #venueImage {
+  width: 400px;
+}
+
+#keynoteBubble {
+  position: absolute;
+  width: 425px;
+  height: 40px;
+  right: 50px;
+  top: 110px;
+  background: white;
+  border-radius: 10px;
+  font-size: 1.1em;
+  text-align: center;
+  z-index: 1;
+  font-weight: bold;
+  border: 1px solid black;
+  padding-top: 10px;
+}

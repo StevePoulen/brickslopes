@@ -1,0 +1,600 @@
+/* line 2, ../../compass/assets/sass/afols.scss */
+#brickslopes #dashboard {
+  position: relative;
+  top: 35px;
+  width: 1220px;
+  height: 650px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* line 11, ../../compass/assets/sass/afols.scss */
+#dashboard #sidebar {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  width: 200px;
+  min-height: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+/* line 22, ../../compass/assets/sass/afols.scss */
+div#eventDashboard div#dashboardCloseButton, div#reserveStarWarsSet div#reserveCloseButton {
+  position: absolute;
+  background: url("/images/closeButton_blue.png") no-repeat scroll 0px center transparent;
+  background-size: 40px 40px;
+  height: 40px;
+  width: 40px;
+  z-index: 6;
+  top: -20px;
+  right: -20px;
+  cursor: pointer;
+}
+
+/* line 34, ../../compass/assets/sass/afols.scss */
+div#dashboardText {
+  min-height: 500px;
+  position: relative;
+  margin-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  display: table;
+}
+
+/* line 44, ../../compass/assets/sass/afols.scss */
+span#dashboardText {
+  border-radius: 25px;
+  padding: 15px;
+  position: relative;
+  font-size: 100%;
+  text-align: left;
+  width: 924px;
+  color: black;
+  background: white;
+  display: table;
+  line-height: normal;
+  display: table-cell;
+  vertical-align: middle;
+  border: 0px solid red;
+}
+
+/* line 60, ../../compass/assets/sass/afols.scss */
+#eventSwag li {
+  list-style-type: disc;
+  text-align: left;
+  font-size: 1.25em;
+  padding-bottom: 5px;
+}
+
+/* line 67, ../../compass/assets/sass/afols.scss */
+#dashboardText div#eventSwag {
+  border-radius: 25px;
+  position: absolute;
+  height: auto;
+  width: 450px;
+  right: 20px;
+  top: 150px;
+  border: 1px solid black;
+  z-index: 1;
+  background: white;
+  padding-left: 10px;
+}
+
+/* line 80, ../../compass/assets/sass/afols.scss */
+#panes {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  width: 1238px;
+  height: 615px;
+  border: 0px solid yellow;
+}
+
+/* line 89, ../../compass/assets/sass/afols.scss */
+#eventContainer {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  width: 750px;
+  height: 100px;
+}
+
+/* line 97, ../../compass/assets/sass/afols.scss */
+.textEvents {
+  position: relative;
+  float: left;
+  width: 75px;
+  height: 50px;
+  text-align: center;
+  top: 25px;
+  margin-left: 10px;
+  line-height: 100px;
+  display: table;
+}
+
+/* line 109, ../../compass/assets/sass/afols.scss */
+.textEventsSpan {
+  color: white;
+  display: inline-block;
+  vertical-align: middle;
+  line-height: normal;
+  display: table-cell;
+  vertical-align: middle;
+  font-size: 150%;
+  text-align: left;
+}
+
+/* line 120, ../../compass/assets/sass/afols.scss */
+.eventPane {
+  position: relative;
+  float: left;
+  width: 300px;
+  height: 200px;
+  margin: 0 5 5 0;
+  cursor: pointer;
+  border: 2px solid white;
+  border-radius: 12px;
+}
+
+/* line 131, ../../compass/assets/sass/afols.scss */
+.eventImage {
+  position: relative;
+  width: 300px;
+  height: 200px;
+  z-index: 2;
+  background-color: black;
+  color: white;
+  text-align: center;
+  font-size: 150%;
+  border-radius: 10px;
+}
+
+/* line 143, ../../compass/assets/sass/afols.scss */
+.eventImageText {
+  position: relative;
+  top: 85px;
+  text-align: center;
+}
+
+/* line 149, ../../compass/assets/sass/afols.scss */
+.eventBrickSlopesLogo {
+  position: absolute;
+  z-index: 2;
+  left: 1px;
+  bottom: 2px;
+  background-image: url("/images/logo/brickSlopes_noword_50px.png");
+  background-size: 40px 40px;
+  height: 40px;
+  width: 40px;
+}
+
+/* line 160, ../../compass/assets/sass/afols.scss */
+.keynotePane {
+  /*background-image:url("/images/keynote/Gary_03.jpg");*/
+  background-size: 300px 250px;
+  background-repeat: no-repeat;
+  color: white;
+}
+
+/* line 167, ../../compass/assets/sass/afols.scss */
+.afolPane {
+  /*background-image:url("/images/panes/afolRegistration.png");*/
+  background-size: 300px 250px;
+  background-repeat: no-repeat;
+  color: white;
+}
+
+/* line 174, ../../compass/assets/sass/afols.scss */
+.schedulePane {
+  /*background-image:url("/images/panes/schedule.jpg");*/
+  background-size: 300px 250px;
+  background-repeat: no-repeat;
+  color: white;
+}
+
+/* line 181, ../../compass/assets/sass/afols.scss */
+.mocListPane {
+  /*background-image:url("/images/panes/moclist.jpg");*/
+  background-size: 300px 250px;
+  background-repeat: no-repeat;
+  color: white;
+}
+
+/* line 188, ../../compass/assets/sass/afols.scss */
+.starWarsPane {
+  /*background-image:url("/images/panes/floorplan.jpg");*/
+  background-size: 300px 250px;
+  background-repeat: no-repeat;
+  color: white;
+}
+
+/* line 195, ../../compass/assets/sass/afols.scss */
+.amenitiesPane {
+  /*background-image:url("/images/panes/amenities.jpg");*/
+  background-size: 300px 250px;
+  background-repeat: no-repeat;
+  color: white;
+}
+
+/* line 202, ../../compass/assets/sass/afols.scss */
+.hotelPane {
+  /*background-image:url("/images/panes/amenities.jpg");*/
+  background-size: 300px 250px;
+  background-repeat: no-repeat;
+  color: white;
+}
+
+/* line 209, ../../compass/assets/sass/afols.scss */
+.travelPane {
+  /*background-image:url("/images/panes/amenities.jpg");*/
+  background-size: 300px 250px;
+  background-repeat: no-repeat;
+  color: white;
+}
+
+/* line 216, ../../compass/assets/sass/afols.scss */
+.vendorsPane {
+  /*background-image:url("/images/panes/vendors.jpg");*/
+  background-size: 300px 250px;
+  background-repeat: no-repeat;
+  color: white;
+}
+
+/* line 223, ../../compass/assets/sass/afols.scss */
+.volunteersPane {
+  /*background-image:url("/images/panes/scoutVolunteers.jpg");*/
+  background-size: 300px 250px;
+  background-repeat: no-repeat;
+  color: white;
+}
+
+/* line 230, ../../compass/assets/sass/afols.scss */
+.faqPane {
+  /*background-image:url("/images/panes/FAQ.jpg");*/
+  background-size: 300px 250px;
+  background-repeat: no-repeat;
+  color: white;
+}
+
+/* line 237, ../../compass/assets/sass/afols.scss */
+.mocRegistrationPane {
+  /*background-image:url("/images/events/mocEvents.jpg");*/
+  background-size: 300px 250px;
+  background-repeat: no-repeat;
+  color: white;
+}
+
+/* line 244, ../../compass/assets/sass/afols.scss */
+.mocRegistrationSmallPane {
+  background-image: url("/images/events/mocRegistration_small.jpg");
+  background-size: 250px 100px;
+  background-repeat: no-repeat;
+  background-position: right bottom;
+  color: black;
+}
+
+/* line 252, ../../compass/assets/sass/afols.scss */
+.eventLogo {
+  height: 250px;
+  width: 300px;
+}
+
+/* line 257, ../../compass/assets/sass/afols.scss */
+.eventText {
+  position: relative;
+  width: 280px;
+  height: 140px;
+  padding: 10px;
+  padding-top: 50px;
+  z-index: 2;
+  /*
+  background-color: #35469A;
+  color: white;
+  */
+  background-color: white;
+  color: black;
+  font-size: 2em;
+  border-radius: 10px;
+}
+
+/* line 274, ../../compass/assets/sass/afols.scss */
+div.mocFeed {
+  text-align: center;
+  margin-bottom: 25px;
+  height: auto;
+  width: auto;
+}
+
+/* line 281, ../../compass/assets/sass/afols.scss */
+div.flickr_badge_image img {
+  width: 200px;
+  height: 200px;
+}
+
+/* line 286, ../../compass/assets/sass/afols.scss */
+#brickslopes #eventDashboard {
+  position: relative;
+  top: 35px;
+  width: 1024px;
+  min-height: 650px;
+  height: auto;
+  background-color: white;
+  border-radius: 25px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* line 298, ../../compass/assets/sass/afols.scss */
+div#mocRegistrationCard {
+  position: absolute;
+  top: 50px;
+  right: 10px;
+  height: 300px;
+  width: 500px;
+  margin-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  border: 1px solid #35469A;
+  border-radius: 10px;
+}
+
+/* line 312, ../../compass/assets/sass/afols.scss */
+div#mocRegistrationCatagoriesCard {
+  position: absolute;
+  top: 360px;
+  right: 10px;
+  height: 250px;
+  width: 500px;
+  margin-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  border: 1px solid #35469A;
+  border-radius: 10px;
+}
+
+/* line 326, ../../compass/assets/sass/afols.scss */
+.sampleFont {
+  position: absolute;
+  font-size: 7em;
+  height: 100px;
+  width: 500px;
+  padding-top: 75px;
+  z-index: 0;
+  color: black;
+  opacity: .1;
+}
+
+/* line 337, ../../compass/assets/sass/afols.scss */
+#sampleMocTitle {
+  position: absolute;
+  top: 65px;
+  z-index: 1;
+  font-size: 3em;
+  width: 450px;
+  left: 25px;
+  height: 200px;
+  text-align: center;
+  border: 0px solid red;
+}
+
+/* line 349, ../../compass/assets/sass/afols.scss */
+#sampleCreator {
+  position: absolute;
+  width: 500px;
+  text-align: center;
+  bottom: 40px;
+  z-index: 1;
+  font-size: 1em;
+  border: 0px solid red;
+}
+
+/* line 359, ../../compass/assets/sass/afols.scss */
+#sampleDisplayName {
+  position: absolute;
+  width: 500px;
+  text-align: center;
+  bottom: 5px;
+  z-index: 1;
+  font-size: 1.5em;
+  border: 0px solid red;
+}
+
+/* line 369, ../../compass/assets/sass/afols.scss */
+#sampleBrickSlopesLogo {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+}
+
+/* line 375, ../../compass/assets/sass/afols.scss */
+.mainStarWarsContainer {
+  position: relative;
+  border: 0px solid red;
+  height: 100px;
+  width: 1005px;
+}
+
+/* line 382, ../../compass/assets/sass/afols.scss */
+.singleStarWarsContainer {
+  position: relative;
+  width: 490px;
+  height: 100px;
+  border: 1px solid black;
+  float: left;
+  margin-bottom: 25px;
+  margin-right: 10px;
+  border-radius: 5px;
+}
+
+/* line 393, ../../compass/assets/sass/afols.scss */
+.starWarsTextContainer {
+  position: absolute;
+  height: 100px;
+  width: 380px;
+  top: 0px;
+  left: 110px;
+  border: 0px solid green;
+}
+
+/* line 402, ../../compass/assets/sass/afols.scss */
+.starWarsImageContainer {
+  position: absolute;
+  top: 0px;
+  left: 5px;
+  height: 100px;
+  width: 100px;
+  border: 0px solid green;
+}
+
+/* line 411, ../../compass/assets/sass/afols.scss */
+.starWarsTextContainer .starWarsReserved {
+  position: absolute;
+  bottom: 2px;
+  left: 5px;
+  height: 18px;
+  padding: 3px;
+  width: 300px;
+  border: 0px solid green;
+  cursor: pointer;
+  z-index: 10;
+  border-radius: 5px;
+}
+
+/* line 424, ../../compass/assets/sass/afols.scss */
+.starWarsImage {
+  height: 100px;
+  width: 100px;
+}
+
+/* line 429, ../../compass/assets/sass/afols.scss */
+.starWarsReservedImage {
+  height: 200px;
+  width: 200px;
+}
+
+/* line 434, ../../compass/assets/sass/afols.scss */
+.evenStarWarsBackground, .evenMocList {
+  background-color: white;
+}
+
+/* line 438, ../../compass/assets/sass/afols.scss */
+.oddStarWarsBackground, .oddMocList {
+  background-color: #CCCCCC;
+}
+
+/* line 442, ../../compass/assets/sass/afols.scss */
+.starWarsReservedBackground {
+  background-color: #44AA44;
+}
+
+/* line 446, ../../compass/assets/sass/afols.scss */
+.starWarsAvailableBackground {
+  background-color: #DD1111;
+}
+
+/* line 450, ../../compass/assets/sass/afols.scss */
+.starWarsTally {
+  width: 970px;
+  height: 100px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid black;
+  margin-bottom: 10px;
+}
+
+/* line 459, ../../compass/assets/sass/afols.scss */
+.starWarsTallyText {
+  width: auto;
+  height: auto;
+  text-align: center;
+  font-size: 1.10em;
+}
+
+/* line 466, ../../compass/assets/sass/afols.scss */
+.individualStarWarsTally {
+  padding-top: 25px;
+  float: left;
+  width: 320px;
+  text-align: center;
+  font-size: 2em;
+}
+
+/* line 474, ../../compass/assets/sass/afols.scss */
+#reserveStarWarsSet {
+  position: absolute;
+  width: 500px;
+  height: 550px;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 25px;
+  z-index: 25;
+  left: 250px;
+  top: 25px;
+  padding: 10px;
+}
+
+/* line 487, ../../compass/assets/sass/afols.scss */
+#reserveStarWarsSetText {
+  width: 460px;
+  border: 0px solid red;
+}
+
+/* line 492, ../../compass/assets/sass/afols.scss */
+.reservedStarWarsSetDiv, .registeredMocDiv {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+/* line 497, ../../compass/assets/sass/afols.scss */
+.keynote, .venue {
+  position: relative;
+  border: 0px solid black;
+  text-align: left;
+  font-size: 1.50em;
+  padding-top: 25px;
+  padding-left: 25px;
+}
+
+/* line 506, ../../compass/assets/sass/afols.scss */
+.keynoteSmall, .venueSmall {
+  width: 500px;
+}
+
+/* line 510, ../../compass/assets/sass/afols.scss */
+.keynoteLarge, .venueLarge {
+  width: 900px;
+}
+
+/* line 514, ../../compass/assets/sass/afols.scss */
+#keynoteImageHolder, #venueImageHolder {
+  position: absolute;
+  right: 35px;
+  top: 100px;
+}
+
+/* line 520, ../../compass/assets/sass/afols.scss */
+#keynoteImage, #venueImage {
+  width: 400px;
+}
+
+/* line 524, ../../compass/assets/sass/afols.scss */
+#keynoteBubble {
+  position: absolute;
+  width: 425px;
+  height: 40px;
+  right: 50px;
+  top: 110px;
+  background: white;
+  border-radius: 10px;
+  font-size: 1.1em;
+  text-align: center;
+  z-index: 1;
+  font-weight: bold;
+  border: 1px solid black;
+  padding-top: 10px;
+}

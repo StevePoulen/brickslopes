@@ -1,0 +1,31 @@
+<phpunit 
+  bootstrap="tests/php/fixtures/bootstrap.php"
+  colors="true"
+  verbose="true"
+>
+   
+  <testsuites>
+    <testsuite name="brickslopes">
+      <directory>./tests/php/unit</directory>
+    </testsuite>
+  </testsuites>
+     
+  <groups>
+    <exclude>
+      <group></group>
+    </exclude>
+  </groups>
+      
+  <logging>
+    <log type="coverage-html" target="test-reports" charset="UTF-8" yui="true" />
+  </logging>
+
+  <filter>
+    <whitelist addUncoveredFilesFromWhitelist="true">
+      <directory suffix=".php">app/php</directory>
+      <exclude>
+        <file>app/php/AutoLoader.php</file>
+      </exclude>
+    </whitelist>
+  </filter>
+</phpunit>
