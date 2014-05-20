@@ -5,7 +5,7 @@ KARMA_CONFIG = ./tests/js/fixtures/karma.conf.js
 # Performs code governance (lint + style) test
 lint:
 	@$(JSCS_PATH) ./app/js/*
-	@$(JSCS_PATH) ./test/unit/*
+	@$(JSCS_PATH) ./tests/js/unit/*
 
 # Performs JavaScript unit tests
 unit_js:

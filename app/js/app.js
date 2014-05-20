@@ -2,13 +2,13 @@
 
 // Declare app level module which depends on filters, and services
 angular.module('brickSlopes', [
-  'ngRoute',
-  'brickSlopes.directives',
-  'brickSlopes.controllers'
-  //'brickSlopes.filters',
-  //'brickSlopes.services',
+    'ngRoute',
+    'brickSlopes.directives',
+    'brickSlopes.controllers'
+    //'brickSlopes.filters',
+    //'brickSlopes.services',
 ]).
 config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/', {templateUrl: '/partials/index.html', controller: 'bsIndex'});
-  $routeProvider.otherwise({redirectTo: '/'});
+    $routeProvider.when('/', {templateUrl: '/partials/index.html', controller: 'bsIndex'});
+    $routeProvider.otherwise({redirectTo: '/'});
 }]);

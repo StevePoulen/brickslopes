@@ -3,7 +3,7 @@
   "description": "The website for BrickSlopes, A LEGO Fan Event",
   "repository": "https://github.com/brianpilati/brickslopes",
   "scripts": {
-    "postinstall": "curl http://code.jquery.com/jquery-1.11.0.min.js > ./app/lib/jquery.min.js; curl https://code.angularjs.org/1.2.9/angular.min.js > ./app/lib/angular.min.js; curl https://code.angularjs.org/1.2.9/angular-route.min.js > ./app/lib/angular-route.min.js; curl http://getcomposer.org/composer.phar > composer.phar; php composer.phar install; gem install oily_png;",
+    "postinstall": "curl http://code.jquery.com/jquery-1.11.0.min.js > ./app/lib/jquery.min.js; curl https://code.angularjs.org/1.2.9/angular.min.js > ./app/lib/angular.min.js; curl https://code.angularjs.org/1.2.9/angular-mocks.js > ./tests/js/lib/angular-mocks.min.js; curl https://code.angularjs.org/1.2.9/angular-route.min.js > ./app/lib/angular-route.min.js; curl http://getcomposer.org/composer.phar > composer.phar; php composer.phar install; gem install oily_png;",
     "test": "make test"
   },
   "engines": {
@@ -11,9 +11,9 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "jasmine-jquery": "~1.3.3",
     "jscs": "~1.3.0",
     "karma": "~0.10",
+    "karma-jasmine": "~0.1.0",
     "karma-html2js-preprocessor": "~0.1.0"
   }
 }
