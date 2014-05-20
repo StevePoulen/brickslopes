@@ -10,6 +10,7 @@ pids
 *.psd
 *.DS_Store
 *.swp
+*.swo
 extras
 database
 .sass-cache/
