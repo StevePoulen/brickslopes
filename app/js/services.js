@@ -1,9 +1,7 @@
-
-
 // Demonstrate how to register services
 // In this case it is a simple value service.
 angular.module('brickSlopes.services', [])
-.factory('brickSlopesText', [ function() {
+.factory('BrickSlopesText', [ function() {
     var __fontSize = undefined;
     var __fontColor = undefined;
     var __eventImageText = undefined;
@@ -27,7 +25,7 @@ angular.module('brickSlopes.services', [])
             this.__setEventImageText(eventImageText);
 
             var capsFont = "font-size: " + __fontSize + "em;";
-            var smallFontNumber = fontSize * .8;
+            var smallFontNumber = __fontSize * .8;
             var smallFont = "font-size: " + smallFontNumber + "em;";
             var outputWord = "";
             text = text.replace(/-/g, '- ');
@@ -38,8 +36,9 @@ angular.module('brickSlopes.services', [])
             _.each(wordArray, function(word) {
                 var firstLetter = word[0].toUpperCase();
                 var remainder = word.slice(1).toUpperCase();
-                outputWord += firstLetter + remainder;
-                outputWord += "&nbsp;";
+                outputWord += '<span style="' + capsFont + '">' + firstLetter + '</span>';
+                outputWord += '<span style="' + smallFont + '">' + remainder + '</span>';
+                outputWord += '&nbsp;';
             });
 
             outputWord = outputWord.replace(/\&nbsp;$/, '');
