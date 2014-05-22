@@ -1,0 +1,20 @@
+<div id="splashPageDashboard">
+  <div id="splashPage">
+    <div id="splashTextEmailUs" class="splashTextHome">
+      <h2><bs-text text="Email Us"></bs-text></h2>
+      <form action="/cgi/mail.php" method="post">
+        <input type="hidden" name="subject" value="BrickSlopes Question">
+        <input type="hidden" name="referPage" value="https://www.brickslopes.com/eventContacts/contactReceived.php">
+        <label class="smallFont">First Name:</label><br> <input type="text" name="firstName" size=50>
+        <br>
+        <label class="smallFont">Last Name:</label><br> <input type="text" name="lastName" size=50>
+        <br>
+        <label class="smallFont">E-mail Address:</label><br> <input type="text" name="email" size=50>
+        <br>
+        <label class="smallFont">Question or Comment:</label><br> <textarea cols="50" rows="10" name="questionOrComment"></textarea>
+        <p>
+        <input type="submit" value="Contact Us">
+      </form>
+    </div>
+  </div>
+</div>

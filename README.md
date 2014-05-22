@@ -27,4 +27,7 @@ $ make js_test
 # php Tests
 $ make php_test
 
+# e2e Tests
+$ make e2e_test
+
 

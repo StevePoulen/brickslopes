@@ -9,7 +9,7 @@ angular.module('brickSlopes.directives', [])
         templateUrl: 'partials/header.html'
     }
 })
-.directive('bsLogo', function() {
+.directive('bsLogo', ['BrickSlopesText', '$sce', function(brickSlopesText, $sce) {
     return {
         restrict: 'E',
         replace: true,
@@ -17,19 +17,15 @@ angular.module('brickSlopes.directives', [])
             fontColor: '@',
             fontSize: '@'
         },
-        template: '<span class="{{fontColor}}Font bold">' +
-            '<span style="{{capsFont}}">B</span>' +
-            '<span style="{{smallFont}}">RICK</span>' +
-            '<span style="{{capsFont}}">S</span>' +
-            '<span style="{{smallFont}}">LOPES</span>' +
-            '</span>',
+        template: '<span ng-bind-html="bsText"></span>',
         link: function(scope, element, attrs) {
-            scope.capsFont = "font-size: " + scope.fontSize + "em;";
-            scope.smallFontNumber = parseInt(scope.fontSize * .8);
-            scope.smallFont = "font-size: " + scope.smallFontNumber + "em;";
+            scope.bsText = $sce.trustAsHtml(
+                brickSlopesText.createText('Brick', scope.fontSize, scope.fontColor, undefined) +
+                brickSlopesText.createText('Slopes', scope.fontSize, scope.fontColor, undefined)
+            );
         }
     }
-})
+}])
 .directive('bsText', ['BrickSlopesText', '$sce',  function(brickSlopesText, $sce) {
     return {
         restrict: 'E',

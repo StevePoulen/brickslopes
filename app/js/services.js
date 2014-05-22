@@ -12,11 +12,11 @@ angular.module('brickSlopes.services', [])
         },
 
         __setFontColor: function(fontColor) {
-            __fontColor = (fontColor) ? fontColor: "blueFont";
+            __fontColor = (fontColor) ? fontColor + "Font" : "blueFont";
         },
 
         __setEventImageText: function(eventImageText) {
-            __eventImageText = (eventImageText) ? eventImageText : "eventImageText";
+            __eventImageText = (eventImageText) ? " eventImageText" : "";
         },
 
         createText: function(text, fontSize, fontColor, eventImageText) {
@@ -43,7 +43,7 @@ angular.module('brickSlopes.services', [])
 
             outputWord = outputWord.replace(/\&nbsp;$/, '');
 
-            return '<span class="' + __fontColor + ' bold ' + __eventImageText + '">' + outputWord +  '</span>';
+            return '<span class="' + __fontColor + ' bold' + __eventImageText + '">' + outputWord +  '</span>';
         }
     }
 }]);

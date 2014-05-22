@@ -20,13 +20,11 @@ module.exports = function(config){
         '*.html': ['html2js']
     },
 
-    autoWatch : false,
+    autoWatch : true,
 
     frameworks: ['jasmine'],
 
     browsers : ['Chrome'],
-
-    singleRun : true,
 
     plugins : [
       'karma-jasmine',

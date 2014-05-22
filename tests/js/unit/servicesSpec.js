@@ -3,7 +3,7 @@
 /* jasmine specs for services go here */
 
 function buildPreFontWrapper() {
-    return '<span class="blueFont bold eventImageText">';
+    return '<span class="blueFont bold">';
 }
 
 function buildPostWrapper() {
