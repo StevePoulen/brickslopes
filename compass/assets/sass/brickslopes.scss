@@ -62,23 +62,22 @@ a:visited {
         position: absolute;
         top: 30px;
         right: 0px;
-        width: 750px;
-        height: 60px;
-        border: 1px solid white;
+        width: 700px;
+        height: 70px;
+        border: 0px solid white;
 
-        img {
-            height: 75px;
-            border: 1px solid white;
+        a {
+            margin: 10px;
         }
     }
 
     #afolContainer {
         position: absolute;
         top: 5px;
-        right: 0px;
+        right: 10px;
         width: 200px;
         height: 20px;
-        border: 1px solid yellow;
+        border: 0px solid yellow;
         color: white;
         text-align: right;
         padding-right: 10px;
