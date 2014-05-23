@@ -1,4 +1,3 @@
-
 #brickslopes #dashboard {
   position: relative;
   top: 35px;
@@ -157,103 +156,6 @@ span#dashboardText {
   width: 40px;
 }
 
-.keynotePane {
-  /*background-image:url("/images/keynote/Gary_03.jpg");*/
-  background-size:300px 250px;
-  background-repeat:no-repeat;
-  color: white;
-}
-
-.afolPane {
-  /*background-image:url("/images/panes/afolRegistration.png");*/
-  background-size:300px 250px;
-  background-repeat:no-repeat;
-  color: white;
-}
-
-.schedulePane {
-  /*background-image:url("/images/panes/schedule.jpg");*/
-  background-size:300px 250px;
-  background-repeat:no-repeat;
-  color: white;
-}
-
-.mocListPane {
-  /*background-image:url("/images/panes/moclist.jpg");*/
-  background-size:300px 250px;
-  background-repeat:no-repeat;
-  color: white;
-}
-
-.starWarsPane {
-  /*background-image:url("/images/panes/floorplan.jpg");*/
-  background-size:300px 250px;
-  background-repeat:no-repeat;
-  color: white;
-}
-
-.amenitiesPane {
-  /*background-image:url("/images/panes/amenities.jpg");*/
-  background-size:300px 250px;
-  background-repeat:no-repeat;
-  color: white;
-}
-
-.hotelPane {
-  /*background-image:url("/images/panes/amenities.jpg");*/
-  background-size:300px 250px;
-  background-repeat:no-repeat;
-  color: white;
-}
-
-.travelPane {
-  /*background-image:url("/images/panes/amenities.jpg");*/
-  background-size:300px 250px;
-  background-repeat:no-repeat;
-  color: white;
-}
-
-.vendorsPane {
-  /*background-image:url("/images/panes/vendors.jpg");*/
-  background-size:300px 250px;
-  background-repeat:no-repeat;
-  color: white;
-}
-
-.volunteersPane {
-  /*background-image:url("/images/panes/scoutVolunteers.jpg");*/
-  background-size:300px 250px;
-  background-repeat:no-repeat;
-  color: white;
-}
-
-.faqPane {
-  /*background-image:url("/images/panes/FAQ.jpg");*/
-  background-size:300px 250px;
-  background-repeat:no-repeat;
-  color: white;
-}
-
-.mocRegistrationPane {
-  /*background-image:url("/images/events/mocEvents.jpg");*/
-  background-size:300px 250px;
-  background-repeat:no-repeat;
-  color: white;
-}
-
-.mocRegistrationSmallPane {
-  background-image:url("/images/events/mocRegistration_small.jpg");
-  background-size:250px 100px;
-  background-repeat:no-repeat;
-  background-position:right bottom;
-  color: black;
-}
-
-.eventLogo {
-  height: 250px;
-  width: 300px;
-}
-
 .eventText {
   position: relative;
   width: 280px;
@@ -261,10 +163,6 @@ span#dashboardText {
   padding: 10px;
   padding-top: 50px;
   z-index: 2;
-  /*
-  background-color: #35469A;
-  color: white;
-  */
   background-color: white;
   color: black;
   font-size: 2em;

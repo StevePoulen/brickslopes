@@ -32,13 +32,14 @@ angular.module('brickSlopes.directives', [])
         replace: true,
         scope: {
             fontColor: '@',
-            eventImage: '@',
             fontSize: '@',
             text: '@'
         },
         template: '<span ng-bind-html="bsText"></span>',
         link: function(scope, element, attrs) {
-            scope.bsText = $sce.trustAsHtml(brickSlopesText.createText(attrs.text, attrs.fontSize, attrs.fontColor, attrs.eventImage));
+            scope.$watch("text", function() {
+                scope.bsText = $sce.trustAsHtml(brickSlopesText.createText(attrs.text, attrs.fontSize, attrs.fontColor));
+            });
         }
     }
 }])

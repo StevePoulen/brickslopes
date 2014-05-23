@@ -1,3 +1,4 @@
+/*
 var $currentPage = "Home";
 
 function getCurrentPageFromPath(path) {
@@ -39,20 +40,22 @@ function displayCurrentPage() {
 function getCurrentPage() {
     return $currentPage;
 }
+*/
 
 $(document).delegate(".eventPane", "mouseenter", function(event) {
     event.stopPropagation();
     $(this).children('.eventText').toggle();
     $(this).children('.eventBrickSlopesLogo').toggle();
-    $(this).children('.eventImage').toggle();
+    $(this).children('.eventImageText').toggle();
 });
 
 $(document).delegate(".eventPane", "mouseleave", function(event) {
     event.stopPropagation();
-    $(this).children('.eventImage').toggle();
+    $(this).children('.eventImageText').toggle();
     $(this).children('.eventText').toggle();
     $(this).children('.eventBrickSlopesLogo').toggle();
 });
+/*
 
 $(document).delegate("#sponsorText", "click", function(event) {
     if (getCurrentPage() != "Sponsor") {
@@ -244,3 +247,4 @@ function getWebPage(page) {
     );
 }
 
+*/

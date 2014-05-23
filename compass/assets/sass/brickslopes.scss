@@ -2,43 +2,38 @@
 @import url('/css/payment.css');
 
 body {
-  background-color: #000000;
-  font-family: "arial";
+    background-color: black;
+    font-family: "arial";
 }
 
 /* CSS Reset for Anchor tags - Becasue IE is stupid*/
 img { 
 	border:0;
-	}
-
-a{
-color:000000;
-text-decoration:none;
-	
 }
 
-a:link
-{
-color:000000;
-text-decoration:none;
+a {
+    color: white;
+    text-decoration: none;
 }
 
-a:hover
-{
-color:000000;
-text-decoration:none;
+a:link {
+    color: white;
+    text-decoration: none;
 }
 
-a:active
-{
-color:000000;
-text-decoration:none;	
+a:hover {
+    color: white;
+    text-decoration: none;
 }
 
-a:visited
-{
-color:000000;
-text-decoration:none;	
+a:active {
+    color: white;
+    text-decoration: none;	
+}
+
+a:visited {
+    color: white;
+    text-decoration: none;	
 }
 
 #brickslopes {
@@ -54,22 +49,40 @@ text-decoration:none;
 }
 
 #header {
-  position: relative;
-  top: 0px;
-  left: 0px;
-  width: 1230px;
-  height: 100px;
-  margin-left: auto;
-  margin-right: auto;
-  border: 0px solid white;
-}
+    position: relative;
+    top: 0px;
+    left: 0px;
+    width: 1230px;
+    height: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 0px solid white;
 
-#eventContainer {
-  position: absolute;
-  top: 0px;
-  right: 0px;
-  width: 750px;
-  height: 100px;
+    #eventContainer {
+        position: absolute;
+        top: 30px;
+        right: 0px;
+        width: 750px;
+        height: 60px;
+        border: 1px solid white;
+
+        img {
+            height: 75px;
+            border: 1px solid white;
+        }
+    }
+
+    #afolContainer {
+        position: absolute;
+        top: 5px;
+        right: 0px;
+        width: 200px;
+        height: 20px;
+        border: 1px solid yellow;
+        color: white;
+        text-align: right;
+        padding-right: 10px;
+    }
 }
 
 #splashPageDashboard {

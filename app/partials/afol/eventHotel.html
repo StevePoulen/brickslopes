@@ -1,7 +1,8 @@
-<?php include_once '../includes/brickSlopesLogo.html'; ?> 
-<script type="text/javascript" src="/js/googleAnalytics.js"></script>
+<div id="eventDashboard">
+    <span id="dashboardText">
+<script type="text/javascript" src="/lib/googleAnalytics.js"></script>
 
-<h1><?php createBrickSlopesLogo("1.25"); ?> &#8226; <?php stylizePages("Hotels");?></h1>
+<h1><phpreplaced createBrickSlopesLogo("1.25"); phpreplaced> &#8226; <phpreplaced stylizePages("Hotels");phpreplaced></h1>
 
 <div class='venue venueSmall'>
   
@@ -24,7 +25,7 @@
   	<img src="/images/hotel/HyattHouse.png" align="right;"> 
   </div>
   <div>	
-  	<a href="http://www.hyatt.com/hyatt/reservations/flow6/propCheckAvailability.jsp?pid=slcxs&extCorporateId=g-brik"><span class="mediumFont blueFont">Hyatt House in Sandy Utah</span></a>
+  	<a href="http://www.hyatt.com/hyatt/reservations/flow6/propCheckAvailability.jspphpreplacedpid=slcxs&extCorporateId=g-brik"><span class="mediumFont blueFont">Hyatt House in Sandy Utah</span></a>
 	<ul>
 		<li>Negotiated Rates Use Group Code Brik</li>
 		<ul>
@@ -41,4 +42,6 @@
    </div>
   
 </div>
-
+    </span>
+    <div id="dashboardCloseButton" ng-click="closeDialog()"></div>
+</div>

@@ -45,8 +45,9 @@ describe('service', function() {
         it('should create brickSlopes Text with a hyphen', function() {
             var expectedValue = buildPreFontWrapper()
                 + buildPreCapWrapper("T")
-                + buildPostCapWrapper("RAVEL-")
+                + buildPostCapWrapper("RAVEL")
                 + "&nbsp;"
+                + buildPreCapWrapper("-")
                 + buildPreCapWrapper("L")
                 + buildPostCapWrapper("ODGE")
                 + buildPostWrapper();
@@ -56,12 +57,14 @@ describe('service', function() {
         it('should create brickSlopes Text with a star', function() {
             var expectedValue = buildPreFontWrapper()
                 + buildPreCapWrapper("T")
-                + buildPostCapWrapper("RAVEL*")
+                + buildPostCapWrapper("RAVEL")
                 + "&nbsp;"
-                + buildPreCapWrapper("L")
-                + buildPostCapWrapper("ODGE")
+                + buildPreCapWrapper("2")
+                + buildPreCapWrapper("0")
+                + buildPreCapWrapper("1")
+                + buildPreCapWrapper("4")
                 + buildPostWrapper();
-            expect(bsTextFactory.createText('Travel*Lodge')).toBe(expectedValue);
+            expect(bsTextFactory.createText('Travel 2*0*1*4')).toBe(expectedValue);
         });
 
         it('should create brickSlopes Text with a >', function() {
@@ -84,6 +87,36 @@ describe('service', function() {
                 + buildPostCapWrapper("ODGE")
                 + buildPostWrapper();
             expect(bsTextFactory.createText('Travel Lodge')).toBe(expectedValue);
+        });
+    });
+
+    describe('GetAfolMocList', function() {
+        var mockBackend, loader, data;
+        beforeEach(inject(function(_$httpBackend_, GetAfolMocList) {
+            var returnList = {'afolMocCount': 22, 'mocs': {'firstName': 'Cody'}};
+            mockBackend = _$httpBackend_;
+            loader = GetAfolMocList;
+            mockBackend.expectGET('/controllers/mocs/getRegisteredMocList.php').respond(returnList);
+        }));
+
+        it('should load registered afol moc list count', function() {
+            var load = loader.getCount();
+            load.then(function(_data) {
+                data = _data;
+            });
+
+            mockBackend.flush();
+            expect(data).toEqualData(22);
+        });
+
+        it('should load registered afol moc list count', function() {
+            var load = loader.getList();
+            load.then(function(_data) {
+                data = _data;
+            });
+
+            mockBackend.flush();
+            expect(data).toEqualData({firstName: 'Cody'});
         });
     });
 });

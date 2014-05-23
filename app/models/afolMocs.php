@@ -1,5 +1,5 @@
 <?php
-  require_once('../lib/db.php');
+  require_once(__DIR__ . '/../lib/db.php');
 
   class AfolMocs extends db {
     function __construct() {

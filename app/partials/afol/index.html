@@ -1,0 +1,74 @@
+<div id="dashboard">
+    <div id="panes">
+        <div class="eventPane" ng-click="clickRegistration()">
+            <div class="eventText" style="display: none"><bs-text font-color=black text="Join us May, 2014"></bs-text><p><bs-text font-color=black text="Register Now"></bs-text></div>
+            <div class="eventImageText" style="display: show"><bs-text text='Registration' font-size=1.85 font-color=white></bs-text></div>
+            <div class="eventBrickSlopesLogo" style="display: none"></div>
+        </div> 
+        <div class="eventPane" ng-click="clickSchedule()">
+            <div class="eventText" style="display: none"><bs-text font-color=black text="Jammed Pack"></bs-text><p><bs-text font-color=black text="Every Day"></bs-text></div>
+            <div class="eventImageText" style="display: show"><bs-text text='Schedule of Events' font-size=1.85 font-color=white></bs-text></div>
+            <div class="eventBrickSlopesLogo" style="display: none"></div>
+        </div> 
+        <div class="eventPane" ng-click="clickKeynote()">
+            <div class="eventText" style="display: none"><bs-text font-color=black text="To Be"></bs-text><p><bs-text font-color=black text="Announced"></bs-text></div>
+            <div class="eventImageText" style="display: show"><bs-text text='Keynote Speaker' font-size=1.85 font-color=white></bs-text></div>
+            <div class="eventBrickSlopesLogo" style="display: none"></div>
+        </div> 
+    <div class="eventPane" ng-click="clickStarWars">
+      <div class="eventImage starWarsPane"><swapoutphp echo createBrickSlopesText('Star Wars<br>' . reservedStarWarsSets . " Sets Reserved", 1.25, 'whiteFont'); swapoutphp></div>
+      <div class="eventText" style="display: none"><swapoutphp stylizeText("Every Set", "From Every Year"); swapoutphp></div>
+      <div class="eventBrickSlopesLogo" style="display: none"></div>
+    </div> 
+    <div class="eventPane" ng-click="clickMocRegistration()">
+      <div class="eventText" style="display: none"><bs-text font-color=black text="Bring your MOCs"></bs-text><p><bs-text font-color=black text="Display & Share"></bs-text></div>
+      <div class="eventImageText" style="display: show"><bs-text text='MOC Registration' font-size=1.85 font-color=white></bs-text></div>
+      <div class="eventBrickSlopesLogo" style="display: none"></div>
+    </div> 
+    <div class="eventPane" ng-click="clickMocList()">
+      <div class="eventText" style="display: none"><bs-text font-color=black text="The Who's Who"></bs-text><p><bs-text font-color=black text="of MOCs"></bs-text></div>
+        <div class="eventImageText" style="display: show">
+            <bs-text text="MOC List" font-size=1.85 font-color=white></bs-text>
+            <br>
+            <bs-text text={{mocCount}} font-size=1.85 font-color=white></bs-text>
+        </div>
+       <div class="eventBrickSlopesLogo" style="display: none"></div>
+    </div> 
+    <div class="eventPane" ng-click="clickVendors">
+      <div class="eventImage vendorsPane">
+        <swapoutphp echo createBrickSlopesText('Vendors<br>' . attendingVendors, 1.25, 'whiteFont'); swapoutphp>
+      </div>
+      <div class="eventText" style="display: none"><swapoutphp stylizeText("The Best Vendors", "Find out now ..."); swapoutphp></div>
+      <div class="eventBrickSlopesLogo" style="display: none"></div>
+    </div> 
+    <div class="eventPane" ng-click="clickGuests">
+      <div class="eventImage volunteersPane">
+        <swapoutphp 
+          echo createBrickSlopesText('AFOLS Attendees<br>' . attendingAfols, 1.25, 'whiteFont'); 
+        swapoutphp>
+      </div>
+      <div class="eventText" style="display: none"><swapoutphp stylizeText("The Best Builders", "Find out now ..."); swapoutphp></div>
+      <div class="eventBrickSlopesLogo" style="display: none"></div>
+    </div> 
+    <div class="eventPane" ng-click="clickFAQ()">
+      <div class="eventText" style="display: none"><bs-text font-color=black text="Have Question?"></bs-text><p><bs-text font-color=black text="Get Answers"></bs-text></div>
+      <div class="eventImageText" style="display: show"><bs-text text='F*A*Q' font-size=1.85 font-color=white></bs-text></div>
+      <div class="eventBrickSlopesLogo" style="display: none"></div>
+    </div> 
+    <div class="eventPane" ng-click="clickVenue()">
+      <div class="eventText" style="display: none"><bs-text font-color=black text="South Towne Expo"></bs-text><p><bs-text font-color=black text="Sandy, Utah"></bs-text></div>
+      <div class="eventImageText" style="display: show"><bs-text text='Map of Ammenities' font-size=1.85 font-color=white></bs-text></div>
+      <div class="eventBrickSlopesLogo" style="display: none"></div>
+    </div> 
+    <div class="eventPane" ng-click="clickHotel()">
+      <div class="eventText" style="display: none"><bs-text font-color=black text="Hotel"></bs-text><p><bs-text font-color=black text="Options"></bs-text></div>
+      <div class="eventImageText" style="display: show"><bs-text text='Hotel' font-size=1.85 font-color=white></bs-text></div>
+      <div class="eventBrickSlopesLogo" style="display: none"></div>
+    </div> 
+    <div class="eventPane">
+      <div class="eventText" style="display: none"><bs-text font-color=black text="Flying or Driving?"></bs-text><p><bs-text font-color=black text="SLC or I-1*5"></bs-text></div>
+      <div class="eventImageText" style="display: show"><bs-text text='Travel' font-size=1.85 font-color=white></bs-text></div>
+      <div class="eventBrickSlopesLogo" style="display: none"></div>
+    </div> 
+  </div>
+</div>

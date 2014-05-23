@@ -1,0 +1,17 @@
+<div id="eventDashboard">
+    <span id="dashboardText">
+        <h1><bs-logo font-size="1.25"></bs-logo> &#8226; <bs-text text="MOCs and Builders" font-color=black></bs-text></h1>
+        <p>
+        <div class='mocListContainer'>
+            <div class='singleMocListContainer $backgroundClass' ng-repeat="moc in mocList">
+                <div class='mocListTitle'>{{moc.title}}</div>
+                <div class='mocListBuilder'>
+                    <span class='bold'>{{moc.firstName}} {{moc.lastName}}</span>
+                    <br>
+                    Baseplate Size: {{moc.baseplateWidth}} x {{moc.baseplateDepth}}
+                </div>
+            </div>
+        </div>
+    </span>
+    <div id="dashboardCloseButton" ng-click="closeDialog()"></div>
+</div>

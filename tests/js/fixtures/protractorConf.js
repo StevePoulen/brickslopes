@@ -53,7 +53,7 @@ exports.config = {
   //
   // Spec patterns are relative to the location of this config.
   specs: [
-    '../e2e/*Spec.js',
+    '../e2e/**/*Spec.js',
   ],
 
   // Patterns to exclude.
