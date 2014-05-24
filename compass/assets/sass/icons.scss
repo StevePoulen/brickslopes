@@ -1,0 +1,27 @@
+@import "compass/utilities/sprites";
+//@import "icons/*.png";
+//@include all-icons-sprites;
+
+
+/* Sprite maps */
+$icons-sprite: sprite-map("icons/*.png");
+  
+.icons-sprite-bg {
+    background-image: $icons-sprite;
+}
+   
+i {
+    display: inline-block;
+}
+    
+.icons-email {
+    background-position: sprite-position($icons-sprite, email);
+    width: image-width("icons/email.png");
+    height: image-height("icons/email.png");
+}
+
+.icons-key{
+    background-position: sprite-position($icons-sprite, key);
+    width: image-width("icons/key.png");
+    height: image-height("icons/key.png");
+}

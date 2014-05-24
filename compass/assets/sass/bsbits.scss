@@ -1,0 +1,27 @@
+button, input, textarea {
+    font-family: "Open Sans","Helvetica Neue",Arial,Helvetica,sans-serif;
+}
+
+input[type="text"], input[type="email"], input[type="password"], textarea.input {
+    //border: 1px solid rgba(0, 0, 0, 0.2);
+    border: none;
+    border-radius: 3px;
+    //box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1) inset;
+    box-sizing: border-box;
+    color: #2F3132;
+    font-size: 14px;
+    height: 35px;
+    width: 220px;
+    padding: 0 10px;
+    text-rendering: optimizelegibility;
+    transition-duration: 100ms;
+    transition-property: box-shadow, border;
+    transition-timing-function: linear;
+    vertical-align: middle;
+}
+
+input[type="text"]::-moz-placeholder, input[type="email"]::-moz-placeholder, input[type="password"]::-moz-placeholder, textarea.input::-moz-placeholder {
+    color: #BCBEBF;
+}
+
+

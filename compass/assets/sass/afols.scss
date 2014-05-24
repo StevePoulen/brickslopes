@@ -63,10 +63,35 @@ div#dashboardText {
     #login {
         position: absolute;
         left: 10px;
-        top: 10px;
-        height: $event_dashboard_min_height - 20;
+        top: $event_dashboard_min_height / 2 - $event_dashboard_min_height / 4;
+        height: $event_dashboard_min_height / 2;
         width: $event_dashboard_width / 2 - 20;
-        border: 1px solid black;
+        text-align: center;
+
+        .loginForm {
+            position: relative;
+            left: 110px;
+            width: 250px;
+
+            .signin {
+                background: orange;
+                height: 38px;
+                border: 1px solid #BCBEBF;
+                border-radius: 5px;
+                margin: 10px;
+                width: 250px;
+                padding-top: 12px;
+            }
+
+            .loginField {
+                margin: 10px;
+                border: 1px solid #BCBEBF;
+                border-radius: 5px;
+                width: 250px;
+                height: 42.5px;
+                padding-top: 7.5px;
+            }
+        }
     }
 
     #loginDivider {
@@ -467,4 +492,3 @@ div#mocRegistrationCatagoriesCard {
   border: 1px solid black;
   padding-top: 10px;
 }
-

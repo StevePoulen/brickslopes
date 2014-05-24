@@ -5,6 +5,6 @@ describe('BrickSlopes Afol Page', function() {
     var link = element(by.css('#afolContainer')).click();
 
     var greeting = element(by.css('#login'));
-    expect(greeting.getText()).toContain('Login to BRICKSLOPES');
+    expect(greeting.getText()).toContain('SIGN IN');
   });
 });

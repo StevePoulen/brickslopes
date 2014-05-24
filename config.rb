@@ -4,7 +4,7 @@
 relative_assets = true      #because we're not working from the root
 css_dir = "./app/css"          #where the CSS will saved
 sass_dir = "./compass/assets/sass"           #where our .scss files are
-images_dir = "../images"    #the folder with your images
+images_dir = "./app/images"    #the folder with your images
 
 # You can select your preferred output style here (can be overridden via the command line):
 output_style = :expanded # After dev :compressed

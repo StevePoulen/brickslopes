@@ -1,16 +1,22 @@
 <div id="eventDashboard">
     <div id="dashboardText">
         <div id="login">
-            <div>
-                Login to <bs-logo></bs-logo>
+            <div class="largeFont">
+                <bs-logo></bs-logo>
             </div>
-            <div>
+            <div class="loginForm">
                 <form class="my-form">
-                    <label>Email</label>: <input ng-model="email" required>
-                    <br>
-                    <label>Password</label>: <input type="password" ng-model="password" required>
-                    <br>
-                    <button ng-click="submitLogin()">Login</button>
+                    <div class="loginField">
+                        <i class="icons-email icons-sprite-bg"></i>
+                        <input type="email" placeholder="Email" ng-model="email" required>
+                    </div>
+                    <div class="loginField">
+                        <i class="icons-key icons-sprite-bg"></i>
+                        <input placeholder="Password" type="password" ng-model="password" required>
+                    </div>
+                    <div class="signin" ng-click="submitLogin()">
+                        <bs-text text="Sign In" font-color=white font-size=1.25></bs-text>
+                    </div>
                 </form>
             </div>
             <div>

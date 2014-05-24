@@ -1,0 +1,26 @@
+/* line 1, ../../compass/assets/sass/bsbits.scss */
+button, input, textarea {
+  font-family: "Open Sans","Helvetica Neue",Arial,Helvetica,sans-serif;
+}
+
+/* line 5, ../../compass/assets/sass/bsbits.scss */
+input[type="text"], input[type="email"], input[type="password"], textarea.input {
+  border: none;
+  border-radius: 3px;
+  box-sizing: border-box;
+  color: #2F3132;
+  font-size: 14px;
+  height: 35px;
+  width: 220px;
+  padding: 0 10px;
+  text-rendering: optimizelegibility;
+  transition-duration: 100ms;
+  transition-property: box-shadow, border;
+  transition-timing-function: linear;
+  vertical-align: middle;
+}
+
+/* line 23, ../../compass/assets/sass/bsbits.scss */
+input[type="text"]::-moz-placeholder, input[type="email"]::-moz-placeholder, input[type="password"]::-moz-placeholder, textarea.input::-moz-placeholder {
+  color: #BCBEBF;
+}
