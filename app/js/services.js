@@ -16,6 +16,9 @@ angular.module('brickSlopes.services', [])
         },
 
         createText: function(text, fontSize, fontColor) {
+            if (! text) {
+                return text;
+            }
             this.__setFontSize(fontSize);
             this.__setFontColor(fontColor);
 
@@ -45,6 +48,25 @@ angular.module('brickSlopes.services', [])
         }
     }
 }])
+.factory('Login', ['$q', '$http', function($q, $http) {
+    return function(credentials) {
+        var delay= $q.defer();
+        $http (
+            {
+                method: 'POST',
+                url: '/controllers/authentication.php',
+                data: credentials,
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            }
+        ).success(function(data, status, headers, config) {
+            delay.resolve(data);
+        }).error(function(data, status, headers, config) {
+            delay.reject('Unable to authenticate');
+        });
+
+        return delay.promise;
+    }
+}])
 .factory('GetAfolMocList', ['$q', '$http', function($q, $http) {
     var mocList = undefined;
 
@@ -68,6 +90,31 @@ angular.module('brickSlopes.services', [])
                     return mocList.mocs;
                 }));
             }
+        }
+    };
+}])
+.factory('authInterceptor', ['$rootScope', '$q', '$window', '$location', function($rootScope, $q, $window, $location) {
+    return {
+        request: function(config) {
+            config.headers = config.headers || {};
+            if ($window.sessionStorage.token) {
+                config.headers.Authorization = 'Token ' + $window.sessionStorage.token;
+            }
+            return config;
+        },
+        responseError: function(rejection) {
+            if (rejection.status === 401) {
+                $location.path('/afol/login.html');
+            } else if (rejection.status === 403) {
+                $location.path('/error.html');
+            }
+            return $q.reject(rejection);
+        },
+        response: function(response) {
+            if (response.status !== 200) {
+                $location.path('/error.html');
+            }
+            return response || $q.when(response);
         }
     };
 }]);

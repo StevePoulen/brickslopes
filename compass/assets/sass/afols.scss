@@ -1,3 +1,6 @@
+$event_dashboard_width: 1024px;
+$event_dashboard_min_height: 650px;
+
 #brickslopes #dashboard {
   position: relative;
   top: 35px;
@@ -30,6 +33,7 @@ div#eventDashboard div#dashboardCloseButton, div#reserveStarWarsSet div#reserveC
   cursor: pointer;
 }
 
+/*
 div#dashboardText {
   min-height: 500px;
   position: relative;
@@ -39,21 +43,50 @@ div#dashboardText {
   text-align: center;
   display: table;
 }
+*/
 
-span#dashboardText {
-  border-radius:25px;
-  padding: 15px;
-  position: relative;
-  font-size: 100%;
-  text-align: left;
-  width: 924px;
-  color: black;
-  background: white;
-  display: table;
-  line-height: normal;  
-  display: table-cell;
-  vertical-align: middle;
-  border: 0px solid red;
+#dashboardText { //span#dashboardText {
+    border-radius:25px;
+    padding: 15px;
+    position: relative;
+    font-size: 100%;
+    text-align: left;
+    width: $event_dashboard_width;
+    color: black;
+    background: white;
+    display: table;
+    line-height: normal;  
+    display: table-cell;
+    vertical-align: middle;
+    border: 0px solid red;
+
+    #login {
+        position: absolute;
+        left: 10px;
+        top: 10px;
+        height: $event_dashboard_min_height - 20;
+        width: $event_dashboard_width / 2 - 20;
+        border: 1px solid black;
+    }
+
+    #loginDivider {
+        position: absolute;
+        left: $event_dashboard_width / 2 - 1;
+        width: 0px;
+        height: $event_dashboard_min_height - 200;
+        top: 100px;
+        border: 1px solid black;
+        border-radius: 2px;
+    }
+
+    #signup {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        width: $event_dashboard_width / 2 - 20;
+        height: $event_dashboard_min_height - 20;
+        border: 1px solid red;
+    }
 }
 
 #eventSwag li {
@@ -184,8 +217,8 @@ div.flickr_badge_image img {
 #brickslopes #eventDashboard {
   position: relative;
   top: 35px;
-  width: 1024px;
-  min-height: 650px;
+  width: $event_dashboard_width;
+  min-height: $event_dashboard_min_height;
   height: auto;
   background-color: white;
   border-radius:25px;
@@ -434,3 +467,4 @@ div#mocRegistrationCatagoriesCard {
   border: 1px solid black;
   padding-top: 10px;
 }
+

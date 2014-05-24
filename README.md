@@ -30,4 +30,5 @@ $ make php_test
 # e2e Tests
 $ make e2e_test
 
-
+# css Tests
+$ make css_test

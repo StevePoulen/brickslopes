@@ -90,6 +90,27 @@ describe('service', function() {
         });
     });
 
+    describe('Login', function() {
+        var mockBackend, loader, data, credentials;
+        beforeEach(inject(function(_$httpBackend_, Login) {
+            credentials = {'email': 'brian@bs.com', 'password': 'LEGO'};
+            mockBackend = _$httpBackend_;
+            loader = Login;
+            mockBackend.expectPOST('/controllers/authentication.php', credentials).respond('success');
+        }));
+
+        it('should register a user', function() {
+            var load = loader(credentials);
+
+            load.then(function(_data) {
+                data = _data;
+            });
+
+            mockBackend.flush();
+            expect(data).toEqualData('success');
+        });
+    });
+
     describe('GetAfolMocList', function() {
         var mockBackend, loader, data;
         beforeEach(inject(function(_$httpBackend_, GetAfolMocList) {
@@ -117,6 +138,54 @@ describe('service', function() {
 
             mockBackend.flush();
             expect(data).toEqualData({firstName: 'Cody'});
+        });
+    });
+
+    describe('authInterceptor', function() {
+        var auth, window, location;
+        beforeEach(inject(function(authInterceptor, _$window_, $location) {
+            auth = authInterceptor;
+            window = _$window_;
+            location = $location;
+        }));
+
+        describe('request', function() {
+            it('should add a header', function() {
+                window.sessionStorage.token = 123456789;
+                expect(auth.request({}).headers.Authorization).toEqual('Token 123456789');
+            });
+
+            it('should not have a header', function() {
+                delete window.sessionStorage.token;
+                expect(auth.request({}).headers.Authorization).toBeUndefined();
+            });
+        });
+
+        describe('responseError', function() {
+            it('should redirect for a 401', function() {
+                var response = {status: 401};
+                auth.responseError(response)
+                expect(location.path()).toBe('/afol/login.html');
+            });
+
+            it('should redirect for a 403', function() {
+                var response = {status: 403};
+                auth.responseError(response)
+                expect(location.path()).toBe('/error.html');
+            });
+        });
+
+        describe('response', function() {
+            it('should return a response for non 401 responses', function() {
+                var response = {status: 200};
+                expect(auth.response(response).status).toBe(200);
+            });
+
+            it('should redirect for a 401', function() {
+                var response = {status: 401};
+                auth.response(response)
+                expect(location.path()).toBe('/error.html');
+            });
         });
     });
 });

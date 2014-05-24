@@ -3,14 +3,60 @@
 /* jasmine specs for controllers go here */
 
 describe('controllers', function() {
+    var scope, ctrl, location;
+
     beforeEach(module('brickSlopes.controllers', 'brickSlopes.services'));
 
-    var scope, ctrl, location;
     beforeEach(function() {
         this.addMatchers({
             toEqualData: function(expected) {
                 return angular.equals(this.actual, expected);
             }
+        });
+    });
+
+    describe('bsHeaderController No Session', function() {
+        var window;
+        beforeEach(inject(function($controller, $rootScope, $location, _$window_) {
+            scope = $rootScope.$new();
+            window = _$window_;
+            delete window.sessionStorage.token;
+            ctrl = $controller('bsHeader', { $scope: scope, $window: window});
+            location = $location;
+        }));
+
+        it('should redirect to afol login page without a session token', function() {
+            scope.clickBuilder();
+            expect(location.path()).toBe('/afol/login.html');
+        });
+    });
+
+    describe('bsHeaderController Session', function() {
+        var window;
+        beforeEach(inject(function($controller, $rootScope, $location, _$window_) {
+            scope = $rootScope.$new();
+            window = _$window_;
+            window.sessionStorage.token = '1234567890';
+            ctrl = $controller('bsHeader', { $scope: scope, $window: window});
+            location = $location;
+        }));
+
+        it('should redirect to afol index page with a session token', function() {
+            scope.clickBuilder();
+            expect(location.path()).toBe('/afol/index.html');
+        });
+    });
+
+    describe('afolLogin Controller', function() {
+        beforeEach(inject(function($controller, $rootScope, $location) {
+            scope = $rootScope.$new();
+            ctrl = $controller('afolLogin', { $scope: scope});
+            location = $location;
+        }));
+
+        it('should redirect to index page', function() {
+            scope.closeDialog();
+            expect(location.path()).toBe('/');
         });
     });
 

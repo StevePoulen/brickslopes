@@ -6,7 +6,7 @@ angular.module('brickSlopes.directives', [])
     return {
         restrict: 'E',
         replace: true,
-        templateUrl: 'partials/header.html'
+        templateUrl: 'partials/public/header.html'
     }
 })
 .directive('bsLogo', ['BrickSlopesText', '$sce', function(brickSlopesText, $sce) {
@@ -47,6 +47,6 @@ angular.module('brickSlopes.directives', [])
     return {
         restrict: 'E',
         replace: true,
-        templateUrl: 'partials/footer.html'
+        templateUrl: 'partials/public/footer.html'
     }
 });

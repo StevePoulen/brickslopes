@@ -1,33 +1,15 @@
-/* line 1, ../../compass/assets/sass/payment.scss */
+/* line 2, ../../compass/assets/sass/payment.scss */
 #dashboard #paypalForm {
   position: relative;
   margin-top: 25px;
-  right: 0px;
+  right: 0;
   width: 400px;
   height: auto;
   text-align: center;
   border: 5px solid #3364A6;
 }
-
 /* line 11, ../../compass/assets/sass/payment.scss */
-.paymentBackground {
-  background: #DDDDDD;
-}
-
-/* line 15, ../../compass/assets/sass/payment.scss */
-.paymentFontOne {
-  font-size: 16px;
-  height: 25px;
-}
-
-/* line 20, ../../compass/assets/sass/payment.scss */
-.paymentFontTwo {
-  font-size: 12px;
-  height: 15px;
-}
-
-/* line 25, ../../compass/assets/sass/payment.scss */
-#paypalForm .payment {
+#dashboard #paypalForm .payment {
   position: relative;
   left: 25px;
   width: 350px;
@@ -35,18 +17,33 @@
   border-radius: 5px;
   text-align: left;
 }
-
-/* line 34, ../../compass/assets/sass/payment.scss */
-.payment #description {
+/* line 19, ../../compass/assets/sass/payment.scss */
+#dashboard #paypalForm .payment #description {
   position: absolute;
-  left: 0px;
+  left: 0;
   padding-left: 10px;
   height: 5px;
 }
-
-/* line 41, ../../compass/assets/sass/payment.scss */
-.payment #amount {
+/* line 26, ../../compass/assets/sass/payment.scss */
+#dashboard #paypalForm .payment #amount {
   position: absolute;
-  right: 0px;
+  right: 0;
   padding-right: 10px;
+}
+
+/* line 35, ../../compass/assets/sass/payment.scss */
+.paymentBackground {
+  background: #DDDDDD;
+}
+
+/* line 39, ../../compass/assets/sass/payment.scss */
+.paymentFontOne {
+  font-size: 16px;
+  height: 25px;
+}
+
+/* line 44, ../../compass/assets/sass/payment.scss */
+.paymentFontTwo {
+  font-size: 12px;
+  height: 15px;
 }

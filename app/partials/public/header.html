@@ -1,4 +1,4 @@
-<div id="header">
+<div id="header" ng-controller="bsHeader">
     <a href="/"><img id="logo" src="/images/brickslopes_official.png" alt="Splash Page"></a>
     <div id="eventContainer">
         <a id="whoLink" href="#/who/index.html"><img src="/images/communication/images/who.png" alt="Who"></a>
@@ -12,6 +12,6 @@
         <a target="_blank" href="//www.pinterest.com/pin/create/button/?url=http%3A%2F%2Fwww.brickslopes.com&media=http%3A%2F%2Fwww.brickslopes.com%2Fimages%2FBrickSlopesFalconFlyer.png&description=Next%20stop%3A%20Pinterest" data-pin-do="buttonPin" data-pin-config="none"><img src="/images/communication/images/pinterest.png" alt="Pinterest"></a>
     </div>
     <div id="afolContainer">
-        <a id="afolLink" href="#/afol/index.html"><bs-text text="Builder Login" font-color=white></bs-text></a>
+        <div ng-click="clickBuilder()"><bs-text text="Builder Login" font-color=white></bs-text></div>
     </div>
 </div>

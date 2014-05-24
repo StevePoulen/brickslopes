@@ -1,11 +1,35 @@
-#dashboard #paypalForm {
-  position: relative;
-  margin-top: 25px;
-  right: 0px;
-  width: 400px;
-  height: auto;
-  text-align: center;
-  border: 5px solid #3364A6;
+#dashboard {
+    #paypalForm {
+        position: relative;
+        margin-top: 25px;
+        right: 0;
+        width: 400px;
+        height: auto;
+        text-align: center;
+        border: 5px solid #3364A6;
+
+        .payment {
+            position: relative;
+            left: 25px;
+            width: 350px;
+            padding-top: 5px;
+            border-radius: 5px;
+            text-align: left;
+
+            #description {
+                position: absolute;
+                left: 0;
+                padding-left: 10px;
+                height: 5px;
+            }
+
+            #amount {
+                position: absolute;
+                right: 0;
+                padding-right: 10px;
+            }
+        }
+    }
 }
 
 .paymentBackground {
@@ -22,24 +46,3 @@
   height: 15px;
 }
 
-#paypalForm .payment {
-  position: relative;
-  left: 25px;
-  width: 350px;
-  padding-top: 5px;
-  border-radius: 5px;
-  text-align: left;
-}
-
-.payment #description {
-  position: absolute;
-  left: 0px;
-  padding-left: 10px;
-  height: 5px;
-}
-
-.payment #amount {
-  position: absolute;
-  right: 0px;
-  padding-right: 10px;
-}

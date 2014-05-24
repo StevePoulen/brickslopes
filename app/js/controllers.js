@@ -2,8 +2,39 @@
 
 /* Controllers */
 angular.module('brickSlopes.controllers', ['brickSlopes.services'])
-.controller('bsIndex', ['$scope', function($scope) {
-    console.log("here");
+.controller('bsIndex', ['$scope', '$location', function($scope, $location) {
+}])
+.controller('bsHeader', ['$scope', '$window', '$location', function($scope, $window, $location) {
+    $scope.clickBuilder = function() {
+        if ($window.sessionStorage.token) {
+            $location.path("/afol/index.html");
+        } else {
+            $location.path("/afol/login.html");
+        }
+    }
+}])
+.controller('afolLogin', ['$scope', '$location', 'Login', function($scope, $location, Login) {
+
+    function serializeJson() {
+        return {
+            email: $scope.email,
+            password: $scope.password
+        }
+
+    }
+
+    $scope.submitLogin = function() {
+        $scope.displayErrorMessage = "";
+        Login(serializeJson()).then(function() {
+            $location.path('/afol/index.html');
+        }, function() {
+            $scope.displayErrorMessage = "The email or password you entered is incorrect.";
+        });
+    }
+
+    $scope.closeDialog = function() {
+        $location.path("/");
+    }
 }])
 .controller('afolIndex', ['$scope', '$location', 'GetAfolMocList', function($scope, $location, GetAfolMocList) {
     $scope.mocCount = 0;

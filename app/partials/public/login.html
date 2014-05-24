@@ -1,0 +1,27 @@
+<div id="eventDashboard">
+    <div id="dashboardText">
+        <div id="login">
+            <div>
+                Login to <bs-logo></bs-logo>
+            </div>
+            <div>
+                <form class="my-form">
+                    <label>Email</label>: <input ng-model="email" required>
+                    <br>
+                    <label>Password</label>: <input type="password" ng-model="password" required>
+                    <br>
+                    <button ng-click="submitLogin()">Login</button>
+                </form>
+            </div>
+            <div>
+                {{displayErrorMessage}}
+            </div>
+        </div>
+        <div id="loginDivider"></div>
+        <div id="signUp">
+            Not a <bs-logo></bs-logo> member?
+        </div>
+    </div >
+    <div id="dashboardCloseButton" ng-click="closeDialog()"></div>
+</div>
+<script type="text/javascript" src="/lib/googleAnalytics.js"></script>

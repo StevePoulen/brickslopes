@@ -7,12 +7,21 @@ angular.module('brickSlopes', [
     'brickSlopes.services',
     'brickSlopes.controllers'
 ]).
-config(['$routeProvider', function($routeProvider) {
+config(['$routeProvider', '$httpProvider',  function($routeProvider, $httpProvider) {
+    $httpProvider.interceptors.push('authInterceptor');
+
     $routeProvider
     .when(
         '/',
         {
-            templateUrl: '/partials/index.html',
+            templateUrl: '/partials/public/index.html',
+            controller: 'bsIndex'
+        }
+    )
+    .when(
+        '/error.html',
+        {
+            templateUrl: 'partials/public/error.html',
             controller: 'bsIndex'
         }
     )
@@ -119,6 +128,13 @@ config(['$routeProvider', function($routeProvider) {
         {
             templateUrl: '/partials/afol/eventFAQ.html',
             controller: 'afolIndex'
+        }
+    )
+    .when(
+        '/afol/login.html',
+        {
+            templateUrl: '/partials/public/login.html',
+            controller: 'afolLogin'
         }
     )
     .otherwise(

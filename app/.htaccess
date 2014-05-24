@@ -1,0 +1,13 @@
+<filesMatch "\.(html|htm|js|css|php|png)$">
+    FileETag None
+    Header unset ETag
+    Header set Cache-Control "no-store, no-cache, must-revalidate, max-age=0"
+    Header set Expires -1
+    Header set Pragma "no-cache"
+</filesMatch>
+
+<IfModule rewrite_module>
+    RewriteEngine On
+    RewriteCond %{REQUEST_FILENAME} !Controller.php$
+    RewriteRule ^.*$ /Controller.php [L]
+</IfModule>
