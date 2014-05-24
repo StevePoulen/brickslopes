@@ -24,3 +24,46 @@ input[type="text"], input[type="email"], input[type="password"], textarea.input 
 input[type="text"]::-moz-placeholder, input[type="email"]::-moz-placeholder, input[type="password"]::-moz-placeholder, textarea.input::-moz-placeholder {
   color: #BCBEBF;
 }
+
+/* line 27, ../../compass/assets/sass/bsbits.scss */
+.actionButton {
+  position: relative;
+  background: orange;
+  height: 38px;
+  border: 1px solid #BCBEBF;
+  border-radius: 5px;
+  margin: 10px;
+  width: 250px;
+  padding-top: 12px;
+  text-align: center;
+}
+
+/* line 39, ../../compass/assets/sass/bsbits.scss */
+.largeFont {
+  font-size: 1.75em;
+}
+
+/* line 43, ../../compass/assets/sass/bsbits.scss */
+.oneEMFont, .starWarsFont {
+  font-size: 1.25em;
+}
+
+/* line 47, ../../compass/assets/sass/bsbits.scss */
+.eventsFont {
+  font-size: 1.0em;
+}
+
+/* line 51, ../../compass/assets/sass/bsbits.scss */
+.mediumFont {
+  font-size: .80em;
+}
+
+/* line 55, ../../compass/assets/sass/bsbits.scss */
+.smallFont {
+  font-size: .60em;
+}
+
+/* line 59, ../../compass/assets/sass/bsbits.scss */
+.tinnyFont {
+  font-size: .25em;
+}

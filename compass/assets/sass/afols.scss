@@ -73,15 +73,47 @@ div#dashboardText {
             left: 110px;
             width: 250px;
 
-            .signin {
-                background: orange;
-                height: 38px;
+            .loginField {
+                margin: 10px;
                 border: 1px solid #BCBEBF;
                 border-radius: 5px;
-                margin: 10px;
                 width: 250px;
-                padding-top: 12px;
+                height: 42.5px;
+                padding-top: 7.5px;
             }
+        }
+
+    }
+
+    #loginDivider {
+        position: absolute;
+        left: $event_dashboard_width / 2 - 1;
+        width: 0px;
+        height: $event_dashboard_min_height - 300;
+        top: 150px;
+        border: 1px solid black;
+        border-radius: 2px;
+    }
+
+
+    #signup {
+        position: absolute;
+        right: 10px;
+        top: $event_dashboard_min_height / 2 - $event_dashboard_min_height / 4;
+        height: $event_dashboard_min_height / 2;
+        width: $event_dashboard_width / 2 - 20;
+        border: none;
+        
+        .center {
+            left: 105px;
+        }
+
+        .loginForm {
+            position: absolute;
+            left: 0px;
+            width: $event_dashboard_width / 2 - 20;
+            border: none;
+            text-align: center;
 
             .loginField {
                 margin: 10px;
@@ -92,25 +124,6 @@ div#dashboardText {
                 padding-top: 7.5px;
             }
         }
-    }
-
-    #loginDivider {
-        position: absolute;
-        left: $event_dashboard_width / 2 - 1;
-        width: 0px;
-        height: $event_dashboard_min_height - 200;
-        top: 100px;
-        border: 1px solid black;
-        border-radius: 2px;
-    }
-
-    #signup {
-        position: absolute;
-        right: 10px;
-        top: 10px;
-        width: $event_dashboard_width / 2 - 20;
-        height: $event_dashboard_min_height - 20;
-        border: 1px solid red;
     }
 }
 

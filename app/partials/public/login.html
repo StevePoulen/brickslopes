@@ -1,8 +1,8 @@
 <div id="eventDashboard">
     <div id="dashboardText">
         <div id="login">
-            <div class="largeFont">
-                <bs-logo></bs-logo>
+            <div>
+                <bs-logo font-size=1.75></bs-logo>
             </div>
             <div class="loginForm">
                 <form class="my-form">
@@ -14,7 +14,7 @@
                         <i class="icons-key icons-sprite-bg"></i>
                         <input placeholder="Password" type="password" ng-model="password" required>
                     </div>
-                    <div class="signin" ng-click="submitLogin()">
+                    <div class="actionButton" ng-click="submitLogin()">
                         <bs-text text="Sign In" font-color=white font-size=1.25></bs-text>
                     </div>
                 </form>
@@ -25,17 +25,20 @@
         </div>
         <div id="loginDivider"></div>
         <div id="signUp">
-            Not a <bs-logo></bs-logo> member?
-            <p>
-            Sign-up today!
-            <p>
-            It's fast ...
-            <p>
-            It's free ...
-            <p>
-            Plus you get access to all the Builder Site!
-            <p>
-            Click here to register
+            <div class="loginForm">
+                <div class="oneEMFont bold">
+                    Not a member? Sign-up today!
+                    <p>
+                    It's fast ...
+                    <p>
+                    It's free ...
+                    <p>
+                    Plus access to the entire AFOL Site!
+                </div>
+                <div class="actionButton center" ng-click="register()">
+                    <bs-text text="Sign up" font-color=white font-size=1.25></bs-text>
+                </div>
+            </div>
         </div>
     </div >
     <div id="dashboardCloseButton" ng-click="closeDialog()"></div>

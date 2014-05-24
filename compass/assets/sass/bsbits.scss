@@ -24,4 +24,38 @@ input[type="text"]::-moz-placeholder, input[type="email"]::-moz-placeholder, inp
     color: #BCBEBF;
 }
 
+.actionButton {
+    position: relative;
+    background: orange;
+    height: 38px;
+    border: 1px solid #BCBEBF;
+    border-radius: 5px;
+    margin: 10px;
+    width: 250px;
+    padding-top: 12px;
+    text-align: center;
+}
 
+.largeFont {
+  font-size: 1.75em;
+}
+
+.oneEMFont, .starWarsFont {
+  font-size: 1.25em;
+}
+
+.eventsFont {
+  font-size: 1.0em;
+}
+
+.mediumFont {
+  font-size: .80em;
+}
+
+.smallFont {
+  font-size: .60em;
+}
+
+.tinnyFont {
+  font-size: .25em;
+}
