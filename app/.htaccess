@@ -7,6 +7,10 @@
 </filesMatch>
 
 <IfModule rewrite_module>
+    RewriteEngine on
+    RewriteCond %{SERVER_PORT} 80 
+    RewriteRule ^(.*)$ https://www.mybrickslopes.com/$1 [R=301,L] 
+
     RewriteEngine On
     RewriteCond %{REQUEST_FILENAME} !Controller.php$
     RewriteRule ^.*$ /Controller.php [L]

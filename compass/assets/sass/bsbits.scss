@@ -34,6 +34,7 @@ input[type="text"]::-moz-placeholder, input[type="email"]::-moz-placeholder, inp
     width: 250px;
     padding-top: 12px;
     text-align: center;
+    cursor: pointer;
 }
 
 .largeFont {
@@ -56,6 +57,78 @@ input[type="text"]::-moz-placeholder, input[type="email"]::-moz-placeholder, inp
   font-size: .60em;
 }
 
-.tinnyFont {
+.tinyFont {
   font-size: .25em;
+}
+
+.fadeOutFast {
+    /* Chrome, Safari, Opera */
+    -webkit-animation: fadeOut 0.5s linear forwards; 
+    animation: fadeOut 0.5s linear forwards;
+}
+
+.fadeOut {
+    /* Chrome, Safari, Opera */
+    -webkit-animation: fadeOut 1.0s linear forwards; 
+    animation: fadeOut 1.0s linear forwards;
+}
+
+
+.fadeOutSlow {
+    /* Chrome, Safari, Opera */
+    -webkit-animation: fadeOut 2.0s linear forwards; 
+    animation: fadeOut 2.0s linear forwards;
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes fadeOut {
+    0%   {opacity: 1}
+    25%  {opactiy: .75;}
+    50%  {opacity: .50;}
+    75%  {opacity: .25;}
+    100% {opacity: 0; display: none;}
+}
+
+@keyframes fadeOut {
+    0%   {opacity: 1}
+    25%  {opactiy: .75;}
+    50%  {opacity: .50;}
+    75%  {opacity: .25;}
+    100% {opacity: 0; display: none;}
+}
+
+.fadeInFast {
+    /* Chrome, Safari, Opera */
+    -webkit-animation: fadeIn 0.5s linear forwards; 
+    animation: fadeIn 0.5s linear forwards;
+}
+
+.fadeIn {
+    /* Chrome, Safari, Opera */
+    -webkit-animation: fadeIn 1.0s linear forwards; 
+    animation: fadeIn 1.0s linear forwards;
+}
+
+
+.fadeInSlow {
+    /* Chrome, Safari, Opera */
+    -webkit-animation: fadeIn 2.0s linear forwards; 
+    animation: fadeIn 2.0s linear forwards;
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes fadeIn {
+    0% {opacity: 0;}
+    25%  {opacity: .25;}
+    50%  {opacity: .50;}
+    75%  {opactiy: .75;}
+    100%   {opacity: 1}
+}
+
+@keyframes fadeIn {
+    0% {opacity: 0;}
+    25%  {opacity: .25;}
+    50%  {opacity: .50;}
+    75%  {opactiy: .75;}
+    100%   {opacity: 1}
 }

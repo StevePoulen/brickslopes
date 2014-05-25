@@ -31,6 +31,7 @@
 
         private function isWhiteList() {
             if ($this->URI == 'index.html' ||
+                $this->URI == 'favicon.ico' || 
                 preg_match('/^(css|lib|js|partials\/public|images)/', $this->URI) ||
                 $this->URI == 'controllers/authentication.php'
             ) {

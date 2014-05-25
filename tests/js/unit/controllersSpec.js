@@ -48,15 +48,47 @@ describe('controllers', function() {
     });
 
     describe('afolLogin Controller', function() {
-        beforeEach(inject(function($controller, $rootScope, $location) {
+        var mockBackend, loader;
+        beforeEach(inject(function($controller, $rootScope, $location, _$httpBackend_) {
             scope = $rootScope.$new();
             ctrl = $controller('afolLogin', { $scope: scope});
             location = $location;
+            mockBackend = _$httpBackend_;
         }));
 
-        it('should redirect to index page', function() {
-            scope.closeDialog();
-            expect(location.path()).toBe('/');
+        describe('Close Dialog', function() {
+            it('should redirect to index page', function() {
+                scope.closeDialog();
+                expect(location.path()).toBe('/');
+            });
+        });
+
+        describe('Sign in', function() {
+            it('should display the sign informatoin', function() {
+                expect(scope.showLogin).toBe(true);
+            });
+
+            it('should submit to login page on success', function() {
+                scope.submitLogin();
+                mockBackend.expectPOST('/controllers/authentication.php').respond(200);
+                mockBackend.flush();
+                expect(location.path()).toBe('/afol/index.html');
+                expect(scope.displayErrorMessage).toBe("");
+            });
+
+            it('should submit to login page on failure', function() {
+                scope.submitLogin();
+                mockBackend.expectPOST('/controllers/authentication.php').respond(401);
+                mockBackend.flush();
+                expect(scope.displayErrorMessage).toBe("The email or password you entered is incorrect.");
+            });
+        });
+
+        describe('Sign up', function() {
+            it('should register', function() {
+                scope.register();
+                expect(scope.showLogin).toBe(false);
+            });
         });
     });
 

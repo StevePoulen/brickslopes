@@ -1,6 +1,6 @@
 <div id="eventDashboard">
     <div id="dashboardText">
-        <div id="login">
+        <div id="login" ng-class="{fadeOutFast : ! showLogin}">
             <div>
                 <bs-logo font-size=1.75></bs-logo>
             </div>
@@ -23,8 +23,8 @@
                 {{displayErrorMessage}}
             </div>
         </div>
-        <div id="loginDivider"></div>
-        <div id="signUp">
+        <div id="loginDivider" ng-class="{fadeOutFast : ! showLogin}"></div>
+        <div id="signUp" ng-class="{signUpAnimation: ! showLogin}">
             <div class="loginForm">
                 <div class="oneEMFont bold">
                     Not a member? Sign-up today!
@@ -35,12 +35,35 @@
                     <p>
                     Plus access to the entire AFOL Site!
                 </div>
-                <div class="actionButton center" ng-click="register()">
-                    <bs-text text="Sign up" font-color=white font-size=1.25></bs-text>
-                </div>
+            </div>
+        </div>
+        <div id="signUpButton">
+            <div class="actionButton" ng-click="register()" ng-class="{signUpButtonAnimation : ! showLogin}">
+                <bs-text text="Sign up" font-color=white font-size=1.25></bs-text>
+            </div>
+        </div>
+        <div id="signUpForm" ng-show="!showLogin" ng-class="{fadeIn: ! showLogin}">
+            <div class="loginForm">
+                <form class="my-form">
+                    <div class="loginField">
+                        <input type="text" placeholder="First Name" ng-model="firstName" required>
+                    </div>
+                    <div class="loginField">
+                        <input type="text" placeholder="Last Name" ng-model="lastName" required>
+                    </div>
+                    <div class="loginField">
+                        <input type="email" placeholder="Email" ng-model="email" required>
+                    </div>
+                    <div class="loginField">
+                        <input placeholder="Password" type="password" ng-model="password" required>
+                    </div>
+                    <div class="loginField">
+                        <input placeholder="Verify Password" type="password" ng-model="verifyPassword" required>
+                    </div>
+                </form>
             </div>
         </div>
     </div >
     <div id="dashboardCloseButton" ng-click="closeDialog()"></div>
 </div>
-<script type="text/javascript" src="/lib/googleAnalytics.js"></script>
+<!-- <script type="text/javascript" src="/lib/googleAnalytics.js"></script> -->

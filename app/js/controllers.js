@@ -15,6 +15,8 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services'])
 }])
 .controller('afolLogin', ['$scope', '$location', 'Login', function($scope, $location, Login) {
 
+    $scope.showLogin = true;
+
     function serializeJson() {
         return {
             email: $scope.email,
@@ -30,6 +32,15 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services'])
         }, function() {
             $scope.displayErrorMessage = "The email or password you entered is incorrect.";
         });
+    }
+
+    $scope.register = function() {
+        if ($scope.showLogin) {
+            $scope.showLogin = false;
+            console.log("animate");
+        } else {
+            console.log("post To Server");
+        }
     }
 
     $scope.closeDialog = function() {

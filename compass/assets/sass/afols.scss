@@ -85,6 +85,32 @@ div#dashboardText {
 
     }
 
+    #signUpForm {
+        position: absolute;
+        right: 10px;
+        top: 75px;
+        height: $event_dashboard_min_height / 2;
+        width: $event_dashboard_width / 2 - 20;
+        border: none;
+        opacity: 0;
+
+        .loginForm {
+            position: relative;
+            left: 100px;
+            width: 250px;
+
+            .loginField {
+                margin: 20px;
+                border: 1px solid #BCBEBF;
+                border-radius: 5px;
+                width: 250px;
+                height: 42.5px;
+                padding-top: 7.5px;
+                text-align: center;
+            }
+        }
+    }
+
     #loginDivider {
         position: absolute;
         left: $event_dashboard_width / 2 - 1;
@@ -96,13 +122,14 @@ div#dashboardText {
     }
 
 
-    #signup {
+    #signUp {
         position: absolute;
         right: 10px;
         top: $event_dashboard_min_height / 2 - $event_dashboard_min_height / 4;
         height: $event_dashboard_min_height / 2;
         width: $event_dashboard_width / 2 - 20;
         border: none;
+        display: inline;
         
         .center {
             left: 105px;
@@ -124,6 +151,12 @@ div#dashboardText {
                 padding-top: 7.5px;
             }
         }
+    }
+
+    #signUpButton {
+        position: absolute;
+        left: 632px;
+        top: 325px;
     }
 }
 
@@ -504,4 +537,49 @@ div#mocRegistrationCatagoriesCard {
   font-weight: bold;
   border: 1px solid black;
   padding-top: 10px;
+}
+
+
+.signupAnimation {
+    -webkit-animation: signUpAnimation 1.5s linear forwards; /* Chrome, Safari, Opera */
+    animation: signUpAnimation 1.5s linear forwards;
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes signUpAnimation {
+    0%   {left: 410px;}
+    25%  {left: 310px;}
+    50%  {left: 210px;}
+    75%  {left: 110px;}
+    100% {left: 10px;}
+}
+
+@keyframes signUpAnimation {
+    0%   {left: 410px;}
+    25%  {left: 310px;}
+    50%  {left: 210px;}
+    75%  {left: 110px;}
+    100% {left: 10px;}
+}
+
+.signupButtonAnimation {
+    -webkit-animation: signUpButtonAnimation 1.5s linear forwards; /* Chrome, Safari, Opera */
+    animation: signUpButtonAnimation 1.5s linear forwards;
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes signUpButtonAnimation {
+    0%   {top: 0px;}
+    25%  {top: 30px;}
+    50%  {top: 60px;}
+    75%  {top: 90px;}
+    100% {top: 120px;}
+}
+
+@keyframes signUpButtonAnimation {
+    0%   {top: 0px;}
+    25%  {top: 30px;}
+    50%  {top: 60px;}
+    75%  {top: 90px;}
+    100% {top: 120px;}
 }
