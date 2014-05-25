@@ -102,7 +102,7 @@ div#dashboardText {
 }
 /* line 102, ../../compass/assets/sass/afols.scss */
 #dashboardText #signUpForm .loginForm .loginField {
-  margin: 20px;
+  margin-bottom: 20px;
   border: 1px solid #BCBEBF;
   border-radius: 5px;
   width: 250px;
@@ -154,8 +154,8 @@ div#dashboardText {
 /* line 156, ../../compass/assets/sass/afols.scss */
 #dashboardText #signUpButton {
   position: absolute;
-  left: 632px;
-  top: 325px;
+  left: 110px;
+  top: 175px;
 }
 
 /* line 163, ../../compass/assets/sass/afols.scss */
@@ -579,128 +579,4 @@ div#mocRegistrationCatagoriesCard {
   font-weight: bold;
   border: 1px solid black;
   padding-top: 10px;
-}
-
-/* line 543, ../../compass/assets/sass/afols.scss */
-.signupAnimation {
-  -webkit-animation: signUpAnimation 1.5s linear forwards;
-  /* Chrome, Safari, Opera */
-  animation: signUpAnimation 1.5s linear forwards;
-}
-
-/* Chrome, Safari, Opera */
-@-webkit-keyframes signUpAnimation {
-  /* line 550, ../../compass/assets/sass/afols.scss */
-  0% {
-    left: 410px;
-  }
-
-  /* line 551, ../../compass/assets/sass/afols.scss */
-  25% {
-    left: 310px;
-  }
-
-  /* line 552, ../../compass/assets/sass/afols.scss */
-  50% {
-    left: 210px;
-  }
-
-  /* line 553, ../../compass/assets/sass/afols.scss */
-  75% {
-    left: 110px;
-  }
-
-  /* line 554, ../../compass/assets/sass/afols.scss */
-  100% {
-    left: 10px;
-  }
-}
-
-@keyframes signUpAnimation {
-  /* line 558, ../../compass/assets/sass/afols.scss */
-  0% {
-    left: 410px;
-  }
-
-  /* line 559, ../../compass/assets/sass/afols.scss */
-  25% {
-    left: 310px;
-  }
-
-  /* line 560, ../../compass/assets/sass/afols.scss */
-  50% {
-    left: 210px;
-  }
-
-  /* line 561, ../../compass/assets/sass/afols.scss */
-  75% {
-    left: 110px;
-  }
-
-  /* line 562, ../../compass/assets/sass/afols.scss */
-  100% {
-    left: 10px;
-  }
-}
-
-/* line 565, ../../compass/assets/sass/afols.scss */
-.signupButtonAnimation {
-  -webkit-animation: signUpButtonAnimation 1.5s linear forwards;
-  /* Chrome, Safari, Opera */
-  animation: signUpButtonAnimation 1.5s linear forwards;
-}
-
-/* Chrome, Safari, Opera */
-@-webkit-keyframes signUpButtonAnimation {
-  /* line 572, ../../compass/assets/sass/afols.scss */
-  0% {
-    top: 0px;
-  }
-
-  /* line 573, ../../compass/assets/sass/afols.scss */
-  25% {
-    top: 30px;
-  }
-
-  /* line 574, ../../compass/assets/sass/afols.scss */
-  50% {
-    top: 60px;
-  }
-
-  /* line 575, ../../compass/assets/sass/afols.scss */
-  75% {
-    top: 90px;
-  }
-
-  /* line 576, ../../compass/assets/sass/afols.scss */
-  100% {
-    top: 120px;
-  }
-}
-
-@keyframes signUpButtonAnimation {
-  /* line 580, ../../compass/assets/sass/afols.scss */
-  0% {
-    top: 0px;
-  }
-
-  /* line 581, ../../compass/assets/sass/afols.scss */
-  25% {
-    top: 30px;
-  }
-
-  /* line 582, ../../compass/assets/sass/afols.scss */
-  50% {
-    top: 60px;
-  }
-
-  /* line 583, ../../compass/assets/sass/afols.scss */
-  75% {
-    top: 90px;
-  }
-
-  /* line 584, ../../compass/assets/sass/afols.scss */
-  100% {
-    top: 120px;
-  }
 }

@@ -3,6 +3,7 @@
 // Declare app level module which depends on filters, and services
 angular.module('brickSlopes', [
     'ngRoute',
+    'ngAnimate',
     'brickSlopes.directives',
     'brickSlopes.services',
     'brickSlopes.controllers'

@@ -5,7 +5,7 @@
                 <bs-logo font-size=1.75></bs-logo>
             </div>
             <div class="loginForm">
-                <form class="my-form">
+                <form>
                     <div class="loginField">
                         <i class="icons-email icons-sprite-bg"></i>
                         <input type="email" placeholder="Email" ng-model="email" required>
@@ -35,30 +35,35 @@
                     <p>
                     Plus access to the entire AFOL Site!
                 </div>
-            </div>
-        </div>
-        <div id="signUpButton">
-            <div class="actionButton" ng-click="register()" ng-class="{signUpButtonAnimation : ! showLogin}">
-                <bs-text text="Sign up" font-color=white font-size=1.25></bs-text>
+                <div id="signUpButton" ng-show="showLogin">
+                    <div class="actionButton" ng-click="seeRegistration()">
+                        <bs-text text="Sign up" font-color=white font-size=1.25></bs-text>
+                    </div>
+                </div>
             </div>
         </div>
         <div id="signUpForm" ng-show="!showLogin" ng-class="{fadeIn: ! showLogin}">
             <div class="loginForm">
-                <form class="my-form">
+                <form name="registration" ng-submit="registration.$valid && register()">
                     <div class="loginField">
-                        <input type="text" placeholder="First Name" ng-model="firstName" required>
+                        <input type="text" placeholder="First Name" ng-model="firstName" required ng-pattern="/\w+/">
                     </div>
                     <div class="loginField">
                         <input type="text" placeholder="Last Name" ng-model="lastName" required>
                     </div>
                     <div class="loginField">
-                        <input type="email" placeholder="Email" ng-model="email" required>
+                        <input type="email" placeholder="Email" ng-model="registerEmail" required>
                     </div>
                     <div class="loginField">
-                        <input placeholder="Password" type="password" ng-model="password" required>
+                        <input placeholder="Password" type="password" ng-model="registerPassword" required equals="{{registerPasswordVerification}}">
                     </div>
                     <div class="loginField">
-                        <input placeholder="Verify Password" type="password" ng-model="verifyPassword" required>
+                        <input placeholder="Verify Password" type="password" ng-model="registerPasswordVerification" equals="{{registerPassword}}" required>
+                    </div>
+                    <div>
+                        <button class="formButton" type="submit" ng-class="{disabled: verifying}" ng-disabled="verifying">
+                            <bs-text text="Sign up" font-color=white font-size=1.75></bs-text>
+                        </button>
                     </div>
                 </form>
             </div>

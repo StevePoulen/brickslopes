@@ -1,0 +1,161 @@
+/* ng-view animation fade */
+
+#brickslopes .view-animate-fade {
+    //position: relative;
+    min-height: 700px;
+    height: auto;
+}
+
+
+.view-animate-fade.ng-enter, .view-animate-fade.ng-leave {
+    -webkit-transition:all linear 0.5s;
+    transition:all linear 0.5s;
+
+    position: absolute;
+    top:100px;
+    left:0;
+    right:0;
+    bottom:0;
+}
+
+.view-animate-fade.ng-enter {
+    opacity: 0;
+    left:100%;
+}
+.view-animate-fade.ng-enter.ng-enter-active {
+    opacity: 1;
+    left:0;
+}
+.view-animate-fade.ng-leave.ng-leave-active {
+    left:-100%;
+    opacity: 0;
+}
+
+/* Slider */
+
+#brickslopes .view-animate-slide {
+    padding:10px;
+    min-height: 700px;
+    height: auto;
+}
+
+.view-animate-slide.ng-enter, .view-animate-slide.ng-leave {
+  -webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+  transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+
+  display:block;
+  width:100%;
+
+  position: absolute;
+  top:100px;
+  left:0;
+  right:0;
+  bottom:0;
+  padding:10px;
+}
+
+.view-animate-slide.ng-enter {
+    left:100%;
+}
+.view-animate-slide.ng-enter.ng-enter-active {
+    left:0;
+}
+.view-animate-slide.ng-leave.ng-leave-active {
+    left:-100%;
+}
+
+/* Fade-in and Fade-out */
+.fadeOutFast {
+    /* Chrome, Safari, Opera */
+    -webkit-animation: fadeOut 0.5s linear forwards; 
+    animation: fadeOut 0.5s linear forwards;
+}
+
+.fadeOut {
+    /* Chrome, Safari, Opera */
+    -webkit-animation: fadeOut 1.0s linear forwards; 
+    animation: fadeOut 1.0s linear forwards;
+}
+
+
+.fadeOutSlow {
+    /* Chrome, Safari, Opera */
+    -webkit-animation: fadeOut 2.0s linear forwards; 
+    animation: fadeOut 2.0s linear forwards;
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes fadeOut {
+    0%   {opacity: 1}
+    25%  {opactiy: .75;}
+    50%  {opacity: .50;}
+    75%  {opacity: .25;}
+    100% {opacity: 0; display: none;}
+}
+
+@keyframes fadeOut {
+    0%   {opacity: 1}
+    25%  {opactiy: .75;}
+    50%  {opacity: .50;}
+    75%  {opacity: .25;}
+    100% {opacity: 0; display: none;}
+}
+
+.fadeInFast {
+    /* Chrome, Safari, Opera */
+    -webkit-animation: fadeIn 0.5s linear forwards; 
+    animation: fadeIn 0.5s linear forwards;
+}
+
+.fadeIn {
+    /* Chrome, Safari, Opera */
+    -webkit-animation: fadeIn 1.0s linear forwards; 
+    animation: fadeIn 1.0s linear forwards;
+}
+
+
+.fadeInSlow {
+    /* Chrome, Safari, Opera */
+    -webkit-animation: fadeIn 2.0s linear forwards; 
+    animation: fadeIn 2.0s linear forwards;
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes fadeIn {
+    0% {opacity: 0;}
+    25%  {opacity: .25;}
+    50%  {opacity: .50;}
+    75%  {opactiy: .75;}
+    100%   {opacity: 1}
+}
+
+@keyframes fadeIn {
+    0% {opacity: 0;}
+    25%  {opacity: .25;}
+    50%  {opacity: .50;}
+    75%  {opactiy: .75;}
+    100%   {opacity: 1}
+}
+
+/* AFOL Sign-up and Login */
+.signupAnimation {
+    -webkit-animation: signUpAnimation 1.5s linear forwards; /* Chrome, Safari, Opera */
+    animation: signUpAnimation 1.5s linear forwards;
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes signUpAnimation {
+    0%   {left: 410px;}
+    25%  {left: 310px;}
+    50%  {left: 210px;}
+    75%  {left: 110px;}
+    100% {left: 10px;}
+}
+
+@keyframes signUpAnimation {
+    0%   {left: 410px;}
+    25%  {left: 310px;}
+    50%  {left: 210px;}
+    75%  {left: 110px;}
+    100% {left: 10px;}
+}

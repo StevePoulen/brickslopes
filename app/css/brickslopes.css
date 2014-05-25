@@ -2,49 +2,50 @@
 @import url("/css/payment.css");
 @import url("/css/icons.css");
 @import url("/css/bsbits.css");
-/* line 9, ../../compass/assets/sass/brickslopes.scss */
+@import url("/css/animation.css");
+/* line 10, ../../compass/assets/sass/brickslopes.scss */
 body {
   background-color: black;
   font-family: "arial";
 }
 
 /* CSS Reset for Anchor tags - Becasue IE is stupid*/
-/* line 15, ../../compass/assets/sass/brickslopes.scss */
+/* line 16, ../../compass/assets/sass/brickslopes.scss */
 img {
   border: 0;
 }
 
-/* line 19, ../../compass/assets/sass/brickslopes.scss */
+/* line 20, ../../compass/assets/sass/brickslopes.scss */
 a {
   color: white;
   text-decoration: none;
 }
 
-/* line 24, ../../compass/assets/sass/brickslopes.scss */
+/* line 25, ../../compass/assets/sass/brickslopes.scss */
 a:link {
   color: white;
   text-decoration: none;
 }
 
-/* line 29, ../../compass/assets/sass/brickslopes.scss */
+/* line 30, ../../compass/assets/sass/brickslopes.scss */
 a:hover {
   color: white;
   text-decoration: none;
 }
 
-/* line 34, ../../compass/assets/sass/brickslopes.scss */
+/* line 35, ../../compass/assets/sass/brickslopes.scss */
 a:active {
   color: white;
   text-decoration: none;
 }
 
-/* line 39, ../../compass/assets/sass/brickslopes.scss */
+/* line 40, ../../compass/assets/sass/brickslopes.scss */
 a:visited {
   color: white;
   text-decoration: none;
 }
 
-/* line 44, ../../compass/assets/sass/brickslopes.scss */
+/* line 45, ../../compass/assets/sass/brickslopes.scss */
 #brickslopes {
   position: relative;
   top: 0px;
@@ -57,7 +58,7 @@ a:visited {
   text-align: center;
 }
 
-/* line 56, ../../compass/assets/sass/brickslopes.scss */
+/* line 57, ../../compass/assets/sass/brickslopes.scss */
 #header {
   position: relative;
   top: 0px;
@@ -68,7 +69,7 @@ a:visited {
   margin-right: auto;
   border: 0px solid white;
 }
-/* line 66, ../../compass/assets/sass/brickslopes.scss */
+/* line 67, ../../compass/assets/sass/brickslopes.scss */
 #header #eventContainer {
   position: absolute;
   top: 30px;
@@ -77,11 +78,11 @@ a:visited {
   height: 70px;
   border: 0px solid white;
 }
-/* line 74, ../../compass/assets/sass/brickslopes.scss */
+/* line 75, ../../compass/assets/sass/brickslopes.scss */
 #header #eventContainer a {
   margin: 10px;
 }
-/* line 79, ../../compass/assets/sass/brickslopes.scss */
+/* line 80, ../../compass/assets/sass/brickslopes.scss */
 #header #afolContainer {
   position: absolute;
   top: 5px;
@@ -95,7 +96,7 @@ a:visited {
   cursor: pointer;
 }
 
-/* line 93, ../../compass/assets/sass/brickslopes.scss */
+/* line 94, ../../compass/assets/sass/brickslopes.scss */
 #splashPageDashboard {
   position: relative;
   top: 25px;
@@ -107,7 +108,7 @@ a:visited {
   border: 0px solid red;
 }
 
-/* line 104, ../../compass/assets/sass/brickslopes.scss */
+/* line 105, ../../compass/assets/sass/brickslopes.scss */
 div#splashPage {
   position: absolute;
   width: 1200px;
@@ -121,7 +122,7 @@ div#splashPage {
   border-radius: 10px;
 }
 
-/* line 117, ../../compass/assets/sass/brickslopes.scss */
+/* line 118, ../../compass/assets/sass/brickslopes.scss */
 div#splashPage div#splashText {
   position: absolute;
   border: 0px solid yellow;
@@ -137,7 +138,7 @@ div#splashPage div#splashText {
   background: white;
 }
 
-/* line 132, ../../compass/assets/sass/brickslopes.scss */
+/* line 133, ../../compass/assets/sass/brickslopes.scss */
 div#splashPage div.splashTextHome {
   position: absolute;
   border-radius: 10px;
@@ -155,7 +156,7 @@ div#splashPage div.splashTextHome {
   border: 5px solid #35469A;
 }
 
-/* line 149, ../../compass/assets/sass/brickslopes.scss */
+/* line 150, ../../compass/assets/sass/brickslopes.scss */
 div#splashTextWhat #sponsorText {
   position: absolute;
   padding-top: 5px;
@@ -168,20 +169,20 @@ div#splashTextWhat #sponsorText {
   cursor: pointer;
 }
 
-/* line 161, ../../compass/assets/sass/brickslopes.scss */
+/* line 162, ../../compass/assets/sass/brickslopes.scss */
 #logo {
   position: absolute;
   top: 0px;
   left: 0px;
 }
 
-/* line 167, ../../compass/assets/sass/brickslopes.scss */
+/* line 168, ../../compass/assets/sass/brickslopes.scss */
 .communicationLogos {
   width: 50px;
   height: 50px;
 }
 
-/* line 172, ../../compass/assets/sass/brickslopes.scss */
+/* line 173, ../../compass/assets/sass/brickslopes.scss */
 div#splashPage {
   position: absolute;
   top: 0px;
@@ -190,7 +191,7 @@ div#splashPage {
   background: white;
 }
 
-/* line 180, ../../compass/assets/sass/brickslopes.scss */
+/* line 181, ../../compass/assets/sass/brickslopes.scss */
 #copyright {
   position: relative;
   bottom: 0px;
@@ -206,7 +207,7 @@ div#splashPage {
   text-align: center;
 }
 
-/* line 195, ../../compass/assets/sass/brickslopes.scss */
+/* line 196, ../../compass/assets/sass/brickslopes.scss */
 div#splashPage div#splashFigBatman {
   position: absolute;
   z-index: 5;
@@ -215,7 +216,7 @@ div#splashPage div#splashFigBatman {
   left: -35px;
 }
 
-/* line 203, ../../compass/assets/sass/brickslopes.scss */
+/* line 204, ../../compass/assets/sass/brickslopes.scss */
 div#splashTexthome div#splashFigJackSparrow {
   position: absolute;
   z-index: 5;
@@ -224,7 +225,7 @@ div#splashTexthome div#splashFigJackSparrow {
   right: -95px;
 }
 
-/* line 211, ../../compass/assets/sass/brickslopes.scss */
+/* line 212, ../../compass/assets/sass/brickslopes.scss */
 div#splashPage div#splashFigSuperMan {
   position: absolute;
   z-index: 5;
@@ -234,7 +235,7 @@ div#splashPage div#splashFigSuperMan {
   left: -35px;
 }
 
-/* line 220, ../../compass/assets/sass/brickslopes.scss */
+/* line 221, ../../compass/assets/sass/brickslopes.scss */
 div#splashPage div#publicTickets {
   position: absolute;
   z-index: 2;
@@ -246,7 +247,7 @@ div#splashPage div#publicTickets {
   border-radius: 10px;
 }
 
-/* line 231, ../../compass/assets/sass/brickslopes.scss */
+/* line 232, ../../compass/assets/sass/brickslopes.scss */
 div#publicTickets div#publicTicketsText {
   position: absolute;
   z-index: 2;
@@ -259,7 +260,7 @@ div#publicTickets div#publicTicketsText {
   border-radius: 10px;
 }
 
-/* line 243, ../../compass/assets/sass/brickslopes.scss */
+/* line 244, ../../compass/assets/sass/brickslopes.scss */
 div#splashPageDashboard div#afolRegistration {
   position: absolute;
   z-index: 4;
@@ -273,7 +274,7 @@ div#splashPageDashboard div#afolRegistration {
   text-align: center;
 }
 
-/* line 256, ../../compass/assets/sass/brickslopes.scss */
+/* line 257, ../../compass/assets/sass/brickslopes.scss */
 div#afolRegistration span#afolRegistrationText {
   position: absolute;
   left: 10px;
@@ -282,7 +283,7 @@ div#afolRegistration span#afolRegistrationText {
   border: 0px solid #35469A;
 }
 
-/* line 264, ../../compass/assets/sass/brickslopes.scss */
+/* line 265, ../../compass/assets/sass/brickslopes.scss */
 div#afolRegistration div#starWarsFlyIn {
   position: absolute;
   right: 50px;
@@ -292,7 +293,7 @@ div#afolRegistration div#starWarsFlyIn {
   border: 0px solid #ff0500;
 }
 
-/* line 273, ../../compass/assets/sass/brickslopes.scss */
+/* line 274, ../../compass/assets/sass/brickslopes.scss */
 div#afolRegistration div#starWarsPic {
   position: absolute;
   right: 415px;
@@ -302,12 +303,12 @@ div#afolRegistration div#starWarsPic {
   border: 0px solid #ff0500;
 }
 
-/* line 282, ../../compass/assets/sass/brickslopes.scss */
+/* line 283, ../../compass/assets/sass/brickslopes.scss */
 img#batman {
   height: 200px;
 }
 
-/* line 286, ../../compass/assets/sass/brickslopes.scss */
+/* line 287, ../../compass/assets/sass/brickslopes.scss */
 div#afolRegistration div#afolRegistrationImage {
   position: absolute;
   left: 450px;
@@ -317,38 +318,38 @@ div#afolRegistration div#afolRegistrationImage {
   border: 0px solid #ff0500;
 }
 
-/* line 295, ../../compass/assets/sass/brickslopes.scss */
+/* line 296, ../../compass/assets/sass/brickslopes.scss */
 img#superman {
   height: 175px;
 }
 
-/* line 299, ../../compass/assets/sass/brickslopes.scss */
+/* line 300, ../../compass/assets/sass/brickslopes.scss */
 img#miniAFOLRegistrationImage {
   height: 75px;
 }
 
-/* line 303, ../../compass/assets/sass/brickslopes.scss */
+/* line 304, ../../compass/assets/sass/brickslopes.scss */
 img#miniStarWars {
   height: 125px;
 }
 
-/* line 307, ../../compass/assets/sass/brickslopes.scss */
+/* line 308, ../../compass/assets/sass/brickslopes.scss */
 label.normalFont {
   color: black;
 }
 
-/* line 311, ../../compass/assets/sass/brickslopes.scss */
+/* line 312, ../../compass/assets/sass/brickslopes.scss */
 label.errorFont {
   color: red;
 }
 
-/* line 315, ../../compass/assets/sass/brickslopes.scss */
+/* line 316, ../../compass/assets/sass/brickslopes.scss */
 .mocListContainer {
   width: 960px;
   border: 0px solid black;
 }
 
-/* line 320, ../../compass/assets/sass/brickslopes.scss */
+/* line 321, ../../compass/assets/sass/brickslopes.scss */
 .singleMocListContainer {
   width: 960px;
   height: 75px;
@@ -357,7 +358,7 @@ label.errorFont {
   border-radius: 10px;
 }
 
-/* line 328, ../../compass/assets/sass/brickslopes.scss */
+/* line 329, ../../compass/assets/sass/brickslopes.scss */
 div.mocListTitle {
   position: relative;
   width: 550px;
@@ -369,7 +370,7 @@ div.mocListTitle {
   height: auto;
 }
 
-/* line 339, ../../compass/assets/sass/brickslopes.scss */
+/* line 340, ../../compass/assets/sass/brickslopes.scss */
 div.mocListBuilder {
   position: relative;
   width: 400px;
@@ -381,13 +382,13 @@ div.mocListBuilder {
   height: auto;
 }
 
-/* line 350, ../../compass/assets/sass/brickslopes.scss */
+/* line 351, ../../compass/assets/sass/brickslopes.scss */
 table.guestList {
   width: 750px;
   border: 0px solid black;
 }
 
-/* line 355, ../../compass/assets/sass/brickslopes.scss */
+/* line 356, ../../compass/assets/sass/brickslopes.scss */
 td.guestListName {
   width: 400px;
   border: 0px solid black;
@@ -396,7 +397,7 @@ td.guestListName {
   padding-top: 25px;
 }
 
-/* line 363, ../../compass/assets/sass/brickslopes.scss */
+/* line 364, ../../compass/assets/sass/brickslopes.scss */
 td.guestListState {
   width: 350px;
   border: 0px solid black;
@@ -405,13 +406,13 @@ td.guestListState {
   padding-top: 25px;
 }
 
-/* line 371, ../../compass/assets/sass/brickslopes.scss */
+/* line 372, ../../compass/assets/sass/brickslopes.scss */
 table.vendorList {
   width: 750px;
   border: 0px solid black;
 }
 
-/* line 376, ../../compass/assets/sass/brickslopes.scss */
+/* line 377, ../../compass/assets/sass/brickslopes.scss */
 td.vendorName {
   width: 600px;
   border: 0px solid black;
@@ -420,7 +421,7 @@ td.vendorName {
   padding-top: 25px;
 }
 
-/* line 384, ../../compass/assets/sass/brickslopes.scss */
+/* line 385, ../../compass/assets/sass/brickslopes.scss */
 td.vendorBoothNumber {
   width: 150px;
   border: 0px solid black;
@@ -429,27 +430,27 @@ td.vendorBoothNumber {
   padding-top: 25px;
 }
 
-/* line 392, ../../compass/assets/sass/brickslopes.scss */
+/* line 393, ../../compass/assets/sass/brickslopes.scss */
 .blueFont {
   color: #35469A;
 }
 
-/* line 396, ../../compass/assets/sass/brickslopes.scss */
+/* line 397, ../../compass/assets/sass/brickslopes.scss */
 span.whiteFont {
   color: #FFFFFF;
 }
 
-/* line 400, ../../compass/assets/sass/brickslopes.scss */
+/* line 401, ../../compass/assets/sass/brickslopes.scss */
 span.redFont {
   color: #ff0500;
 }
 
-/* line 404, ../../compass/assets/sass/brickslopes.scss */
+/* line 405, ../../compass/assets/sass/brickslopes.scss */
 .bold {
   font-weight: bold;
 }
 
-/* line 408, ../../compass/assets/sass/brickslopes.scss */
+/* line 409, ../../compass/assets/sass/brickslopes.scss */
 .italic {
   font-style: italic;
 }

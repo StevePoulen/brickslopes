@@ -63,11 +63,18 @@ describe('controllers', function() {
             });
         });
 
-        describe('Sign in', function() {
+        describe('Default Values', function() {
             it('should display the sign informatoin', function() {
                 expect(scope.showLogin).toBe(true);
             });
 
+            it('should have a verifying value of false', function() {
+                expect(scope.verifying).toBe(false);
+            });
+        });
+
+
+        describe('Sign in', function() {
             it('should submit to login page on success', function() {
                 scope.submitLogin();
                 mockBackend.expectPOST('/controllers/authentication.php').respond(200);
@@ -85,9 +92,16 @@ describe('controllers', function() {
         });
 
         describe('Sign up', function() {
-            it('should register', function() {
-                scope.register();
+            it('should display the registration form', function() {
+                scope.seeRegistration();
                 expect(scope.showLogin).toBe(false);
+            });
+        });
+
+        describe('Register', function() {
+            it('should register a new user', function() {
+                scope.register();
+                expect(scope.verifying).toBe(true);
             });
         });
     });

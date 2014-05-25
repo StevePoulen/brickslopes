@@ -1,5 +1,6 @@
 button, input, textarea {
     font-family: "Open Sans","Helvetica Neue",Arial,Helvetica,sans-serif;
+    outline: none;
 }
 
 input[type="text"], input[type="email"], input[type="password"], textarea.input {
@@ -37,6 +38,22 @@ input[type="text"]::-moz-placeholder, input[type="email"]::-moz-placeholder, inp
     cursor: pointer;
 }
 
+.formButton {
+    position: relative;
+    background: orange;
+    height: 50px;
+    border: 1px solid #BCBEBF;
+    border-radius: 5px;
+    margin: 0;
+    width: 250px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.disabled {
+    background: grey;
+}
+
 .largeFont {
   font-size: 1.75em;
 }
@@ -61,74 +78,32 @@ input[type="text"]::-moz-placeholder, input[type="email"]::-moz-placeholder, inp
   font-size: .25em;
 }
 
-.fadeOutFast {
-    /* Chrome, Safari, Opera */
-    -webkit-animation: fadeOut 0.5s linear forwards; 
-    animation: fadeOut 0.5s linear forwards;
+input.ng-pristine {
+    border: none;
 }
 
-.fadeOut {
-    /* Chrome, Safari, Opera */
-    -webkit-animation: fadeOut 1.0s linear forwards; 
-    animation: fadeOut 1.0s linear forwards;
+input:required {
+    box-shadow:none;
 }
 
-
-.fadeOutSlow {
-    /* Chrome, Safari, Opera */
-    -webkit-animation: fadeOut 2.0s linear forwards; 
-    animation: fadeOut 2.0s linear forwards;
+input:invalid {
+    box-shadow:none;
 }
 
-/* Chrome, Safari, Opera */
-@-webkit-keyframes fadeOut {
-    0%   {opacity: 1}
-    25%  {opactiy: .75;}
-    50%  {opacity: .50;}
-    75%  {opacity: .25;}
-    100% {opacity: 0; display: none;}
+input.ng-valid.ng-dirty {
+    border: 1px solid green;
 }
 
-@keyframes fadeOut {
-    0%   {opacity: 1}
-    25%  {opactiy: .75;}
-    50%  {opacity: .50;}
-    75%  {opacity: .25;}
-    100% {opacity: 0; display: none;}
+input.ng-invalid.ng-dirty {
+    border: 1px solid red;
 }
 
-.fadeInFast {
-    /* Chrome, Safari, Opera */
-    -webkit-animation: fadeIn 0.5s linear forwards; 
-    animation: fadeIn 0.5s linear forwards;
+input:select {
+    box-shadow: none;
 }
 
-.fadeIn {
-    /* Chrome, Safari, Opera */
-    -webkit-animation: fadeIn 1.0s linear forwards; 
-    animation: fadeIn 1.0s linear forwards;
+/*
+input.ng-dirty {
+    border: 1px solid purple;
 }
-
-
-.fadeInSlow {
-    /* Chrome, Safari, Opera */
-    -webkit-animation: fadeIn 2.0s linear forwards; 
-    animation: fadeIn 2.0s linear forwards;
-}
-
-/* Chrome, Safari, Opera */
-@-webkit-keyframes fadeIn {
-    0% {opacity: 0;}
-    25%  {opacity: .25;}
-    50%  {opacity: .50;}
-    75%  {opactiy: .75;}
-    100%   {opacity: 1}
-}
-
-@keyframes fadeIn {
-    0% {opacity: 0;}
-    25%  {opacity: .25;}
-    50%  {opacity: .50;}
-    75%  {opactiy: .75;}
-    100%   {opacity: 1}
-}
+*/

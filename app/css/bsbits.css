@@ -1,9 +1,10 @@
 /* line 1, ../../compass/assets/sass/bsbits.scss */
 button, input, textarea {
   font-family: "Open Sans","Helvetica Neue",Arial,Helvetica,sans-serif;
+  outline: none;
 }
 
-/* line 5, ../../compass/assets/sass/bsbits.scss */
+/* line 6, ../../compass/assets/sass/bsbits.scss */
 input[type="text"], input[type="email"], input[type="password"], textarea.input {
   border: none;
   border-radius: 3px;
@@ -20,12 +21,12 @@ input[type="text"], input[type="email"], input[type="password"], textarea.input 
   vertical-align: middle;
 }
 
-/* line 23, ../../compass/assets/sass/bsbits.scss */
+/* line 24, ../../compass/assets/sass/bsbits.scss */
 input[type="text"]::-moz-placeholder, input[type="email"]::-moz-placeholder, input[type="password"]::-moz-placeholder, textarea.input::-moz-placeholder {
   color: #BCBEBF;
 }
 
-/* line 27, ../../compass/assets/sass/bsbits.scss */
+/* line 28, ../../compass/assets/sass/bsbits.scss */
 .actionButton {
   position: relative;
   background: orange;
@@ -39,186 +40,86 @@ input[type="text"]::-moz-placeholder, input[type="email"]::-moz-placeholder, inp
   cursor: pointer;
 }
 
-/* line 40, ../../compass/assets/sass/bsbits.scss */
+/* line 41, ../../compass/assets/sass/bsbits.scss */
+.formButton {
+  position: relative;
+  background: orange;
+  height: 50px;
+  border: 1px solid #BCBEBF;
+  border-radius: 5px;
+  margin: 0;
+  width: 250px;
+  text-align: center;
+  cursor: pointer;
+}
+
+/* line 53, ../../compass/assets/sass/bsbits.scss */
+.disabled {
+  background: grey;
+}
+
+/* line 57, ../../compass/assets/sass/bsbits.scss */
 .largeFont {
   font-size: 1.75em;
 }
 
-/* line 44, ../../compass/assets/sass/bsbits.scss */
+/* line 61, ../../compass/assets/sass/bsbits.scss */
 .oneEMFont, .starWarsFont {
   font-size: 1.25em;
 }
 
-/* line 48, ../../compass/assets/sass/bsbits.scss */
+/* line 65, ../../compass/assets/sass/bsbits.scss */
 .eventsFont {
   font-size: 1.0em;
 }
 
-/* line 52, ../../compass/assets/sass/bsbits.scss */
+/* line 69, ../../compass/assets/sass/bsbits.scss */
 .mediumFont {
   font-size: .80em;
 }
 
-/* line 56, ../../compass/assets/sass/bsbits.scss */
+/* line 73, ../../compass/assets/sass/bsbits.scss */
 .smallFont {
   font-size: .60em;
 }
 
-/* line 60, ../../compass/assets/sass/bsbits.scss */
+/* line 77, ../../compass/assets/sass/bsbits.scss */
 .tinyFont {
   font-size: .25em;
 }
 
-/* line 64, ../../compass/assets/sass/bsbits.scss */
-.fadeOutFast {
-  /* Chrome, Safari, Opera */
-  -webkit-animation: fadeOut 0.5s linear forwards;
-  animation: fadeOut 0.5s linear forwards;
+/* line 81, ../../compass/assets/sass/bsbits.scss */
+input.ng-pristine {
+  border: none;
 }
 
-/* line 70, ../../compass/assets/sass/bsbits.scss */
-.fadeOut {
-  /* Chrome, Safari, Opera */
-  -webkit-animation: fadeOut 1.0s linear forwards;
-  animation: fadeOut 1.0s linear forwards;
+/* line 85, ../../compass/assets/sass/bsbits.scss */
+input:required {
+  box-shadow: none;
 }
 
-/* line 77, ../../compass/assets/sass/bsbits.scss */
-.fadeOutSlow {
-  /* Chrome, Safari, Opera */
-  -webkit-animation: fadeOut 2.0s linear forwards;
-  animation: fadeOut 2.0s linear forwards;
+/* line 89, ../../compass/assets/sass/bsbits.scss */
+input:invalid {
+  box-shadow: none;
 }
 
-/* Chrome, Safari, Opera */
-@-webkit-keyframes fadeOut {
-  /* line 85, ../../compass/assets/sass/bsbits.scss */
-  0% {
-    opacity: 1;
-  }
-
-  /* line 86, ../../compass/assets/sass/bsbits.scss */
-  25% {
-    opactiy: .75;
-  }
-
-  /* line 87, ../../compass/assets/sass/bsbits.scss */
-  50% {
-    opacity: .50;
-  }
-
-  /* line 88, ../../compass/assets/sass/bsbits.scss */
-  75% {
-    opacity: .25;
-  }
-
-  /* line 89, ../../compass/assets/sass/bsbits.scss */
-  100% {
-    opacity: 0;
-    display: none;
-  }
+/* line 93, ../../compass/assets/sass/bsbits.scss */
+input.ng-valid.ng-dirty {
+  border: 1px solid green;
 }
 
-@keyframes fadeOut {
-  /* line 93, ../../compass/assets/sass/bsbits.scss */
-  0% {
-    opacity: 1;
-  }
-
-  /* line 94, ../../compass/assets/sass/bsbits.scss */
-  25% {
-    opactiy: .75;
-  }
-
-  /* line 95, ../../compass/assets/sass/bsbits.scss */
-  50% {
-    opacity: .50;
-  }
-
-  /* line 96, ../../compass/assets/sass/bsbits.scss */
-  75% {
-    opacity: .25;
-  }
-
-  /* line 97, ../../compass/assets/sass/bsbits.scss */
-  100% {
-    opacity: 0;
-    display: none;
-  }
+/* line 97, ../../compass/assets/sass/bsbits.scss */
+input.ng-invalid.ng-dirty {
+  border: 1px solid red;
 }
 
-/* line 100, ../../compass/assets/sass/bsbits.scss */
-.fadeInFast {
-  /* Chrome, Safari, Opera */
-  -webkit-animation: fadeIn 0.5s linear forwards;
-  animation: fadeIn 0.5s linear forwards;
+/* line 101, ../../compass/assets/sass/bsbits.scss */
+input:select {
+  box-shadow: none;
 }
 
-/* line 106, ../../compass/assets/sass/bsbits.scss */
-.fadeIn {
-  /* Chrome, Safari, Opera */
-  -webkit-animation: fadeIn 1.0s linear forwards;
-  animation: fadeIn 1.0s linear forwards;
+/*
+input.ng-dirty {
+    border: 1px solid purple;
 }
-
-/* line 113, ../../compass/assets/sass/bsbits.scss */
-.fadeInSlow {
-  /* Chrome, Safari, Opera */
-  -webkit-animation: fadeIn 2.0s linear forwards;
-  animation: fadeIn 2.0s linear forwards;
-}
-
-/* Chrome, Safari, Opera */
-@-webkit-keyframes fadeIn {
-  /* line 121, ../../compass/assets/sass/bsbits.scss */
-  0% {
-    opacity: 0;
-  }
-
-  /* line 122, ../../compass/assets/sass/bsbits.scss */
-  25% {
-    opacity: .25;
-  }
-
-  /* line 123, ../../compass/assets/sass/bsbits.scss */
-  50% {
-    opacity: .50;
-  }
-
-  /* line 124, ../../compass/assets/sass/bsbits.scss */
-  75% {
-    opactiy: .75;
-  }
-
-  /* line 125, ../../compass/assets/sass/bsbits.scss */
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes fadeIn {
-  /* line 129, ../../compass/assets/sass/bsbits.scss */
-  0% {
-    opacity: 0;
-  }
-
-  /* line 130, ../../compass/assets/sass/bsbits.scss */
-  25% {
-    opacity: .25;
-  }
-
-  /* line 131, ../../compass/assets/sass/bsbits.scss */
-  50% {
-    opacity: .50;
-  }
-
-  /* line 132, ../../compass/assets/sass/bsbits.scss */
-  75% {
-    opactiy: .75;
-  }
-
-  /* line 133, ../../compass/assets/sass/bsbits.scss */
-  100% {
-    opacity: 1;
-  }
-}
+*/

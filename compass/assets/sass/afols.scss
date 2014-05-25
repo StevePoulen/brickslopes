@@ -100,7 +100,7 @@ div#dashboardText {
             width: 250px;
 
             .loginField {
-                margin: 20px;
+                margin-bottom: 20px;
                 border: 1px solid #BCBEBF;
                 border-radius: 5px;
                 width: 250px;
@@ -155,8 +155,8 @@ div#dashboardText {
 
     #signUpButton {
         position: absolute;
-        left: 632px;
-        top: 325px;
+        left: 110px;
+        top: 175px;
     }
 }
 
@@ -540,46 +540,3 @@ div#mocRegistrationCatagoriesCard {
 }
 
 
-.signupAnimation {
-    -webkit-animation: signUpAnimation 1.5s linear forwards; /* Chrome, Safari, Opera */
-    animation: signUpAnimation 1.5s linear forwards;
-}
-
-/* Chrome, Safari, Opera */
-@-webkit-keyframes signUpAnimation {
-    0%   {left: 410px;}
-    25%  {left: 310px;}
-    50%  {left: 210px;}
-    75%  {left: 110px;}
-    100% {left: 10px;}
-}
-
-@keyframes signUpAnimation {
-    0%   {left: 410px;}
-    25%  {left: 310px;}
-    50%  {left: 210px;}
-    75%  {left: 110px;}
-    100% {left: 10px;}
-}
-
-.signupButtonAnimation {
-    -webkit-animation: signUpButtonAnimation 1.5s linear forwards; /* Chrome, Safari, Opera */
-    animation: signUpButtonAnimation 1.5s linear forwards;
-}
-
-/* Chrome, Safari, Opera */
-@-webkit-keyframes signUpButtonAnimation {
-    0%   {top: 0px;}
-    25%  {top: 30px;}
-    50%  {top: 60px;}
-    75%  {top: 90px;}
-    100% {top: 120px;}
-}
-
-@keyframes signUpButtonAnimation {
-    0%   {top: 0px;}
-    25%  {top: 30px;}
-    50%  {top: 60px;}
-    75%  {top: 90px;}
-    100% {top: 120px;}
-}
