@@ -1,9 +1,10 @@
 $event_dashboard_width: 1024px;
 $event_dashboard_min_height: 650px;
 
-#brickslopes #dashboard {
+#dashboard {
   position: relative;
   top: 35px;
+  left: 0px;
   width: 1220px;
   height: 650px;
   margin-left: auto;
@@ -70,11 +71,11 @@ div#dashboardText {
 
         .loginForm {
             position: relative;
-            left: 110px;
+            left: $event_dashboard_width / 4 - 135;
             width: 250px;
 
             .loginField {
-                margin: 10px;
+                margin-bottom: 10px;
                 border: 1px solid #BCBEBF;
                 border-radius: 5px;
                 width: 250px;
@@ -92,7 +93,6 @@ div#dashboardText {
         height: $event_dashboard_min_height / 2;
         width: $event_dashboard_width / 2 - 20;
         border: none;
-        opacity: 0;
 
         .loginForm {
             position: relative;
@@ -129,7 +129,6 @@ div#dashboardText {
         height: $event_dashboard_min_height / 2;
         width: $event_dashboard_width / 2 - 20;
         border: none;
-        display: inline;
         
         .center {
             left: 105px;
@@ -285,7 +284,7 @@ div.flickr_badge_image img {
   height: 200px;
 }
 
-#brickslopes #eventDashboard {
+#eventDashboard {
   position: relative;
   top: 35px;
   width: $event_dashboard_width;

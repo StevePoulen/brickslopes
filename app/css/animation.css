@@ -5,7 +5,7 @@
   height: auto;
 }
 
-/* line 10, ../../compass/assets/sass/animation.scss */
+/* line 9, ../../compass/assets/sass/animation.scss */
 .view-animate-fade.ng-enter, .view-animate-fade.ng-leave {
   -webkit-transition: all linear 0.5s;
   transition: all linear 0.5s;
@@ -16,8 +16,9 @@
   bottom: 0;
 }
 
-/* line 21, ../../compass/assets/sass/animation.scss */
+/* line 20, ../../compass/assets/sass/animation.scss */
 .view-animate-fade.ng-enter {
+  top: 100px;
   opacity: 0;
   left: 100%;
 }
@@ -229,9 +230,9 @@
 /* AFOL Sign-up and Login */
 /* line 141, ../../compass/assets/sass/animation.scss */
 .signupAnimation {
-  -webkit-animation: signUpAnimation 1.5s linear forwards;
+  -webkit-animation: signUpAnimation 1.0s linear forwards;
   /* Chrome, Safari, Opera */
-  animation: signUpAnimation 1.5s linear forwards;
+  animation: signUpAnimation 1.0s linear forwards;
 }
 
 /* Chrome, Safari, Opera */

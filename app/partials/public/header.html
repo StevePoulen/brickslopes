@@ -12,6 +12,7 @@
         <a target="_blank" href="//www.pinterest.com/pin/create/button/?url=http%3A%2F%2Fwww.brickslopes.com&media=http%3A%2F%2Fwww.brickslopes.com%2Fimages%2FBrickSlopesFalconFlyer.png&description=Next%20stop%3A%20Pinterest" data-pin-do="buttonPin" data-pin-config="none"><img src="/images/communication/images/pinterest.png" alt="Pinterest"></a>
     </div>
     <div id="afolContainer">
-        <div ng-click="clickBuilder()"><bs-text text="Builder Login" font-color=white></bs-text></div>
+        <span class="afolAuth" ng-click="clickBuilder()"><bs-text text="{{authenticationText()}}" font-color=white></bs-text></span>
+        <span class="afolAuth" ng-show="authenticated()" ng-click="logout()"> | <bs-text text="Logout" font-color=white></bs-text></span>
     </div>
 </div>

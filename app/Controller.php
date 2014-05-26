@@ -1,7 +1,18 @@
 <?php
+    include_once join('/', array(__DIR__, 'php', 'AutoLoader.php'));
+    require_once("../config/config.php");
+
+    header( 'Expires: Mon, 26 Jul 1997 05:00:00 GMT' );
+    header( 'Last-Modified: ' . gmdate( 'D, d M Y H:i:s' ) . ' GMT' );
+    header( 'Cache-Control: no-cache, must-revalidate' );
+    header( 'Pragma: no-cache' ); 
+
+
+
     class Controller {
 
         public function __construct() {
+            $this->userId = null;
             $this->setControllerModuleValues();
             $this->setHeader();
         }
@@ -46,8 +57,39 @@
                 return true;
             } else {
                 $headers = apache_request_headers();
+                if ($this->decodeJWT($headers['Authorization'])) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        }
+
+        private function decodeJWT($jwt) {
+            $decoded = JWT::decode($jwt, JWT_KEY);
+            try {
+                if (preg_match('/\d+/', $decoded->userId)) {
+                    $this->userId = $decoded->userId;
+                    return true;
+                } else {
+                    return false;
+                }
+            } catch (Exception $e) {
                 return false;
             }
+        }
+
+        public function encodeJWT($userId) {
+            $token = array(
+                "iss" => "https://www.brickslopes.com",
+                "aud" => $_SERVER['HTTP_HOST'],
+                "iat" => 1356999524,
+                "nbf" => 1357000000,
+                "userId" => $userId
+             );
+
+            $jwt = JWT::encode($token, JWT_KEY);
+            return $jwt;
         }
 
         public function invoke() {
@@ -63,13 +105,6 @@
             }
         }
     }
-
-    header( 'Expires: Mon, 26 Jul 1997 05:00:00 GMT' );
-    header( 'Last-Modified: ' . gmdate( 'D, d M Y H:i:s' ) . ' GMT' );
-    header( 'Cache-Control: no-cache, must-revalidate' );
-    header( 'Pragma: no-cache' ); 
-
-    require_once("../config/config.php");
 
     $controller = new Controller();
     $controller->invoke();

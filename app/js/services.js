@@ -48,23 +48,42 @@ angular.module('brickSlopes.services', [])
         }
     }
 }])
-.factory('Login', ['$q', '$http', function($q, $http) {
-    return function(credentials) {
-        var delay= $q.defer();
-        $http (
-            {
-                method: 'POST',
-                url: '/controllers/authentication.php',
-                data: credentials,
-                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-            }
-        ).success(function(data, status, headers, config) {
-            delay.resolve(data);
-        }).error(function(data, status, headers, config) {
-            delay.reject('Unable to authenticate');
-        });
+.factory('Auth', ['$q', '$http', function($q, $http) {
+    return {
+        login: function(credentials) {
+            var delay= $q.defer();
+            $http (
+                {
+                    method: 'GET',
+                    url: '/controllers/authentication.php',
+                    params: credentials,
+                }
+            ).success(function(data, status, headers, config) {
+                delay.resolve(data);
+            }).error(function(data, status, headers, config) {
+                delay.reject('Unable to authenticate');
+            });
 
-        return delay.promise;
+            return delay.promise;
+        },
+
+        register: function(userInformation) {
+            var delay= $q.defer();
+            $http (
+                {
+                    method: 'POST',
+                    url: '/controllers/authentication.php',
+                    data: userInformation,
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+                }
+            ).success(function(data, status, headers, config) {
+                delay.resolve(data);
+            }).error(function(data, status, headers, config) {
+                delay.reject('Unable to authenticate');
+            });
+
+            return delay.promise;
+        }
     }
 }])
 .factory('GetAfolMocList', ['$q', '$http', function($q, $http) {
@@ -98,14 +117,14 @@ angular.module('brickSlopes.services', [])
         request: function(config) {
             config.headers = config.headers || {};
             if ($window.sessionStorage.token) {
-                config.headers.Authorization = 'Token ' + $window.sessionStorage.token;
+                config.headers.Authorization = $window.sessionStorage.token;
             }
             return config;
         },
         responseError: function(rejection) {
-            if (rejection.status === 401) {
+            if (rejection.status === 401 || rejection.status === 403) {
                 $location.path('/afol/login.html');
-            } else if (rejection.status === 403) {
+            } else if (rejection.status >= 500) {
                 $location.path('/error.html');
             }
             return $q.reject(rejection);

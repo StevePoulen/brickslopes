@@ -20,6 +20,13 @@ config(['$routeProvider', '$httpProvider',  function($routeProvider, $httpProvid
         }
     )
     .when(
+        '/afol/comingSoon.html',
+        {
+            templateUrl: 'partials/afol/comingSoon.html',
+            controller: 'afolIndex'
+        }
+    )
+    .when(
         '/error.html',
         {
             templateUrl: 'partials/public/error.html',

@@ -92,15 +92,41 @@ describe('service', function() {
 
     describe('Login', function() {
         var mockBackend, loader, data, credentials;
-        beforeEach(inject(function(_$httpBackend_, Login) {
+        beforeEach(inject(function(_$httpBackend_, Auth) {
             credentials = {'email': 'brian@bs.com', 'password': 'LEGO'};
             mockBackend = _$httpBackend_;
-            loader = Login;
+            loader = Auth;
+            mockBackend.expectGET('/controllers/authentication.php?email=brian@bs.com&password=LEGO').respond('success');
+        }));
+
+        it('should register a user', function() {
+            var load = loader.login(credentials);
+
+            load.then(function(_data) {
+                data = _data;
+            });
+
+            mockBackend.flush();
+            expect(data).toEqualData('success');
+        });
+    });
+
+    describe('Register', function() {
+        var mockBackend, loader, data, credentials;
+        beforeEach(inject(function(_$httpBackend_, Auth) {
+            credentials = {
+                'firstName': 'Steve',
+                'lastName': 'Poulsen',
+                'email': 'steve@bs.com',
+                'password': 'LEGO'
+            };
+            mockBackend = _$httpBackend_;
+            loader = Auth;
             mockBackend.expectPOST('/controllers/authentication.php', credentials).respond('success');
         }));
 
         it('should register a user', function() {
-            var load = loader(credentials);
+            var load = loader.register(credentials);
 
             load.then(function(_data) {
                 data = _data;
@@ -152,7 +178,7 @@ describe('service', function() {
         describe('request', function() {
             it('should add a header', function() {
                 window.sessionStorage.token = 123456789;
-                expect(auth.request({}).headers.Authorization).toEqual('Token 123456789');
+                expect(auth.request({}).headers.Authorization).toEqual('123456789');
             });
 
             it('should not have a header', function() {
@@ -170,6 +196,12 @@ describe('service', function() {
 
             it('should redirect for a 403', function() {
                 var response = {status: 403};
+                auth.responseError(response)
+                expect(location.path()).toBe('/afol/login.html');
+            });
+
+            it('should redirect for a 500', function() {
+                var response = {status: 500};
                 auth.responseError(response)
                 expect(location.path()).toBe('/error.html');
             });

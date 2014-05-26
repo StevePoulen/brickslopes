@@ -123,3 +123,7 @@ input.ng-dirty {
     border: 1px solid purple;
 }
 */
+/* line 111, ../../compass/assets/sass/bsbits.scss */
+.afolAuth:hover {
+  font-style: italic;
+}

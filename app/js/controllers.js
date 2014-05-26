@@ -12,8 +12,27 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services'])
             $location.path("/afol/login.html");
         }
     }
+
+    $scope.authenticationText = function() {
+        if ($window.sessionStorage.firstName) {
+            return $window.sessionStorage.firstName + "'s Site";
+        } else {
+            return "Builder Login";
+        }
+    }
+
+    $scope.logout = function() {
+        delete $window.sessionStorage.token;
+        delete $window.sessionStorage.firstName;
+        delete $window.sessionStorage.lastName;
+        $location.path("/afol/login.html");
+    }
+
+    $scope.authenticated = function() {
+        return ($window.sessionStorage.token ? true : false);
+    }
 }])
-.controller('afolLogin', ['$scope', '$location', 'Login', function($scope, $location, Login) {
+.controller('afolLogin', ['$scope', '$location', 'Auth', '$window', function($scope, $location, Auth, $window) {
 
     $scope.showLogin = true;
     $scope.verifying = false;
@@ -35,9 +54,16 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services'])
         }
     }
 
+    function storeSession(data) {
+        $window.sessionStorage.token = data.token;
+        $window.sessionStorage.firstName = data.firstName;
+        $window.sessionStorage.lastName = data.lastName;
+    }
+
     $scope.submitLogin = function() {
         $scope.displayErrorMessage = "";
-        Login(serializeLoginJson()).then(function() {
+        Auth.login(serializeLoginJson()).then(function(response) {
+            storeSession(response.data);
             $location.path('/afol/index.html');
         }, function() {
             $scope.displayErrorMessage = "The email or password you entered is incorrect.";
@@ -50,8 +76,15 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services'])
 
     $scope.register = function() {
         $scope.verifying = true;
-        console.log(serializeRegisterJson());
-        console.log("post To Server");
+        Auth.register(serializeRegisterJson()).then(function(response) {
+            if (response.status === 201) {
+                storeSession(response.data);
+                $location.path('/afol/index.html');
+            }
+        }, function(data) {
+            console.log("here", data);
+            $scope.displayErrorMessage = "The email or password you entered is incorrect.";
+        });
     }
 
     $scope.closeDialog = function() {
@@ -63,27 +96,48 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services'])
     $scope.mocList = [];
 
     $scope.clickRegistration = function() {
-        $location.path("/afol/eventRegistration.html");
+        //$location.path("/afol/eventRegistration.html");
+        $location.path("/afol/comingSoon.html");
     }
 
     $scope.clickSchedule = function() {
-        $location.path("/afol/eventSchedule.html");
+        //$location.path("/afol/eventSchedule.html");
+        $location.path("/afol/comingSoon.html");
     }
 
     $scope.clickKeynote = function() {
-        $location.path("/afol/eventKeynote.html");
+        //$location.path("/afol/eventKeynote.html");
+        $location.path("/afol/comingSoon.html");
+    }
+
+    $scope.clickCollection = function() {
+        //$location.path("/afol/eventCollection.html");
+        $location.path("/afol/comingSoon.html");
     }
 
     $scope.clickMocRegistration = function() {
-        $location.path("/afol/eventMocRegistration.html");
+        //$location.path("/afol/eventMocRegistration.html");
+        $location.path("/afol/comingSoon.html");
     }
 
-    $scope.clickMocRegistration = function() {
-        $location.path("/afol/eventMocRegistration.html");
+    $scope.clickMocList = function() {
+        //$location.path("/afol/eventMocList.html");
+        $location.path("/afol/comingSoon.html");
+    }
+
+    $scope.clickVendors = function() {
+        //$location.path("/afol/eventVendors.html");
+        $location.path("/afol/comingSoon.html");
+    }
+
+    $scope.clickAfols= function() {
+        //$location.path("/afol/eventVfols.html");
+        $location.path("/afol/comingSoon.html");
     }
 
     $scope.clickFAQ = function() {
-        $location.path("/afol/eventFAQ.html");
+        //$location.path("/afol/eventFAQ.html");
+        $location.path("/afol/comingSoon.html");
     }
 
     $scope.clickVenue = function() {
@@ -92,10 +146,6 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services'])
 
     $scope.clickHotel = function() {
         $location.path("/afol/eventHotel.html");
-    }
-
-    $scope.clickMocList= function() {
-        $location.path("/afol/eventMocList.html");
     }
 
     $scope.closeDialog = function() {

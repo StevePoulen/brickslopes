@@ -88,11 +88,13 @@
                   $this->audit("error: " . $this->mysqli->error, 1);
                   #throw new AssertException($this->mysqli->error, CODE_DB);
               }
+              return $this->mysqli->error;
           }
       } catch (Exception $e) {
           //Send me an error if there is a problem
           $msg = "There was an exception with this query: $query Error: " . $e->getMessage();
           $this->audit($msg, 1);
+          return $msg;
       }
 		}
 

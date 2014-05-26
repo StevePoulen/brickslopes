@@ -1,7 +1,6 @@
 /* ng-view animation fade */
 
 #brickslopes .view-animate-fade {
-    //position: relative;
     min-height: 700px;
     height: auto;
 }
@@ -19,8 +18,9 @@
 }
 
 .view-animate-fade.ng-enter {
+    top: 100px;
     opacity: 0;
-    left:100%;
+    left: 100%;
 }
 .view-animate-fade.ng-enter.ng-enter-active {
     opacity: 1;
@@ -139,8 +139,8 @@
 
 /* AFOL Sign-up and Login */
 .signupAnimation {
-    -webkit-animation: signUpAnimation 1.5s linear forwards; /* Chrome, Safari, Opera */
-    animation: signUpAnimation 1.5s linear forwards;
+    -webkit-animation: signUpAnimation 1.0s linear forwards; /* Chrome, Safari, Opera */
+    animation: signUpAnimation 1.0s linear forwards;
 }
 
 /* Chrome, Safari, Opera */

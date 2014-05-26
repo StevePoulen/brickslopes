@@ -20,7 +20,6 @@ describe('controllers', function() {
         beforeEach(inject(function($controller, $rootScope, $location, _$window_) {
             scope = $rootScope.$new();
             window = _$window_;
-            delete window.sessionStorage.token;
             ctrl = $controller('bsHeader', { $scope: scope, $window: window});
             location = $location;
         }));
@@ -41,19 +40,121 @@ describe('controllers', function() {
             location = $location;
         }));
 
+        afterEach(function() {
+            delete window.sessionStorage.token;
+        });
+
         it('should redirect to afol index page with a session token', function() {
             scope.clickBuilder();
             expect(location.path()).toBe('/afol/index.html');
         });
     });
 
+    describe('bsHeaderController Logout', function() {
+        var window;
+        beforeEach(inject(function($controller, $rootScope, $location, _$window_) {
+            scope = $rootScope.$new();
+            window = _$window_;
+            window.sessionStorage.token = '1234567890';
+            window.sessionStorage.firstName = 'Ember';
+            window.sessionStorage.lastName = 'Pilati';
+            ctrl = $controller('bsHeader', { $scope: scope, $window: window});
+            location = $location;
+        }));
+
+        afterEach(function() {
+            delete window.sessionStorage.token;
+            delete window.sessionStorage.firstName;
+            delete window.sessionStorage.lastName;
+        });
+
+        it('should have an undefined token', function() {
+            expect(window.sessionStorage.token).toBe('1234567890');
+            scope.logout();
+            expect(window.sessionStorage.token).toBe(undefined);
+        });
+
+        it('should have an undefined firstName', function() {
+            expect(window.sessionStorage.firstName).toBe('Ember');
+            scope.logout();
+            expect(window.sessionStorage.firstName).toBe(undefined);
+        });
+
+        it('should have an undefined lastName', function() {
+            expect(window.sessionStorage.lastName).toBe('Pilati');
+            scope.logout();
+            expect(window.sessionStorage.lastName).toBe(undefined);
+        });
+
+        it('should have a login path', function() {
+            scope.logout();
+            expect(location.path()).toBe('/afol/login.html');
+        });
+    });
+
+    describe('bsHeaderController Authenticated', function() {
+        var window;
+        beforeEach(inject(function($controller, $rootScope, $location, _$window_) {
+            scope = $rootScope.$new();
+            window = _$window_;
+            ctrl = $controller('bsHeader', { $scope: scope, $window: window});
+            location = $location;
+        }));
+
+        afterEach(function() {
+            delete window.sessionStorage.token;
+        });
+
+        it('should have a false for unauthenticated', function() {
+            expect(scope.authenticated()).toBe(false);
+        });
+
+        it('should have a false for unauthenticated', function() {
+            window.sessionStorage.token = '1234567890';
+            expect(scope.authenticated()).toBe(true);
+        });
+    });
+
+    describe('bsHeaderController Authentication Management - Login', function() {
+        var window;
+        beforeEach(inject(function($controller, $rootScope, _$window_) {
+            scope = $rootScope.$new();
+            window = _$window_;
+            window.sessionStorage.firstName = 'Brian';
+            ctrl = $controller('bsHeader', { $scope: scope, $window: window});
+        }));
+
+        afterEach(function() {
+            delete window.sessionStorage.firstName;
+        });
+
+        it('should have the user name builder login', function() {
+            expect(scope.authenticationText()).toBe("Brian's Site");
+        });
+    });
+
+    describe('bsHeaderController Authentication Management - No Login', function() {
+        var window;
+        beforeEach(inject(function($controller, $rootScope, _$window_) {
+            scope = $rootScope.$new();
+            window = _$window_;
+            delete window.sessionStorage.token;
+            ctrl = $controller('bsHeader', { $scope: scope, $window: window});
+        }));
+
+        it('should have the generic builder login', function() {
+            expect(scope.authenticationText()).toBe('Builder Login');
+        });
+    });
+
     describe('afolLogin Controller', function() {
-        var mockBackend, loader;
-        beforeEach(inject(function($controller, $rootScope, $location, _$httpBackend_) {
+        var mockBackend, loader, window;
+        beforeEach(inject(function($controller, $rootScope, $location, _$httpBackend_, $window) {
             scope = $rootScope.$new();
             ctrl = $controller('afolLogin', { $scope: scope});
             location = $location;
             mockBackend = _$httpBackend_;
+            window = $window;
         }));
 
         describe('Close Dialog', function() {
@@ -76,8 +177,14 @@ describe('controllers', function() {
 
         describe('Sign in', function() {
             it('should submit to login page on success', function() {
+                var response = {
+                    data: {
+                        token: 22
+                    },
+                    status: 201
+                }
                 scope.submitLogin();
-                mockBackend.expectPOST('/controllers/authentication.php').respond(200);
+                mockBackend.expectGET('/controllers/authentication.php?').respond(200, response);
                 mockBackend.flush();
                 expect(location.path()).toBe('/afol/index.html');
                 expect(scope.displayErrorMessage).toBe("");
@@ -85,7 +192,7 @@ describe('controllers', function() {
 
             it('should submit to login page on failure', function() {
                 scope.submitLogin();
-                mockBackend.expectPOST('/controllers/authentication.php').respond(401);
+                mockBackend.expectGET('/controllers/authentication.php?').respond(401);
                 mockBackend.flush();
                 expect(scope.displayErrorMessage).toBe("The email or password you entered is incorrect.");
             });
@@ -102,6 +209,18 @@ describe('controllers', function() {
             it('should register a new user', function() {
                 scope.register();
                 expect(scope.verifying).toBe(true);
+                var response = {
+                    data: {
+                        token: 22
+                    },
+                    status: 201
+                }
+
+                mockBackend.expectPOST('/controllers/authentication.php').respond(201, response);
+                mockBackend.flush();
+                expect(location.path()).toBe('/afol/index.html');
+                expect(window.sessionStorage.token).toBe('22');
+                expect(scope.displayErrorMessage).toBe(undefined);
             });
         });
     });
@@ -115,7 +234,7 @@ describe('controllers', function() {
 
         it('should redirect to eventRegistration', function() {
             scope.clickRegistration();
-            expect(location.path()).toBe('/afol/eventRegistration.html');
+            expect(location.path()).toBe('/afol/comingSoon.html');
         });
 
         it('should redirect to the index on close', function() {

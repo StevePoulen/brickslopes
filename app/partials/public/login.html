@@ -5,6 +5,7 @@
                 <bs-logo font-size=1.75></bs-logo>
             </div>
             <div class="loginForm">
+                <form name="signIn" ng-submit="signIn.$valid && submitLogin()">
                 <form>
                     <div class="loginField">
                         <i class="icons-email icons-sprite-bg"></i>
@@ -14,13 +15,15 @@
                         <i class="icons-key icons-sprite-bg"></i>
                         <input placeholder="Password" type="password" ng-model="password" required>
                     </div>
-                    <div class="actionButton" ng-click="submitLogin()">
-                        <bs-text text="Sign In" font-color=white font-size=1.25></bs-text>
+                    <div>
+                        <button class="formButton" type="submit" ng-class="{disabled: verifying}" ng-disabled="verifying">
+                            <bs-text text="Sign In" font-color=white font-size=1.75></bs-text>
+                        </button>
                     </div>
                 </form>
             </div>
             <div>
-                {{displayErrorMessage}}
+                <span class="redFont">{{displayErrorMessage}}</span>
             </div>
         </div>
         <div id="loginDivider" ng-class="{fadeOutFast : ! showLogin}"></div>
@@ -55,13 +58,13 @@
                         <input type="email" placeholder="Email" ng-model="registerEmail" required>
                     </div>
                     <div class="loginField">
-                        <input placeholder="Password" type="password" ng-model="registerPassword" required equals="{{registerPasswordVerification}}">
+                        <input placeholder="Password - Must be 8 characters" type="password" ng-model="registerPassword" required equals="{{registerPasswordVerification}}" ng-minlength="1">
                     </div>
                     <div class="loginField">
-                        <input placeholder="Verify Password" type="password" ng-model="registerPasswordVerification" equals="{{registerPassword}}" required>
+                        <input placeholder="Verify Password - Must be 8 characters" type="password" ng-model="registerPasswordVerification" equals="{{registerPassword}}" required ng-minlength="1">
                     </div>
                     <div>
-                        <button class="formButton" type="submit" ng-class="{disabled: verifying}" ng-disabled="verifying">
+                        <button class="formButton" type="submit" ng-class="{disabled: verifying1}" ng-disabled="verifying1">
                             <bs-text text="Sign up" font-color=white font-size=1.75></bs-text>
                         </button>
                     </div>

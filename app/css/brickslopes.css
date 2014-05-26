@@ -193,7 +193,7 @@ div#splashPage {
 
 /* line 181, ../../compass/assets/sass/brickslopes.scss */
 #copyright {
-  position: relative;
+  position: absolute;
   bottom: 0px;
   margin-left: auto;
   margin-right: auto;
