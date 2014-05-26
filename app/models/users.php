@@ -10,12 +10,28 @@
         return $this->query($this->authenticationQuery($data));
     }
 
+    public function resetPassword($data, $password) {
+        $this->query($this->resetQuery($data, $password));
+        return $this->query($this->selectQueryByEmail($data));
+    }
+
     public function addUserInformation($data) {
         return $this->query($this->insertQuery($data));
     }
 
     public function updateUserInformation($data) {
         return $this->query($this->updateQuery($data));
+    }
+
+    private function resetQuery($data, $password) {
+        return "
+            UPDATE 
+                users 
+            SET
+                password = password('{$this->escapeCharacters($password)}')
+            WHERE
+                email = '{$this->escapeCharacters($data['email'])}'
+        ";
     }
 
     private function authenticationQuery($data) {
@@ -80,6 +96,26 @@
                 '{$this->escapeCharacters($data['state'])}',
                 '{$this->escapeCharacters($data['zipcode'])}
           )
+        ;
+      ";
+    }
+
+    private function selectQueryByEmail($data) {
+        return "
+            SELECT
+                userId,
+                firstName, 
+                lastName, 
+                email,
+                phoneNumber,
+                address,
+                city,
+                state,
+                zipcode
+            FROM
+                users 
+            WHERE
+                email = '{$this->escapeCharacters($data['email'])}'
         ;
       ";
     }

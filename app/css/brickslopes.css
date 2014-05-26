@@ -429,32 +429,3 @@ td.vendorBoothNumber {
   font-size: 1.25em;
   padding-top: 25px;
 }
-
-/* line 393, ../../compass/assets/sass/brickslopes.scss */
-.blueFont {
-  color: #35469A;
-}
-
-/* line 397, ../../compass/assets/sass/brickslopes.scss */
-span.whiteFont {
-  color: #FFFFFF;
-}
-
-/* line 401, ../../compass/assets/sass/brickslopes.scss */
-span.redFont {
-  color: #ff0500;
-}
-
-/* line 405, ../../compass/assets/sass/brickslopes.scss */
-.bold {
-  font-weight: bold;
-}
-
-/* line 409, ../../compass/assets/sass/brickslopes.scss */
-.italic {
-  font-style: italic;
-}
-
-/* 
-  BrickSlopes Blue -> #1224FC and 93, 86, 1, 0 / 85, 62, 3, 0 35469A
-*/

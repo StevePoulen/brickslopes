@@ -1,5 +1,6 @@
 <?php
     include_once(__DIR__ . '/../models/users.php');
+    include_once(__DIR__ . '/../lib/mail.php');
 
     $usersObj = new users();
     $requestMethod = $_SERVER['REQUEST_METHOD'];
@@ -41,8 +42,22 @@
                 )
             );
         }
+    } else if ($requestMethod == "PUT") {
+        $payload = json_decode(file_get_contents("php://input"), true);
+        $newPassword = generatePassword();
+        $response = $usersObj->resetPassword($payload, $newPassword);
+        if ($usersObj->result) {
+            $dbObj = $usersObj->result->fetch_object();
+            $emailObj = new Mail($payload['email']);
+            $emailObj->sendResetEmailMessage($dbObj->firstName, $newPassword);
+        }
+        header("HTTP/1.0 200 Success");
     } else {
         header("HTTP/1.0 405 Method Not Allowed");
+    }
+
+    function generatePassword() {
+        return \base_convert(rand(78364164096, 2821109907455), 10, 36);
     }
 
     function createPayload($userId, $firstName, $lastName, $status, $self) {

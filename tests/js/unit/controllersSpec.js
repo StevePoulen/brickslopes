@@ -5,7 +5,12 @@
 describe('controllers', function() {
     var scope, ctrl, location;
 
-    beforeEach(module('brickSlopes.controllers', 'brickSlopes.services'));
+    beforeEach(
+        module(
+            'brickSlopes.controllers',
+            'brickSlopes.services'
+        )
+    );
 
     beforeEach(function() {
         this.addMatchers({
@@ -172,6 +177,18 @@ describe('controllers', function() {
             it('should have a verifying value of false', function() {
                 expect(scope.verifying).toBe(false);
             });
+
+            it('should have a showResetPassword value of false', function() {
+                expect(scope.showResetPassword).toBe(false);
+            });
+
+            it('should have a displayErrorMessage value of ""', function() {
+                expect(scope.displayErrorMessage).toBe("");
+            });
+
+            it('should have a displayMessage value of ""', function() {
+                expect(scope.displayMessage).toBe("");
+            });
         });
 
 
@@ -188,6 +205,7 @@ describe('controllers', function() {
                 mockBackend.flush();
                 expect(location.path()).toBe('/afol/index.html');
                 expect(scope.displayErrorMessage).toBe("");
+                expect(scope.verifying).toBe(true);
             });
 
             it('should submit to login page on failure', function() {
@@ -220,7 +238,51 @@ describe('controllers', function() {
                 mockBackend.flush();
                 expect(location.path()).toBe('/afol/index.html');
                 expect(window.sessionStorage.token).toBe('22');
-                expect(scope.displayErrorMessage).toBe(undefined);
+                expect(scope.verifying).toBe(false);
+                expect(scope.displayErrorMessage).toBe('');
+                expect(scope.displayMessage).toBe('');
+            });
+        });
+
+        describe('Register - Existing User', function() {
+            it('should redirect for an existing user', function() {
+                scope.register();
+                expect(scope.verifying).toBe(true);
+                var response = {
+                    data: 'Duplicate E-mail',
+                    status: 400
+                }
+
+                mockBackend.expectPOST('/controllers/authentication.php').respond(400, response);
+                mockBackend.flush();
+                expect(location.path()).toBe('');
+                expect(window.sessionStorage.token).toBe('22');
+                expect(scope.verifying).toBe(false);
+                expect(scope.showLogin).toBe(true);
+                expect(scope.showResetPassword).toBe(true);
+                expect(scope.displayErrorMessage).toBe('The email is already in our system. Please login.');
+                expect(scope.displayMessage).toBe('');
+            });
+        });
+
+        describe('Reset Password', function() {
+            it('should display the reset password form', function() {
+                scope.seeResetPassword();
+                expect(scope.showResetPassword).toBe(true);
+            });
+        });
+
+        describe('Reset Password', function() {
+            it('should reset a user password', function() {
+                scope.resetPassword();
+                scope.resetPasswordForm = {'$setPristine': function() {}};
+                expect(scope.verifying).toBe(true);
+                mockBackend.expectPUT('/controllers/authentication.php').respond(201);
+                mockBackend.flush();
+                expect(scope.verifying).toBe(false);
+                expect(scope.displayErrorMessage).toBe('');
+                expect(scope.resetEmail).toBe('');
+                expect(scope.displayMessage).toBe('An e-mail with reset information has been sent to your account');
             });
         });
     });

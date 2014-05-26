@@ -81,4 +81,33 @@ angular.module('brickSlopes.directives', [])
             };
         }
     }
+})
+/*LOGIN*/
+.directive('bsLoginForm', function() {
+    return {
+        restrict: 'E',
+        replace: true,
+        templateUrl: 'partials/public/login/loginForm.html'
+    }
+})
+.directive('bsSignupForm', function() {
+    return {
+        restrict: 'E',
+        replace: true,
+        templateUrl: 'partials/public/login/signUpForm.html',
+    }
+})
+.directive('bsResetPassword', function() {
+    return {
+        restrict: 'E',
+        replace: true,
+        templateUrl: 'partials/public/login/resetPasswordForm.html',
+    }
+})
+.directive('bsSignupText', function() {
+    return {
+        restrict: 'E',
+        replace: true,
+        templateUrl: 'partials/public/login/signUpText.html'
+    }
 });

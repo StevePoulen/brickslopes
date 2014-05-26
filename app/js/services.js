@@ -79,7 +79,24 @@ angular.module('brickSlopes.services', [])
             ).success(function(data, status, headers, config) {
                 delay.resolve(data);
             }).error(function(data, status, headers, config) {
-                delay.reject('Unable to authenticate');
+                delay.reject(data);
+            });
+
+            return delay.promise;
+        },
+
+        reset: function(userInformation) {
+            var delay= $q.defer();
+            $http (
+                {
+                    method: 'PUT',
+                    url: '/controllers/authentication.php',
+                    data: userInformation
+                }
+            ).success(function(data, status, headers, config) {
+                delay.resolve(data);
+            }).error(function(data, status, headers, config) {
+                delay.reject(data);
             });
 
             return delay.promise;
@@ -130,7 +147,7 @@ angular.module('brickSlopes.services', [])
             return $q.reject(rejection);
         },
         response: function(response) {
-            if (response.status !== 200) {
+            if (response.status < 200 || response.status > 299) {
                 $location.path('/error.html');
             }
             return response || $q.when(response);

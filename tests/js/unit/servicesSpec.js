@@ -137,6 +137,29 @@ describe('service', function() {
         });
     });
 
+    describe('Reset', function() {
+        var mockBackend, loader, data, credentials;
+        beforeEach(inject(function(_$httpBackend_, Auth) {
+            credentials = {
+                'email': 'steve@bs.com'
+            };
+            mockBackend = _$httpBackend_;
+            loader = Auth;
+            mockBackend.expectPUT('/controllers/authentication.php', credentials).respond('success');
+        }));
+
+        it('should register a user', function() {
+            var load = loader.reset(credentials);
+
+            load.then(function(_data) {
+                data = _data;
+            });
+
+            mockBackend.flush();
+            expect(data).toEqualData('success');
+        });
+    });
+
     describe('GetAfolMocList', function() {
         var mockBackend, loader, data;
         beforeEach(inject(function(_$httpBackend_, GetAfolMocList) {

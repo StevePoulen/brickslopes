@@ -7,8 +7,10 @@
 
 
 .view-animate-fade.ng-enter, .view-animate-fade.ng-leave {
-    -webkit-transition:all linear 0.5s;
-    transition:all linear 0.5s;
+    -webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+    transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+    //-webkit-transition:all linear 0.5s;
+    //transition:all linear 0.5s;
 
     position: absolute;
     top:100px;
@@ -122,7 +124,7 @@
 
 /* Chrome, Safari, Opera */
 @-webkit-keyframes fadeIn {
-    0% {opacity: 0;}
+    0% {opacity: 0; display: inline;}
     25%  {opacity: .25;}
     50%  {opacity: .50;}
     75%  {opactiy: .75;}
@@ -130,7 +132,7 @@
 }
 
 @keyframes fadeIn {
-    0% {opacity: 0;}
+    0% {opacity: 0; display: inline;}
     25%  {opacity: .25;}
     50%  {opacity: .50;}
     75%  {opactiy: .75;}

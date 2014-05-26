@@ -5,7 +5,7 @@
 @import url('/css/animation.css');
 
 //BrickSlopes Red -> #FF0500 and 0, 98, 100, 0
-$red_font: #FF0500;
+$bs_red: #FF0500;
 
 body {
     background-color: black;
@@ -154,7 +154,7 @@ div#splashTextWhat #sponsorText {
   right: 60px;
   height: 35px;
   width: 300px;
-  border: 5px solid $red_font;
+  border: 5px solid $bs_red;
   border-radius: 10px;
   cursor: pointer;
 }
@@ -268,7 +268,7 @@ div#afolRegistration div#starWarsFlyIn {
   top: 2px;
   height: 50px;
   width: 300px;
-  border: 0px solid $red_font;
+  border: 0px solid $bs_red;
 }
 
 div#afolRegistration div#starWarsPic {
@@ -277,7 +277,7 @@ div#afolRegistration div#starWarsPic {
   bottom: 50px;
   height: 50px;
   width: 100px;
-  border: 0px solid $red_font;
+  border: 0px solid $bs_red;
 }
 
 img#batman {
@@ -290,7 +290,7 @@ div#afolRegistration div#afolRegistrationImage {
   top: -12px;
   height: 50px;
   width: 100px;
-  border: 0px solid $red_font;
+  border: 0px solid $bs_red;
 }
 
 img#superman {
@@ -390,26 +390,4 @@ td.vendorBoothNumber {
   padding-top: 25px;
 }
 
-.blueFont {
-  color: #35469A;
-}
 
-span.whiteFont {
-  color: #FFFFFF;
-}
-
-span.redFont {
-  color: $red_font;
-}
-
-.bold{
-  font-weight: bold;
-}
-
-.italic {
-  font-style:italic;
-}
-
-/* 
-  BrickSlopes Blue -> #1224FC and 93, 86, 1, 0 / 85, 62, 3, 0 35469A
-*/

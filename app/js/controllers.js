@@ -33,9 +33,17 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services'])
     }
 }])
 .controller('afolLogin', ['$scope', '$location', 'Auth', '$window', function($scope, $location, Auth, $window) {
-
     $scope.showLogin = true;
     $scope.verifying = false;
+    $scope.showResetPassword = false;
+    $scope.displayErrorMessage = "";
+    $scope.displayMessage = "";
+
+    function serializeResetPasswordJson() {
+        return {
+            email: $scope.resetEmail
+        }
+    }
 
     function serializeLoginJson() {
         return {
@@ -61,11 +69,12 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services'])
     }
 
     $scope.submitLogin = function() {
-        $scope.displayErrorMessage = "";
+        $scope.verifying = true;
         Auth.login(serializeLoginJson()).then(function(response) {
             storeSession(response.data);
             $location.path('/afol/index.html');
         }, function() {
+            $scope.verifying = false;
             $scope.displayErrorMessage = "The email or password you entered is incorrect.";
         });
     }
@@ -81,9 +90,31 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services'])
                 storeSession(response.data);
                 $location.path('/afol/index.html');
             }
+            $scope.verifying = false;
         }, function(data) {
-            console.log("here", data);
-            $scope.displayErrorMessage = "The email or password you entered is incorrect.";
+            $scope.verifying = false;
+            if (data.status === 400 && data.data === 'Duplicate E-mail') {
+                $scope.displayErrorMessage = "The email is already in our system. Please login.";
+                $scope.showLogin = true;
+                $scope.showResetPassword = true;
+            }
+        });
+    }
+
+    $scope.seeResetPassword = function() {
+        $scope.showResetPassword = true;
+    }
+
+    $scope.resetPassword = function() {
+        $scope.verifying = true;
+        delete $window.sessionStorage.token;
+        delete $window.sessionStorage.firstName;
+        delete $window.sessionStorage.lastName;
+        Auth.reset(serializeResetPasswordJson()).then(function(response) {
+            $scope.verifying = false;
+            $scope.resetEmail = "";
+            $scope.resetPasswordForm.$setPristine();
+            $scope.displayMessage = "An e-mail with reset information has been sent to your account";
         });
     }
 

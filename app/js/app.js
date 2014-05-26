@@ -141,7 +141,7 @@ config(['$routeProvider', '$httpProvider',  function($routeProvider, $httpProvid
     .when(
         '/afol/login.html',
         {
-            templateUrl: '/partials/public/login.html',
+            templateUrl: '/partials/public/login/index.html',
             controller: 'afolLogin'
         }
     )

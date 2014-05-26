@@ -1,3 +1,10 @@
+//BrickSlopes Red -> #FF0500 and 0, 98, 100, 0
+$bs_red: #FF0500;
+//  BrickSlopes Blue -> #1224FC and 93, 86, 1, 0 / 85, 62, 3, 0 35469A
+$bs_blue: #35469A;
+
+$bs_green: green;
+
 button, input, textarea {
     font-family: "Open Sans","Helvetica Neue",Arial,Helvetica,sans-serif;
     outline: none;
@@ -110,4 +117,34 @@ input.ng-dirty {
 
 .afolAuth:hover {
     font-style: italic;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+/* Font */
+
+.redFont {
+    color: $bs_red;
+}
+
+.blueFont {
+    color: $bs_blue;
+}
+
+.greenFont {
+    color: $bs_green;
+}
+
+.whiteFont {
+  color: #FFFFFF;
+}
+
+.bold{
+  font-weight: bold;
+}
+
+.italic {
+  font-style:italic;
 }

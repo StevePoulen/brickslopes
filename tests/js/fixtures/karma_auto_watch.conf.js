@@ -7,18 +7,15 @@ module.exports = function(config){
       'app/lib/**/angular-route.min.js',
       'tests/js/lib/angular-mocks.min.js',
       'app/lib/**/jquery.min.js',
+      'app/lib/**/jquery.min.js',
       'app/lib/**/underscore.min.js',
       'app/js/**/*.js',
-      'tests/js/unit/**/*.js',
-      'node_modules/jasmine-jquery/lib/jasmine-jquery.js'
+      'app/partials/**/*.html',
+      'tests/js/unit/**/*.js'
     ],
 
     exclude : [
     ],
-
-    preprocessors: {
-        '*.html': ['html2js']
-    },
 
     autoWatch : true,
 
@@ -27,10 +24,14 @@ module.exports = function(config){
     browsers : ['Chrome'],
 
     plugins : [
-      'karma-jasmine',
-      'jasmine-jquery',
       'karma-html2js-preprocessor',
+      'karma-junit-reporter',
       'karma-chrome-launcher',
-      'karma-firefox-launcher'
-   ]
+      'karma-firefox-launcher',
+      'karma-jasmine'
+   ],
+
+    preprocessors : {
+        'app/partials/**/*.html': 'html2js'
+   }
 })}
