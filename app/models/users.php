@@ -19,8 +19,8 @@
         return $this->query($this->insertQuery($data));
     }
 
-    public function updateUserInformation($data) {
-        return $this->query($this->updateQuery($data));
+    public function updateUserInformation($userId, $data) {
+        return $this->query($this->updateQuery($userId, $data));
     }
 
     private function resetQuery($data, $password) {
@@ -56,33 +56,8 @@
                 firstName, 
                 lastName, 
                 email,
-                password
-            )
-        VALUES
-          (
-                '{$this->escapeCharacters($data['firstName'])}',
-                '{$this->escapeCharacters($data['lastName'])}',
-                '{$this->escapeCharacters($data['email'])}',
-                password('{$this->escapeCharacters($data['password'])}')
-          )
-        ;
-      ";
-    }
-
-    private function updateQuery($data) {
-        return "
-            INSERT INTO
-                users 
-            (
-                firstName, 
-                lastName, 
-                email,
                 password,
-                phoneNumber,
-                address,
-                city,
-                state,
-                zipcode
+                joined
             )
         VALUES
           (
@@ -90,12 +65,28 @@
                 '{$this->escapeCharacters($data['lastName'])}',
                 '{$this->escapeCharacters($data['email'])}',
                 password('{$this->escapeCharacters($data['password'])}'),
-                '{$this->escapeCharacters($data['phoneNumber'])}',
-                '{$this->escapeCharacters($data['address'])}',
-                '{$this->escapeCharacters($data['city'])}',
-                '{$this->escapeCharacters($data['state'])}',
-                '{$this->escapeCharacters($data['zipcode'])}
+                NOW()
           )
+        ;
+      ";
+    }
+
+    private function updateQuery($userId, $data) {
+        return "
+            UPDATE 
+                users 
+            SET
+                firstName = '{$this->escapeCharacters($data['firstName'])}',
+                lastName = '{$this->escapeCharacters($data['lastName'])}',
+                email = '{$this->escapeCharacters($data['email'])}',
+                phoneNumber = '{$this->escapeCharacters($data['phoneNumber'])}',
+                address = '{$this->escapeCharacters($data['address'])}',
+                city = '{$this->escapeCharacters($data['city'])}',
+                state = '{$this->escapeCharacters($data['state'])}',
+                zipcode = '{$this->escapeCharacters($data['zipcode'])}',
+                flickr = '{$this->escapeCharacters($data['flickr'])}'
+            WHERE
+                userId = {$userId}
         ;
       ";
     }

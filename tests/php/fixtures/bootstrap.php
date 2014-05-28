@@ -1,5 +1,7 @@
 <?php
 
+ob_start();
+
 if (!file_exists('./vendor/autoload.php')) {
     echo "\n\n";
     die(<<<'EOT'
@@ -11,6 +13,7 @@ php composer.phar install
 EOT
     );
 }
+
 
 /*include join('/', array(__DIR__, '..', '..', '..', 'app', 'php',  'AutoLoader.php'));*/
 include join('/', array('.', 'app', 'php',  'AutoLoader.php'));

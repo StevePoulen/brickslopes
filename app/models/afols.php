@@ -1,7 +1,7 @@
 <?php
-  require_once('../lib/db.php');
+  require_once(__DIR__ . '/../lib/db.php');
 
-  class Afols extends db {
+  class afols extends db {
     function __construct() {
         parent::__construct();
     }
