@@ -1,0 +1,28 @@
+-- MySQL dump 10.11
+--
+-- Host: localhost    Database: mysql
+-- ------------------------------------------------------
+-- Server version	5.0.83
+
+USE `brickSlopes`;
+
+DROP TABLE IF EXISTS `registrations`;
+CREATE TABLE `registrations` (
+  `registrationId` INT(10) UNSIGNED UNIQUE NOT NULL auto_increment,
+  `eventId` INT(10) UNSIGNED NOT NULL,
+  `userId` INT(10) UNSIGNED NOT NULL,
+  `badgeLine1` VARCHAR(255),
+  `badgeLine2` VARCHAR(255),
+  `meetAndGreet` ENUM('YES', 'NO'),
+  `ageVerification` ENUM('YES', 'NO'),
+  `comments` VARCHAR(255),
+  `paid` ENUM('YES', 'NO'),
+  `amountPaid` NUMERIC(10, 2),
+  `type` VARCHAR(255),
+  `registrationDate` DATETIME,
+  PRIMARY KEY (`registrationId`),
+  INDEX (eventId, userId),
+  FOREIGN KEY (`eventId`) REFERENCES `events` (`eventId`),
+  FOREIGN KEY (`userId`) REFERENCES `users` (`userId`),
+  UNIQUE KEY `registrationId_UNIQUE` (`registrationId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='The Registrations Table';

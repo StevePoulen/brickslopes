@@ -1,0 +1,10 @@
+-- MySQL dump 10.11
+--
+-- Host: localhost    Database: mysql
+-- ------------------------------------------------------
+-- Server version	5.0.83
+
+DROP DATABASE IF EXISTS `brickSlopes`;
+CREATE DATABASE `brickSlopes`;
+
+USE `brickSlopes`;

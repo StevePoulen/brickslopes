@@ -1,6 +1,6 @@
 <?php
-    include_once(__DIR__ . '/../models/users.php');
-    include_once(__DIR__ . '/../lib/mail.php');
+//    include_once(__DIR__ . '/../models/users.php');
+ //   include_once(__DIR__ . '/../lib/mail.php');
 
     $usersObj = new users();
     $requestMethod = $_SERVER['REQUEST_METHOD'];

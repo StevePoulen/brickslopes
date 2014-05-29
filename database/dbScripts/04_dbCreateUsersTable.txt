@@ -1,0 +1,26 @@
+-- MySQL dump 10.11
+--
+-- Host: localhost    Database: mysql
+-- ------------------------------------------------------
+-- Server version	5.0.83
+
+USE `brickSlopes`;
+
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE `users` (
+  `userId` INT(10) UNSIGNED UNIQUE NOT NULL auto_increment,
+  `firstName` VARCHAR(255),
+  `lastName` VARCHAR(255),
+  `email` VARCHAR(255) UNIQUE NOT NULL,
+  `password` VARCHAR(255),
+  `phoneNumber` VARCHAR(255),
+  `address` VARCHAR(255),
+  `city` VARCHAR(255),
+  `state` VARCHAR(255),
+  `zipcode` VARCHAR(255),
+  `flickr` VARCHAR(255),
+  `admin` ENUM('YES', 'NO') DEFAULT 'NO',
+  `joined` DATETIME,
+  PRIMARY KEY (`userId`),
+  UNIQUE KEY `userId_UNIQUE` (`userId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='The Users Table';

@@ -1,5 +1,11 @@
 <?php
 
+DEFINE('JWT_KEY', 'mykey');
+DEFINE('LOGMASK', 1);
+DEFINE('DB_HOST', 'localhost');
+DEFINE('DB_USER', 'brick');
+DEFINE('DB_PASSWD', 'slopes');
+DEFINE('DB_NAME', 'brickSlopes');
 ob_start();
 
 if (!file_exists('./vendor/autoload.php')) {
@@ -22,6 +28,10 @@ include join('/', array('.', 'app', 'php',  'AutoLoader.php'));
 * http://www.kammerl.de/ascii/AsciiSignature.php
 * starwars 
 */
+
+//printWords();
+
+    function printWords() {
 echo "
 ##################################################################################################################
 #                                                                                                                #
@@ -41,8 +51,10 @@ echo "
 #                                                                                                                # 
 ##################################################################################################################
 ";
+}
 
     // Register the directory to your include files
     AutoLoader::registerDirectory('./app/php');
-?>
 
+    chdir(__DIR__ . '/../../../app');
+?>

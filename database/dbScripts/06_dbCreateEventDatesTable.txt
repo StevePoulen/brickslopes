@@ -1,0 +1,19 @@
+-- MySQL dump 10.11
+--
+-- Host: localhost    Database: mysql
+-- ------------------------------------------------------
+-- Server version	5.0.83
+
+USE `brickSlopes`;
+
+DROP TABLE IF EXISTS `eventDates`;
+CREATE TABLE `eventDates` (
+  `eventDatesId` INT(10) UNSIGNED UNIQUE NOT NULL auto_increment,
+  `eventId` INT(10) UNSIGNED NOT NULL,
+  `startDate` DATETIME,
+  `endDate` DATETIME,
+  `type` VARCHAR(255),
+  PRIMARY KEY (`eventDatesId`),
+  FOREIGN KEY (`eventId`) REFERENCES `events` (`eventId`),
+  UNIQUE KEY `eventDatesId_UNIQUE` (`eventDatesId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='The Event Dates Table';

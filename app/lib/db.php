@@ -1,21 +1,19 @@
 <?php
 
-	require_once(__DIR__ . '/../../config/config.php');
-	require_once(SITE . '/lib/logging.php');
+class db extends logging 
+{
+    protected $mysqli;
+    public $result, $numRows;
 
-	class db extends logging {
-		protected $mysqli;
-        public $result, $numRows;
+	function __construct() {
+        parent::__construct();
 
-		function __construct() {
-      parent::__construct();
-
-      $this->logging("db constructor");
-			$this->connect();
+        $this->logging("db constructor");
+		    $this->connect();
 		}
 
 		protected function connect() {
-      $this->logging(__method__, 128);
+            $this->logging(__method__, 128);
 			$this->logging("DBHOST IS : " . DB_HOST, 4); 
 			$this->logging("DBUSER IS : " . DB_USER, 4);
 			$this->logging("DBPASSWD IS : " . DB_PASSWD, 4);

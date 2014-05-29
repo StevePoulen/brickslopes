@@ -1,0 +1,12 @@
+-- MySQL dump 10.11
+--
+-- Host: localhost    Database: mysql
+-- ------------------------------------------------------
+-- Server version	5.1.59
+
+USE `brickSlopes`;
+
+DROP TABLE IF EXISTS `eventDates`;
+DROP TABLE IF EXISTS `registrations`;
+DROP TABLE IF EXISTS `events`;
+DROP TABLE IF EXISTS `users`;

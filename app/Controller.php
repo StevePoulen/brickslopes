@@ -1,6 +1,6 @@
 <?php
     include_once join('/', array(__DIR__, 'php', 'AutoLoader.php'));
-//    require_once("../config/config.php");
+    include_once join('/', array(__DIR__, '/', '..', 'config', 'config.php'));
 
     header( 'Expires: Mon, 26 Jul 1997 05:00:00 GMT' );
     header( 'Last-Modified: ' . gmdate( 'D, d M Y H:i:s' ) . ' GMT' );
@@ -55,9 +55,13 @@
                 return true;
             } else {
                 $headers = apache_request_headers();
-                if ($this->decodeJWT($headers['Authorization'])) {
-                    return true;
-                } else {
+                try {
+                    if ($this->decodeJWT($headers['Authorization'])) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                } catch (exception $e) {
                     return false;
                 }
             }
@@ -93,13 +97,13 @@
         public function invoke() {
             if ($this->isAuthenticated()) {
                 if (file_exists($this->URI)) {
+                    header("HTTP/1.0 200 Success");
                     include_once($this->URI);
                 } else {
                     header("HTTP/1.0 404 Not Found");
                 }
             } else {
                 header("HTTP/1.0 403 Forbidden");
-                include_once('index.html');
             }
         }
     }
