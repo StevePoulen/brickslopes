@@ -173,25 +173,64 @@ $eventPane_margin: 5;
 }
 
 .myEventPane {
-  position: relative;
-  float: left;
-  width: 300px;
-  height: $eventPane_height * 4 + $eventPane_margin * 5;
-  margin: 0 5 5 0;
-  cursor: pointer;
-  border: 2px solid white;
-  border-radius: 12px;
+    position: relative;
+    float: left;
+    width: 300px;
+    height: $eventPane_height * 2 + $eventPane_margin * 1;
+    margin: 0 5 5 0;
+    cursor: pointer;
+    border: 2px solid white;
+    border-radius: 12px;
+
+    .eventText {
+        position: relative;
+        width: 280px;
+        padding: 10px;
+        z-index: 2;
+        background-color: white;
+        color: black;
+        font-size: 2em;
+        border-radius: 10px;
+        padding-top: 155px;
+        height: $eventPane_height * 2 + $eventPane_margin * 1 - 165;
+    }
+    
+    .eventImageText {
+        position: relative;
+        top: 185px;
+        text-align: center;
+    }
+
 }
 
 .eventPane {
-  position: relative;
-  float: left;
-  width: 300px;
-  height: $eventPane_height;
-  margin: 0 $eventPane_margin $eventPane_margin 0;
-  cursor: pointer;
-  border: 2px solid white;
-  border-radius: 12px;
+    position: relative;
+    float: left;
+    width: 300px;
+    height: $eventPane_height;
+    margin: 0 $eventPane_margin $eventPane_margin 0;
+    cursor: pointer;
+    border: 2px solid white;
+    border-radius: 12px;
+
+    .eventText {
+        position: relative;
+        width: 280px;
+        height: 140px;
+        padding: 10px;
+        padding-top: 50px;
+        z-index: 2;
+        background-color: white;
+        color: black;
+        font-size: 2em;
+        border-radius: 10px;
+    }
+
+    .eventImageText {
+        position: relative;
+        top: 85px;
+        text-align: center;
+    }
 }
 
 .eventImage {
@@ -206,12 +245,6 @@ $eventPane_margin: 5;
   border-radius: 10px;
 }
 
-.eventImageText {
-  position: relative;
-  top: 85px;
-  text-align: center;
-}
-
 .eventBrickSlopesLogo {
   position: absolute;
   z-index: 2;
@@ -223,21 +256,4 @@ $eventPane_margin: 5;
   width: 40px;
 }
 
-.eventText {
-  position: relative;
-  width: 280px;
-  height: 140px;
-  padding: 10px;
-  padding-top: 50px;
-  z-index: 2;
-  background-color: white;
-  color: black;
-  font-size: 2em;
-  border-radius: 10px;
-}
 
-.myEventText {
-    @extend .eventText;
-    padding-top: 360px;
-    height: $eventPane_height * 4 + $eventPane_margin * 5 - 370;
-}

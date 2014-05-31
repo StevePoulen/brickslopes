@@ -175,14 +175,33 @@
   position: relative;
   float: left;
   width: 300px;
-  height: 825px;
+  height: 405px;
   margin: 0 5 5 0;
   cursor: pointer;
   border: 2px solid white;
   border-radius: 12px;
 }
+/* line 185, ../../compass/assets/sass/afols.scss */
+.myEventPane .eventText {
+  position: relative;
+  width: 280px;
+  padding: 10px;
+  z-index: 2;
+  background-color: white;
+  color: black;
+  font-size: 2em;
+  border-radius: 10px;
+  padding-top: 155px;
+  height: 240px;
+}
+/* line 198, ../../compass/assets/sass/afols.scss */
+.myEventPane .eventImageText {
+  position: relative;
+  top: 185px;
+  text-align: center;
+}
 
-/* line 186, ../../compass/assets/sass/afols.scss */
+/* line 206, ../../compass/assets/sass/afols.scss */
 .eventPane {
   position: relative;
   float: left;
@@ -193,8 +212,27 @@
   border: 2px solid white;
   border-radius: 12px;
 }
+/* line 216, ../../compass/assets/sass/afols.scss */
+.eventPane .eventText {
+  position: relative;
+  width: 280px;
+  height: 140px;
+  padding: 10px;
+  padding-top: 50px;
+  z-index: 2;
+  background-color: white;
+  color: black;
+  font-size: 2em;
+  border-radius: 10px;
+}
+/* line 229, ../../compass/assets/sass/afols.scss */
+.eventPane .eventImageText {
+  position: relative;
+  top: 85px;
+  text-align: center;
+}
 
-/* line 197, ../../compass/assets/sass/afols.scss */
+/* line 236, ../../compass/assets/sass/afols.scss */
 .eventImage {
   position: relative;
   width: 300px;
@@ -207,14 +245,7 @@
   border-radius: 10px;
 }
 
-/* line 209, ../../compass/assets/sass/afols.scss */
-.eventImageText {
-  position: relative;
-  top: 85px;
-  text-align: center;
-}
-
-/* line 215, ../../compass/assets/sass/afols.scss */
+/* line 248, ../../compass/assets/sass/afols.scss */
 .eventBrickSlopesLogo {
   position: absolute;
   z-index: 2;
@@ -224,24 +255,4 @@
   background-size: 40px 40px;
   height: 40px;
   width: 40px;
-}
-
-/* line 226, ../../compass/assets/sass/afols.scss */
-.eventText, .myEventText {
-  position: relative;
-  width: 280px;
-  height: 140px;
-  padding: 10px;
-  padding-top: 50px;
-  z-index: 2;
-  background-color: white;
-  color: black;
-  font-size: 2em;
-  border-radius: 10px;
-}
-
-/* line 239, ../../compass/assets/sass/afols.scss */
-.myEventText {
-  padding-top: 360px;
-  height: 455px;
 }

@@ -122,13 +122,25 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services'])
         $location.path("/");
     }
 }])
-.controller('afolIndex', ['$scope', '$location', 'GetAfolMocList', function($scope, $location, GetAfolMocList) {
+.controller('afolIndex', ['$scope', '$location', 'GetAfolMocList', '$window', function($scope, $location, GetAfolMocList, $window) {
     $scope.mocCount = 0;
+    $scope.vendorCount = 0;
     $scope.mocList = [];
+    $scope.userName = $window.sessionStorage.firstName + "'s Site";
 
     $scope.clickMe = function() {
         $location.path("/afol/eventMe.html");
         //$location.path("/afol/comingSoon.html");
+    }
+
+    $scope.clickThemes = function() {
+        //$location.path("/afol/eventThemes.html");
+        $location.path("/afol/comingSoon.html");
+    }
+
+    $scope.clickGames = function() {
+        //$location.path("/afol/eventGames.html");
+        $location.path("/afol/comingSoon.html");
     }
 
     $scope.clickRegistration = function() {

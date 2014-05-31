@@ -90,6 +90,20 @@ config(['$routeProvider', '$httpProvider',  function($routeProvider, $httpProvid
         }
     )
     .when(
+        '/afol/eventGames.html',
+        {
+            templateUrl: '/partials/afol/eventGames.html',
+            controller: 'afolIndex'
+        }
+    )
+    .when(
+        '/afol/eventThemes.html',
+        {
+            templateUrl: '/partials/afol/eventThemes.html',
+            controller: 'afolIndex'
+        }
+    )
+    .when(
         '/afol/eventRegistration.html',
         {
             templateUrl: '/partials/afol/eventRegistration.html',
