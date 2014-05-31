@@ -94,6 +94,7 @@
             }
         }
 
+/*
         public function encodeJWT($userId) {
             $token = array(
                 "iss" => "https://www.brickslopes.com",
@@ -106,6 +107,7 @@
             $jwt = JWT::encode($token, JWT_KEY);
             return $jwt;
         }
+        */
 
         public function invoke() {
             if ($this->isAuthenticated()) {

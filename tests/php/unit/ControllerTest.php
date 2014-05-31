@@ -111,6 +111,8 @@ class ControllerTest extends PHPUnit_Framework_TestCase
         $this->expectOutputString('');
     }
 
+/*
+Deprecated - moved to authentication
     public function testEncodeJWT() 
     {
         $_SERVER['REQUEST_URI'] = "/partials/public/notfound.html";
@@ -118,4 +120,5 @@ class ControllerTest extends PHPUnit_Framework_TestCase
         $this->controller = new Controller();
         $this->assertEquals($this->controller->encodeJWT(05169175), buildJWT());
     }
+    */
 }

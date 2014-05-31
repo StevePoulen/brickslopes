@@ -16,6 +16,7 @@ EOT
 }
 
 include join('/', array('.', 'app', 'php',  'AutoLoader.php'));
+include join('/', array('.', 'config', 'config.php'));
 include join('/', array(__DIR__, '..', 'unit', 'artifacts', 'DbMock.php'));
 
 /**
