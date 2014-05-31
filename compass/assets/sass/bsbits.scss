@@ -1,9 +1,42 @@
-//BrickSlopes Red -> #FF0500 and 0, 98, 100, 0
 $bs_red: #FF0500;
-//  BrickSlopes Blue -> #1224FC and 93, 86, 1, 0 / 85, 62, 3, 0 35469A
 $bs_blue: #35469A;
-
 $bs_green: green;
+
+body {
+    background-color: black;
+    font-family: "arial";
+}
+
+/* CSS Reset for Anchor tags - Becasue IE is stupid*/
+img { 
+	border:0;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+a:link {
+    color: white;
+    text-decoration: none;
+}
+
+a:hover {
+    color: white;
+    text-decoration: none;
+}
+
+a:active {
+    color: white;
+    text-decoration: none;	
+}
+
+a:visited {
+    color: white;
+    text-decoration: none;	
+}
+
 
 button, input, textarea {
     font-family: "Open Sans","Helvetica Neue",Arial,Helvetica,sans-serif;
@@ -147,4 +180,12 @@ input.ng-dirty {
 
 .italic {
   font-style:italic;
+}
+
+label.normalFont {
+  color: black;
+}
+
+label.errorFont {
+  color: red;
 }

@@ -5,47 +5,8 @@
   height: auto;
 }
 
-/* line 9, ../../compass/assets/sass/animation.scss */
+/* line 8, ../../compass/assets/sass/animation.scss */
 .view-animate-fade.ng-enter, .view-animate-fade.ng-leave {
-  -webkit-transition: all cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s;
-  transition: all cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s;
-  position: absolute;
-  top: 100px;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  opacity: 0;
-}
-
-/* line 23, ../../compass/assets/sass/animation.scss */
-.view-animate-fade.ng-enter {
-  top: 100px;
-  opacity: 0;
-  left: 100%;
-}
-
-/* line 28, ../../compass/assets/sass/animation.scss */
-.view-animate-fade.ng-enter.ng-enter-active {
-  opacity: 1;
-  left: 0;
-}
-
-/* line 32, ../../compass/assets/sass/animation.scss */
-.view-animate-fade.ng-leave.ng-leave-active {
-  left: -100%;
-  opacity: 0;
-}
-
-/* Slider */
-/* line 39, ../../compass/assets/sass/animation.scss */
-#brickslopes .view-animate-slide {
-  padding: 10px;
-  min-height: 700px;
-  height: auto;
-}
-
-/* line 45, ../../compass/assets/sass/animation.scss */
-.view-animate-slide.ng-enter, .view-animate-slide.ng-leave {
   -webkit-transition: all cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s;
   transition: all cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s;
   display: block;
@@ -55,240 +16,202 @@
   left: 0;
   right: 0;
   bottom: 0;
-  padding: 10px;
 }
 
-/* line 60, ../../compass/assets/sass/animation.scss */
-.view-animate-slide.ng-enter {
+/* line 22, ../../compass/assets/sass/animation.scss */
+.view-animate-fade.ng-enter {
+  opacity: 0;
   left: 100%;
 }
 
-/* line 63, ../../compass/assets/sass/animation.scss */
-.view-animate-slide.ng-enter.ng-enter-active {
-  left: 0;
+/* line 26, ../../compass/assets/sass/animation.scss */
+.view-animate-fade.ng-enter.ng-enter-active {
+  -webkit-animation: enterAnimation 0.5s linear forwards;
+  /* Ch,Sa,Op */
+  animation: enterAnimation 0.5s linear forwards;
 }
 
-/* line 66, ../../compass/assets/sass/animation.scss */
-.view-animate-slide.ng-leave.ng-leave-active {
-  left: -100%;
+/* line 30, ../../compass/assets/sass/animation.scss */
+.view-animate-fade.ng-leave.ng-leave-active {
+  -webkit-animation: exitAnimation 0.25s linear forwards;
+  /* Ch,Sa,Op */
+  animation: exitAnimation 0.25s linear forwards;
+}
+
+@-webkit-keyframes exitAnimation {
+  /* line 35, ../../compass/assets/sass/animation.scss */
+  from {
+    opacity: 1;
+  }
+
+  /* line 36, ../../compass/assets/sass/animation.scss */
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes exitAnimation {
+  /* line 40, ../../compass/assets/sass/animation.scss */
+  from {
+    opacity: 1;
+  }
+
+  /* line 41, ../../compass/assets/sass/animation.scss */
+  to {
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes enterAnimation {
+  /* line 45, ../../compass/assets/sass/animation.scss */
+  from {
+    opacity: 0;
+    left: 100%;
+  }
+
+  /* line 46, ../../compass/assets/sass/animation.scss */
+  to {
+    opacity: 1;
+    left: 0;
+  }
+}
+
+@keyframes enterAnimation {
+  /* line 50, ../../compass/assets/sass/animation.scss */
+  from {
+    opacity: 0;
+    left: 100%;
+  }
+
+  /* line 51, ../../compass/assets/sass/animation.scss */
+  to {
+    opacity: 1;
+    left: 0;
+  }
 }
 
 /* Fade-in and Fade-out */
-/* line 71, ../../compass/assets/sass/animation.scss */
+/* line 55, ../../compass/assets/sass/animation.scss */
 .fadeOutFast {
-  /* Chrome, Safari, Opera */
+  /* Ch,Sa,Op */
   -webkit-animation: fadeOut 0.5s linear forwards;
   animation: fadeOut 0.5s linear forwards;
 }
 
-/* line 77, ../../compass/assets/sass/animation.scss */
+/* line 61, ../../compass/assets/sass/animation.scss */
 .fadeOut {
-  /* Chrome, Safari, Opera */
+  /* Ch,Sa,Op */
   -webkit-animation: fadeOut 1.0s linear forwards;
   animation: fadeOut 1.0s linear forwards;
 }
 
-/* line 84, ../../compass/assets/sass/animation.scss */
+/* line 67, ../../compass/assets/sass/animation.scss */
 .fadeOutSlow {
-  /* Chrome, Safari, Opera */
+  /* Ch,Sa,Op */
   -webkit-animation: fadeOut 2.0s linear forwards;
   animation: fadeOut 2.0s linear forwards;
 }
 
-/* Chrome, Safari, Opera */
+/* Ch,Sa,Op */
 @-webkit-keyframes fadeOut {
-  /* line 92, ../../compass/assets/sass/animation.scss */
-  0% {
+  /* line 75, ../../compass/assets/sass/animation.scss */
+  from {
     opacity: 1;
   }
 
-  /* line 93, ../../compass/assets/sass/animation.scss */
-  25% {
-    opactiy: .75;
-  }
-
-  /* line 94, ../../compass/assets/sass/animation.scss */
-  50% {
-    opacity: .50;
-  }
-
-  /* line 95, ../../compass/assets/sass/animation.scss */
-  75% {
-    opacity: .25;
-  }
-
-  /* line 96, ../../compass/assets/sass/animation.scss */
-  100% {
+  /* line 76, ../../compass/assets/sass/animation.scss */
+  to {
     opacity: 0;
-    display: none;
   }
 }
 
 @keyframes fadeOut {
-  /* line 100, ../../compass/assets/sass/animation.scss */
-  0% {
+  /* line 80, ../../compass/assets/sass/animation.scss */
+  from {
     opacity: 1;
   }
 
-  /* line 101, ../../compass/assets/sass/animation.scss */
-  25% {
-    opactiy: .75;
-  }
-
-  /* line 102, ../../compass/assets/sass/animation.scss */
-  50% {
-    opacity: .50;
-  }
-
-  /* line 103, ../../compass/assets/sass/animation.scss */
-  75% {
-    opacity: .25;
-  }
-
-  /* line 104, ../../compass/assets/sass/animation.scss */
-  100% {
+  /* line 81, ../../compass/assets/sass/animation.scss */
+  to {
     opacity: 0;
-    display: none;
   }
 }
 
-/* line 107, ../../compass/assets/sass/animation.scss */
+/* line 84, ../../compass/assets/sass/animation.scss */
 .fadeInFast {
-  /* Chrome, Safari, Opera */
+  /* Ch,Sa,Op */
   -webkit-animation: fadeIn 0.5s linear forwards;
   animation: fadeIn 0.5s linear forwards;
 }
 
-/* line 113, ../../compass/assets/sass/animation.scss */
+/* line 90, ../../compass/assets/sass/animation.scss */
 .fadeIn {
-  /* Chrome, Safari, Opera */
+  /* Ch,Sa,Op */
   -webkit-animation: fadeIn 1.0s linear forwards;
   animation: fadeIn 1.0s linear forwards;
 }
 
-/* line 120, ../../compass/assets/sass/animation.scss */
+/* line 97, ../../compass/assets/sass/animation.scss */
 .fadeInSlow {
-  /* Chrome, Safari, Opera */
+  /* Ch,Sa,Op */
   -webkit-animation: fadeIn 2.0s linear forwards;
   animation: fadeIn 2.0s linear forwards;
 }
 
-/* Chrome, Safari, Opera */
+/* Ch,Sa,Op */
 @-webkit-keyframes fadeIn {
-  /* line 128, ../../compass/assets/sass/animation.scss */
-  0% {
+  /* line 105, ../../compass/assets/sass/animation.scss */
+  from {
     opacity: 0;
-    display: inline;
   }
 
-  /* line 129, ../../compass/assets/sass/animation.scss */
-  25% {
-    opacity: .25;
-  }
-
-  /* line 130, ../../compass/assets/sass/animation.scss */
-  50% {
-    opacity: .50;
-  }
-
-  /* line 131, ../../compass/assets/sass/animation.scss */
-  75% {
-    opactiy: .75;
-  }
-
-  /* line 132, ../../compass/assets/sass/animation.scss */
-  100% {
+  /* line 106, ../../compass/assets/sass/animation.scss */
+  to {
     opacity: 1;
   }
 }
 
 @keyframes fadeIn {
-  /* line 136, ../../compass/assets/sass/animation.scss */
-  0% {
+  /* line 110, ../../compass/assets/sass/animation.scss */
+  from {
     opacity: 0;
-    display: inline;
   }
 
-  /* line 137, ../../compass/assets/sass/animation.scss */
-  25% {
-    opacity: .25;
-  }
-
-  /* line 138, ../../compass/assets/sass/animation.scss */
-  50% {
-    opacity: .50;
-  }
-
-  /* line 139, ../../compass/assets/sass/animation.scss */
-  75% {
-    opactiy: .75;
-  }
-
-  /* line 140, ../../compass/assets/sass/animation.scss */
-  100% {
+  /* line 111, ../../compass/assets/sass/animation.scss */
+  to {
     opacity: 1;
   }
 }
 
 /* AFOL Sign-up and Login */
-/* line 144, ../../compass/assets/sass/animation.scss */
+/* line 115, ../../compass/assets/sass/animation.scss */
 .signupAnimation {
   -webkit-animation: signUpAnimation 1.0s linear forwards;
-  /* Chrome, Safari, Opera */
+  /* Ch,Sa,Op */
   animation: signUpAnimation 1.0s linear forwards;
 }
 
-/* Chrome, Safari, Opera */
+/* Ch,Sa,Op */
 @-webkit-keyframes signUpAnimation {
-  /* line 151, ../../compass/assets/sass/animation.scss */
-  0% {
+  /* line 122, ../../compass/assets/sass/animation.scss */
+  from {
     left: 410px;
   }
 
-  /* line 152, ../../compass/assets/sass/animation.scss */
-  25% {
-    left: 310px;
-  }
-
-  /* line 153, ../../compass/assets/sass/animation.scss */
-  50% {
-    left: 210px;
-  }
-
-  /* line 154, ../../compass/assets/sass/animation.scss */
-  75% {
-    left: 110px;
-  }
-
-  /* line 155, ../../compass/assets/sass/animation.scss */
-  100% {
+  /* line 123, ../../compass/assets/sass/animation.scss */
+  to {
     left: 10px;
   }
 }
 
 @keyframes signUpAnimation {
-  /* line 159, ../../compass/assets/sass/animation.scss */
-  0% {
+  /* line 127, ../../compass/assets/sass/animation.scss */
+  from {
     left: 410px;
   }
 
-  /* line 160, ../../compass/assets/sass/animation.scss */
-  25% {
-    left: 310px;
-  }
-
-  /* line 161, ../../compass/assets/sass/animation.scss */
-  50% {
-    left: 210px;
-  }
-
-  /* line 162, ../../compass/assets/sass/animation.scss */
-  75% {
-    left: 110px;
-  }
-
-  /* line 163, ../../compass/assets/sass/animation.scss */
-  100% {
+  /* line 128, ../../compass/assets/sass/animation.scss */
+  to {
     left: 10px;
   }
 }

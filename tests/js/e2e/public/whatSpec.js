@@ -1,4 +1,4 @@
-describe('BrickSlopes Who Page', function() {
+describe('BrickSlopes What Page', function() {
   it('should have an what section', function() {
     browser.get('http://mybrickslopes.com');
 
@@ -6,16 +6,5 @@ describe('BrickSlopes Who Page', function() {
 
     var greeting = element(by.id('splashTextWhat'));
     expect(greeting.getText()).toContain('WHAT');
-  });
-
-  it('should have a sponsor section', function() {
-    browser.get('http://mybrickslopes.com');
-
-    element(by.id('whatLink')).click();
-
-    element(by.linkText('Want to Sponsor?')).click();
-
-    var greeting = element(by.id('splashTextCallUs'));
-    expect(greeting.getText()).toContain('CALL US');
   });
 });

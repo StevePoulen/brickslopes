@@ -1,0 +1,121 @@
+.mainStarWarsContainer {
+  position: relative;
+  border: 0px solid red;
+  height: 100px;
+  width: 1005px;
+}
+
+.singleStarWarsContainer {
+  position: relative;
+  width: 490px;
+  height: 100px;
+  border: 1px solid black;
+  float: left;
+  margin-bottom: 25px;
+  margin-right: 10px;
+  border-radius: 5px;
+}
+
+.starWarsTextContainer {
+  position: absolute;
+  height: 100px;
+  width: 380px;
+  top: 0px;
+  left: 110px;
+  border: 0px solid green;
+}
+
+.starWarsImageContainer {
+  position: absolute;
+  top: 0px;
+  left: 5px;
+  height: 100px;
+  width: 100px;
+  border: 0px solid green;
+}
+
+.starWarsTextContainer .starWarsReserved {
+  position: absolute;
+  bottom: 2px;
+  left: 5px;
+  height: 18px;
+  padding: 3px;
+  width: 300px;
+  border: 0px solid green;
+  cursor: pointer;
+  z-index: 10;
+  border-radius: 5px;
+}
+
+.starWarsImage {
+  height: 100px;
+  width: 100px;
+}
+
+.starWarsReservedImage {
+  height: 200px;
+  width: 200px;
+}
+
+.evenStarWarsBackground, .evenMocList {
+  background-color: white;
+}
+
+.oddStarWarsBackground, .oddMocList {
+  background-color: #CCCCCC;
+}
+
+.starWarsReservedBackground {
+  background-color: #44AA44;
+}
+
+.starWarsAvailableBackground {
+  background-color: #DD1111;
+}
+
+.starWarsTally {
+  width: 970px;
+  height: 100px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid black;
+  margin-bottom: 10px;
+}
+
+.starWarsTallyText {
+  width: auto;
+  height: auto;
+  text-align: center;
+  font-size: 1.10em;
+}
+
+.individualStarWarsTally {
+  padding-top: 25px;
+  float: left;
+  width: 320px;
+  text-align: center;
+  font-size: 2em;
+}
+
+#reserveStarWarsSet {
+  position: absolute;
+  width: 500px;
+  height: 550px;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 25px;
+  z-index: 25;
+  left: 250px;
+  top: 25px;
+  padding: 10px;
+}
+
+#reserveStarWarsSetText {
+  width: 460px;
+  border: 0px solid red;
+}
+
+.reservedStarWarsSetDiv, .registeredMocDiv {
+  text-align: center;
+  margin-bottom: 10px;
+}

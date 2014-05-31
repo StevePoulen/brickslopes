@@ -1,10 +1,52 @@
-/* line 8, ../../compass/assets/sass/bsbits.scss */
+/* line 5, ../../compass/assets/sass/bsbits.scss */
+body {
+  background-color: black;
+  font-family: "arial";
+}
+
+/* CSS Reset for Anchor tags - Becasue IE is stupid*/
+/* line 11, ../../compass/assets/sass/bsbits.scss */
+img {
+  border: 0;
+}
+
+/* line 15, ../../compass/assets/sass/bsbits.scss */
+a {
+  color: white;
+  text-decoration: none;
+}
+
+/* line 20, ../../compass/assets/sass/bsbits.scss */
+a:link {
+  color: white;
+  text-decoration: none;
+}
+
+/* line 25, ../../compass/assets/sass/bsbits.scss */
+a:hover {
+  color: white;
+  text-decoration: none;
+}
+
+/* line 30, ../../compass/assets/sass/bsbits.scss */
+a:active {
+  color: white;
+  text-decoration: none;
+}
+
+/* line 35, ../../compass/assets/sass/bsbits.scss */
+a:visited {
+  color: white;
+  text-decoration: none;
+}
+
+/* line 41, ../../compass/assets/sass/bsbits.scss */
 button, input, textarea {
   font-family: "Open Sans","Helvetica Neue",Arial,Helvetica,sans-serif;
   outline: none;
 }
 
-/* line 13, ../../compass/assets/sass/bsbits.scss */
+/* line 46, ../../compass/assets/sass/bsbits.scss */
 input[type="text"], input[type="email"], input[type="password"], textarea.input {
   border: none;
   border-radius: 3px;
@@ -21,12 +63,12 @@ input[type="text"], input[type="email"], input[type="password"], textarea.input 
   vertical-align: middle;
 }
 
-/* line 31, ../../compass/assets/sass/bsbits.scss */
+/* line 64, ../../compass/assets/sass/bsbits.scss */
 input[type="text"]::-moz-placeholder, input[type="email"]::-moz-placeholder, input[type="password"]::-moz-placeholder, textarea.input::-moz-placeholder {
   color: #BCBEBF;
 }
 
-/* line 35, ../../compass/assets/sass/bsbits.scss */
+/* line 68, ../../compass/assets/sass/bsbits.scss */
 .actionButton {
   position: relative;
   background: orange;
@@ -40,7 +82,7 @@ input[type="text"]::-moz-placeholder, input[type="email"]::-moz-placeholder, inp
   cursor: pointer;
 }
 
-/* line 48, ../../compass/assets/sass/bsbits.scss */
+/* line 81, ../../compass/assets/sass/bsbits.scss */
 .formButton {
   position: relative;
   background: orange;
@@ -53,67 +95,67 @@ input[type="text"]::-moz-placeholder, input[type="email"]::-moz-placeholder, inp
   cursor: pointer;
 }
 
-/* line 60, ../../compass/assets/sass/bsbits.scss */
+/* line 93, ../../compass/assets/sass/bsbits.scss */
 .disabled {
   background: grey;
 }
 
-/* line 64, ../../compass/assets/sass/bsbits.scss */
+/* line 97, ../../compass/assets/sass/bsbits.scss */
 .largeFont {
   font-size: 1.75em;
 }
 
-/* line 68, ../../compass/assets/sass/bsbits.scss */
+/* line 101, ../../compass/assets/sass/bsbits.scss */
 .oneEMFont, .starWarsFont {
   font-size: 1.25em;
 }
 
-/* line 72, ../../compass/assets/sass/bsbits.scss */
+/* line 105, ../../compass/assets/sass/bsbits.scss */
 .eventsFont {
   font-size: 1.0em;
 }
 
-/* line 76, ../../compass/assets/sass/bsbits.scss */
+/* line 109, ../../compass/assets/sass/bsbits.scss */
 .mediumFont {
   font-size: .80em;
 }
 
-/* line 80, ../../compass/assets/sass/bsbits.scss */
+/* line 113, ../../compass/assets/sass/bsbits.scss */
 .smallFont {
   font-size: .60em;
 }
 
-/* line 84, ../../compass/assets/sass/bsbits.scss */
+/* line 117, ../../compass/assets/sass/bsbits.scss */
 .tinyFont {
   font-size: .25em;
 }
 
-/* line 88, ../../compass/assets/sass/bsbits.scss */
+/* line 121, ../../compass/assets/sass/bsbits.scss */
 input.ng-pristine {
   border: none;
 }
 
-/* line 92, ../../compass/assets/sass/bsbits.scss */
+/* line 125, ../../compass/assets/sass/bsbits.scss */
 input:required {
   box-shadow: none;
 }
 
-/* line 96, ../../compass/assets/sass/bsbits.scss */
+/* line 129, ../../compass/assets/sass/bsbits.scss */
 input:invalid {
   box-shadow: none;
 }
 
-/* line 100, ../../compass/assets/sass/bsbits.scss */
+/* line 133, ../../compass/assets/sass/bsbits.scss */
 input.ng-valid.ng-dirty {
   border: 1px solid green;
 }
 
-/* line 104, ../../compass/assets/sass/bsbits.scss */
+/* line 137, ../../compass/assets/sass/bsbits.scss */
 input.ng-invalid.ng-dirty {
   border: 1px solid red;
 }
 
-/* line 108, ../../compass/assets/sass/bsbits.scss */
+/* line 141, ../../compass/assets/sass/bsbits.scss */
 input:select {
   box-shadow: none;
 }
@@ -123,43 +165,53 @@ input.ng-dirty {
     border: 1px solid purple;
 }
 */
-/* line 118, ../../compass/assets/sass/bsbits.scss */
+/* line 151, ../../compass/assets/sass/bsbits.scss */
 .afolAuth:hover {
   font-style: italic;
 }
 
-/* line 122, ../../compass/assets/sass/bsbits.scss */
+/* line 155, ../../compass/assets/sass/bsbits.scss */
 .pointer {
   cursor: pointer;
 }
 
 /* Font */
-/* line 128, ../../compass/assets/sass/bsbits.scss */
+/* line 161, ../../compass/assets/sass/bsbits.scss */
 .redFont {
   color: #ff0500;
 }
 
-/* line 132, ../../compass/assets/sass/bsbits.scss */
+/* line 165, ../../compass/assets/sass/bsbits.scss */
 .blueFont {
   color: #35469a;
 }
 
-/* line 136, ../../compass/assets/sass/bsbits.scss */
+/* line 169, ../../compass/assets/sass/bsbits.scss */
 .greenFont {
   color: green;
 }
 
-/* line 140, ../../compass/assets/sass/bsbits.scss */
+/* line 173, ../../compass/assets/sass/bsbits.scss */
 .whiteFont {
   color: #FFFFFF;
 }
 
-/* line 144, ../../compass/assets/sass/bsbits.scss */
+/* line 177, ../../compass/assets/sass/bsbits.scss */
 .bold {
   font-weight: bold;
 }
 
-/* line 148, ../../compass/assets/sass/bsbits.scss */
+/* line 181, ../../compass/assets/sass/bsbits.scss */
 .italic {
   font-style: italic;
+}
+
+/* line 185, ../../compass/assets/sass/bsbits.scss */
+label.normalFont {
+  color: black;
+}
+
+/* line 189, ../../compass/assets/sass/bsbits.scss */
+label.errorFont {
+  color: red;
 }

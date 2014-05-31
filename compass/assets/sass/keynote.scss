@@ -1,0 +1,42 @@
+.keynote, .venue {
+  position: relative;
+  border: 0px solid black;
+  text-align: left;
+  font-size: 1.50em;
+  padding-top: 25px;
+  padding-left: 25px;
+}
+
+.keynoteSmall, .venueSmall {
+  width: 500px;
+}
+
+.keynoteLarge, .venueLarge {
+  width: 900px;
+}
+
+#keynoteImageHolder, #venueImageHolder {
+  position: absolute;
+  right: 35px;
+  top: 100px;
+}
+
+#keynoteImage, #venueImage {
+  width: 400px;
+}
+
+#keynoteBubble {
+  position: absolute;
+  width: 425px;
+  height: 40px;
+  right: 50px;
+  top: 110px;
+  background: white;
+  border-radius: 10px;
+  font-size: 1.1em;
+  text-align: center;
+  z-index: 1;
+  font-weight: bold;
+  border: 1px solid black;
+  padding-top: 10px;
+}

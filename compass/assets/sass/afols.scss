@@ -1,26 +1,5 @@
-$event_dashboard_width: 1024px;
-$event_dashboard_min_height: 650px;
-
-#dashboard {
-  position: relative;
-  top: 35px;
-  left: 0px;
-  width: 1220px;
-  height: 650px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-#dashboard #sidebar {
-  position: absolute;
-  top: 0px;
-  right: 0px;
-  width: 200px;
-  min-height: 500px;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-}
+$dashboard_width: 1220px;
+$dashboard_min_height: 675px;
 
 div#eventDashboard div#dashboardCloseButton, div#reserveStarWarsSet div#reserveCloseButton {
   position: absolute;
@@ -34,25 +13,13 @@ div#eventDashboard div#dashboardCloseButton, div#reserveStarWarsSet div#reserveC
   cursor: pointer;
 }
 
-/*
-div#dashboardText {
-  min-height: 500px;
-  position: relative;
-  margin-top: 50px;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-  display: table;
-}
-*/
-
-#dashboardText { //span#dashboardText {
+#dashboardText { 
+    position: relative;
     border-radius:25px;
     padding: 15px;
-    position: relative;
     font-size: 100%;
     text-align: left;
-    width: $event_dashboard_width;
+    width: $dashboard_width;
     color: black;
     background: white;
     display: table;
@@ -64,14 +31,14 @@ div#dashboardText {
     #login {
         position: absolute;
         left: 10px;
-        top: $event_dashboard_min_height / 2 - $event_dashboard_min_height / 4;
-        height: $event_dashboard_min_height / 2;
-        width: $event_dashboard_width / 2 - 20;
+        top: $dashboard_min_height / 2 - $dashboard_min_height / 4;
+        height: $dashboard_min_height / 2;
+        width: $dashboard_width / 2 - 20;
         text-align: center;
 
         .loginForm {
             position: relative;
-            left: $event_dashboard_width / 4 - 135;
+            left: $dashboard_width / 4 - 135;
             width: 250px;
 
             .loginField {
@@ -90,9 +57,10 @@ div#dashboardText {
         position: absolute;
         right: 10px;
         top: 75px;
-        height: $event_dashboard_min_height / 2;
-        width: $event_dashboard_width / 2 - 20;
+        height: $dashboard_min_height / 2;
+        width: $dashboard_width / 2 - 20;
         border: none;
+        opacity: 0;
 
         .loginForm {
             position: relative;
@@ -118,9 +86,9 @@ div#dashboardText {
 
     #loginDivider {
         position: absolute;
-        left: $event_dashboard_width / 2 - 1;
+        left: $dashboard_width / 2 - 1;
         width: 0px;
-        height: $event_dashboard_min_height - 300;
+        height: $dashboard_min_height - 300;
         top: 150px;
         border: 1px solid black;
         border-radius: 2px;
@@ -130,9 +98,9 @@ div#dashboardText {
     #signUpText {
         position: absolute;
         right: 10px;
-        top: $event_dashboard_min_height / 2 - $event_dashboard_min_height / 4;
-        height: $event_dashboard_min_height / 2;
-        width: $event_dashboard_width / 2 - 20;
+        top: $dashboard_min_height / 2 - $dashboard_min_height / 4;
+        height: $dashboard_min_height / 2;
+        width: $dashboard_width / 2 - 20;
         border: none;
         
         .center {
@@ -142,7 +110,7 @@ div#dashboardText {
         .loginForm {
             position: absolute;
             left: 0px;
-            width: $event_dashboard_width / 2 - 20;
+            width: $dashboard_width / 2 - 20;
             border: none;
             text-align: center;
 
@@ -201,29 +169,6 @@ div#dashboardText {
   height: 100px;
 }
 
-.textEvents {
-  position: relative;
-  float: left;
-  width: 75px;
-  height: 50px;
-  text-align: center;
-  top: 25px;
-  margin-left: 10px;
-  line-height: 100px;
-  display: table;
-}
-
-.textEventsSpan {
-  color: white;
-  display: inline-block;
-  vertical-align: middle;
-  line-height: normal;  
-  display: table-cell;
-  vertical-align: middle;
-  font-size: 150%;
-  text-align: left;
-}
-
 .eventPane {
   position: relative;
   float: left;
@@ -276,271 +221,3 @@ div#dashboardText {
   font-size: 2em;
   border-radius: 10px;
 }
-
-div.mocFeed {
-  text-align: center;
-  margin-bottom: 25px;
-  height: auto;
-  width: auto;
-}
-
-div.flickr_badge_image img {
-  width: 200px;
-  height: 200px;
-}
-
-#eventDashboard {
-  position: relative;
-  top: 35px;
-  width: $event_dashboard_width;
-  min-height: $event_dashboard_min_height;
-  height: auto;
-  background-color: white;
-  border-radius:25px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-div#mocRegistrationCard {
-  position: absolute;
-  top: 50px;
-  right: 10px;
-  height: 300px;
-  width: 500px;
-  margin-top: 50px;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-  border: 1px solid #35469A;
-  border-radius: 10px;
-}
-
-div#mocRegistrationCatagoriesCard {
-  position: absolute;
-  top: 360px;
-  right: 10px;
-  height: 250px;
-  width: 500px;
-  margin-top: 50px;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-  border: 1px solid #35469A;
-  border-radius: 10px;
-}
-
-.sampleFont {
-  position: absolute;
-  font-size: 7em;
-  height: 100px;
-  width: 500px;
-  padding-top: 75px;
-  z-index: 0;
-  color: black;
-  opacity: .1;
-}
-
-#sampleMocTitle {
-  position: absolute;
-  top: 65px;
-  z-index: 1;
-  font-size: 3em;
-  width: 450px;
-  left: 25px;
-  height: 200px;
-  text-align: center;
-  border: 0px solid red;
-}
-
-#sampleCreator {
-  position: absolute;
-  width: 500px;
-  text-align: center;
-  bottom: 40px;
-  z-index: 1;
-  font-size: 1em;
-  border: 0px solid red;
-}
-
-#sampleDisplayName {
-  position: absolute;
-  width: 500px;
-  text-align: center;
-  bottom: 5px;
-  z-index: 1;
-  font-size: 1.5em;
-  border: 0px solid red;
-}
-
-#sampleBrickSlopesLogo {
-  position: absolute;
-  bottom: 10px;
-  left: 10px;
-}
-
-.mainStarWarsContainer {
-  position: relative;
-  border: 0px solid red;
-  height: 100px;
-  width: 1005px;
-}
-
-.singleStarWarsContainer {
-  position: relative;
-  width: 490px;
-  height: 100px;
-  border: 1px solid black;
-  float: left;
-  margin-bottom: 25px;
-  margin-right: 10px;
-  border-radius: 5px;
-}
-
-.starWarsTextContainer {
-  position: absolute;
-  height: 100px;
-  width: 380px;
-  top: 0px;
-  left: 110px;
-  border: 0px solid green;
-}
-
-.starWarsImageContainer {
-  position: absolute;
-  top: 0px;
-  left: 5px;
-  height: 100px;
-  width: 100px;
-  border: 0px solid green;
-}
-
-.starWarsTextContainer .starWarsReserved {
-  position: absolute;
-  bottom: 2px;
-  left: 5px;
-  height: 18px;
-  padding: 3px;
-  width: 300px;
-  border: 0px solid green;
-  cursor: pointer;
-  z-index: 10;
-  border-radius: 5px;
-}
-
-.starWarsImage {
-  height: 100px;
-  width: 100px;
-}
-
-.starWarsReservedImage {
-  height: 200px;
-  width: 200px;
-}
-
-.evenStarWarsBackground, .evenMocList {
-  background-color: white;
-}
-
-.oddStarWarsBackground, .oddMocList {
-  background-color: #CCCCCC;
-}
-
-.starWarsReservedBackground {
-  background-color: #44AA44;
-}
-
-.starWarsAvailableBackground {
-  background-color: #DD1111;
-}
-
-.starWarsTally {
-  width: 970px;
-  height: 100px;
-  padding: 10px;
-  border-radius: 10px;
-  border: 1px solid black;
-  margin-bottom: 10px;
-}
-
-.starWarsTallyText {
-  width: auto;
-  height: auto;
-  text-align: center;
-  font-size: 1.10em;
-}
-
-.individualStarWarsTally {
-  padding-top: 25px;
-  float: left;
-  width: 320px;
-  text-align: center;
-  font-size: 2em;
-}
-
-#reserveStarWarsSet {
-  position: absolute;
-  width: 500px;
-  height: 550px;
-  background-color: white;
-  border: 1px solid black;
-  border-radius: 25px;
-  z-index: 25;
-  left: 250px;
-  top: 25px;
-  padding: 10px;
-}
-
-#reserveStarWarsSetText {
-  width: 460px;
-  border: 0px solid red;
-}
-
-.reservedStarWarsSetDiv, .registeredMocDiv {
-  text-align: center;
-  margin-bottom: 10px;
-}
-
-.keynote, .venue {
-  position: relative;
-  border: 0px solid black;
-  text-align: left;
-  font-size: 1.50em;
-  padding-top: 25px;
-  padding-left: 25px;
-}
-
-.keynoteSmall, .venueSmall {
-  width: 500px;
-}
-
-.keynoteLarge, .venueLarge {
-  width: 900px;
-}
-
-#keynoteImageHolder, #venueImageHolder {
-  position: absolute;
-  right: 35px;
-  top: 100px;
-}
-
-#keynoteImage, #venueImage {
-  width: 400px;
-}
-
-#keynoteBubble {
-  position: absolute;
-  width: 425px;
-  height: 40px;
-  right: 50px;
-  top: 110px;
-  background: white;
-  border-radius: 10px;
-  font-size: 1.1em;
-  text-align: center;
-  z-index: 1;
-  font-weight: bold;
-  border: 1px solid black;
-  padding-top: 10px;
-}
-
-

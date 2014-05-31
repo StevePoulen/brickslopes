@@ -12,6 +12,6 @@
     RewriteRule ^(.*)$ https://www.mybrickslopes.com/$1 [R=301,L] 
 
     RewriteEngine On
-    RewriteCond %{REQUEST_FILENAME} !Controller.php$
-    RewriteRule ^.*$ /Controller.php [L]
+    RewriteCond %{REQUEST_FILENAME} !php/Controller.php$
+    RewriteRule ^.*$ /php/Controller.php [L]
 </IfModule>

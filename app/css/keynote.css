@@ -1,0 +1,48 @@
+/* line 1, ../../compass/assets/sass/keynote.scss */
+.keynote, .venue {
+  position: relative;
+  border: 0px solid black;
+  text-align: left;
+  font-size: 1.50em;
+  padding-top: 25px;
+  padding-left: 25px;
+}
+
+/* line 10, ../../compass/assets/sass/keynote.scss */
+.keynoteSmall, .venueSmall {
+  width: 500px;
+}
+
+/* line 14, ../../compass/assets/sass/keynote.scss */
+.keynoteLarge, .venueLarge {
+  width: 900px;
+}
+
+/* line 18, ../../compass/assets/sass/keynote.scss */
+#keynoteImageHolder, #venueImageHolder {
+  position: absolute;
+  right: 35px;
+  top: 100px;
+}
+
+/* line 24, ../../compass/assets/sass/keynote.scss */
+#keynoteImage, #venueImage {
+  width: 400px;
+}
+
+/* line 28, ../../compass/assets/sass/keynote.scss */
+#keynoteBubble {
+  position: absolute;
+  width: 425px;
+  height: 40px;
+  right: 50px;
+  top: 110px;
+  background: white;
+  border-radius: 10px;
+  font-size: 1.1em;
+  text-align: center;
+  z-index: 1;
+  font-weight: bold;
+  border: 1px solid black;
+  padding-top: 10px;
+}

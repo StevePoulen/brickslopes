@@ -44,6 +44,17 @@ class ControllerTest extends PHPUnit_Framework_TestCase
         $this->expectOutputRegex('/Join us May, 2014/');
     }
 
+    public function testAuthenticatedSuccessController() 
+    {
+        $GLOBALS['authenticationRequest'] = true;
+        $_SERVER['REQUEST_METHOD'] = 'DELETE';
+        $_SERVER['REQUEST_URI'] = "/controllers/authentication.php";
+        $this->controller = new Controller();
+        $this->controller->invoke();
+        $this->assertEquals(http_response_code(), 405);
+        $this->expectOutputString('');
+    }
+
     public function testAuthenticatedSuccessNotFound() 
     {
         $GLOBALS['authenticationRequest'] = true;
@@ -72,6 +83,15 @@ class ControllerTest extends PHPUnit_Framework_TestCase
         $this->controller->invoke();
         $this->assertEquals(http_response_code(), 403);
         $this->expectOutputString('');
+    }
+
+    public function testAnonymousHomePageSuccess() 
+    {
+        $_SERVER['REQUEST_URI'] = "/";
+        $this->controller = new Controller();
+        $this->controller->invoke();
+        $this->assertEquals(http_response_code(), 200);
+        $this->expectOutputRegex('/A LEGO Fan Event/');
     }
 
     public function testAnonymousSuccess() 
