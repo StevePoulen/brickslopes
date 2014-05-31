@@ -1,6 +1,5 @@
 <?php
 
-/*
 class AuthenticationTest extends PHPUnit_Framework_TestCase 
 {
     public function setUp() 
@@ -14,4 +13,3 @@ class AuthenticationTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(http_response_code(), 405);
     }
 }
-*/
