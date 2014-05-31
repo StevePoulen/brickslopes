@@ -1,17 +1,17 @@
-/* line 4, ../../compass/assets/sass/afols.scss */
-div#eventDashboard div#dashboardCloseButton, div#reserveStarWarsSet div#reserveCloseButton {
+/* line 6, ../../compass/assets/sass/afols.scss */
+#brickSlopes #dashboardCloseButton, div#reserveStarWarsSet div#reserveCloseButton {
   position: absolute;
   background: url("/images/closeButton_blue.png") no-repeat scroll 0px center transparent;
   background-size: 40px 40px;
   height: 40px;
   width: 40px;
   z-index: 6;
-  top: -20px;
-  right: -20px;
+  top: 105px;
+  right: -5px;
   cursor: pointer;
 }
 
-/* line 16, ../../compass/assets/sass/afols.scss */
+/* line 18, ../../compass/assets/sass/afols.scss */
 #dashboardText {
   position: relative;
   border-radius: 25px;
@@ -27,7 +27,7 @@ div#eventDashboard div#dashboardCloseButton, div#reserveStarWarsSet div#reserveC
   vertical-align: middle;
   border: 0px solid red;
 }
-/* line 31, ../../compass/assets/sass/afols.scss */
+/* line 33, ../../compass/assets/sass/afols.scss */
 #dashboardText #login {
   position: absolute;
   left: 10px;
@@ -36,13 +36,13 @@ div#eventDashboard div#dashboardCloseButton, div#reserveStarWarsSet div#reserveC
   width: 590px;
   text-align: center;
 }
-/* line 39, ../../compass/assets/sass/afols.scss */
+/* line 41, ../../compass/assets/sass/afols.scss */
 #dashboardText #login .loginForm {
   position: relative;
   left: 170px;
   width: 250px;
 }
-/* line 44, ../../compass/assets/sass/afols.scss */
+/* line 46, ../../compass/assets/sass/afols.scss */
 #dashboardText #login .loginForm .loginField {
   margin-bottom: 10px;
   border: 1px solid #BCBEBF;
@@ -51,7 +51,7 @@ div#eventDashboard div#dashboardCloseButton, div#reserveStarWarsSet div#reserveC
   height: 42.5px;
   padding-top: 7.5px;
 }
-/* line 56, ../../compass/assets/sass/afols.scss */
+/* line 58, ../../compass/assets/sass/afols.scss */
 #dashboardText #signUpForm, #dashboardText #resetPasswordForm {
   position: absolute;
   right: 10px;
@@ -61,13 +61,13 @@ div#eventDashboard div#dashboardCloseButton, div#reserveStarWarsSet div#reserveC
   border: none;
   opacity: 0;
 }
-/* line 65, ../../compass/assets/sass/afols.scss */
+/* line 67, ../../compass/assets/sass/afols.scss */
 #dashboardText #signUpForm .loginForm, #dashboardText #resetPasswordForm .loginForm {
   position: relative;
   left: 100px;
   width: 250px;
 }
-/* line 70, ../../compass/assets/sass/afols.scss */
+/* line 72, ../../compass/assets/sass/afols.scss */
 #dashboardText #signUpForm .loginForm .loginField, #dashboardText #resetPasswordForm .loginForm .loginField {
   margin-bottom: 20px;
   border: 1px solid #BCBEBF;
@@ -77,11 +77,11 @@ div#eventDashboard div#dashboardCloseButton, div#reserveStarWarsSet div#reserveC
   padding-top: 7.5px;
   text-align: center;
 }
-/* line 82, ../../compass/assets/sass/afols.scss */
+/* line 84, ../../compass/assets/sass/afols.scss */
 #dashboardText #resetPasswordForm {
   top: 250px;
 }
-/* line 87, ../../compass/assets/sass/afols.scss */
+/* line 89, ../../compass/assets/sass/afols.scss */
 #dashboardText #loginDivider {
   position: absolute;
   left: 609px;
@@ -91,7 +91,7 @@ div#eventDashboard div#dashboardCloseButton, div#reserveStarWarsSet div#reserveC
   border: 1px solid black;
   border-radius: 2px;
 }
-/* line 98, ../../compass/assets/sass/afols.scss */
+/* line 100, ../../compass/assets/sass/afols.scss */
 #dashboardText #signUpText {
   position: absolute;
   right: 10px;
@@ -100,11 +100,11 @@ div#eventDashboard div#dashboardCloseButton, div#reserveStarWarsSet div#reserveC
   width: 590px;
   border: none;
 }
-/* line 106, ../../compass/assets/sass/afols.scss */
+/* line 108, ../../compass/assets/sass/afols.scss */
 #dashboardText #signUpText .center {
   left: 105px;
 }
-/* line 110, ../../compass/assets/sass/afols.scss */
+/* line 112, ../../compass/assets/sass/afols.scss */
 #dashboardText #signUpText .loginForm {
   position: absolute;
   left: 0px;
@@ -112,7 +112,7 @@ div#eventDashboard div#dashboardCloseButton, div#reserveStarWarsSet div#reserveC
   border: none;
   text-align: center;
 }
-/* line 117, ../../compass/assets/sass/afols.scss */
+/* line 119, ../../compass/assets/sass/afols.scss */
 #dashboardText #signUpText .loginForm .loginField {
   margin: 10px;
   border: 1px solid #BCBEBF;
@@ -121,14 +121,14 @@ div#eventDashboard div#dashboardCloseButton, div#reserveStarWarsSet div#reserveC
   height: 42.5px;
   padding-top: 7.5px;
 }
-/* line 128, ../../compass/assets/sass/afols.scss */
+/* line 130, ../../compass/assets/sass/afols.scss */
 #dashboardText #signUpButton {
   position: absolute;
   left: 110px;
   top: 175px;
 }
 
-/* line 135, ../../compass/assets/sass/afols.scss */
+/* line 137, ../../compass/assets/sass/afols.scss */
 #eventSwag li {
   list-style-type: disc;
   text-align: left;
@@ -136,7 +136,7 @@ div#eventDashboard div#dashboardCloseButton, div#reserveStarWarsSet div#reserveC
   padding-bottom: 5px;
 }
 
-/* line 142, ../../compass/assets/sass/afols.scss */
+/* line 144, ../../compass/assets/sass/afols.scss */
 #dashboardText div#eventSwag {
   border-radius: 25px;
   position: absolute;
@@ -150,17 +150,18 @@ div#eventDashboard div#dashboardCloseButton, div#reserveStarWarsSet div#reserveC
   padding-left: 10px;
 }
 
-/* line 155, ../../compass/assets/sass/afols.scss */
+/* line 157, ../../compass/assets/sass/afols.scss */
 #panes {
   position: absolute;
   top: 0px;
   right: 0px;
   width: 1238px;
-  height: 615px;
+  height: 675px;
   border: 0px solid yellow;
+  overflow: scroll;
 }
 
-/* line 164, ../../compass/assets/sass/afols.scss */
+/* line 167, ../../compass/assets/sass/afols.scss */
 #eventContainer {
   position: absolute;
   top: 0px;
@@ -169,7 +170,19 @@ div#eventDashboard div#dashboardCloseButton, div#reserveStarWarsSet div#reserveC
   height: 100px;
 }
 
-/* line 172, ../../compass/assets/sass/afols.scss */
+/* line 175, ../../compass/assets/sass/afols.scss */
+.myEventPane {
+  position: relative;
+  float: left;
+  width: 300px;
+  height: 825px;
+  margin: 0 5 5 0;
+  cursor: pointer;
+  border: 2px solid white;
+  border-radius: 12px;
+}
+
+/* line 186, ../../compass/assets/sass/afols.scss */
 .eventPane {
   position: relative;
   float: left;
@@ -181,7 +194,7 @@ div#eventDashboard div#dashboardCloseButton, div#reserveStarWarsSet div#reserveC
   border-radius: 12px;
 }
 
-/* line 183, ../../compass/assets/sass/afols.scss */
+/* line 197, ../../compass/assets/sass/afols.scss */
 .eventImage {
   position: relative;
   width: 300px;
@@ -194,14 +207,14 @@ div#eventDashboard div#dashboardCloseButton, div#reserveStarWarsSet div#reserveC
   border-radius: 10px;
 }
 
-/* line 195, ../../compass/assets/sass/afols.scss */
+/* line 209, ../../compass/assets/sass/afols.scss */
 .eventImageText {
   position: relative;
   top: 85px;
   text-align: center;
 }
 
-/* line 201, ../../compass/assets/sass/afols.scss */
+/* line 215, ../../compass/assets/sass/afols.scss */
 .eventBrickSlopesLogo {
   position: absolute;
   z-index: 2;
@@ -213,8 +226,8 @@ div#eventDashboard div#dashboardCloseButton, div#reserveStarWarsSet div#reserveC
   width: 40px;
 }
 
-/* line 212, ../../compass/assets/sass/afols.scss */
-.eventText {
+/* line 226, ../../compass/assets/sass/afols.scss */
+.eventText, .myEventText {
   position: relative;
   width: 280px;
   height: 140px;
@@ -225,4 +238,10 @@ div#eventDashboard div#dashboardCloseButton, div#reserveStarWarsSet div#reserveC
   color: black;
   font-size: 2em;
   border-radius: 10px;
+}
+
+/* line 239, ../../compass/assets/sass/afols.scss */
+.myEventText {
+  padding-top: 360px;
+  height: 455px;
 }

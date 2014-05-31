@@ -8,7 +8,7 @@
 @import url("/css/keynote.css");
 @import url("/css/vendor.css");
 @import url("/css/guest.css");
-/* line 21, ../../compass/assets/sass/brickslopes.scss */
+/* line 20, ../../compass/assets/sass/brickslopes.scss */
 #brickslopes {
   position: relative;
   top: 0px;
@@ -21,7 +21,7 @@
   text-align: center;
 }
 
-/* line 33, ../../compass/assets/sass/brickslopes.scss */
+/* line 32, ../../compass/assets/sass/brickslopes.scss */
 #header {
   position: relative;
   top: 0px;
@@ -32,7 +32,7 @@
   margin-right: auto;
   border: 0px solid white;
 }
-/* line 43, ../../compass/assets/sass/brickslopes.scss */
+/* line 42, ../../compass/assets/sass/brickslopes.scss */
 #header #eventContainer {
   position: absolute;
   top: 30px;
@@ -41,11 +41,11 @@
   height: 70px;
   border: 0px solid white;
 }
-/* line 51, ../../compass/assets/sass/brickslopes.scss */
+/* line 50, ../../compass/assets/sass/brickslopes.scss */
 #header #eventContainer a {
   margin: 10px;
 }
-/* line 56, ../../compass/assets/sass/brickslopes.scss */
+/* line 55, ../../compass/assets/sass/brickslopes.scss */
 #header #afolContainer {
   position: absolute;
   top: 5px;
@@ -59,7 +59,7 @@
   cursor: pointer;
 }
 
-/* line 70, ../../compass/assets/sass/brickslopes.scss */
+/* line 69, ../../compass/assets/sass/brickslopes.scss */
 #dashboard, #eventDashboard {
   position: relative;
   top: 25px;
@@ -70,12 +70,13 @@
   margin-right: auto;
 }
 
-/* line 80, ../../compass/assets/sass/brickslopes.scss */
+/* line 79, ../../compass/assets/sass/brickslopes.scss */
 #eventDashboard {
   position: relative;
-  height: auto;
+  height: 675px;
   background-color: white;
   border-radius: 25px;
+  overflow: scroll;
 }
 
 /* line 88, ../../compass/assets/sass/brickslopes.scss */

@@ -1,15 +1,17 @@
 $dashboard_width: 1220px;
 $dashboard_min_height: 675px;
+$eventPane_height: 200px;
+$eventPane_margin: 5;
 
-div#eventDashboard div#dashboardCloseButton, div#reserveStarWarsSet div#reserveCloseButton {
+#brickSlopes #dashboardCloseButton, div#reserveStarWarsSet div#reserveCloseButton {
   position: absolute;
   background: url("/images/closeButton_blue.png") no-repeat scroll 0px center transparent;
   background-size: 40px 40px;
   height: 40px;
   width: 40px;
   z-index: 6;
-  top: -20px;
-  right: -20px;
+  top: 105px;
+  right: -5px;
   cursor: pointer;
 }
 
@@ -153,12 +155,13 @@ div#eventDashboard div#dashboardCloseButton, div#reserveStarWarsSet div#reserveC
 }
 
 #panes {
-  position: absolute;
-  top: 0px;
-  right: 0px;
-  width: 1238px;
-  height: 615px;
-  border: 0px solid yellow;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 1238px;
+    height: $dashboard_min_height;
+    border: 0px solid yellow;
+    overflow: scroll;
 }
 
 #eventContainer {
@@ -169,12 +172,23 @@ div#eventDashboard div#dashboardCloseButton, div#reserveStarWarsSet div#reserveC
   height: 100px;
 }
 
+.myEventPane {
+  position: relative;
+  float: left;
+  width: 300px;
+  height: $eventPane_height * 4 + $eventPane_margin * 5;
+  margin: 0 5 5 0;
+  cursor: pointer;
+  border: 2px solid white;
+  border-radius: 12px;
+}
+
 .eventPane {
   position: relative;
   float: left;
   width: 300px;
-  height: 200px;
-  margin: 0 5 5 0;
+  height: $eventPane_height;
+  margin: 0 $eventPane_margin $eventPane_margin 0;
   cursor: pointer;
   border: 2px solid white;
   border-radius: 12px;
@@ -220,4 +234,10 @@ div#eventDashboard div#dashboardCloseButton, div#reserveStarWarsSet div#reserveC
   color: black;
   font-size: 2em;
   border-radius: 10px;
+}
+
+.myEventText {
+    @extend .eventText;
+    padding-top: 360px;
+    height: $eventPane_height * 4 + $eventPane_margin * 5 - 370;
 }

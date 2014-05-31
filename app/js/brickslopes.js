@@ -42,17 +42,19 @@ function getCurrentPage() {
 }
 */
 
-$(document).delegate(".eventPane", "mouseenter", function(event) {
+$(document).delegate(".eventPane, .myEventPane", "mouseenter", function(event) {
     event.stopPropagation();
     $(this).children('.eventText').toggle();
+    $(this).children('.myEventText').toggle();
     $(this).children('.eventBrickSlopesLogo').toggle();
     $(this).children('.eventImageText').toggle();
 });
 
-$(document).delegate(".eventPane", "mouseleave", function(event) {
+$(document).delegate(".eventPane, .myEventPane", "mouseleave", function(event) {
     event.stopPropagation();
     $(this).children('.eventImageText').toggle();
     $(this).children('.eventText').toggle();
+    $(this).children('.myEventText').toggle();
     $(this).children('.eventBrickSlopesLogo').toggle();
 });
 /*
