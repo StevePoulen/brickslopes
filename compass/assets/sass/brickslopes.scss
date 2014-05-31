@@ -14,16 +14,98 @@ $bs_red: #FF0500;
 //  BrickSlopes Blue -> #1224FC and 93, 86, 1, 0 / 85, 62, 3, 0 35469A
 $bs_blue: #35469A;
 
-$dashboard_width: 1220px;
+$dashboard_width: 1245px;
 $dashboard_min_height: 675px;
+$dashboard_height: 795px;
+
+
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 480px) {
+    /* Styles */
+}
+
+/* Smartphones (landscape) ----------- */
+@media only screen 
+and (min-width : 321px) {
+    /* Styles */
+}
+
+/* Smartphones (portrait) ----------- */
+@media only screen 
+and (max-width : 320px) {
+    /* Styles */
+}
+
+/* iPads (portrait and landscape) ----------- */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) {
+    /* Styles */
+}
+
+/* iPads (landscape) ----------- */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : landscape) {
+    /* Styles */
+}
+
+/* iPads (portrait) ----------- */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : portrait) {
+    /* Styles */
+}
+
+/* iPhone 4 ----------- */
+@media
+only screen and (-webkit-min-device-pixel-ratio : 1.5),
+only screen and (min-device-pixel-ratio : 1.5) {
+    /* Styles */
+}
+
+/* Desktops and laptops ----------- */
+@media only screen and (min-width : 1224px) {
+    #dashboard, #panes {
+        height: $dashboard_height;
+    }
+
+    #dashboardText{
+        height: $dashboard_height - 30;
+    }
+
+    #splashPage {
+        height: $dashboard_height - 10;
+    }
+}
+
+
+/* Large screens ----------- */
+@media only screen and (min-width : 1824px) {
+    #dashboard, #panes {
+        height: $dashboard_height;
+    }
+
+    #dashboardText{
+        height: $dashboard_height - 30;
+    }
+
+    #splashPage {
+        height: $dashboard_height;
+    }
+}
 
 #brickslopes {
   position: relative;
   top: 0px;
+  bottom: 0px;
   left: 0px;
   width: 1250px;
-  min-height: 875px;
-  overflow: none;
+  height: 100%;
   margin-left: auto;
   margin-right: auto;
   text-align: center;
@@ -69,30 +151,24 @@ $dashboard_min_height: 675px;
 #dashboard {
     position: relative;
     top: 25px;
-    left: 0px;
+    left: 0;
     width: $dashboard_width;
-    min-height: $dashboard_min_height;
     margin-left: auto;
     margin-right: auto;
 }
 
 #eventDashboard {
     @extend #dashboard;
-    position: relative;
-    height: $dashboard_min_height;
     background-color: white;
     border-radius: 25px;
-    overflow: scroll;
 }
 
-div#splashPage {
+#splashPage {
   position: absolute;
-  width: 1200px;
-  height: 600px;
   top: 0px;
-  left: 0px;
+  left: 15px;
+  width: 1218px;
   text-align: center;
-  display: table;
   border: 5px solid $bs_blue;
   background: white;
   border-radius: 10px;
@@ -117,7 +193,7 @@ div#splashPage div.splashTextHome {
   position: absolute;
   border-radius: 10px;
   right: 60px;
-  bottom: 25px;
+  top: 25px;
   padding: 10px;
   font-size: 2.0em;
   text-align: center;

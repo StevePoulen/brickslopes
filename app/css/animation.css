@@ -39,37 +39,37 @@
 }
 
 @-webkit-keyframes exitAnimation {
-  /* line 35, ../../compass/assets/sass/animation.scss */
+  /* line 36, ../../compass/assets/sass/animation.scss */
   from {
     opacity: 1;
   }
 
-  /* line 36, ../../compass/assets/sass/animation.scss */
+  /* line 37, ../../compass/assets/sass/animation.scss */
   to {
     opacity: 0;
   }
 }
 
 @keyframes exitAnimation {
-  /* line 40, ../../compass/assets/sass/animation.scss */
+  /* line 41, ../../compass/assets/sass/animation.scss */
   from {
     opacity: 1;
   }
 
-  /* line 41, ../../compass/assets/sass/animation.scss */
+  /* line 42, ../../compass/assets/sass/animation.scss */
   to {
     opacity: 0;
   }
 }
 
 @-webkit-keyframes enterAnimation {
-  /* line 45, ../../compass/assets/sass/animation.scss */
+  /* line 46, ../../compass/assets/sass/animation.scss */
   from {
     opacity: 0;
     left: 100%;
   }
 
-  /* line 46, ../../compass/assets/sass/animation.scss */
+  /* line 47, ../../compass/assets/sass/animation.scss */
   to {
     opacity: 1;
     left: 0;
@@ -77,13 +77,13 @@
 }
 
 @keyframes enterAnimation {
-  /* line 50, ../../compass/assets/sass/animation.scss */
+  /* line 51, ../../compass/assets/sass/animation.scss */
   from {
     opacity: 0;
     left: 100%;
   }
 
-  /* line 51, ../../compass/assets/sass/animation.scss */
+  /* line 52, ../../compass/assets/sass/animation.scss */
   to {
     opacity: 1;
     left: 0;
@@ -91,21 +91,21 @@
 }
 
 /* Fade-in and Fade-out */
-/* line 55, ../../compass/assets/sass/animation.scss */
+/* line 56, ../../compass/assets/sass/animation.scss */
 .fadeOutFast {
   /* Ch,Sa,Op */
   -webkit-animation: fadeOut 0.5s linear forwards;
   animation: fadeOut 0.5s linear forwards;
 }
 
-/* line 61, ../../compass/assets/sass/animation.scss */
+/* line 62, ../../compass/assets/sass/animation.scss */
 .fadeOut {
   /* Ch,Sa,Op */
   -webkit-animation: fadeOut 1.0s linear forwards;
   animation: fadeOut 1.0s linear forwards;
 }
 
-/* line 67, ../../compass/assets/sass/animation.scss */
+/* line 68, ../../compass/assets/sass/animation.scss */
 .fadeOutSlow {
   /* Ch,Sa,Op */
   -webkit-animation: fadeOut 2.0s linear forwards;
@@ -114,44 +114,44 @@
 
 /* Ch,Sa,Op */
 @-webkit-keyframes fadeOut {
-  /* line 75, ../../compass/assets/sass/animation.scss */
+  /* line 76, ../../compass/assets/sass/animation.scss */
   from {
     opacity: 1;
   }
 
-  /* line 76, ../../compass/assets/sass/animation.scss */
+  /* line 77, ../../compass/assets/sass/animation.scss */
   to {
     opacity: 0;
   }
 }
 
 @keyframes fadeOut {
-  /* line 80, ../../compass/assets/sass/animation.scss */
+  /* line 81, ../../compass/assets/sass/animation.scss */
   from {
     opacity: 1;
   }
 
-  /* line 81, ../../compass/assets/sass/animation.scss */
+  /* line 82, ../../compass/assets/sass/animation.scss */
   to {
     opacity: 0;
   }
 }
 
-/* line 84, ../../compass/assets/sass/animation.scss */
+/* line 85, ../../compass/assets/sass/animation.scss */
 .fadeInFast {
   /* Ch,Sa,Op */
   -webkit-animation: fadeIn 0.5s linear forwards;
   animation: fadeIn 0.5s linear forwards;
 }
 
-/* line 90, ../../compass/assets/sass/animation.scss */
+/* line 91, ../../compass/assets/sass/animation.scss */
 .fadeIn {
   /* Ch,Sa,Op */
   -webkit-animation: fadeIn 1.0s linear forwards;
   animation: fadeIn 1.0s linear forwards;
 }
 
-/* line 97, ../../compass/assets/sass/animation.scss */
+/* line 98, ../../compass/assets/sass/animation.scss */
 .fadeInSlow {
   /* Ch,Sa,Op */
   -webkit-animation: fadeIn 2.0s linear forwards;
@@ -160,31 +160,31 @@
 
 /* Ch,Sa,Op */
 @-webkit-keyframes fadeIn {
-  /* line 105, ../../compass/assets/sass/animation.scss */
+  /* line 106, ../../compass/assets/sass/animation.scss */
   from {
     opacity: 0;
   }
 
-  /* line 106, ../../compass/assets/sass/animation.scss */
+  /* line 107, ../../compass/assets/sass/animation.scss */
   to {
     opacity: 1;
   }
 }
 
 @keyframes fadeIn {
-  /* line 110, ../../compass/assets/sass/animation.scss */
+  /* line 111, ../../compass/assets/sass/animation.scss */
   from {
     opacity: 0;
   }
 
-  /* line 111, ../../compass/assets/sass/animation.scss */
+  /* line 112, ../../compass/assets/sass/animation.scss */
   to {
     opacity: 1;
   }
 }
 
 /* AFOL Sign-up and Login */
-/* line 115, ../../compass/assets/sass/animation.scss */
+/* line 116, ../../compass/assets/sass/animation.scss */
 .signupAnimation {
   -webkit-animation: signUpAnimation 1.0s linear forwards;
   /* Ch,Sa,Op */
@@ -193,24 +193,24 @@
 
 /* Ch,Sa,Op */
 @-webkit-keyframes signUpAnimation {
-  /* line 122, ../../compass/assets/sass/animation.scss */
+  /* line 123, ../../compass/assets/sass/animation.scss */
   from {
     left: 410px;
   }
 
-  /* line 123, ../../compass/assets/sass/animation.scss */
+  /* line 124, ../../compass/assets/sass/animation.scss */
   to {
     left: 10px;
   }
 }
 
 @keyframes signUpAnimation {
-  /* line 127, ../../compass/assets/sass/animation.scss */
+  /* line 128, ../../compass/assets/sass/animation.scss */
   from {
     left: 410px;
   }
 
-  /* line 128, ../../compass/assets/sass/animation.scss */
+  /* line 129, ../../compass/assets/sass/animation.scss */
   to {
     left: 10px;
   }

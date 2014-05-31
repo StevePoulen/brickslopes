@@ -142,8 +142,8 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services'])
     }
 
     $scope.clickKeynote = function() {
-        $location.path("/afol/eventKeynote.html");
-        //$location.path("/afol/comingSoon.html");
+        //$location.path("/afol/eventKeynote.html");
+        $location.path("/afol/comingSoon.html");
     }
 
     $scope.clickCollection = function() {

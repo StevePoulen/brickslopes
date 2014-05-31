@@ -1,31 +1,31 @@
 /* line 6, ../../compass/assets/sass/afols.scss */
-#brickSlopes #dashboardCloseButton, div#reserveStarWarsSet div#reserveCloseButton {
+#dashboardCloseButton, div#reserveStarWarsSet div#reserveCloseButton {
   position: absolute;
   background: url("/images/closeButton_blue.png") no-repeat scroll 0px center transparent;
   background-size: 40px 40px;
   height: 40px;
   width: 40px;
   z-index: 6;
-  top: 105px;
-  right: -5px;
+  top: -20px;
+  right: -20px;
   cursor: pointer;
 }
 
 /* line 18, ../../compass/assets/sass/afols.scss */
 #dashboardText {
-  position: relative;
+  position: absolute;
   border-radius: 25px;
   padding: 15px;
   font-size: 100%;
   text-align: left;
-  width: 1220px;
+  width: 1215px;
   color: black;
   background: white;
   display: table;
   line-height: normal;
   display: table-cell;
   vertical-align: middle;
-  border: 0px solid red;
+  overflow: scroll;
 }
 /* line 33, ../../compass/assets/sass/afols.scss */
 #dashboardText #login {
