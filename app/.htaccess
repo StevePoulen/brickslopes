@@ -12,6 +12,7 @@
     RewriteRule ^(.*)$ https://www.mybrickslopes.com/$1 [R=301,L] 
 
     RewriteEngine On
+    RewriteRule ^.*\.(gif|png|jpg|css|wav|avi|mpg|js|ico)$ - [NC,L]
     RewriteCond %{REQUEST_FILENAME} !php/Controller.php$
     RewriteRule ^.*$ /php/Controller.php [L]
 </IfModule>

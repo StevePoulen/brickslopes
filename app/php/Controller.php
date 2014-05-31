@@ -41,22 +41,13 @@
         }
 
         private function setHeader() {
-            if (preg_match('/\.css$/', $this->URI)) {
-                header('Content-type: text/css');
-            } else if (preg_match('/\.png$/', $this->URI)) {
-                header('Content-type: image/png');
-            } else if (preg_match('/\.js$/', $this->URI)) {
-                header('Content-type: application/javascript');
-            } else {
-                header('Content-type: text/html');
-            }   
+            header('Content-type: text/html');
         }
 
         private function isWhiteList() {
             if ($this->URI == '../index.html' ||
                 $this->URI == '../oldsite.html' || 
-                $this->URI == '../favicon.ico' || 
-                preg_match('/^..\/(css|lib|js|partials\/public|images)/', $this->URI) ||
+                preg_match('/^..\/partials\/public/', $this->URI) ||
                 $this->URI == 'controllers/authentication.php'
             ) {
                 return true;
@@ -95,21 +86,6 @@
                 return false;
             }
         }
-
-/*
-        public function encodeJWT($userId) {
-            $token = array(
-                "iss" => "https://www.brickslopes.com",
-                "aud" => $_SERVER['HTTP_HOST'],
-                "iat" => 1356999524,
-                "nbf" => 1357000000,
-                "userId" => $userId
-             );
-
-            $jwt = JWT::encode($token, JWT_KEY);
-            return $jwt;
-        }
-        */
 
         public function invoke() {
             if ($this->isAuthenticated()) {
