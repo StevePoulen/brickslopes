@@ -1,11 +1,19 @@
 <?php
 
-include_once('controllers/authentication.php');
 
 class AuthenticationTest extends PHPUnit_Framework_TestCase 
 {
     public function setUp() 
     {
+        $this->userId = null;
+        include_once('controllers/authentication.php');
+    }
+
+    public function testAuthenticatedBadMethod() 
+    {
+        $_SERVER['REQUEST_METHOD'] = "purchase";
+        $authentication = new Authentication();
+        $this->assertEquals(http_response_code(), 405);
     }
 
     public function testAuthenticatedGet() 
@@ -54,10 +62,21 @@ class AuthenticationTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(ISSET($GLOBALS['sendResetEmailMessage_password']), false);
     }
 
-    public function testAuthenticatedBadMethod() 
+    public function testAuthenticatedPatchSuccess() 
     {
-        $_SERVER['REQUEST_METHOD'] = "purchase";
+        $_SERVER['REQUEST_METHOD'] = "PATCH";
+        $GLOBALS['db_query'] = 1;
+        $GLOBALS['fetch_object'] = new usersObject();
+        $authentication = new Authentication(12345678);
+        $this->assertEquals(http_response_code(), 200);
+    }
+
+    public function testAuthenticatedPatchFailure() 
+    {
+        $_SERVER['REQUEST_METHOD'] = "PATCH";
+        $GLOBALS['db_result'] = false;
+        $GLOBALS['db_query'] = null;
         $authentication = new Authentication();
-        $this->assertEquals(http_response_code(), 405);
+        $this->assertEquals(http_response_code(), 412);
     }
 }

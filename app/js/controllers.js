@@ -122,6 +122,49 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services'])
         $location.path("/");
     }
 }])
+.controller('afolMe', ['$scope', '$location', 'Auth', function($scope, $location, Auth) {
+    $scope.verifying = false;
+    $scope.displayMessage = "";
+    $scope.timer = false;
+    $scope.success = true;
+
+    function serializeChangePasswordJson() {
+        return {
+            oldPassword: $scope.oldPassword,
+            newPassword: $scope.newPassword
+        }
+    }
+
+    function resetPasswordFields() {
+        $scope.oldPassword = "";
+        $scope.newPassword = "";
+        $scope.newPasswordVerify = "";
+    }
+
+    $scope.changePassword = function() {
+        $scope.verifying = true;
+        Auth.update(serializeChangePasswordJson()).then(function(response) {
+            resetPasswordFields();
+            $scope.changePasswordForm.$setPristine();
+            $scope.verifying = false;
+            $scope.displayMessage = "Password Changed";
+            $scope.timer = true;
+            $scope.success = true;
+        }, function() {
+            $scope.verifying = false;
+            resetPasswordFields();
+            $scope.displayMessage = "The password you entered is incorrect.";
+            $scope.success = false;
+            $scope.timer = true;
+        });
+    }
+
+    $scope.closeDialog = function() {
+        $location.path("/afol/index.html");
+    }
+
+
+}])
 .controller('afolIndex', ['$scope', '$location', 'GetAfolMocList', '$window', function($scope, $location, GetAfolMocList, $window) {
     $scope.mocCount = 0;
     $scope.vendorCount = 0;

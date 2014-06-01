@@ -29,8 +29,8 @@
         }
 
         private function isHomePage() {
-            if ($this->URI == "") $this->URI = 'oldsite.html'; 
-            //if ($this->URI == "") $this->URI = 'index.html'; 
+            //if ($this->URI == "") $this->URI = 'oldsite.html'; 
+            if ($this->URI == "") $this->URI = 'index.html'; 
         }
 
         private function setControllerModuleValues() {
@@ -47,9 +47,11 @@
         private function isWhiteList() {
             if ($this->URI == '../index.html' ||
                 $this->URI == '../oldsite.html' || 
-                preg_match('/^..\/partials\/public/', $this->URI) ||
-                $this->URI == 'controllers/authentication.php'
+                preg_match('/^..\/partials\/public/', $this->URI)
             ) {
+                return true;
+            } else if ($this->URI == 'controllers/authentication.php') {
+                $this->decodeJWT();
                 return true;
             } else {
                 return false;
@@ -60,22 +62,15 @@
             if ($this->isWhiteList()) {
                 return true;
             } else {
-                $headers = apache_request_headers();
-                try {
-                    if ($this->decodeJWT($headers['Authorization'])) {
-                        return true;
-                    } else {
-                        return false;
-                    }
-                } catch (exception $e) {
-                    return false;
-                }
+                return $this->decodeJWT();
             }
         }
 
-        private function decodeJWT($jwt) {
-            $decoded = JWT::decode($jwt, JWT_KEY);
+        private function decodeJWT() {
             try {
+                $headers = apache_request_headers();
+                $jwt = $headers['Authorization'];
+                $decoded = JWT::decode($jwt, JWT_KEY);
                 if (preg_match('/\d+/', $decoded->userId)) {
                     $this->userId = $decoded->userId;
                     return true;

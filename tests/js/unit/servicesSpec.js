@@ -160,6 +160,27 @@ describe('service', function() {
         });
     });
 
+    describe('Udpate', function() {
+        var mockBackend, loader, data, credentials;
+        beforeEach(inject(function(_$httpBackend_, Auth) {
+            credentials = {'oldPassword': 'oldSecure', 'newPassword': 'newSecure'};
+            mockBackend = _$httpBackend_;
+            loader = Auth;
+            mockBackend.expectPATCH('/controllers/authentication.php', credentials).respond('success');
+        }));
+
+        it('should update a user\'s password', function() {
+            var load = loader.update(credentials);
+
+            load.then(function(_data) {
+                data = _data;
+            });
+
+            mockBackend.flush();
+            expect(data).toEqualData('success');
+        });
+    });
+
     describe('GetAfolMocList', function() {
         var mockBackend, loader, data;
         beforeEach(inject(function(_$httpBackend_, GetAfolMocList) {

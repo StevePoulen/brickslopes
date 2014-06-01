@@ -90,6 +90,11 @@ input[type="text"]::-moz-placeholder, input[type="email"]::-moz-placeholder, inp
     cursor: pointer;
 }
 
+.formButtonSmall {
+    @extend .formButton;
+    height: 30px;
+}
+
 .disabled {
     background: grey;
 }

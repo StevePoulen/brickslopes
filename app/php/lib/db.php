@@ -72,7 +72,7 @@ class db extends \logging
                   //Update Queries
                   $this->numRows = $this->mysqli->affected_rows;
                   if ($this->mysqli->error == "" && $this->numRows == 0) {
-                      $this->numRows = 1;
+                      $this->numRows = 0;
                   }
                   return $this->numRows;
               }

@@ -67,13 +67,13 @@ angular.module('brickSlopes.services', [])
             return delay.promise;
         },
 
-        register: function(userInformation) {
+        register: function(userDTO) {
             var delay= $q.defer();
             $http (
                 {
                     method: 'POST',
                     url: '/controllers/authentication.php',
-                    data: userInformation,
+                    data: userDTO,
                     headers: {'Content-Type': 'application/x-www-form-urlencoded'}
                 }
             ).success(function(data, status, headers, config) {
@@ -85,13 +85,30 @@ angular.module('brickSlopes.services', [])
             return delay.promise;
         },
 
-        reset: function(userInformation) {
+        reset: function(userDTO) {
             var delay= $q.defer();
             $http (
                 {
                     method: 'PUT',
                     url: '/controllers/authentication.php',
-                    data: userInformation
+                    data: userDTO
+                }
+            ).success(function(data, status, headers, config) {
+                delay.resolve(data);
+            }).error(function(data, status, headers, config) {
+                delay.reject(data);
+            });
+
+            return delay.promise;
+        },
+
+        update: function(passwordDTO) {
+            var delay= $q.defer();
+            $http (
+                {
+                    method: 'PATCH',
+                    url: '/controllers/authentication.php',
+                    data: passwordDTO
                 }
             ).success(function(data, status, headers, config) {
                 delay.resolve(data);

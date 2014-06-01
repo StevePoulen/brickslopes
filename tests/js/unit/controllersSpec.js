@@ -265,7 +265,7 @@ describe('controllers', function() {
             });
         });
 
-        describe('Reset Password', function() {
+        describe('See Reset Password', function() {
             it('should display the reset password form', function() {
                 scope.seeResetPassword();
                 expect(scope.showResetPassword).toBe(true);
@@ -283,6 +283,75 @@ describe('controllers', function() {
                 expect(scope.displayErrorMessage).toBe('');
                 expect(scope.resetEmail).toBe('');
                 expect(scope.displayMessage).toBe('An e-mail with reset information has been sent to your account');
+            });
+        });
+    });
+
+    describe('afolMe Controller', function() {
+        var mockBackend, loader, window, location;
+        beforeEach(inject(function($controller, $rootScope, _$httpBackend_, $location) {
+            scope = $rootScope.$new();
+            ctrl = $controller('afolMe', { $scope: scope});
+            mockBackend = _$httpBackend_;
+            location = $location
+        }));
+
+        describe('Close Dialog', function() {
+            it('should redirect to index page', function() {
+                scope.closeDialog();
+                expect(location.path()).toBe('/afol/index.html');
+            });
+        });
+
+        describe('Default Values', function() {
+            it('should have a verifying variable', function() {
+                expect(scope.verifying).toBe(false);
+            });
+
+            it('should have a displayMessage variable', function() {
+                expect(scope.displayMessage).toBe('');
+            });
+
+            it('should have a timer variable', function() {
+                expect(scope.timer).toBe(false);
+            });
+
+            it('should have a success variable', function() {
+                expect(scope.success).toBe(true);
+            });
+        });
+
+        describe('Change Password', function() {
+            it('should change a user\'s password', function() {
+                scope.changePassword();
+                scope.changePasswordForm = {'$setPristine': function() {}};
+                expect(scope.verifying).toBe(true);
+                mockBackend.expectPATCH('/controllers/authentication.php').respond(201);
+                mockBackend.flush();
+                expect(scope.verifying).toBe(false);
+                expect(scope.displayMessage).toBe('Password Changed');
+                expect(scope.oldPassword).toBe('');
+                expect(scope.newPassword).toBe('');
+                expect(scope.newPasswordVerify).toBe('');
+                expect(scope.timer).toBe(true);
+                expect(scope.success).toBe(true);
+            });
+        });
+
+        describe('Change Password Error', function() {
+            it('should change a user\'s password', function() {
+                scope.changePassword();
+                scope.changePasswordForm = {'$setPristine': function() {}};
+                expect(scope.verifying).toBe(true);
+                mockBackend.expectPATCH('/controllers/authentication.php').respond(412);
+                mockBackend.flush();
+                expect(scope.verifying).toBe(false);
+                expect(scope.displayMessage).toBe('The password you entered is incorrect.');
+                expect(scope.oldPassword).toBe('');
+                expect(scope.newPassword).toBe('');
+                expect(scope.newPasswordVerify).toBe('');
+                expect(scope.timer).toBe(true);
+                expect(scope.success).toBe(false);
             });
         });
     });

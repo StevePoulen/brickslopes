@@ -71,6 +71,12 @@
     animation: fadeOut 2.0s linear forwards;
 }
 
+.fadeOut5 {
+    /* Ch,Sa,Op */
+    -webkit-animation: fadeOut 5.0s ease-in forwards; 
+    animation: fadeOut 5.0s ease-in forwards;
+}
+
 /* Ch,Sa,Op */
 @-webkit-keyframes fadeOut {
     from {opacity: 1;}

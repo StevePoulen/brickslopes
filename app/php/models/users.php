@@ -15,12 +15,28 @@ class users extends \db {
         return $this->query($this->selectQueryByEmail($data));
     }
 
+    public function updatePassword($userId, $data) {
+        return $this->query($this->updatePasswordQuery($userId, $data));
+    }
+
     public function addUserInformation($data) {
         return $this->query($this->insertQuery($data));
     }
 
     public function updateUserInformation($userId, $data) {
         return $this->query($this->updateQuery($userId, $data));
+    }
+
+    private function updatePasswordQuery($userId, $data) {
+        return "
+            UPDATE 
+                users 
+            SET
+                password = password('{$this->escapeCharacters($data['newPassword'])}')
+            WHERE
+                userId = '{$this->escapeCharacters($userId)}'
+                AND password = password('{$this->escapeCharacters($data['oldPassword'])}')
+        ";
     }
 
     private function resetQuery($data, $password) {

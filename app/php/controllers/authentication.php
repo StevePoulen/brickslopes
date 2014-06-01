@@ -3,9 +3,11 @@
 class Authentication {
     private $usersObj;
     private $requestMethod;
+    private $userId;
 
-    public function __construct() {
+    public function __construct($userId = null) {
         $this->usersObj = new users();
+        $this->userId = $userId;
         $this->determineRequestMethod();
     }
 
@@ -20,6 +22,8 @@ class Authentication {
             $this->post();
         } else if ($requestMethod == "PUT") {
             $this->put();
+        } else if ($requestMethod == "PATCH") {
+            $this->patch();
         } else {
             header("HTTP/1.0 405 Method Not Allowed");
         }
@@ -76,6 +80,16 @@ class Authentication {
         header("HTTP/1.0 200 Success");
     }
 
+    private function patch() {
+        $payload = json_decode(file_get_contents("php://input"), true);
+        $response = $this->usersObj->updatePassword($this->userId, $payload);
+        if ($response != 0) {
+            header("HTTP/1.0 200 Success");
+        } else {
+            header("HTTP/1.0 412 Precondition Failed");
+        }
+    }
+
     private function generatePassword() {
         return \base_convert(rand(78364164096, 2821109907455), 10, 36);
     }
@@ -107,6 +121,6 @@ class Authentication {
     }
 }
 
-new Authentication();
+new Authentication($this->userId);
 
 ?>
