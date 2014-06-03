@@ -18,6 +18,11 @@ EOT
 include join('/', array('.', 'app', 'php',  'AutoLoader.php'));
 include join('/', array('.', 'config', 'config.php'));
 include join('/', array(__DIR__, '..', 'unit', 'artifacts', 'DbMock.php'));
+include join('/', array(__DIR__, '..', 'unit', 'artifacts', 'EmailMock.php'));
+include join('/', array(__DIR__, '..', 'unit', 'artifacts', 'EventRegistrationsMock.php'));
+include join('/', array(__DIR__, '..', 'unit', 'artifacts', 'UsersMock.php'));
+include join('/', array(__DIR__, '..', 'unit', 'artifacts', 'EventsMock.php'));
+
 
 /**
 * http://www.kammerl.de/ascii/AsciiSignature.php

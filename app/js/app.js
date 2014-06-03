@@ -107,7 +107,7 @@ config(['$routeProvider', '$httpProvider',  function($routeProvider, $httpProvid
         '/afol/eventRegistration.html',
         {
             templateUrl: '/partials/afol/eventRegistration.html',
-            controller: 'afolIndex'
+            controller: 'afolEventRegistration'
         }
     )
     .when(

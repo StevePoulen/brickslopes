@@ -90,94 +90,122 @@ describe('service', function() {
         });
     });
 
-    describe('Login', function() {
-        var mockBackend, loader, data, credentials;
-        beforeEach(inject(function(_$httpBackend_, Auth) {
-            credentials = {'email': 'brian@bs.com', 'password': 'LEGO'};
-            mockBackend = _$httpBackend_;
-            loader = Auth;
-            mockBackend.expectGET('/controllers/authentication.php?email=brian@bs.com&password=LEGO').respond('success');
-        }));
+    describe('Authentication', function() {
+        describe('Login', function() {
+            var mockBackend, loader, data, credentials;
+            beforeEach(inject(function(_$httpBackend_, Auth) {
+                credentials = {'email': 'brian@bs.com', 'password': 'LEGO'};
+                mockBackend = _$httpBackend_;
+                loader = Auth;
+                mockBackend.expectGET('/controllers/authentication.php?email=brian@bs.com&password=LEGO').respond('success');
+            }));
 
-        it('should register a user', function() {
-            var load = loader.login(credentials);
+            it('should register a user', function() {
+                var load = loader.login(credentials);
 
-            load.then(function(_data) {
-                data = _data;
+                load.then(function(_data) {
+                    data = _data;
+                });
+
+                mockBackend.flush();
+                expect(data).toEqualData('success');
             });
+        });
 
-            mockBackend.flush();
-            expect(data).toEqualData('success');
+        describe('Register', function() {
+            var mockBackend, loader, data, credentials;
+            beforeEach(inject(function(_$httpBackend_, Auth) {
+                credentials = {
+                    'firstName': 'Steve',
+                    'lastName': 'Poulsen',
+                    'email': 'steve@bs.com',
+                    'password': 'LEGO'
+                };
+                mockBackend = _$httpBackend_;
+                loader = Auth;
+                mockBackend.expectPOST('/controllers/authentication.php', credentials).respond('success');
+            }));
+
+            it('should register a user', function() {
+                var load = loader.register(credentials);
+
+                load.then(function(_data) {
+                    data = _data;
+                });
+
+                mockBackend.flush();
+                expect(data).toEqualData('success');
+            });
+        });
+
+        describe('Reset', function() {
+            var mockBackend, loader, data, credentials;
+            beforeEach(inject(function(_$httpBackend_, Auth) {
+                credentials = {
+                    'email': 'steve@bs.com'
+                };
+                mockBackend = _$httpBackend_;
+                loader = Auth;
+                mockBackend.expectPUT('/controllers/authentication.php', credentials).respond('success');
+            }));
+
+            it('should register a user', function() {
+                var load = loader.reset(credentials);
+
+                load.then(function(_data) {
+                    data = _data;
+                });
+
+                mockBackend.flush();
+                expect(data).toEqualData('success');
+            });
+        });
+
+        describe('Udpate', function() {
+            var mockBackend, loader, data, credentials;
+            beforeEach(inject(function(_$httpBackend_, Auth) {
+                credentials = {'oldPassword': 'oldSecure', 'newPassword': 'newSecure'};
+                mockBackend = _$httpBackend_;
+                loader = Auth;
+                mockBackend.expectPATCH('/controllers/authentication.php', credentials).respond('success');
+            }));
+
+            it('should update a user\'s password', function() {
+                var load = loader.update(credentials);
+
+                load.then(function(_data) {
+                    data = _data;
+                });
+
+                mockBackend.flush();
+                expect(data).toEqualData('success');
+            });
         });
     });
 
-    describe('Register', function() {
-        var mockBackend, loader, data, credentials;
-        beforeEach(inject(function(_$httpBackend_, Auth) {
-            credentials = {
-                'firstName': 'Steve',
-                'lastName': 'Poulsen',
-                'email': 'steve@bs.com',
-                'password': 'LEGO'
-            };
-            mockBackend = _$httpBackend_;
-            loader = Auth;
-            mockBackend.expectPOST('/controllers/authentication.php', credentials).respond('success');
-        }));
+    describe('Event Registration', function() {
+        describe('Create', function() {
+            var mockBackend, loader, data, eventDetails;
+            beforeEach(inject(function(_$httpBackend_, EventRegistration) {
+                eventDetails = {
+                    'userId': '1',
+                    'eventId': '2'
+                };
+                mockBackend = _$httpBackend_;
+                loader = EventRegistration;
+                mockBackend.expectPOST('/controllers/eventRegistration.php', eventDetails).respond(201);
+            }));
 
-        it('should register a user', function() {
-            var load = loader.register(credentials);
+            it('should register a user for an event', function() {
+                var load = loader.create(eventDetails);
 
-            load.then(function(_data) {
-                data = _data;
+                load.then(function(_data) {
+                    data = _data;
+                });
+
+                mockBackend.flush();
+                expect(data).toBe(undefined);
             });
-
-            mockBackend.flush();
-            expect(data).toEqualData('success');
-        });
-    });
-
-    describe('Reset', function() {
-        var mockBackend, loader, data, credentials;
-        beforeEach(inject(function(_$httpBackend_, Auth) {
-            credentials = {
-                'email': 'steve@bs.com'
-            };
-            mockBackend = _$httpBackend_;
-            loader = Auth;
-            mockBackend.expectPUT('/controllers/authentication.php', credentials).respond('success');
-        }));
-
-        it('should register a user', function() {
-            var load = loader.reset(credentials);
-
-            load.then(function(_data) {
-                data = _data;
-            });
-
-            mockBackend.flush();
-            expect(data).toEqualData('success');
-        });
-    });
-
-    describe('Udpate', function() {
-        var mockBackend, loader, data, credentials;
-        beforeEach(inject(function(_$httpBackend_, Auth) {
-            credentials = {'oldPassword': 'oldSecure', 'newPassword': 'newSecure'};
-            mockBackend = _$httpBackend_;
-            loader = Auth;
-            mockBackend.expectPATCH('/controllers/authentication.php', credentials).respond('success');
-        }));
-
-        it('should update a user\'s password', function() {
-            var load = loader.update(credentials);
-
-            load.then(function(_data) {
-                data = _data;
-            });
-
-            mockBackend.flush();
-            expect(data).toEqualData('success');
         });
     });
 

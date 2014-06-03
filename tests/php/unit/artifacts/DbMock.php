@@ -1,14 +1,5 @@
 <?php
 
-class Mail {
-    public function __construct() { }
-
-    public function sendResetEmailMessage($a, $b) {
-        $GLOBALS['sendResetEmailMessage_password'] = $b;
-    }
-}
-
-
 class dbObject {
     public function __construct() {
 
@@ -32,31 +23,32 @@ class db {
         }
     }
 
-    public function query($query) {
+    public function query($query=NULL) {
         return $GLOBALS['db_query'];
     }
 
     public function escapeCharacters() {}
 }
 
-class usersObject extends modelObjects {
-    protected $className;
-
-    public function __construct() {
-        $this->className = 'users';
-        $this->userId = $this->userId();
-        $this->firstName = $this->firstName();
-        $this->lastName = $this->lastName();
-    }
-
-    public function userId() { return $this->getData(__FUNCTION__); }
-    public function firstName() { return $this->getData(__FUNCTION__); }
-    public function lastName() { return $this->getData(__FUNCTION__); }
-}
-
 class modelObjects {
     public function __construct() {
 
+    }
+
+    public function buildGlobalVariables() {
+        foreach($this->getDTO() as $key => $value) {
+            $GLOBALS[$this->className . '_' . $key] = $value;
+        }
+    }
+
+    public function buildJsonString() {
+        $output = '{"data":{';
+        foreach($this->getDTO() as $key => $value) {
+            $output .= '"' . $key . '":"'. $value . '",';
+        }
+        $output = preg_replace('/,$/', '', $output);
+        $output .= '},"status":200}';
+        return $output;
     }
 
     public function getData($method) {

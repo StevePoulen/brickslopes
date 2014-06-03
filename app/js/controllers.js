@@ -1,7 +1,7 @@
 'use strict';
 
 /* Controllers */
-angular.module('brickSlopes.controllers', ['brickSlopes.services'])
+angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
 .controller('bsIndex', ['$scope', '$location', function($scope, $location) {
 }])
 .controller('bsHeader', ['$scope', '$window', '$location', function($scope, $window, $location) {
@@ -120,6 +120,45 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services'])
 
     $scope.closeDialog = function() {
         $location.path("/");
+    }
+}])
+.controller('afolEventRegistration', ['$scope', '$location', 'EventDetails', 'EventRegistration', '$route', function($scope, $location, EventDetails, eventRegistration, $route) {
+    $scope.verifying = false;
+    $scope.displayMessage = "";
+    $scope.success = true;
+    $scope.timer = false;
+    $scope.eventId = $route.current.params.eventId;
+
+    function serializeRegistrationJson() {
+        return {
+            eventId: $scope.eventId,
+            badgeLine1: $scope.badgeLine1,
+            badgeLine2: $scope.badgeLine2,
+            meetAndGreet: $scope.meetAndGreet,
+            ageVerification: $scope.ageVerification,
+            comments: $scope.comments,
+            type: 'afol'
+        }
+    }
+
+    $scope.eventRegistration = function() {
+        $scope.verifying = true;
+        eventRegistration.create(serializeRegistrationJson()).then(function(response) {
+            $location.path('/afol/eventMe.html');
+        }, function() {
+            $scope.verifying = false;
+            $scope.displayMessage = "There was an error submitting your data. Please try again.";
+            $scope.success = false;
+            $scope.timer = true;
+        });
+    }
+
+    EventDetails.get($scope.eventId).then(function(data) {
+        $scope.eventDetails= data;
+    });
+
+    $scope.closeDialog = function() {
+        $location.path("/afol/index.html");
     }
 }])
 .controller('afolMe', ['$scope', '$location', 'Auth', function($scope, $location, Auth) {
