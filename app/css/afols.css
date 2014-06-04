@@ -181,6 +181,17 @@
   border-radius: 12px;
 }
 /* line 189, ../../compass/assets/sass/afols.scss */
+#mePanes .events {
+  position: relative;
+  float: left;
+  width: 300px;
+  height: 200px;
+  margin: 0 5 5 0;
+  cursor: pointer;
+  border: 2px solid black;
+  border-radius: 12px;
+}
+/* line 200, ../../compass/assets/sass/afols.scss */
 #mePanes .meText {
   position: relative;
   top: 0px;
@@ -190,7 +201,7 @@
   border: none;
 }
 
-/* line 199, ../../compass/assets/sass/afols.scss */
+/* line 210, ../../compass/assets/sass/afols.scss */
 #eventSwag li {
   list-style-type: disc;
   text-align: left;
@@ -198,11 +209,11 @@
   padding-bottom: 5px;
 }
 
-/* line 206, ../../compass/assets/sass/afols.scss */
+/* line 217, ../../compass/assets/sass/afols.scss */
 #dashboardText div#eventSwag {
   border-radius: 25px;
   position: absolute;
-  height: auto;
+  height: dashboard_min_height;
   width: 450px;
   right: 20px;
   top: 150px;
@@ -212,7 +223,7 @@
   padding-left: 10px;
 }
 
-/* line 219, ../../compass/assets/sass/afols.scss */
+/* line 230, ../../compass/assets/sass/afols.scss */
 #panes {
   position: absolute;
   top: 0px;
@@ -223,7 +234,7 @@
   overflow: scroll;
 }
 
-/* line 229, ../../compass/assets/sass/afols.scss */
+/* line 240, ../../compass/assets/sass/afols.scss */
 #eventContainer {
   position: absolute;
   top: 0px;
@@ -232,7 +243,7 @@
   height: 100px;
 }
 
-/* line 237, ../../compass/assets/sass/afols.scss */
+/* line 248, ../../compass/assets/sass/afols.scss */
 .myEventPane {
   position: relative;
   float: left;
@@ -243,7 +254,7 @@
   border: 2px solid white;
   border-radius: 12px;
 }
-/* line 247, ../../compass/assets/sass/afols.scss */
+/* line 258, ../../compass/assets/sass/afols.scss */
 .myEventPane .eventText {
   position: relative;
   width: 280px;
@@ -256,14 +267,14 @@
   padding-top: 155px;
   height: 240px;
 }
-/* line 260, ../../compass/assets/sass/afols.scss */
+/* line 271, ../../compass/assets/sass/afols.scss */
 .myEventPane .eventImageText {
   position: relative;
   top: 185px;
   text-align: center;
 }
 
-/* line 268, ../../compass/assets/sass/afols.scss */
+/* line 279, ../../compass/assets/sass/afols.scss */
 .eventPane {
   position: relative;
   float: left;
@@ -274,7 +285,7 @@
   border: 2px solid white;
   border-radius: 12px;
 }
-/* line 278, ../../compass/assets/sass/afols.scss */
+/* line 289, ../../compass/assets/sass/afols.scss */
 .eventPane .eventText {
   position: relative;
   width: 280px;
@@ -287,14 +298,14 @@
   font-size: 2em;
   border-radius: 10px;
 }
-/* line 291, ../../compass/assets/sass/afols.scss */
+/* line 302, ../../compass/assets/sass/afols.scss */
 .eventPane .eventImageText {
   position: relative;
   top: 85px;
   text-align: center;
 }
 
-/* line 298, ../../compass/assets/sass/afols.scss */
+/* line 309, ../../compass/assets/sass/afols.scss */
 .eventImage {
   position: relative;
   width: 300px;
@@ -307,7 +318,7 @@
   border-radius: 10px;
 }
 
-/* line 310, ../../compass/assets/sass/afols.scss */
+/* line 321, ../../compass/assets/sass/afols.scss */
 .eventBrickSlopesLogo {
   position: absolute;
   z-index: 2;

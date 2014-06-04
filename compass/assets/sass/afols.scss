@@ -186,6 +186,17 @@ $pane_width: 1238px;
         }
     }
 
+    .events {
+        position: relative;
+        float: left;
+        width: $eventPane_width;
+        height: $eventPane_height;
+        margin: 0 $eventPane_margin $eventPane_margin 0;
+        cursor: pointer;
+        border: 2px solid black;
+        border-radius: 12px;
+    }
+
     .meText {
           position: relative;
           top: 0px;
@@ -206,7 +217,7 @@ $pane_width: 1238px;
 #dashboardText div#eventSwag {
   border-radius:25px;
   position: absolute;
-  height: auto;
+  height: dashboard_min_height;
   width: 450px;
   right: 20px;
   top: 150px;

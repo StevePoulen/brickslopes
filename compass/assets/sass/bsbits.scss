@@ -78,6 +78,12 @@ input[type="text"]::-moz-placeholder, input[type="email"]::-moz-placeholder, inp
     cursor: pointer;
 }
 
+.actionButtonSmall {
+    @extend .actionButton;
+    height: 30px;
+    padding-top: 6px;
+}
+
 .formButton {
     position: relative;
     background: orange;

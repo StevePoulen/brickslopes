@@ -5,7 +5,6 @@
 describe('service', function() {
     beforeEach(module('brickSlopes.services'));
 
-    var $scope, ctrl;
     beforeEach(function() {
         this.addMatchers({
             toEqualData: function(expected) {

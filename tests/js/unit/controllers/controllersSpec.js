@@ -5,8 +5,8 @@
 describe('controllers', function() {
     var scope, ctrl, location;
 
-    beforeEach(
-        module(
+    beforeEach (
+        module (
             'brickSlopes.controllers',
             'brickSlopes.services'
         )

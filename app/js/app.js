@@ -8,7 +8,7 @@ angular.module('brickSlopes', [
     'brickSlopes.services',
     'brickSlopes.controllers'
 ]).
-config(['$routeProvider', '$httpProvider',  function($routeProvider, $httpProvider) {
+config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvider) {
     $httpProvider.interceptors.push('authInterceptor');
 
     $routeProvider
@@ -104,9 +104,11 @@ config(['$routeProvider', '$httpProvider',  function($routeProvider, $httpProvid
         }
     )
     .when(
-        '/afol/eventRegistration.html',
+        '/afol/:eventId/eventRegistration.html',
         {
-            templateUrl: '/partials/afol/eventRegistration.html',
+            templateUrl: function(params) {
+                return '/partials/afol/eventRegistration.html?eventId='+params.eventId
+            },
             controller: 'afolEventRegistration'
         }
     )

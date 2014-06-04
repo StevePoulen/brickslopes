@@ -39,6 +39,12 @@
                 </div>
                 <span class="message" ng-show="timer" ng-class="{fadeOut5: timer, redFont: ! success, greenFont: success}">{{displayMessage}}</span>
             </div>
+            <div class="events">
+                <div class="meText"><bs-text text="Your Events" font-color=black font-size=1.25></bs-text></div>
+                <div class="actionButtonSmall" ng-click="clickRegistration(2)">
+                    <bs-text text="Sign-up" font-color=white font-size=1.25></bs-text>
+                </div>
+            </div>
         </div>
     </div>
     <div id="dashboardCloseButton" ng-click="closeDialog()"></div>

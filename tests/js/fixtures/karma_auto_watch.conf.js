@@ -5,10 +5,9 @@ module.exports = function(config){
     files : [
       'app/lib/**/angular.min.js',
       'app/lib/**/angular-route.min.js',
+      'app/lib/**/angular-animate.min.js',
       'tests/js/lib/angular-mocks.min.js',
-      'app/lib/**/jquery.min.js',
-      'app/lib/**/jquery.min.js',
-      'app/lib/**/underscore.min.js',
+      'app/lib/**/*.js',
       'app/js/**/*.js',
       'app/partials/**/*.html',
       'tests/js/unit/**/*.js'

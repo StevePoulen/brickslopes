@@ -198,6 +198,11 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         });
     }
 
+    $scope.clickRegistration = function(eventId) {
+        $location.path("/afol/eventRegistration.html/" + eventId);
+        //$location.path("/afol/comingSoon.html");
+    }
+
     $scope.closeDialog = function() {
         $location.path("/afol/index.html");
     }

@@ -7,8 +7,7 @@ describe('controllers', function() {
 
     beforeEach(
         module(
-            'brickSlopes.controllers',
-            'brickSlopes.services'
+            'brickSlopes.controllers'
         )
     );
 
