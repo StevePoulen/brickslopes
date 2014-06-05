@@ -29,7 +29,6 @@ class events extends db {
                 EVENTS
             WHERE
                 eventId = '{$this->escapeCharacters($data['eventId'])}'
-          )
         ;
       ";
     }

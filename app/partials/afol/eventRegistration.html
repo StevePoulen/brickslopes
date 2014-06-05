@@ -1,38 +1,18 @@
 <div id="eventDashboard">
     <span id="dashboardText">
-        <div id="eventSwag">
-          <h2>Registration Includes ...</h2>
-          <ol>
-            <li>4-Day Pass, May 1st thru 4th</li>
-            <li>Keynote Speaker Access</li>
-            <li>MOC Display Space</li>
-            <li><bs-logo></bs-logo> Name Badge</li>
-            <li>Access to LEGO Fan Games</li>
-            <li>MOC Prizes</li>
-            <li>Swag</li>
-            <li>fun, Fun, FUN!</li>
-          </ol>
-          <h2>Meet & Greet Event Includes ...</h2>
-          <ol>
-            <li>Dinner Thursday May, 1st</li>
-            <li>Door Prizes</li>
-            <li>Swag</li>
-            <li>Access to AFOLs</li>
-          </ol>
-        </div>
-        <h1><bs-logo font-size=1.25></bs-logo> &#8226; <bs-text text="Event Registration" font-color=black></bs-text></h1>
+        <h1><bs-logo font-size=1.25 text="{{eventDetails.city}}"></bs-logo> &#8226; <bs-text text="Event Registration" font-color=black></bs-text></h1>
         <bs-logo font-color=black></bs-logo> is a LEGO Event for Adult Fan's of LEGO.
       <h2> Before March 15th, 2015</h2>
       ** Last day for printed LEGO Brick Badges **
       <p>  
-        <span class="blueFont">AFOL 4-Day Event Pass</span> -- <b>$55 USD</b> per person 
+        <span class="blueFont">AFOL 4-Day Event Pass</span> -- <span class="bold">{{eventDetails.discount | currency}}</span> per person 
       <p>
-      <span class="redFont">Meet & Greet Event Pass</span> -- <b>$10 USD</b> per person
+      <span class="redFont">Meet & Greet Event Pass</span> -- <span class="bold">{{eventDetails.meetAndGreetDiscount | currency}}</span> per person
 
       <h2>After March 15, 2015</h2>
-      <span class="blueFont">AFOL 4-Day Event Pass</span> -- <b>$65 USD</b> per person
+      <span class="blueFont">AFOL 4-Day Event Pass</span> -- <span class="bold">{{eventDetails.cost | currency}}</span> per person
       <p>
-      <span class="redFont">Meet & Greet Event Pass</span> -- <b>$15 USD</b> per person
+      <span class="redFont">Meet & Greet Event Pass</span> -- <span class="bold">{{eventDetails.meetAndGreetCost | currency}}</b> per person
       <hr>
       <h3>AFOL Event Registration Form</h3>
       <form action="/cgi/registration.php" method="post" onsubmit="return validateTheRegistration()" id="registrationForm">
@@ -69,6 +49,26 @@
         <p>
         <font size=-1>* Persons under 18 years old must be accompanied by a registered adult.</font>
       </form>
+        <div id="eventSwag">
+          <h2>Registration Includes ...</h2>
+          <ol>
+            <li>4-Day Pass, May 1st thru 4th</li>
+            <li>Keynote Speaker Access</li>
+            <li>MOC Display Space</li>
+            <li><bs-logo></bs-logo> Name Badge</li>
+            <li>Access to LEGO Fan Games</li>
+            <li>MOC Prizes</li>
+            <li>Swag</li>
+            <li>fun, Fun, FUN!</li>
+          </ol>
+          <h2>Meet & Greet Event Includes ...</h2>
+          <ol>
+            <li>Dinner Thursday May, 1st</li>
+            <li>Door Prizes</li>
+            <li>Swag</li>
+            <li>Access to AFOLs</li>
+          </ol>
+        </div>
     </span>
     <div id="dashboardCloseButton" ng-click="closeDialog()"></div>
 </div>

@@ -128,6 +128,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     $scope.success = true;
     $scope.timer = false;
     $scope.eventId = $route.current.params.eventId;
+    $scope.eventDetails = {city: 'loading'};
 
     function serializeRegistrationJson() {
         return {
@@ -154,7 +155,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     }
 
     EventDetails.get($scope.eventId).then(function(data) {
-        $scope.eventDetails= data;
+        $scope.eventDetails=data.data;
     });
 
     $scope.closeDialog = function() {
@@ -199,8 +200,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     }
 
     $scope.clickRegistration = function(eventId) {
-        $location.path("/afol/eventRegistration.html/" + eventId);
-        //$location.path("/afol/comingSoon.html");
+        $location.path("/afol/" + eventId + "/eventRegistration.html");
     }
 
     $scope.closeDialog = function() {

@@ -24,10 +24,12 @@ class EventTest extends PHPUnit_Framework_TestCase
         $GLOBALS['fetch_object'] = new EventsMock();
         $event = new Event();
         $this->assertEquals(http_response_code(), 200);
+        //$output = json_decode(ob_get_contents());
+        //echo $output->data->name;
         $this->expectOutputString($this->eventsMock->buildJsonString()); 
     }
 
-    public function testAuthenticatedPostFailure() 
+    public function testAuthenticatedGetFailure() 
     {
         $_SERVER['REQUEST_METHOD'] = "GET";
         $GLOBALS['db_result'] = false;

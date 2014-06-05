@@ -15,7 +15,8 @@ angular.module('brickSlopes.directives', [])
         replace: true,
         scope: {
             fontColor: '@',
-            fontSize: '@'
+            fontSize: '@',
+            text: '@'
         },
         template: '<span ng-bind-html="bsText"></span>',
         link: function(scope, element, attrs) {
@@ -23,6 +24,13 @@ angular.module('brickSlopes.directives', [])
                 brickSlopesText.createText('Brick', scope.fontSize, scope.fontColor, undefined) +
                 brickSlopesText.createText('Slopes', scope.fontSize, scope.fontColor, undefined)
             );
+            scope.$watch("text", function() {
+                scope.bsText = $sce.trustAsHtml(
+                    brickSlopesText.createText('Brick', scope.fontSize, scope.fontColor, undefined) +
+                    brickSlopesText.createText('Slopes', scope.fontSize, scope.fontColor, undefined) +
+                    (scope.text ? brickSlopesText.createText(scope.text, scope.fontSize, scope.fontColor, undefined) : "")
+                );
+            });
         }
     }
 }])

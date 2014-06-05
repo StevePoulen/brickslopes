@@ -27,7 +27,7 @@ describe('controllers', function() {
             route = {current: {params: {eventId: 234}}};
             ctrl = $controller('afolEventRegistration', { $scope: scope, $route: route});
             mockBackend = _$httpBackend_;
-            response = {'eventId': 234, 'eventName': 'BrickSlopes 2015'};
+            response = {data:{'eventId': 234, 'eventName': 'BrickSlopes 2015'}};
             mockBackend.expectGET('/controllers/event.php?eventId=234').respond(201, response);
             location = $location;
         }));
@@ -63,7 +63,7 @@ describe('controllers', function() {
             it('should get event details', function() {
 
                 mockBackend.flush();
-                expect(scope.eventDetails).toEqualData(response);
+                expect(scope.eventDetails).toEqualData(response.data);
             });
         });
 

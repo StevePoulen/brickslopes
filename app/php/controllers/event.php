@@ -22,8 +22,8 @@ class Event {
     }
 
     private function get() {
-        $this->eventsObj->getEventInformation($_GET);
-        if ($this->eventsObj->result) {
+        $response = $this->eventsObj->getEventInformation($_GET);
+        if ($response) {
             header("HTTP/1.0 200 Success");
             $dbObj = $this->eventsObj->result->fetch_object();
             echo json_encode (

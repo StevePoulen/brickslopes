@@ -13,7 +13,7 @@
         }
 
         private function runMigrations() {
-            $eventId = $this->addInitialEvent();
+            $eventId = $this->addInitialEvents();
             $this->migrateUsers($eventId);
         }
 
@@ -45,7 +45,7 @@
             }
         }
 
-        private function addInitialEvent() {
+        private function addInitialEvents() {
             $eventsObj = new events();
             $eventMap = Array();
             $eventMap['name'] = 'BrickSlopes';
@@ -57,6 +57,7 @@
             $eventMap['meetAndGreetCost'] = '10.00';
             $eventMap['discountDate'] = '2014-03-15 12:00:00';
             $eventId = $eventsObj->addEventInformation($eventMap);
+            $firstYearEventId = $eventId;
 
             $this->validateTable('events', 1);
 
@@ -95,7 +96,56 @@
 
             $this->validateTable('eventDates', 4);
 
-            return $eventId;
+            $eventsObj = new events();
+            $eventMap = Array();
+            $eventMap['name'] = 'BrickSlopes';
+            $eventMap['city'] = 'Salt Lake City';
+            $eventMap['state'] = 'Utah';
+            $eventMap['year'] = '2015';
+            $eventMap['cost'] = '65.00';
+            $eventMap['discount'] = '60.00';
+            $eventMap['meetAndGreetCost'] = '10.00';
+            $eventMap['discountDate'] = '2015-03-15 12:00:00';
+            $eventId = $eventsObj->addEventInformation($eventMap);
+
+            $this->validateTable('events', 2);
+
+            $eventDatesObj = new eventDates();
+            $eventDatesMap = array (
+                'eventId' => $eventId,
+                'startDate' => '2014-05-01 8:00:00',
+                'endDate' => '2014-05-01 20:00:00',
+                'type' => 'afol'
+            );
+            $eventDatesObj->addEventDates($eventDatesMap);
+
+            $eventDatesMap = array (
+                'eventId' => $eventId,
+                'startDate' => '2014-05-02 10:00:00',
+                'endDate' => '2014-05-02 23:59:00',
+                'type' => 'afol'
+            );
+            $eventDatesObj->addEventDates($eventDatesMap);
+
+            $eventDatesMap = array (
+                'eventId' => $eventId,
+                'startDate' => '2014-05-03 9:00:00',
+                'endDate' => '2014-05-03 20:00:00',
+                'type' => 'afol'
+            );
+            $eventDatesObj->addEventDates($eventDatesMap);
+
+            $eventDatesMap = array (
+                'eventId' => $eventId,
+                'startDate' => '2014-05-04 8:00:00',
+                'endDate' => '2014-05-04 12:00:00',
+                'type' => 'afol'
+            );
+            $eventDatesObj->addEventDates($eventDatesMap);
+
+            $this->validateTable('eventDates', 8);
+
+            return $firstYearEventId;
         }
 
         private function migrateUsers($eventId) {
