@@ -6,11 +6,9 @@ module.exports = function(config){
       'app/lib/**/angular.min.js',
       'app/lib/**/angular-route.min.js',
       'tests/js/lib/angular-mocks.min.js',
-      'app/lib/**/jquery.min.js',
-      'app/lib/**/underscore.min.js',
+      'app/lib/**/*.js',
       'app/js/**/*.js',
-      'tests/js/unit/**/*.js',
-      'node_modules/jasmine-jquery/lib/jasmine-jquery.js'
+      'tests/js/unit/**/*.js'
     ],
 
     exclude : [
