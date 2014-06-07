@@ -2,7 +2,8 @@
 
 /* Controllers */
 angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
-.controller('bsIndex', ['$scope', '$location', function($scope, $location) {
+.controller('bsIndex', ['$scope', function($scope) {
+    $("#splashPageCTA").show(500);
 }])
 .controller('bsHeader', ['$scope', '$window', '$location', function($scope, $window, $location) {
     $scope.clickBuilder = function() {
@@ -33,6 +34,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     }
 }])
 .controller('afolLogin', ['$scope', '$location', 'Auth', '$window', function($scope, $location, Auth, $window) {
+    $("#splashPageCTA").hide(500);
     $scope.showLogin = true;
     $scope.verifying = false;
     $scope.showResetPassword = false;
@@ -220,6 +222,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     });
 }])
 .controller('afolIndex', ['$scope', '$location', 'GetAfolMocList', '$window', function($scope, $location, GetAfolMocList, $window) {
+    $("#splashPageCTA").hide(500);
     $scope.mocCount = 0;
     $scope.vendorCount = 0;
     $scope.mocList = [];

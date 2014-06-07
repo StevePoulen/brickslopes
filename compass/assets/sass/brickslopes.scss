@@ -9,15 +9,14 @@
 @import url('/css/vendor.css');
 @import url('/css/guest.css');
 
-//BrickSlopes Red -> #FF0500 and 0, 98, 100, 0
+//BrickSlopes Red -> #FF0500 and CMYK 0, 98, 100, 0 HEX FF0500 RGB 255 5 0
 $bs_red: #FF0500;
-//  BrickSlopes Blue -> #1224FC and 93, 86, 1, 0 / 85, 62, 3, 0 35469A
+//  BrickSlopes Blue -> #1224FC and 93, 86, 1, 0 / CMYK 85, 62, 3, 0  HEX 35469A RGB 38 97 247
 $bs_blue: #35469A;
 
 $dashboard_width: 1245px;
-$dashboard_min_height: 675px;
+$dashboard_min_height: 795px;
 $dashboard_height: 795px;
-
 
 /* Smartphones (portrait and landscape) ----------- */
 @media only screen 
@@ -75,11 +74,11 @@ only screen and (min-device-pixel-ratio : 1.5) {
     }
 
     #dashboardText{
-        height: $dashboard_height - 30;
+        height: $dashboard_height - 130;
     }
 
     #splashPage {
-        height: $dashboard_height - 10;
+        height: $dashboard_height - 110;
     }
 }
 
@@ -91,11 +90,11 @@ only screen and (min-device-pixel-ratio : 1.5) {
     }
 
     #dashboardText{
-        height: $dashboard_height - 30;
+        height: $dashboard_height - 130;
     }
 
     #splashPage {
-        height: $dashboard_height;
+        height: $dashboard_height - 110;
     }
 }
 
@@ -164,46 +163,144 @@ only screen and (min-device-pixel-ratio : 1.5) {
 }
 
 #splashPage {
-  position: absolute;
-  top: 0px;
-  left: 15px;
-  width: 1218px;
-  text-align: center;
-  border: 5px solid $bs_blue;
-  background: white;
-  border-radius: 10px;
+    position: absolute;
+    top: 0px;
+    left: 15px;
+    width: 1218px;
+    text-align: center;
+    border: 5px solid $bs_blue;
+    background: white;
+    border-radius: 10px;
+
+    #splashText {
+      position: absolute;
+      border: 0px solid yellow;
+      top: 5px;
+      left: 5px;
+      height: 400px;
+      width: 425px;
+      border-radius: 10px;
+      padding: 5px;
+      font-size: 2.05em;
+      text-align: center;
+      color: black;
+      background: white;
+    }
+
+    .splashTextHome {
+        position: absolute;
+        border-radius: 10px;
+        right: 60px;
+        top: 25px;
+        padding: 10px;
+        font-size: 2.0em;
+        text-align: center;
+        height: 600px;
+        width: 630px;
+        color: black;
+        background: white;
+        vertical-align: middle;
+        z-index: 5;
+        border: 5px solid $bs_blue;
+
+        #splashFigJackSparrow {
+            position: absolute;
+            z-index: 5;
+            height: 50px;
+            bottom: 250px;
+            right: -95px;
+        }
+    }
+
+    .imageLeft {
+        position: absolute;
+        top: 125px;
+        left: 50px;
+        height: 250px;
+        width: 250px;
+        border: 1px solid black;
+        border-radius: 5px;
+        overflow: hidden;
+    }
+
+    .imageRight {
+        position: absolute;
+        top: 325px;
+        left: 225px;
+        height: 250px;
+        width: 250px;
+        border: 1px solid black;
+        border-radius: 5px;
+        overflow: hidden;
+    }
+
+    .publicImage {
+        height: 250px;
+    }
+
+    #splashFigBatman {
+        position: absolute;
+        z-index: 5;
+        height: 50px;
+        bottom: 250px;
+        left: -35px;
+    }
+
+    #splashFigSuperMan {
+        position: absolute;
+        z-index: 5;
+        height: 50px;
+        width: 100px;
+        bottom: 155px;
+        left: -35px;
+    }
+
+    #publicTickets {
+        position: absolute;
+        z-index: 2;
+        height: 225px;
+        bottom: 25px;
+        width: 400px;
+        left: 15px;
+        border: 5px solid $bs_blue;
+        border-radius: 10px;
+
+        #publicTicketsText {
+            position: absolute;
+            z-index: 2;
+            top: 10px;
+            right: 7px;
+            height: 125px;
+            bottom: 25px;
+            width: 300px;
+            border: 0px solid black;
+            border-radius: 10px;
+        }
+    }
 }
 
-div#splashPage div#splashText {
-  position: absolute;
-  border: 0px solid yellow;
-  top: 5px;
-  left: 5px;
-  height: 400px;
-  width: 425px;
-  border-radius: 10px;
-  padding: 5px;
-  font-size: 2.05em;
-  text-align: center;
-  color: black;
-  background: white;
-}
+#splashPageCTA {
+    position: absolute;
+    width: $dashboard_width;
+    bottom: 65px;
+    left: 15px;
+    width: 1218px;
+    height: 90px;
+    text-align: center;
+    border: none;
+    z-index: 100;
+    //border: 5px solid $bs_blue;
+    //background: white;
+    //border-radius: 10px;
 
-div#splashPage div.splashTextHome {
-  position: absolute;
-  border-radius: 10px;
-  right: 60px;
-  top: 25px;
-  padding: 10px;
-  font-size: 2.0em;
-  text-align: center;
-  height: 535px;
-  width: 630px;
-  color: black;
-  background: white;
-  vertical-align: middle;
-  z-index: 5;
-  border: 5px solid $bs_blue;
+    #countDown {
+        position: absolute;
+        right: 10px;
+        border: none;
+        height: 90px;
+        bottom: 0;
+        width: 500px;
+    }
 }
 
 #logo {
@@ -227,53 +324,7 @@ div#splashPage div.splashTextHome {
     text-align: center;
 }
 
-div#splashPage div#splashFigBatman {
-  position: absolute;
-  z-index: 5;
-  height: 50px;
-  bottom: 250px;
-  left: -35px;
-}
 
-div#splashTexthome div#splashFigJackSparrow {
-  position: absolute;
-  z-index: 5;
-  height: 50px;
-  bottom: 250px;
-  right: -95px;
-}
-
-div#splashPage div#splashFigSuperMan {
-  position: absolute;
-  z-index: 5;
-  height: 50px;
-  width: 100px;
-  bottom: 155px;
-  left: -35px;
-}
-
-div#splashPage div#publicTickets {
-  position: absolute;
-  z-index: 2;
-  height: 225px;
-  bottom: 25px;
-  width: 400px;
-  left: 15px;
-  border: 5px solid $bs_blue;
-  border-radius: 10px;
-}
-
-div#publicTickets div#publicTicketsText {
-  position: absolute;
-  z-index: 2;
-  top: 10px;
-  right: 7px;
-  height: 125px;
-  bottom: 25px;
-  width: 300px;
-  border: 0px solid black;
-  border-radius: 10px;
-}
 
 img#batman {
   height: 200px;
