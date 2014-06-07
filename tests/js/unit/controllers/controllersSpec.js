@@ -326,6 +326,7 @@ describe('controllers', function() {
                 scope.changePassword();
                 scope.changePasswordForm = {'$setPristine': function() {}};
                 expect(scope.verifying).toBe(true);
+                mockBackend.expectGET('/controllers/eventRegistration.php').respond({});
                 mockBackend.expectPATCH('/controllers/authentication.php').respond(201);
                 mockBackend.flush();
                 expect(scope.verifying).toBe(false);
@@ -343,6 +344,7 @@ describe('controllers', function() {
                 scope.changePassword();
                 scope.changePasswordForm = {'$setPristine': function() {}};
                 expect(scope.verifying).toBe(true);
+                mockBackend.expectGET('/controllers/eventRegistration.php').respond({});
                 mockBackend.expectPATCH('/controllers/authentication.php').respond(412);
                 mockBackend.flush();
                 expect(scope.verifying).toBe(false);

@@ -113,32 +113,32 @@
             $eventDatesObj = new eventDates();
             $eventDatesMap = array (
                 'eventId' => $eventId,
-                'startDate' => '2014-05-01 8:00:00',
-                'endDate' => '2014-05-01 20:00:00',
+                'startDate' => '2015-05-01 8:00:00',
+                'endDate' => '2015-05-01 20:00:00',
                 'type' => 'afol'
             );
             $eventDatesObj->addEventDates($eventDatesMap);
 
             $eventDatesMap = array (
                 'eventId' => $eventId,
-                'startDate' => '2014-05-02 10:00:00',
-                'endDate' => '2014-05-02 23:59:00',
+                'startDate' => '2015-05-02 10:00:00',
+                'endDate' => '2015-05-02 23:59:00',
                 'type' => 'afol'
             );
             $eventDatesObj->addEventDates($eventDatesMap);
 
             $eventDatesMap = array (
                 'eventId' => $eventId,
-                'startDate' => '2014-05-03 9:00:00',
-                'endDate' => '2014-05-03 20:00:00',
+                'startDate' => '2015-05-03 9:00:00',
+                'endDate' => '2015-05-03 20:00:00',
                 'type' => 'afol'
             );
             $eventDatesObj->addEventDates($eventDatesMap);
 
             $eventDatesMap = array (
                 'eventId' => $eventId,
-                'startDate' => '2014-05-04 8:00:00',
-                'endDate' => '2014-05-04 12:00:00',
+                'startDate' => '2015-05-04 8:00:00',
+                'endDate' => '2015-05-04 12:00:00',
                 'type' => 'afol'
             );
             $eventDatesObj->addEventDates($eventDatesMap);

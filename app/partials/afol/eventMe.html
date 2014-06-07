@@ -41,9 +41,8 @@
             </div>
             <div class="events">
                 <div class="meText"><bs-text text="Your Events" font-color=black font-size=1.25></bs-text></div>
-                <div class="actionButtonSmall" ng-click="clickRegistration(2)">
-                    <bs-text text="Sign-up" font-color=white font-size=1.25></bs-text>
-                </div>
+                <bs-registered-events ng-if="displayRegisterEventCTA"></bs-registered-events>
+                <bs-event-registration-cta ng-if="! displayRegisterEventCTA"></bs-event-registration-cta>
             </div>
         </div>
     </div>

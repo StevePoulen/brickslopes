@@ -16,11 +16,34 @@ class EventRegistration {
             ? $_SERVER['REQUEST_METHOD']
             : 'error';
 
-        if ($requestMethod == "POST") {
+        if ($requestMethod == "GET") {
+            $this->get();
+        } else if ($requestMethod == "POST") {
             $this->post();
         } else {
             header("HTTP/1.0 405 Method Not Allowed");
         }
+    }
+
+    private function get() {
+        $eventJson = array();
+        $this->registrationsObj->getRegistrationInformationByUserId($this->userId);
+        header("HTTP/1.0 200 Success");
+        if ($this->registrationsObj->result) {
+            while($dbObj = $this->registrationsObj->result->fetch_object()) {
+                array_push( $eventJson, 
+                    array (
+                        'badgeLine1' => $dbObj->badgeLine1,
+                        'badgeLine2' => $dbObj->badgeLine2, 
+                        'meetAndGreet' => $dbObj->meetAndGreet,
+                        'ageVerification' => $dbObj->ageVerification,
+                        'paid' => $dbObj->paid,
+                        'name' => $dbObj->name
+                    )
+                );
+            }
+        }
+        echo json_encode ($eventJson);
     }
 
     private function post() {

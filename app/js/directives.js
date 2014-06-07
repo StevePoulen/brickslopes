@@ -118,4 +118,19 @@ angular.module('brickSlopes.directives', [])
         replace: true,
         templateUrl: 'partials/public/login/signUpText.html'
     }
+})
+.directive('bsRegisteredEvents', function() {
+    return {
+        restrict: 'E',
+        scope: true,
+        replace: true,
+        templateUrl: 'partials/afol/eventPanes/registeredEvents.html'
+    }
+})
+.directive('bsEventRegistrationCta', function() {
+    return {
+        restrict: 'E',
+        replace: true,
+        templateUrl: 'partials/afol/eventPanes/registerEventsCTA.html'
+    }
 });

@@ -1,73 +1,72 @@
 <div id="eventDashboard">
     <span id="dashboardText">
-        <h1><bs-logo font-size=1.25 text="{{eventDetails.city}}"></bs-logo> &#8226; <bs-text text="Event Registration" font-color=black></bs-text></h1>
-        <bs-logo font-color=black></bs-logo> is a LEGO Event for Adult Fan's of LEGO.
-      <h2> Before March 15th, 2015</h2>
-      ** Last day for printed LEGO Brick Badges **
-      <p>  
-        <span class="blueFont">AFOL 4-Day Event Pass</span> -- <span class="bold">{{eventDetails.discount | currency}}</span> per person 
-      <p>
-      <span class="redFont">Meet & Greet Event Pass</span> -- <span class="bold">{{eventDetails.meetAndGreetDiscount | currency}}</span> per person
-
-      <h2>After March 15, 2015</h2>
-      <span class="blueFont">AFOL 4-Day Event Pass</span> -- <span class="bold">{{eventDetails.cost | currency}}</span> per person
-      <p>
-      <span class="redFont">Meet & Greet Event Pass</span> -- <span class="bold">{{eventDetails.meetAndGreetCost | currency}}</b> per person
-      <hr>
-      <h3>AFOL Event Registration Form</h3>
-      <form action="/cgi/registration.php" method="post" onsubmit="return validateTheRegistration()" id="registrationForm">
-        <input type="hidden" name="subject" value="BrickSlopes Registration">
-        <input type="hidden" name="isRegistration" value="yes">
-        <input type="hidden" name="referPage" value="https://www.brickslopes.com/eventRegistration/registrationReceived.php">
-        <label id="firstNameLabel">First Name: (required)</label><br><input id="firstName" type="text" name="firstName" size=50>
-        <p>
-        <label id="lastNameLabel">Last Name: (required)</label><br><input id="lastName" type="text" name="lastName" size=50>
-        <p>
-        <label id="emailAddressLabel">E-mail Address: (required)</label><br><input id="emailAddress"  type="text" name="email" size=50>
-        <p>
-        <label id="addressLabel">Address: (required)</label><br><input id="address" type="text" name="address" size=50>
-        <p>
-        <label id="cityLabel">City: (required)</label><br><input id="city" type="text" name="city" size=50>
-        <p>
-        <label id="stateLabel">State: (required)</label><br><input id="state" type="text" name="state" size=50>
-        <p>
-        <label id="zipcodeLabel">Zipcode: (required)</label><br><input id="zipcode" type="text" name="zipcode" size=50>
-        <p>
-        <label>Flickr Handle:</label><br><input type="text" name="flickr" size=50>
-        <p>
-        <label><bs-logo></bs-logo> Badge Line 1:</label><br><input type="text" name="badgeLine1" size=50 maxlength=15>
-        <p>
-        <label><bs-logo></bs-logo> Badge Line 2:</label><br><input type="text" name="badgeLine2" size=50 maxlength=15>
-        <p>
-        <label>Please include the Meet & Greet Event:</label> Yes <input type="radio" name="meetAndGreet" value="yes" checked> No <input type="radio" name="meetAndGreet" value="no">
-        <p>
-        <label>I am over 18 years old*:</label> Yes <input type="radio" name="ageVerification" value="yes" checked> No <input type="radio" name="ageVerification" value="no">
-        <p>
-        <label>Comments:</label><br><textarea cols="50" rows="5" name="comments"></textarea>
-        <p>
-        <input type="submit" value="Continue to Payment">
-        <p>
-        <font size=-1>* Persons under 18 years old must be accompanied by a registered adult.</font>
-      </form>
+        <div>
+            <h1><bs-logo font-size=1.25 text="{{eventDetails.city}}"></bs-logo> &#8226; <bs-text text="Event Registration" font-color=black></bs-text></h1>
+        </div>
+        <div id="discountPriceInformation">
+            <h2> Before March 15th, 2015</h2>
+            <span class="blueFont">AFOL 4-Day Event Pass</span> -- <span class="bold">{{eventDetails.discount | currency}}</span> per person 
+            <p>
+            <span class="blueFont">Meet & Greet Event Pass</span> -- <span class="bold">{{eventDetails.meetAndGreetDiscount | currency}}</span> per person
+        </div>
+        <div id="fullPriceInformation">
+            <h2>After March 15, 2015</h2>
+            <span class="blueFont">AFOL 4-Day Event Pass</span> -- <span class="bold">{{eventDetails.cost | currency}}</span> per person
+            <p>
+            <span class="blueFont">Meet & Greet Event Pass</span> -- <span class="bold">{{eventDetails.meetAndGreetCost | currency}}</b> per person
+        </div>
+        <div id="eventDivider">
+            <hr>
+        </div>
+        <div class="registrationForm">
+            <div>
+                <h3>AFOL Event Registration Form</h3>
+            </div>
+            <form name="registration" ng-submit="registration.$valid && submitRegistration()">
+                <div class="loginField">
+                    <input size="100" type="text" placeholder="Badge Line 1:" ng-model="badgeLine1" required ng-maxlength=15>
+                </div>
+                <div class="loginField">
+                    <input type="text" placeholder="Badge Line 2:" ng-model="badgeLine2" required ng-maxlength=15>
+                </div>
+                <div class="optionField">
+                    <label>Meet & Greet Event:</label> Yes <input type="radio" ng-model="meetAndGreet" value="YES" checked> No <input type="radio" ng-model="meetAndGreet" value="NO">
+                </div>
+                <div class="optionField">
+                    <label>I am over 18 years old*:</label> Yes <input type="radio" ng-model="ageVerification" value="YES" checked> No <input type="radio" ng-model="ageVerification" value="NO">
+                </div>
+                <div class="commentsField">
+                    <label>Comments:</label><br><textarea cols="50" rows="5" name="comments"></textarea>
+                </div>
+                <div class="formButtonPosition">
+                    <button class="formButton" type="submit" ng-class="{disabled: verifying}" ng-disabled="verifying">
+                        <bs-text text="Continue to payment" font-color=white font-size=1.75></bs-text>
+                    </button>
+                </div>
+                <div class="asterickField">
+                    <font size=-1>* Persons under 18 years old must be accompanied by a registered adult.</font>
+                </div>
+            </form>
+        </div>
         <div id="eventSwag">
-          <h2>Registration Includes ...</h2>
-          <ol>
-            <li>4-Day Pass, May 1st thru 4th</li>
-            <li>Keynote Speaker Access</li>
-            <li>MOC Display Space</li>
-            <li><bs-logo></bs-logo> Name Badge</li>
-            <li>Access to LEGO Fan Games</li>
-            <li>MOC Prizes</li>
-            <li>Swag</li>
-            <li>fun, Fun, FUN!</li>
-          </ol>
-          <h2>Meet & Greet Event Includes ...</h2>
-          <ol>
-            <li>Dinner Thursday May, 1st</li>
-            <li>Door Prizes</li>
-            <li>Swag</li>
-            <li>Access to AFOLs</li>
-          </ol>
+            <h2>Registration Includes ...</h2>
+            <ol>
+                <li>4-Day Pass, May 1st thru 4th</li>
+                <li>Keynote Speaker Access</li>
+                <li>MOC Display Space</li>
+                <li><bs-logo></bs-logo> Name Badge</li>
+                <li>Access to LEGO Fan Games</li>
+                <li>MOC Prizes</li>
+                <li>Swag</li>
+                <li>fun, Fun, FUN!</li>
+            </ol>
+            <h2>Meet & Greet Event Includes ...</h2>
+            <ol>
+                <li>Dinner Thursday May, 1st</li>
+                <li>Door Prizes</li>
+                <li>Swag</li>
+                <li>Access to AFOLs</li>
+            </ol>
         </div>
     </span>
     <div id="dashboardCloseButton" ng-click="closeDialog()"></div>

@@ -129,6 +129,8 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     $scope.timer = false;
     $scope.eventId = $route.current.params.eventId;
     $scope.eventDetails = {city: 'loading'};
+    $scope.meetAndGreet = 'YES';
+    $scope.ageVerification = 'YES';
 
     function serializeRegistrationJson() {
         return {
@@ -142,7 +144,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         }
     }
 
-    $scope.eventRegistration = function() {
+    $scope.submitRegistration = function() {
         $scope.verifying = true;
         eventRegistration.create(serializeRegistrationJson()).then(function(response) {
             $location.path('/afol/eventMe.html');
@@ -162,11 +164,12 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         $location.path("/afol/index.html");
     }
 }])
-.controller('afolMe', ['$scope', '$location', 'Auth', function($scope, $location, Auth) {
+.controller('afolMe', ['$scope', '$location', 'Auth', 'EventRegistration', function($scope, $location, Auth, EventRegistration) {
     $scope.verifying = false;
     $scope.displayMessage = "";
     $scope.timer = false;
     $scope.success = true;
+    $scope.eventList = {}
 
     function serializeChangePasswordJson() {
         return {
@@ -207,7 +210,14 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         $location.path("/afol/index.html");
     }
 
+    function displayRegisterEventButton() {
+        return Object.keys($scope.eventList).length;
+    }
 
+    EventRegistration.get().then(function(data) {
+        $scope.eventList = data;
+        $scope.displayRegisterEventCTA = displayRegisterEventButton();
+    });
 }])
 .controller('afolIndex', ['$scope', '$location', 'GetAfolMocList', '$window', function($scope, $location, GetAfolMocList, $window) {
     $scope.mocCount = 0;

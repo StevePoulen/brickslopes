@@ -70,6 +70,22 @@ angular.module('brickSlopes.services', [])
 }])
 .factory('EventRegistration', ['$q', '$http', function($q, $http) {
     return {
+        get: function() {
+            var delay= $q.defer();
+            $http (
+                {
+                    method: 'GET',
+                    url: '/controllers/eventRegistration.php'
+                }
+            ).success(function(data, status, headers, config) {
+                delay.resolve(data);
+            }).error(function(data, status, headers, config) {
+                delay.reject(data);
+            });
+
+            return delay.promise;
+        },
+
         create: function(eventRegistrationDTO) {
             var delay= $q.defer();
             $http (

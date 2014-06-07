@@ -6,8 +6,36 @@ class registrations extends db {
         parent::__construct();
     }
 
+    public function getRegistrationInformationByUserId($userId) {
+        return $this->query($this->selectQuery($userId));
+    }
+
     public function addRegistrationInformation($data) {
         return $this->query($this->insertQuery($data));
+    }
+
+    private function selectQuery($userId) {
+        return "
+            SELECT 
+                r.badgeLine1 as badgeLine1,
+                r.badgeLine2 as badgeLine2,
+                r.meetAndGreet as meetAndGreet,
+                r.ageVerification as ageVerification,
+                r.paid as paid,
+                e.name as name
+            FROM
+                registrations r,
+                events e,
+                eventDates ed
+            WHERE
+                r.userId = '$userId'
+                AND r.eventId = e.eventId
+                AND e.eventId = ed.eventId
+                AND ed.startDate > now()
+            GROUP BY
+                ed.eventId
+        ;
+      ";
     }
 
     private function insertQuery($data) {

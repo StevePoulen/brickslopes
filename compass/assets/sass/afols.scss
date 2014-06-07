@@ -1,5 +1,5 @@
 $dashboard_width: 1220px;
-$dashboard_min_height: 675px;
+$dashboard_height: 795px;
 $eventPane_height: 200px;
 $eventPane_width: 300px;
 $eventPane_margin: 5;
@@ -35,8 +35,8 @@ $pane_width: 1238px;
     #login {
         position: absolute;
         left: 10px;
-        top: $dashboard_min_height / 2 - $dashboard_min_height / 4;
-        height: $dashboard_min_height / 2;
+        top: $dashboard_height / 2 - $dashboard_height / 4;
+        height: $dashboard_height / 2;
         width: $dashboard_width / 2 - 20;
         text-align: center;
 
@@ -60,7 +60,7 @@ $pane_width: 1238px;
         position: absolute;
         right: 10px;
         top: 75px;
-        height: $dashboard_min_height / 2;
+        height: $dashboard_height / 2;
         width: $dashboard_width / 2 - 20;
         border: none;
         opacity: 0;
@@ -82,6 +82,112 @@ $pane_width: 1238px;
         }
     }
 
+    #discountPriceInformation {
+        position: absolute;
+        left: 25px;
+        height: 150px;
+        top: 100px;
+        width: 450px;
+        border: none;
+        padding-left: 4px;
+        background: lightgreen;
+        border-radius: 4px;
+        text-align: center;
+    }
+
+    #fullPriceInformation {
+        position: absolute;
+        left: 500px;
+        height: 150px;
+        top: 100px;
+        width: 450px;
+        border: none;
+        padding-left: 4px;
+        background: lightgrey;
+        border-radius: 4px;
+        text-align: center;
+    }
+
+    #eventDivider {
+        position: absolute;
+        left: 25px;
+        height: 5px;
+        top: 265px;
+        width: 935px;
+
+    }
+
+    #eventSwag li {
+        list-style-type: disc;
+        text-align: left;
+        font-size: 1.25em;
+        padding-bottom: 5px;
+    }
+
+    #eventSwag {
+        border-radius:25px;
+        position: absolute;
+        height: dashboard_height;
+        width: 450px;
+        left: 500px;
+        top: 285px;
+        border: 1px solid black;
+        z-index: 1;
+        background: white;
+        padding-left: 10px;
+        background: lightgreen;
+    }
+
+    .registrationForm {
+        position: absolute;
+        left: 25px;
+        width: 400px;
+        top: 275px;
+
+        .loginField {
+            margin-bottom: 20px;
+            border: 1px solid #BCBEBF;
+            border-radius: 5px;
+            width: 400px;
+            height: 42.5px;
+            padding-top: 7.5px;
+            text-align: left;
+        }
+
+        .optionField {
+            margin-bottom: 20px;
+            border: 1px solid #BCBEBF;
+            border-radius: 5px;
+            width: 390px;
+            height: 35px;
+            padding-left: 10px;
+            padding-top: 15px;
+            text-align: left;
+        }
+
+        .asterickField {
+            @extend .optionField;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 0;
+            width: 425px;
+            height: 35px;
+            padding-top: 15px;
+            text-align: left;
+        }
+
+        .commentsField {
+            margin-bottom: 20px;
+            border: 1px solid #BCBEBF;
+            border-radius: 5px;
+            width: 390px;
+            height: 135px;
+            padding-left: 10px;
+            padding-top: 15px;
+            text-align: left;
+        }
+    }
+
     #resetPasswordForm {
         @extend #signUpForm;
         top: 250px;
@@ -91,7 +197,7 @@ $pane_width: 1238px;
         position: absolute;
         left: $dashboard_width / 2 - 1;
         width: 0px;
-        height: $dashboard_min_height - 300;
+        height: $dashboard_height - 300;
         top: 150px;
         border: 1px solid black;
         border-radius: 2px;
@@ -101,8 +207,8 @@ $pane_width: 1238px;
     #signUpText {
         position: absolute;
         right: 10px;
-        top: $dashboard_min_height / 2 - $dashboard_min_height / 4;
-        height: $dashboard_min_height / 2;
+        top: $dashboard_height / 2 - $dashboard_height / 4;
+        height: $dashboard_height / 2;
         width: $dashboard_width / 2 - 20;
         border: none;
         
@@ -140,7 +246,7 @@ $pane_width: 1238px;
     top: 100px;
     left: 4px;
     width: $pane_width - 4;
-    height: $dashboard_min_height;
+    height: $dashboard_height;
     border: none;
     overflow: none;
 
@@ -207,32 +313,12 @@ $pane_width: 1238px;
     }
 }
 
-#eventSwag li {
-  list-style-type: disc;
-  text-align: left;
-  font-size: 1.25em;
-  padding-bottom: 5px;
-}
-
-#dashboardText div#eventSwag {
-  border-radius:25px;
-  position: absolute;
-  height: dashboard_min_height;
-  width: 450px;
-  right: 20px;
-  top: 150px;
-  border: 1px solid black;
-  z-index: 1;
-  background: white;
-  padding-left: 10px;
-}
-
 #panes {
     position: absolute;
     top: 0px;
     right: 0px;
     width: $pane_width;
-    height: $dashboard_min_height;
+    height: $dashboard_height;
     border: 0px solid yellow;
     overflow: scroll;
 }

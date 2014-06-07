@@ -87,7 +87,7 @@ describe('controllers', function() {
                     comments: "Can't Wait!",
                     type: 'afol'
                 }
-                scope.eventRegistration();
+                scope.submitRegistration();
                 expect(scope.verifying).toBe(true);
                 mockBackend.expectPOST('/controllers/eventRegistration.php', dto).respond(201);
                 mockBackend.flush();
@@ -105,7 +105,7 @@ describe('controllers', function() {
                     comments: "Can't Wait!",
                     type: 'afol'
                 }
-                scope.eventRegistration();
+                scope.submitRegistration();
                 expect(scope.verifying).toBe(true);
                 mockBackend.expectPOST('/controllers/eventRegistration.php', dto).respond(400);
                 mockBackend.flush();
