@@ -5,6 +5,39 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
 .controller('bsIndex', ['$scope', function($scope) {
     $("#splashPageCTA").show(500);
 }])
+.controller('emailUs', ['$scope', function($scope) {
+    $("#splashPageCTA").show(500);
+    $scope.comments = 'Comments ...';
+    $scope.captchaInit = "12345";
+
+    $scope.$watch('comments', function(newValue, oldValue) {
+        if (oldValue === 'Comments ...' && newValue !== 'Comments ...') {
+            $('#emailComments').removeClass('greyFont');
+            $scope.comments = newValue.substr(12,13);
+        } else if (newValue === '') {
+            $('#emailComments').addClass('greyFont');
+            $scope.comments = 'Comments ...';
+        }
+    });
+
+    function serializeEmailUsJson() {
+        return {
+            firstName: $scope.firstName,
+            lastName: $scope.lastName,
+            email: $scope.email,
+            comments: $scope.comments
+        }
+    }
+
+/*
+    Auth.reset(serializeEmailUsJson()).then(function(response) {
+        $scope.verifying = false;
+        $scope.resetEmail = "";
+        $scope.resetPasswordForm.$setPristine();
+        $scope.displayMessage = "An e-mail with reset information has been sent to your account";
+    });
+    */
+}])
 .controller('bsHeader', ['$scope', '$window', '$location', function($scope, $window, $location) {
     $scope.clickBuilder = function() {
         if ($window.sessionStorage.token) {

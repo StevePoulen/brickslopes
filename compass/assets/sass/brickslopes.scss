@@ -203,6 +203,60 @@ only screen and (min-device-pixel-ratio : 1.5) {
         z-index: 5;
         border: 5px solid $bs_blue;
 
+        #splashTextEmailUs {
+            position: relative;
+            left: $dashboard_width / 4 - 180;
+            width: 350px;
+            border: none;
+            text-align: left;
+
+            .loginField {
+                margin-bottom: 10px;
+                border: 1px solid #BCBEBF;
+                border-radius: 5px;
+                width: 340px;
+                height: 42.5px;
+                padding-top: 7.5px;
+                padding-left: 10px;
+            }
+
+            .loginField input {
+                width: 325px;
+            }
+
+            .captchaField {
+                @extend .loginField;
+
+                .captcha {
+                    position: absolute;
+                    right: 5px;
+                    bottom: 64px;
+                    font-size: 0.5em;
+                    background-color: black;
+                    color: white;
+                    border-radius: 5px;
+                    padding-top: 3px;
+                    height: 42px;
+                    width: 150px;
+                    text-align: center;
+                }
+
+                input {
+                    width: 150px;
+                }
+            }
+
+
+            .commentsField textarea {
+                width: 350px;
+                height: 100px;
+                border: 1px solid #BCBEBF;
+                border-radius: 5px;
+                margin-bottom: 10px;
+                padding-top: 10px;
+            }
+        }
+
         #splashFigJackSparrow {
             position: absolute;
             z-index: 5;

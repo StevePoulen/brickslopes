@@ -44,7 +44,7 @@ config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvide
         '/emailUs/index.html',
         {
             templateUrl: '/partials/public/emailUs.html',
-            controller: 'bsIndex'
+            controller: 'emailUs'
         }
     )
     .when(

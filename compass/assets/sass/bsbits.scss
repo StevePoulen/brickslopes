@@ -1,6 +1,7 @@
 $bs_red: #FF0500;
 $bs_blue: #35469A;
 $bs_green: green;
+$bs_grey: #BCBEBF;
 
 body {
     background-color: black;
@@ -43,7 +44,7 @@ button, input, textarea {
     outline: none;
 }
 
-input[type="text"], input[type="email"], input[type="password"], textarea.input {
+input[type="text"], input[type="email"], input[type="password"], textarea {
     border: none;
     border-radius: 3px;
     box-sizing: border-box;
@@ -187,6 +188,10 @@ input.ng-dirty {
 
 .blueFont {
     color: $bs_blue;
+}
+
+.greyFont {
+    color: $bs_grey;
 }
 
 .greenFont {
