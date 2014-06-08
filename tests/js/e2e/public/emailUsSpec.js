@@ -4,7 +4,7 @@ describe('BrickSlopes Email Us Page', function() {
 
     var link = element(by.id('emailUsLink')).click();
 
-    var greeting = element(by.id('splashTextEmailUs'));
+    var greeting = element(by.css('.splashTextHome'));
     expect(greeting.getText()).toContain('EMAIL US');
   });
 });

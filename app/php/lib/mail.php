@@ -1,9 +1,39 @@
 <?php
-    class Mail {
+    class mail {
         public function __construct($email) {
             $this->message = "";
             $this->subject = "";
             $this->email = $email;
+        }
+
+        public function sendEmailUsMessage($data) {
+            $this->subject = "BrickSlopes Question";
+            $this->message = "
+                <html>
+                    <head>
+                        <title>BrickSlopes Question</title>
+                    </head>
+                    <body>
+                        <div style='font-size: 16px;'>
+                            Cody, Steve or Brian,
+
+                            {$data['firstName']} {$data['lastName']} has asked the following question:
+                            <p>
+                            {$data['comments']}
+                            <p>
+                            Please respond to this e-mail {$data['email']}
+                        </div>
+            ";
+
+            $this->message .= $this->getDisclaimer();
+
+            $this->message .= "
+                    </body>
+                </html>
+            ";
+
+            $this->sendEmail();
+
         }
 
         public function sendResetEmailMessage($firstName, $newPassword) {

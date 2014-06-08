@@ -74,7 +74,7 @@ class Authentication {
         $response = $this->usersObj->resetPassword($payload, $newPassword);
         if ($this->usersObj->result) {
             $dbObj = $this->usersObj->result->fetch_object();
-            $emailObj = new Mail($payload['email']);
+            $emailObj = new mail($payload['email']);
             $emailObj->sendResetEmailMessage($dbObj->firstName, $newPassword);
         }
         header("HTTP/1.0 200 Success");

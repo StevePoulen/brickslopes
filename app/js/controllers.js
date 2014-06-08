@@ -5,10 +5,12 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
 .controller('bsIndex', ['$scope', function($scope) {
     $("#splashPageCTA").show(500);
 }])
-.controller('emailUs', ['$scope', function($scope) {
+.controller('emailUs', ['$scope', 'EmailUs', function($scope, EmailUs) {
     $("#splashPageCTA").show(500);
     $scope.comments = 'Comments ...';
-    $scope.captchaInit = "12345";
+    $scope.captchaInit = "LeGo1";
+    $scope.timer = false;
+    $scope.verifying = false;
 
     $scope.$watch('comments', function(newValue, oldValue) {
         if (oldValue === 'Comments ...' && newValue !== 'Comments ...') {
@@ -29,14 +31,21 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         }
     }
 
-/*
-    Auth.reset(serializeEmailUsJson()).then(function(response) {
-        $scope.verifying = false;
-        $scope.resetEmail = "";
-        $scope.resetPasswordForm.$setPristine();
-        $scope.displayMessage = "An e-mail with reset information has been sent to your account";
-    });
-    */
+    $scope.submitEmail = function() {
+        $scope.verifying = true;
+        EmailUs.create(serializeEmailUsJson()).then(function(response) {
+            $scope.emailUsForm.$setPristine();
+            $scope.firstName = "";
+            $scope.lastName = "";
+            $scope.email = "";
+            $scope.comments = "";
+            $scope.captchaInit = "AwEs0me";
+            $scope.captcha= "";
+            $scope.displayMessage = "Your e-mail has been sent.";
+            $scope.timer = true;
+            $scope.verifying = false;
+        });
+    }
 }])
 .controller('bsHeader', ['$scope', '$window', '$location', function($scope, $window, $location) {
     $scope.clickBuilder = function() {

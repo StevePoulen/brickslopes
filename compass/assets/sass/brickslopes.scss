@@ -200,8 +200,16 @@ only screen and (min-device-pixel-ratio : 1.5) {
         color: black;
         background: white;
         vertical-align: middle;
-        z-index: 5;
+        z-index: 3;
         border: 5px solid $bs_blue;
+        
+        .bigger2015 {
+            position: absolute;
+            right: 10px;
+            bottom: 60px;
+            width: 300px;
+            border: none;
+        }
 
         #splashTextEmailUs {
             position: relative;
@@ -257,12 +265,77 @@ only screen and (min-device-pixel-ratio : 1.5) {
             }
         }
 
-        #splashFigJackSparrow {
+        .splashFigJackSparrow {
             position: absolute;
             z-index: 5;
             height: 50px;
-            bottom: 250px;
+            bottom: 50px;
             right: -95px;
+        }
+
+        .splashFigEmmet {
+            position: absolute;
+            z-index: 5;
+            height: 50px;
+            bottom: 150px;
+            right: 95px;
+        }
+
+        .splashFigWyldStyle {
+            position: absolute;
+            z-index: 5;
+            height: 50px;
+            bottom: 150px;
+            right: 25px;
+        }
+
+        .splashMilleniumFalcon {
+            position: absolute;
+            z-index: 5;
+            height: 50px;
+            bottom: 25px;
+            right: -95px;
+        }
+
+        .splashFigBatman {
+            position: absolute;
+            z-index: 5;
+            height: 50px;
+            bottom: 65px;
+            left: -35px;
+        }
+
+        .splashFigSuperMan {
+            position: absolute;
+            z-index: 5;
+            height: 50px;
+            bottom: 65px;
+            left: -35px;
+        }
+
+        .splashFigPresidentBusiness {
+            position: absolute;
+            z-index: -1;
+            height: 50px;
+            bottom: 165px;
+            left: 5px;
+        }
+
+        .splashFigVitruvius {
+            position: absolute;
+            z-index: -1;
+            height: 50px;
+            bottom: 375px;
+            right: 15px;
+        }
+
+        .splashCrowd {
+            position: absolute;
+            z-index: -1;
+            height: 50px;
+            bottom: 210px;
+            left: -15px;
+            border-radius: 10px;
         }
     }
 
@@ -292,21 +365,14 @@ only screen and (min-device-pixel-ratio : 1.5) {
         height: 250px;
     }
 
-    #splashFigBatman {
-        position: absolute;
-        z-index: 5;
-        height: 50px;
-        bottom: 250px;
-        left: -35px;
-    }
 
-    #splashFigSuperMan {
+    #splashDDCouch {
         position: absolute;
         z-index: 5;
         height: 50px;
         width: 100px;
-        bottom: 155px;
-        left: -35px;
+        bottom: 160px;
+        left: 30px;
     }
 
     #publicTickets {
@@ -326,9 +392,15 @@ only screen and (min-device-pixel-ratio : 1.5) {
             right: 7px;
             height: 125px;
             bottom: 25px;
-            width: 300px;
-            border: 0px solid black;
+            width: 200px;
+            border: none;
             border-radius: 10px;
+        }
+
+        .buyTicketsButton {
+            position: absolute;
+            right: 25px;
+            bottom: 30px;
         }
     }
 }
@@ -355,6 +427,32 @@ only screen and (min-device-pixel-ratio : 1.5) {
         bottom: 0;
         width: 500px;
     }
+
+    #childPackages {
+        position: absolute;
+        left: 100px;
+        height: 90px;
+        bottom: 0;
+        width: 500px;
+        border: 1px solid white;
+        background: white;
+        border-radius: 10px;
+
+        .text {
+            position: absolute;
+            left: 2px;
+            height: 90px;
+            width: 300px;
+            top: 2px;
+            border: none;
+        }
+
+        .buyTicketsButton {
+            position: absolute;
+            right: 25px;
+            top: 15px;
+        }
+    }
 }
 
 #logo {
@@ -380,12 +478,16 @@ only screen and (min-device-pixel-ratio : 1.5) {
 
 
 
-img#batman {
-  height: 200px;
+.fig {
+  height: 175px;
 }
 
-img#superman {
-  height: 175px;
+.figLarge {
+  height: 225px;
+}
+
+.figXLarge {
+  height: 250px;
 }
 
 img#miniAFOLRegistrationImage {

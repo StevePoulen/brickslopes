@@ -9,7 +9,7 @@
         <div class="splashTextHome">
             <h2><bs-text text="Email Us"></bs-text></h2>
             <div id="splashTextEmailUs">
-                <form name="emailUs" ng-submit="emailUs.$valid && submitEmail()">
+                <form name="emailUsForm" ng-submit="emailUsForm.$valid && submitEmail()">
                     <div class="loginField">
                         <input type="text" placeholder="First Name (required)" ng-model="firstName" required>
                     </div>
@@ -36,6 +36,8 @@
                     </div>
                 </form>
             </div>
+            <span class="message" ng-show="timer" ng-class="{fadeOut5: timer, greenFont: true}">{{displayMessage}}</span>
+            <div class="splashFigWyldStyle"><img class="fig" src="/images/publicPics/wyldstyle.jpg"></div>
         </div>
     </div>
 </div>

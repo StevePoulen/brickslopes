@@ -48,6 +48,27 @@ angular.module('brickSlopes.services', [])
         }
     }
 }])
+.factory('EmailUs', ['$q', '$http', function($q, $http) {
+    return {
+        create: function(emailDTO) {
+            var delay= $q.defer();
+            $http (
+                {
+                    method: 'POST',
+                    url: '/controllers/emailUs.php',
+                    data: emailDTO,
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+                }
+            ).success(function(data, status, headers, config) {
+                delay.resolve(data);
+            }).error(function(data, status, headers, config) {
+                delay.reject(data);
+            });
+
+            return delay.promise;
+        },
+    }
+}])
 .factory('EventDetails', ['$q', '$http', function($q, $http) {
     return {
         get: function(eventId) {
