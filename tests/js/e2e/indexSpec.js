@@ -3,7 +3,6 @@ describe('BrickSlopes homepage', function() {
     browser.get('http://mybrickslopes.com');
 
     var greeting = element(by.id('splashTextHome'));
-
     expect(greeting.getText()).toContain('What an event!');
   });
 });

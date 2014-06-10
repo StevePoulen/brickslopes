@@ -23,14 +23,14 @@ config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvide
         '/tickets.html',
         {
             templateUrl: 'partials/public/tickets.html',
-            controller: 'byIndex'
+            controller: 'bsIndex'
         }
     )
     .when(
         '/packages.html',
         {
             templateUrl: 'partials/public/packages.html',
-            controller: 'byIndex'
+            controller: 'bsIndex'
         }
     )
     .when(
