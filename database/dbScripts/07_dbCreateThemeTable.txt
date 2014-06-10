@@ -1,0 +1,29 @@
+-- MySQL dump 10.11
+--
+-- Host: localhost    Database: mysql
+-- ------------------------------------------------------
+-- Server version	5.0.83
+
+USE `brickSlopes`;
+
+DROP TABLE IF EXISTS `themeAwards`;
+DROP TABLE IF EXISTS `themes`;
+
+CREATE TABLE `themes` (
+  `themeId` INT(10) UNSIGNED UNIQUE NOT NULL auto_increment,
+  `eventId` INT(10) UNSIGNED NOT NULL,
+  `theme` VARCHAR(255),
+  PRIMARY KEY (`themeId`),
+  FOREIGN KEY (`eventId`) REFERENCES `events` (`eventId`),
+  UNIQUE KEY `themeId_UNIQUE` (`themeId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='The Themes Table';
+
+CREATE TABLE `themeAwards` (
+  `themeAwardId` INT(10) UNSIGNED UNIQUE NOT NULL auto_increment,
+  `themeId` INT(10) UNSIGNED NOT NULL,
+  `award` VARCHAR(255),
+  PRIMARY KEY (`themeAwardId`),
+  FOREIGN KEY (`themeId`) REFERENCES `themes` (`themeId`),
+  UNIQUE KEY `themeId_UNIQUE` (`themeId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='The Theme Awards Table';
+

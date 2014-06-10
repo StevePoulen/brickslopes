@@ -74,6 +74,14 @@ adminPassword() {
     fi
 }
 
+themeTableCreation() {
+    printf "\nSTEP $STEP_COUNTER: Create the 'BrickSlopes' theme table?\n";
+    echo "* WARNING * This is delete the current table";
+    echo -n "Create table? (Y\n) [ENTER]: "; 
+    read CREATE_THEME_TABLE;
+    incStep
+}
+
 eventTableCreation() {
     printf "\nSTEP $STEP_COUNTER: Create the 'BrickSlopes' event table?\n";
     echo "* WARNING * This is delete the current table";
@@ -122,6 +130,7 @@ userInput() {
     dropTables;
     if [[ "$DROP_ALL_TABLES" != "Y" ]]
     then
+        themeTableCreation;
         eventTableCreation;
         eventDatesTableCreation;
         userTableCreation;
@@ -145,6 +154,13 @@ createAdmin() {
     then
         echo "Create ADMIN";
         setAdminPassword;
+    fi
+}
+
+createThemesTable() {
+    if [[ "$CREATE_THEME_TABLE" == "Y" || isDropAllTables ]]
+    then
+        executeDBStatement "07_dbCreateThemeTable.txt"
     fi
 }
 
@@ -201,3 +217,4 @@ createEventTable;
 createEventDatesTable;
 createUserTable;
 createRegistrationTable;
+createThemesTable;
