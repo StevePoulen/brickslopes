@@ -56,6 +56,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     }
 }])
 .controller('bsHeader', ['$scope', '$window', '$location', function($scope, $window, $location) {
+    $scope.showAfolLogin = false;
     $scope.clickBuilder = function() {
         if ($window.sessionStorage.token) {
             $location.path("/afol/index.html");
