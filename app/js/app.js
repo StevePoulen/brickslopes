@@ -20,6 +20,20 @@ config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvide
         }
     )
     .when(
+        '/tickets.html',
+        {
+            templateUrl: 'partials/public/tickets.html',
+            controller: 'byIndex'
+        }
+    )
+    .when(
+        '/packages.html',
+        {
+            templateUrl: 'partials/public/packages.html',
+            controller: 'byIndex'
+        }
+    )
+    .when(
         '/afol/comingSoon.html',
         {
             templateUrl: 'partials/afol/comingSoon.html',

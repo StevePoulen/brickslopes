@@ -2,8 +2,16 @@
 
 /* Controllers */
 angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
-.controller('bsIndex', ['$scope', function($scope) {
+.controller('bsIndex', ['$scope', '$location', function($scope, $location) {
     $("#splashPageCTA").show(500);
+
+    $scope.tickets = function() {
+        $location.path("/tickets.html");
+    }
+
+    $scope.packages = function() {
+        $location.path("/packages.html");
+    }
 }])
 .controller('emailUs', ['$scope', 'EmailUs', function($scope, EmailUs) {
     $("#splashPageCTA").show(500);
