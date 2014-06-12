@@ -1,12 +1,18 @@
 <?php
 
 class dbObject {
-    public function __construct() {
+    private $fetchObjectCounter = 0;
 
+    public function __construct() {
     }
 
     public function fetch_object() {
-        return $GLOBALS['fetch_object'];
+        if ($this->fetchObjectCounter == 0 ) {
+            $this->fetchObjectCounter++;
+            return $GLOBALS['fetch_object'];
+        } else {
+            return null;
+        }
     }
 }
     

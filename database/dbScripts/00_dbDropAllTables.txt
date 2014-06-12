@@ -6,7 +6,7 @@
 
 USE `brickSlopes`;
 
-DROP TABLE IF EXISTS `themesAwards`;
+DROP TABLE IF EXISTS `themeAwards`;
 DROP TABLE IF EXISTS `themes`;
 DROP TABLE IF EXISTS `eventDates`;
 DROP TABLE IF EXISTS `registrations`;

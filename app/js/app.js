@@ -114,7 +114,7 @@ config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvide
         '/afol/eventThemes.html',
         {
             templateUrl: '/partials/afol/eventThemes.html',
-            controller: 'afolIndex'
+            controller: 'afolEventThemes'
         }
     )
     .when(

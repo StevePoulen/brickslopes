@@ -1,6 +1,11 @@
 <div id="eventDashboard">
     <span id="dashboardText">
         <h1><bs-logo font-size="1.25"></bs-logo> &#8226; <bs-text text="Themes" font-color=black></bs-text></h1>
+        <div>
+            <div ng-repeat="theme in themeList">
+                {{theme.theme}}
+            </div>
+        </div>
     </span>
    <div id="dashboardCloseButton" ng-click="closeDialog()"></div>
 </div>

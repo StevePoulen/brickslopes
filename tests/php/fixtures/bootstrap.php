@@ -22,6 +22,7 @@ include join('/', array(__DIR__, '..', 'unit', 'artifacts', 'EmailMock.php'));
 include join('/', array(__DIR__, '..', 'unit', 'artifacts', 'EventRegistrationsMock.php'));
 include join('/', array(__DIR__, '..', 'unit', 'artifacts', 'UsersMock.php'));
 include join('/', array(__DIR__, '..', 'unit', 'artifacts', 'EventsMock.php'));
+include join('/', array(__DIR__, '..', 'unit', 'artifacts', 'ThemesMock.php'));
 
 
 /**

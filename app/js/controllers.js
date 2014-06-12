@@ -217,6 +217,20 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         $location.path("/afol/index.html");
     }
 }])
+.controller('afolEventThemes', ['$scope', '$location', 'Themes', function($scope, $location, Themes) {
+    $("#splashPageCTA").hide(500);
+    $scope.eventId = 2;
+    $scope.themeList = [];
+
+
+    $scope.closeDialog = function() {
+        $location.path("/afol/index.html");
+    }
+
+    Themes.get($scope.eventId).then(function(data) {
+        $scope.themeList = data;
+    });
+}])
 .controller('afolMe', ['$scope', '$location', 'Auth', 'EventRegistration', function($scope, $location, Auth, EventRegistration) {
     $scope.verifying = false;
     $scope.displayMessage = "";
@@ -285,8 +299,8 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     }
 
     $scope.clickThemes = function() {
-        //$location.path("/afol/eventThemes.html");
-        $location.path("/afol/comingSoon.html");
+        $location.path("/afol/eventThemes.html");
+        //$location.path("/afol/comingSoon.html");
     }
 
     $scope.clickGames = function() {

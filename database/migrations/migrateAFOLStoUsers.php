@@ -6,6 +6,8 @@
 
     class migrateDatabases {
         private $validObj;
+        private $firstYearEventId;
+        private $secondYearEventId;
 
         public function __construct() {
             $this->validObj = new db();
@@ -13,8 +15,9 @@
         }
 
         private function runMigrations() {
-            $eventId = $this->addInitialEvents();
-            $this->migrateUsers($eventId);
+            $this->addInitialEvents();
+            $this->migrateUsers($this->firstYearEventId);
+            $this->addInitialThemes($this->secondYearEventId);
         }
 
 
@@ -45,6 +48,52 @@
             }
         }
 
+        private function addInitialThemes($eventId) {
+            $themesObj = new themesModel();
+            $themeAwardsObj = new themeAwards();
+            $themesCount = 0;
+            $themeAwardsCount = 0;
+
+            $themesCollection = array(
+                array(
+                    'theme' => 'Adventure',
+                    'awards' => array (
+                        'Best Pirate',
+                        'Best Steam Punk',
+                        'Best Non-Motorized Vehicle',
+                    )
+                ),
+                array(
+                    'theme' => 'Bionicle',
+                    'awards' => array (
+                        'Best of Bionicle',
+                        'Best use of Bionicle Parts'
+                    )
+                )
+            );
+
+            foreach ($themesCollection as $themesMap) {
+                $themeMap = array(
+                    'theme' => $themesMap['theme'],
+                    'eventId' => $eventId
+                );
+                $themeId = $themesObj->addThemeInformation($themeMap);
+                $themesCount++;
+                $place = 1;
+                foreach ($themesMap['awards'] as $themeAward) {
+                    $themeAwardMap = array ('award' => $themeAward);
+                    $themeAwardMap['themeId'] = $themeId;
+                    $themeAwardMap['place'] = $place++;
+                    $themeAwardsObj->addThemeAwardInformation($themeAwardMap);
+                    $themeAwardsCount++;
+                }
+
+            }
+
+            $this->validatetable('themes', $themesCount);
+            $this->validatetable('themeAwards', $themeAwardsCount);
+        }
+
         private function addInitialEvents() {
             $eventsObj = new events();
             $eventMap = Array();
@@ -57,7 +106,7 @@
             $eventMap['meetAndGreetCost'] = '10.00';
             $eventMap['discountDate'] = '2014-03-15 12:00:00';
             $eventId = $eventsObj->addEventInformation($eventMap);
-            $firstYearEventId = $eventId;
+            $this->firstYearEventId = $eventId;
 
             $this->validateTable('events', 1);
 
@@ -107,6 +156,7 @@
             $eventMap['meetAndGreetCost'] = '10.00';
             $eventMap['discountDate'] = '2015-03-15 12:00:00';
             $eventId = $eventsObj->addEventInformation($eventMap);
+            $this->secondYearEventId = $eventId;
 
             $this->validateTable('events', 2);
 
@@ -144,8 +194,6 @@
             $eventDatesObj->addEventDates($eventDatesMap);
 
             $this->validateTable('eventDates', 8);
-
-            return $firstYearEventId;
         }
 
         private function migrateUsers($eventId) {
@@ -160,7 +208,11 @@
                     $userMap['firstName'] = $this->trimMigration($dbObj->firstName);
                     $userMap['lastName'] = $this->trimMigration($dbObj->lastName);
                     $userMap['email'] = $this->trimMigration($dbObj->email);
-                    $userMap['password'] = \base_convert(rand(78364164096, 2821109907455), 10, 36);
+                    if ($userMap['email'] == 'brianpilati@gmail.com') {
+                        $userMap['password'] = '12345678';
+                    } else {
+                        $userMap['password'] = \base_convert(rand(78364164096, 2821109907455), 10, 36);
+                    }
                     $userMap['address'] = $this->trimMigration($dbObj->address);
                     $userMap['city'] = $this->trimMigration($dbObj->city);
                     $userMap['state'] = $this->trimMigration($dbObj->state);
