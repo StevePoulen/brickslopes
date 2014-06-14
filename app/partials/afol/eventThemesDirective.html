@@ -1,0 +1,12 @@
+<div class="theme">
+    <div class="twoEMFont bold">
+        {{theme.theme}}
+    </div>
+    <div class="largeFont">
+        <ul>
+            <div ng-repeat="award in theme.awards | orderBy:'place'">
+                <li>{{award.award}}</li>
+            </div>
+        <ul>
+    </div>
+</div>

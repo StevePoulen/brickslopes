@@ -16,12 +16,19 @@ class themesModel extends db {
     private function selectQuery($data) {
         return "
             SELECT 
-                eventId, 
-                theme 
+                t.themeId as themeId,
+                t.eventId as eventId, 
+                t.theme as theme,
+                ta.themeAwardId as themeAwardId,
+                ta.award as award,
+                ta.place as place
             FROM
-                THEMES
+                THEMES t,
+                THEMEAWARDS ta
             WHERE
-                eventId = '{$this->escapeCharacters($data['eventId'])}'
+                t.eventId = '{$this->escapeCharacters($data['eventId'])}'
+                AND t.themeId = ta.themeId
+                ORDER by t.theme, ta.place
         ;
       ";
     }

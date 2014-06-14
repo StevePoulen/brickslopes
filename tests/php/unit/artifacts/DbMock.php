@@ -1,13 +1,19 @@
 <?php
 
 class dbObject {
-    private $fetchObjectCounter = 0;
+    private $fetchObjectCounter=0;
+    private $fetchObjectCounterLimit=1;
 
     public function __construct() {
+        $this->setFetchObjectCounterLimit();
+    }
+
+    private function setFetchObjectCounterLimit() {
+        $this->fetchObjectCounterLimit = (ISSET($GLOBALS['fetch_object_counter_limit']) ? $GLOBALS['fetch_object_counter_limit'] : 1);
     }
 
     public function fetch_object() {
-        if ($this->fetchObjectCounter == 0 ) {
+        if ($this->fetchObjectCounter < $this->fetchObjectCounterLimit ) {
             $this->fetchObjectCounter++;
             return $GLOBALS['fetch_object'];
         } else {

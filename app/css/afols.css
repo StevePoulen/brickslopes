@@ -411,3 +411,23 @@
   height: 40px;
   width: 40px;
 }
+
+/* line 418, ../../compass/assets/sass/afols.scss */
+.theme {
+  position: relative;
+  float: left;
+  border: 1px solid black;
+  width: 585px;
+  padding: 5px;
+  height: 250px;
+  border-radius: 5px;
+  margin: 5px;
+  overflow: none;
+}
+
+/* line 430, ../../compass/assets/sass/afols.scss */
+.theme ul {
+  padding: 0;
+  margin-left: 25px;
+  margin-top: 5px;
+}

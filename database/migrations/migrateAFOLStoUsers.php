@@ -69,6 +69,44 @@
                         'Best of Bionicle',
                         'Best use of Bionicle Parts'
                     )
+                ),
+                array(
+                    'theme' => 'Castle',
+                    'awards' => array (
+                        'Best of Castle',
+                        'Best Historical',
+                        'Best'
+                    )
+                ),
+                array(
+                    'theme' => 'City & Train',
+                    'awards' => array (
+                        'Best of City & Train',
+                        'Most Original Building',
+                        'Best Skyscraper',
+                        'Best Custom/Original',
+                        'Most Attention to Detail'
+                    )
+                ),
+                array(
+                    'theme' => 'NPU (Nice Part Usage)',
+                    'awards' => array (
+                        'Best NPU'
+                    )
+                ),
+                array(
+                    'theme' => 'Pop Culture',
+                    'awards' => array (
+                        'Best of Pop Culture',
+                        'Best Movie Scene'
+                    )
+                ),
+                array(
+                    'theme' => 'Princess',
+                    'awards' => array (
+                        'Best Princess Theme',
+                        'Best Movie Scene'
+                    )
                 )
             );
 

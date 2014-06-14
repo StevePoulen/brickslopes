@@ -26,17 +26,34 @@ class Themes {
         if ($this->themesObj->result) {
             $themesMap = array();
             while($dbObj = $this->themesObj->result->fetch_object()) {
-                array_push(
-                    $themesMap,
-                    array (
+                if(array_key_exists($dbObj->themeId, $themesMap)) {
+                    array_push (
+                        $themesMap[$dbObj->themeId]['awards'],
+                        array (
+                            'award' => $dbObj->award,
+                            'place' => $dbObj->place
+                        )
+                    );
+                } else {
+                    $themesMap[$dbObj->themeId] = array(
+                        'theme' => $dbObj->theme,
                         'eventId' => $dbObj->eventId,
-                        'theme' => $dbObj->theme 
-                    )
-                );
+                        'awards' => array (
+                            array (
+                                'award' => $dbObj->award,
+                                'place' => $dbObj->place,
+                            )
+                        )
+                    );
+                }
             }
             header("HTTP/1.0 200 Success");
+            $returnObj = array();
+            foreach($themesMap as $key => $object) {
+                array_push($returnObj, $object);
+            }
             echo json_encode (
-                $themesMap
+                $returnObj
             );
         } else {
             header("HTTP/1.0 400 Bad Request");

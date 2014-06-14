@@ -6,6 +6,7 @@ module.exports = function(config){
       'app/lib/**/angular.min.js',
       'app/lib/**/angular-route.min.js',
       'tests/js/lib/angular-mocks.min.js',
+      'app/partials/afol/**/*.html',
       'app/lib/**/*.js',
       'app/js/**/*.js',
       'tests/js/unit/**/*.js'
@@ -13,10 +14,6 @@ module.exports = function(config){
 
     exclude : [
     ],
-
-    preprocessors: {
-        '*.html': ['html2js']
-    },
 
     autoWatch : false,
 
@@ -27,10 +24,12 @@ module.exports = function(config){
     singleRun : true,
 
     plugins : [
+      'karma-ng-html2js-preprocessor',
       'karma-jasmine',
-      'jasmine-jquery',
-      'karma-html2js-preprocessor',
-      'karma-chrome-launcher',
-      'karma-firefox-launcher'
-   ]
+      'karma-chrome-launcher'
+   ],
+
+    preprocessors : {
+        'app/partials/afol/**/*.html': 'html2js'
+    }
 })}

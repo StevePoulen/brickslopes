@@ -6,6 +6,7 @@ module.exports = function(config){
       'app/lib/**/angular.min.js',
       'app/lib/**/angular-route.min.js',
       'tests/js/lib/angular-mocks.min.js',
+      'app/partials/afol/**/*.html',
       'app/lib/**/*.js',
       'app/js/**/*.js',
       'tests/js/unit/**/*.js'
@@ -21,14 +22,12 @@ module.exports = function(config){
     browsers : ['Chrome'],
 
     plugins : [
-      'karma-html2js-preprocessor',
-      'karma-junit-reporter',
+      'karma-ng-html2js-preprocessor',
       'karma-chrome-launcher',
-      'karma-firefox-launcher',
       'karma-jasmine'
-   ],
+    ],
 
     preprocessors : {
-        'app/partials/**/*.html': 'html2js'
-   }
+        'app/partials/afol/**/*.html': 'html2js'
+    }
 })}
