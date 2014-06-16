@@ -57,6 +57,7 @@
             $themesCollection = array(
                 array(
                     'theme' => 'Adventure',
+                    'type' => 'AFOL',
                     'awards' => array (
                         'Best Pirate',
                         'Best Steam Punk',
@@ -65,6 +66,7 @@
                 ),
                 array(
                     'theme' => 'Bionicle',
+                    'type' => 'AFOL',
                     'awards' => array (
                         'Best of Bionicle',
                         'Best use of Bionicle Parts'
@@ -72,6 +74,7 @@
                 ),
                 array(
                     'theme' => 'Castle',
+                    'type' => 'AFOL',
                     'awards' => array (
                         'Best of Castle',
                         'Best Historical',
@@ -80,6 +83,7 @@
                 ),
                 array(
                     'theme' => 'City & Train',
+                    'type' => 'AFOL',
                     'awards' => array (
                         'Best of City & Train',
                         'Most Original Building',
@@ -90,12 +94,14 @@
                 ),
                 array(
                     'theme' => 'NPU (Nice Part Usage)',
+                    'type' => 'AFOL',
                     'awards' => array (
                         'Best NPU'
                     )
                 ),
                 array(
                     'theme' => 'Pop Culture',
+                    'type' => 'AFOL',
                     'awards' => array (
                         'Best of Pop Culture',
                         'Best Movie Scene'
@@ -103,9 +109,45 @@
                 ),
                 array(
                     'theme' => 'Princess',
+                    'type' => 'AFOL',
                     'awards' => array (
                         'Best Princess Theme',
                         'Best Movie Scene'
+                    )
+                ),
+                array(
+                    'theme' => 'Sculpture / Mosiac',
+                    'type' => 'PUBLIC',
+                    'awards' => array (
+                        'Best Sculpture',
+                        'Best Mosaic',
+                        'Best Small Art'
+                    )
+                ),
+                array(
+                    'theme' => 'Space',
+                    'type' => 'PUBLIC',
+                    'awards' => array (
+                        'Best of Space',
+                        'Best Space Base',
+                        'Best Original Spaceship'
+                    )
+                ),
+                array(
+                    'theme' => 'Technic',
+                    'type' => 'PUBLIC',
+                    'awards' => array (
+                        'Best of Technic',
+                        'Best Use of Motion',
+                        'Best Great Ball Contraption'
+                    )
+                ),
+                array(
+                    'theme' => 'Vignette',
+                    'type' => 'PUBLIC',
+                    'awards' => array (
+                        'Best Vignette',
+                        'Best Custom Fig'
                     )
                 )
             );
@@ -113,6 +155,7 @@
             foreach ($themesCollection as $themesMap) {
                 $themeMap = array(
                     'theme' => $themesMap['theme'],
+                    'type' => $themesMap['type'],
                     'eventId' => $eventId
                 );
                 $themeId = $themesObj->addThemeInformation($themeMap);
@@ -153,7 +196,7 @@
                 'eventId' => $eventId,
                 'startDate' => '2014-05-01 8:00:00',
                 'endDate' => '2014-05-01 20:00:00',
-                'type' => 'afol'
+                'type' => 'AFOL'
             );
             $eventDatesObj->addEventDates($eventDatesMap);
 
@@ -161,7 +204,7 @@
                 'eventId' => $eventId,
                 'startDate' => '2014-05-02 10:00:00',
                 'endDate' => '2014-05-02 23:59:00',
-                'type' => 'afol'
+                'type' => 'AFOL'
             );
             $eventDatesObj->addEventDates($eventDatesMap);
 
@@ -169,7 +212,7 @@
                 'eventId' => $eventId,
                 'startDate' => '2014-05-03 9:00:00',
                 'endDate' => '2014-05-03 20:00:00',
-                'type' => 'afol'
+                'type' => 'AFOL'
             );
             $eventDatesObj->addEventDates($eventDatesMap);
 
@@ -177,7 +220,7 @@
                 'eventId' => $eventId,
                 'startDate' => '2014-05-04 8:00:00',
                 'endDate' => '2014-05-04 12:00:00',
-                'type' => 'afol'
+                'type' => 'AFOL'
             );
             $eventDatesObj->addEventDates($eventDatesMap);
 
@@ -203,7 +246,7 @@
                 'eventId' => $eventId,
                 'startDate' => '2015-05-01 8:00:00',
                 'endDate' => '2015-05-01 20:00:00',
-                'type' => 'afol'
+                'type' => 'AFOL'
             );
             $eventDatesObj->addEventDates($eventDatesMap);
 
@@ -211,7 +254,7 @@
                 'eventId' => $eventId,
                 'startDate' => '2015-05-02 10:00:00',
                 'endDate' => '2015-05-02 23:59:00',
-                'type' => 'afol'
+                'type' => 'AFOL'
             );
             $eventDatesObj->addEventDates($eventDatesMap);
 
@@ -219,7 +262,7 @@
                 'eventId' => $eventId,
                 'startDate' => '2015-05-03 9:00:00',
                 'endDate' => '2015-05-03 20:00:00',
-                'type' => 'afol'
+                'type' => 'AFOL'
             );
             $eventDatesObj->addEventDates($eventDatesMap);
 
@@ -227,7 +270,7 @@
                 'eventId' => $eventId,
                 'startDate' => '2015-05-04 8:00:00',
                 'endDate' => '2015-05-04 12:00:00',
-                'type' => 'afol'
+                'type' => 'AFOL'
             );
             $eventDatesObj->addEventDates($eventDatesMap);
 
@@ -269,13 +312,13 @@
                     $registrationMap['ageVerification'] = $this->formatEnum($dbObj->ageVerification);
                     $registrationMap['comments'] = $dbObj->comments;
                     $registrationMap['amountPaid'] = '55.00';
-                    $registrationMap['type'] = 'afol';
+                    $registrationMap['type'] = 'AFOL';
 
                     $registrationsObj->addRegistrationInformation($registrationMap);
                 }
             }
 
-            $originalAfolCount = $this->getTableCount('afols');
+            $originalAfolCount = $this->getTableCount('AFOLs');
             $this->validateTable('users', $originalAfolCount);
             $this->validateTable('registrations', $originalAfolCount);
         }

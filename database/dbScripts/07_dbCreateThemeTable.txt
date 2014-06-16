@@ -13,6 +13,7 @@ CREATE TABLE `themes` (
   `themeId` INT(10) UNSIGNED UNIQUE NOT NULL auto_increment,
   `eventId` INT(10) UNSIGNED NOT NULL,
   `theme` VARCHAR(255),
+  `type` ENUM('AFOL', 'PUBLIC'),
   PRIMARY KEY (`themeId`),
   FOREIGN KEY (`eventId`) REFERENCES `events` (`eventId`),
   UNIQUE KEY `themeId_UNIQUE` (`themeId`)

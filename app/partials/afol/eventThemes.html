@@ -2,7 +2,10 @@
     <span id="dashboardText">
         <h1><bs-logo font-size="1.25"></bs-logo> &#8226; <bs-text text="Themes" font-color=black></bs-text></h1>
         <div>
-            <div ng-repeat="theme in themeList | orderBy:'theme'">
+            <div ng-repeat="theme in themeList | filter:'AFOL' | orderBy:'theme'">
+                <bs-theme></bs-theme>
+            </div>
+            <div ng-repeat="theme in themeList | filter:'PUBLIC' | orderBy:'theme'">
                 <bs-theme></bs-theme>
             </div>
         </div>
