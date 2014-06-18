@@ -235,7 +235,7 @@ describe('controllers', function() {
 
         it('should redirect to eventRegistration', function() {
             scope.clickRegistration();
-            expect(location.path()).toBe('/afol/comingSoon.html');
+            expect(location.path()).toBe('/afol/2/eventRegistration.html');
         });
 
         it('should redirect to the index on close', function() {
