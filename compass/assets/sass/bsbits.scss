@@ -78,11 +78,12 @@ textarea.input::-moz-placeholder {
     height: 38px;
     border: 1px solid #BCBEBF;
     border-radius: 5px;
-    margin: 10px;
     width: 250px;
+    margin: 10px;
     padding-top: 12px;
     text-align: center;
     cursor: pointer;
+    display: inline-block;
 }
 
 .actionButtonSquare {
@@ -101,6 +102,7 @@ textarea.input::-moz-placeholder {
     position: relative;
     width: 100%;
     text-align: center;
+    height: 50px;
 }
 
 .formButton {

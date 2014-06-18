@@ -56,7 +56,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     }
 }])
 .controller('bsHeader', ['$scope', '$window', '$location', function($scope, $window, $location) {
-    $scope.showAfolLogin = true;
+    $scope.showAfolLogin = false;
     $scope.clickBuilder = function() {
         if ($window.sessionStorage.token) {
             $location.path("/afol/index.html");
@@ -176,6 +176,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     }
 }])
 .controller('afolEventRegistration', ['$scope', '$location', 'EventDetails', 'EventRegistration', '$route', function($scope, $location, EventDetails, eventRegistration, $route) {
+    $("#splashPageCTA").hide(500);
     $scope.verifying = false;
     $scope.displayMessage = "";
     $scope.success = true;
@@ -232,6 +233,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     });
 }])
 .controller('afolMe', ['$scope', '$location', 'Auth', 'EventRegistration', function($scope, $location, Auth, EventRegistration) {
+    $("#splashPageCTA").hide(500);
     $scope.verifying = false;
     $scope.displayMessage = "";
     $scope.timer = false;
@@ -300,7 +302,6 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
 
     $scope.clickThemes = function() {
         $location.path("/afol/eventThemes.html");
-        //$location.path("/afol/comingSoon.html");
     }
 
     $scope.clickGames = function() {
@@ -309,8 +310,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     }
 
     $scope.clickRegistration = function() {
-        //$location.path("/afol/eventRegistration.html");
-        $location.path("/afol/comingSoon.html");
+        $location.path("/afol/2/eventRegistration.html");
     }
 
     $scope.clickSchedule = function() {

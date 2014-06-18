@@ -5,8 +5,8 @@
 describe('directives', function() {
     beforeEach(
         module(
-            'app/partials/afol/eventThemesDirective.html',
-            'brickSlopes.directives'
+            'brickSlopes.directives',
+            'app/partials/afol/eventThemesDirective.html'
         )
     );
 
