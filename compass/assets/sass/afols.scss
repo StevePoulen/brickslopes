@@ -407,12 +407,54 @@ $pane_width: 1238px;
 .eventBrickSlopesLogo {
   position: absolute;
   z-index: 2;
-  left: 1px;
   bottom: 2px;
   background-image:url("/images/logo/brickSlopes_noword_50px.png");
+}
+
+.smallLogo {
   background-size: 40px 40px;
   height: 40px;
   width: 40px;
+}
+
+.mediumLogo {
+  background-size: 60px 60px;
+  height: 60px;
+  width: 60px;
+}
+
+.logoLeft {
+    left: 1px;
+}
+
+.logoRight {
+    right: 1px;
+}
+
+#leftTheme {
+    position: absolute;
+    border: none;
+    top: 100px;
+    left: 10px;
+    width: $dashboard_width / 2;
+
+    .header  {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+#rightTheme {
+    position: absolute;
+    border: none;
+    top: 100px;
+    right: 10px;
+    width: $dashboard_width / 2;
+
+    .header  {
+        width: 100%;
+        text-align: center;
+    }
 }
 
 .theme {
@@ -429,6 +471,6 @@ $pane_width: 1238px;
 
 .theme ul {
     padding: 0;
-    margin-left: 25px;
+    margin-left: 45px;
     margin-top: 5px;
 }

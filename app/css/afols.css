@@ -404,15 +404,63 @@
 .eventBrickSlopesLogo {
   position: absolute;
   z-index: 2;
-  left: 1px;
   bottom: 2px;
   background-image: url("/images/logo/brickSlopes_noword_50px.png");
+}
+
+/* line 414, ../../compass/assets/sass/afols.scss */
+.smallLogo {
   background-size: 40px 40px;
   height: 40px;
   width: 40px;
 }
 
-/* line 418, ../../compass/assets/sass/afols.scss */
+/* line 420, ../../compass/assets/sass/afols.scss */
+.mediumLogo {
+  background-size: 60px 60px;
+  height: 60px;
+  width: 60px;
+}
+
+/* line 426, ../../compass/assets/sass/afols.scss */
+.logoLeft {
+  left: 1px;
+}
+
+/* line 430, ../../compass/assets/sass/afols.scss */
+.logoRight {
+  right: 1px;
+}
+
+/* line 434, ../../compass/assets/sass/afols.scss */
+#leftTheme {
+  position: absolute;
+  border: none;
+  top: 100px;
+  left: 10px;
+  width: 610px;
+}
+/* line 441, ../../compass/assets/sass/afols.scss */
+#leftTheme .header {
+  width: 100%;
+  text-align: center;
+}
+
+/* line 447, ../../compass/assets/sass/afols.scss */
+#rightTheme {
+  position: absolute;
+  border: none;
+  top: 100px;
+  right: 10px;
+  width: 610px;
+}
+/* line 454, ../../compass/assets/sass/afols.scss */
+#rightTheme .header {
+  width: 100%;
+  text-align: center;
+}
+
+/* line 460, ../../compass/assets/sass/afols.scss */
 .theme {
   position: relative;
   float: left;
@@ -425,9 +473,9 @@
   overflow: none;
 }
 
-/* line 430, ../../compass/assets/sass/afols.scss */
+/* line 472, ../../compass/assets/sass/afols.scss */
 .theme ul {
   padding: 0;
-  margin-left: 25px;
+  margin-left: 45px;
   margin-top: 5px;
 }
