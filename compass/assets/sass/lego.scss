@@ -1,0 +1,64 @@
+$bs_yellow: yellow;
+$bs_blue: #35469A;
+
+$lego_border: 1px;
+$top_padding: 14px;
+
+$multiplier: 5;
+$studs: 8;
+$lego_brick_height: 9.6 * $multiplier;
+$lego_brick_width: 8 * $multiplier * $studs;
+
+$lego_stud_height: 1.8 * $multiplier;
+$lego_stud_width: 4.8 * $multiplier;
+$lego_stud_distance: (1.6 * $multiplier) - ($lego_border * 2);
+
+
+.brickHolder {
+    position: relative;
+    height: $lego_brick_height + $lego_stud_height + 2;
+    width: $lego_brick_width + 2;
+    border: none;
+    z-index: 5;
+
+    .legoBrick {
+        position: relative;
+        top: $lego_stud_height;
+        width: $lego_brick_width;
+        height: $lego_brick_height - $top_padding;
+        border: $lego_border solid black;
+        text-align: center;
+        padding-top: $top_padding;
+
+        .studs {
+            position: absolute;
+            top: - ($lego_stud_height + $lego_border*2);
+            left: 0;
+            height: $lego_brick_height/3;
+            width: $lego_brick_width;
+
+            .stud {
+                float: left;
+                margin-left: $lego_stud_distance;
+                margin-right: $lego_stud_distance;
+                height: $lego_stud_height;
+                width: $lego_stud_width;
+                border: $lego_border solid black;
+            }
+        }
+    }
+}
+
+.yellow {
+    background-color: $bs_yellow;
+}
+
+.blue {
+    background-color: $bs_blue;
+}
+
+.interlock {
+    top: -($lego_stud_height + $lego_border);
+    z-index: 4;
+}
+

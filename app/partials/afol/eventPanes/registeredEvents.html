@@ -1,7 +1,46 @@
 <div>
     <div ng-repeat="event in eventList">
-        {{event.name}}<p>
-        {{event.badgeLine1}}<p>
-        {{event.badgeLine2}}
+        <div>
+            {{event.name}}
+        </div>
+        <div class="brickHolder">
+            <div class="legoBrick blue">
+                <div class="studs">
+                    <div class="stud blue"></div>
+                    <div class="stud blue"></div>
+                    <div class="stud blue"></div>
+                    <div class="stud blue"></div>
+                    <div class="stud blue"></div>
+                    <div class="stud blue"></div>
+                    <div class="stud blue"></div>
+                    <div class="stud blue"></div>
+                </div>
+                <bs-text text="{{event.badgeLine1}}" font-color=white></bs-text>
+            </div>
+        </div>
+        <div class="brickHolder interlock">
+            <div class="legoBrick yellow">
+                <div class="studs">
+                    <div class="stud yellow"></div>
+                    <div class="stud yellow"></div>
+                    <div class="stud yellow"></div>
+                    <div class="stud yellow"></div>
+                    <div class="stud yellow"></div>
+                    <div class="stud yellow"></div>
+                    <div class="stud yellow"></div>
+                    <div class="stud yellow"></div>
+                </div>
+                <bs-text text="{{event.badgeLine2}}" font-color=black></bs-text>
+            </div>
+        </div>
+        <div>
+            Over 18: {{event.ageVerification}}
+        </div>
+        <div>
+            Meet and Greet: {{event.meetAndGreet}}
+        </div>
+        <div>
+            Paid: {{event.paid}}
+        </div>
     </div>
 </div>

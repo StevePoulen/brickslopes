@@ -1,0 +1,51 @@
+/* line 17, ../../compass/assets/sass/lego.scss */
+.brickHolder {
+  position: relative;
+  height: 59;
+  width: 322;
+  border: none;
+  z-index: 5;
+}
+/* line 24, ../../compass/assets/sass/lego.scss */
+.brickHolder .legoBrick {
+  position: relative;
+  top: 9;
+  width: 320;
+  height: 34px;
+  border: 1px solid black;
+  text-align: center;
+  padding-top: 14px;
+}
+/* line 33, ../../compass/assets/sass/lego.scss */
+.brickHolder .legoBrick .studs {
+  position: absolute;
+  top: -11px;
+  left: 0;
+  height: 16;
+  width: 320;
+}
+/* line 40, ../../compass/assets/sass/lego.scss */
+.brickHolder .legoBrick .studs .stud {
+  float: left;
+  margin-left: 6px;
+  margin-right: 6px;
+  height: 9;
+  width: 24;
+  border: 1px solid black;
+}
+
+/* line 52, ../../compass/assets/sass/lego.scss */
+.yellow {
+  background-color: yellow;
+}
+
+/* line 56, ../../compass/assets/sass/lego.scss */
+.blue {
+  background-color: #35469a;
+}
+
+/* line 60, ../../compass/assets/sass/lego.scss */
+.interlock {
+  top: -10px;
+  z-index: 4;
+}
