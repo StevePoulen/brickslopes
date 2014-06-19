@@ -6,7 +6,8 @@ $top_padding: 14px;
 
 $multiplier: 5;
 $studs: 8;
-$lego_brick_height: 9.6 * $multiplier;
+$plates: 3;
+$lego_brick_height: 3.2 * $plates * $multiplier;
 $lego_brick_width: 8 * $multiplier * $studs;
 
 $lego_stud_height: 1.8 * $multiplier;
@@ -19,7 +20,7 @@ $lego_stud_distance: (1.6 * $multiplier) - ($lego_border * 2);
     height: $lego_brick_height + $lego_stud_height + 2;
     width: $lego_brick_width + 2;
     border: none;
-    z-index: 5;
+    z-index: 2;
 
     .legoBrick {
         position: relative;
@@ -59,6 +60,6 @@ $lego_stud_distance: (1.6 * $multiplier) - ($lego_border * 2);
 
 .interlock {
     top: -($lego_stud_height + $lego_border);
-    z-index: 4;
+    z-index: 1;
 }
 
