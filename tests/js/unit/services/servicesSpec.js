@@ -38,15 +38,42 @@ describe('service', function() {
 
         it('should create brickSlopes Text', function() {
             var expectedValue = buildPreFontWrapper() + buildPreCapWrapper("T") + buildPostCapWrapper("RAVEL") + buildPostWrapper();
-            expect(bsTextFactory.createText('Travel')).toBe(expectedValue);
+            expect(bsTextFactory.createText('travel')).toBe(expectedValue);
+        });
+
+        it('should create brickSlopes Text with a space a the first', function() {
+            var expectedValue = buildPreFontWrapper()
+                + "&nbsp;"
+                + buildPreCapWrapper("M")
+                + buildPostCapWrapper("YSPACETEST")
+                + buildPostWrapper();
+            expect(bsTextFactory.createText(' mySpaceTest')).toBe(expectedValue);
+        });
+
+        it('should create brickSlopes Text with a hyphen and a space', function() {
+            var expectedValue = buildPreFontWrapper()
+                + buildPreCapWrapper("B")
+                + buildPostCapWrapper("RICKSLOPES")
+                + "&nbsp;"
+                + "-"
+                + "&nbsp;"
+                + buildPreCapWrapper("S")
+                + buildPostCapWrapper("ALT")
+                + "&nbsp;"
+                + buildPreCapWrapper("L")
+                + buildPostCapWrapper("AKE")
+                + "&nbsp;"
+                + buildPreCapWrapper("C")
+                + buildPostCapWrapper("ITY")
+                + buildPostWrapper();
+            expect(bsTextFactory.createText('brickslopes - salt lake city')).toBe(expectedValue);
         });
 
         it('should create brickSlopes Text with a hyphen', function() {
             var expectedValue = buildPreFontWrapper()
                 + buildPreCapWrapper("T")
                 + buildPostCapWrapper("RAVEL")
-                + "&nbsp;"
-                + buildPreCapWrapper("-")
+                + "-"
                 + buildPreCapWrapper("L")
                 + buildPostCapWrapper("ODGE")
                 + buildPostWrapper();
@@ -59,18 +86,16 @@ describe('service', function() {
                 + buildPostCapWrapper("RAVEL")
                 + "&nbsp;"
                 + buildPreCapWrapper("2")
-                + buildPreCapWrapper("0")
-                + buildPreCapWrapper("1")
-                + buildPreCapWrapper("4")
+                + buildPostCapWrapper("014")
                 + buildPostWrapper();
-            expect(bsTextFactory.createText('Travel 2*0*1*4')).toBe(expectedValue);
+            expect(bsTextFactory.createText('Travel 2014')).toBe(expectedValue);
         });
 
         it('should create brickSlopes Text with a >', function() {
             var expectedValue = buildPreFontWrapper()
                 + buildPreCapWrapper("T")
-                + buildPostCapWrapper("RAVEL>")
-                + "&nbsp;"
+                + buildPostCapWrapper("RAVEL")
+                + ">"
                 + buildPreCapWrapper("L")
                 + buildPostCapWrapper("ODGE")
                 + buildPostWrapper();

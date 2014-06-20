@@ -15,7 +15,16 @@ angular.module('brickSlopes.services', [])
             __fontColor = (fontColor) ? fontColor + "Font" : "blueFont";
         },
 
+        __styleRemainder: function(smallFont, remainder) {
+            if (remainder) {
+                return '<span style="' + smallFont + '">' + remainder + '</span>';
+            } else {
+                return "";
+            }
+        },
+
         createText: function(text, fontSize, fontColor) {
+            var self = this;
             if (! text) {
                 return text;
             }
@@ -26,24 +35,36 @@ angular.module('brickSlopes.services', [])
             var smallFontNumber = __fontSize * .8;
             var smallFont = "font-size: " + smallFontNumber + "em;";
             var outputWord = "";
-            text = text.replace(/\-/g, ' - ');
-            text = text.replace(/\*/g, '* ');
-            text = text.replace(/\>/g, '> ');
-            var wordArray = text.split(/\s/g);
+            var remainder = "";
+            var nextCapitalize = false;
 
-            _.each(wordArray, function(word) {
-                var firstLetter = word[0].toUpperCase();
-                var remainder = word.slice(1).toUpperCase();
-                outputWord += '<span style="' + capsFont + '">' + firstLetter + '</span>';
-                if (remainder != "*" && remainder != '') {
-                    outputWord += '<span style="' + smallFont + '">' + remainder + '</span>';
-                    outputWord += '&nbsp;';
+            _.each(text, function(letter, index) {
+                if (letter.match(/\s/)) {
+                    outputWord += self.__styleRemainder(smallFont, remainder);
+                    remainder = "";
+                    outputWord += "&nbsp;";
+                    nextCapitalize = true;
+                } else if (letter.match(/-/)) {
+                    outputWord += self.__styleRemainder(smallFont, remainder);
+                    remainder = "";
+                    outputWord += "-";
+                    nextCapitalize = true;
+                } else if (letter.match(/>/)) {
+                    outputWord += self.__styleRemainder(smallFont, remainder);
+                    remainder = "";
+                    outputWord += ">";
+                    nextCapitalize = true;
+                } else {
+                    if (index === 0 || nextCapitalize) {
+                        outputWord += '<span style="' + capsFont + '">' + letter.toUpperCase() + '</span>';
+                        nextCapitalize = false;
+                    } else {
+                        remainder += letter.toUpperCase();
+                    }
                 }
             });
 
-            outputWord = outputWord.replace(/\*<\/span>&nbsp;/g, '</span>');
-            outputWord = outputWord.replace(/\&nbsp;$/, '');
-
+            outputWord += this.__styleRemainder(smallFont, remainder);
             return '<span class="' + __fontColor + ' bold">' + outputWord +  '</span>';
         }
     }

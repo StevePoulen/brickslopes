@@ -2,6 +2,11 @@
     <div id="dashboardText">
         <h1><bs-logo font-size="1.25"></bs-logo> &#8226; <bs-text text="Me" font-color=black></bs-text></h1>
         <div id="mePanes">
+            <div class="events">
+                <div class="meText"><bs-text text="Your Events" font-color=black font-size=1.25></bs-text></div>
+                <bs-registered-events ng-if="displayRegisterEventCTA"></bs-registered-events>
+                <bs-event-registration-cta ng-if="! displayRegisterEventCTA"></bs-event-registration-cta>
+            </div>
             <div class="changePassword">
                 <div class="meText"><bs-text text="Change Password" font-color=black font-size=1.25></bs-text></div>
                 <div class="loginForm">
@@ -38,11 +43,6 @@
                     </form>
                 </div>
                 <span class="message" ng-show="timer" ng-class="{fadeOut5: timer, redFont: ! success, greenFont: success}">{{displayMessage}}</span>
-            </div>
-            <div class="events">
-                <div class="meText"><bs-text text="Your Events" font-color=black font-size=1.25></bs-text></div>
-                <bs-registered-events ng-if="displayRegisterEventCTA"></bs-registered-events>
-                <bs-event-registration-cta ng-if="! displayRegisterEventCTA"></bs-event-registration-cta>
             </div>
         </div>
     </div>

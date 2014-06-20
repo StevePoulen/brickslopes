@@ -1,45 +1,47 @@
 <div>
     <div ng-repeat="event in eventList">
-        <div>
-            {{event.name}}
+        <div class="info">
+            <bs-text text="BrickSlopes - Salt Lake City" font-color=black></bs-text>
         </div>
-        <div class="brickHolder">
-            <div class="legoBrick blue">
-                <div class="studs">
-                    <div class="stud blue"></div>
-                    <div class="stud blue"></div>
-                    <div class="stud blue"></div>
-                    <div class="stud blue"></div>
-                    <div class="stud blue"></div>
-                    <div class="stud blue"></div>
-                    <div class="stud blue"></div>
-                    <div class="stud blue"></div>
+        <div class="brickCenter">
+            <div class="brickHolder">
+                <div class="legoBrick blue">
+                    <div class="studs">
+                        <div class="stud blue"></div>
+                        <div class="stud blue"></div>
+                        <div class="stud blue"></div>
+                        <div class="stud blue"></div>
+                        <div class="stud blue"></div>
+                        <div class="stud blue"></div>
+                        <div class="stud blue"></div>
+                        <div class="stud blue"></div>
+                    </div>
+                    <bs-text text="{{event.badgeLine1}}" font-color=white></bs-text>
                 </div>
-                <bs-text text="{{event.badgeLine1}}" font-color=white></bs-text>
+            </div>
+            <div class="brickHolder interlock">
+                <div class="legoBrick yellow">
+                    <div class="studs">
+                        <div class="stud yellow"></div>
+                        <div class="stud yellow"></div>
+                        <div class="stud yellow"></div>
+                        <div class="stud yellow"></div>
+                        <div class="stud yellow"></div>
+                        <div class="stud yellow"></div>
+                        <div class="stud yellow"></div>
+                        <div class="stud yellow"></div>
+                    </div>
+                    <bs-text text="{{event.badgeLine2}}" font-color=black></bs-text>
+                </div>
             </div>
         </div>
-        <div class="brickHolder interlock">
-            <div class="legoBrick yellow">
-                <div class="studs">
-                    <div class="stud yellow"></div>
-                    <div class="stud yellow"></div>
-                    <div class="stud yellow"></div>
-                    <div class="stud yellow"></div>
-                    <div class="stud yellow"></div>
-                    <div class="stud yellow"></div>
-                    <div class="stud yellow"></div>
-                    <div class="stud yellow"></div>
-                </div>
-                <bs-text text="{{event.badgeLine2}}" font-color=black></bs-text>
-            </div>
-        </div>
-        <div>
+        <div class="info">
             Over 18: {{event.ageVerification}}
         </div>
-        <div>
+        <div class="info">
             Meet and Greet: {{event.meetAndGreet}}
         </div>
-        <div>
+        <div class="info">
             Paid: {{event.paid}}
         </div>
     </div>

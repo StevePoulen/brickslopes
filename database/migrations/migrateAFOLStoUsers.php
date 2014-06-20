@@ -178,7 +178,7 @@
         private function addInitialEvents() {
             $eventsObj = new events();
             $eventMap = Array();
-            $eventMap['name'] = 'BrickSlopes';
+            $eventMap['name'] = 'BrickSlopes - Salt Lake City';
             $eventMap['city'] = 'Salt Lake City';
             $eventMap['state'] = 'Utah';
             $eventMap['year'] = '2014';
@@ -228,7 +228,7 @@
 
             $eventsObj = new events();
             $eventMap = Array();
-            $eventMap['name'] = 'BrickSlopes';
+            $eventMap['name'] = 'BrickSlopes - Salt Lake City';
             $eventMap['city'] = 'Salt Lake City';
             $eventMap['state'] = 'Utah';
             $eventMap['year'] = '2015';

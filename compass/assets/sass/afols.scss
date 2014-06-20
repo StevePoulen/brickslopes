@@ -1,7 +1,7 @@
 $dashboard_width: 1220px;
 $dashboard_height: 795px;
 $eventPane_height: 200px;
-$eventPane_width: 300px;
+$eventPane_width: 325px;
 $eventPane_margin: 5;
 $pane_width: 1238px;
 
@@ -297,11 +297,26 @@ $pane_width: 1238px;
         position: relative;
         float: left;
         width: $eventPane_width;
-        height: $eventPane_height;
+        height: $eventPane_height * 2;
         margin: 0 $eventPane_margin $eventPane_margin 0;
         cursor: pointer;
         border: 2px solid black;
         border-radius: 12px;
+
+        .info {
+            position: relative;
+            width: $eventPane_width - 4;
+            height: 35px;
+            border: 1px solid red;
+            margin-bottom: 10px;
+            margin-left: 2px;
+        }
+
+        .brickCenter {
+            position: relative;
+            width: 100%;
+            text-align: center;
+        }
     }
 
     .meText {

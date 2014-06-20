@@ -21,6 +21,7 @@ $lego_stud_distance: (1.6 * $multiplier) - ($lego_border * 2);
     width: $lego_brick_width + 2;
     border: none;
     z-index: 2;
+    display: inline-block;
 
     .legoBrick {
         position: relative;
@@ -30,6 +31,7 @@ $lego_stud_distance: (1.6 * $multiplier) - ($lego_border * 2);
         border: $lego_border solid black;
         text-align: center;
         padding-top: $top_padding;
+        display: inline-block;
 
         .studs {
             position: absolute;
