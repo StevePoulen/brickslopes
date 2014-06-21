@@ -191,7 +191,7 @@
 
             $this->validateTable('events', 1);
 
-            $eventDatesObj = new eventDates();
+            $eventDatesObj = new eventDatesModel();
             $eventDatesMap = array (
                 'eventId' => $eventId,
                 'startDate' => '2014-05-01 8:00:00',
@@ -241,40 +241,56 @@
 
             $this->validateTable('events', 2);
 
-            $eventDatesObj = new eventDates();
+            $eventDatesObj = new eventDatesModel();
             $eventDatesMap = array (
                 'eventId' => $eventId,
-                'startDate' => '2015-05-01 8:00:00',
-                'endDate' => '2015-05-01 20:00:00',
+                'startDate' => '2015-05-14 8:00:00',
+                'endDate' => '2015-05-14 20:00:00',
                 'type' => 'AFOL'
             );
             $eventDatesObj->addEventDates($eventDatesMap);
 
             $eventDatesMap = array (
                 'eventId' => $eventId,
-                'startDate' => '2015-05-02 10:00:00',
-                'endDate' => '2015-05-02 23:59:00',
+                'startDate' => '2015-05-15 10:00:00',
+                'endDate' => '2015-05-15 23:59:00',
                 'type' => 'AFOL'
             );
             $eventDatesObj->addEventDates($eventDatesMap);
 
             $eventDatesMap = array (
                 'eventId' => $eventId,
-                'startDate' => '2015-05-03 9:00:00',
-                'endDate' => '2015-05-03 20:00:00',
+                'startDate' => '2015-05-16 9:00:00',
+                'endDate' => '2015-05-16 20:00:00',
                 'type' => 'AFOL'
             );
             $eventDatesObj->addEventDates($eventDatesMap);
 
             $eventDatesMap = array (
                 'eventId' => $eventId,
-                'startDate' => '2015-05-04 8:00:00',
-                'endDate' => '2015-05-04 12:00:00',
+                'startDate' => '2015-05-17 8:00:00',
+                'endDate' => '2015-05-17 12:00:00',
                 'type' => 'AFOL'
             );
             $eventDatesObj->addEventDates($eventDatesMap);
 
-            $this->validateTable('eventDates', 8);
+            $eventDatesMap = array (
+                'eventId' => $eventId,
+                'startDate' => '2015-05-15 15:00:00',
+                'endDate' => '2015-05-15 20:00:00',
+                'type' => 'PUBLIC'
+            );
+            $eventDatesObj->addEventDates($eventDatesMap);
+
+            $eventDatesMap = array (
+                'eventId' => $eventId,
+                'startDate' => '2015-05-16 9:00:00',
+                'endDate' => '2015-05-16 20:00:00',
+                'type' => 'PUBLIC'
+            );
+            $eventDatesObj->addEventDates($eventDatesMap);
+
+            $this->validateTable('eventDates', 10);
         }
 
         private function migrateUsers($eventId) {

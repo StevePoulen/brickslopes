@@ -12,7 +12,7 @@ class ThemesTest extends PHPUnit_Framework_TestCase
     public function testAuthenticatedBadMethod() 
     {
         $_SERVER['REQUEST_METHOD'] = "post";
-        $authentication = new Authentication();
+        new Themes();
         $this->assertEquals(http_response_code(), 405);
     }
 
