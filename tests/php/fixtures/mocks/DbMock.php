@@ -14,8 +14,9 @@ class dbObject {
 
     public function fetch_object() {
         if ($this->fetchObjectCounter < $this->fetchObjectCounterLimit ) {
+            $GLOBALS['current_fetch_object_counter'] = $this->fetchObjectCounter;
             $this->fetchObjectCounter++;
-            return $GLOBALS['fetch_object'];
+            return new $GLOBALS['fetch_object']();
         } else {
             return null;
         }
@@ -43,6 +44,7 @@ class db {
 }
 
 class modelObjects {
+    protected $currentLineNumber = 0;
     public function __construct() {
 
     }
@@ -63,7 +65,17 @@ class modelObjects {
         return $output;
     }
 
-    public function getData($method) {
+    public function getData($method, $position = 0) {
+        if (ISSET($GLOBALS['current_fetch_object_counter'])) {
+            $this->currentLineNumber = $GLOBALS['current_fetch_object_counter'];
+        } else {
+            $this->currentLineNumber = 0;
+        }
+
+        if (ISSET($this->dataSet)) {
+            $columns = preg_split('/,/', rtrim($this->dataSet[$this->currentLineNumber]));
+            return $columns[$position];
+        }
         if (ISSET($GLOBALS[$this->className . "_$method"])) {
             return $GLOBALS[$this->className . "_$method"];
         } else {

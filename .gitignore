@@ -22,6 +22,7 @@ app/lib/underscore.min.js
 app/lib/angular-route.min.js
 app/lib/angular.min.js
 app/lib/jquery.min.js
+app/lib/moment.min.js
 app/images/icons-*
 app/lib/angular-animate.min.js
 composer.lock

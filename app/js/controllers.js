@@ -2,8 +2,12 @@
 
 /* Controllers */
 angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
-.controller('bsIndex', ['$scope', '$location', function($scope, $location) {
+.controller('bsIndex', ['$scope', '$location', 'EventDates', function($scope, $location, EventDates) {
     $("#splashPageCTA").show(500);
+    //$scope.publicEventDates = EventDates.getPublicDates(2);
+    //$scope.eventYear = EventDates.getEventYear(2);
+    $scope.publicEventDates = 'May 15 & 16, 2015';
+    $scope.eventYear = '2015';
 
     $scope.tickets = function() {
         $location.path("/tickets.html");

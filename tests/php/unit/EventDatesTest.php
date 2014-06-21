@@ -4,7 +4,6 @@ class EventDatesTest extends PHPUnit_Framework_TestCase
 {
     public function setUp() 
     {
-        $_GET['eventId'] = 1;
         $this->eventDatesMock = new EventDatesMock();
         include_once('controllers/eventDates.php');
     }
@@ -18,17 +17,21 @@ class EventDatesTest extends PHPUnit_Framework_TestCase
 
     public function testAuthenticatedGET() 
     {
-        $_GET['eventId'] = 2;
         $_SERVER['REQUEST_METHOD'] = "GET";
         $GLOBALS['db_query'] = '1';
-        $this->eventDatesMock->buildGlobalVariables();
-        $GLOBALS['fetch_object'] = new EventDatesMock();
+        $GLOBALS['fetch_object'] = "EventDatesMock";
         new eventDates();
         $this->assertEquals(http_response_code(), 200);
         $output = json_decode(ob_get_contents(), true);
-        $this->assertEquals($output['2']['startDate'] , '2014-05-16 08:00:00');
-        $this->assertEquals($output['2']['endDate'] , '2014-05-16 20:00:00');
-        $this->assertEquals($output['2']['type'] , 'AFOL');
+        $this->assertEquals($output['2'][0]['eventId'] , '2');
+        $this->assertEquals($output['2'][0]['startDate'] , '2014-05-16 08:00:00');
+        $this->assertEquals($output['2'][0]['endDate'] , '2014-05-16 20:00:00');
+        $this->assertEquals($output['2'][0]['type'] , 'AFOL');
+
+        $this->assertEquals($output['2'][1]['eventId'] , '2');
+        $this->assertEquals($output['2'][1]['startDate'] , '2015-05-16 08:00:00');
+        $this->assertEquals($output['2'][1]['endDate'] , '2015-05-16 20:00:00');
+        $this->assertEquals($output['2'][1]['type'] , 'PUBLIC');
     }
 
     public function testAuthenticatedGetFailure() 

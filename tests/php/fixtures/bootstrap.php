@@ -17,13 +17,13 @@ EOT
 
 include join('/', array('.', 'app', 'php',  'AutoLoader.php'));
 include join('/', array('.', 'config', 'config.php'));
-include join('/', array(__DIR__, '..', 'unit', 'artifacts', 'DbMock.php'));
-include join('/', array(__DIR__, '..', 'unit', 'artifacts', 'EmailMock.php'));
-include join('/', array(__DIR__, '..', 'unit', 'artifacts', 'EventRegistrationsMock.php'));
-include join('/', array(__DIR__, '..', 'unit', 'artifacts', 'UsersMock.php'));
-include join('/', array(__DIR__, '..', 'unit', 'artifacts', 'EventsMock.php'));
-include join('/', array(__DIR__, '..', 'unit', 'artifacts', 'EventDatesMock.php'));
-include join('/', array(__DIR__, '..', 'unit', 'artifacts', 'ThemesMock.php'));
+include join('/', array(__DIR__, '..', 'fixtures', 'mocks', 'DbMock.php'));
+include join('/', array(__DIR__, '..', 'fixtures', 'mocks', 'EmailMock.php'));
+include join('/', array(__DIR__, '..', 'fixtures', 'mocks', 'EventRegistrationsMock.php'));
+include join('/', array(__DIR__, '..', 'fixtures', 'mocks', 'UsersMock.php'));
+include join('/', array(__DIR__, '..', 'fixtures', 'mocks', 'EventsMock.php'));
+include join('/', array(__DIR__, '..', 'fixtures', 'mocks', 'EventDatesMock.php'));
+include join('/', array(__DIR__, '..', 'fixtures', 'mocks', 'ThemesMock.php'));
 
 
 /**

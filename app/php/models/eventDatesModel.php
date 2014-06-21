@@ -9,8 +9,8 @@ class eventDatesModel extends db {
         return $this->query($this->insertQuery($data));
     }
 
-    public function getEventDates($data) {
-        return $this->query($this->selectQuery($data));
+    public function getEventDates() {
+        return $this->query($this->selectQuery());
     }
 
     private function insertQuery($data) {
@@ -34,7 +34,7 @@ class eventDatesModel extends db {
       ";
     }
 
-    private function selectQuery($data) {
+    private function selectQuery() {
         return "
             SELECT
                 eventId, 
@@ -43,8 +43,8 @@ class eventDatesModel extends db {
                 type 
             FROM
                 eventDates
-            WHERE
-                eventId = '{$this->escapeCharacters($data['eventId'])}'
+            ORDER BY
+                eventId, type, startDate
         ;
       ";
     }

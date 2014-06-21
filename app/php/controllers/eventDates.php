@@ -22,16 +22,24 @@ class eventDates {
     }
 
     private function get() {
-        $this->eventDatesObj->getEventDates($_GET);
+        $this->eventDatesObj->getEventDates();
         if ($this->eventDatesObj->result) {
             header("HTTP/1.0 200 Success");
-            $eventDates = array(
-                $_GET['eventId'] => array()
-            );
+            $eventDates = array();
             while ($dbObj = $this->eventDatesObj->result->fetch_object()) {
-                $eventDates[$dbObj->eventId]['startDate'] = $dbObj->startDate;
-                $eventDates[$dbObj->eventId]['endDate'] = $dbObj->endDate;
-                $eventDates[$dbObj->eventId]['type'] = $dbObj->type;
+                if (! ISSET($eventDates[$dbObj->eventId])) {
+                    $eventDates[$dbObj->eventId] = array();
+                }
+
+                array_push (
+                    $eventDates[$dbObj->eventId],
+                    array (
+                        'eventId' => $dbObj->eventId,
+                        'startDate' => $dbObj->startDate,
+                        'endDate' => $dbObj->endDate,
+                        'type' => $dbObj->type
+                    )
+                );
             }
 
             echo json_encode (

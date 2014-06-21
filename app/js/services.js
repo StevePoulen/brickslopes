@@ -127,7 +127,114 @@ angular.module('brickSlopes.services', [])
             });
 
             return delay.promise;
+        }
+    }
+}])
+.factory('EventDates', ['EventDatesAPI', '$q', function(EventDatesAPI, $q) {
+    var __eventDates = queryEventDates();
+    var __eventDatesCached = {};
+
+    function queryEventDates() {
+        return EventDatesAPI.get().then(function(data) {
+            __eventDates = data;
+            return __eventDates;
+        })
+    }
+
+    return {
+        setCache: function(eventId, key, value) {
+            if (! __eventDatesCached[eventId]) {
+                __eventDatesCached[eventId] = {};
+            }
+            __eventDatesCached[eventId][key] = value;
+
+            return value;
         },
+
+        getCache: function(eventId, key) {
+            try {
+                return __eventDatesCached[eventId][key];
+            } catch (error) {
+                return false;
+            }
+        },
+
+        getAllEvents: function() {
+            return __eventDates;
+        },
+
+        __getPublicTimestamps: function(eventId) {
+            var publicTimestamps = this.getCache(eventId, 'publicTimestamps');
+            if (publicTimestamps) {
+                return publicTimestamps;
+            } else {
+                var publicStartTimestamps = [];
+                var publicEndTimestamps = [];
+                _.each(__eventDates[eventId], function(eventObj) {
+                    if (eventObj.type === "PUBLIC") {
+                        publicStartTimestamps.push(moment(eventObj.startDate));
+                        publicEndTimestamps.push(moment(eventObj.endDate));
+                    }
+                });
+                return this.setCache (
+                    eventId,
+                    'publicTimestamps',
+                    {
+                        'start': publicStartTimestamps,
+                        'end': publicEndTimestamps,
+                        'last': publicEndTimestamps.length - 1
+                    }
+                )
+            }
+        },
+
+        getPublicDates: function(eventId) {
+            var publicDates = this.getCache(eventId, 'publicDates');
+            if (publicDates) { 
+                return publicDates;
+            } else {
+                var publicTimestamps = this.__getPublicTimestamps(eventId);
+
+                var publicDates = moment(publicTimestamps.start[0]).format('MMM D');
+                publicDates += moment(publicTimestamps.end[publicTimestamps.last]).format(' & D, YYYY');
+
+                return this.setCache (
+                    eventId,
+                    'publicDates',
+                    publicDates
+                )
+            } 
+        },
+
+        getEventYear: function(eventId) {
+            var eventYear = this.getCache(eventId, 'year');
+            return (eventYear ?  eventYear :
+                this.setCache (
+                    eventId,
+                    'year',
+                    moment(__eventDates[eventId][0].startDate).format('YYYY')
+                )
+            );
+        }
+    }
+}])
+.factory('EventDatesAPI', ['$q', '$http', function($q, $http) {
+    return {
+        get: function() {
+            var delay= $q.defer();
+            $http (
+                {
+                    method: 'GET',
+                    url: '/controllers/eventDates.php'
+                }
+            ).success(function(data, status, headers, config) {
+                delay.resolve(data);
+            }).error(function(data, status, headers, config) {
+                delay.reject(data);
+            });
+
+            return delay.promise;
+        }
     }
 }])
 .factory('EventRegistration', ['$q', '$http', function($q, $http) {

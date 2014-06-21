@@ -51,7 +51,9 @@
                 preg_match('/^..\/partials\/public/', $this->URI)
             ) {
                 return true;
-            } else if ($this->URI == 'controllers/authentication.php') {
+            } else if ($this->URI == 'controllers/authentication.php' ||
+                $this->URI == 'controllers/eventDates.php'
+            ) {
                 $this->decodeJWT();
                 return true;
             } else {
