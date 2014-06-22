@@ -86,9 +86,15 @@ describe('service', function() {
                 + buildPostCapWrapper("RAVEL")
                 + "&nbsp;"
                 + buildPreCapWrapper("2")
-                + buildPostCapWrapper("014")
+                + buildPreCapWrapper("0")
+                + buildPreCapWrapper("1")
+                + buildPreCapWrapper("4")
+                + buildPostCapWrapper("TH")
+                + "&nbsp;"
+                + buildPreCapWrapper("F")
+                + buildPostCapWrapper("UN")
                 + buildPostWrapper();
-            expect(bsTextFactory.createText('Travel 2014')).toBe(expectedValue);
+            expect(bsTextFactory.createText('Travel 2014th Fun')).toBe(expectedValue);
         });
 
         it('should create brickSlopes Text with a >', function() {

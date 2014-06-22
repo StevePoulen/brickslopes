@@ -39,6 +39,12 @@ angular.module('brickSlopes.services', [])
             var nextCapitalize = false;
 
             _.each(text, function(letter, index) {
+                if (letter.match(/\d+/)) {
+                    outputWord += self.__styleRemainder(smallFont, remainder);
+                    remainder = "";
+                    nextCapitalize = true;
+                }
+
                 if (letter.match(/\s/)) {
                     outputWord += self.__styleRemainder(smallFont, remainder);
                     remainder = "";

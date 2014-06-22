@@ -23,11 +23,39 @@
                 <h3>AFOL Event Registration Form</h3>
             </div>
             <form name="registration" ng-submit="registration.$valid && submitRegistration()">
-                <div class="loginField">
-                    <input type="text" placeholder="Badge Line 1:" ng-model="badgeLine1" required ng-maxlength=15>
+                <div class="brickCenter">
+                    <div class="brickHolder">
+                        <div class="legoBrick blue">
+                            <div class="studs">
+                                <div class="stud blue"></div>
+                                <div class="stud blue"></div>
+                                <div class="stud blue"></div>
+                                <div class="stud blue"></div>
+                                <div class="stud blue"></div>
+                                <div class="stud blue"></div>
+                                <div class="stud blue"></div>
+                                <div class="stud blue"></div>
+                            </div>
+                            <input type="text" placeholder="Badge Line 1:" ng-model="badgeLine1" required ng-maxlength=15>
+                        </div>
+                    </div>
                 </div>
-                <div class="loginField">
-                    <input type="text" placeholder="Badge Line 2:" ng-model="badgeLine2" required ng-maxlength=15>
+                <div class="brickCenter">
+                    <div class="brickHolder">
+                        <div class="legoBrick yellow">
+                            <div class="studs">
+                                <div class="stud yellow"></div>
+                                <div class="stud yellow"></div>
+                                <div class="stud yellow"></div>
+                                <div class="stud yellow"></div>
+                                <div class="stud yellow"></div>
+                                <div class="stud yellow"></div>
+                                <div class="stud yellow"></div>
+                                <div class="stud yellow"></div>
+                            </div>
+                            <input type="text" placeholder="Badge Line 2:" ng-model="badgeLine2" required ng-maxlength=15>
+                        </div>
+                    </div>
                 </div>
                 <div class="optionField">
                     <label>Meet & Greet Event:</label> Yes <input type="radio" ng-model="meetAndGreet" value="YES" checked> No <input type="radio" ng-model="meetAndGreet" value="NO">
@@ -36,7 +64,7 @@
                     <label>I am over 18 years old*:</label> Yes <input type="radio" ng-model="ageVerification" value="YES" checked> No <input type="radio" ng-model="ageVerification" value="NO">
                 </div>
                 <div class="commentsField">
-                    <label>Comments:</label><br><textarea cols="50" rows="5" name="comments"></textarea>
+                    <textarea id="comments" class="greyFont" ng-model="comments"></textarea>
                 </div>
                 <div class="formButtonPosition">
                     <button class="formButton" type="submit" ng-class="{disabled: verifying}" ng-disabled="verifying">

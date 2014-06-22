@@ -387,8 +387,9 @@
   text-align: center;
   border: none;
   z-index: 100;
+  display: none;
 }
-/* line 423, ../../compass/assets/sass/brickslopes.scss */
+/* line 421, ../../compass/assets/sass/brickslopes.scss */
 #splashPageCTA #countDown {
   position: absolute;
   right: 10px;
@@ -397,7 +398,7 @@
   bottom: 0;
   width: 500px;
 }
-/* line 432, ../../compass/assets/sass/brickslopes.scss */
+/* line 430, ../../compass/assets/sass/brickslopes.scss */
 #splashPageCTA #childPackages {
   position: absolute;
   left: 100px;
@@ -408,7 +409,7 @@
   background: white;
   border-radius: 10px;
 }
-/* line 442, ../../compass/assets/sass/brickslopes.scss */
+/* line 440, ../../compass/assets/sass/brickslopes.scss */
 #splashPageCTA #childPackages .text {
   position: absolute;
   left: 2px;
@@ -417,21 +418,21 @@
   top: 2px;
   border: none;
 }
-/* line 451, ../../compass/assets/sass/brickslopes.scss */
+/* line 449, ../../compass/assets/sass/brickslopes.scss */
 #splashPageCTA #childPackages .buyTicketsButton {
   position: absolute;
   right: 25px;
   top: 15px;
 }
 
-/* line 459, ../../compass/assets/sass/brickslopes.scss */
+/* line 457, ../../compass/assets/sass/brickslopes.scss */
 #logo {
   position: absolute;
   top: 0px;
   left: 0px;
 }
 
-/* line 465, ../../compass/assets/sass/brickslopes.scss */
+/* line 463, ../../compass/assets/sass/brickslopes.scss */
 #copyright {
   position: absolute;
   bottom: 0px;
@@ -447,27 +448,27 @@
   text-align: center;
 }
 
-/* line 482, ../../compass/assets/sass/brickslopes.scss */
+/* line 480, ../../compass/assets/sass/brickslopes.scss */
 .fig {
   height: 175px;
 }
 
-/* line 486, ../../compass/assets/sass/brickslopes.scss */
+/* line 484, ../../compass/assets/sass/brickslopes.scss */
 .figLarge {
   height: 225px;
 }
 
-/* line 490, ../../compass/assets/sass/brickslopes.scss */
+/* line 488, ../../compass/assets/sass/brickslopes.scss */
 .figXLarge {
   height: 250px;
 }
 
-/* line 494, ../../compass/assets/sass/brickslopes.scss */
+/* line 492, ../../compass/assets/sass/brickslopes.scss */
 img#miniAFOLRegistrationImage {
   height: 75px;
 }
 
-/* line 498, ../../compass/assets/sass/brickslopes.scss */
+/* line 496, ../../compass/assets/sass/brickslopes.scss */
 img#miniStarWars {
   height: 125px;
 }

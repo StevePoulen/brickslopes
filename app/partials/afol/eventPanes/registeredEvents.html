@@ -1,7 +1,22 @@
 <div>
     <div ng-repeat="event in eventList">
         <div class="info">
-            <bs-text text="BrickSlopes - Salt Lake City" font-color=black></bs-text>
+            <bs-text text="BrickSlopes - Salt Lake City" font-size=1.25></bs-text>
+        </div>
+        <div class="info">
+            <bs-text text="{{passDates}}"></bs-text>
+        </div>
+        <div class="info">
+            <bs-text text="Event Pass: {{passType}}"></bs-text>
+        </div>
+        <div class="info">
+            <bs-text text="Paid: {{event.paid}}"></bs-text>
+        </div>
+        <div class="info">
+            <bs-text text="Over 18: {{event.ageVerification}}"></bs-text>
+        </div>
+        <div class="info">
+            <bs-text text="Meet and Greet: {{event.meetAndGreet}}"></bs-text>
         </div>
         <div class="brickCenter">
             <div class="brickHolder">
@@ -35,14 +50,6 @@
                 </div>
             </div>
         </div>
-        <div class="info">
-            Over 18: {{event.ageVerification}}
-        </div>
-        <div class="info">
-            Meet and Greet: {{event.meetAndGreet}}
-        </div>
-        <div class="info">
-            Paid: {{event.paid}}
-        </div>
+        <div class="eventBrickSlopesLogo mediumLogo logoRight"></div>
     </div>
 </div>

@@ -32,16 +32,6 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     $scope.timer = false;
     $scope.verifying = false;
 
-    $scope.$watch('comments', function(newValue, oldValue) {
-        if (oldValue === 'Comments ...' && newValue !== 'Comments ...') {
-            $('#emailComments').removeClass('greyFont');
-            $scope.comments = newValue.substr(12,13);
-        } else if (newValue === '') {
-            $('#emailComments').addClass('greyFont');
-            $scope.comments = 'Comments ...';
-        }
-    });
-
     function serializeEmailUsJson() {
         return {
             firstName: $scope.firstName,
@@ -58,7 +48,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
             $scope.firstName = "";
             $scope.lastName = "";
             $scope.email = "";
-            $scope.comments = "";
+            $scope.comments = "Comments ...";
             $scope.captchaInit = "AwEs0me";
             $scope.captcha= "";
             $scope.displayMessage = "Your e-mail has been sent.";
@@ -188,7 +178,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     }
 }])
 .controller('afolEventRegistration', ['$scope', '$location', 'EventDetails', 'EventRegistration', '$route', 'EventDates', function($scope, $location, EventDetails, eventRegistration, $route, EventDates) {
-    $("#splashPageCTA").hide(500);
+    $("#splashPageCTA").hide();
     $scope.verifying = false;
     $scope.displayMessage = "";
     $scope.success = true;
@@ -196,6 +186,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     $scope.eventId = $route.current.params.eventId;
     $scope.eventDetails = {city: 'loading'};
     $scope.meetAndGreet = 'YES';
+    $scope.comments = 'Comments ...';
     $scope.ageVerification = 'YES';
     $scope.discountDate = undefined;
     $scope.passDates = undefined;
@@ -248,7 +239,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     }
 }])
 .controller('afolEventThemes', ['$scope', '$location', 'Themes', function($scope, $location, Themes) {
-    $("#splashPageCTA").hide(500);
+    $("#splashPageCTA").hide();
     $scope.eventId = 2;
     $scope.themeList = [];
 
@@ -261,13 +252,16 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         $scope.themeList = data;
     });
 }])
-.controller('afolMe', ['$scope', '$location', 'Auth', 'EventRegistration', function($scope, $location, Auth, EventRegistration) {
-    $("#splashPageCTA").hide(500);
+.controller('afolMe', ['$scope', '$location', 'Auth', 'EventRegistration', 'EventDates', function($scope, $location, Auth, EventRegistration, EventDates) {
+    $("#splashPageCTA").hide();
     $scope.verifying = false;
     $scope.displayMessage = "";
     $scope.timer = false;
     $scope.success = true;
+    $scope.passType = undefined;
+    $scope.passDates = undefined;
     $scope.eventList = {}
+    $scope.eventId = 2;
 
     function serializeChangePasswordJson() {
         return {
@@ -316,9 +310,17 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         $scope.eventList = data;
         $scope.displayRegisterEventCTA = displayRegisterEventButton();
     });
+
+    EventDates.getPassType($scope.eventId).then(function(passType) {
+        $scope.passType = passType;
+    });
+
+    EventDates.getPassDates($scope.eventId).then(function(passDates) {
+        $scope.passDates = passDates;
+    });
 }])
 .controller('afolIndex', ['$scope', '$location', 'GetAfolMocList', '$window', 'EventDates', 'EventRegistration', function($scope, $location, GetAfolMocList, $window, EventDates, EventRegistration) {
-    $("#splashPageCTA").hide(500);
+    $("#splashPageCTA").hide();
     $scope.mocCount = 0;
     $scope.vendorCount = 0;
     $scope.mocList = [];

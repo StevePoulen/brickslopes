@@ -2,6 +2,7 @@ $bs_red: #FF0500;
 $bs_blue: #35469A;
 $bs_green: green;
 $bs_grey: #BCBEBF;
+$bs_black: #000000;
 
 body {
     background-color: black;
@@ -62,7 +63,7 @@ input[type="text"], input[type="email"], input[type="password"], textarea {
 
 .registrationForm input[type="text"] {
     margin-left: 10px;
-    width: 375px;
+    width: 305px;
 }
 
 input[type="text"]::-moz-placeholder, 
@@ -202,6 +203,10 @@ input.ng-dirty {
     color: $bs_blue;
 }
 
+.blackFont {
+    color: $bs_black;
+}
+
 .greyFont {
     color: $bs_grey;
 }
@@ -236,4 +241,12 @@ label.errorFont {
 
 .borderRadius10 {
     border-radius: 10px;
+}
+
+.textCenter {
+    text-align: center;
+}
+
+.textLeft {
+    text-align: left;
 }

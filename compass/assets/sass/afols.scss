@@ -1,68 +1,69 @@
-$dashboard_width: 1220px;
-$dashboard_height: 795px;
-$eventPane_height: 200px;
-$eventPane_width: 300px;
-$eventPane_margin: 5;
-$pane_width: 1238px;
+    $dashboard_width: 1220px;
+    $dashboard_height: 795px;
+    $eventPane_height: 200px;
+    $eventPane_width: 300px;
+    $meEventPane_width: 350px;
+    $eventPane_margin: 5;
+    $pane_width: 1238px;
 
 #dashboardCloseButton, div#reserveStarWarsSet div#reserveCloseButton {
-  position: absolute;
-  background: url("/images/closeButton_blue.png") no-repeat scroll 0px center transparent;
-  background-size: 40px 40px;
-  height: 40px;
-  width: 40px;
-  z-index: 6;
-  top: -20px;
-  right: -20px;
-  cursor: pointer;
-}
-
-#dashboardText { 
-    position: absolute;
-    border-radius:25px;
-    padding: 15px;
-    font-size: 100%;
-    text-align: left;
-    width: $dashboard_width - 5;
-    color: black;
-    background: white;
-    display: table;
-    line-height: normal;  
-    display: table-cell;
-    vertical-align: middle;
-    overflow: scroll;
-
-    #login {
-        position: absolute;
-        left: 10px;
-        top: $dashboard_height / 2 - $dashboard_height / 4;
-        height: $dashboard_height / 2;
-        width: $dashboard_width / 2 - 20;
-        text-align: center;
-
-        .loginForm {
-            position: relative;
-            left: $dashboard_width / 4 - 135;
-            width: 250px;
-
-            .loginField {
-                margin-bottom: 10px;
-                border: 1px solid #BCBEBF;
-                border-radius: 5px;
-                width: 250px;
-                height: 42.5px;
-                padding-top: 7.5px;
-            }
-        }
+      position: absolute;
+      background: url("/images/closeButton_blue.png") no-repeat scroll 0px center transparent;
+      background-size: 40px 40px;
+      height: 40px;
+      width: 40px;
+      z-index: 6;
+      top: -20px;
+      right: -20px;
+      cursor: pointer;
     }
 
-    #signUpForm {
+#dashboardText { 
         position: absolute;
-        right: 10px;
-        top: 75px;
-        height: $dashboard_height / 2;
-        width: $dashboard_width / 2 - 20;
-        border: none;
+        border-radius:25px;
+        padding: 15px;
+        font-size: 100%;
+        text-align: left;
+        width: $dashboard_width - 5;
+        color: black;
+        background: white;
+        display: table;
+        line-height: normal;  
+        display: table-cell;
+        vertical-align: middle;
+        overflow: scroll;
+
+        #login {
+            position: absolute;
+            left: 10px;
+            top: $dashboard_height / 2 - $dashboard_height / 4;
+            height: $dashboard_height / 2;
+            width: $dashboard_width / 2 - 20;
+            text-align: center;
+
+            .loginForm {
+                position: relative;
+                left: $dashboard_width / 4 - 135;
+                width: 250px;
+
+                .loginField {
+                    margin-bottom: 10px;
+                    border: 1px solid #BCBEBF;
+                    border-radius: 5px;
+                    width: 250px;
+                    height: 42.5px;
+                    padding-top: 7.5px;
+                }
+            }
+        }
+
+        #signUpForm {
+            position: absolute;
+            right: 10px;
+            top: 75px;
+            height: $dashboard_height / 2;
+            width: $dashboard_width / 2 - 20;
+            border: none;
         opacity: 0;
 
         .loginForm {
@@ -159,7 +160,7 @@ $pane_width: 1238px;
             margin-bottom: 20px;
             border: 1px solid #BCBEBF;
             border-radius: 5px;
-            width: 390px;
+            width: 310px;
             height: 35px;
             padding-left: 10px;
             padding-top: 15px;
@@ -168,6 +169,7 @@ $pane_width: 1238px;
 
         .asterickField {
             @extend .optionField;
+            margin-left: -60px;
             margin-bottom: 20px;
             border: none;
             border-radius: 0;
@@ -179,13 +181,15 @@ $pane_width: 1238px;
 
         .commentsField {
             margin-bottom: 20px;
-            border: 1px solid #BCBEBF;
-            border-radius: 5px;
-            width: 390px;
-            height: 135px;
-            padding-left: 10px;
-            padding-top: 15px;
-            text-align: left;
+
+            textarea {
+                width: 320px;
+                height: 135px;
+                border: 1px solid #BCBEBF;
+                border-radius: 5px;
+                margin-bottom: 10px;
+                padding-top: 10px;
+            }
         }
     }
 
@@ -296,7 +300,7 @@ $pane_width: 1238px;
     .events {
         position: relative;
         float: left;
-        width: $eventPane_width + 50;
+        width: $meEventPane_width;
         height: $eventPane_height * 2;
         margin: 0 $eventPane_margin $eventPane_margin 0;
         cursor: pointer;
@@ -305,11 +309,14 @@ $pane_width: 1238px;
 
         .info {
             position: relative;
-            width: $eventPane_width - 4;
-            height: 35px;
-            border: 1px solid red;
-            margin-bottom: 10px;
-            margin-left: 2px;
+            width: $meEventPane_width - 40;
+            height: auto;
+            min-height: 35px;
+            border: none;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            margin-left: 20px;
+            text-align: center;
         }
 
         .brickCenter {
@@ -489,4 +496,25 @@ $pane_width: 1238px;
     padding: 0;
     margin-left: 45px;
     margin-top: 5px;
+}
+
+#dashboardText .registrationForm {
+    left: 50px;
+    margin-left: 50px;
+    width: 325px;
+    border: none;
+
+    .brickCenter {
+        margin-bottom: 5px;
+
+        .legoBrick {
+            height: 3.2 * 3 * 5 - 5;
+            padding-top: 5px;
+            margin-left: 0px;
+
+            input {
+                border: 1px solid black;
+            }
+        }
+    }
 }

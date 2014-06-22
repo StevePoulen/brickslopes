@@ -74,33 +74,5 @@ describe('controllers', function() {
                 expect(scope.captcha).toBe('');
             });
         });
-
-        describe('Watch Comments', function() {
-            beforeEach(function() {
-                scope.comments = 'Comments ...';
-            });
-
-            it('should reset the comments', function() {
-                scope.comments = '';
-                scope.$digest();
-                expect(scope.comments).toBe('Comments ...');
-            });
-
-            it('should remove the default comments text', function() {
-                scope.$digest();
-                scope.comments = 'Comments ...a';
-                scope.$digest();
-                expect(scope.comments).toBe('a');
-            });
-
-/*
-            it('should remove the default comments text', function() {
-                scope.$digest();
-                scope.comments = 'Comments ..';
-                scope.$digest();
-                expect(scope.comments).toBe('a');
-            });
-            */
-        });
     });
 });

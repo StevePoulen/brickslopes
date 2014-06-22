@@ -21,7 +21,7 @@ class registrations extends db {
                 r.badgeLine2 as badgeLine2,
                 r.meetAndGreet as meetAndGreet,
                 r.ageVerification as ageVerification,
-                r.paid as paid,
+                IFNULL(r.paid,'NO') as paid,
                 e.name as name
             FROM
                 registrations r,
