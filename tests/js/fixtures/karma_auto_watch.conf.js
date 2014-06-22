@@ -9,6 +9,7 @@ module.exports = function(config){
       'app/partials/afol/**/*.html',
       'app/lib/**/*.js',
       'app/js/**/*.js',
+      'tests/js/fixtures/artifacts/**/*.js',
       'tests/js/unit/**/*.js'
     ],
 

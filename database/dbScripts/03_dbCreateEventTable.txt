@@ -15,6 +15,7 @@ CREATE TABLE `events` (
   `year` INT(4),
   `cost` NUMERIC(10,2),
   `discount` NUMERIC(10,2),
+  `meetAndGreetDiscount` NUMERIC(10,2),
   `meetAndGreetCost` NUMERIC(10,2),
   `discountDate` DATETIME,
   PRIMARY KEY (`eventId`),

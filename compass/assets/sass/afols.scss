@@ -1,7 +1,7 @@
 $dashboard_width: 1220px;
 $dashboard_height: 795px;
 $eventPane_height: 200px;
-$eventPane_width: 325px;
+$eventPane_width: 300px;
 $eventPane_margin: 5;
 $pane_width: 1238px;
 
@@ -296,7 +296,7 @@ $pane_width: 1238px;
     .events {
         position: relative;
         float: left;
-        width: $eventPane_width;
+        width: $eventPane_width + 50;
         height: $eventPane_height * 2;
         margin: 0 $eventPane_margin $eventPane_margin 0;
         cursor: pointer;

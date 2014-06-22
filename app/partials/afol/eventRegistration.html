@@ -4,14 +4,14 @@
             <h1><bs-logo font-size=1.25 text="{{eventDetails.city}}"></bs-logo> &#8226; <bs-text text="Event Registration" font-color=black></bs-text></h1>
         </div>
         <div id="discountPriceInformation">
-            <h2> Before March 15th, 2015</h2>
-            <span class="blueFont">AFOL 4-Day Event Pass</span> -- <span class="bold">{{eventDetails.discount | currency}}</span> per person 
+            <h2>Before {{discountDate}}</h2>
+            <span class="blueFont">AFOL {{passType}} Event Pass</span> -- <span class="bold">{{eventDetails.discount | currency}}</span> per person 
             <p>
             <span class="blueFont">Meet & Greet Event Pass</span> -- <span class="bold">{{eventDetails.meetAndGreetDiscount | currency}}</span> per person
         </div>
         <div id="fullPriceInformation">
-            <h2>After March 15, 2015</h2>
-            <span class="blueFont">AFOL 4-Day Event Pass</span> -- <span class="bold">{{eventDetails.cost | currency}}</span> per person
+            <h2>After {{discountDate}}</h2>
+            <span class="blueFont">AFOL {{passType}} Event Pass</span> -- <span class="bold">{{eventDetails.cost | currency}}</span> per person
             <p>
             <span class="blueFont">Meet & Greet Event Pass</span> -- <span class="bold">{{eventDetails.meetAndGreetCost | currency}}</b> per person
         </div>
@@ -51,7 +51,7 @@
         <div id="eventSwag">
             <h2>Registration Includes ...</h2>
             <ol>
-                <li>4-Day Pass, May 1st thru 4th</li>
+                <li>{{passType}} Event Pass, {{passDates}}</li>
                 <li>Keynote Speaker Access</li>
                 <li>MOC Display Space</li>
                 <li><bs-logo></bs-logo> Name Badge</li>
@@ -62,7 +62,7 @@
             </ol>
             <h2>Meet & Greet Event Includes ...</h2>
             <ol>
-                <li>Dinner Thursday May, 1st</li>
+                <li>Dinner {{meetAndGreetDinnerDate}}</li>
                 <li>Door Prizes</li>
                 <li>Swag</li>
                 <li>Access to AFOLs</li>

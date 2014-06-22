@@ -7,16 +7,16 @@
         </div> 
         <div class="eventPane" ng-click="clickThemes()">
             <div class="eventText" style="display: none"><bs-text font-color=black text="Are you ready ..."></bs-text><p><bs-text font-color=black text="To Build?"></bs-text></div>
-            <div class="eventImageText" style="display: show"><bs-text text='2015 Themes' font-size=1.85 font-color=white></bs-text></div>
+            <div class="eventImageText" style="display: show"><bs-text text='{{eventYear}} Themes' font-size=1.85 font-color=white></bs-text></div>
             <div class="eventBrickSlopesLogo smallLogo logoLeft" style="display: none"></div>
         </div> 
         <div class="eventPane" ng-click="clickGames()">
             <div class="eventText" style="display: none"><bs-text font-color=black text="Show Your"></bs-text><p><bs-text font-color=black text="Skills"></bs-text></div>
-            <div class="eventImageText" style="display: show"><bs-text text='2015 Games' font-size=1.85 font-color=white></bs-text></div>
+            <div class="eventImageText" style="display: show"><bs-text text='{{eventYear}} Games' font-size=1.85 font-color=white></bs-text></div>
             <div class="eventBrickSlopesLogo smallLogo logoLeft" style="display: none"></div>
         </div> 
         <div class="eventPane" ng-click="clickRegistration()">
-            <div class="eventText" style="display: none"><bs-text font-color=black text="Join us May, 2015"></bs-text><p><bs-text font-color=black text="Register Now"></bs-text></div>
+            <div class="eventText" style="display: none"><bs-text font-color=black text="Join us {{eventMonthYear}}"></bs-text><p><bs-text font-color=black text="Register Now"></bs-text></div>
             <div class="eventImageText" style="display: show"><bs-text text='Registration' font-size=1.85 font-color=white></bs-text></div>
             <div class="eventBrickSlopesLogo smallLogo logoLeft" style="display: none"></div>
         </div> 
@@ -32,7 +32,7 @@
         </div> 
         <div class="eventPane" ng-click="clickCollection()">
             <div class="eventText" style="display: none"><bs-text font-color=black text="To Be"></bs-text><p><bs-text font-color=black text="Announced"></bs-text></div>
-            <div class="eventImageText" style="display: show"><bs-text text='2015 Collection?' font-size=1.85 font-color=white></bs-text></div>
+            <div class="eventImageText" style="display: show"><bs-text text='{{eventYear}} Collection?' font-size=1.85 font-color=white></bs-text></div>
             <div class="eventBrickSlopesLogo smallLogo logoLeft" style="display: none"></div>
         </div> 
         <div class="eventPane" ng-click="clickMocRegistration()">
@@ -52,7 +52,7 @@
         <div class="eventPane" ng-click="clickVendors()">
             <div class="eventText" style="display: none"><bs-text font-color=black text="The Best Vendors"></bs-text><p><bs-text font-color=black text="Find out now ..."></bs-text></div>
             <div class="eventImageText" style="display: show">
-                <bs-text text="2015 Vendors" font-size=1.85 font-color=white></bs-text>
+                <bs-text text="{{eventYear}} Vendors" font-size=1.85 font-color=white></bs-text>
                 <br>
                 <bs-text text={{vendorCount}} font-size=1.85 font-color=white></bs-text>
             </div>
@@ -69,7 +69,7 @@
         </div> 
         <div class="eventPane" ng-click="clickFAQ()">
             <div class="eventText" style="display: none"><bs-text font-color=black text="Have Question?"></bs-text><p><bs-text font-color=black text="Get Answers"></bs-text></div>
-            <div class="eventImageText" style="display: show"><bs-text text='F*A*Q' font-size=1.85 font-color=white></bs-text></div>
+            <div class="eventImageText" style="display: show"><bs-text text='FAQ' font-size=1.85 font-color=white></bs-text></div>
             <div class="eventBrickSlopesLogo smallLogo logoLeft" style="display: none"></div>
         </div> 
         <div class="eventPane" ng-click="clickVenue()">

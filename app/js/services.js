@@ -160,61 +160,198 @@ angular.module('brickSlopes.services', [])
         },
 
         getAllEvents: function() {
-            return __eventDates;
+            return $q.when(__eventDates);
+        },
+
+        __getAfolTimestamps: function(eventId) {
+            var afolTimestamps = this.getCache(eventId, 'afolTimestamps');
+            if (afolTimestamps) {
+                return $q.when(afolTimestamps);
+            } else {
+                var afolStartTimestamps = [];
+                var afolEndTimestamps = [];
+                var self = this;
+
+                return this.getAllEvents().then(function(allEvents) {
+                    _.each(allEvents[eventId], function(eventObj) {
+                        if (eventObj.type === "AFOL") {
+                            afolStartTimestamps.push(moment(eventObj.startDate));
+                            afolEndTimestamps.push(moment(eventObj.endDate));
+                        }
+                    });
+
+                    return self.setCache (
+                        eventId,
+                        'afolTimestamps',
+                        {
+                            'start': afolStartTimestamps,
+                            'end': afolEndTimestamps,
+                            'last': afolEndTimestamps.length - 1,
+                            'size': afolEndTimestamps.length
+                        }
+                    )
+                });
+            }
         },
 
         __getPublicTimestamps: function(eventId) {
             var publicTimestamps = this.getCache(eventId, 'publicTimestamps');
             if (publicTimestamps) {
-                return publicTimestamps;
+                return $q.when(publicTimestamps);
             } else {
                 var publicStartTimestamps = [];
                 var publicEndTimestamps = [];
-                _.each(__eventDates[eventId], function(eventObj) {
-                    if (eventObj.type === "PUBLIC") {
-                        publicStartTimestamps.push(moment(eventObj.startDate));
-                        publicEndTimestamps.push(moment(eventObj.endDate));
-                    }
+                var self = this;
+
+                return this.getAllEvents().then(function(allEvents) {
+                    _.each(allEvents[eventId], function(eventObj) {
+                        if (eventObj.type === "PUBLIC") {
+                            publicStartTimestamps.push(moment(eventObj.startDate));
+                            publicEndTimestamps.push(moment(eventObj.endDate));
+                        }
+                    });
+
+                    return self.setCache (
+                        eventId,
+                        'publicTimestamps',
+                        {
+                            'start': publicStartTimestamps,
+                            'end': publicEndTimestamps,
+                            'last': publicEndTimestamps.length - 1,
+                            'size': publicEndTimestamps.length
+                        }
+                    )
+
                 });
-                return this.setCache (
-                    eventId,
-                    'publicTimestamps',
-                    {
-                        'start': publicStartTimestamps,
-                        'end': publicEndTimestamps,
-                        'last': publicEndTimestamps.length - 1
-                    }
-                )
+
             }
         },
 
         getPublicDates: function(eventId) {
             var publicDates = this.getCache(eventId, 'publicDates');
-            if (publicDates) { 
-                return publicDates;
+            if (publicDates) {
+                return $q.when(publicDates);
             } else {
-                var publicTimestamps = this.__getPublicTimestamps(eventId);
+                var self = this;
+                return this.__getPublicTimestamps(eventId).then(function(publicTimestamps) {
+                    var publicDates = [];
+                    for(var index=0; index<publicTimestamps.size; index++) {
+                        publicDates.push(
+                            {
+                                'date': moment(publicTimestamps.start[index]).format('dddd, MMMM Do'),
+                                'hours': moment(publicTimestamps.start[index]).format('h a to ') + moment(publicTimestamps.end[index]).format('h a'),
+                            }
+                        );
+                    }
 
-                var publicDates = moment(publicTimestamps.start[0]).format('MMM D');
-                publicDates += moment(publicTimestamps.end[publicTimestamps.last]).format(' & D, YYYY');
+                    return self.setCache (
+                        eventId,
+                        'publicDates',
+                        publicDates
+                    )
+                });
+            }
+        },
 
-                return this.setCache (
-                    eventId,
-                    'publicDates',
-                    publicDates
-                )
-            } 
+        getPublicDatesTogether: function(eventId) {
+            var publicDates = this.getCache(eventId, 'publicDatesTogether');
+            if (publicDates) {
+                return $q.when(publicDates);
+            } else {
+                var self = this;
+                return this.__getPublicTimestamps(eventId).then(function(publicTimestamps) {
+                    var publicDates = moment(publicTimestamps.start[0]).format('MMM D');
+                    publicDates += moment(publicTimestamps.end[publicTimestamps.last]).format(' & D, YYYY');
+
+                    return self.setCache (
+                        eventId,
+                        'publicDatesTogether',
+                        publicDates
+                    )
+                });
+            }
+        },
+
+        getEventMonthYear: function(eventId) {
+            var self = this;
+            var eventMonthYear = this.getCache(eventId, 'monthYear');
+            if (eventMonthYear) {
+                return $q.when(eventMonthYear);
+            } else {
+                return this.getAllEvents().then(function(allEvents) {
+                    return self.setCache (
+                        eventId,
+                        'monthYear',
+                        moment(allEvents[eventId][0].startDate).format('MMMM, YYYY')
+                    )
+                });
+            }
+        },
+
+        getPassDates: function(eventId) {
+            var self = this;
+            var passDates = this.getCache(eventId, 'passDates');
+            if (passDates) {
+                return $q.when(passDates);
+            } else {
+                return this.__getAfolTimestamps(eventId).then(function(afolTimestamps) {
+                    return self.setCache (
+                        eventId,
+                        'passDates',
+                        moment(afolTimestamps.start[0]).format('MMMM Do') +
+                        ' thru ' +
+                        moment(afolTimestamps.end[afolTimestamps.last]).format('Do')
+                    )
+                });
+            }
+        },
+
+        getMeetAndGreetDinnerDate: function(eventId) {
+            var self = this;
+            var meetAndGreetDinnerDate = this.getCache(eventId, 'meetAndGreetDinnerDate');
+            if (meetAndGreetDinnerDate) {
+                return $q.when(meetAndGreetDinnerDate);
+            } else {
+                return this.__getAfolTimestamps(eventId).then(function(afolTimestamps) {
+                    return self.setCache (
+                        eventId,
+                        'meetAndGreetDinnerDate',
+                        moment(afolTimestamps.start[0]).format('dddd, MMMM Do')
+                    )
+                });
+            }
+        },
+
+        getPassType: function(eventId) {
+            var self = this;
+            var passType = this.getCache(eventId, 'passType');
+            if (passType) {
+                return $q.when(passType);
+            } else {
+                return this.__getAfolTimestamps(eventId).then(function(afolTimestamps) {
+                    return self.setCache (
+                        eventId,
+                        'passType',
+                        afolTimestamps.size + '-Day'
+                    )
+                });
+            }
         },
 
         getEventYear: function(eventId) {
+            var self = this;
             var eventYear = this.getCache(eventId, 'year');
-            return (eventYear ?  eventYear :
-                this.setCache (
-                    eventId,
-                    'year',
-                    moment(__eventDates[eventId][0].startDate).format('YYYY')
-                )
-            );
+            if (eventYear) {
+                return $q.when(eventYear);
+            } else {
+                return this.getAllEvents().then(function(allEvents) {
+                    return self.setCache (
+                        eventId,
+                        'year',
+                        moment(allEvents[eventId][0].startDate).format('YYYY')
+                    )
+                });
+            }
         }
     }
 }])

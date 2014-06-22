@@ -20,13 +20,19 @@ class EventTest extends PHPUnit_Framework_TestCase
     {
         $_SERVER['REQUEST_METHOD'] = "GET";
         $GLOBALS['db_query'] = '1';
-        $this->eventsMock->buildGlobalVariables();
-        $GLOBALS['fetch_object'] = new EventsMock();
+        $GLOBALS['fetch_object'] = "EventsMock";
         $event = new Event();
         $this->assertEquals(http_response_code(), 200);
-        //$output = json_decode(ob_get_contents());
-        //echo $output->data->name;
-        $this->expectOutputString($this->eventsMock->buildJsonString()); 
+        $output = json_decode(ob_get_contents());
+        $this->assertEquals($output->data->name, 'BrickSlopes 2015');
+        $this->assertEquals($output->data->city, 'Salt Lake City');
+        $this->assertEquals($output->data->state, 'Utah');
+        $this->assertEquals($output->data->year, '2015');
+        $this->assertEquals($output->data->cost, '65.00');
+        $this->assertEquals($output->data->discount, '60.00');
+        $this->assertEquals($output->data->meetAndGreetCost, '15.00');
+        $this->assertEquals($output->data->meetAndGreetDiscount, '10.00');
+        $this->assertEquals($output->data->discountDate, '2014-06-05 23:59:59');
     }
 
     public function testAuthenticatedGetFailure() 

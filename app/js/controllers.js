@@ -4,10 +4,18 @@
 angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
 .controller('bsIndex', ['$scope', '$location', 'EventDates', function($scope, $location, EventDates) {
     $("#splashPageCTA").show(500);
-    //$scope.publicEventDates = EventDates.getPublicDates(2);
-    //$scope.eventYear = EventDates.getEventYear(2);
-    $scope.publicEventDates = 'May 15 & 16, 2015';
-    $scope.eventYear = '2015';
+
+    EventDates.getEventYear(2).then(function(year) {
+        $scope.eventYear = year;
+    });
+
+    EventDates.getPublicDatesTogether(2).then(function(dates) {
+        $scope.publicEventDates = dates;
+    });
+
+    EventDates.getPublicDates(2).then(function(dateList) {
+        $scope.publicDateList = dateList;
+    });
 
     $scope.tickets = function() {
         $location.path("/tickets.html");
@@ -179,7 +187,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         $location.path("/");
     }
 }])
-.controller('afolEventRegistration', ['$scope', '$location', 'EventDetails', 'EventRegistration', '$route', function($scope, $location, EventDetails, eventRegistration, $route) {
+.controller('afolEventRegistration', ['$scope', '$location', 'EventDetails', 'EventRegistration', '$route', 'EventDates', function($scope, $location, EventDetails, eventRegistration, $route, EventDates) {
     $("#splashPageCTA").hide(500);
     $scope.verifying = false;
     $scope.displayMessage = "";
@@ -189,6 +197,10 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     $scope.eventDetails = {city: 'loading'};
     $scope.meetAndGreet = 'YES';
     $scope.ageVerification = 'YES';
+    $scope.discountDate = undefined;
+    $scope.passDates = undefined;
+    $scope.passType = undefined;
+    $scope.meetAndGreetDinnerDate = undefined;
 
     function serializeRegistrationJson() {
         return {
@@ -216,6 +228,19 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
 
     EventDetails.get($scope.eventId).then(function(data) {
         $scope.eventDetails=data.data;
+        $scope.discountDate = moment($scope.eventDetails.discountDate).format('MMMM Do, YYYY');
+    });
+
+    EventDates.getPassType($scope.eventId).then(function(passType) {
+        $scope.passType = passType;
+    });
+
+    EventDates.getPassDates($scope.eventId).then(function(passDates) {
+        $scope.passDates = passDates;
+    });
+
+    EventDates.getMeetAndGreetDinnerDate($scope.eventId).then(function(meetAndGreetDinnerDate) {
+        $scope.meetAndGreetDinnerDate = meetAndGreetDinnerDate;
     });
 
     $scope.closeDialog = function() {
@@ -292,16 +317,28 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         $scope.displayRegisterEventCTA = displayRegisterEventButton();
     });
 }])
-.controller('afolIndex', ['$scope', '$location', 'GetAfolMocList', '$window', function($scope, $location, GetAfolMocList, $window) {
+.controller('afolIndex', ['$scope', '$location', 'GetAfolMocList', '$window', 'EventDates', 'EventRegistration', function($scope, $location, GetAfolMocList, $window, EventDates, EventRegistration) {
     $("#splashPageCTA").hide(500);
     $scope.mocCount = 0;
     $scope.vendorCount = 0;
     $scope.mocList = [];
     $scope.userName = $window.sessionStorage.firstName + "'s Site";
+    $scope.isRegistered = false;
+
+    EventDates.getEventYear(2).then(function(year) {
+        $scope.eventYear = year;
+    });
+
+    EventDates.getEventMonthYear(2).then(function(monthYear) {
+        $scope.eventMonthYear = monthYear;
+    });
+
+    EventRegistration.get().then(function(data) {
+        $scope.isRegistered = (Object.keys(data).length ? true : false);
+    });
 
     $scope.clickMe = function() {
         $location.path("/afol/eventMe.html");
-        //$location.path("/afol/comingSoon.html");
     }
 
     $scope.clickThemes = function() {
@@ -314,7 +351,11 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     }
 
     $scope.clickRegistration = function() {
-        $location.path("/afol/2/eventRegistration.html");
+        if ($scope.isRegistered) {
+            $location.path("/afol/eventMe.html");
+        } else {
+            $location.path("/afol/2/eventRegistration.html");
+        }
     }
 
     $scope.clickSchedule = function() {

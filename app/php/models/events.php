@@ -23,6 +23,7 @@ class events extends db {
                 cost,
                 discount,
                 meetAndGreetCost,
+                meetAndGreetDiscount,
                 discountDate
             FROM
                 EVENTS
@@ -44,6 +45,7 @@ class events extends db {
                 cost,
                 discount,
                 meetAndGreetCost,
+                meetAndGreetDiscount,
                 discountDate
             )
         VALUES
@@ -55,6 +57,7 @@ class events extends db {
                 '{$this->escapeCharacters($data['cost'])}',
                 '{$this->escapeCharacters($data['discount'])}',
                 '{$this->escapeCharacters($data['meetAndGreetCost'])}',
+                '{$this->escapeCharacters($data['meetAndGreetDiscount'])}',
                 '{$this->escapeCharacters($data['discountDate'])}'
           )
         ;

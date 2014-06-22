@@ -24,11 +24,18 @@ describe('controllers', function() {
         beforeEach(inject(function($controller, $rootScope, _$httpBackend_, $location, $route) {
             scope = $rootScope.$new();
             route = $route;
-            route = {current: {params: {eventId: 234}}};
+            route = {current: {params: {eventId: 2}}};
             ctrl = $controller('afolEventRegistration', { $scope: scope, $route: route});
             mockBackend = _$httpBackend_;
-            response = {data:{'eventId': 234, 'eventName': 'BrickSlopes 2015'}};
-            mockBackend.expectGET('/controllers/event.php?eventId=234').respond(201, response);
+            response = {
+                data: {
+                    'eventId': 2,
+                    'eventName': 'BrickSlopes 2015',
+                    'discountDate': '2015-05-16 08:00:00'
+                }
+            };
+            mockBackend.expectGET('/controllers/eventDates.php').respond(201, eventDates);
+            mockBackend.expectGET('/controllers/event.php?eventId=2').respond(201, response);
             location = $location;
         }));
 
@@ -48,6 +55,22 @@ describe('controllers', function() {
                 expect(scope.displayMessage).toBe('');
             });
 
+            it('should have a discountDate variable', function() {
+                expect(scope.discountDate).toBe(undefined);
+            });
+
+            it('should have a passDates variable', function() {
+                expect(scope.passDates).toBe(undefined);
+            });
+
+            it('should have a passType variable', function() {
+                expect(scope.passType).toBe(undefined);
+            });
+
+            it('should have a meetAndGreetDinnerDate variable', function() {
+                expect(scope.meetAndGreetDinnerDate).toBe(undefined);
+            });
+
             it('should have a timer variable', function() {
                 expect(scope.timer).toBe(false);
             });
@@ -57,13 +80,16 @@ describe('controllers', function() {
             });
 
             it('should have an eventId variable', function() {
-                expect(scope.eventId).toBe(234);
+                expect(scope.eventId).toBe(2);
             });
 
             it('should get event details', function() {
-
                 mockBackend.flush();
                 expect(scope.eventDetails).toEqualData(response.data);
+                expect(scope.discountDate).toEqualData('May 16th, 2015');
+                expect(scope.passType).toBe('4-Day');
+                expect(scope.passDates).toBe('May 14th thru 17th');
+                expect(scope.meetAndGreetDinnerDate).toBe('Thursday, May 14th');
             });
         });
 
@@ -79,7 +105,7 @@ describe('controllers', function() {
 
             it('should submit a valid user event registration', function() {
                 var dto = {
-                    eventId: 234,
+                    eventId: 2,
                     badgeLine1: 'Hello',
                     badgeLine2: 'World',
                     meetAndGreet: 'Yes',
@@ -97,7 +123,7 @@ describe('controllers', function() {
 
             it('should handle an invalid user event registration', function() {
                 var dto = {
-                    eventId: 234,
+                    eventId: 2,
                     badgeLine1: 'Hello',
                     badgeLine2: 'World',
                     meetAndGreet: 'Yes',

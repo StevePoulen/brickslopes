@@ -184,7 +184,8 @@
             $eventMap['year'] = '2014';
             $eventMap['cost'] = '65.00';
             $eventMap['discount'] = '60.00';
-            $eventMap['meetAndGreetCost'] = '10.00';
+            $eventMap['meetAndGreetDiscount'] = '10.00';
+            $eventMap['meetAndGreetCost'] = '15.00';
             $eventMap['discountDate'] = '2014-03-15 12:00:00';
             $eventId = $eventsObj->addEventInformation($eventMap);
             $this->firstYearEventId = $eventId;
@@ -234,7 +235,8 @@
             $eventMap['year'] = '2015';
             $eventMap['cost'] = '65.00';
             $eventMap['discount'] = '60.00';
-            $eventMap['meetAndGreetCost'] = '10.00';
+            $eventMap['meetAndGreetDiscount'] = '10.00';
+            $eventMap['meetAndGreetCost'] = '15.00';
             $eventMap['discountDate'] = '2015-03-15 12:00:00';
             $eventId = $eventsObj->addEventInformation($eventMap);
             $this->secondYearEventId = $eventId;
