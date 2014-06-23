@@ -29,7 +29,6 @@
         }
 
         private function isHomePage() {
-            //if ($this->URI == "") $this->URI = 'oldsite.html'; 
             if ($this->URI == "") $this->URI = 'index.html'; 
         }
 
@@ -46,7 +45,6 @@
 
         private function isWhiteList() {
             if ($this->URI == '../index.html' ||
-                $this->URI == '../oldsite.html' || 
                 $this->URI == 'controllers/emailUs.php' ||
                 preg_match('/^..\/partials\/public/', $this->URI)
             ) {

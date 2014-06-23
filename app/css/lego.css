@@ -29,8 +29,8 @@
 /* line 43, ../../compass/assets/sass/lego.scss */
 .brickHolder .legoBrick .studs .stud {
   float: left;
-  margin-left: 6px;
-  margin-right: 6px;
+  margin-left: 7px;
+  margin-right: 7px;
   height: 9;
   width: 24;
   border: 1px solid black;

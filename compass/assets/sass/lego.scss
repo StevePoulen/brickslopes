@@ -12,7 +12,7 @@ $lego_brick_width: 8 * $multiplier * $studs;
 
 $lego_stud_height: 1.8 * $multiplier;
 $lego_stud_width: 4.8 * $multiplier;
-$lego_stud_distance: (1.6 * $multiplier) - ($lego_border * 2);
+$lego_stud_distance: (1.8 * $multiplier) - ($lego_border * 2);
 
 
 .brickHolder {

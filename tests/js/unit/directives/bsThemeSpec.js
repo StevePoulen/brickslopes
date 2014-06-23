@@ -6,6 +6,7 @@ describe('directives', function() {
     beforeEach(
         module(
             'brickSlopes.directives',
+            'brickSlopes.services',
             'app/partials/afol/eventThemesDirective.html'
         )
     );
@@ -39,21 +40,25 @@ describe('directives', function() {
                     }
                 ]
             };
-            element = angular.element('<bs-theme></bs-theme>');
+            element = angular.element('<bs-theme color="red"></bs-theme>');
             $compile(element)(scope);
             scope.$digest();
         }));
+
+        it('should have a color scope variable', function() {
+            expect(scope.color).toContain('red');
+        });
 
         it('should have Theme text', function() {
             expect($(element.find('div')[0]).html()).toContain('Brian');
         });
 
         it('should have Award text', function() {
-            expect($(element.find('li')[0]).html()).toBe('Ogel');
+            expect($(element.find('li')[0]).html()).toContain('Ogel');
         });
 
         it('should have Award text', function() {
-            expect($(element.find('li')[1]).html()).toBe('Pilati');
+            expect($(element.find('li')[1]).html()).toContain('Pilati');
         });
     });
 });

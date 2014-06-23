@@ -138,6 +138,9 @@ angular.module('brickSlopes.directives', [])
     return {
         restrict: 'E',
         replace: true,
-        templateUrl: 'partials/afol/eventThemesDirective.html'
+        templateUrl: 'partials/afol/eventThemesDirective.html',
+        link: function(scope, element, attrs) {
+            scope.color = attrs.color;
+        }
     }
 });
