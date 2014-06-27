@@ -300,10 +300,12 @@
             $afolsObj = new afols();
             $registrationsObj = new registrations();
             $afolsObj->selectAllAfols(); 
+            $noEmailCounter = 0;
 
             if ($afolsObj->result) {
                 while ($dbObj = $afolsObj->result->fetch_object()) {
-                    if (empty($this->trimMigration($dbObj->email))) {
+                    if (empty($dbObj->email)) {
+                        $noEmailCounter++;
                         continue;
                     }
                     $userMap = array();
@@ -339,7 +341,7 @@
                 }
             }
 
-            $originalAfolCount = $this->getTableCount('afols');
+            $originalAfolCount = $this->getTableCount('afols') - $noEmailCounter;
             $this->validateTable('users', $originalAfolCount);
             $this->validateTable('registrations', $originalAfolCount);
         }

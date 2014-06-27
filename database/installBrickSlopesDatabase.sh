@@ -2,7 +2,6 @@
 
 PASSWORD="--password=";
 ROOT_DATABASE="mysql";
-#BRICKSLOPES_DATABASE="brickSlopes";
 BRICKSLOPES_DATABASE="brickslopes";
 STEP_COUNTER=1;
 
