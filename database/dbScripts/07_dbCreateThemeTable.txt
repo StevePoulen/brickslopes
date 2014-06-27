@@ -4,7 +4,7 @@
 -- ------------------------------------------------------
 -- Server version	5.0.83
 
-USE `brickSlopes`;
+USE `brickslopes`;
 
 DROP TABLE IF EXISTS `themeAwards`;
 DROP TABLE IF EXISTS `themes`;

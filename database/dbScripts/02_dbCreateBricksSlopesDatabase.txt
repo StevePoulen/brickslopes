@@ -4,7 +4,7 @@
 -- ------------------------------------------------------
 -- Server version	5.0.83
 
-DROP DATABASE IF EXISTS `brickSlopes`;
-CREATE DATABASE `brickSlopes`;
+DROP DATABASE IF EXISTS `brickslopes`;
+CREATE DATABASE `brickslopes`;
 
-USE `brickSlopes`;
+USE `brickslopes`;

@@ -14,8 +14,8 @@ incStep() {
 executeDBStatement() {
     DB_FILE="./dbScripts/$1";
     echo "Executing: $DB_FILE";
-    #mysql -u root $BRICKSLOPES_DATABASE $PASSWORD$MYSQL_ROOT_PASSWORD < $DB_FILE
-    mysql -u 7hiez8ei $BRICKSLOPES_DATABASE -h mysql.brickslopes.com $PASSWORD$MYSQL_ROOT_PASSWORD < $DB_FILE
+    mysql -u root $BRICKSLOPES_DATABASE $PASSWORD$MYSQL_ROOT_PASSWORD < $DB_FILE
+    #mysql -u 7hiez8ei $BRICKSLOPES_DATABASE -h mysql.brickslopes.com $PASSWORD$MYSQL_ROOT_PASSWORD < $DB_FILE
 }
 
 brickSlopesDBCreation() {

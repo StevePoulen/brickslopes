@@ -336,7 +336,7 @@
                 }
             }
 
-            $originalAfolCount = $this->getTableCount('AFOLs');
+            $originalAfolCount = $this->getTableCount('afols');
             $this->validateTable('users', $originalAfolCount);
             $this->validateTable('registrations', $originalAfolCount);
         }

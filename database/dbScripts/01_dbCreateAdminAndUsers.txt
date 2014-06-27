@@ -5,11 +5,11 @@
 -- Server version	5.1.59
 
 LOCK TABLES `user` WRITE;
-INSERT INTO `user` VALUES ('localhost','brickSlopes',password(''),'Y','Y','Y','N','N','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','','','','',0,0,0,0);
+INSERT INTO `user` VALUES ('localhost','brickslopes',password(''),'Y','Y','Y','N','N','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','','','','',0,0,0,0);
 UNLOCK TABLES;
 
 LOCK TABLES `db` WRITE;
-INSERT INTO `db` VALUES ('%','brickSlopes','brickSlopes','Y','Y','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','Y');
+INSERT INTO `db` VALUES ('%','brickslopes','brickslopes','Y','Y','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','Y');
 UNLOCK TABLES;
 
 FLUSH PRIVILEGES;
