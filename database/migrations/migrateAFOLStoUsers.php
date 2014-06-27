@@ -303,6 +303,9 @@
 
             if ($afolsObj->result) {
                 while ($dbObj = $afolsObj->result->fetch_object()) {
+                    if (empty($this->trimMigration($dbObj->email))) {
+                        continue;
+                    }
                     $userMap = array();
                     $userMap['firstName'] = $this->trimMigration($dbObj->firstName);
                     $userMap['lastName'] = $this->trimMigration($dbObj->lastName);
