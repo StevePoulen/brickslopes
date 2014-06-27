@@ -520,7 +520,7 @@ angular.module('brickSlopes.services', [])
         request: function(config) {
             config.headers = config.headers || {};
             if ($window.sessionStorage.token) {
-                config.headers.Authorization = $window.sessionStorage.token;
+                config.headers.Authtoken= $window.sessionStorage.token;
             }
             return config;
         },

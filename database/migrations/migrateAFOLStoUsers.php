@@ -301,6 +301,11 @@
             $registrationsObj = new registrations();
             $afolsObj->selectAllAfols(); 
             $noEmailCounter = 0;
+            if ($_SERVER['HTTP_HOST'] === 'mybrickslopes.com') {
+                $junkCounter = 0;
+            } else {
+                $junkCounter = 11;
+            }
 
             if ($afolsObj->result) {
                 while ($dbObj = $afolsObj->result->fetch_object()) {
@@ -341,7 +346,7 @@
                 }
             }
 
-            $originalAfolCount = $this->getTableCount('afols') - $noEmailCounter;
+            $originalAfolCount = $this->getTableCount('afols') - ($noEmailCounter + $junkCounter);
             $this->validateTable('users', $originalAfolCount);
             $this->validateTable('registrations', $originalAfolCount);
         }

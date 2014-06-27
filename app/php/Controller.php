@@ -70,7 +70,7 @@
         private function decodeJWT() {
             try {
                 $headers = apache_request_headers();
-                $jwt = $headers['Authorization'];
+                $jwt = $headers['Authtoken'];
                 $decoded = JWT::decode($jwt, JWT_KEY);
                 if (preg_match('/\d+/', $decoded->userId)) {
                     $this->userId = $decoded->userId;

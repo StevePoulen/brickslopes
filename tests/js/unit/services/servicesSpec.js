@@ -254,12 +254,12 @@ describe('service', function() {
         describe('request', function() {
             it('should add a header', function() {
                 window.sessionStorage.token = 123456789;
-                expect(auth.request({}).headers.Authorization).toEqual('123456789');
+                expect(auth.request({}).headers.Authtoken).toEqual('123456789');
             });
 
             it('should not have a header', function() {
                 delete window.sessionStorage.token;
-                expect(auth.request({}).headers.Authorization).toBeUndefined();
+                expect(auth.request({}).headers.Authtoken).toBeUndefined();
             });
         });
 

@@ -24,8 +24,8 @@ class themesModel extends db {
                 ta.award as award,
                 ta.place as place
             FROM
-                THEMES t,
-                THEMEAWARDS ta
+                themes t,
+                themeAwards ta
             WHERE
                 t.eventId = '{$this->escapeCharacters($data['eventId'])}'
                 AND t.themeId = ta.themeId
