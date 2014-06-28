@@ -37,6 +37,8 @@ class EventRegistration {
                         'badgeLine2' => $dbObj->badgeLine2, 
                         'meetAndGreet' => $dbObj->meetAndGreet,
                         'ageVerification' => $dbObj->ageVerification,
+                        'tShirtSize' => $dbObj->tShirtSize,
+                        'tShirtPaid' => $dbObj->tShirtPaid,
                         'paid' => $dbObj->paid,
                         'name' => $dbObj->name
                     )

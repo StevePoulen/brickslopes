@@ -21,6 +21,8 @@ class registrations extends db {
                 r.badgeLine2 as badgeLine2,
                 r.meetAndGreet as meetAndGreet,
                 r.ageVerification as ageVerification,
+                r.tShirtSize as tShirtSize,
+                r.tShirtPaid as tShirtPaid,
                 IFNULL(r.paid,'NO') as paid,
                 e.name as name
             FROM
@@ -50,6 +52,8 @@ class registrations extends db {
                 meetAndGreet,
                 ageVerification,
                 comments,
+                tShirtSize,
+                tShirtPaid,
                 amountPaid,
                 type,
                 registrationDate
@@ -63,6 +67,8 @@ class registrations extends db {
                 '{$this->escapeCharacters($data['meetAndGreet'])}',
                 '{$this->escapeCharacters($data['ageVerification'])}',
                 '{$this->escapeCharacters($data['comments'])}',
+                '{$this->escapeCharacters($data['tShirtSize'])}',
+                '{$this->escapeCharacters($data['tShirtPaid'])}',
                 '{$this->escapeCharacters($data['amountPaid'])}',
                 '{$this->escapeCharacters($data['type'])}',
                 NOW()

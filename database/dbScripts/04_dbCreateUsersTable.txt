@@ -11,7 +11,7 @@ CREATE TABLE `users` (
   `userId` INT(10) UNSIGNED UNIQUE NOT NULL auto_increment,
   `firstName` VARCHAR(255),
   `lastName` VARCHAR(255),
-  `email` VARCHAR(255) NOT NULL,
+  `email` VARCHAR(255) UNIQUE NOT NULL,
   `password` VARCHAR(255) NOT NULL,
   `phoneNumber` VARCHAR(255),
   `address` VARCHAR(255),
@@ -20,7 +20,9 @@ CREATE TABLE `users` (
   `zipcode` VARCHAR(255),
   `flickr` VARCHAR(255),
   `admin` ENUM('YES', 'NO') DEFAULT 'NO',
+  `familyId` INT(10) UNSIGNED NULL,
   `joined` DATETIME,
   PRIMARY KEY (`userId`),
+  FOREIGN KEY (`familyId`) REFERENCES `users` (`userId`),
   UNIQUE KEY `userId_UNIQUE` (`userId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='The Users Table';

@@ -13,8 +13,26 @@ incStep() {
 executeDBStatement() {
     DB_FILE="./dbScripts/$1";
     echo "Executing: $DB_FILE";
-    mysql -u root $BRICKSLOPES_DATABASE $PASSWORD$MYSQL_ROOT_PASSWORD < $DB_FILE
-    #mysql -u 7hiez8ei $BRICKSLOPES_DATABASE -h mysql.brickslopes.com $PASSWORD$MYSQL_ROOT_PASSWORD < $DB_FILE
+    if [[ "$LOCAL_DB" == "Y" ]]
+    then
+        mysql -u root $BRICKSLOPES_DATABASE $PASSWORD$MYSQL_ROOT_PASSWORD < $DB_FILE
+    else
+        mysql -u 7hiez8ei $BRICKSLOPES_DATABASE -h mysql.brickslopes.com $PASSWORD$MYSQL_ROOT_PASSWORD < $DB_FILE
+    fi
+}
+
+cleanInstallation() {
+    printf "\nSTEP $STEP_COUNTER: Is this a clean database installation?\n";
+    echo -n "Clean DB Installation? (Y\n) [ENTER]: "; 
+    read CLEAN_DB_INSTALLATION;
+    incStep
+}
+
+brickSlopesEnvironment() {
+    printf "\nSTEP $STEP_COUNTER: Is this a local 'BrickSlopes' database?\n";
+    echo -n "Local DB? (Y\n) [ENTER]: "; 
+    read LOCAL_DB;
+    incStep
 }
 
 brickSlopesDBCreation() {
@@ -48,7 +66,6 @@ isDropAllTables() {
     else
         return false;
     fi
-
 }
 
 mysqlRootPassword() {
@@ -124,10 +141,15 @@ userInput() {
     printf "\n\n";
     echo "This script will install the 'BrickSlopes' database.";
     printf "\n";
+    cleanInstallation;
+    brickSlopesEnvironment;
     mysqlRootPassword;
-    brickSlopesDBCreation;
-    adminDBCreation;
-    adminPassword;
+    if [[ "$CLEAN_DB_INSTALLATION" == "Y" ]]
+    then
+        brickSlopesDBCreation;
+        adminDBCreation;
+        adminPassword;
+    fi
     dropTables;
     if [[ "$DROP_ALL_TABLES" != "Y" ]]
     then

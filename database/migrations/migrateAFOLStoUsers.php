@@ -182,6 +182,7 @@
             $eventMap['city'] = 'Salt Lake City';
             $eventMap['state'] = 'Utah';
             $eventMap['year'] = '2014';
+            $eventMap['tShirtCost'] = '20.00';
             $eventMap['cost'] = '65.00';
             $eventMap['discount'] = '60.00';
             $eventMap['meetAndGreetDiscount'] = '10.00';
@@ -233,6 +234,7 @@
             $eventMap['city'] = 'Salt Lake City';
             $eventMap['state'] = 'Utah';
             $eventMap['year'] = '2015';
+            $eventMap['tShirtCost'] = '20.00';
             $eventMap['cost'] = '65.00';
             $eventMap['discount'] = '60.00';
             $eventMap['meetAndGreetDiscount'] = '10.00';
@@ -301,15 +303,19 @@
             $registrationsObj = new registrations();
             $afolsObj->selectAllAfols(); 
             $noEmailCounter = 0;
-            if ($_SERVER['HTTP_HOST'] === 'mybrickslopes.com') {
-                $junkCounter = 0;
-            } else {
-                $junkCounter = 11;
-            }
+            $junkCounter = 11;
 
             if ($afolsObj->result) {
                 while ($dbObj = $afolsObj->result->fetch_object()) {
-                    if (empty($dbObj->email)) {
+                    if (
+                        empty($dbObj->email) ||
+                        $dbObj->afolsId == 139 ||
+                        $dbObj->afolsId == 143 ||
+                        $dbObj->afolsId == 144 ||
+                        $dbObj->afolsId == 145 ||
+                        $dbObj->afolsId == 146 ||
+                        $dbObj->afolsId == 147
+                    ) {
                         $noEmailCounter++;
                         continue;
                     }
@@ -329,6 +335,19 @@
                     $userMap['flickr'] = $this->trimMigration($dbObj->flickr);
                     $userMap['phoneNumber'] = "";
                     $userId = $usersObj->addUserInformation($userMap);
+
+                    if (preg_match('/^Duplicate entry/', $userId)) {
+                        $userMap['email'] = $userMap['email'] . "_dup";
+                        if($userMap['email'] == 'ENeuman600@gmail.com_dup') {
+                            $userMap['familyId'] = 21;
+                        } else if($userMap['email'] == 'r184120@yahoo.com_dup') {
+                            $userMap['familyId'] = 26;
+                        } else if($userMap['email'] == 'rman_333@hotmail.com_dup') {
+                            $userMap['familyId'] = 52;
+                        }
+                        $userId = $usersObj->addUserInformation($userMap);
+                    }
+
                     $usersObj->updateUserInformation($userId, $userMap);
 
                     $registrationMap = array();
@@ -340,6 +359,8 @@
                     $registrationMap['ageVerification'] = $this->formatEnum($dbObj->ageVerification);
                     $registrationMap['comments'] = $dbObj->comments;
                     $registrationMap['amountPaid'] = '55.00';
+                    $registrationMap['tShirtSize'] = 'XL';
+                    $registrationMap['tShirtPaid'] = '20.00';
                     $registrationMap['type'] = 'AFOL';
 
                     $registrationsObj->addRegistrationInformation($registrationMap);

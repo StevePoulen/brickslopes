@@ -13,6 +13,7 @@ CREATE TABLE `events` (
   `city` VARCHAR(255),
   `state` VARCHAR(255),
   `year` INT(4),
+  `tShirtCost` NUMERIC(10,2),
   `cost` NUMERIC(10,2),
   `discount` NUMERIC(10,2),
   `meetAndGreetDiscount` NUMERIC(10,2),

@@ -33,6 +33,7 @@ class EventTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($output->data->meetAndGreetCost, '15.00');
         $this->assertEquals($output->data->meetAndGreetDiscount, '10.00');
         $this->assertEquals($output->data->discountDate, '2014-06-05 23:59:59');
+        $this->assertEquals($output->data->tShirtCost, '20.00');
     }
 
     public function testAuthenticatedGetFailure() 

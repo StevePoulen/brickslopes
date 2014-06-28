@@ -88,6 +88,10 @@ class users extends \db {
     }
 
     private function updateQuery($userId, $data) {
+        $familyId = "";
+        if (ISSET($data['familyId'])) {
+            $familyId = ",familyId = '{$this->escapeCharacters($data['familyId'])}'";
+        }
         return "
             UPDATE 
                 users 
@@ -101,6 +105,7 @@ class users extends \db {
                 state = '{$this->escapeCharacters($data['state'])}',
                 zipcode = '{$this->escapeCharacters($data['zipcode'])}',
                 flickr = '{$this->escapeCharacters($data['flickr'])}'
+                $familyId
             WHERE
                 userId = {$userId}
         ;

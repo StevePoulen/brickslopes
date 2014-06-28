@@ -15,6 +15,7 @@ class EventsMock extends modelObjects {
         $this->meetAndGreetCost = $this->meetAndGreetCost();
         $this->meetAndGreetDiscount = $this->meetAndGreetDiscount();
         $this->discountDate = $this->discountDate();
+        $this->tShirtCost = $this->tShirtCost();
     }
 
     public function name() { return $this->getData(__FUNCTION__,0); }
@@ -26,5 +27,6 @@ class EventsMock extends modelObjects {
     public function meetAndGreetDiscount() { return $this->getData(__FUNCTION__,6); }
     public function meetAndGreetCost() { return $this->getData(__FUNCTION__,7); }
     public function discountDate() { return $this->getData(__FUNCTION__,8); }
+    public function tShirtCost() { return $this->getData(__FUNCTION__,9); }
 }
 ?>
