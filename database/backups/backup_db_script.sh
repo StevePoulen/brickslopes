@@ -1,6 +1,6 @@
 #!/bin/bash
 
-OUTPUT_FILE_NAME="brickSlopes_Backup.bz2"
+OUTPUT_FILE_NAME=brickSlopes_backup_$(date +%Y-%m-%d_%H:%M).sql.bz2
 STEP_COUNTER=1;
 BRICKSLOPES_DATABASE="brickslopes";
 
