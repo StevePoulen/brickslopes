@@ -80,8 +80,8 @@
             // To send HTML mail, the Content-type header must be set
             $headers = 'MIME-Version: 1.0' . "\r\n";
             $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-            $headers .= "From: no-reply@brickslopes.com\r\n";
-            $headers .= "Reply-To: no-reply@brickslopes.com\r\n";
+            $headers .= "From: 'BrickSlopes' <cody@brickslopes.com>\r\n";
+            $headers .= "Reply-To: 'BrickSlopes' <cody@brickslopes.com>\r\n";
             $headers .= "X-Mailer: PHP/".phpversion();
             // send email
             mail($to, $this->subject, $this->message, $headers);
