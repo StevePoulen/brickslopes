@@ -133,6 +133,23 @@ angular.module('brickSlopes.services', [])
             });
 
             return delay.promise;
+        },
+
+        payment: function(paymentDetails) {
+            var delay= $q.defer();
+            $http (
+                {
+                    method: 'POST',
+                    url: 'https://www.paypal.com/cgi-bin/webscr',
+                    data: paymentDetails
+                }
+            ).success(function(data, status, headers, config) {
+                delay.resolve(data);
+            }).error(function(data, status, headers, config) {
+                delay.reject(data);
+            });
+
+            return delay.promise;
         }
     }
 }])

@@ -5,41 +5,38 @@
         </div>
         <div id='paypalForm'>
             <h3><bs-text text="Your order summary"></bs-text></h3>
-            <div class="payment paymentBackground paymentFontOne">
+            <div class="payment paymentBackground paymentFontOne cellWidth">
                 <div class="description"><bs-text text=Description font-color=black></bs-text></div>
                 <div class="amount"><bs-text text=Amount font-color=black></bs-text></div>
-          </div>
-          <php_removed echo getEventItem("BrickSlopes AFOL Event Pass", "$50.00"); php_removed>
-          <php_removed echo getMeetAndGreet(); php_removed>
-          <div class="payment paymentFontTwo"><hr></div>
-          <div class="payment paymentFontOne">
-            <div class="description bold">Item Total</div>
-            <div class="amount bold">$<php_removed echo getEventTotal(); php_removed></div>
-          </div>
-          <div class="payment paymentFontTwo">
-            <hr>
-          </div>
-          <div class="payment paymentFontOne">
-            <div class="amount bold">Total $<php_removed echo getEventTotal();php_removed> USD</div>
-          </div>
-          <div class="payment paymentFontOne">
-            <div class="amount">
-              <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
-                <input type="hidden" name="cmd" value="_cart">
-                <input type="hidden" name="upload" value="1">
-                <input type="hidden" name="business" value="events@brickslopes.com">
-                <input type="hidden" name="item_name_1" value="BrickSlopes AFOL Event Pass">
-                <input type="hidden" name="amount_1" value="50.00">
-                <input type="hidden" name="shipping_1" value="0.00">
-                <div class="formButtonPosition">
-                    <button class="formButton" type="submit" ng-class="{disabled: verifying}" ng-disabled="verifying">
-                        <bs-text text="Continue to PayPal" font-color=white font-size=1.75></bs-text>
-                    </button>
-                </div>
-                <php_removed echo getPayPalMeetAndGreet(); php_removed>
-              </form>
             </div>
-          </div>
+            <div ng-repeat="lineItem in registrationLineItems">
+                <div class="cellWidth">
+                    <div class='payment paymentFontOne'>
+                        <div class='description'>{{lineItem.lineItem}}</div>
+                        <div class='amount'>{{lineItem.amount | currency}}</div>
+                    </div>
+                    <div class='payment paymentFontTwo'>
+                        <div class='description'>Item Price: {{lineItem.amount | currency}}</div>
+                    </div>
+                    <div class='payment paymentFontTwo'>
+                        <div class='description'>Quantity: {{lineItem.quantity}}</div>
+                    </div>
+                    <div class='payment paymentFontTwo'>
+                        <div class='description'>Discount: {{lineItem.discount}}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="payment paymentFontTwo lineWidth"><hr></div>
+            <div class="payment totalFontOne cellWidth">
+                <div class="amount bold">Total {{totalAmount | currency}} USD</div>
+            </div>
+            <div class="amount">
+                <div class="formButtonPosition">
+                    <div class="actionButton" ng-click="submitPayment()">
+                        <bs-text text="Continue to PayPal" font-color=white font-size=1.25></bs-text>
+                    </div>
+                </div>
+            </div>
         </div>
     </span>
     <div id="dashboardCloseButton" ng-click="closeDialog()"></div>

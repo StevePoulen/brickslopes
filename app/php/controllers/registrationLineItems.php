@@ -7,8 +7,8 @@ class RegistrationLineItems {
 
     public function __construct($userId = null) {
         $this->registrationLineItemObj = new registrationLineItemModel();
-        $this->determineRequestMethod();
         $this->userId = $userId;
+        $this->determineRequestMethod();
     }
 
     private function determineRequestMethod() {
@@ -23,40 +23,39 @@ class RegistrationLineItems {
         }
     }
 
+    private function buildLineItemDTO($dbObj) {
+        return array (
+            'lineItem' => $dbObj->lineItem,
+            'amount' => $dbObj->amount,
+            'paid' => $dbObj->paid,
+            'discount' => $dbObj->discount,
+            'description' => $dbObj->description,
+            'size' => $dbObj->size,
+            'quantity' => $dbObj->quantity,
+            'active' => $dbObj->active,
+            'entryDate' => $dbObj->entryDate
+        );
+    }
+
     private function get() {
-        $this->themesObj->getThemeInformation($_GET);
-        if ($this->themesObj->result) {
-            $themesMap = array();
-            while($dbObj = $this->themesObj->result->fetch_object()) {
-                if(array_key_exists($dbObj->themeId, $themesMap)) {
+        $this->registrationLineItemObj->getRegistrationLineItemsByUserId($this->userId);
+        if ($this->registrationLineItemObj->result) {
+            $lineItemMap = array();
+            while($dbObj = $this->registrationLineItemObj->result->fetch_object()) {
+                if(array_key_exists($dbObj->eventId, $lineItemMap)) {
                     array_push (
-                        $themesMap[$dbObj->themeId]['awards'],
-                        array (
-                            'award' => $dbObj->award,
-                            'place' => $dbObj->place
-                        )
+                        $lineItemMap[$dbObj->eventId],
+                        $this->buildLineItemDTO($dbObj)
                     );
                 } else {
-                    $themesMap[$dbObj->themeId] = array(
-                        'theme' => $dbObj->theme,
-                        'eventId' => $dbObj->eventId,
-                        'type' => $dbObj->type,
-                        'awards' => array (
-                            array (
-                                'award' => $dbObj->award,
-                                'place' => $dbObj->place,
-                            )
-                        )
+                    $lineItemMap[$dbObj->eventId] = array(
+                        $this->buildLineItemDTO($dbObj)
                     );
                 }
             }
             header("HTTP/1.0 200 Success");
-            $returnObj = array();
-            foreach($themesMap as $key => $object) {
-                array_push($returnObj, $object);
-            }
             echo json_encode (
-                $returnObj
+                $lineItemMap
             );
         } else {
             header("HTTP/1.0 400 Bad Request");

@@ -181,10 +181,52 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     $("#splashPageCTA").hide();
     $scope.registrationLineItems = undefined;
     $scope.eventId = 2;
+    $scope.totalAmount = 0;
+    $scope.displayMessage = "";
+    $scope.success = true;
+    $scope.timer = false;
+    $scope.verifying = false;
+    $scope.paypalPayload = {
+        'cmd': '_cart',
+        'upload': '1',
+        'business': 'events@brickslopes.com',
+        'currency_code': 'USD'
+    };
+
+    function calculateTotal(lineItem) {
+        return parseFloat(lineItem.amount) * parseInt(lineItem.quantity);
+    }
+
+    function getPaypalPayload() {
+        var lineItemCounter = 1;
+        _.each($scope.registrationLineItems, function(lineItem) {
+            $scope.paypalPayload['item_name_' + lineItemCounter] = lineItem.lineItem;
+            $scope.paypalPayload['amount_' + lineItemCounter] = calculateTotal(lineItem);
+            $scope.paypalPayload['shipping_' + lineItemCounter] = 0;
+            lineItemCounter++;
+        });
+        
+        return $scope.paypalPayload;
+    }
 
     RegistrationLineItems.get($scope.eventId).then(function(data) {
-        $scope.registrationLineItems = data;
+        $scope.registrationLineItems = data[$scope.eventId];
+        _.each($scope.registrationLineItems, function(lineItem) {
+            $scope.totalAmount += calculateTotal(lineItem);
+        });
     });
+
+    $scope.submitPayment = function() {
+        $scope.verifying = true;
+        RegistrationLineItems.payment(getPaypalPayload()).then(function(response) {
+            $location.path('/afol/eventMe.html');
+        }, function() {
+            $scope.verifying = false;
+            $scope.displayMessage = "There was an error submitting your data. Please try again.";
+            $scope.success = false;
+            $scope.timer = true;
+        });
+    }
 
     $scope.closeDialog = function() {
         $location.path("/afol/index.html");

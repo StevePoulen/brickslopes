@@ -71,7 +71,9 @@
                 'paid' => 'NO',
                 'discount' => null,
                 'description' => null,
-                'size' => null
+                'size' => null,
+                'quantity' => 1,
+                'active' => 'YES'
             );
         }
 

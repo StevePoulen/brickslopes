@@ -18,6 +18,8 @@ CREATE TABLE `registrationLineItems` (
   `discount` ENUM('YES', 'NO'),
   `description` VARCHAR(255),
   `size` VARCHAR(255),
+  `quantity` INT(10),
+  `active` ENUM('YES', 'NO'),
   `entryDate` DATETIME,
   PRIMARY KEY (`registrationLineItemId`),
   FOREIGN KEY (`eventId`) REFERENCES `events` (`eventId`),

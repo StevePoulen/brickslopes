@@ -24,6 +24,9 @@ class registrationLineItemModel extends db {
                 discount,
                 description,
                 size,
+                quantity,
+                active,
+                size,
                 entryDate
             FROM
                 registrationLineItems
@@ -46,6 +49,8 @@ class registrationLineItemModel extends db {
                 discount,
                 description,
                 size,
+                quantity,
+                active,
                 entryDate
             )
         VALUES
@@ -58,6 +63,8 @@ class registrationLineItemModel extends db {
                 '{$this->escapeCharacters($data['discount'])}',
                 '{$this->escapeCharacters($data['description'])}',
                 '{$this->escapeCharacters($data['size'])}',
+                '{$this->escapeCharacters($data['quantity'])}',
+                '{$this->escapeCharacters($data['active'])}',
                 NOW()
           )
         ;

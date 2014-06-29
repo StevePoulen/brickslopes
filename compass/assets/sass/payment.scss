@@ -1,5 +1,5 @@
 $payment_width: 600;
-$payment_height: 400;
+$payment_height: auto;
 $bs_blue: #35469A;
 
 #paypalForm {
@@ -11,10 +11,17 @@ $bs_blue: #35469A;
     border: 5px solid $bs_blue;
     border-radius: 5px;
 
+    .lineWidth {
+        width: $payment_width - 100;
+    }
+
+    .cellWidth {
+        width: $payment_width - 50;
+    }
+
     .payment {
         position: relative;
         left: 25px;
-        width: $payment_width - 50;
         padding-top: 5px;
         border-radius: 5px;
         text-align: left;
@@ -35,17 +42,26 @@ $bs_blue: #35469A;
     }
 
     .paymentBackground {
-      background: #DDDDDD;
+        background: #DDDDDD;
     }
 
     .paymentFontOne {
-      font-size: 16px;
-      height: 25px;
+        font-size: 16px;
+        height: 25px;
+        margin-top: 20px;
+    }
+
+    .totalFontOne {
+        @extend .paymentFontOne;
+        margin-top: 5px;
+        margin-bottom: 25px;
+        height: 25px;
     }
 
     .paymentFontTwo {
-      font-size: 12px;
-      height: 15px;
+        font-size: 12px;
+        height: 15px;
+        margin-left: 25px;
     }
 }
 
