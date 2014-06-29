@@ -182,9 +182,10 @@
             $eventMap['city'] = 'Salt Lake City';
             $eventMap['state'] = 'Utah';
             $eventMap['year'] = '2014';
-            $eventMap['tShirtCost'] = '20.00';
             $eventMap['cost'] = '65.00';
             $eventMap['discount'] = '60.00';
+            $eventMap['tShirtDiscount'] = '15.00';
+            $eventMap['tShirtCost'] = '20.00';
             $eventMap['meetAndGreetDiscount'] = '10.00';
             $eventMap['meetAndGreetCost'] = '15.00';
             $eventMap['discountDate'] = '2014-03-15 12:00:00';
@@ -234,6 +235,7 @@
             $eventMap['city'] = 'Salt Lake City';
             $eventMap['state'] = 'Utah';
             $eventMap['year'] = '2015';
+            $eventMap['tShirtDiscount'] = '15.00';
             $eventMap['tShirtCost'] = '20.00';
             $eventMap['cost'] = '65.00';
             $eventMap['discount'] = '60.00';

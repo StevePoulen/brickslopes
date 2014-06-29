@@ -177,6 +177,18 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         $location.path("/");
     }
 }])
+.controller('afolEventPayment', ['$scope', '$location', 'EventRegistration', function($scope, $location, EventRegistration) {
+    $("#splashPageCTA").hide();
+    $scope.eventData = undefined;
+
+    EventRegistration.get().then(function(data) {
+        $scope.eventData= data;
+    });
+
+    $scope.closeDialog = function() {
+        $location.path("/afol/index.html");
+    }
+}])
 .controller('afolEventRegistration', ['$scope', '$location', 'EventDetails', 'EventRegistration', '$route', 'EventDates', function($scope, $location, EventDetails, eventRegistration, $route, EventDates) {
     $("#splashPageCTA").hide();
     $scope.verifying = false;
@@ -192,6 +204,8 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     $scope.passDates = undefined;
     $scope.passType = undefined;
     $scope.meetAndGreetDinnerDate = undefined;
+    $scope.shirtSizes = ['No Thanks', 'Small', 'Medium', 'Large', 'X-Large', 'XX-Large'];
+    $scope.tShirtSize = "X-Large";
 
     function serializeRegistrationJson() {
         return {
@@ -200,6 +214,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
             badgeLine2: $scope.badgeLine2,
             meetAndGreet: $scope.meetAndGreet,
             ageVerification: $scope.ageVerification,
+            tShirtSize: $scope.tShirtSize,
             comments: $scope.comments,
             type: 'afol'
         }
@@ -208,7 +223,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     $scope.submitRegistration = function() {
         $scope.verifying = true;
         eventRegistration.create(serializeRegistrationJson()).then(function(response) {
-            $location.path('/afol/eventMe.html');
+            $location.path('/afol/eventPayment.html');
         }, function() {
             $scope.verifying = false;
             $scope.displayMessage = "There was an error submitting your data. Please try again.";

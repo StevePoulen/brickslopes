@@ -19,7 +19,6 @@ CREATE TABLE `registrations` (
   `paid` ENUM('YES', 'NO'),
   `amountPaid` NUMERIC(10, 2),
   `tShirtSize` VARCHAR(255),
-  `tShirtPaid` NUMERIC(10, 2),
   `type` VARCHAR(255),
   `registrationDate` DATETIME,
   PRIMARY KEY (`registrationId`),

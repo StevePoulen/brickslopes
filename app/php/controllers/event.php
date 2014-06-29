@@ -39,6 +39,7 @@ class Event {
                         'meetAndGreetDiscount' => $dbObj->meetAndGreetDiscount,
                         'discountDate' => $dbObj->discountDate,
                         'tShirtCost' => $dbObj->tShirtCost,
+                        'tShirtDiscount' => $dbObj->tShirtDiscount
                     ),
                     'status' => 200
                 )

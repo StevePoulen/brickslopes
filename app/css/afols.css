@@ -78,10 +78,10 @@
   text-align: center;
 }
 /* line 86, ../../compass/assets/sass/afols.scss */
-#dashboardText #discountPriceInformation {
+#dashboardText #discountPriceInformation, #dashboardText #fullPriceInformation {
   position: absolute;
   left: 25px;
-  height: 150px;
+  height: 175px;
   top: 100px;
   width: 450px;
   border: none;
@@ -92,35 +92,27 @@
 }
 /* line 99, ../../compass/assets/sass/afols.scss */
 #dashboardText #fullPriceInformation {
-  position: absolute;
   left: 500px;
-  height: 150px;
-  top: 100px;
-  width: 450px;
-  border: none;
-  padding-left: 4px;
   background: lightgrey;
-  border-radius: 4px;
-  text-align: center;
 }
-/* line 112, ../../compass/assets/sass/afols.scss */
+/* line 105, ../../compass/assets/sass/afols.scss */
 #dashboardText #eventDivider {
   position: absolute;
   left: 25px;
   height: 5px;
-  top: 265px;
+  top: 272px;
   width: 935px;
 }
-/* line 121, ../../compass/assets/sass/afols.scss */
+/* line 114, ../../compass/assets/sass/afols.scss */
 #dashboardText #eventSwag li {
   list-style-type: disc;
   text-align: left;
   font-size: 1.25em;
   padding-bottom: 5px;
 }
-/* line 128, ../../compass/assets/sass/afols.scss */
+/* line 121, ../../compass/assets/sass/afols.scss */
 #dashboardText #eventSwag {
-  border-radius: 25px;
+  border-radius: 5px;
   position: absolute;
   height: dashboard_height;
   width: 450px;
@@ -132,15 +124,36 @@
   padding-left: 10px;
   background: lightgreen;
 }
-/* line 142, ../../compass/assets/sass/afols.scss */
+/* line 135, ../../compass/assets/sass/afols.scss */
 #dashboardText .registrationForm {
   position: absolute;
   left: 25px;
-  width: 400px;
-  height: auto;
-  top: 275px;
+  width: 450px;
+  height: 695px;
+  top: 285px;
+  padding-left: 4px;
+  background: white;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+/* line 146, ../../compass/assets/sass/afols.scss */
+#dashboardText .registrationForm .brickCenter {
+  margin-bottom: 5px;
 }
 /* line 149, ../../compass/assets/sass/afols.scss */
+#dashboardText .registrationForm .brickCenter .legoBrick {
+  height: 43.0;
+  padding-top: 5px;
+  margin-left: 0px;
+}
+/* line 154, ../../compass/assets/sass/afols.scss */
+#dashboardText .registrationForm .brickCenter .legoBrick input {
+  border: 1px solid black;
+  margin-left: 0;
+  width: 315px;
+  height: 40px;
+}
+/* line 163, ../../compass/assets/sass/afols.scss */
 #dashboardText .registrationForm .loginField {
   margin-bottom: 20px;
   border: 1px solid #BCBEBF;
@@ -150,33 +163,33 @@
   padding-top: 7.5px;
   text-align: left;
 }
-/* line 159, ../../compass/assets/sass/afols.scss */
+/* line 173, ../../compass/assets/sass/afols.scss */
 #dashboardText .registrationForm .optionField, #dashboardText .registrationForm .asterickField {
+  position: relative;
   margin-bottom: 20px;
+  margin-top: 10px;
   border: 1px solid #BCBEBF;
   border-radius: 5px;
   width: 310px;
   height: 35px;
   padding-left: 10px;
-  padding-top: 15px;
+  padding-top: 20px;
+  left: 62px;
   text-align: left;
 }
-/* line 170, ../../compass/assets/sass/afols.scss */
+/* line 187, ../../compass/assets/sass/afols.scss */
 #dashboardText .registrationForm .asterickField {
-  margin-left: -60px;
-  margin-bottom: 20px;
   border: none;
   border-radius: 0;
   width: 425px;
-  height: 35px;
   padding-top: 15px;
-  text-align: left;
+  left: 0;
 }
-/* line 182, ../../compass/assets/sass/afols.scss */
+/* line 196, ../../compass/assets/sass/afols.scss */
 #dashboardText .registrationForm .commentsField {
   margin-bottom: 20px;
 }
-/* line 185, ../../compass/assets/sass/afols.scss */
+/* line 199, ../../compass/assets/sass/afols.scss */
 #dashboardText .registrationForm .commentsField textarea {
   width: 320px;
   height: 135px;
@@ -185,11 +198,19 @@
   margin-bottom: 10px;
   padding-top: 10px;
 }
-/* line 196, ../../compass/assets/sass/afols.scss */
+/* line 209, ../../compass/assets/sass/afols.scss */
+#dashboardText .registrationForm select {
+  margin-top: -25px;
+  width: 105px;
+  height: 25px;
+  font-size: 14px;
+  color: #2F3132;
+}
+/* line 218, ../../compass/assets/sass/afols.scss */
 #dashboardText #resetPasswordForm {
   top: 250px;
 }
-/* line 201, ../../compass/assets/sass/afols.scss */
+/* line 223, ../../compass/assets/sass/afols.scss */
 #dashboardText #loginDivider {
   position: absolute;
   left: 609px;
@@ -199,7 +220,7 @@
   border: 1px solid black;
   border-radius: 2px;
 }
-/* line 212, ../../compass/assets/sass/afols.scss */
+/* line 234, ../../compass/assets/sass/afols.scss */
 #dashboardText #signUpText {
   position: absolute;
   right: 10px;
@@ -208,11 +229,11 @@
   width: 590px;
   border: none;
 }
-/* line 220, ../../compass/assets/sass/afols.scss */
+/* line 242, ../../compass/assets/sass/afols.scss */
 #dashboardText #signUpText .center {
   left: 105px;
 }
-/* line 224, ../../compass/assets/sass/afols.scss */
+/* line 246, ../../compass/assets/sass/afols.scss */
 #dashboardText #signUpText .loginForm {
   position: absolute;
   left: 0px;
@@ -220,7 +241,7 @@
   border: none;
   text-align: center;
 }
-/* line 231, ../../compass/assets/sass/afols.scss */
+/* line 253, ../../compass/assets/sass/afols.scss */
 #dashboardText #signUpText .loginForm .loginField {
   margin: 10px;
   border: 1px solid #BCBEBF;
@@ -229,14 +250,14 @@
   height: 42.5px;
   padding-top: 7.5px;
 }
-/* line 242, ../../compass/assets/sass/afols.scss */
+/* line 264, ../../compass/assets/sass/afols.scss */
 #dashboardText #signUpButton {
   position: absolute;
   left: 110px;
   top: 175px;
 }
 
-/* line 249, ../../compass/assets/sass/afols.scss */
+/* line 271, ../../compass/assets/sass/afols.scss */
 #mePanes {
   position: absolute;
   top: 100px;
@@ -246,25 +267,24 @@
   border: none;
   overflow: none;
 }
-/* line 258, ../../compass/assets/sass/afols.scss */
+/* line 280, ../../compass/assets/sass/afols.scss */
 #mePanes .changePassword {
   position: relative;
   float: left;
   width: 300px;
   height: 200px;
   margin: 0 5 5 0;
-  cursor: pointer;
   border: 2px solid black;
   border-radius: 12px;
 }
-/* line 268, ../../compass/assets/sass/afols.scss */
+/* line 289, ../../compass/assets/sass/afols.scss */
 #mePanes .changePassword .loginForm {
   position: relative;
   margin-right: auto;
   margin-left: auto;
   width: 250px;
 }
-/* line 274, ../../compass/assets/sass/afols.scss */
+/* line 295, ../../compass/assets/sass/afols.scss */
 #mePanes .changePassword .loginForm .loginField {
   margin-bottom: 10px;
   border: 1px solid #BCBEBF;
@@ -273,11 +293,11 @@
   height: 30px;
   padding-top: 5px;
 }
-/* line 282, ../../compass/assets/sass/afols.scss */
+/* line 303, ../../compass/assets/sass/afols.scss */
 #mePanes .changePassword .loginForm .loginField input {
   height: 25px;
 }
-/* line 288, ../../compass/assets/sass/afols.scss */
+/* line 309, ../../compass/assets/sass/afols.scss */
 #mePanes .changePassword .message {
   position: absolute;
   top: 0;
@@ -288,18 +308,17 @@
   background-color: white;
   border-radius: 12px;
 }
-/* line 300, ../../compass/assets/sass/afols.scss */
+/* line 321, ../../compass/assets/sass/afols.scss */
 #mePanes .events {
   position: relative;
   float: left;
   width: 350px;
   height: 400px;
   margin: 0 5 5 0;
-  cursor: pointer;
   border: 2px solid black;
   border-radius: 12px;
 }
-/* line 310, ../../compass/assets/sass/afols.scss */
+/* line 330, ../../compass/assets/sass/afols.scss */
 #mePanes .events .info {
   position: relative;
   width: 310px;
@@ -311,13 +330,13 @@
   margin-left: 20px;
   text-align: center;
 }
-/* line 322, ../../compass/assets/sass/afols.scss */
+/* line 342, ../../compass/assets/sass/afols.scss */
 #mePanes .events .brickCenter {
   position: relative;
   width: 100%;
   text-align: center;
 }
-/* line 329, ../../compass/assets/sass/afols.scss */
+/* line 349, ../../compass/assets/sass/afols.scss */
 #mePanes .meText {
   position: relative;
   top: 0px;
@@ -327,7 +346,7 @@
   border: none;
 }
 
-/* line 339, ../../compass/assets/sass/afols.scss */
+/* line 359, ../../compass/assets/sass/afols.scss */
 #panes {
   position: absolute;
   top: 0px;
@@ -338,7 +357,7 @@
   overflow: scroll;
 }
 
-/* line 349, ../../compass/assets/sass/afols.scss */
+/* line 369, ../../compass/assets/sass/afols.scss */
 #eventContainer {
   position: absolute;
   top: 0px;
@@ -347,7 +366,7 @@
   height: 100px;
 }
 
-/* line 357, ../../compass/assets/sass/afols.scss */
+/* line 377, ../../compass/assets/sass/afols.scss */
 .myEventPane {
   position: relative;
   float: left;
@@ -358,7 +377,7 @@
   border: 2px solid white;
   border-radius: 12px;
 }
-/* line 367, ../../compass/assets/sass/afols.scss */
+/* line 387, ../../compass/assets/sass/afols.scss */
 .myEventPane .eventText {
   position: relative;
   width: 280px;
@@ -371,14 +390,14 @@
   padding-top: 155px;
   height: 240px;
 }
-/* line 380, ../../compass/assets/sass/afols.scss */
+/* line 400, ../../compass/assets/sass/afols.scss */
 .myEventPane .eventImageText {
   position: relative;
   top: 185px;
   text-align: center;
 }
 
-/* line 388, ../../compass/assets/sass/afols.scss */
+/* line 408, ../../compass/assets/sass/afols.scss */
 .eventPane {
   position: relative;
   float: left;
@@ -389,7 +408,7 @@
   border: 2px solid white;
   border-radius: 12px;
 }
-/* line 398, ../../compass/assets/sass/afols.scss */
+/* line 418, ../../compass/assets/sass/afols.scss */
 .eventPane .eventText {
   position: relative;
   width: 280px;
@@ -402,14 +421,14 @@
   font-size: 2em;
   border-radius: 10px;
 }
-/* line 411, ../../compass/assets/sass/afols.scss */
+/* line 431, ../../compass/assets/sass/afols.scss */
 .eventPane .eventImageText {
   position: relative;
   top: 85px;
   text-align: center;
 }
 
-/* line 418, ../../compass/assets/sass/afols.scss */
+/* line 438, ../../compass/assets/sass/afols.scss */
 .eventImage {
   position: relative;
   width: 300px;
@@ -422,7 +441,7 @@
   border-radius: 10px;
 }
 
-/* line 430, ../../compass/assets/sass/afols.scss */
+/* line 450, ../../compass/assets/sass/afols.scss */
 .eventBrickSlopesLogo {
   position: absolute;
   z-index: 2;
@@ -430,31 +449,31 @@
   background-image: url("/images/logo/brickSlopes_noword_50px.png");
 }
 
-/* line 437, ../../compass/assets/sass/afols.scss */
+/* line 457, ../../compass/assets/sass/afols.scss */
 .smallLogo {
   background-size: 40px 40px;
   height: 40px;
   width: 40px;
 }
 
-/* line 443, ../../compass/assets/sass/afols.scss */
+/* line 463, ../../compass/assets/sass/afols.scss */
 .mediumLogo {
   background-size: 60px 60px;
   height: 60px;
   width: 60px;
 }
 
-/* line 449, ../../compass/assets/sass/afols.scss */
+/* line 469, ../../compass/assets/sass/afols.scss */
 .logoLeft {
   left: 1px;
 }
 
-/* line 453, ../../compass/assets/sass/afols.scss */
+/* line 473, ../../compass/assets/sass/afols.scss */
 .logoRight {
   right: 1px;
 }
 
-/* line 457, ../../compass/assets/sass/afols.scss */
+/* line 477, ../../compass/assets/sass/afols.scss */
 #leftTheme {
   position: absolute;
   border: none;
@@ -462,13 +481,13 @@
   left: 10px;
   width: 610px;
 }
-/* line 464, ../../compass/assets/sass/afols.scss */
+/* line 484, ../../compass/assets/sass/afols.scss */
 #leftTheme .header {
   width: 100%;
   text-align: center;
 }
 
-/* line 470, ../../compass/assets/sass/afols.scss */
+/* line 490, ../../compass/assets/sass/afols.scss */
 #rightTheme {
   position: absolute;
   border: none;
@@ -476,13 +495,13 @@
   right: 10px;
   width: 610px;
 }
-/* line 477, ../../compass/assets/sass/afols.scss */
+/* line 497, ../../compass/assets/sass/afols.scss */
 #rightTheme .header {
   width: 100%;
   text-align: center;
 }
 
-/* line 483, ../../compass/assets/sass/afols.scss */
+/* line 503, ../../compass/assets/sass/afols.scss */
 .theme {
   position: relative;
   float: left;
@@ -495,31 +514,9 @@
   overflow: none;
 }
 
-/* line 495, ../../compass/assets/sass/afols.scss */
+/* line 515, ../../compass/assets/sass/afols.scss */
 .theme ul {
   padding: 0;
   margin-left: 45px;
   margin-top: 5px;
-}
-
-/* line 501, ../../compass/assets/sass/afols.scss */
-#dashboardText .registrationForm {
-  left: 50px;
-  margin-left: 50px;
-  width: 325px;
-  border: none;
-}
-/* line 507, ../../compass/assets/sass/afols.scss */
-#dashboardText .registrationForm .brickCenter {
-  margin-bottom: 5px;
-}
-/* line 510, ../../compass/assets/sass/afols.scss */
-#dashboardText .registrationForm .brickCenter .legoBrick {
-  height: 43.0;
-  padding-top: 5px;
-  margin-left: 0px;
-}
-/* line 515, ../../compass/assets/sass/afols.scss */
-#dashboardText .registrationForm .brickCenter .legoBrick input {
-  border: 1px solid black;
 }

@@ -41,7 +41,7 @@ a:visited {
 }
 
 /* line 43, ../../compass/assets/sass/bsbits.scss */
-button, input, textarea {
+button, input, textarea, select {
   font-family: "Open Sans","Helvetica Neue",Arial,Helvetica,sans-serif;
   outline: none;
 }

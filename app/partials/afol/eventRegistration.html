@@ -5,76 +5,98 @@
         </div>
         <div id="discountPriceInformation">
             <h2>Before {{discountDate}}</h2>
-            <span class="blueFont">AFOL {{passType}} Event Pass</span> -- <span class="bold">{{eventDetails.discount | currency}}</span> per person 
+            <div>
+                <span class="blueFont">AFOL {{passType}} Event Pass</span> -- <span class="bold">{{eventDetails.discount | currency}}</span> per person 
+            </div>
             <p>
-            <span class="blueFont">Meet & Greet Event Pass</span> -- <span class="bold">{{eventDetails.meetAndGreetDiscount | currency}}</span> per person
+            <div>
+                <span class="blueFont">Meet & Greet Event Pass</span> -- <span class="bold">{{eventDetails.meetAndGreetDiscount | currency}}</span> per person
+            </div>
+            <p>
+            <div>
+                <bs-logo></bs-logo> <span class="blueFont">T-Shirt</span> -- <span class="bold">{{eventDetails.tShirtDiscount | currency}}</span> per person
+            </div>
         </div>
         <div id="fullPriceInformation">
             <h2>After {{discountDate}}</h2>
-            <span class="blueFont">AFOL {{passType}} Event Pass</span> -- <span class="bold">{{eventDetails.cost | currency}}</span> per person
+            <div>
+                <span class="blueFont">AFOL {{passType}} Event Pass</span> -- <span class="bold">{{eventDetails.cost | currency}}</span> per person
+            </div>
             <p>
-            <span class="blueFont">Meet & Greet Event Pass</span> -- <span class="bold">{{eventDetails.meetAndGreetCost | currency}}</b> per person
+            <div>
+                <span class="blueFont">Meet & Greet Event Pass</span> -- <span class="bold">{{eventDetails.meetAndGreetCost | currency}}</span> per person
+            </div>
+            <p>
+            <div>
+                <bs-logo></bs-logo> <span class="blueFont">T-Shirt</span> -- <span class="bold">{{eventDetails.tShirtCost | currency}}</span> per person
+            </div>
         </div>
         <div id="eventDivider">
             <hr>
         </div>
         <div class="registrationForm">
-            <div>
-                <h3>AFOL Event Registration Form</h3>
+            <div class="formButtonPosition">
+                <div>
+                    <h3>AFOL Event Registration Form</h3>
+                </div>
+                <form name="registration" ng-submit="registration.$valid && submitRegistration()">
+                    <div class="brickCenter">
+                        <div class="brickHolder">
+                            <div class="legoBrick blue">
+                                <div class="studs">
+                                    <div class="stud blue"></div>
+                                    <div class="stud blue"></div>
+                                    <div class="stud blue"></div>
+                                    <div class="stud blue"></div>
+                                    <div class="stud blue"></div>
+                                    <div class="stud blue"></div>
+                                    <div class="stud blue"></div>
+                                    <div class="stud blue"></div>
+                                </div>
+                                <input type="text" placeholder="Badge Line 1:" ng-model="badgeLine1" required ng-maxlength=15>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="brickCenter">
+                        <div class="brickHolder">
+                            <div class="legoBrick yellow">
+                                <div class="studs">
+                                    <div class="stud yellow"></div>
+                                    <div class="stud yellow"></div>
+                                    <div class="stud yellow"></div>
+                                    <div class="stud yellow"></div>
+                                    <div class="stud yellow"></div>
+                                    <div class="stud yellow"></div>
+                                    <div class="stud yellow"></div>
+                                    <div class="stud yellow"></div>
+                                </div>
+                                <input type="text" placeholder="Badge Line 2:" ng-model="badgeLine2" required ng-maxlength=15>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="optionField">
+                        <label>Meet & Greet Event:</label> Yes <input type="radio" ng-model="meetAndGreet" value="YES" checked> No <input type="radio" ng-model="meetAndGreet" value="NO">
+                    </div>
+                    <div class="optionField">
+                        <label><bs-logo></bs-logo> T-Shirt Size:</label>
+                        <select ng-model="tShirtSize" ng-options="size for size in shirtSizes"></select>
+                    </div>
+                    <div class="optionField">
+                        <label>I am over 18 years old*:</label> Yes <input type="radio" ng-model="ageVerification" value="YES" checked> No <input type="radio" ng-model="ageVerification" value="NO">
+                    </div>
+                    <div class="commentsField">
+                        <textarea id="comments" class="greyFont" ng-model="comments"></textarea>
+                    </div>
+                    <div class="formButtonPosition">
+                        <button class="formButton" type="submit" ng-class="{disabled: verifying}" ng-disabled="verifying">
+                            <bs-text text="Continue to payment" font-color=white font-size=1.75></bs-text>
+                        </button>
+                    </div>
+                    <div class="asterickField">
+                        <font size=-1>* Persons under 18 years old must be accompanied by a registered adult.</font>
+                    </div>
+                </form>
             </div>
-            <form name="registration" ng-submit="registration.$valid && submitRegistration()">
-                <div class="brickCenter">
-                    <div class="brickHolder">
-                        <div class="legoBrick blue">
-                            <div class="studs">
-                                <div class="stud blue"></div>
-                                <div class="stud blue"></div>
-                                <div class="stud blue"></div>
-                                <div class="stud blue"></div>
-                                <div class="stud blue"></div>
-                                <div class="stud blue"></div>
-                                <div class="stud blue"></div>
-                                <div class="stud blue"></div>
-                            </div>
-                            <input type="text" placeholder="Badge Line 1:" ng-model="badgeLine1" required ng-maxlength=15>
-                        </div>
-                    </div>
-                </div>
-                <div class="brickCenter">
-                    <div class="brickHolder">
-                        <div class="legoBrick yellow">
-                            <div class="studs">
-                                <div class="stud yellow"></div>
-                                <div class="stud yellow"></div>
-                                <div class="stud yellow"></div>
-                                <div class="stud yellow"></div>
-                                <div class="stud yellow"></div>
-                                <div class="stud yellow"></div>
-                                <div class="stud yellow"></div>
-                                <div class="stud yellow"></div>
-                            </div>
-                            <input type="text" placeholder="Badge Line 2:" ng-model="badgeLine2" required ng-maxlength=15>
-                        </div>
-                    </div>
-                </div>
-                <div class="optionField">
-                    <label>Meet & Greet Event:</label> Yes <input type="radio" ng-model="meetAndGreet" value="YES" checked> No <input type="radio" ng-model="meetAndGreet" value="NO">
-                </div>
-                <div class="optionField">
-                    <label>I am over 18 years old*:</label> Yes <input type="radio" ng-model="ageVerification" value="YES" checked> No <input type="radio" ng-model="ageVerification" value="NO">
-                </div>
-                <div class="commentsField">
-                    <textarea id="comments" class="greyFont" ng-model="comments"></textarea>
-                </div>
-                <div class="formButtonPosition">
-                    <button class="formButton" type="submit" ng-class="{disabled: verifying}" ng-disabled="verifying">
-                        <bs-text text="Continue to payment" font-color=white font-size=1.75></bs-text>
-                    </button>
-                </div>
-                <div class="asterickField">
-                    <font size=-1>* Persons under 18 years old must be accompanied by a registered adult.</font>
-                </div>
-            </form>
         </div>
         <div id="eventSwag">
             <h2>Registration Includes ...</h2>

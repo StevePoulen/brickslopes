@@ -47,6 +47,16 @@ describe('controllers', function() {
         });
 
         describe('Default Values', function() {
+            it('should have a shirt sizes variable', function() {
+                expect(scope.shirtSizes).toEqualData(
+                    ['No Thanks', 'Small', 'Medium', 'Large', 'X-Large', 'XX-Large']
+                );
+            });
+
+            it('should have a default tShirtSize variable', function() {
+                expect(scope.tShirtSize).toBe('X-Large');
+            });
+
             it('should have a verifying variable', function() {
                 expect(scope.verifying).toBe(false);
             });
@@ -99,6 +109,7 @@ describe('controllers', function() {
                 scope.badgeLine2 = 'World';
                 scope.meetAndGreet = 'Yes';
                 scope.ageVerification = 'Yes';
+                scope.tShirtSize = 'X-Large';
                 scope.comments = "Can't Wait!";
                 scope.type = 'afol';
             });
@@ -110,6 +121,7 @@ describe('controllers', function() {
                     badgeLine2: 'World',
                     meetAndGreet: 'Yes',
                     ageVerification: 'Yes',
+                    tShirtSize: 'X-Large',
                     comments: "Can't Wait!",
                     type: 'afol'
                 }
@@ -117,7 +129,7 @@ describe('controllers', function() {
                 expect(scope.verifying).toBe(true);
                 mockBackend.expectPOST('/controllers/eventRegistration.php', dto).respond(201);
                 mockBackend.flush();
-                expect(location.path()).toBe('/afol/eventMe.html');
+                expect(location.path()).toBe('/afol/eventPayment.html');
                 expect(scope.displayMessage).toBe('');
             });
 
@@ -128,6 +140,7 @@ describe('controllers', function() {
                     badgeLine2: 'World',
                     meetAndGreet: 'Yes',
                     ageVerification: 'Yes',
+                    tShirtSize: 'X-Large',
                     comments: "Can't Wait!",
                     type: 'afol'
                 }

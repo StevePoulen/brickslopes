@@ -1,48 +1,53 @@
-#dashboard {
-    #paypalForm {
+$payment_width: 600;
+$payment_height: 400;
+$bs_blue: #35469A;
+
+#paypalForm {
+    position: relative;
+    margin-top: 25px;
+    width: $payment_width;
+    height: $payment_height;
+    text-align: center;
+    border: 5px solid $bs_blue;
+    border-radius: 5px;
+
+    .payment {
         position: relative;
-        margin-top: 25px;
-        right: 0;
-        width: 400px;
-        height: auto;
-        text-align: center;
-        border: 5px solid #3364A6;
+        left: 25px;
+        width: $payment_width - 50;
+        padding-top: 5px;
+        border-radius: 5px;
+        text-align: left;
 
-        .payment {
-            position: relative;
-            left: 25px;
-            width: 350px;
-            padding-top: 5px;
-            border-radius: 5px;
-            text-align: left;
-
-            #description {
-                position: absolute;
-                left: 0;
-                padding-left: 10px;
-                height: 5px;
-            }
-
-            #amount {
-                position: absolute;
-                right: 0;
-                padding-right: 10px;
-            }
+        .description {
+            position: absolute;
+            left: 0;
+            padding-left: 10px;
+            height: 5px;
         }
+
+        .amount {
+            position: absolute;
+            right: 0;
+            padding-right: 10px;
+        }
+
+    }
+
+    .paymentBackground {
+      background: #DDDDDD;
+    }
+
+    .paymentFontOne {
+      font-size: 16px;
+      height: 25px;
+    }
+
+    .paymentFontTwo {
+      font-size: 12px;
+      height: 15px;
     }
 }
 
-.paymentBackground {
-  background: #DDDDDD;
-}
 
-.paymentFontOne {
-  font-size: 16px;
-  height: 25px;
-}
-
-.paymentFontTwo {
-  font-size: 12px;
-  height: 15px;
-}
 
