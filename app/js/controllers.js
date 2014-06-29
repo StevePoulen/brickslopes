@@ -177,15 +177,11 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         $location.path("/");
     }
 }])
-.controller('afolEventPayment', ['$scope', '$location', 'RegistrationLineItems', function($scope, $location, RegistrationLineItems) {
+.controller('afolEventPayment', ['$scope', '$location', 'RegistrationLineItems', '$http', function($scope, $location, RegistrationLineItems, $http) {
     $("#splashPageCTA").hide();
     $scope.registrationLineItems = undefined;
     $scope.eventId = 2;
     $scope.totalAmount = 0;
-    $scope.displayMessage = "";
-    $scope.success = true;
-    $scope.timer = false;
-    $scope.verifying = false;
     $scope.paypalPayload = {
         'cmd': '_cart',
         'upload': '1',
@@ -205,7 +201,6 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
             $scope.paypalPayload['shipping_' + lineItemCounter] = 0;
             lineItemCounter++;
         });
-        
         return $scope.paypalPayload;
     }
 
@@ -214,23 +209,23 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         _.each($scope.registrationLineItems, function(lineItem) {
             $scope.totalAmount += calculateTotal(lineItem);
         });
+
+        $scope.createFormData();
     });
 
-    $scope.submitPayment = function() {
-        $scope.verifying = true;
-        RegistrationLineItems.payment(getPaypalPayload()).then(function(response) {
-            $location.path('/afol/eventMe.html');
-        }, function() {
-            $scope.verifying = false;
-            $scope.displayMessage = "There was an error submitting your data. Please try again.";
-            $scope.success = false;
-            $scope.timer = true;
+    $scope.createFormData = function() {
+        _.each(getPaypalPayload(), function(value, key) {
+            var element = $("<input type='hidden'>")
+                .attr("name", key)
+                .attr("value", value);
+            $("#paypalSubmitForm").append(element);
         });
     }
 
     $scope.closeDialog = function() {
         $location.path("/afol/index.html");
     }
+
 }])
 .controller('afolEventRegistration', ['$scope', '$location', 'EventDetails', 'EventRegistration', '$route', 'EventDates', function($scope, $location, EventDetails, eventRegistration, $route, EventDates) {
     $("#splashPageCTA").hide();
