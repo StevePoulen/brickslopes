@@ -29,8 +29,12 @@ describe('controllers', function() {
         }));
 
         describe('Default Values', function() {
-            it('should have an eventData variable ', function() {
-                expect(scope.eventData).toBe(undefined);
+            it('should have an registrationLineItems variable ', function() {
+                expect(scope.registrationLineItems).toBe(undefined);
+            });
+
+            it('should have an eventId variable ', function() {
+                expect(scope.eventId).toBe(2);
             });
         });
 
@@ -43,12 +47,12 @@ describe('controllers', function() {
 
         describe('Digest', function() {
             beforeEach(function() {
-                mockBackend.expectGET('/controllers/eventRegistration.php').respond(eventRegistration);
+                mockBackend.expectGET('/controllers/registrationLineItems.php?eventId=2').respond(registrationLineItems);
                 mockBackend.flush();
             });
 
-            it('should populate the eventData variable', function() {
-                expect(scope.eventData).toEqualData(eventRegistration);
+            it('should populate the registrationLineItem variable', function() {
+                expect(scope.registrationLineItems).toEqualData(registrationLineItems);
             });
         });
     });

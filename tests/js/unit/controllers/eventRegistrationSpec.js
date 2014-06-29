@@ -31,7 +31,13 @@ describe('controllers', function() {
                 data: {
                     'eventId': 2,
                     'eventName': 'BrickSlopes 2015',
-                    'discountDate': '2015-05-16 08:00:00'
+                    'discountDate': '2015-05-16 08:00:00',
+                    'cost': '65.00',
+                    'discount': '60.00',
+                    'meetAndGreetCost': '15.00',
+                    'meetAndGreetDiscount': '10.00',
+                    'tShirtCost': '20.00',
+                    'tShirtDiscount': '15.00'
                 }
             };
             mockBackend.expectGET('/controllers/eventDates.php').respond(201, eventDates);
@@ -123,8 +129,16 @@ describe('controllers', function() {
                     ageVerification: 'Yes',
                     tShirtSize: 'X-Large',
                     comments: "Can't Wait!",
-                    type: 'afol'
+                    type: 'afol',
+                    discountDate: '2015-05-16 08:00:00',
+                    eventCost: '65.00',
+                    eventDiscount: '60.00',
+                    meetAndGreetCost: '15.00',
+                    meetAndGreetDiscount: '10.00',
+                    tShirtCost: '20.00',
+                    tShirtDiscount: '15.00'
                 }
+                mockBackend.flush();
                 scope.submitRegistration();
                 expect(scope.verifying).toBe(true);
                 mockBackend.expectPOST('/controllers/eventRegistration.php', dto).respond(201);

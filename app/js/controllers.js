@@ -177,12 +177,13 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         $location.path("/");
     }
 }])
-.controller('afolEventPayment', ['$scope', '$location', 'EventRegistration', function($scope, $location, EventRegistration) {
+.controller('afolEventPayment', ['$scope', '$location', 'RegistrationLineItems', function($scope, $location, RegistrationLineItems) {
     $("#splashPageCTA").hide();
-    $scope.eventData = undefined;
+    $scope.registrationLineItems = undefined;
+    $scope.eventId = 2;
 
-    EventRegistration.get().then(function(data) {
-        $scope.eventData= data;
+    RegistrationLineItems.get($scope.eventId).then(function(data) {
+        $scope.registrationLineItems = data;
     });
 
     $scope.closeDialog = function() {
@@ -216,7 +217,14 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
             ageVerification: $scope.ageVerification,
             tShirtSize: $scope.tShirtSize,
             comments: $scope.comments,
-            type: 'afol'
+            type: 'afol',
+            discountDate: $scope.eventDetails.discountDate,
+            eventCost: $scope.eventDetails.cost,
+            eventDiscount: $scope.eventDetails.discount,
+            meetAndGreetCost: $scope.eventDetails.meetAndGreetCost,
+            meetAndGreetDiscount: $scope.eventDetails.meetAndGreetDiscount,
+            tShirtCost: $scope.eventDetails.tShirtCost,
+            tShirtDiscount: $scope.eventDetails.tShirtDiscount
         }
     }
 

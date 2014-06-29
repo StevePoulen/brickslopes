@@ -1,16 +1,5 @@
 <?php
 
-class registrations {
-    function __construct() {
-
-    }
-
-    public function addRegistrationInformation($data) {
-        $db = new db();
-        return $db->query();
-    }
-}
-
 class EventRegistrationsObject extends modelObjects {
     protected $className;
 

@@ -28,7 +28,7 @@ class events extends db {
                 meetAndGreetDiscount,
                 discountDate
             FROM
-                EVENTS
+                events
             WHERE
                 eventId = '{$this->escapeCharacters($data['eventId'])}'
         ;

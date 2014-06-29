@@ -13,17 +13,17 @@ describe('service', function() {
         });
     });
 
-    describe('Event Details', function() {
+    describe('Registration Line Items', function() {
         describe('Get', function() {
             var mockBackend, loader, data, eventId;
-            beforeEach(inject(function(_$httpBackend_, EventDetails) {
+            beforeEach(inject(function(_$httpBackend_, RegistrationLineItems) {
                 eventId = 22;
                 mockBackend = _$httpBackend_;
-                loader = EventDetails;
-                mockBackend.expectGET('/controllers/event.php?eventId=22').respond('success');
+                loader = RegistrationLineItems;
+                mockBackend.expectGET('/controllers/registrationLineItems.php?eventId=22').respond('success');
             }));
 
-            it('should get event details', function() {
+            it('should get registration line items', function() {
                 var load = loader.get(eventId);
 
                 load.then(function(_data) {

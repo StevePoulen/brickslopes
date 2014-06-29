@@ -20,6 +20,7 @@ include join('/', array('.', 'config', 'config.php'));
 include join('/', array(__DIR__, '..', 'fixtures', 'mocks', 'DbMock.php'));
 include join('/', array(__DIR__, '..', 'fixtures', 'mocks', 'EmailMock.php'));
 include join('/', array(__DIR__, '..', 'fixtures', 'mocks', 'EventRegistrationsMock.php'));
+include join('/', array(__DIR__, '..', 'fixtures', 'mocks', 'RegistrationsMock.php'));
 include join('/', array(__DIR__, '..', 'fixtures', 'mocks', 'UsersMock.php'));
 include join('/', array(__DIR__, '..', 'fixtures', 'mocks', 'EventsMock.php'));
 include join('/', array(__DIR__, '..', 'fixtures', 'mocks', 'EventDatesMock.php'));

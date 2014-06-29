@@ -116,6 +116,26 @@ angular.module('brickSlopes.services', [])
         },
     }
 }])
+.factory('RegistrationLineItems', ['$q', '$http', function($q, $http) {
+    return {
+        get: function(eventId) {
+            var delay= $q.defer();
+            $http (
+                {
+                    method: 'GET',
+                    url: '/controllers/registrationLineItems.php',
+                    params: {'eventId': eventId}
+                }
+            ).success(function(data, status, headers, config) {
+                delay.resolve(data);
+            }).error(function(data, status, headers, config) {
+                delay.reject(data);
+            });
+
+            return delay.promise;
+        }
+    }
+}])
 .factory('EventDetails', ['$q', '$http', function($q, $http) {
     return {
         get: function(eventId) {
