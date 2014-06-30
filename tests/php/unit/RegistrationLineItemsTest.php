@@ -4,6 +4,7 @@ class RegistrationLineItemsTest extends PHPUnit_Framework_TestCase
 {
     public function setUp() 
     {
+        new RegistrationLineItemsMock();
         $this->userId = null;
         include_once('controllers/registrationLineItems.php');
     }
@@ -34,14 +35,14 @@ class RegistrationLineItemsTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($output[0]['active'] , 'YES');
         $this->assertEquals($output[0]['entryDate'] , '2014-06-29 08:46:00');
 
-        $this->assertEquals($output[1]['lineItem'] , 'Event Pass');
-        $this->assertEquals($output[1]['amount'] , '65.00');
-        $this->assertEquals($output[1]['paid'] , 'YES');
-        $this->assertEquals($output[1]['discount'] , 'NO');
-        $this->assertEquals($output[1]['description'] , 'This is cool');
-        $this->assertEquals($output[1]['size'] , '');
-        $this->assertEquals($output[1]['quantity'] , '');
-        $this->assertEquals($output[1]['active'] , '');
-        $this->assertEquals($output[1]['entryDate'] , '2014-05-16 08:46:00');
+        $this->assertEquals($output[1]['lineItem'] , 'T-Shirt');
+        $this->assertEquals($output[1]['amount'] , '15.00');
+        $this->assertEquals($output[1]['paid'] , 'NO');
+        $this->assertEquals($output[1]['discount'] , 'YES');
+        $this->assertEquals($output[1]['description'] , '');
+        $this->assertEquals($output[1]['size'] , 'X-Large');
+        $this->assertEquals($output[1]['quantity'] , '1');
+        $this->assertEquals($output[1]['active'] , 'YES');
+        $this->assertEquals($output[1]['entryDate'] , '2014-06-29 08:46:00');
     }
 }
