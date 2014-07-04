@@ -67,13 +67,25 @@
             }
         }
 
+        private function isAdminRequest() {
+            return (preg_match('/^..\/partials\/afol\/admin\/*/', $this->URI));
+        }
+
+        private function isAdmin($decodedJWT) {
+            print_r($decodedJWT);
+            return ($decodedJWT->admin == 'YES') ;
+        }
+
         private function decodeJWT() {
             try {
                 $headers = apache_request_headers();
                 $jwt = $headers['Authtoken'];
-                $decoded = JWT::decode($jwt, JWT_KEY);
-                if (preg_match('/\d+/', $decoded->userId)) {
-                    $this->userId = $decoded->userId;
+                $decodedJWT = JWT::decode($jwt, JWT_KEY);
+                if (preg_match('/\d+/', $decodedJWT->userId)) {
+                    $this->userId = $decodedJWT->userId;
+                    if ($this->isAdminRequest()) {
+                        return $this->isAdmin($decodedJWT);
+                    }
                     return true;
                 } else {
                     return false;

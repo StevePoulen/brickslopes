@@ -327,6 +327,13 @@
                     $userMap['email'] = $this->trimMigration($dbObj->email);
                     if ($userMap['email'] == 'brianpilati@gmail.com') {
                         $userMap['password'] = '12345678';
+                        $userMap['admin'] = 'YES';
+                    } else if ($userMap['email'] == 'blackdragon5555@hotmail.com') {
+                        $userMap['admin'] = 'YES';
+                        $userMap['password'] = '12345678';
+                    } else if ($userMap['email'] == 'spoulsen@gmail.com') {
+                        $userMap['admin'] = 'YES';
+                        $userMap['password'] = '12345678';
                     } else {
                         $userMap['password'] = \base_convert(rand(78364164096, 2821109907455), 10, 36);
                     }

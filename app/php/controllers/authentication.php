@@ -38,6 +38,7 @@ class Authentication {
                     $dbObj->userId,
                     $dbObj->firstName, 
                     $dbObj->lastName, 
+                    $dbObj->admin,
                     200 
                 );
             }
@@ -48,6 +49,9 @@ class Authentication {
 
     private function post() {
         $payload = json_decode(file_get_contents("php://input"), true);
+        if (sizeof($payload) == 0) {
+            $payload = $_POST;
+        }
         $response = $this->usersObj->addUserInformation($payload);
         if (preg_match ( '/\d+/', $response )) {
             header("HTTP/1.0 201 Created");
@@ -55,6 +59,7 @@ class Authentication {
                 $response,
                 $payload['firstName'], 
                 $payload['lastName'], 
+                'NO',
                 201 
             );
         } else {
@@ -71,7 +76,7 @@ class Authentication {
     private function put() {
         $payload = json_decode(file_get_contents("php://input"), true);
         $newPassword = $this->generatePassword();
-        $response = $this->usersObj->resetPassword($payload, $newPassword);
+        $this->usersObj->resetPassword($payload, $newPassword);
         if ($this->usersObj->result) {
             $dbObj = $this->usersObj->result->fetch_object();
             $emailObj = new mail($payload['email']);
@@ -94,26 +99,28 @@ class Authentication {
         return \base_convert(rand(78364164096, 2821109907455), 10, 36);
     }
 
-    private function createPayload($userId, $firstName, $lastName, $status) {
+    private function createPayload($userId, $firstName, $lastName, $admin, $status) {
         return json_encode (
             array (
                 'data' => array (
                     'firstName' => $firstName, 
                     'lastName' => $lastName,
-                    'token' => $this->encodeJWT($userId)
+                    'admin' => $admin,
+                    'token' => $this->encodeJWT($userId, $admin)
                 ),
                 'status' => $status
             )
         );
     }
 
-    private function encodeJWT($userId) {
+    private function encodeJWT($userId, $admin) {
         $token = array(
             "iss" => "https://www.brickslopes.com",
             "aud" => $_SERVER['HTTP_HOST'],
             "iat" => 1356999524,
             "nbf" => 1357000000,
-            "userId" => $userId
+            "userId" => $userId,
+            "admin" => $admin
          );
 
         $jwt = JWT::encode($token, JWT_KEY);

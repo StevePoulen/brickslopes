@@ -59,23 +59,57 @@ describe('controllers', function() {
             });
         });
 
-
-        describe('Sign in', function() {
-            it('should submit to login page on success', function() {
+        describe('Sign in on success', function() {
+            beforeEach(function() {
                 var response = {
                     data: {
-                        token: 22
+                        token: 22,
+                        firstName: 'Cody',
+                        lastName: 'Ottley',
+                        admin: 'NO'
                     },
                     status: 201
                 }
+
                 scope.submitLogin();
                 mockBackend.expectGET('/controllers/authentication.php?').respond(200, response);
                 mockBackend.flush();
-                expect(location.path()).toBe('/afol/index.html');
-                expect(scope.displayErrorMessage).toBe("");
-                expect(scope.verifying).toBe(true);
             });
 
+            it('should submit to login page on success', function() {
+                expect(location.path()).toBe('/afol/index.html');
+            });
+
+            it('should have a blank displayErrorMessage', function() {
+                expect(scope.displayErrorMessage).toBe("");
+            });
+
+            it('should have a blank displayMessage', function() {
+                expect(scope.displayMessage).toBe("");
+            });
+
+            it('should have a true verifying message', function() {
+                expect(scope.verifying).toBe(false);
+            });
+
+            it('should have a window.sessionStorage.token variables', function() {
+                expect(window.sessionStorage.token).toBe('22');
+            });
+
+            it('should have a window.sessionStorage.firstName variables', function() {
+                expect(window.sessionStorage.firstName).toBe('Cody');
+            });
+
+            it('should have a window.sessionStorage.lastName variables', function() {
+                expect(window.sessionStorage.lastName).toBe('Ottley');
+            });
+
+            it('should have a window.sessionStorage.admin variables', function() {
+                expect(window.sessionStorage.admin).toBe('NO');
+            });
+        });
+
+        describe('Sign in on failure ', function() {
             it('should submit to login page on failure', function() {
                 scope.submitLogin();
                 mockBackend.expectGET('/controllers/authentication.php?').respond(401);
@@ -92,23 +126,52 @@ describe('controllers', function() {
         });
 
         describe('Register', function() {
-            it('should register a new user', function() {
-                scope.register();
-                expect(scope.verifying).toBe(true);
+            beforeEach(function() {
                 var response = {
                     data: {
-                        token: 22
+                        token: 22,
+                        firstName: 'Cody',
+                        lastName: 'Ottley',
+                        admin: 'NO'
                     },
                     status: 201
                 }
 
+                scope.register();
                 mockBackend.expectPOST('/controllers/authentication.php').respond(201, response);
                 mockBackend.flush();
+            });
+
+            it('should register a new user', function() {
                 expect(location.path()).toBe('/afol/index.html');
-                expect(window.sessionStorage.token).toBe('22');
+            });
+
+            it('should have a blank displayErrorMessage', function() {
+                expect(scope.displayErrorMessage).toBe("");
+            });
+
+            it('should have a blank displayMessage', function() {
+                expect(scope.displayMessage).toBe("");
+            });
+
+            it('should have a true verifying message', function() {
                 expect(scope.verifying).toBe(false);
-                expect(scope.displayErrorMessage).toBe('');
-                expect(scope.displayMessage).toBe('');
+            });
+
+            it('should have a window.sessionStorage.token variables', function() {
+                expect(window.sessionStorage.token).toBe('22');
+            });
+
+            it('should have a window.sessionStorage.firstName variables', function() {
+                expect(window.sessionStorage.firstName).toBe('Cody');
+            });
+
+            it('should have a window.sessionStorage.lastName variables', function() {
+                expect(window.sessionStorage.lastName).toBe('Ottley');
+            });
+
+            it('should have a window.sessionStorage.admin variables', function() {
+                expect(window.sessionStorage.admin).toBe('NO');
             });
         });
 

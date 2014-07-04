@@ -55,7 +55,8 @@ class users extends \db {
             SELECT 
                 userId,
                 firstName,
-                lastName
+                lastName,
+                admin
             FROM
                 users 
             WHERE
@@ -88,9 +89,12 @@ class users extends \db {
     }
 
     private function updateQuery($userId, $data) {
-        $familyId = "";
+        $familyId = $adminId = "";
         if (ISSET($data['familyId'])) {
             $familyId = ",familyId = '{$this->escapeCharacters($data['familyId'])}'";
+        }
+        if (ISSET($data['admin'])) {
+            $adminId = ",admin = '{$this->escapeCharacters($data['admin'])}'";
         }
         return "
             UPDATE 
@@ -106,6 +110,7 @@ class users extends \db {
                 zipcode = '{$this->escapeCharacters($data['zipcode'])}',
                 flickr = '{$this->escapeCharacters($data['flickr'])}'
                 $familyId
+                $adminId
             WHERE
                 userId = {$userId}
         ;

@@ -29,3 +29,10 @@ $(document).delegate('#comments', 'blur', function() {
         $(this).val('Comments ...');
     }
 });
+
+function deleteSession(ngWindow) {
+    delete ngWindow.sessionStorage.token;
+    delete ngWindow.sessionStorage.firstName;
+    delete ngWindow.sessionStorage.lastName;
+    delete ngWindow.sessionStorage.admin;
+}

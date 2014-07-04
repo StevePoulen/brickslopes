@@ -67,6 +67,10 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         }
     }
 
+    $scope.clickAdmin = function() {
+        $location.path("/afol/admin.html");
+    }
+
     $scope.authenticationText = function() {
         if ($window.sessionStorage.firstName) {
             return $window.sessionStorage.firstName + "'s Site";
@@ -75,15 +79,25 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         }
     }
 
+    $scope.adminText = function() {
+        if ($window.sessionStorage.admin == 'YES' && $window.sessionStorage.token) {
+            return "| Admin";
+        } else {
+            return "";
+        }
+    }
+
     $scope.logout = function() {
-        delete $window.sessionStorage.token;
-        delete $window.sessionStorage.firstName;
-        delete $window.sessionStorage.lastName;
+        deleteSession($window);
         $location.path("/afol/login.html");
     }
 
     $scope.authenticated = function() {
         return ($window.sessionStorage.token ? true : false);
+    }
+
+    $scope.admin = function() {
+        return ($window.sessionStorage.admin == 'YES' ? true : false);
     }
 }])
 .controller('afolLogin', ['$scope', '$location', 'Auth', '$window', function($scope, $location, Auth, $window) {
@@ -121,6 +135,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         $window.sessionStorage.token = data.token;
         $window.sessionStorage.firstName = data.firstName;
         $window.sessionStorage.lastName = data.lastName;
+        $window.sessionStorage.admin = data.admin;
     }
 
     $scope.submitLogin = function() {
@@ -128,6 +143,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         Auth.login(serializeLoginJson()).then(function(response) {
             storeSession(response.data);
             $location.path('/afol/index.html');
+            $scope.verifying = false;
         }, function() {
             $scope.verifying = false;
             $scope.displayErrorMessage = "The email or password you entered is incorrect.";
@@ -162,9 +178,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
 
     $scope.resetPassword = function() {
         $scope.verifying = true;
-        delete $window.sessionStorage.token;
-        delete $window.sessionStorage.firstName;
-        delete $window.sessionStorage.lastName;
+        deleteSession($window);
         Auth.reset(serializeResetPasswordJson()).then(function(response) {
             $scope.verifying = false;
             $scope.resetEmail = "";
@@ -378,6 +392,9 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     EventDates.getPassDates($scope.eventId).then(function(passDates) {
         $scope.passDates = passDates;
     });
+}])
+.controller('afolAdmin', ['$scope', '$location', '$window', function($scope, $location, $window) {
+    $("#splashPageCTA").hide();
 }])
 .controller('afolIndex', ['$scope', '$location', 'GetAfolMocList', '$window', 'EventDates', 'EventRegistration', function($scope, $location, GetAfolMocList, $window, EventDates, EventRegistration) {
     $("#splashPageCTA").hide();

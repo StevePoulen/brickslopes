@@ -1,13 +1,14 @@
 <?php
 
 function buildJWT() {
+    echo "\n\n\nhere\n\n\n";
     return JWT::encode(
         ARRAY (
             "iss" => "https://www.brickslopes.com",
             "aud" => "https://www.myjwt.com",
             "iat" => 1356999524,
             "nbf" => 1357000000,
-            "userId" => 05169175
+            "admin" => 'YES' 
         )
     , JWT_KEY);
 }
@@ -15,11 +16,15 @@ function buildJWT() {
 function apache_request_headers() {
     if ($GLOBALS['authenticationRequest']) {
         return Array(
-            'Authtoken' => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvd3d3LmJyaWNrc2xvcGVzLmNvbSIsImF1ZCI6Imh0dHBzOlwvXC93d3cubXlqd3QuY29tIiwiaWF0IjoxMzU2OTk5NTI0LCJuYmYiOjEzNTcwMDAwMDAsInVzZXJJZCI6MzM0fQ.9Z2PXQwm_ugnSIzNLyV-HQXbNczehYYY6jkaR_ij1dM'
+            'Authtoken' => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvd3d3LmJyaWNrc2xvcGVzLmNvbSIsImF1ZCI6Imh0dHBzOlwvXC93d3cubXlqd3QuY29tIiwiaWF0IjoxMzU2OTk5NTI0LCJuYmYiOjEzNTcwMDAwMDAsInVzZXJJZCI6MzM0LCJhZG1pbiI6IllFUyJ9.TQK2dHqJr9JCohYxPH1GM89IOOATEn-X8QOKxES9XZw'
         );
     } else if (array_key_exists('badAuthenticationRequest', $GLOBALS) && $GLOBALS['badAuthenticationRequest']) {
         return Array(
             'Authtoken' => '.eyJpc3MiOiJodHRwczpcL1wvd3d3LmJyaWNrc2xvcGVzLmNvbSIsImF1ZCI6Imh0dHBzOlwvXC93d3cubXlqd3QuY29tIiwiaWF0IjoxMzU2OTk5NTI0LCJuYmYiOjEzNTcwMDAwMDAsInVzZXJJZCI6MzM0fQ.9Z2PXQwm_ugnSIzNLyV-HQXbNczehYYY6jkaR_ij1dM'
+        );
+    } else if (array_key_exists('adminRequestNoAuth', $GLOBALS)) {
+        return Array(
+            'AuthToken' => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvd3d3LmJyaWNrc2xvcGVzLmNvbSIsImF1ZCI6Imh0dHBzOlwvXC93d3cubXlqd3QuY29tIiwiaWF0IjoxMzU2OTk5NTI0LCJuYmYiOjEzNTcwMDAwMDAsImFkbWluIjoiWUVTIn0.PkUeockWzb5nVBtJecANB9NYNmdyR1Eg6Mjcw9If_1w'
         );
     } else {
         return Array();
@@ -31,6 +36,7 @@ class ControllerTest extends PHPUnit_Framework_TestCase
 
     public function setUp() 
     {
+        //echo buildJWT();
         $GLOBALS['authenticationRequest'] = false;
     }
 
@@ -111,14 +117,42 @@ class ControllerTest extends PHPUnit_Framework_TestCase
         $this->expectOutputString('');
     }
 
-/*
-Deprecated - moved to authentication
-    public function testEncodeJWT() 
+    public function testAnonymousAdmin() 
     {
-        $_SERVER['REQUEST_URI'] = "/partials/public/notfound.html";
-        $_SERVER['HTTP_HOST'] = "https://www.myjwt.com";
+        $_SERVER['REQUEST_URI'] = "/partials/afol/admin/index.html";
         $this->controller = new Controller();
-        $this->assertEquals($this->controller->encodeJWT(05169175), buildJWT());
+        $this->controller->invoke();
+        $this->assertEquals(http_response_code(), 403);
+        $this->expectOutputString('');
     }
-    */
+
+    public function testAuthenticatedNoAdmin() 
+    {
+        $GLOBALS['badAuthenticationRequest'] = true;
+        $_SERVER['REQUEST_URI'] = "/partials/afol/admin/index.html";
+        $this->controller = new Controller();
+        $this->controller->invoke();
+        $this->assertEquals(http_response_code(), 403);
+        $this->expectOutputString('');
+    }
+
+    public function testAdminNoAuthentication() 
+    {
+        $GLOBALS['adminRequestNoAuth'] = true;
+        $_SERVER['REQUEST_URI'] = "/partials/afol/admin/index.html";
+        $this->controller = new Controller();
+        $this->controller->invoke();
+        $this->assertEquals(http_response_code(), 403);
+        $this->expectOutputString('');
+    }
+
+    public function testAdminAndAuthentication() 
+    {
+        $GLOBALS['authenticationRequest'] = true;
+        $_SERVER['REQUEST_URI'] = "/partials/afol/admin/index.html";
+        $this->controller = new Controller();
+        $this->controller->invoke();
+        $this->assertEquals(http_response_code(), 200);
+        $this->expectOutputRegex('/eventPane/');
+    }
 }

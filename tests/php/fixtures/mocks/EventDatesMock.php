@@ -1,7 +1,6 @@
 <?php
 
 class EventDatesMock extends modelObjects {
-    protected $className;
     protected $dataSet;
 
     public function __construct() {

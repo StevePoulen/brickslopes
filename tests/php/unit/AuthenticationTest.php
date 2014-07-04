@@ -21,24 +21,33 @@ class AuthenticationTest extends PHPUnit_Framework_TestCase
         $_GET['email'] = 'brianpilati@gmail.com';
         $_GET['password'] = 'vErYsEcUrE';
         $GLOBALS['db_query'] = 1;
-        $GLOBALS['users_userId'] = '123456789';
         $GLOBALS['fetch_object'] = new usersObject();
         $authentication = new Authentication();
         $this->assertEquals(http_response_code(), 200);
-        $this->expectOutputString('{"data":{"firstName":"d^3 => default dummy data","lastName":"d^3 => default dummy data","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvd3d3LmJyaWNrc2xvcGVzLmNvbSIsImF1ZCI6Ind3dy5teWJyaWNrc2xvcGVzLmNvbSIsImlhdCI6MTM1Njk5OTUyNCwibmJmIjoxMzU3MDAwMDAwLCJ1c2VySWQiOiIxMjM0NTY3ODkifQ.fIW7IU7CiW5dLF77GuzvavKOysS2GKqcfbkCkDChlGA"},"status":200}');
+        $output = json_decode(ob_get_contents(), true);
+        $this->assertEquals($output['data']['firstName'] , 'Brian');
+        $this->assertEquals($output['data']['lastName'] , 'Pilati');
+        $this->assertEquals($output['data']['admin'] , 'YES');
+        $this->assertEquals($output['data']['token'] , "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvd3d3LmJyaWNrc2xvcGVzLmNvbSIsImF1ZCI6Ind3dy5teWJyaWNrc2xvcGVzLmNvbSIsImlhdCI6MTM1Njk5OTUyNCwibmJmIjoxMzU3MDAwMDAwLCJ1c2VySWQiOiIxIiwiYWRtaW4iOiJZRVMifQ.Uz4-hSQIyz0YvJ7BkvbmJsxGoVLedGZCLxxfySAbWIk");
+        $this->assertEquals($output['status'], 200);
     }
 
     public function testAuthenticatedPost() 
     {
         $_SERVER['REQUEST_METHOD'] = "POST";
-        $_GET['email'] = 'brianpilati@gmail.com';
-        $_GET['password'] = 'vErYsEcUrE';
+        $_POST['firstName'] = 'Steve';
+        $_POST['lastName'] = 'Poulsen';
         $GLOBALS['db_query'] = 123456789;
         $GLOBALS['users_userId'] = '123456789';
         $GLOBALS['fetch_object'] = new usersObject();
         $authentication = new Authentication();
         $this->assertEquals(http_response_code(), 201);
-        $this->expectOutputString('{"data":{"firstName":null,"lastName":null,"token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvd3d3LmJyaWNrc2xvcGVzLmNvbSIsImF1ZCI6Ind3dy5teWJyaWNrc2xvcGVzLmNvbSIsImlhdCI6MTM1Njk5OTUyNCwibmJmIjoxMzU3MDAwMDAwLCJ1c2VySWQiOjEyMzQ1Njc4OX0.uj2RrezXOJihEit3Z3YBVdX0YSApc77kFx2EmTyNrWE"},"status":201}');
+        $output = json_decode(ob_get_contents(), true);
+        $this->assertEquals($output['data']['firstName'] , 'Steve');
+        $this->assertEquals($output['data']['lastName'] , 'Poulsen');
+        $this->assertEquals($output['data']['admin'] , 'NO');
+        $this->assertEquals($output['data']['token'] , "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvd3d3LmJyaWNrc2xvcGVzLmNvbSIsImF1ZCI6Ind3dy5teWJyaWNrc2xvcGVzLmNvbSIsImlhdCI6MTM1Njk5OTUyNCwibmJmIjoxMzU3MDAwMDAwLCJ1c2VySWQiOjEyMzQ1Njc4OSwiYWRtaW4iOiJOTyJ9.R7nid7T9h1HLyydRwZFRcYbJiqfFwgsWpTPi--F5HKE");
+        $this->assertEquals($output['status'], 201);
     }
 
     public function testAuthenticatedPutSuccess() 
