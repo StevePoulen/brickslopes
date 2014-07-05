@@ -1,7 +1,6 @@
 <?php
 
 function buildJWT() {
-    echo "\n\n\nhere\n\n\n";
     return JWT::encode(
         ARRAY (
             "iss" => "https://www.brickslopes.com",

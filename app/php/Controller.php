@@ -72,7 +72,6 @@
         }
 
         private function isAdmin($decodedJWT) {
-            print_r($decodedJWT);
             return ($decodedJWT->admin == 'YES') ;
         }
 

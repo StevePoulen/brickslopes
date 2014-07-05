@@ -1,0 +1,17 @@
+.registeredAfols {
+    width: 100%;
+
+    .evenRow {
+        background: lightgrey;
+    }
+
+    table {
+        width: 100%;
+    }
+
+    td {
+        border: 1px solid black;
+        text-align: center;
+        width: 100px;
+    }
+}

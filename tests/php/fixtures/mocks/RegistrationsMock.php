@@ -12,6 +12,10 @@ class registrations extends db {
     public function getRegistrationInformationByUserId($data) {
         return $this->query();
     }
+
+    public function getAllRegisteredUsers($data) {
+        return $this->query();
+    }
 }
 
 class RegistrationsMock extends modelObjects {

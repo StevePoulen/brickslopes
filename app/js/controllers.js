@@ -393,8 +393,23 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         $scope.passDates = passDates;
     });
 }])
-.controller('afolAdmin', ['$scope', '$location', '$window', function($scope, $location, $window) {
+.controller('afolAdmin', ['$scope', '$location', function($scope, $location) {
     $("#splashPageCTA").hide();
+
+    $scope.clickRegistrations = function() {
+        $location.path('/afol/admin/registeredAfols.html');
+    }
+}])
+.controller('adminRegisteredAfols', ['$scope', 'RegisteredAfols', function($scope, RegisteredAfols) {
+    $("#splashPageCTA").hide();
+    $scope.registeredAfols = undefined;
+    $scope.eventId = 2;
+    $scope.eventName = undefined;
+
+    RegisteredAfols.get($scope.eventId).then(function(data) {
+        $scope.registeredAfols = data[$scope.eventId]['registeredAfols'];
+        $scope.eventName = data[$scope.eventId]['eventName'];
+    });
 }])
 .controller('afolIndex', ['$scope', '$location', 'GetAfolMocList', '$window', 'EventDates', 'EventRegistration', function($scope, $location, GetAfolMocList, $window, EventDates, EventRegistration) {
     $("#splashPageCTA").hide();

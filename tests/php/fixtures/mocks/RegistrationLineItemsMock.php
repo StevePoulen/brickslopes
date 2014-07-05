@@ -46,5 +46,4 @@ class RegistrationLineItemsMock extends modelObjects {
     public function active() { return $this->getData(__FUNCTION__,9); }
     public function entryDate() { return $this->getData(__FUNCTION__,10); }
 }
-
 ?>

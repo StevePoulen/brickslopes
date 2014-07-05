@@ -305,6 +305,7 @@
             $registrationsObj = new registrations();
             $afolsObj->selectAllAfols(); 
             $noEmailCounter = 0;
+            $registrationCounter = 0;
             $junkCounter = 11;
 
             if ($afolsObj->result) {
@@ -373,12 +374,22 @@
                     $registrationMap['type'] = 'AFOL';
 
                     $registrationsObj->addRegistrationInformation($registrationMap);
+
+                    if ($_SERVER['HTTP_HOST'] === 'mybrickslopes.com') {
+                        if ($userId == 21 || $userId == 26 || $userId == 52) {
+                            $registrationCounter++;
+                            $registrationMap['eventId'] = 2;
+                            $registrationsObj->addRegistrationInformation($registrationMap);
+                        }
+                    }
+
                 }
             }
 
             $originalAfolCount = $this->getTableCount('afols') - ($noEmailCounter + $junkCounter);
+            $originalRegistrationCount = $originalAfolCount + $registrationCounter;
             $this->validateTable('users', $originalAfolCount);
-            $this->validateTable('registrations', $originalAfolCount);
+            $this->validateTable('registrations', $originalRegistrationCount);
         }
     }
 

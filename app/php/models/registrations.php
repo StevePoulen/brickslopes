@@ -10,8 +10,37 @@ class registrations extends db {
         return $this->query($this->selectQuery($userId));
     }
 
+    public function getAllRegisteredUsers($eventId) {
+        return $this->query($this->selectQueryByEventId($eventId));
+    }
+
     public function addRegistrationInformation($data) {
         return $this->query($this->insertQuery($data));
+    }
+
+    private function selectQueryByEventId($eventId) {
+        return "
+            SELECT 
+                e.eventId as eventId,
+                e.name as eventName,
+                r.registrationId as registrationId,
+                u.userId as userId,
+                u.firstName as firstName,
+                u.lastName as lastName,
+                IFNULL(r.paid,'NO') as paid
+            FROM
+                registrations r,
+                events e,
+                users u
+            WHERE
+                r.eventId = '$eventId'
+                AND r.eventId = e.eventId
+                AND r.userId = u.userId
+            ORDER BY
+                u.lastName, 
+                u.firstName
+        ;
+      ";
     }
 
     private function selectQuery($userId) {

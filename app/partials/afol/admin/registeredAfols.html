@@ -1,0 +1,49 @@
+<div id="eventDashboard">
+    <div id="dashboardText">
+        <div>
+            <h1><bs-logo font-size="1.25"></bs-logo> &#8226; <bs-text text="Registered Afols" font-color=black></bs-text></h1>
+        </div>
+        <div class='registeredAfols'>
+            <table>
+                <tr>
+                    <th>
+                        # 
+                    </th>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Costs 
+                    </th>
+                    <th>
+                        Paid
+                    </th>
+                </tr>
+                <tr ng-class="{evenRow: $even}" ng-repeat="afol in registeredAfols">
+                    <td>
+                        {{$index + 1}}
+                    </td>
+                    <td>
+                        {{afol.firstName}} {{afol.lastName}}
+                    </td>
+                    <td>
+                        <div ng-repeat="lineItem in afol.lineItems">
+                            <span>
+                                {{lineItem.lineItem}}
+                            </span>
+                            <span>
+                                {{lineItem.amount | currency}}
+                            </span>
+                            <span>
+                                {{lineItem.quantity}}
+                            </span>
+                        </div>
+                    </td>
+                    <td>
+                        {{afol.paid}}
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

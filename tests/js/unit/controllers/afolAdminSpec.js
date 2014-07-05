@@ -27,12 +27,11 @@ describe('controllers', function() {
         }));
 
 
-        describe('Default Variables', function() {
-            /*
-            it('should have a mocCount variable', function() {
-                expect(scope.mocCount).toBe(0);
+        describe('Click Registrations', function() {
+            it('should redirect to the registeredAfols page', function() {
+                scope.clickRegistrations();
+                expect(location.path()).toBe('/afol/admin/registeredAfols.html');
             });
-            */
         });
     });
 });

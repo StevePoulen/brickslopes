@@ -1,14 +1,14 @@
 <?php
 
-class RegistrationLineItems {
+class registrationLineItems {
     private $registrationLineItemObj;
     private $requestMethod;
     private $userId;
 
-    public function __construct($userId = null) {
+    public function __construct($userId = null, $runOnLine = null) {
         $this->registrationLineItemObj = new registrationLineItemModel();
         $this->userId = $userId;
-        $this->determineRequestMethod();
+        if ($runOnLine) { $this->determineRequestMethod(); }
     }
 
     private function determineRequestMethod() {
@@ -37,22 +37,42 @@ class RegistrationLineItems {
         );
     }
 
+    private function buildLineItemObject() {
+        $lineItemMap = array();
+        while($dbObj = $this->registrationLineItemObj->result->fetch_object()) {
+            if(array_key_exists($dbObj->eventId, $lineItemMap)) {
+                array_push (
+                    $lineItemMap[$dbObj->eventId],
+                    $this->buildLineItemDTO($dbObj)
+                );
+            } else {
+                $lineItemMap[$dbObj->eventId] = array(
+                    $this->buildLineItemDTO($dbObj)
+                );
+            }
+        }
+
+        return $lineItemMap;
+    }
+
+    public function getRegisteredLineItems($userId, $eventId) {
+        $this->registrationLineItemObj->getRegistrationLineItemsByUserId($userId);
+        if ($this->registrationLineItemObj->result) {
+            $lineItemMap = $this->buildLineItemObject();
+            try {
+                return $lineItemMap[$eventId];
+            } catch (exception $e) {
+                return array();
+            }
+        } else {
+            return array();
+        }
+    }
+
     private function get() {
         $this->registrationLineItemObj->getRegistrationLineItemsByUserId($this->userId);
         if ($this->registrationLineItemObj->result) {
-            $lineItemMap = array();
-            while($dbObj = $this->registrationLineItemObj->result->fetch_object()) {
-                if(array_key_exists($dbObj->eventId, $lineItemMap)) {
-                    array_push (
-                        $lineItemMap[$dbObj->eventId],
-                        $this->buildLineItemDTO($dbObj)
-                    );
-                } else {
-                    $lineItemMap[$dbObj->eventId] = array(
-                        $this->buildLineItemDTO($dbObj)
-                    );
-                }
-            }
+            $lineItemMap = $this->buildLineItemObject();
             header("HTTP/1.0 200 Success");
             echo json_encode (
                 $lineItemMap
@@ -63,6 +83,19 @@ class RegistrationLineItems {
     }
 }
 
-new RegistrationLineItems($this->userId);
+try {
+    if (defined($this)) {
+        $userId = $this->userId;
+        $runOnLine = true;
+    } else {
+        $userId = null;
+        $runOnLine = false;
+    }
+} catch (exception $e) {
+    $userId = null;
+    $runOnLine = false;
+}
+
+new registrationLineItems($userId, $runOnLine);
 
 ?>
