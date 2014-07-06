@@ -27,6 +27,7 @@ class registrationLineItems {
         return array (
             'lineItem' => $dbObj->lineItem,
             'amount' => $dbObj->amount,
+            'total' => $this->calculateTotal($dbObj->amount, $dbObj->quantity),
             'paid' => $dbObj->paid,
             'discount' => $dbObj->discount,
             'description' => $dbObj->description,
@@ -37,22 +38,41 @@ class registrationLineItems {
         );
     }
 
+    private function calculateTotal($amount, $quantity) {
+        return money_format('%i', $quantity * $amount);
+    }
+
+    private function buildTotalAmounts($lineItemMap) {
+        $total = 0;
+        foreach($lineItemMap as $key => $lineItemObject) {
+            foreach($lineItemObject['lineItems'] as $lineItem) {
+                $total += $lineItem['total'];
+            }
+            $lineItemMap[$key]['total'] = $this->calculateTotal($total, 1);
+        }
+
+        return $lineItemMap;
+    }
+
     private function buildLineItemObject() {
         $lineItemMap = array();
         while($dbObj = $this->registrationLineItemObj->result->fetch_object()) {
             if(array_key_exists($dbObj->eventId, $lineItemMap)) {
                 array_push (
-                    $lineItemMap[$dbObj->eventId],
+                    $lineItemMap[$dbObj->eventId]['lineItems'],
                     $this->buildLineItemDTO($dbObj)
                 );
             } else {
                 $lineItemMap[$dbObj->eventId] = array(
-                    $this->buildLineItemDTO($dbObj)
+                    'total' => 0,
+                    'lineItems' => array (
+                        $this->buildLineItemDTO($dbObj)
+                    )
                 );
             }
         }
 
-        return $lineItemMap;
+        return $this->buildTotalAmounts($lineItemMap);
     }
 
     public function getRegisteredLineItems($userId, $eventId) {

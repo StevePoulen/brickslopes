@@ -28,11 +28,16 @@ class RegisteredAfolsTest extends PHPUnit_Framework_TestCase
         $output = json_decode(ob_get_contents(), true)[2];
         $this->assertEquals($output['eventName'] , 'BrickSlopes - Salt Lake City');
         $afol = $output['registeredAfols'][0];
-        $lineItems = $output['registeredAfols'][0]['lineItems'][0];
+
         $this->assertEquals($afol['registrationId'] , '1');
         $this->assertEquals($afol['firstName'] , 'Brian');
         $this->assertEquals($afol['lastName'] , 'Pilati');
         $this->assertEquals($afol['paid'] , 'NO');
+
+        $total = $output['registeredAfols'][0]['lineItems']['total'];
+        $this->assertEquals($total , 25.00);
+
+        $lineItems = $output['registeredAfols'][0]['lineItems']['lineItems'][0];
         $this->assertEquals($lineItems['lineItem'] , 'T-Shirt');
     }
 }

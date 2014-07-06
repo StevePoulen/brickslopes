@@ -203,15 +203,11 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         'currency_code': 'USD'
     };
 
-    function calculateTotal(lineItem) {
-        return parseFloat(lineItem.amount) * parseInt(lineItem.quantity);
-    }
-
     function getPaypalPayload() {
         var lineItemCounter = 1;
         _.each($scope.registrationLineItems, function(lineItem) {
             $scope.paypalPayload['item_name_' + lineItemCounter] = lineItem.lineItem;
-            $scope.paypalPayload['amount_' + lineItemCounter] = calculateTotal(lineItem);
+            $scope.paypalPayload['amount_' + lineItemCounter] = lineItem.total;
             $scope.paypalPayload['shipping_' + lineItemCounter] = 0;
             lineItemCounter++;
         });
@@ -219,10 +215,8 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     }
 
     RegistrationLineItems.get($scope.eventId).then(function(data) {
-        $scope.registrationLineItems = data[$scope.eventId];
-        _.each($scope.registrationLineItems, function(lineItem) {
-            $scope.totalAmount += calculateTotal(lineItem);
-        });
+        $scope.registrationLineItems = data[$scope.eventId]['lineItems'];
+        $scope.totalAmount = data[$scope.eventId]['total'];
 
         $scope.createFormData();
     });
@@ -239,7 +233,6 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     $scope.closeDialog = function() {
         $location.path("/afol/index.html");
     }
-
 }])
 .controller('afolEventRegistration', ['$scope', '$location', 'EventDetails', 'EventRegistration', '$route', 'EventDates', function($scope, $location, EventDetails, eventRegistration, $route, EventDates) {
     $("#splashPageCTA").hide();

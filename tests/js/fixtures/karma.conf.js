@@ -10,7 +10,8 @@ module.exports = function(config){
       'app/lib/**/*.js',
       'app/js/**/*.js',
       'tests/js/fixtures/artifacts/**/*.js',
-      'tests/js/unit/**/*.js'
+      'tests/js/unit/**/*.js',
+      'node_modules/jasmine-jquery/lib/jasmine-jquery.js'
     ],
 
     exclude : [
@@ -26,8 +27,9 @@ module.exports = function(config){
 
     plugins : [
       'karma-ng-html2js-preprocessor',
+      'karma-chrome-launcher',
       'karma-jasmine',
-      'karma-chrome-launcher'
+      'jasmine-jquery'
    ],
 
     preprocessors : {

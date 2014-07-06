@@ -27,17 +27,15 @@
                         {{afol.firstName}} {{afol.lastName}}
                     </td>
                     <td>
-                        <div ng-repeat="lineItem in afol.lineItems">
-                            <span>
-                                {{lineItem.lineItem}}
-                            </span>
-                            <span>
-                                {{lineItem.amount | currency}}
-                            </span>
-                            <span>
-                                {{lineItem.quantity}}
-                            </span>
-                        </div>
+                        <table>
+                            <tr ng-class="{evenRow: $even}" ng-repeat="lineItem in afol.lineItems">
+                                <td>{{lineItem.lineItem}}</td>
+                                <td>{{lineItem.amount | currency}}</td>
+                                <td>{{lineItem.quantity}}</td>
+                                <td>{{lineItem.total}}</td>
+                                <td>Confirm</td>
+                            </tr>
+                        </table>
                     </td>
                     <td>
                         {{afol.paid}}
