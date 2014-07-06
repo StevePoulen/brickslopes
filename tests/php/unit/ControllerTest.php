@@ -154,4 +154,13 @@ class ControllerTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(http_response_code(), 200);
         $this->expectOutputRegex('/eventPane/');
     }
+
+    public function testAdminAndAuthenticationControllers() 
+    {
+        $GLOBALS['authenticationRequest'] = true;
+        $_SERVER['REQUEST_URI'] = "/controllers/admin/payment.php";
+        $this->controller = new Controller();
+        $this->controller->invoke();
+        $this->assertEquals(http_response_code(), 405);
+    }
 }

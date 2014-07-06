@@ -68,7 +68,10 @@
         }
 
         private function isAdminRequest() {
-            return (preg_match('/^..\/partials\/afol\/admin\/*/', $this->URI));
+            return (
+                preg_match('/^controllers\/admin\/*/', $this->URI) ||
+                preg_match('/^..\/partials\/afol\/admin\/*/', $this->URI)
+                );
         }
 
         private function isAdmin($decodedJWT) {

@@ -133,6 +133,48 @@ angular.module('brickSlopes.services', [])
             });
 
             return delay.promise;
+        },
+
+        revokePayment: function(registrationLineItemId, registrationId) {
+            var delay= $q.defer();
+            $http (
+                {
+                    method: 'PATCH',
+                    url: '/controllers/admin/payment.php',
+                    data: {
+                        'registrationLineItemId': registrationLineItemId,
+                        'registrationId': registrationId,
+                        'revoke': 'yes'
+                    }
+                }
+            ).success(function(data, status, headers, config) {
+                delay.resolve(data);
+            }).error(function(data, status, headers, config) {
+                delay.reject(data);
+            });
+
+            return delay.promise;
+        },
+
+        confirmPayment: function(registrationLineItemId, registrationId) {
+            var delay= $q.defer();
+            $http (
+                {
+                    method: 'PATCH',
+                    url: '/controllers/admin/payment.php',
+                    data: {
+                        'registrationLineItemId': registrationLineItemId,
+                        'registrationId': registrationId,
+                        'revoke': 'no'
+                    }
+                }
+            ).success(function(data, status, headers, config) {
+                delay.resolve(data);
+            }).error(function(data, status, headers, config) {
+                delay.reject(data);
+            });
+
+            return delay.promise;
         }
     }
 }])

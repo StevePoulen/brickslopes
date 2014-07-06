@@ -393,7 +393,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         $location.path('/afol/admin/registeredAfols.html');
     }
 }])
-.controller('adminRegisteredAfols', ['$scope', 'RegisteredAfols', function($scope, RegisteredAfols) {
+.controller('adminRegisteredAfols', ['$scope', 'RegisteredAfols', 'RegistrationLineItems', function($scope, RegisteredAfols, RegistrationLineItems) {
     $("#splashPageCTA").hide();
     $scope.registeredAfols = undefined;
     $scope.eventId = 2;
@@ -403,6 +403,21 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         $scope.registeredAfols = data[$scope.eventId]['registeredAfols'];
         $scope.eventName = data[$scope.eventId]['eventName'];
     });
+
+    $scope.confirmPayment = function(lineItem) {
+        var self = this;
+        if (lineItem.paid === 'YES') {
+            lineItem.paid = 'NO';
+            RegistrationLineItems.revokePayment(lineItem.registrationLineItemId,this.afol.registrationId).then(function(data) {
+                self.afol.paid = 'NO';
+            });
+        } else {
+            lineItem.paid = 'YES';
+            RegistrationLineItems.confirmPayment(lineItem.registrationLineItemId, this.afol.registrationId).then(function(data) {
+                self.afol.paid = data.registrationPaid ? 'YES' : 'NO';
+            });
+        }
+    }
 }])
 .controller('afolIndex', ['$scope', '$location', 'GetAfolMocList', '$window', 'EventDates', 'EventRegistration', function($scope, $location, GetAfolMocList, $window, EventDates, EventRegistration) {
     $("#splashPageCTA").hide();

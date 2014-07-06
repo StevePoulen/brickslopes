@@ -13,6 +13,5 @@
 /* line 12, ../../compass/assets/sass/admin.scss */
 .registeredAfols td {
   border: 1px solid black;
-  text-align: center;
-  width: 100px;
+  width: auto;
 }

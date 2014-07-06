@@ -34,5 +34,55 @@ describe('service', function() {
                 expect(data).toEqualData('success');
             });
         });
+
+        describe('Confirm Payment', function() {
+            var mockBackend, loader, data, registrationLineItemId;
+            beforeEach(inject(function(_$httpBackend_, RegistrationLineItems) {
+                registrationLineItemId = 22;
+                var payload = {
+                    registrationLineItemId: 22,
+                    revoke: 'no'
+                };
+                mockBackend = _$httpBackend_;
+                loader = RegistrationLineItems;
+                mockBackend.expectPATCH('/controllers/admin/payment.php', payload).respond('success');
+            }));
+
+            it('should patch a registration line item confirm payment', function() {
+                var load = loader.confirmPayment(registrationLineItemId);
+
+                load.then(function(_data) {
+                    data = _data;
+                });
+
+                mockBackend.flush();
+                expect(data).toEqualData('success');
+            });
+        });
+
+        describe('Revoke Payment', function() {
+            var mockBackend, loader, data, registrationLineItemId;
+            beforeEach(inject(function(_$httpBackend_, RegistrationLineItems) {
+                registrationLineItemId = 22;
+                var payload = {
+                    registrationLineItemId: 22,
+                    revoke: 'yes'
+                };
+                mockBackend = _$httpBackend_;
+                loader = RegistrationLineItems;
+                mockBackend.expectPATCH('/controllers/admin/payment.php', payload).respond('success');
+            }));
+
+            it('should patch a registration line item confirm payment', function() {
+                var load = loader.revokePayment(registrationLineItemId);
+
+                load.then(function(_data) {
+                    data = _data;
+                });
+
+                mockBackend.flush();
+                expect(data).toEqualData('success');
+            });
+        });
     });
 });

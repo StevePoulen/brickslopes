@@ -18,6 +18,10 @@ class registrations extends db {
         return $this->query($this->insertQuery($data));
     }
 
+    public function updateRegistrationPaid($registrationId, $paidStatus) {
+        return $this->query($this->updateQuery($registrationId, $paidStatus));
+    }
+
     private function selectQueryByEventId($eventId) {
         return "
             SELECT 
@@ -27,6 +31,7 @@ class registrations extends db {
                 u.userId as userId,
                 u.firstName as firstName,
                 u.lastName as lastName,
+                u.email as email,
                 IFNULL(r.paid,'NO') as paid
             FROM
                 registrations r,
@@ -39,6 +44,18 @@ class registrations extends db {
             ORDER BY
                 u.lastName, 
                 u.firstName
+        ;
+      ";
+    }
+
+    private function updateQuery($registrationId, $paidStatus) {
+        return "
+            UPDATE 
+                registrations
+            SET
+                paid = '{$paidStatus}'
+            WHERE
+                registrationId = '{$this->escapeCharacters($registrationId)}'
         ;
       ";
     }

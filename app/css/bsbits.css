@@ -285,3 +285,8 @@ label.errorFont {
 .textLeft {
   text-align: left;
 }
+
+/* line 254, ../../compass/assets/sass/bsbits.scss */
+.textRight {
+  text-align: right;
+}

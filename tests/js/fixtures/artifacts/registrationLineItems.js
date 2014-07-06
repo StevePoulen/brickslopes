@@ -3,6 +3,7 @@ var registrationLineItems = {
         'total': '100.00',
         'lineItems': [
             {
+                "registrationLineItemid": "1",
                 "lineItem": "Event Pass",
                 "amount": "60.00",
                 "total": "60.00",
@@ -15,6 +16,7 @@ var registrationLineItems = {
                 "entryDate": "2014-06-29 01:01:11"
             },
             {
+                "registrationLineItemid": "2",
                 "lineItem": "Meet and Greet",
                 "amount": "10.00",
                 "total": "10.00",
@@ -27,6 +29,7 @@ var registrationLineItems = {
                 "entryDate": "2014-06-29 01:01:11"
             },
             {
+                "registrationLineItemid": "3",
                 "lineItem": "T-Shirt",
                 "amount": "15.00",
                 "total": "30.00",

@@ -41,6 +41,7 @@ class RegisteredAfols {
                         'registrationId' => $dbObj->registrationId,
                         'firstName' => $dbObj->firstName,
                         'lastName' => $dbObj->lastName,
+                        'email' => $dbObj->email,
                         'paid' => $dbObj->paid,
                         'lineItems' => $this->registrationLineItemsObj->getRegisteredLineItems($dbObj->userId, $dbObj->eventId)
                     )

@@ -6,40 +6,46 @@
         <div class='registeredAfols'>
             <table>
                 <tr>
-                    <th>
-                        # 
-                    </th>
-                    <th>
-                        Name
-                    </th>
-                    <th>
-                        Costs 
-                    </th>
-                    <th>
-                        Paid
-                    </th>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Cost</th>
+                    <th>Paid</th>
+                    <th>E-mail</th>
                 </tr>
                 <tr ng-class="{evenRow: $even}" ng-repeat="afol in registeredAfols">
-                    <td>
-                        {{$index + 1}}
-                    </td>
-                    <td>
+                    <td class="textCenter">{{$index + 1}}</td>
+                    <td class="textCenter">
                         {{afol.firstName}} {{afol.lastName}}
+                        <br>
+                        {{afol.email}}
                     </td>
                     <td>
                         <table>
-                            <tr ng-class="{evenRow: $even}" ng-repeat="lineItem in afol.lineItems">
-                                <td>{{lineItem.lineItem}}</td>
-                                <td>{{lineItem.amount | currency}}</td>
-                                <td>{{lineItem.quantity}}</td>
-                                <td>{{lineItem.total}}</td>
-                                <td>Confirm</td>
+                            <tr>
+                                <th>Item</th>
+                                <th>Discount</th>
+                                <th>Cost</th>
+                                <th>Quantity</th>
+                                <th>Total</th>
+                                <th>Payment</th>
+                            </tr>       
+                            <tr ng-class="{evenRow: $even}" ng-repeat="lineItem in afol.lineItems.lineItems">
+                                <td class="textCenter">{{lineItem.discount}}</td>
+                                <td class="textCenter">{{lineItem.lineItem}}</td>
+                                <td class="textRight">{{lineItem.amount | currency}}</td>
+                                <td class="textCenter">{{lineItem.quantity}}</td>
+                                <td class="textRight">{{lineItem.total | currency}}</td>
+                                <td class="textCenter pointer" ng-click=confirmPayment(lineItem)>{{lineItem.paid}}</td>
+                            </tr>
+                            <tr>
+                                <td class="bold textRight" colspan=4>Expected Total to be Paid:</td>
+                                <td class="bold textRight">{{afol.lineItems.total | currency}}</td>
+                                <td>&nbsp;</td>
                             </tr>
                         </table>
                     </td>
-                    <td>
-                        {{afol.paid}}
-                    </td>
+                    <td class="textCenter">{{afol.paid}}</td>
+                    <td class="textCenter pointer">Yes</td>
                 </tr>
             </table>
         </div>

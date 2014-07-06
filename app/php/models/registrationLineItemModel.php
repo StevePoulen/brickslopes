@@ -13,9 +13,18 @@ class registrationLineItemModel extends db {
         return $this->query($this->insertQuery($data));
     }
 
+    public function updateRegistrationLineItemsPaid($data) {
+        return $this->query($this->updateQuery($data, 'YES'));
+    }
+
+    public function updateRegistrationLineItemsRevoke($data) {
+        return $this->query($this->updateQuery($data, 'NO'));
+    }
+
     private function selectQuery($userId) {
         return "
             SELECT 
+                registrationLineItemId,
                 eventId, 
                 userId, 
                 lineItem,
@@ -67,6 +76,18 @@ class registrationLineItemModel extends db {
                 '{$this->escapeCharacters($data['active'])}',
                 NOW()
           )
+        ;
+      ";
+    }
+
+    private function updateQuery($data, $paidStatus) {
+        return "
+            UPDATE 
+                registrationLineItems 
+            SET
+                paid = '{$paidStatus}'
+            WHERE
+                registrationLineItemId = '{$this->escapeCharacters($data['registrationLineItemId'])}'
         ;
       ";
     }

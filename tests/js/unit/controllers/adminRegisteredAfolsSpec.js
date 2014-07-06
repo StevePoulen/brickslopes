@@ -48,5 +48,97 @@ describe('controllers', function() {
                 expect(scope.eventName).toEqualData('BrickSlopes - Salt Lake City');
             });
         });
+
+        describe('Confirm Payment', function() {
+            var lineItem, payload;
+            beforeEach(function() {
+                scope.afol = {
+                    'paid': 'maybe',
+                    'registrationId': 32
+                };
+
+                lineItem = {
+                    registrationLineItemId: 22,
+                    paid: 'NO'
+                }
+
+                payload = {
+                    registrationLineItemId: 22,
+                    registrationId: 32,
+                    revoke: 'no'
+                }
+            });
+
+            it('should mark a payment paid and registration paid', function() {
+                var response = {
+                    registrationPaid: true
+                }
+
+                scope.confirmPayment(lineItem);
+                mockBackend.expectPATCH('/controllers/admin/payment.php', payload).respond(201, response);
+                mockBackend.flush();
+
+                expect(scope.afol.paid).toBe('YES');
+            });
+
+            it('should mark a payment paid and registration not paid', function() {
+                var response = {
+                    registrationPaid: false
+                }
+
+                scope.confirmPayment(lineItem);
+                mockBackend.expectPATCH('/controllers/admin/payment.php', payload).respond(201, response);
+                mockBackend.flush();
+
+                expect(scope.afol.paid).toBe('NO');
+            });
+        });
+
+        describe('Revoke Payment', function() {
+            var lineItem, payload;
+            beforeEach(function() {
+                scope.afol = {
+                    'paid': 'maybe',
+                    'registrationId': 32
+                };
+
+                lineItem = {
+                    registrationLineItemId: 22,
+                    paid: 'YES'
+                }
+
+                payload = {
+                    registrationLineItemId: 22,
+                    registrationId: 32,
+                    revoke: 'yes'
+                }
+            });
+
+            it('should mark a payment revoked and registration not paid', function() {
+                var response = {
+                    registrationPaid: false
+                }
+
+                scope.confirmPayment(lineItem);
+                mockBackend.expectPATCH('/controllers/admin/payment.php', payload).respond(201, response);
+                mockBackend.flush();
+
+                expect(scope.afol.paid).toBe('NO');
+            });
+
+            it('should mark a payment revoked and registration not paid', function() {
+                var response = {
+                    registrationPaid: true
+                }
+
+
+                scope.confirmPayment(lineItem);
+                mockBackend.expectPATCH('/controllers/admin/payment.php', payload).respond(201, response);
+                mockBackend.flush();
+
+                expect(scope.afol.paid).toBe('NO');
+            });
+
+        });
     });
 });

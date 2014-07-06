@@ -5,7 +5,8 @@ var registeredAfols = {
             {
                 registrationId: 1,
                 firstName: 'Brian',
-                lastName: 'Pilati'
+                lastName: 'Pilati',
+                email: 'brianpilati@gmail.com'
             } 
         ]
     }
