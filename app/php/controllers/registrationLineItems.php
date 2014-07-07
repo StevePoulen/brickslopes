@@ -105,7 +105,7 @@ class registrationLineItems {
 }
 
 try {
-    if (defined($this)) {
+    if (ISSET($this)) {
         $userId = $this->userId;
         $runOnLine = true;
     } else {

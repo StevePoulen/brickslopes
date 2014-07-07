@@ -5,8 +5,8 @@ class RegisteredAfolsTest extends PHPUnit_Framework_TestCase
 
     public function setUp() 
     {
+        $this->userId = 22;
         new RegisteredAfolsMock();
-        $this->userId = null;
         include_once('controllers/registeredAfols.php');
     }
 

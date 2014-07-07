@@ -54,6 +54,8 @@ class Authentication {
         }
         $response = $this->usersObj->addUserInformation($payload);
         if (preg_match ( '/\d+/', $response )) {
+            $emailObj = new mail($payload['email']);
+            $emailObj->sendUserRegistrationMessage($payload['firstName']);
             header("HTTP/1.0 201 Created");
             echo $this->createPayload(
                 $response,

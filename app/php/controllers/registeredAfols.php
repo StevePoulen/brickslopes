@@ -4,7 +4,6 @@ class RegisteredAfols {
     private $registrationsObj;
     private $registrationLineItemsObj;
     private $requestMethod;
-    private $userId;
 
     public function __construct() {
         $this->registrationsObj = new registrations();
@@ -39,6 +38,7 @@ class RegisteredAfols {
                 array_push( $eventJson[$dbObj->eventId]['registeredAfols'], 
                     array (
                         'registrationId' => $dbObj->registrationId,
+                        'userId' => $dbObj->userId,
                         'firstName' => $dbObj->firstName,
                         'lastName' => $dbObj->lastName,
                         'email' => $dbObj->email,

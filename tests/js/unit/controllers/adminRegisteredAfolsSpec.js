@@ -49,6 +49,41 @@ describe('controllers', function() {
             });
         });
 
+        describe('Show Email Option', function() {
+            it('should show the feature', function() {
+                scope.afol = {'paid': 'YES'};
+                expect(scope.showEmailOption()).toBe(true);
+            });
+
+            it('should hide the feature', function() {
+                scope.afol = {'paid': 'yes'};
+                expect(scope.showEmailOption()).toBe(false);
+            });
+
+            it('should hide the feature', function() {
+                scope.afol = {'paid': 'NO'};
+                expect(scope.showEmailOption()).toBe(false);
+            });
+        });
+
+        describe('Send Email', function() {
+            beforeEach(function() {
+                scope.afol = {
+                    'userId': 32
+                };
+            });
+
+            it('should send an email request', function() {
+                var payload = {
+                    'userId': 32,
+                    'type': 'registrationPaid'
+                }
+                scope.sendEmail();
+                mockBackend.expectPOST('/controllers/admin/sendEmail.php', payload).respond(201);
+                mockBackend.flush();
+            });
+        });
+
         describe('Confirm Payment', function() {
             var lineItem, payload;
             beforeEach(function() {

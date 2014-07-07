@@ -28,7 +28,6 @@ include join('/', array(__DIR__, '..', 'fixtures', 'mocks', 'EventsMock.php'));
 include join('/', array(__DIR__, '..', 'fixtures', 'mocks', 'EventDatesMock.php'));
 include join('/', array(__DIR__, '..', 'fixtures', 'mocks', 'ThemesMock.php'));
 
-
 /**
 * http://www.kammerl.de/ascii/AsciiSignature.php
 * starwars 

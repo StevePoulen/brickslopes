@@ -60,6 +60,9 @@ class EventRegistration {
             $this->registrationLineItemHelper = new registrationLineItemHelper();
             $this->registrationLineItemHelper->addRegistrationLineItems($payload);
 
+            $emailObj = new mail('to_be_set_later');
+            $emailObj->sendEventRegistrationMessage($this->userId);
+
             header("HTTP/1.0 201 Created");
 
         } else {

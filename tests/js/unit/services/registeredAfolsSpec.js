@@ -33,5 +33,29 @@ describe('service', function() {
                 expect(data).toBe(undefined);
             });
         });
+
+        describe('SendEmailPayment', function() {
+            var mockBackend, service, data;
+            beforeEach(inject(function(_$httpBackend_, RegisteredAfols) {
+                mockBackend = _$httpBackend_;
+                service = RegisteredAfols;
+                var payload = {
+                    userId: 2,
+                    type: 'registrationPaid'
+                }
+                mockBackend.expectPOST('/controllers/admin/sendEmail.php', payload).respond(201);
+            }));
+
+            it('should send a request for an email', function() {
+                var load = service.sendPaymentEmail(2);
+
+                load.then(function(_data) {
+                    data = _data;
+                });
+
+                mockBackend.flush();
+                expect(data).toBe(undefined);
+            });
+        });
     });
 });

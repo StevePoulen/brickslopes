@@ -86,6 +86,7 @@ class registrations extends db {
     }
 
     private function insertQuery($data) {
+        $amountPaid = (ISSET($data['amountPaid']) ? $data['amountPaid'] : 0);
         return "
             INSERT INTO
                 registrations 
@@ -112,7 +113,7 @@ class registrations extends db {
                 '{$this->escapeCharacters($data['ageVerification'])}',
                 '{$this->escapeCharacters($data['comments'])}',
                 '{$this->escapeCharacters($data['tShirtSize'])}',
-                '{$this->escapeCharacters($data['amountPaid'])}',
+                '{$this->escapeCharacters($amountPaid)}',
                 '{$this->escapeCharacters($data['type'])}',
                 NOW()
           )

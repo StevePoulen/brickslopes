@@ -404,6 +404,14 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         $scope.eventName = data[$scope.eventId]['eventName'];
     });
 
+    $scope.showEmailOption = function() {
+        return (this.afol.paid === 'YES' ? true : false);
+    }
+
+    $scope.sendEmail = function() {
+        RegisteredAfols.sendPaymentEmail(this.afol.userId);
+    }
+
     $scope.confirmPayment = function(lineItem) {
         var self = this;
         if (lineItem.paid === 'YES') {

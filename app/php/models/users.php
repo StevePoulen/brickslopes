@@ -27,6 +27,10 @@ class users extends \db {
         return $this->query($this->updateQuery($userId, $data));
     }
 
+    public function getUserInformation($userId) {
+        return $this->query($this->selectQuery($userId));
+    }
+
     private function updatePasswordQuery($userId, $data) {
         return "
             UPDATE 
@@ -88,6 +92,30 @@ class users extends \db {
       ";
     }
 
+    private function selectQuery($userId) {
+        return "
+            SELECT 
+                userId,
+                firstName,
+                lastName,
+                email,
+                phoneNumber,
+                address,
+                city,
+                state,
+                zipcode,
+                flickr,
+                familyId,
+                admin,
+                joined
+            FROM
+                users 
+            WHERE
+                userId = {$userId}
+        ;
+      ";
+    }
+
     private function updateQuery($userId, $data) {
         $familyId = $adminId = "";
         if (ISSET($data['familyId'])) {
@@ -136,38 +164,5 @@ class users extends \db {
         ;
       ";
     }
-
-    private function selectQuery($afolEmail=null) {
-      $emailWhereStmt = "";
-      if ($afolEmail) {
-        $emailWhereStmt = " AND email = '$afolEmail'";
-      }
-
-      return "
-        SELECT
-          afolsId,
-          firstName, 
-          lastName, 
-          email,
-          address,
-          city,
-          state,
-          zipcode,
-          flickr,
-          badgeLine1,
-          badgeLine2,
-          meetAndGreet,
-          ageVerification,
-          comments
-        FROM
-         afols
-        WHERE
-          active = 'yes'
-        $emailWhereStmt
-        ORDER BY
-          afolsId 
-        ;
-      ";
-    }
-  }
+}
 ?>

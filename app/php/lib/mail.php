@@ -36,6 +36,96 @@
 
         }
 
+        public function sendUserRegistrationMessage($firstName) {
+            $this->subject = "BrickSlopes Registration Complete";
+            $this->message = "
+                <html>
+                    <head>
+                        <title>BrickSlopes User Registration</title>
+                    </head>
+                    <body>
+                        <div style='font-size: 16px;'>
+                            $firstName,
+                            <p>
+                            You are receiving this e-mail because you registered to be a member of BrickSlopes - A LEGO Fan Event.
+                            <p>
+                            Please visit {$this->getDomain()}/#/afol/login.html for more information.
+                        </div>
+            ";
+
+            $this->message .= $this->getDisclaimer();
+
+            $this->message .= "
+                    </body>
+                </html>
+            ";
+
+            $this->sendEmail();
+        }
+
+        public function sendEventRegistrationMessage($userId) {
+            $usersObj = new users();
+            $usersObj->getUserInformation($userId);
+            if($usersObj->result) {
+                $dbObj = $usersObj->result->fetch_object();
+                $this->email = $dbObj->email;
+
+                $this->subject = "BrickSlopes Registration";
+                $this->message = "
+                    <html>
+                        <head>
+                            <title>BrickSlopes Registration</title>
+                        </head>
+                        <body>
+                            <div style='font-size: 16px;'>
+                                {$dbObj->firstName},
+                                <p>
+                                You are receiving this e-mail because you registered for BrickSlopes 2015 - Salt Lake City.
+                                <p>
+                                You will receive a confirmation e-mail once your registration is complete.
+                                <p>
+                                Please visit {$this->getDomain()}/#/afol/login.html for more information.
+                            </div>
+                ";
+
+                $this->message .= $this->getDisclaimer();
+
+                $this->message .= "
+                        </body>
+                    </html>
+                ";
+
+                $this->sendEmail();
+            }
+        }
+
+        public function sendRegistrationPaidMessage($firstName) {
+            $this->subject = "BrickSlopes Registration Complete";
+            $this->message = "
+                <html>
+                    <head>
+                        <title>BrickSlopes Registration Complete</title>
+                    </head>
+                    <body>
+                        <div style='font-size: 16px;'>
+                            $firstName,
+                            <p>
+                            You are receiving this e-mail because your BrickSlopes 2015 - Salt Lake City registration is complete.
+                            <p>
+                            Please visit {$this->getDomain()}/#/afol/login.html for more information.
+                        </div>
+            ";
+
+            $this->message .= $this->getDisclaimer();
+
+            $this->message .= "
+                    </body>
+                </html>
+            ";
+
+            $this->sendEmail();
+        }
+
         public function sendResetEmailMessage($firstName, $newPassword) {
             $this->subject = "BrickSlopes Reset Password Request";
             $this->message = "

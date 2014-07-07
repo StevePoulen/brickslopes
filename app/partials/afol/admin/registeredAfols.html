@@ -45,7 +45,10 @@
                         </table>
                     </td>
                     <td class="textCenter">{{afol.paid}}</td>
-                    <td class="textCenter pointer">Yes</td>
+                    <td class="textCenter pointer"> 
+                        <span ng-click=sendEmail() ng-show=showEmailOption()>Send</span>
+                        <span ng-hide=showEmailOption()>&nbsp;</span>
+                    </td>
                 </tr>
             </table>
         </div>

@@ -440,6 +440,26 @@ angular.module('brickSlopes.services', [])
             });
 
             return delay.promise;
+        },
+
+        sendPaymentEmail: function(userId) {
+            var delay= $q.defer();
+            $http (
+                {
+                    method: 'POST',
+                    url: '/controllers/admin/sendEmail.php',
+                    data: {
+                        'userId': userId,
+                        'type': 'registrationPaid'
+                    }
+                }
+            ).success(function(data, status, headers, config) {
+                delay.resolve(data);
+            }).error(function(data, status, headers, config) {
+                delay.reject(data);
+            });
+
+            return delay.promise;
         }
     }
 }])
