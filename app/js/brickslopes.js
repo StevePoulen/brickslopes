@@ -35,4 +35,5 @@ function deleteSession(ngWindow) {
     delete ngWindow.sessionStorage.firstName;
     delete ngWindow.sessionStorage.lastName;
     delete ngWindow.sessionStorage.admin;
+    delete ngWindow.sessionStorage.redirectUrl;
 }

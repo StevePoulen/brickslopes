@@ -16,10 +16,10 @@ class SendEmailTest extends PHPUnit_Framework_TestCase
 
     public function testAuthenticatedBadPayload() 
     {
-        $_POST = array(
+        $_GET = array(
             'userId' => 1
         );
-        $_SERVER['REQUEST_METHOD'] = "POST";
+        $_SERVER['REQUEST_METHOD'] = "GET";
         $GLOBALS['db_query'] = '1';
         $GLOBALS['fetch_object'] = "usersObject";
         $event = new SendEmail();
@@ -28,11 +28,11 @@ class SendEmailTest extends PHPUnit_Framework_TestCase
 
     public function testAuthenticatedBadType() 
     {
-        $_POST = array(
+        $_GET = array(
             'userId' => 1,
             'type' => 'unknown'
         );
-        $_SERVER['REQUEST_METHOD'] = "POST";
+        $_SERVER['REQUEST_METHOD'] = "GET";
         $GLOBALS['db_query'] = '1';
         $GLOBALS['fetch_object'] = "usersObject";
         $event = new SendEmail();
@@ -41,11 +41,11 @@ class SendEmailTest extends PHPUnit_Framework_TestCase
 
     public function testSendRegistrationPaidMessage() 
     {
-        $_POST = array(
+        $_GET = array(
             'userId' => 1,
             'type' => 'registrationPaid'
         );
-        $_SERVER['REQUEST_METHOD'] = "POST";
+        $_SERVER['REQUEST_METHOD'] = "GET";
         $GLOBALS['db_query'] = '1';
         $GLOBALS['fetch_object'] = "usersObject";
         $event = new SendEmail();

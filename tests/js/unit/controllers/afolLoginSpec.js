@@ -109,6 +109,30 @@ describe('controllers', function() {
             });
         });
 
+        describe('Sign in on a redirect', function() {
+            var response;
+            beforeEach(function() {
+                response = {
+                    data: {
+                        token: 22,
+                        firstName: 'Cody',
+                        lastName: 'Ottley',
+                        admin: 'NO'
+                    },
+                    status: 201
+                }
+            });
+            it('should redirect to an afol page after an initial failure', function() {
+                window.sessionStorage.redirectUrl = '/partials/afol/eventMe.html';
+
+                scope.submitLogin();
+                mockBackend.expectGET('/controllers/authentication.php?').respond(200, response);
+                mockBackend.flush();
+                expect(location.path()).toBe('/afol/eventMe.html');
+                expect(window.sessionStorage.redirectUrl).toBeUndefined();
+            });
+        });
+
         describe('Sign in on failure ', function() {
             it('should submit to login page on failure', function() {
                 scope.submitLogin();

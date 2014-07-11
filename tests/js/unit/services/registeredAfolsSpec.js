@@ -39,11 +39,7 @@ describe('service', function() {
             beforeEach(inject(function(_$httpBackend_, RegisteredAfols) {
                 mockBackend = _$httpBackend_;
                 service = RegisteredAfols;
-                var payload = {
-                    userId: 2,
-                    type: 'registrationPaid'
-                }
-                mockBackend.expectPOST('/controllers/admin/sendEmail.php', payload).respond(201);
+                mockBackend.expectGET('/controllers/admin/sendEmail.php?type=registrationPaid&userId=2').respond(201);
             }));
 
             it('should send a request for an email', function() {

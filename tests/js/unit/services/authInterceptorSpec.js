@@ -40,15 +40,27 @@ describe('service', function() {
 
         describe('responseError', function() {
             it('should redirect for a 401', function() {
-                var response = {status: 401};
+                var response = {
+                    status: 401,
+                    config: {
+                        'url': 'hello/world.html'
+                    }
+                };
                 auth.responseError(response)
                 expect(location.path()).toBe('/afol/login.html');
+                expect(window.sessionStorage.redirectUrl).toBe('hello/world.html');
             });
 
             it('should redirect for a 403', function() {
-                var response = {status: 403};
+                var response = {
+                    status: 403,
+                    config: {
+                        'url': 'hello/world.html'
+                    }
+                };
                 auth.responseError(response)
                 expect(location.path()).toBe('/afol/login.html');
+                expect(window.sessionStorage.redirectUrl).toBe('hello/world.html');
             });
 
             it('should redirect for a 500', function() {

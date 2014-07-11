@@ -104,6 +104,13 @@ config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvide
         }
     )
     .when(
+        '/afol/admin/:emailType/emails',
+        {
+            templateUrl: '/partials/afol/admin/emails/eventRegistration.html',
+            controller: 'adminEmail'
+        }
+    )
+    .when(
         '/afol/admin/registeredAfols.html',
         {
             templateUrl: '/partials/afol/admin/registeredAfols.html',

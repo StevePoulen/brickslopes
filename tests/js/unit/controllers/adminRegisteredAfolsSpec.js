@@ -74,12 +74,8 @@ describe('controllers', function() {
             });
 
             it('should send an email request', function() {
-                var payload = {
-                    'userId': 32,
-                    'type': 'registrationPaid'
-                }
                 scope.sendEmail();
-                mockBackend.expectPOST('/controllers/admin/sendEmail.php', payload).respond(201);
+                mockBackend.expectGET('/controllers/admin/sendEmail.php?type=registrationPaid&userId=32').respond(201);
                 mockBackend.flush();
             });
         });

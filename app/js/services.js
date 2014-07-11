@@ -446,9 +446,9 @@ angular.module('brickSlopes.services', [])
             var delay= $q.defer();
             $http (
                 {
-                    method: 'POST',
+                    method: 'GET',
                     url: '/controllers/admin/sendEmail.php',
-                    data: {
+                    params: {
                         'userId': userId,
                         'type': 'registrationPaid'
                     }
@@ -617,6 +617,29 @@ angular.module('brickSlopes.services', [])
         }
     };
 }])
+.factory('GetEmailHtml', ['$q', '$http', function($q, $http) {
+    return {
+        getEventRegistration: function() {
+            var delay= $q.defer();
+            $http (
+                {
+                    method: 'GET',
+                    url: '/controllers/admin/sendEmail.php',
+                    params: {
+                        type: 'eventRegistrationMessage',
+                        userId: 'not_needed'
+                    }
+                }
+            ).success(function(data, status, headers, config) {
+                delay.resolve(data);
+            }).error(function(data, status, headers, config) {
+                delay.reject(data);
+            });
+
+            return delay.promise;
+        },
+    };
+}])
 .factory('authInterceptor', ['$rootScope', '$q', '$window', '$location', function($rootScope, $q, $window, $location) {
     return {
         request: function(config) {
@@ -629,6 +652,7 @@ angular.module('brickSlopes.services', [])
         },
         responseError: function(rejection) {
             if (rejection.status === 401 || rejection.status === 403) {
+                $window.sessionStorage.redirectUrl=rejection.config.url;
                 $location.path('/afol/login.html');
             } else if (rejection.status >= 500) {
                 $location.path('/error.html');
@@ -639,6 +663,7 @@ angular.module('brickSlopes.services', [])
             if (response.status < 200 || response.status > 299) {
                 $location.path('/error.html');
             }
+
             return response || $q.when(response);
         }
     };

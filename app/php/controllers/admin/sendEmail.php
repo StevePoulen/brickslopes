@@ -3,8 +3,10 @@
 class SendEmail {
     private $usersObj;
     private $requestMethod;
+    private $userId;
 
-    public function __construct() {
+    public function __construct($userId = null) {
+        $this->userId = $userId;
         $this->usersObj = new users();
         $this->determineRequestMethod();
     }
@@ -14,8 +16,8 @@ class SendEmail {
             ? $_SERVER['REQUEST_METHOD']
             : 'error';
 
-        if ($requestMethod == "POST") {
-            $this->post();
+        if ($requestMethod == "GET") {
+            $this->get();
         } else {
             header("HTTP/1.0 405 Method Not Allowed");
         }
@@ -34,15 +36,36 @@ class SendEmail {
         return $payload['type'] === 'registrationPaid';
     }
 
-    private function post() {
-        $payload = json_decode(file_get_contents("php://input"), true);
-        if (sizeof($payload) == 0) {
-            $payload = $_POST;
-        }
+    private function isEventRegistrationMessage($payload) {
+        return $payload['type'] === 'eventRegistration';
+    }
+
+    private function isUserRegistrationMessage($payload) {
+        return $payload['type'] === 'userRegistration';
+    }
+
+    private function isRegistrationPaidDisplayMessage($payload) {
+        return $payload['type'] === 'registrationPaidDisplay';
+    }
+
+    private function isResetPasswordMessage($payload) {
+        return $payload['type'] === 'resetPassword';
+    }
+
+    private function get() {
+        $payload = $_GET;
 
         if ($this->validatePayload($payload)) {
             if ($this->isRegistrationPaidMessage($payload)) {
                 $this->sendRegistrationPaidMessage($payload);
+            } else if ($this->isEventRegistrationMessage($payload)) {
+                $this->displayEventRegistrationMessage();
+            } else if ($this->isUserRegistrationMessage($payload)) {
+                $this->displayUserRegistrationMessage();
+            } else if ($this->isRegistrationPaidDisplayMessage($payload)) {
+                $this->displayRegistrationPaidMessage();
+            } else if ($this->isResetPasswordMessage($payload)) {
+                $this->displayResetPasswordMessage();
             } else {
                 header("HTTP/1.0 412 Precondition Failed");
             }
@@ -61,8 +84,43 @@ class SendEmail {
             header("HTTP/1.0 412 Precondition Failed");
         }
     }
+
+    private function displayEventRegistrationMessage() {
+        header("HTTP/1.0 200 Success");
+        $emailObj = new mail('not_needed');
+        echo $emailObj->sendEventRegistrationMessage($this->userId, true);
+    }
+
+    private function displayUserRegistrationMessage() {
+        header("HTTP/1.0 200 Success");
+        $emailObj = new mail('not_needed');
+        echo $emailObj->sendUserRegistrationMessage('Brian', true);
+    }
+
+    private function displayRegistrationPaidMessage() {
+        header("HTTP/1.0 200 Success");
+        $emailObj = new mail('not_needed');
+        echo $emailObj->sendRegistrationPaidMessage('Brian', true);
+    }
+
+    private function displayResetPasswordMessage() {
+        header("HTTP/1.0 200 Success");
+        $emailObj = new mail('not_needed');
+        echo "\n\n\n\nhere\n\n\n";
+        echo $emailObj->sendResetEmailMessage('Brian', 'New Password', true);
+    }
 }
 
-new SendEmail();
+try {
+    if(ISSET($this)) {
+        $userId = $this->userId;
+    } else {
+        $userId = null;
+    }
+} catch (exception $e) {
+    $userId = null;
+}
+
+new SendEmail($userId);
 
 ?>

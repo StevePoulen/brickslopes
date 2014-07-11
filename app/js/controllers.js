@@ -142,7 +142,15 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         $scope.verifying = true;
         Auth.login(serializeLoginJson()).then(function(response) {
             storeSession(response.data);
-            $location.path('/afol/index.html');
+            if($window.sessionStorage.redirectUrl) {
+                if(($window.sessionStorage.redirectUrl).match('\/partials\/afol/*')) {
+                    var newRedirectUrl = $window.sessionStorage.redirectUrl.replace('\/partials', '');
+                    $location.path(newRedirectUrl);
+                }
+                delete $window.sessionStorage.redirectUrl;
+            } else {
+                $location.path('/afol/index.html');
+            }
             $scope.verifying = false;
         }, function() {
             $scope.verifying = false;
@@ -386,14 +394,40 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         $scope.passDates = passDates;
     });
 }])
+.controller('adminEmail', ['$scope', '$location', '$route', 'GetEmailHtml', function($scope, $location, $route, GetEmailHtml) {
+    $("#splashPageCTA").hide();
+    $scope.type = "/controllers/admin/sendEmail.php?";
+    $scope.type += "type=" + $route.current.params.emailType;
+    $scope.type += "&userId=not_needed";
+
+    $scope.closeDialog = function() {
+        $location.path("/afol/admin.html");
+    }
+}])
 .controller('afolAdmin', ['$scope', '$location', function($scope, $location) {
     $("#splashPageCTA").hide();
 
     $scope.clickRegistrations = function() {
         $location.path('/afol/admin/registeredAfols.html');
     }
+
+    $scope.clickEventRegistrationEmail = function() {
+        $location.path('/afol/admin/eventRegistration/emails');
+    }
+
+    $scope.clickUserRegistrationEmail = function() {
+        $location.path('/afol/admin/userRegistration/emails');
+    }
+
+    $scope.clickRegistrationPaidEmail = function() {
+        $location.path('/afol/admin/registrationPaidDisplay/emails');
+    }
+
+    $scope.clickResetPasswordEmail = function() {
+        $location.path('/afol/admin/resetPassword/emails');
+    }
 }])
-.controller('adminRegisteredAfols', ['$scope', 'RegisteredAfols', 'RegistrationLineItems', function($scope, RegisteredAfols, RegistrationLineItems) {
+.controller('adminRegisteredAfols', ['$scope', 'RegisteredAfols', 'RegistrationLineItems', '$location', function($scope, RegisteredAfols, RegistrationLineItems, $location) {
     $("#splashPageCTA").hide();
     $scope.registeredAfols = undefined;
     $scope.eventId = 2;
@@ -425,6 +459,10 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
                 self.afol.paid = data.registrationPaid ? 'YES' : 'NO';
             });
         }
+    }
+
+    $scope.closeDialog = function() {
+        $location.path("/afol/admin.html");
     }
 }])
 .controller('afolIndex', ['$scope', '$location', 'GetAfolMocList', '$window', 'EventDates', 'EventRegistration', function($scope, $location, GetAfolMocList, $window, EventDates, EventRegistration) {
