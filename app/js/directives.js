@@ -104,14 +104,14 @@ angular.module('brickSlopes.directives', [])
     return {
         restrict: 'E',
         replace: true,
-        templateUrl: 'partials/public/login/signUpForm.html',
+        templateUrl: 'partials/public/login/signUpForm.html'
     }
 })
 .directive('bsResetPassword', function() {
     return {
         restrict: 'E',
         replace: true,
-        templateUrl: 'partials/public/login/resetPasswordForm.html',
+        templateUrl: 'partials/public/login/resetPasswordForm.html'
     }
 })
 .directive('bsSignupText', function() {

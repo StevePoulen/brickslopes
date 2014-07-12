@@ -93,7 +93,7 @@ angular.module('brickSlopes.services', [])
             });
 
             return delay.promise;
-        },
+        }
     }
 }])
 .factory('Themes', ['$q', '$http', function($q, $http) {
@@ -113,7 +113,7 @@ angular.module('brickSlopes.services', [])
             });
 
             return delay.promise;
-        },
+        }
     }
 }])
 .factory('RegistrationLineItems', ['$q', '$http', function($q, $http) {
@@ -307,7 +307,7 @@ angular.module('brickSlopes.services', [])
                         publicDates.push(
                             {
                                 'date': moment(publicTimestamps.start[index]).format('dddd, MMMM Do'),
-                                'hours': moment(publicTimestamps.start[index]).format('h a to ') + moment(publicTimestamps.end[index]).format('h a'),
+                                'hours': moment(publicTimestamps.start[index]).format('h a to ') + moment(publicTimestamps.end[index]).format('h a')
                             }
                         );
                     }
@@ -552,7 +552,7 @@ angular.module('brickSlopes.services', [])
             });
 
             return delay.promise;
-        },
+        }
     }
 }])
 .factory('Auth', ['$q', '$http', function($q, $http) {
@@ -563,7 +563,7 @@ angular.module('brickSlopes.services', [])
                 {
                     method: 'GET',
                     url: '/controllers/authentication.php',
-                    params: credentials,
+                    params: credentials
                 }
             ).success(function(data, status, headers, config) {
                 delay.resolve(data);
@@ -673,7 +673,7 @@ angular.module('brickSlopes.services', [])
             });
 
             return delay.promise;
-        },
+        }
     };
 }])
 .factory('authInterceptor', ['$rootScope', '$q', '$window', '$location', function($rootScope, $q, $window, $location) {
