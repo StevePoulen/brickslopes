@@ -19,16 +19,16 @@ $lego_stud_distance: (1.8 * $multiplier) - ($lego_border * 2);
 
 .brickHolder {
     position: relative;
-    height: $lego_brick_height + $lego_stud_height + 2;
-    width: $lego_brick_width + 2;
+    height: $lego_brick_height + $lego_stud_height + 2 + px;
+    width: $lego_brick_width + 2 + px;
     border: none;
     z-index: 10;
     display: inline-block;
 
     .legoBrick {
         position: relative;
-        top: $lego_stud_height;
-        width: $lego_brick_width;
+        top: ($lego_stud_height) + px;
+        width: ($lego_brick_width) + px;
         height: $lego_brick_height - $top_padding;
         border: $lego_border solid black;
         text-align: center;
@@ -39,15 +39,15 @@ $lego_stud_distance: (1.8 * $multiplier) - ($lego_border * 2);
             position: absolute;
             top: - ($lego_stud_height + $lego_border*2);
             left: 0;
-            height: $lego_brick_height/3;
-            width: $lego_brick_width;
+            height: $lego_brick_height/3 + px;
+            width: $lego_brick_width + px;
 
             .stud {
                 float: left;
                 margin-left: $lego_stud_distance;
                 margin-right: $lego_stud_distance;
-                height: $lego_stud_height;
-                width: $lego_stud_width;
+                height: $lego_stud_height + px;
+                width: $lego_stud_width + px;
                 border: $lego_border solid black;
             }
         }

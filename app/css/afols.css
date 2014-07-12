@@ -302,7 +302,7 @@
   float: left;
   width: 300px;
   height: 200px;
-  margin: 0 5 5 0;
+  margin: 0px 5px 5px 0px;
   border: 2px solid black;
   border-radius: 12px;
 }
@@ -343,7 +343,7 @@
   float: left;
   width: 350px;
   height: 600px;
-  margin: 0 5 5 0;
+  margin: 0px 5px 5px 0px;
   border: 2px solid black;
   border-radius: 12px;
 }
@@ -399,7 +399,7 @@
   float: left;
   width: 300px;
   height: 405px;
-  margin: 0 5 5 0;
+  margin: 0px 5px 5px 0px;
   cursor: pointer;
   border: 2px solid white;
   border-radius: 12px;
@@ -430,7 +430,7 @@
   float: left;
   width: 300px;
   height: 200px;
-  margin: 0 5 5 0;
+  margin: 0px 5px 5px 0px;
   cursor: pointer;
   border: 2px solid white;
   border-radius: 12px;

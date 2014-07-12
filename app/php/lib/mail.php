@@ -9,6 +9,7 @@
         public function sendEmailUsMessage($data) {
             $this->subject = "BrickSlopes Question";
             $this->message = "
+                <!doctype html>
                 <html>
                     <head>
                         <title>BrickSlopes Question</title>
@@ -39,6 +40,7 @@
         public function sendUserRegistrationMessage($firstName, $display=false) {
             $this->subject = "BrickSlopes Registration Complete";
             $this->message = "
+                <!doctype html>
                 <html>
                     <head>
                         <title>BrickSlopes User Registration</title>
@@ -84,6 +86,7 @@
 
                 $this->subject = "BrickSlopes Registration";
                 $this->message = "
+                    <!doctype html>
                     <html>
                         <head>
                             <title>BrickSlopes Registration</title>
@@ -126,6 +129,7 @@
         public function sendRegistrationPaidMessage($firstName, $display=false) {
             $this->subject = "BrickSlopes Registration Complete";
             $this->message = "
+                <!doctype html>
                 <html>
                     <head>
                         <title>BrickSlopes Registration Complete</title>
@@ -165,6 +169,7 @@
         public function sendResetEmailMessage($firstName, $newPassword, $display=false) {
             $this->subject = "BrickSlopes Reset Password Request";
             $this->message = "
+                <!doctype html>
                 <html>
                     <head>
                         <title>BrickSlopes Reset Password Request</title>

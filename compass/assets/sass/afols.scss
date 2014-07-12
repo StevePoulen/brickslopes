@@ -3,7 +3,7 @@
     $eventPane_height: 200px;
     $eventPane_width: 300px;
     $meEventPane_width: 350px;
-    $eventPane_margin: 5;
+    $eventPane_margin: 5px;
     $pane_width: 1238px;
 
 #dashboardCloseButton, div#reserveStarWarsSet div#reserveCloseButton {
@@ -238,7 +238,7 @@
                 .legoBrick {
                     height: 3.2 * 3 * 5 - 5;
                     padding-top: 5px;
-                    margin-left:0;
+                    margin-left: 0;
 
                     input {
                         border: 1px solid black;
@@ -314,7 +314,7 @@
         float: left;
         width: $eventPane_width;
         height: $eventPane_height;
-        margin: 0 $eventPane_margin $eventPane_margin 0;
+        margin: 0px $eventPane_margin $eventPane_margin 0px;
         border: 2px solid black;
         border-radius: 12px;
 
@@ -355,7 +355,7 @@
         float: left;
         width: $meEventPane_width;
         height: $eventPane_height * 3;
-        margin: 0 $eventPane_margin $eventPane_margin 0;
+        margin: 0px $eventPane_margin $eventPane_margin 0px;
         border: 2px solid black;
         border-radius: 12px;
 
@@ -409,7 +409,7 @@
     float: left;
     width: $eventPane_width;
     height: $eventPane_height * 2 + $eventPane_margin * 1;
-    margin: 0 5 5 0;
+    margin: 0px $eventPane_margin $eventPane_margin 0px;
     cursor: pointer;
     border: 2px solid white;
     border-radius: 12px;
@@ -440,7 +440,7 @@
     float: left;
     width: $eventPane_width;
     height: $eventPane_height;
-    margin: 0 $eventPane_margin $eventPane_margin 0;
+    margin: 0px $eventPane_margin $eventPane_margin 0px;
     cursor: pointer;
     border: 2px solid white;
     border-radius: 12px;

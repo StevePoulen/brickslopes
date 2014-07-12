@@ -2,7 +2,7 @@
 #paypalForm {
   position: relative;
   margin-top: 25px;
-  width: 600;
+  width: 600px;
   height: auto;
   text-align: center;
   border: 5px solid #35469a;
@@ -10,11 +10,11 @@
 }
 /* line 14, ../../compass/assets/sass/payment.scss */
 #paypalForm .lineWidth {
-  width: 500;
+  width: 500px;
 }
 /* line 18, ../../compass/assets/sass/payment.scss */
 #paypalForm .cellWidth {
-  width: 550;
+  width: 550px;
 }
 /* line 22, ../../compass/assets/sass/payment.scss */
 #paypalForm .payment {
