@@ -16,34 +16,95 @@ $bs_red: #FF0500;
 //  BrickSlopes Blue -> #1224FC and 93, 86, 1, 0 / CMYK 85, 62, 3, 0  HEX 35469A RGB 38 97 247
 $bs_blue: #35469A;
 
-$dashboard_width: 1245px;
-$dashboard_min_height: 795px;
-$dashboard_height: 795px;
+$dashboard_width: 1225px;
+$dashboard_height: 700px;
+$pane_height: 700px;
+$splashPage_height: $dashboard_height - 10;
 
 /* Smartphones (portrait and landscape) ----------- */
 @media only screen 
 and (min-device-width : 320px) 
 and (max-device-width : 480px) {
-    /* Styles */
+    #dashboard {
+        height: $dashboard_height;
+    }
+
+    #panes {
+        height: $pane_height;
+    }
+
+    #dashboardText{
+        min-height: $dashboard_height - 30;
+        height: auto;
+    }
+
+    #splashPage {
+        height: $splashPage_height;
+    }
 }
 
 /* Smartphones (landscape) ----------- */
 @media only screen 
 and (min-width : 321px) {
-    /* Styles */
+    #dashboard {
+        height: $dashboard_height;
+    }
+
+    #panes {
+        height: $pane_height;
+    }
+
+    #dashboardText{
+        min-height: $dashboard_height - 30;
+        height: auto;
+    }
+
+    #splashPage {
+        height: $splashPage_height;
+    }
 }
 
 /* Smartphones (portrait) ----------- */
 @media only screen 
 and (max-width : 320px) {
-    /* Styles */
+    #dashboard {
+        height: $dashboard_height;
+    }
+
+    #panes {
+        height: $pane_height;
+    }
+
+    #dashboardText{
+        min-height: $dashboard_height - 30;
+        height: auto;
+    }
+
+    #splashPage {
+        height: $splashPage_height;
+    }
 }
 
 /* iPads (portrait and landscape) ----------- */
 @media only screen 
 and (min-device-width : 768px) 
 and (max-device-width : 1024px) {
-    /* Styles */
+    #dashboard {
+        height: $dashboard_height;
+    }
+
+    #panes {
+        height: $pane_height;
+    }
+
+    #dashboardText{
+        min-height: $dashboard_height - 30;
+        height: auto;
+    }
+
+    #splashPage {
+        height: $splashPage_height;
+    }
 }
 
 /* iPads (landscape) ----------- */
@@ -51,7 +112,22 @@ and (max-device-width : 1024px) {
 and (min-device-width : 768px) 
 and (max-device-width : 1024px) 
 and (orientation : landscape) {
-    /* Styles */
+    #dashboard {
+        height: $dashboard_height;
+    }
+
+    #panes {
+        height: $pane_height;
+    }
+
+    #dashboardText{
+        min-height: $dashboard_height - 30;
+        height: auto;
+    }
+
+    #splashPage {
+        height: $splashPage_height;
+    }
 }
 
 /* iPads (portrait) ----------- */
@@ -59,20 +135,34 @@ and (orientation : landscape) {
 and (min-device-width : 768px) 
 and (max-device-width : 1024px) 
 and (orientation : portrait) {
-    /* Styles */
+    #dashboard {
+        height: $dashboard_height;
+    }
+
+    #panes {
+        height: $pane_height;
+    }
+
+    #dashboardText{
+        min-height: $dashboard_height - 30;
+        height: auto;
+    }
+
+    #splashPage {
+        height: $splashPage_height;
+    }
 }
 
 /* iPhone 4 ----------- */
 @media
 only screen and (-webkit-min-device-pixel-ratio : 1.5),
 only screen and (min-device-pixel-ratio : 1.5) {
-    /* Styles */
-}
-
-/* Desktops and laptops ----------- */
-@media only screen and (min-width : 1224px) {
-    #dashboard, #panes {
+    #dashboard {
         height: $dashboard_height;
+    }
+
+    #panes {
+        height: $pane_height;
     }
 
     #dashboardText{
@@ -81,15 +171,39 @@ only screen and (min-device-pixel-ratio : 1.5) {
     }
 
     #splashPage {
-        height: $dashboard_height - 110;
+        height: $splashPage_height;
+    }
+}
+
+/* Desktops and laptops ----------- */
+@media only screen and (min-width : 1224px) {
+    #dashboard {
+        height: $dashboard_height;
+    }
+
+    #panes {
+        height: $pane_height;
+    }
+
+    #dashboardText{
+        min-height: $dashboard_height - 30;
+        height: auto;
+    }
+
+    #splashPage {
+        height: $splashPage_height;
     }
 }
 
 
 /* Large screens ----------- */
 @media only screen and (min-width : 1824px) {
-    #dashboard, #panes {
+    #dashboard {
         height: $dashboard_height;
+    }
+
+    #panes {
+        height: $pane_height;
     }
 
     #dashboardText{
@@ -98,385 +212,384 @@ only screen and (min-device-pixel-ratio : 1.5) {
     }
 
     #splashPage {
-        height: $dashboard_height - 110;
+        height: $splashPage_height;
     }
 }
 
 #brickslopes {
-  position: relative;
-  top: 0px;
-  bottom: 0px;
-  left: 0px;
-  width: 1250px;
-  height: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-}
-
-#header {
     position: relative;
-    top: 0px;
-    left: 0px;
-    width: 1230px;
-    height: 100px;
-    margin-left: auto;
-    margin-right: auto;
-    border: 0px solid white;
-
-    #eventContainer {
-        position: absolute;
-        top: 30px;
-        right: 0px;
-        width: 700px;
-        height: 70px;
-        border: 0px solid white;
-
-        a {
-            margin: 10px;
-        }
-    }
-
-    #afolContainer {
-        position: absolute;
-        top: 5px;
-        right: 10px;
-        width: 300px;
-        height: 20px;
-        border: none;
-        color: white;
-        text-align: right;
-        padding-right: 10px;
-        cursor: pointer;
-    }
-}
-
-#dashboard {
-    position: relative;
-    top: 25px;
+    top: 0;
+    bottom: 0;
     left: 0;
     width: $dashboard_width;
+    height: 100%;
     margin-left: auto;
     margin-right: auto;
-}
-
-#eventDashboard {
-    @extend #dashboard;
-    background-color: white;
-    border-radius: 25px;
-}
-
-#splashPage {
-    position: absolute;
-    top: 0px;
-    left: 15px;
-    width: 1218px;
     text-align: center;
-    border: 5px solid $bs_blue;
-    background: white;
-    border-radius: 10px;
 
-    #splashText {
-      position: absolute;
-      border: 0px solid yellow;
-      top: 5px;
-      left: 5px;
-      height: 400px;
-      width: 425px;
-      border-radius: 10px;
-      padding: 5px;
-      font-size: 2.05em;
-      text-align: center;
-      color: black;
-      background: white;
-    }
-
-    .splashTextHome {
-        position: absolute;
-        border-radius: 10px;
-        right: 60px;
-        top: 25px;
-        padding: 10px;
-        font-size: 2.0em;
-        text-align: center;
-        height: 600px;
-        width: 630px;
-        color: black;
-        background: white;
-        vertical-align: middle;
-        z-index: 3;
-        border: 5px solid $bs_blue;
-        
-        .bigger2015 {
-            position: absolute;
-            right: 10px;
-            bottom: 30px;
-            width: 300px;
-            border: none;
-        }
-
-        #splashTextEmailUs {
-            position: relative;
-            left: $dashboard_width / 4 - 180;
-            width: 350px;
-            border: none;
-            text-align: left;
-
-            .loginField {
-                margin-bottom: 10px;
-                border: 1px solid #BCBEBF;
-                border-radius: 5px;
-                width: 340px;
-                height: 42.5px;
-                padding-top: 7.5px;
-                padding-left: 10px;
-            }
-
-            .loginField input {
-                width: 325px;
-            }
-
-            .captchaField {
-                @extend .loginField;
-
-                .captcha {
-                    position: absolute;
-                    right: 5px;
-                    bottom: 64px;
-                    font-size: 0.5em;
-                    background-color: black;
-                    color: white;
-                    border-radius: 5px;
-                    padding-top: 3px;
-                    height: 42px;
-                    width: 150px;
-                    text-align: center;
-                }
-
-                input {
-                    width: 150px;
-                }
-            }
-
-
-            .commentsField textarea {
-                width: 350px;
-                height: 100px;
-                border: 1px solid #BCBEBF;
-                border-radius: 5px;
-                margin-bottom: 10px;
-                padding-top: 10px;
-            }
-        }
-
-        .splashFigJackSparrow {
-            position: absolute;
-            z-index: 5;
-            height: 50px;
-            bottom: 50px;
-            right: -95px;
-        }
-
-        .splashFigEmmet {
-            position: absolute;
-            z-index: 5;
-            height: 50px;
-            bottom: 150px;
-            right: 95px;
-        }
-
-        .splashFigWyldStyle {
-            position: absolute;
-            z-index: 5;
-            height: 50px;
-            bottom: 150px;
-            right: 25px;
-        }
-
-        .splashMilleniumFalcon {
-            position: absolute;
-            z-index: 5;
-            height: 50px;
-            bottom: 25px;
-            right: -95px;
-        }
-
-        .splashFigBatman {
-            position: absolute;
-            z-index: 5;
-            height: 50px;
-            bottom: 72px;
-            left: -35px;
-        }
-
-        .splashFigSuperMan {
-            position: absolute;
-            z-index: 5;
-            height: 50px;
-            bottom: 65px;
-            left: -35px;
-        }
-
-        .splashFigPresidentBusiness {
-            position: absolute;
-            z-index: -1;
-            height: 50px;
-            bottom: 165px;
-            left: 5px;
-        }
-
-        .splashFigVitruvius {
-            position: absolute;
-            z-index: -1;
-            height: 50px;
-            bottom: 325px;
-            right: 15px;
-        }
-
-        .splashCrowd {
-            position: absolute;
-            z-index: -1;
-            height: 50px;
-            bottom: 265px;
-            left: -15px;
-            border-radius: 10px;
-        }
-    }
-
-    .imageLeft {
-        position: absolute;
-        top: 125px;
-        left: 50px;
-        height: 250px;
-        width: 250px;
-        border: 1px solid black;
-        border-radius: 5px;
-        overflow: hidden;
-    }
-
-    .imageRight {
-        position: absolute;
-        top: 325px;
-        left: 225px;
-        height: 250px;
-        width: 250px;
-        border: 1px solid black;
-        border-radius: 5px;
-        overflow: hidden;
-    }
-
-    .publicImage {
-        height: 250px;
-    }
-
-
-    #splashDDCouch {
-        position: absolute;
-        z-index: 5;
-        height: 50px;
-        width: 100px;
-        bottom: 160px;
-        left: 30px;
-    }
-
-    #publicTickets {
-        position: absolute;
-        z-index: 2;
-        height: 225px;
-        bottom: 25px;
-        width: 400px;
-        left: 15px;
-        border: 5px solid $bs_blue;
-        border-radius: 10px;
-
-        #publicTicketsText {
-            position: absolute;
-            z-index: 2;
-            top: 10px;
-            right: 7px;
-            height: 125px;
-            bottom: 25px;
-            width: 200px;
-            border: none;
-            border-radius: 10px;
-        }
-
-        .buyTicketsButton {
-            position: absolute;
-            right: 25px;
-            bottom: 30px;
-        }
-    }
-}
-
-#splashPageCTA {
-    position: absolute;
-    width: $dashboard_width;
-    bottom: 65px;
-    left: 15px;
-    width: 1218px;
-    height: 90px;
-    text-align: center;
-    border: none;
-    z-index: 100;
-    display: none;
-
-    #countDown {
-        position: absolute;
-        right: 10px;
+    .animationContainer {
+        position: relative;
+        margin-left: auto;
+        margin-right: auto;
         border: none;
-        height: 90px;
-        bottom: 0;
-        width: 500px;
+        width: $dashboard_width;
+        min-height: $dashboard_height;
+        height: auto;
     }
 
-    #childPackages {
-        position: absolute;
-        left: 100px;
+    #splashPageCTA {
+        position: relative;
+        width: $dashboard_width;
+        top: 5px;
+        left: 0;
         height: 90px;
-        bottom: 0;
-        width: 500px;
-        border: 1px solid white;
-        background: white;
-        border-radius: 10px;
+        text-align: center;
+        border: none;
+        z-index: 100;
+        display: none;
 
-        .text {
+        #countDown {
             position: absolute;
-            left: 2px;
-            height: 90px;
-            width: 300px;
-            top: 2px;
+            right: 40px;
             border: none;
+            height: 90px;
+            width: 500px;
         }
 
-        .buyTicketsButton {
+        #childPackages {
             position: absolute;
-            right: 25px;
-            top: 15px;
+            left: 100px;
+            height: 90px;
+            width: 500px;
+            border: 1px solid white;
+            background: white;
+            border-radius: 10px;
+
+            .text {
+                position: absolute;
+                left: 2px;
+                height: 90px;
+                width: 300px;
+                top: 2px;
+                border: none;
+            }
+
+            .buyTicketsButton {
+                position: absolute;
+                right: 25px;
+                top: 15px;
+            }
+        }
+    }
+    
+    #header {
+        position: relative;
+        top: 0;
+        left: 0;
+        width: 1230px;
+        height: 125px;
+        margin-left: auto;
+        margin-right: auto;
+        border: none;
+
+        #logo {
+          position: absolute;
+          top: 0;
+          left: 0;
+        }
+
+        #eventContainer {
+            position: absolute;
+            top: 30px;
+            right: 0;
+            width: 700px;
+            height: 70px;
+            border: none;
+
+            a {
+                margin: 10px;
+            }
+        }
+
+        #afolContainer {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            width: 300px;
+            height: 20px;
+            border: none;
+            color: white;
+            text-align: right;
+            padding-right: 10px;
+            cursor: pointer;
+        }
+    }
+
+    #copyright {
+        position: relative;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 25px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        width: $dashboard_width;
+        height: auto;
+        z-index: 2;
+        color: white;
+        text-align: center;
+    }
+
+    #dashboard {
+        position: relative;
+        width: $dashboard_width;
+        margin-left: auto;
+        margin-right: auto;
+        border: none;
+
+        #splashPage {
+            position: absolute;
+            left: 5px;
+            width: $dashboard_width - 20;
+            text-align: center;
+            border: 5px solid $bs_blue;
+            background: white;
+            border-radius: 10px;
+
+            #splashText {
+              position: absolute;
+              border: none;
+              top: 5px;
+              left: 5px;
+              height: 400px;
+              width: 425px;
+              border-radius: 10px;
+              padding: 5px;
+              font-size: 2.05em;
+              text-align: center;
+              color: black;
+              background: white;
+            }
+
+            .splashTextHome {
+                position: absolute;
+                border-radius: 10px;
+                right: 60px;
+                top: 25px;
+                padding: 10px;
+                font-size: 2.0em;
+                text-align: center;
+                height: 600px;
+                width: 630px;
+                color: black;
+                background: white;
+                vertical-align: middle;
+                z-index: 3;
+                border: 5px solid $bs_blue;
+                
+                .bigger2015 {
+                    position: absolute;
+                    right: 10px;
+                    bottom: 30px;
+                    width: 300px;
+                    border: none;
+                }
+
+                #splashTextEmailUs {
+                    position: relative;
+                    left: $dashboard_width / 4 - 180;
+                    width: 350px;
+                    border: none;
+                    text-align: left;
+
+                    .loginField {
+                        margin-bottom: 10px;
+                        border: 1px solid #BCBEBF;
+                        border-radius: 5px;
+                        width: 340px;
+                        height: 42.5px;
+                        padding-top: 7.5px;
+                        padding-left: 10px;
+                    }
+
+                    .loginField input {
+                        width: 325px;
+                    }
+
+                    .captchaField {
+                        @extend .loginField;
+
+                        .captcha {
+                            position: absolute;
+                            right: 5px;
+                            bottom: 64px;
+                            font-size: 0.5em;
+                            background-color: black;
+                            color: white;
+                            border-radius: 5px;
+                            padding-top: 3px;
+                            height: 42px;
+                            width: 150px;
+                            text-align: center;
+                        }
+
+                        input {
+                            width: 150px;
+                        }
+                    }
+
+
+                    .commentsField textarea {
+                        width: 350px;
+                        height: 100px;
+                        border: 1px solid #BCBEBF;
+                        border-radius: 5px;
+                        margin-bottom: 10px;
+                        padding-top: 10px;
+                    }
+                }
+
+                .splashFigJackSparrow {
+                    position: absolute;
+                    z-index: 5;
+                    height: 50px;
+                    bottom: 50px;
+                    right: -95px;
+                }
+
+                .splashFigEmmet {
+                    position: absolute;
+                    z-index: 5;
+                    height: 50px;
+                    bottom: 150px;
+                    right: 95px;
+                }
+
+                .splashFigWyldStyle {
+                    position: absolute;
+                    z-index: 5;
+                    height: 50px;
+                    bottom: 150px;
+                    right: 25px;
+                }
+
+                .splashMilleniumFalcon {
+                    position: absolute;
+                    z-index: 5;
+                    height: 50px;
+                    bottom: 25px;
+                    right: -95px;
+                }
+
+                .splashFigBatman {
+                    position: absolute;
+                    z-index: 5;
+                    height: 50px;
+                    bottom: 72px;
+                    left: -35px;
+                }
+
+                .splashFigSuperMan {
+                    position: absolute;
+                    z-index: 5;
+                    height: 50px;
+                    bottom: 65px;
+                    left: -35px;
+                }
+
+                .splashFigPresidentBusiness {
+                    position: absolute;
+                    z-index: -1;
+                    height: 50px;
+                    bottom: 165px;
+                    left: 5px;
+                }
+
+                .splashFigVitruvius {
+                    position: absolute;
+                    z-index: -1;
+                    height: 50px;
+                    bottom: 325px;
+                    right: 15px;
+                }
+
+                .splashCrowd {
+                    position: absolute;
+                    z-index: -1;
+                    height: 50px;
+                    bottom: 265px;
+                    left: -15px;
+                    border-radius: 10px;
+                }
+            }
+
+            .imageLeft {
+                position: absolute;
+                top: 125px;
+                left: 50px;
+                height: 250px;
+                width: 250px;
+                border: 1px solid black;
+                border-radius: 5px;
+                overflow: hidden;
+            }
+
+            .imageRight {
+                position: absolute;
+                top: 325px;
+                left: 225px;
+                height: 250px;
+                width: 250px;
+                border: 1px solid black;
+                border-radius: 5px;
+                overflow: hidden;
+            }
+
+            .publicImage {
+                height: 250px;
+            }
+
+
+            #splashDDCouch {
+                position: absolute;
+                z-index: 5;
+                height: 50px;
+                width: 100px;
+                bottom: 160px;
+                left: 30px;
+            }
+
+            #publicTickets {
+                position: absolute;
+                z-index: 2;
+                height: 225px;
+                bottom: 25px;
+                width: 400px;
+                left: 15px;
+                border: 5px solid $bs_blue;
+                border-radius: 10px;
+
+                #publicTicketsText {
+                    position: absolute;
+                    z-index: 2;
+                    top: 10px;
+                    right: 7px;
+                    height: 125px;
+                    bottom: 25px;
+                    width: 200px;
+                    border: none;
+                    border-radius: 10px;
+                }
+
+                .buyTicketsButton {
+                    position: absolute;
+                    right: 25px;
+                    bottom: 30px;
+                }
+            }
         }
     }
 }
 
-#logo {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-}
-
-#copyright {
-    position: absolute;
-    bottom: 0px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 25px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    width: $dashboard_width;
-    height: auto;
-    z-index: 2;
-    color: white;
-    text-align: center;
-}
 
 
 
@@ -498,4 +611,52 @@ img#miniAFOLRegistrationImage {
 
 img#miniStarWars {
   height: 125px;
+}
+
+#eventDashboard {
+    @extend #dashboard;
+    background-color: white;
+    border-radius: 25px;
+}
+
+$event_themes_height: 1750px;
+#eventThemes {
+    @extend #eventDashboard;
+    height: $event_themes_height;
+
+    .eventThemesText { 
+        position: absolute;
+        border-radius:25px;
+        height: $event_themes_height;
+        padding: 15px;
+        font-size: 100%;
+        text-align: left;
+        width: $dashboard_width - 30;
+        color: black;
+        background: white;
+        display: table;
+        line-height: normal;  
+        vertical-align: middle;
+    }
+}
+
+$event_registration_height: 1210px;
+#eventRegistration {
+    @extend #eventDashboard;
+    height: $event_registration_height;
+
+    .eventRegistrationText { 
+        position: absolute;
+        border-radius:25px;
+        height: $event_registration_height;
+        padding: 15px;
+        font-size: 1.05em;
+        text-align: left;
+        width: $dashboard_width - 30;
+        color: black;
+        background: white;
+        display: table;
+        line-height: normal;  
+        vertical-align: middle;
+    }
 }

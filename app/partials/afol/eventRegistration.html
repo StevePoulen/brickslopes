@@ -1,7 +1,7 @@
-<div id="eventDashboard">
-    <span id="dashboardText">
+<div id="eventRegistration">
+    <div class="eventRegistrationText">
         <div>
-            <h1><bs-logo font-size=1.25 text="{{eventDetails.city}}"></bs-logo> &#8226; <bs-text text="Event Registration" font-color=black></bs-text></h1>
+            <h1><bs-logo font-size=1.25 text=" - {{eventDetails.city}}"></bs-logo> &#8226; <bs-text text="Event Registration" font-color=red></bs-text></h1>
         </div>
         <div id="discountPriceInformation">
             <h2>Before {{discountDate}}</h2>
@@ -15,6 +15,10 @@
             <p>
             <div>
                 <bs-logo></bs-logo> <span class="blueFont">T-Shirt</span> -- <span class="bold">{{eventDetails.tShirtDiscount | currency}}</span> per person
+            </div>
+            <p>
+            <div>
+                <bs-logo></bs-logo> <span class="blueFont">Name Badge</span> -- <span class="bold">{{10.00 | currency}}</span> per person
             </div>
         </div>
         <div id="fullPriceInformation">
@@ -30,6 +34,10 @@
             <div>
                 <bs-logo></bs-logo> <span class="blueFont">T-Shirt</span> -- <span class="bold">{{eventDetails.tShirtCost | currency}}</span> per person
             </div>
+            <p>
+            <div>
+                <bs-logo></bs-logo> <span class="blueFont">Name Badge</span> -- <span class="bold">{{10.00 | currency}}</span> per person
+            </div>
         </div>
         <div id="eventDivider">
             <hr>
@@ -40,37 +48,58 @@
                     <h3>AFOL Event Registration Form</h3>
                 </div>
                 <form name="registration" ng-submit="registration.$valid && submitRegistration()">
-                    <div class="brickCenter">
-                        <div class="brickHolder">
-                            <div class="legoBrick blue">
-                                <div class="studs">
-                                    <div class="stud blue"></div>
-                                    <div class="stud blue"></div>
-                                    <div class="stud blue"></div>
-                                    <div class="stud blue"></div>
-                                    <div class="stud blue"></div>
-                                    <div class="stud blue"></div>
-                                    <div class="stud blue"></div>
-                                    <div class="stud blue"></div>
-                                </div>
-                                <input type="text" placeholder="Badge Line 1:" ng-model="badgeLine1" required ng-maxlength=15>
-                            </div>
-                        </div>
+                    <div class="group">
+                        <bs-text text="Add-ons" font-size=1.25></bs-text>
                     </div>
-                    <div class="brickCenter">
-                        <div class="brickHolder">
-                            <div class="legoBrick yellow">
-                                <div class="studs">
-                                    <div class="stud yellow"></div>
-                                    <div class="stud yellow"></div>
-                                    <div class="stud yellow"></div>
-                                    <div class="stud yellow"></div>
-                                    <div class="stud yellow"></div>
-                                    <div class="stud yellow"></div>
-                                    <div class="stud yellow"></div>
-                                    <div class="stud yellow"></div>
+                    <div class="fullBadgeOptionField">
+                        <label><bs-logo></bs-logo> Name Badge:</label> Yes <input type="radio" ng-model="nameBadge" value="YES" checked> No <input type="radio" ng-model="nameBadge" value="NO">
+                        <div class="brickCenter">
+                            <div class="brickHolder">
+                                <div class="legoBrick red">
+                                    <div class="studs">
+                                        <div class="stud red"></div>
+                                        <div class="stud red"></div>
+                                        <div class="stud red"></div>
+                                        <div class="stud red"></div>
+                                        <div class="stud red"></div>
+                                        <div class="stud red"></div>
+                                        <div class="stud red"></div>
+                                        <div class="stud red"></div>
+                                    </div>
+                                    <div class="logoBrick">
+                                        {{eventYear}} <bs-logo font-color=white></bs-logo>
+                                    </div>
                                 </div>
-                                <input type="text" placeholder="Badge Line 2:" ng-model="badgeLine2" required ng-maxlength=15>
+                            </div>
+                            <div class="brickHolder interlock">
+                                <div class="legoBrick blue">
+                                    <div class="studs">
+                                        <div class="stud blue"></div>
+                                        <div class="stud blue"></div>
+                                        <div class="stud blue"></div>
+                                        <div class="stud blue"></div>
+                                        <div class="stud blue"></div>
+                                        <div class="stud blue"></div>
+                                        <div class="stud blue"></div>
+                                        <div class="stud blue"></div>
+                                    </div>
+                                    <input type="text" placeholder="Badge Line 1:" ng-model="badgeLine2" ng-required="nameBadge=='YES'" ng-maxlength=15>
+                                </div>
+                            </div>
+                            <div class="brickHolder interlock2">
+                                <div class="legoBrick yellow">
+                                    <div class="studs">
+                                        <div class="stud yellow"></div>
+                                        <div class="stud yellow"></div>
+                                        <div class="stud yellow"></div>
+                                        <div class="stud yellow"></div>
+                                        <div class="stud yellow"></div>
+                                        <div class="stud yellow"></div>
+                                        <div class="stud yellow"></div>
+                                        <div class="stud yellow"></div>
+                                    </div>
+                                    <input type="text" placeholder="Badge Line 2:" ng-model="badgeLine3" ng-required="nameBadge=='YES'" ng-maxlength=15>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -81,8 +110,14 @@
                         <label><bs-logo></bs-logo> T-Shirt Size:</label>
                         <select ng-model="tShirtSize" ng-options="size for size in shirtSizes"></select>
                     </div>
+                    <div class="group">
+                        <bs-text text="AFOL or TFOL" font-size=1.25></bs-text>
+                    </div>
                     <div class="optionField">
                         <label>I am over 18 years old*:</label> Yes <input type="radio" ng-model="ageVerification" value="YES" checked> No <input type="radio" ng-model="ageVerification" value="NO">
+                    </div>
+                    <div class="group">
+                        <bs-text text="Comments" font-size=1.25></bs-text>
                     </div>
                     <div class="commentsField">
                         <textarea id="comments" class="greyFont" ng-model="comments"></textarea>
@@ -99,25 +134,42 @@
             </div>
         </div>
         <div id="eventSwag">
-            <h2>Registration Includes ...</h2>
-            <ol>
-                <li>{{passType}} Event Pass, {{passDates}}</li>
-                <li>Keynote Speaker Access</li>
-                <li>MOC Display Space</li>
-                <li><bs-logo></bs-logo> Name Badge</li>
-                <li>Access to LEGO Fan Games</li>
-                <li>MOC Prizes</li>
-                <li>Swag</li>
-                <li>fun, Fun, FUN!</li>
-            </ol>
-            <h2>Meet & Greet Event Includes ...</h2>
-            <ol>
-                <li>Dinner {{meetAndGreetDinnerDate}}</li>
-                <li>Door Prizes</li>
-                <li>Swag</li>
-                <li>Access to AFOLs</li>
-            </ol>
+            <div class="packages">
+                <h2>4-Day Event Registration</h2>
+                <ol>
+                    <li>{{passType}} Event Pass, {{passDates}}</li>
+                    <li>Keynote Speaker, Panel and Other Speakers Access</li>
+                    <li>MOC Display Space</li>
+                    <li>{{eventYear}} <bs-logo></bs-logo> Engraved Brick</li>
+                    <li>Access to LEGO Fan Games</li>
+                    <li>MOC Prizes & Swag</li>
+                </ol>
+            </div>
+            <div class="packages">
+                <h2>Meet & Greet Event (add-on)</h2>
+                <ol>
+                    <li>Dinner {{meetAndGreetDinnerDate}}</li>
+                    <li>Door Prizes & Swag</li>
+                    <li>Mingling with AFOLs and Vendors</li>
+                </ol>
+            </div>
+            <div class="packages">
+                <h2><bs-logo></bs-logo> Name Badge (add-on)</h2>
+                <ol>
+                    <li>Event Slopes Logo</li>
+                    <li>{{eventYear}} <bs-logo></bs-logo> Engraved Brick</li>
+                    <li>2 Engraved Bricks</li>
+                    <li>Magnet</li>
+                </ol>
+            </div>
+            <div class="packages">
+                <h2><bs-logo></bs-logo> T-Shirt (add-on)</h2>
+                <ol>
+                    <li>{{eventYear}} Design</li>
+                    <li>Always a classic!</li>
+                </ol>
+            </div>
         </div>
-    </span>
+    </div>
     <div id="dashboardCloseButton" ng-click="closeDialog()"></div>
 </div>

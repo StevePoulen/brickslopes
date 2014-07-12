@@ -1,19 +1,19 @@
-table.guestList {
+.guestList {
   width: 750px;
-  border: 0px solid black;
+  border: none;
 }
 
-td.guestListName {
+.guestListName {
   width: 400px;
-  border: 0px solid black;
+  border: none;
   text-align: center;
   font-size: 1.50em;
   padding-top: 25px;
 }
 
-td.guestListState {
+.guestListState {
   width: 350px;
-  border: 0px solid black;
+  border: none;
   text-align: center;
   font-size: 1.50em;
   padding-top: 25px;

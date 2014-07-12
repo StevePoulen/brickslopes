@@ -107,7 +107,7 @@ describe('controllers', function() {
 
             var returnList = {'afolMocCount': 22, 'mocs': {'firstName': 'Steve'}};
             mockBackend.expectGET('/controllers/eventDates.php').respond(201, eventDates);
-            mockBackend.expectGET('/controllers/eventRegistration.php').respond(201, eventDates);
+            mockBackend.expectGET('/controllers/eventRegistration.php').respond(201, eventRegistration);
             mockBackend.expectGET('/controllers/mocs/getRegisteredMocList.php').respond(returnList);
 
             mockBackend.flush();

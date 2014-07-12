@@ -35,6 +35,34 @@
             }
         }
 
+        private function addRegistrationEventPass($eventId, $userId) {
+            $this->addRegistrationLineItem($eventId, $userId, 'Event Pass', '65.00');
+        }
+
+        private function addRegistrationTShirt($eventId, $userId) {
+            $this->addRegistrationLineItem($eventId, $userId, 'T-Shirt', '25.00', 'X-Large');
+        }
+
+        private function addRegistrationBrick($eventId, $userId) {
+            $this->addRegistrationLineItem($eventId, $userId, 'brickLine1', '0.00', '', 'Brick Line 1');
+        }
+
+        private function addRegistrationLineItem($eventId, $userId, $lineItem, $amount, $size='', $description='') {
+            $registrationLineItemObj = new registrationLineItemModel();
+            $registrationLineItemMap['eventId'] = $eventId;
+            $registrationLineItemMap['userId'] = $userId;
+            $registrationLineItemMap['lineItem'] = $lineItem;
+            $registrationLineItemMap['amount'] = $amount;
+            $registrationLineItemMap['paid'] = 'NO';
+            $registrationLineItemMap['discount'] = 'NO';
+            $registrationLineItemMap['description'] = $description;
+            $registrationLineItemMap['size'] = $size;
+            $registrationLineItemMap['quantity'] = 1;
+            $registrationLineItemMap['active'] = 'YES';
+
+            $registrationLineItemObj->addRegistrationLineItems($registrationLineItemMap);
+        }
+
         private function trimMigration($value) {
             $value = ltrim($value, ' ');
             return rtrim($value, ' ');
@@ -117,7 +145,7 @@
                 ),
                 array(
                     'theme' => 'Sculpture / Mosiac',
-                    'type' => 'PUBLIC',
+                    'type' => 'AFOL',
                     'awards' => array (
                         'Best Sculpture',
                         'Best Mosaic',
@@ -126,7 +154,7 @@
                 ),
                 array(
                     'theme' => 'Space',
-                    'type' => 'PUBLIC',
+                    'type' => 'AFOL',
                     'awards' => array (
                         'Best of Space',
                         'Best Space Base',
@@ -135,7 +163,7 @@
                 ),
                 array(
                     'theme' => 'Technic',
-                    'type' => 'PUBLIC',
+                    'type' => 'AFOL',
                     'awards' => array (
                         'Best of Technic',
                         'Best Use of Motion',
@@ -144,10 +172,17 @@
                 ),
                 array(
                     'theme' => 'Vignette',
-                    'type' => 'PUBLIC',
+                    'type' => 'AFOL',
                     'awards' => array (
                         'Best Vignette',
                         'Best Custom Fig'
+                    )
+                ),
+                array(
+                    'theme' => 'Public Choice',
+                    'type' => 'PUBLIC',
+                    'awards' => array (
+                        'Most Votes'
                     )
                 )
             );
@@ -363,14 +398,14 @@
                     $registrationMap = array();
                     $registrationMap['userId'] = $userId;
                     $registrationMap['eventId'] = $eventId;
-                    $registrationMap['badgeLine1'] = $dbObj->badgeLine1;
-                    $registrationMap['badgeLine2'] = $dbObj->badgeLine2;
-                    $registrationMap['meetAndGreet'] = $this->formatEnum($dbObj->meetAndGreet);
+                    //$registrationMap['badgeLine1'] = $dbObj->badgeLine1;
+                    //$registrationMap['badgeLine2'] = $dbObj->badgeLine2;
+                    //$registrationMap['meetAndGreet'] = $this->formatEnum($dbObj->meetAndGreet);
                     $registrationMap['ageVerification'] = $this->formatEnum($dbObj->ageVerification);
                     $registrationMap['comments'] = $dbObj->comments;
                     $registrationMap['amountPaid'] = '55.00';
-                    $registrationMap['tShirtSize'] = 'XL';
-                    $registrationMap['tShirtPaid'] = '20.00';
+                    //$registrationMap['tShirtSize'] = 'XL';
+                    //$registrationMap['tShirtPaid'] = '20.00';
                     $registrationMap['type'] = 'AFOL';
 
                     $registrationsObj->addRegistrationInformation($registrationMap);
@@ -380,6 +415,9 @@
                             $registrationCounter++;
                             $registrationMap['eventId'] = 2;
                             $registrationsObj->addRegistrationInformation($registrationMap);
+                            $this->addRegistrationEventPass(2,$userId);
+                            $this->addRegistrationTShirt(2,$userId);
+                            $this->addRegistrationBrick(2,$userId);
                         }
                     }
 

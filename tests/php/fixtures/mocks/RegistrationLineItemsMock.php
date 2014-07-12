@@ -6,10 +6,22 @@ class registrationLineItemModel extends db {
     }
 
     public function addRegistrationLineItems($data) {
+        if(!ISSET($GLOBALS['addRegistrationLineItems'])) {
+            $GLOBALS['addRegistrationLineItems'] = array();
+        }
+        array_push($GLOBALS['addRegistrationLineItems'], $data);
         return $this->query();
     }
 
     public function getRegistrationLineItemsByUserId($data) {
+        return $this->query();
+    }
+
+    public function updateRegistrationLineItemsPaid($data) {
+        return $this->query();
+    }
+
+    public function updateRegistrationLineItemsRevoke($data) {
         return $this->query();
     }
 }

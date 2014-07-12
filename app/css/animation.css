@@ -1,18 +1,18 @@
 /* ng-view animation fade */
 /* line 3, ../../compass/assets/sass/animation.scss */
-#brickslopes .view-animate-fade {
-  min-height: 700px;
+.animationContainer .view-animate-fade {
   height: auto;
 }
 
-/* line 8, ../../compass/assets/sass/animation.scss */
+/* line 7, ../../compass/assets/sass/animation.scss */
 .view-animate-fade.ng-enter, .view-animate-fade.ng-leave {
   -webkit-transition: all cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s;
+  -o-transition: all cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s;
+  -moz-transition: all cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s;
   transition: all cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s;
-  display: block;
-  width: 100%;
+  display: inline;
   position: absolute;
-  top: 100px;
+  top: 0;
   left: 0;
   right: 0;
   bottom: 0;
@@ -28,48 +28,54 @@
 .view-animate-fade.ng-enter.ng-enter-active {
   -webkit-animation: enterAnimation 0.5s linear forwards;
   /* Ch,Sa,Op */
+  -moz-animation: enterAnimation 0.5s linear forwards;
+  /* Ch,Sa,Op */
   animation: enterAnimation 0.5s linear forwards;
 }
 
-/* line 30, ../../compass/assets/sass/animation.scss */
+/* line 31, ../../compass/assets/sass/animation.scss */
 .view-animate-fade.ng-leave.ng-leave-active {
   -webkit-animation: exitAnimation 0.25s linear forwards;
+  /* Ch,Sa,Op */
+  -moz-animation: exitAnimation 0.25s linear forwards;
   /* Ch,Sa,Op */
   animation: exitAnimation 0.25s linear forwards;
 }
 
 @-webkit-keyframes exitAnimation {
-  /* line 36, ../../compass/assets/sass/animation.scss */
+  /* line 38, ../../compass/assets/sass/animation.scss */
   from {
-    opacity: 1;
+    opacity: 0;
   }
 
-  /* line 37, ../../compass/assets/sass/animation.scss */
+  /* line 39, ../../compass/assets/sass/animation.scss */
   to {
     opacity: 0;
+    left: -100%;
   }
 }
 
 @keyframes exitAnimation {
-  /* line 41, ../../compass/assets/sass/animation.scss */
+  /* line 43, ../../compass/assets/sass/animation.scss */
   from {
-    opacity: 1;
+    opacity: 0;
   }
 
-  /* line 42, ../../compass/assets/sass/animation.scss */
+  /* line 44, ../../compass/assets/sass/animation.scss */
   to {
     opacity: 0;
+    left: -100%;
   }
 }
 
 @-webkit-keyframes enterAnimation {
-  /* line 46, ../../compass/assets/sass/animation.scss */
+  /* line 48, ../../compass/assets/sass/animation.scss */
   from {
     opacity: 0;
     left: 100%;
   }
 
-  /* line 47, ../../compass/assets/sass/animation.scss */
+  /* line 49, ../../compass/assets/sass/animation.scss */
   to {
     opacity: 1;
     left: 0;
@@ -77,13 +83,13 @@
 }
 
 @keyframes enterAnimation {
-  /* line 51, ../../compass/assets/sass/animation.scss */
+  /* line 53, ../../compass/assets/sass/animation.scss */
   from {
     opacity: 0;
     left: 100%;
   }
 
-  /* line 52, ../../compass/assets/sass/animation.scss */
+  /* line 54, ../../compass/assets/sass/animation.scss */
   to {
     opacity: 1;
     left: 0;
@@ -91,163 +97,143 @@
 }
 
 /* Fade-in and Fade-out */
-/* line 56, ../../compass/assets/sass/animation.scss */
+/* line 58, ../../compass/assets/sass/animation.scss */
 .fadeOutFast {
   /* Ch,Sa,Op */
   -webkit-animation: fadeOut 0.5s linear forwards;
+  -moz-animation: fadeOut 0.5s linear forwards;
   animation: fadeOut 0.5s linear forwards;
 }
 
-/* line 62, ../../compass/assets/sass/animation.scss */
+/* line 65, ../../compass/assets/sass/animation.scss */
 .fadeOut {
   /* Ch,Sa,Op */
   -webkit-animation: fadeOut 1.0s linear forwards;
+  -moz-animation: fadeOut 1.0s linear forwards;
   animation: fadeOut 1.0s linear forwards;
 }
 
-/* line 68, ../../compass/assets/sass/animation.scss */
+/* line 72, ../../compass/assets/sass/animation.scss */
 .fadeOutSlow {
   /* Ch,Sa,Op */
   -webkit-animation: fadeOut 2.0s linear forwards;
+  -moz-animation: fadeOut 2.0s linear forwards;
   animation: fadeOut 2.0s linear forwards;
 }
 
-/* line 74, ../../compass/assets/sass/animation.scss */
+/* line 79, ../../compass/assets/sass/animation.scss */
 .fadeOut5 {
   /* Ch,Sa,Op */
   -webkit-animation: fadeOut 5.0s ease-in forwards;
+  -moz-animation: fadeOut 5.0s ease-in forwards;
   animation: fadeOut 5.0s ease-in forwards;
 }
 
 /* Ch,Sa,Op */
 @-webkit-keyframes fadeOut {
-  /* line 82, ../../compass/assets/sass/animation.scss */
+  /* line 88, ../../compass/assets/sass/animation.scss */
   from {
     opacity: 1;
   }
 
-  /* line 83, ../../compass/assets/sass/animation.scss */
+  /* line 89, ../../compass/assets/sass/animation.scss */
   to {
     opacity: 0;
   }
 }
 
 @keyframes fadeOut {
-  /* line 87, ../../compass/assets/sass/animation.scss */
+  /* line 93, ../../compass/assets/sass/animation.scss */
   from {
     opacity: 1;
   }
 
-  /* line 88, ../../compass/assets/sass/animation.scss */
+  /* line 94, ../../compass/assets/sass/animation.scss */
   to {
     opacity: 0;
   }
 }
 
-/* line 91, ../../compass/assets/sass/animation.scss */
+/* line 97, ../../compass/assets/sass/animation.scss */
 .fadeInFast {
   /* Ch,Sa,Op */
   -webkit-animation: fadeIn 0.5s linear forwards;
+  -moz-animation: fadeIn 0.5s linear forwards;
   animation: fadeIn 0.5s linear forwards;
 }
 
-/* line 97, ../../compass/assets/sass/animation.scss */
+/* line 104, ../../compass/assets/sass/animation.scss */
 .fadeIn {
   /* Ch,Sa,Op */
   -webkit-animation: fadeIn 1.0s linear forwards;
+  -moz-animation: fadeIn 1.0s linear forwards;
   animation: fadeIn 1.0s linear forwards;
 }
 
-/* line 104, ../../compass/assets/sass/animation.scss */
+/* line 112, ../../compass/assets/sass/animation.scss */
 .fadeInSlow {
   /* Ch,Sa,Op */
   -webkit-animation: fadeIn 2.0s linear forwards;
+  -moz-animation: fadeIn 2.0s linear forwards;
   animation: fadeIn 2.0s linear forwards;
 }
 
 /* Ch,Sa,Op */
 @-webkit-keyframes fadeIn {
-  /* line 112, ../../compass/assets/sass/animation.scss */
+  /* line 121, ../../compass/assets/sass/animation.scss */
   from {
     opacity: 0;
   }
 
-  /* line 113, ../../compass/assets/sass/animation.scss */
+  /* line 122, ../../compass/assets/sass/animation.scss */
   to {
     opacity: 1;
   }
 }
 
 @keyframes fadeIn {
-  /* line 117, ../../compass/assets/sass/animation.scss */
+  /* line 126, ../../compass/assets/sass/animation.scss */
   from {
     opacity: 0;
   }
 
-  /* line 118, ../../compass/assets/sass/animation.scss */
+  /* line 127, ../../compass/assets/sass/animation.scss */
   to {
     opacity: 1;
   }
 }
 
 /* AFOL Sign-up and Login */
-/* line 122, ../../compass/assets/sass/animation.scss */
+/* line 131, ../../compass/assets/sass/animation.scss */
 .signupAnimation {
   -webkit-animation: signUpAnimation 1.0s linear forwards;
+  /* Ch,Sa,Op */
+  -moz-animation: signUpAnimation 1.0s linear forwards;
   /* Ch,Sa,Op */
   animation: signUpAnimation 1.0s linear forwards;
 }
 
 /* Ch,Sa,Op */
 @-webkit-keyframes signUpAnimation {
-  /* line 129, ../../compass/assets/sass/animation.scss */
+  /* line 139, ../../compass/assets/sass/animation.scss */
   from {
     left: 410px;
   }
 
-  /* line 130, ../../compass/assets/sass/animation.scss */
+  /* line 140, ../../compass/assets/sass/animation.scss */
   to {
     left: 10px;
   }
 }
 
 @keyframes signUpAnimation {
-  /* line 134, ../../compass/assets/sass/animation.scss */
+  /* line 144, ../../compass/assets/sass/animation.scss */
   from {
     left: 410px;
   }
 
-  /* line 135, ../../compass/assets/sass/animation.scss */
+  /* line 145, ../../compass/assets/sass/animation.scss */
   to {
     left: 10px;
   }
 }
-
-/*
-body,html
-  width: 100%
-  height: 100%
-  margin: 0
-
-html
-  display: table
-
-canvas
-  width: 900px
-  height: 200px
-  display: block
-  position: relative
-  background: transparent
-  margin: 40px auto
-
-body 
-  background: #000000
-  color: #fff
-  margin: 0
-  padding: 0
-  overflow: hidden
-  display: table-cell
-  vertical-align: middle
-  text-align: center
-
-*/

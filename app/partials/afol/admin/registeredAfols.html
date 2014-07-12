@@ -27,20 +27,22 @@
                                 <th>Cost</th>
                                 <th>Quantity</th>
                                 <th>Total</th>
-                                <th>Payment</th>
+                                <th>Paid</th>
+                                <th>Active</th>
                             </tr>       
                             <tr ng-class="{evenRow: $even}" ng-repeat="lineItem in afol.lineItems.lineItems">
-                                <td class="textCenter">{{lineItem.discount}}</td>
                                 <td class="textCenter">{{lineItem.lineItem}}</td>
+                                <td class="textCenter">{{lineItem.discount}}</td>
                                 <td class="textRight">{{lineItem.amount | currency}}</td>
                                 <td class="textCenter">{{lineItem.quantity}}</td>
                                 <td class="textRight">{{lineItem.total | currency}}</td>
                                 <td class="textCenter pointer" ng-click=confirmPayment(lineItem)>{{lineItem.paid}}</td>
+                                <td class="textCenter">{{lineItem.active}}</td>
                             </tr>
                             <tr>
                                 <td class="bold textRight" colspan=4>Expected Total to be Paid:</td>
                                 <td class="bold textRight">{{afol.lineItems.total | currency}}</td>
-                                <td>&nbsp;</td>
+                                <td colspan=2>&nbsp;</td>
                             </tr>
                         </table>
                     </td>

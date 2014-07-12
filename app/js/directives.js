@@ -25,11 +25,13 @@ angular.module('brickSlopes.directives', [])
                 brickSlopesText.createText('Slopes', scope.fontSize, scope.fontColor, undefined)
             );
             scope.$watch("text", function() {
-                scope.bsText = $sce.trustAsHtml(
-                    brickSlopesText.createText('Brick', scope.fontSize, scope.fontColor, undefined) +
-                    brickSlopesText.createText('Slopes', scope.fontSize, scope.fontColor, undefined) +
-                    (scope.text ? brickSlopesText.createText(scope.text, scope.fontSize, scope.fontColor, undefined) : "")
-                );
+                if (angular.isDefined(scope.text)) {
+                    scope.bsText = $sce.trustAsHtml(
+                        brickSlopesText.createText('Brick', scope.fontSize, scope.fontColor, undefined) +
+                        brickSlopesText.createText('Slopes', scope.fontSize, scope.fontColor, undefined) + ' ' +
+                        (scope.text ? brickSlopesText.createText(scope.text, scope.fontSize, scope.fontColor, undefined) : "")
+                    );
+                }
             });
         }
     }

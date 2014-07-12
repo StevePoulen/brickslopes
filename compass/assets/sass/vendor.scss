@@ -1,19 +1,19 @@
-table.vendorList {
+.vendorList {
   width: 750px;
-  border: 0px solid black;
+  border: none;
 }
 
-td.vendorName {
+.vendorName {
   width: 600px;
-  border: 0px solid black;
+  border: none;
   text-align: center;
   font-size: 1.50em;
   padding-top: 25px;
 }
 
-td.vendorBoothNumber {
+.vendorBoothNumber {
   width: 150px;
-  border: 0px solid black;
+  border: none;
   text-align: center;
   font-size: 1.25em;
   padding-top: 25px;

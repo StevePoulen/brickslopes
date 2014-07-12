@@ -1,7 +1,7 @@
 /* line 1, ../../compass/assets/sass/collections.scss */
 .mainStarWarsContainer {
   position: relative;
-  border: 0px solid red;
+  border: none;
   height: 100px;
   width: 1005px;
 }
@@ -23,19 +23,19 @@
   position: absolute;
   height: 100px;
   width: 380px;
-  top: 0px;
+  top: 0;
   left: 110px;
-  border: 0px solid green;
+  border: none;
 }
 
 /* line 28, ../../compass/assets/sass/collections.scss */
 .starWarsImageContainer {
   position: absolute;
-  top: 0px;
+  top: 0;
   left: 5px;
   height: 100px;
   width: 100px;
-  border: 0px solid green;
+  border: none;
 }
 
 /* line 37, ../../compass/assets/sass/collections.scss */
@@ -46,7 +46,7 @@
   height: 18px;
   padding: 3px;
   width: 300px;
-  border: 0px solid green;
+  border: none;
   cursor: pointer;
   z-index: 10;
   border-radius: 5px;
@@ -128,7 +128,7 @@
 /* line 113, ../../compass/assets/sass/collections.scss */
 #reserveStarWarsSetText {
   width: 460px;
-  border: 0px solid red;
+  border: none;
 }
 
 /* line 118, ../../compass/assets/sass/collections.scss */

@@ -10,16 +10,34 @@
             <bs-text text="Paid: {{event.paid}}"></bs-text>
         </div>
         <div class="info">
+            <bs-text text="{{event.type}}: YES"></bs-text>
+        </div>
+        <div class="info">
             <bs-text text="T-Shirt: {{event.tShirtSize}}"></bs-text>
         </div>
         <div class="info">
-            <bs-text text="Over 18: {{event.ageVerification}}"></bs-text>
+            <bs-text text="Name Badge: {{event.nameBadge}}"></bs-text>
         </div>
         <div class="info">
             <bs-text text="Meet and Greet: {{event.meetAndGreet}}"></bs-text>
         </div>
         <div class="brickCenter">
-            <div class="brickHolder">
+            <div class="brickHolder" ng-show="{{event.showBadgeLine1}}">
+                <div class="legoBrick black">
+                    <div class="studs">
+                        <div class="stud black"></div>
+                        <div class="stud black"></div>
+                        <div class="stud black"></div>
+                        <div class="stud black"></div>
+                        <div class="stud black"></div>
+                        <div class="stud black"></div>
+                        <div class="stud black"></div>
+                        <div class="stud black"></div>
+                    </div>
+                    <bs-text text="{{event.badgeLine1}}" font-color=white></bs-text>
+                </div>
+            </div>
+            <div class="brickHolder interlock" ng-show="{{event.showBadgeLine2}}">
                 <div class="legoBrick blue">
                     <div class="studs">
                         <div class="stud blue"></div>
@@ -31,10 +49,10 @@
                         <div class="stud blue"></div>
                         <div class="stud blue"></div>
                     </div>
-                    <bs-text text="{{event.badgeLine1}}" font-color=white></bs-text>
+                    <bs-text text="{{event.badgeLine2}}" font-color=black></bs-text>
                 </div>
             </div>
-            <div class="brickHolder interlock">
+            <div class="brickHolder interlock2" ng-show="{{event.showBadgeLine3}}">
                 <div class="legoBrick yellow">
                     <div class="studs">
                         <div class="stud yellow"></div>
@@ -46,7 +64,7 @@
                         <div class="stud yellow"></div>
                         <div class="stud yellow"></div>
                     </div>
-                    <bs-text text="{{event.badgeLine2}}" font-color=black></bs-text>
+                    <bs-text text="{{event.badgeLine3}}" font-color=black></bs-text>
                 </div>
             </div>
         </div>

@@ -18,8 +18,8 @@ class registrations extends db {
         return $this->query($this->insertQuery($data));
     }
 
-    public function updateRegistrationPaid($registrationId, $paidStatus) {
-        return $this->query($this->updateQuery($registrationId, $paidStatus));
+    public function updateRegistrationPaid($registrationId, $paidStatus, $amountPaid) {
+        return $this->query($this->updateQuery($registrationId, $paidStatus, $amountPaid));
     }
 
     private function selectQueryByEventId($eventId) {
@@ -48,12 +48,13 @@ class registrations extends db {
       ";
     }
 
-    private function updateQuery($registrationId, $paidStatus) {
+    private function updateQuery($registrationId, $paidStatus, $amountPaid) {
         return "
             UPDATE 
                 registrations
             SET
-                paid = '{$paidStatus}'
+                paid = '{$paidStatus}',
+                amountPaid = '{$amountPaid}'
             WHERE
                 registrationId = '{$this->escapeCharacters($registrationId)}'
         ;
@@ -63,13 +64,10 @@ class registrations extends db {
     private function selectQuery($userId) {
         return "
             SELECT 
-                r.badgeLine1 as badgeLine1,
-                r.badgeLine2 as badgeLine2,
-                r.meetAndGreet as meetAndGreet,
                 r.ageVerification as ageVerification,
-                r.tShirtSize as tShirtSize,
                 IFNULL(r.paid,'NO') as paid,
-                e.name as name
+                e.name as name,
+                e.eventId
             FROM
                 registrations r,
                 events e,
@@ -93,12 +91,8 @@ class registrations extends db {
             (
                 eventId, 
                 userId,
-                badgeLine1,
-                badgeLine2,
-                meetAndGreet,
                 ageVerification,
                 comments,
-                tShirtSize,
                 amountPaid,
                 type,
                 registrationDate
@@ -107,12 +101,8 @@ class registrations extends db {
           (
                 '{$this->escapeCharacters($data['eventId'])}',
                 '{$this->escapeCharacters($data['userId'])}',
-                '{$this->escapeCharacters($data['badgeLine1'])}',
-                '{$this->escapeCharacters($data['badgeLine2'])}',
-                '{$this->escapeCharacters($data['meetAndGreet'])}',
                 '{$this->escapeCharacters($data['ageVerification'])}',
                 '{$this->escapeCharacters($data['comments'])}',
-                '{$this->escapeCharacters($data['tShirtSize'])}',
                 '{$this->escapeCharacters($amountPaid)}',
                 '{$this->escapeCharacters($data['type'])}',
                 NOW()

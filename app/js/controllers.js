@@ -250,11 +250,13 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     $scope.timer = false;
     $scope.eventId = $route.current.params.eventId;
     $scope.eventDetails = {city: 'loading'};
+    $scope.nameBadge = 'NO';
     $scope.meetAndGreet = 'YES';
     $scope.comments = 'Comments ...';
     $scope.ageVerification = 'YES';
     $scope.discountDate = undefined;
     $scope.passDates = undefined;
+    $scope.eventYear = undefined;
     $scope.passType = undefined;
     $scope.meetAndGreetDinnerDate = undefined;
     $scope.shirtSizes = ['No Thanks', 'Small', 'Medium', 'Large', 'X-Large', 'XX-Large'];
@@ -263,8 +265,10 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     function serializeRegistrationJson() {
         return {
             eventId: $scope.eventId,
-            badgeLine1: $scope.badgeLine1,
+            badgeLine1: $scope.eventYear + " BrickSlopes",
             badgeLine2: $scope.badgeLine2,
+            badgeLine3: $scope.badgeLine3,
+            nameBadge: $scope.nameBadge,
             meetAndGreet: $scope.meetAndGreet,
             ageVerification: $scope.ageVerification,
             tShirtSize: $scope.tShirtSize,
@@ -305,6 +309,10 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         $scope.passDates = passDates;
     });
 
+    EventDates.getEventYear($scope.eventId).then(function(eventYear) {
+        $scope.eventYear = eventYear;
+    });
+
     EventDates.getMeetAndGreetDinnerDate($scope.eventId).then(function(meetAndGreetDinnerDate) {
         $scope.meetAndGreetDinnerDate = meetAndGreetDinnerDate;
     });
@@ -312,6 +320,15 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     $scope.closeDialog = function() {
         $location.path("/afol/index.html");
     }
+
+    eventRegistration.get().then(function(data) {
+        var isRegistered = (Object.keys(data).length ? true : false);
+        if (isRegistered) {
+            $location.path("/afol/eventMe.html");
+        }
+    });
+
+
 }])
 .controller('afolEventThemes', ['$scope', '$location', 'Themes', function($scope, $location, Themes) {
     $("#splashPageCTA").hide();

@@ -483,6 +483,42 @@ angular.module('brickSlopes.services', [])
     }
 }])
 .factory('EventRegistration', ['$q', '$http', function($q, $http) {
+    function parseEventRegistrationData(data) {
+        _.each(data, function(eventObj) {
+            eventObj.total = eventObj.lineItems.total;
+            eventObj.tShirtSize = 'NO';
+            eventObj.type = (eventObj.ageVerification == 'YES' ? 'AFOL' : 'TFOL');
+            eventObj.meetAndGreet = 'NO';
+            eventObj.nameBadge = 'NO';
+            eventObj.showBadgeLine1 = false;
+            eventObj.badgeLine1 = 'One';
+            eventObj.showBadgeLine2 = false;
+            eventObj.badgeLine2 = 'Two';
+            eventObj.showBadgeLine3 = false;
+            eventObj.badgeLine3 = 'Three';
+            _.each(eventObj.lineItems.lineItems, function(lineItemObj) {
+                if (lineItemObj.active === 'YES') {
+                    if (lineItemObj.lineItem === 'T-Shirt') {
+                        eventObj.tShirtSize = lineItemObj.size;
+                    } else if (lineItemObj.lineItem === 'Meet and Greet') {
+                        eventObj.meetAndGreet = 'YES'
+                    } else if (lineItemObj.lineItem === 'Event Badge Brick') {
+                        eventObj.badgeLine1 = lineItemObj.description;
+                        eventObj.showBadgeLine1 = true;
+                    } else if (lineItemObj.lineItem === 'Complete Name Badge') {
+                        eventObj.nameBadge = 'YES';
+                    } else if (lineItemObj.lineItem === '1st Badge Brick') {
+                        eventObj.badgeLine2 = lineItemObj.description;
+                        eventObj.showBadgeLine2 = true;
+                    } else if (lineItemObj.lineItem === '2nd Badge Brick') {
+                        eventObj.badgeLine3 = lineItemObj.description;
+                        eventObj.showBadgeLine3 = true;
+                    }
+                }
+            });
+        });
+        return data;
+    }
     return {
         get: function() {
             var delay= $q.defer();
@@ -492,7 +528,7 @@ angular.module('brickSlopes.services', [])
                     url: '/controllers/eventRegistration.php'
                 }
             ).success(function(data, status, headers, config) {
-                delay.resolve(data);
+                delay.resolve(parseEventRegistrationData(data));
             }).error(function(data, status, headers, config) {
                 delay.reject(data);
             });

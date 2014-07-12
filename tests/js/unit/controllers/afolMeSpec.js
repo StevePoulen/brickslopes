@@ -66,10 +66,10 @@ describe('controllers', function() {
             });
         });
 
-        describe('Digest', function() {
+        describe('Digest with all add-ons', function() {
             beforeEach(function() {
                 mockBackend.expectGET('/controllers/eventDates.php').respond(eventDates);
-                mockBackend.expectGET('/controllers/eventRegistration.php').respond({});
+                mockBackend.expectGET('/controllers/eventRegistration.php').respond(eventRegistration);
                 mockBackend.flush();
             });
 
@@ -80,6 +80,123 @@ describe('controllers', function() {
             it('should populate the passDates variable', function() {
                 expect(scope.passDates).toBe('May 14th thru 17th');
             });
+
+            it('should have an age verification attribue in eventList', function() {
+                expect(scope.eventList[0].ageVerification).toBe('YES');
+            });
+
+            it('should have a type attribue in eventList', function() {
+                expect(scope.eventList[0].type).toBe('AFOL');
+            });
+
+            it('should have a paid attribute in eventList', function() {
+                expect(scope.eventList[0].paid).toBe('NO');
+            });
+
+            it('should have a name attribute in eventList', function() {
+                expect(scope.eventList[0].name).toBe('BrickSlopes - Salt Lake City');
+            });
+
+            it('should have a total attribute in eventList', function() {
+                expect(scope.eventList[0].total).toBe('25.00');
+            });
+
+            it('should have a tShirtSize attribute in eventList', function() {
+                expect(scope.eventList[0].tShirtSize).toBe('X-Large');
+            });
+
+            it('should have a tShirtSize attribute in eventList', function() {
+                expect(scope.eventList[0].meetAndGreet).toBe('YES');
+            });
+
+            it('should have a nameBadge attribute in eventList', function() {
+                expect(scope.eventList[0].nameBadge).toBe('YES');
+            });
+
+            it('should have a showBadgeLine1 attribute in eventList', function() {
+                expect(scope.eventList[0].showBadgeLine1).toBe(true);
+            });
+
+            it('should have a badgeLine1 attribute in eventList', function() {
+                expect(scope.eventList[0].badgeLine1).toBe('2015 BrickSlopes');
+            });
+
+            it('should have a showBadgeLine2 attribute in eventList', function() {
+                expect(scope.eventList[0].showBadgeLine2).toBe(true);
+            });
+
+            it('should have a badgeLine2 attribute in eventList', function() {
+                expect(scope.eventList[0].badgeLine2).toBe('Badge Line Two');
+            });
+
+            it('should have a showBadgeLine3 attribute in eventList', function() {
+                expect(scope.eventList[0].showBadgeLine3).toBe(true);
+            });
+
+            it('should have a badgeLine3 attribute in eventList', function() {
+                expect(scope.eventList[0].badgeLine3).toBe('Badge Line Three');
+            });
+
+            describe('line items', function() {
+                var lineItems, total;
+                beforeEach(function() {
+                    lineItems = scope.eventList[0].lineItems.lineItems[0];
+                    total = scope.eventList[0].lineItems.total;
+                });
+
+                it('should have a total attribute', function() {
+                    expect(total).toBe('25.00');
+                });
+
+                it('should have a lineitem attribute', function() {
+                    expect(lineItems.lineItem).toBe('T-Shirt');
+                });
+            });
+        });
+
+        describe('Digest Without add-ons', function() {
+            beforeEach(function() {
+                mockBackend.expectGET('/controllers/eventDates.php').respond(eventDates);
+            });
+
+            it('should have no tShirtSize attribute in eventList', function() {
+                mockBackend.expectGET('/controllers/eventRegistration.php').respond(eventRegistrationNoTShirt);
+                mockBackend.flush();
+                expect(scope.eventList[0].tShirtSize).toBe('NO');
+            });
+
+            it('should have no meetAndGreet attribute in eventList', function() {
+                mockBackend.expectGET('/controllers/eventRegistration.php').respond(eventRegistrationNoMeetAndGreet);
+                mockBackend.flush();
+                expect(scope.eventList[0].meetAndGreet).toBe('NO');
+            });
+
+            it('should have no badgeLine1 attribute in eventList', function() {
+                mockBackend.expectGET('/controllers/eventRegistration.php').respond(eventRegistrationNoMeetAndGreet);
+                mockBackend.flush();
+                expect(scope.eventList[0].showBadgeLine1).toBe(false);
+                expect(scope.eventList[0].badgeLine1).toBe('One');
+            });
+
+            it('should have no badgeLine2 attribute in eventList', function() {
+                mockBackend.expectGET('/controllers/eventRegistration.php').respond(eventRegistrationNoMeetAndGreet);
+                mockBackend.flush();
+                expect(scope.eventList[0].showBadgeLine2).toBe(false);
+                expect(scope.eventList[0].badgeLine2).toBe('Two');
+            });
+
+            it('should have a badgeLine1 and no badgeLine2 attribute in eventList', function() {
+                mockBackend.expectGET('/controllers/eventRegistration.php').respond(eventRegistrationBadgeLineOneOnly);
+                mockBackend.flush();
+                expect(scope.eventList[0].badgeLine1).toBe('Badge Line One');
+                expect(scope.eventList[0].showBadgeLine1).toBe(true);
+                expect(scope.eventList[0].badgeLine2).toBe('Two');
+                expect(scope.eventList[0].showBadgeLine2).toBe(false);
+                expect(scope.eventList[0].badgeLine3).toBe('Three');
+                expect(scope.eventList[0].showBadgeLine3).toBe(false);
+                expect(scope.eventList[0].badgeLine2).toBe('Two');
+                expect(scope.eventList[0].showBadgeLine2).toBe(false);
+            });
         });
 
         describe('Change Password', function() {
@@ -88,7 +205,7 @@ describe('controllers', function() {
                 scope.changePasswordForm = {'$setPristine': function() {}};
                 expect(scope.verifying).toBe(true);
                 mockBackend.expectGET('/controllers/eventDates.php').respond(eventDates);
-                mockBackend.expectGET('/controllers/eventRegistration.php').respond({});
+                mockBackend.expectGET('/controllers/eventRegistration.php').respond(eventRegistration);
                 mockBackend.expectPATCH('/controllers/authentication.php').respond(201);
                 mockBackend.flush();
                 expect(scope.verifying).toBe(false);
@@ -107,7 +224,7 @@ describe('controllers', function() {
                 scope.changePasswordForm = {'$setPristine': function() {}};
                 expect(scope.verifying).toBe(true);
                 mockBackend.expectGET('/controllers/eventDates.php').respond(eventDates);
-                mockBackend.expectGET('/controllers/eventRegistration.php').respond({});
+                mockBackend.expectGET('/controllers/eventRegistration.php').respond(eventRegistration);
                 mockBackend.expectPATCH('/controllers/authentication.php').respond(412);
                 mockBackend.flush();
                 expect(scope.verifying).toBe(false);

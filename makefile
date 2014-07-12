@@ -13,7 +13,7 @@ lint:
 
 # Performs code governance (lint + style) test for css
 csslint:
-	@$(CSSLINT_PATH) ./app/css/*
+	@$(CSSLINT_PATH) --quiet --ignore=overqualified-elements,import,ids,box-model,adjoining-classes,box-sizing,outline-none ./app/css/*
 
 # Performs JavaScript unit tests
 unit_js:
@@ -37,7 +37,7 @@ compass_compile:
 # Run all test targets
 test:
 	@make unit_php
-	#@make csslint
+	@make csslint
 	@make lint
 	@make unit_js
 	@make e2e_js

@@ -12,107 +12,310 @@
 @import url("/css/lego.css");
 /* Smartphones (portrait and landscape) ----------- */
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
-  /* Styles */
+  /* line 28, ../../compass/assets/sass/brickslopes.scss */
+  #dashboard, #eventDashboard, #eventThemes, #eventRegistration {
+    height: 700px;
+  }
+
+  /* line 32, ../../compass/assets/sass/brickslopes.scss */
+  #panes {
+    height: 700px;
+  }
+
+  /* line 36, ../../compass/assets/sass/brickslopes.scss */
+  #dashboardText {
+    min-height: 670px;
+    height: auto;
+  }
+
+  /* line 41, ../../compass/assets/sass/brickslopes.scss */
+  #splashPage {
+    height: 690px;
+  }
 }
 /* Smartphones (landscape) ----------- */
 @media only screen and (min-width: 321px) {
-  /* Styles */
+  /* line 49, ../../compass/assets/sass/brickslopes.scss */
+  #dashboard, #eventDashboard, #eventThemes, #eventRegistration {
+    height: 700px;
+  }
+
+  /* line 53, ../../compass/assets/sass/brickslopes.scss */
+  #panes {
+    height: 700px;
+  }
+
+  /* line 57, ../../compass/assets/sass/brickslopes.scss */
+  #dashboardText {
+    min-height: 670px;
+    height: auto;
+  }
+
+  /* line 62, ../../compass/assets/sass/brickslopes.scss */
+  #splashPage {
+    height: 690px;
+  }
 }
 /* Smartphones (portrait) ----------- */
 @media only screen and (max-width: 320px) {
-  /* Styles */
-}
-/* iPads (portrait and landscape) ----------- */
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
-  /* Styles */
-}
-/* iPads (landscape) ----------- */
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
-  /* Styles */
-}
-/* iPads (portrait) ----------- */
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
-  /* Styles */
-}
-/* iPhone 4 ----------- */
-@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5) {
-  /* Styles */
-}
-/* Desktops and laptops ----------- */
-@media only screen and (min-width: 1224px) {
+  /* line 70, ../../compass/assets/sass/brickslopes.scss */
+  #dashboard, #eventDashboard, #eventThemes, #eventRegistration {
+    height: 700px;
+  }
+
   /* line 74, ../../compass/assets/sass/brickslopes.scss */
-  #dashboard, #eventDashboard, #panes {
-    height: 795px;
+  #panes {
+    height: 700px;
   }
 
   /* line 78, ../../compass/assets/sass/brickslopes.scss */
   #dashboardText {
-    min-height: 765px;
+    min-height: 670px;
     height: auto;
   }
 
   /* line 83, ../../compass/assets/sass/brickslopes.scss */
   #splashPage {
-    height: 685px;
+    height: 690px;
+  }
+}
+/* iPads (portrait and landscape) ----------- */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+  /* line 92, ../../compass/assets/sass/brickslopes.scss */
+  #dashboard, #eventDashboard, #eventThemes, #eventRegistration {
+    height: 700px;
+  }
+
+  /* line 96, ../../compass/assets/sass/brickslopes.scss */
+  #panes {
+    height: 700px;
+  }
+
+  /* line 100, ../../compass/assets/sass/brickslopes.scss */
+  #dashboardText {
+    min-height: 670px;
+    height: auto;
+  }
+
+  /* line 105, ../../compass/assets/sass/brickslopes.scss */
+  #splashPage {
+    height: 690px;
+  }
+}
+/* iPads (landscape) ----------- */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
+  /* line 115, ../../compass/assets/sass/brickslopes.scss */
+  #dashboard, #eventDashboard, #eventThemes, #eventRegistration {
+    height: 700px;
+  }
+
+  /* line 119, ../../compass/assets/sass/brickslopes.scss */
+  #panes {
+    height: 700px;
+  }
+
+  /* line 123, ../../compass/assets/sass/brickslopes.scss */
+  #dashboardText {
+    min-height: 670px;
+    height: auto;
+  }
+
+  /* line 128, ../../compass/assets/sass/brickslopes.scss */
+  #splashPage {
+    height: 690px;
+  }
+}
+/* iPads (portrait) ----------- */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
+  /* line 138, ../../compass/assets/sass/brickslopes.scss */
+  #dashboard, #eventDashboard, #eventThemes, #eventRegistration {
+    height: 700px;
+  }
+
+  /* line 142, ../../compass/assets/sass/brickslopes.scss */
+  #panes {
+    height: 700px;
+  }
+
+  /* line 146, ../../compass/assets/sass/brickslopes.scss */
+  #dashboardText {
+    min-height: 670px;
+    height: auto;
+  }
+
+  /* line 151, ../../compass/assets/sass/brickslopes.scss */
+  #splashPage {
+    height: 690px;
+  }
+}
+/* iPhone 4 ----------- */
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5) {
+  /* line 160, ../../compass/assets/sass/brickslopes.scss */
+  #dashboard, #eventDashboard, #eventThemes, #eventRegistration {
+    height: 700px;
+  }
+
+  /* line 164, ../../compass/assets/sass/brickslopes.scss */
+  #panes {
+    height: 700px;
+  }
+
+  /* line 168, ../../compass/assets/sass/brickslopes.scss */
+  #dashboardText {
+    min-height: 670px;
+    height: auto;
+  }
+
+  /* line 173, ../../compass/assets/sass/brickslopes.scss */
+  #splashPage {
+    height: 690px;
+  }
+}
+/* Desktops and laptops ----------- */
+@media only screen and (min-width: 1224px) {
+  /* line 180, ../../compass/assets/sass/brickslopes.scss */
+  #dashboard, #eventDashboard, #eventThemes, #eventRegistration {
+    height: 700px;
+  }
+
+  /* line 184, ../../compass/assets/sass/brickslopes.scss */
+  #panes {
+    height: 700px;
+  }
+
+  /* line 188, ../../compass/assets/sass/brickslopes.scss */
+  #dashboardText {
+    min-height: 670px;
+    height: auto;
+  }
+
+  /* line 193, ../../compass/assets/sass/brickslopes.scss */
+  #splashPage {
+    height: 690px;
   }
 }
 /* Large screens ----------- */
 @media only screen and (min-width: 1824px) {
-  /* line 91, ../../compass/assets/sass/brickslopes.scss */
-  #dashboard, #eventDashboard, #panes {
-    height: 795px;
+  /* line 201, ../../compass/assets/sass/brickslopes.scss */
+  #dashboard, #eventDashboard, #eventThemes, #eventRegistration {
+    height: 700px;
   }
 
-  /* line 95, ../../compass/assets/sass/brickslopes.scss */
+  /* line 205, ../../compass/assets/sass/brickslopes.scss */
+  #panes {
+    height: 700px;
+  }
+
+  /* line 209, ../../compass/assets/sass/brickslopes.scss */
   #dashboardText {
     height: auto;
-    min-height: 765px;
+    min-height: 670px;
   }
 
-  /* line 100, ../../compass/assets/sass/brickslopes.scss */
+  /* line 214, ../../compass/assets/sass/brickslopes.scss */
   #splashPage {
-    height: 685px;
+    height: 690px;
   }
 }
-/* line 105, ../../compass/assets/sass/brickslopes.scss */
+/* line 219, ../../compass/assets/sass/brickslopes.scss */
 #brickslopes {
   position: relative;
-  top: 0px;
-  bottom: 0px;
-  left: 0px;
-  width: 1250px;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 1225px;
   height: 100%;
   margin-left: auto;
   margin-right: auto;
   text-align: center;
 }
-
-/* line 117, ../../compass/assets/sass/brickslopes.scss */
-#header {
+/* line 230, ../../compass/assets/sass/brickslopes.scss */
+#brickslopes .animationContainer {
   position: relative;
-  top: 0px;
-  left: 0px;
-  width: 1230px;
-  height: 100px;
   margin-left: auto;
   margin-right: auto;
-  border: 0px solid white;
+  border: none;
+  width: 1225px;
+  min-height: 700px;
+  height: auto;
 }
-/* line 127, ../../compass/assets/sass/brickslopes.scss */
-#header #eventContainer {
+/* line 240, ../../compass/assets/sass/brickslopes.scss */
+#brickslopes #splashPageCTA {
+  position: relative;
+  width: 1225px;
+  top: 5px;
+  left: 0;
+  height: 90px;
+  text-align: center;
+  border: none;
+  z-index: 100;
+  display: none;
+}
+/* line 251, ../../compass/assets/sass/brickslopes.scss */
+#brickslopes #splashPageCTA #countDown {
+  position: absolute;
+  right: 40px;
+  border: none;
+  height: 90px;
+  width: 500px;
+}
+/* line 259, ../../compass/assets/sass/brickslopes.scss */
+#brickslopes #splashPageCTA #childPackages {
+  position: absolute;
+  left: 100px;
+  height: 90px;
+  width: 500px;
+  border: 1px solid white;
+  background: white;
+  border-radius: 10px;
+}
+/* line 268, ../../compass/assets/sass/brickslopes.scss */
+#brickslopes #splashPageCTA #childPackages .text {
+  position: absolute;
+  left: 2px;
+  height: 90px;
+  width: 300px;
+  top: 2px;
+  border: none;
+}
+/* line 277, ../../compass/assets/sass/brickslopes.scss */
+#brickslopes #splashPageCTA #childPackages .buyTicketsButton {
+  position: absolute;
+  right: 25px;
+  top: 15px;
+}
+/* line 285, ../../compass/assets/sass/brickslopes.scss */
+#brickslopes #header {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 1230px;
+  height: 125px;
+  margin-left: auto;
+  margin-right: auto;
+  border: none;
+}
+/* line 295, ../../compass/assets/sass/brickslopes.scss */
+#brickslopes #header #logo {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+/* line 301, ../../compass/assets/sass/brickslopes.scss */
+#brickslopes #header #eventContainer {
   position: absolute;
   top: 30px;
-  right: 0px;
+  right: 0;
   width: 700px;
   height: 70px;
-  border: 0px solid white;
+  border: none;
 }
-/* line 135, ../../compass/assets/sass/brickslopes.scss */
-#header #eventContainer a {
+/* line 309, ../../compass/assets/sass/brickslopes.scss */
+#brickslopes #header #eventContainer a {
   margin: 10px;
 }
-/* line 140, ../../compass/assets/sass/brickslopes.scss */
-#header #afolContainer {
+/* line 314, ../../compass/assets/sass/brickslopes.scss */
+#brickslopes #header #afolContainer {
   position: absolute;
   top: 5px;
   right: 10px;
@@ -124,38 +327,42 @@
   padding-right: 10px;
   cursor: pointer;
 }
-
-/* line 154, ../../compass/assets/sass/brickslopes.scss */
-#dashboard, #eventDashboard {
+/* line 328, ../../compass/assets/sass/brickslopes.scss */
+#brickslopes #copyright {
   position: relative;
-  top: 25px;
-  left: 0;
-  width: 1245px;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 25px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: 1225px;
+  height: auto;
+  z-index: 2;
+  color: white;
+  text-align: center;
 }
-
-/* line 163, ../../compass/assets/sass/brickslopes.scss */
-#eventDashboard {
-  background-color: white;
-  border-radius: 25px;
+/* line 342, ../../compass/assets/sass/brickslopes.scss */
+#brickslopes #dashboard, #brickslopes #eventDashboard, #brickslopes #eventThemes, #brickslopes #eventRegistration {
+  position: relative;
+  width: 1225px;
+  margin-left: auto;
+  margin-right: auto;
+  border: none;
 }
-
-/* line 169, ../../compass/assets/sass/brickslopes.scss */
-#splashPage {
+/* line 349, ../../compass/assets/sass/brickslopes.scss */
+#brickslopes #dashboard #splashPage, #brickslopes #eventDashboard #splashPage, #brickslopes #eventThemes #splashPage, #brickslopes #eventRegistration #splashPage {
   position: absolute;
-  top: 0px;
-  left: 15px;
-  width: 1218px;
+  left: 5px;
+  width: 1205px;
   text-align: center;
   border: 5px solid #35469a;
   background: white;
   border-radius: 10px;
 }
-/* line 179, ../../compass/assets/sass/brickslopes.scss */
-#splashPage #splashText {
+/* line 358, ../../compass/assets/sass/brickslopes.scss */
+#brickslopes #dashboard #splashPage #splashText, #brickslopes #eventDashboard #splashPage #splashText, #brickslopes #eventThemes #splashPage #splashText, #brickslopes #eventRegistration #splashPage #splashText {
   position: absolute;
-  border: 0px solid yellow;
+  border: none;
   top: 5px;
   left: 5px;
   height: 400px;
@@ -167,8 +374,8 @@
   color: black;
   background: white;
 }
-/* line 194, ../../compass/assets/sass/brickslopes.scss */
-#splashPage .splashTextHome {
+/* line 373, ../../compass/assets/sass/brickslopes.scss */
+#brickslopes #dashboard #splashPage .splashTextHome, #brickslopes #eventDashboard #splashPage .splashTextHome, #brickslopes #eventThemes #splashPage .splashTextHome, #brickslopes #eventRegistration #splashPage .splashTextHome {
   position: absolute;
   border-radius: 10px;
   right: 60px;
@@ -184,24 +391,24 @@
   z-index: 3;
   border: 5px solid #35469a;
 }
-/* line 210, ../../compass/assets/sass/brickslopes.scss */
-#splashPage .splashTextHome .bigger2015 {
+/* line 389, ../../compass/assets/sass/brickslopes.scss */
+#brickslopes #dashboard #splashPage .splashTextHome .bigger2015, #brickslopes #eventDashboard #splashPage .splashTextHome .bigger2015, #brickslopes #eventThemes #splashPage .splashTextHome .bigger2015, #brickslopes #eventRegistration #splashPage .splashTextHome .bigger2015 {
   position: absolute;
   right: 10px;
   bottom: 30px;
   width: 300px;
   border: none;
 }
-/* line 218, ../../compass/assets/sass/brickslopes.scss */
-#splashPage .splashTextHome #splashTextEmailUs {
+/* line 397, ../../compass/assets/sass/brickslopes.scss */
+#brickslopes #dashboard #splashPage .splashTextHome #splashTextEmailUs, #brickslopes #eventDashboard #splashPage .splashTextHome #splashTextEmailUs, #brickslopes #eventThemes #splashPage .splashTextHome #splashTextEmailUs, #brickslopes #eventRegistration #splashPage .splashTextHome #splashTextEmailUs {
   position: relative;
-  left: 131.25px;
+  left: 126.25px;
   width: 350px;
   border: none;
   text-align: left;
 }
-/* line 225, ../../compass/assets/sass/brickslopes.scss */
-#splashPage .splashTextHome #splashTextEmailUs .loginField, #splashPage .splashTextHome #splashTextEmailUs .captchaField {
+/* line 404, ../../compass/assets/sass/brickslopes.scss */
+#brickslopes #dashboard #splashPage .splashTextHome #splashTextEmailUs .loginField, #brickslopes #eventDashboard #splashPage .splashTextHome #splashTextEmailUs .loginField, #brickslopes #eventThemes #splashPage .splashTextHome #splashTextEmailUs .loginField, #brickslopes #eventRegistration #splashPage .splashTextHome #splashTextEmailUs .loginField, #brickslopes #dashboard #splashPage .splashTextHome #splashTextEmailUs .captchaField, #brickslopes #eventDashboard #splashPage .splashTextHome #splashTextEmailUs .captchaField, #brickslopes #eventThemes #splashPage .splashTextHome #splashTextEmailUs .captchaField, #brickslopes #eventRegistration #splashPage .splashTextHome #splashTextEmailUs .captchaField {
   margin-bottom: 10px;
   border: 1px solid #BCBEBF;
   border-radius: 5px;
@@ -210,12 +417,12 @@
   padding-top: 7.5px;
   padding-left: 10px;
 }
-/* line 235, ../../compass/assets/sass/brickslopes.scss */
-#splashPage .splashTextHome #splashTextEmailUs .loginField input, #splashPage .splashTextHome #splashTextEmailUs .captchaField input {
+/* line 414, ../../compass/assets/sass/brickslopes.scss */
+#brickslopes #dashboard #splashPage .splashTextHome #splashTextEmailUs .loginField input, #brickslopes #eventDashboard #splashPage .splashTextHome #splashTextEmailUs .loginField input, #brickslopes #eventThemes #splashPage .splashTextHome #splashTextEmailUs .loginField input, #brickslopes #eventRegistration #splashPage .splashTextHome #splashTextEmailUs .loginField input, #brickslopes #dashboard #splashPage .splashTextHome #splashTextEmailUs .captchaField input, #brickslopes #eventDashboard #splashPage .splashTextHome #splashTextEmailUs .captchaField input, #brickslopes #eventThemes #splashPage .splashTextHome #splashTextEmailUs .captchaField input, #brickslopes #eventRegistration #splashPage .splashTextHome #splashTextEmailUs .captchaField input {
   width: 325px;
 }
-/* line 242, ../../compass/assets/sass/brickslopes.scss */
-#splashPage .splashTextHome #splashTextEmailUs .captchaField .captcha {
+/* line 421, ../../compass/assets/sass/brickslopes.scss */
+#brickslopes #dashboard #splashPage .splashTextHome #splashTextEmailUs .captchaField .captcha, #brickslopes #eventDashboard #splashPage .splashTextHome #splashTextEmailUs .captchaField .captcha, #brickslopes #eventThemes #splashPage .splashTextHome #splashTextEmailUs .captchaField .captcha, #brickslopes #eventRegistration #splashPage .splashTextHome #splashTextEmailUs .captchaField .captcha {
   position: absolute;
   right: 5px;
   bottom: 64px;
@@ -228,12 +435,12 @@
   width: 150px;
   text-align: center;
 }
-/* line 256, ../../compass/assets/sass/brickslopes.scss */
-#splashPage .splashTextHome #splashTextEmailUs .captchaField input {
+/* line 435, ../../compass/assets/sass/brickslopes.scss */
+#brickslopes #dashboard #splashPage .splashTextHome #splashTextEmailUs .captchaField input, #brickslopes #eventDashboard #splashPage .splashTextHome #splashTextEmailUs .captchaField input, #brickslopes #eventThemes #splashPage .splashTextHome #splashTextEmailUs .captchaField input, #brickslopes #eventRegistration #splashPage .splashTextHome #splashTextEmailUs .captchaField input {
   width: 150px;
 }
-/* line 262, ../../compass/assets/sass/brickslopes.scss */
-#splashPage .splashTextHome #splashTextEmailUs .commentsField textarea {
+/* line 441, ../../compass/assets/sass/brickslopes.scss */
+#brickslopes #dashboard #splashPage .splashTextHome #splashTextEmailUs .commentsField textarea, #brickslopes #eventDashboard #splashPage .splashTextHome #splashTextEmailUs .commentsField textarea, #brickslopes #eventThemes #splashPage .splashTextHome #splashTextEmailUs .commentsField textarea, #brickslopes #eventRegistration #splashPage .splashTextHome #splashTextEmailUs .commentsField textarea {
   width: 350px;
   height: 100px;
   border: 1px solid #BCBEBF;
@@ -241,72 +448,72 @@
   margin-bottom: 10px;
   padding-top: 10px;
 }
-/* line 272, ../../compass/assets/sass/brickslopes.scss */
-#splashPage .splashTextHome .splashFigJackSparrow {
+/* line 451, ../../compass/assets/sass/brickslopes.scss */
+#brickslopes #dashboard #splashPage .splashTextHome .splashFigJackSparrow, #brickslopes #eventDashboard #splashPage .splashTextHome .splashFigJackSparrow, #brickslopes #eventThemes #splashPage .splashTextHome .splashFigJackSparrow, #brickslopes #eventRegistration #splashPage .splashTextHome .splashFigJackSparrow {
   position: absolute;
   z-index: 5;
   height: 50px;
   bottom: 50px;
   right: -95px;
 }
-/* line 280, ../../compass/assets/sass/brickslopes.scss */
-#splashPage .splashTextHome .splashFigEmmet {
+/* line 459, ../../compass/assets/sass/brickslopes.scss */
+#brickslopes #dashboard #splashPage .splashTextHome .splashFigEmmet, #brickslopes #eventDashboard #splashPage .splashTextHome .splashFigEmmet, #brickslopes #eventThemes #splashPage .splashTextHome .splashFigEmmet, #brickslopes #eventRegistration #splashPage .splashTextHome .splashFigEmmet {
   position: absolute;
   z-index: 5;
   height: 50px;
   bottom: 150px;
   right: 95px;
 }
-/* line 288, ../../compass/assets/sass/brickslopes.scss */
-#splashPage .splashTextHome .splashFigWyldStyle {
+/* line 467, ../../compass/assets/sass/brickslopes.scss */
+#brickslopes #dashboard #splashPage .splashTextHome .splashFigWyldStyle, #brickslopes #eventDashboard #splashPage .splashTextHome .splashFigWyldStyle, #brickslopes #eventThemes #splashPage .splashTextHome .splashFigWyldStyle, #brickslopes #eventRegistration #splashPage .splashTextHome .splashFigWyldStyle {
   position: absolute;
   z-index: 5;
   height: 50px;
   bottom: 150px;
   right: 25px;
 }
-/* line 296, ../../compass/assets/sass/brickslopes.scss */
-#splashPage .splashTextHome .splashMilleniumFalcon {
+/* line 475, ../../compass/assets/sass/brickslopes.scss */
+#brickslopes #dashboard #splashPage .splashTextHome .splashMilleniumFalcon, #brickslopes #eventDashboard #splashPage .splashTextHome .splashMilleniumFalcon, #brickslopes #eventThemes #splashPage .splashTextHome .splashMilleniumFalcon, #brickslopes #eventRegistration #splashPage .splashTextHome .splashMilleniumFalcon {
   position: absolute;
   z-index: 5;
   height: 50px;
   bottom: 25px;
   right: -95px;
 }
-/* line 304, ../../compass/assets/sass/brickslopes.scss */
-#splashPage .splashTextHome .splashFigBatman {
+/* line 483, ../../compass/assets/sass/brickslopes.scss */
+#brickslopes #dashboard #splashPage .splashTextHome .splashFigBatman, #brickslopes #eventDashboard #splashPage .splashTextHome .splashFigBatman, #brickslopes #eventThemes #splashPage .splashTextHome .splashFigBatman, #brickslopes #eventRegistration #splashPage .splashTextHome .splashFigBatman {
   position: absolute;
   z-index: 5;
   height: 50px;
   bottom: 72px;
   left: -35px;
 }
-/* line 312, ../../compass/assets/sass/brickslopes.scss */
-#splashPage .splashTextHome .splashFigSuperMan {
+/* line 491, ../../compass/assets/sass/brickslopes.scss */
+#brickslopes #dashboard #splashPage .splashTextHome .splashFigSuperMan, #brickslopes #eventDashboard #splashPage .splashTextHome .splashFigSuperMan, #brickslopes #eventThemes #splashPage .splashTextHome .splashFigSuperMan, #brickslopes #eventRegistration #splashPage .splashTextHome .splashFigSuperMan {
   position: absolute;
   z-index: 5;
   height: 50px;
   bottom: 65px;
   left: -35px;
 }
-/* line 320, ../../compass/assets/sass/brickslopes.scss */
-#splashPage .splashTextHome .splashFigPresidentBusiness {
+/* line 499, ../../compass/assets/sass/brickslopes.scss */
+#brickslopes #dashboard #splashPage .splashTextHome .splashFigPresidentBusiness, #brickslopes #eventDashboard #splashPage .splashTextHome .splashFigPresidentBusiness, #brickslopes #eventThemes #splashPage .splashTextHome .splashFigPresidentBusiness, #brickslopes #eventRegistration #splashPage .splashTextHome .splashFigPresidentBusiness {
   position: absolute;
   z-index: -1;
   height: 50px;
   bottom: 165px;
   left: 5px;
 }
-/* line 328, ../../compass/assets/sass/brickslopes.scss */
-#splashPage .splashTextHome .splashFigVitruvius {
+/* line 507, ../../compass/assets/sass/brickslopes.scss */
+#brickslopes #dashboard #splashPage .splashTextHome .splashFigVitruvius, #brickslopes #eventDashboard #splashPage .splashTextHome .splashFigVitruvius, #brickslopes #eventThemes #splashPage .splashTextHome .splashFigVitruvius, #brickslopes #eventRegistration #splashPage .splashTextHome .splashFigVitruvius {
   position: absolute;
   z-index: -1;
   height: 50px;
   bottom: 325px;
   right: 15px;
 }
-/* line 336, ../../compass/assets/sass/brickslopes.scss */
-#splashPage .splashTextHome .splashCrowd {
+/* line 515, ../../compass/assets/sass/brickslopes.scss */
+#brickslopes #dashboard #splashPage .splashTextHome .splashCrowd, #brickslopes #eventDashboard #splashPage .splashTextHome .splashCrowd, #brickslopes #eventThemes #splashPage .splashTextHome .splashCrowd, #brickslopes #eventRegistration #splashPage .splashTextHome .splashCrowd {
   position: absolute;
   z-index: -1;
   height: 50px;
@@ -314,8 +521,8 @@
   left: -15px;
   border-radius: 10px;
 }
-/* line 346, ../../compass/assets/sass/brickslopes.scss */
-#splashPage .imageLeft {
+/* line 525, ../../compass/assets/sass/brickslopes.scss */
+#brickslopes #dashboard #splashPage .imageLeft, #brickslopes #eventDashboard #splashPage .imageLeft, #brickslopes #eventThemes #splashPage .imageLeft, #brickslopes #eventRegistration #splashPage .imageLeft {
   position: absolute;
   top: 125px;
   left: 50px;
@@ -325,8 +532,8 @@
   border-radius: 5px;
   overflow: hidden;
 }
-/* line 357, ../../compass/assets/sass/brickslopes.scss */
-#splashPage .imageRight {
+/* line 536, ../../compass/assets/sass/brickslopes.scss */
+#brickslopes #dashboard #splashPage .imageRight, #brickslopes #eventDashboard #splashPage .imageRight, #brickslopes #eventThemes #splashPage .imageRight, #brickslopes #eventRegistration #splashPage .imageRight {
   position: absolute;
   top: 325px;
   left: 225px;
@@ -336,12 +543,12 @@
   border-radius: 5px;
   overflow: hidden;
 }
-/* line 368, ../../compass/assets/sass/brickslopes.scss */
-#splashPage .publicImage {
+/* line 547, ../../compass/assets/sass/brickslopes.scss */
+#brickslopes #dashboard #splashPage .publicImage, #brickslopes #eventDashboard #splashPage .publicImage, #brickslopes #eventThemes #splashPage .publicImage, #brickslopes #eventRegistration #splashPage .publicImage {
   height: 250px;
 }
-/* line 373, ../../compass/assets/sass/brickslopes.scss */
-#splashPage #splashDDCouch {
+/* line 552, ../../compass/assets/sass/brickslopes.scss */
+#brickslopes #dashboard #splashPage #splashDDCouch, #brickslopes #eventDashboard #splashPage #splashDDCouch, #brickslopes #eventThemes #splashPage #splashDDCouch, #brickslopes #eventRegistration #splashPage #splashDDCouch {
   position: absolute;
   z-index: 5;
   height: 50px;
@@ -349,8 +556,8 @@
   bottom: 160px;
   left: 30px;
 }
-/* line 382, ../../compass/assets/sass/brickslopes.scss */
-#splashPage #publicTickets {
+/* line 561, ../../compass/assets/sass/brickslopes.scss */
+#brickslopes #dashboard #splashPage #publicTickets, #brickslopes #eventDashboard #splashPage #publicTickets, #brickslopes #eventThemes #splashPage #publicTickets, #brickslopes #eventRegistration #splashPage #publicTickets {
   position: absolute;
   z-index: 2;
   height: 225px;
@@ -360,8 +567,8 @@
   border: 5px solid #35469a;
   border-radius: 10px;
 }
-/* line 392, ../../compass/assets/sass/brickslopes.scss */
-#splashPage #publicTickets #publicTicketsText {
+/* line 571, ../../compass/assets/sass/brickslopes.scss */
+#brickslopes #dashboard #splashPage #publicTickets #publicTicketsText, #brickslopes #eventDashboard #splashPage #publicTickets #publicTicketsText, #brickslopes #eventThemes #splashPage #publicTickets #publicTicketsText, #brickslopes #eventRegistration #splashPage #publicTickets #publicTicketsText {
   position: absolute;
   z-index: 2;
   top: 10px;
@@ -372,106 +579,80 @@
   border: none;
   border-radius: 10px;
 }
-/* line 404, ../../compass/assets/sass/brickslopes.scss */
-#splashPage #publicTickets .buyTicketsButton {
+/* line 583, ../../compass/assets/sass/brickslopes.scss */
+#brickslopes #dashboard #splashPage #publicTickets .buyTicketsButton, #brickslopes #eventDashboard #splashPage #publicTickets .buyTicketsButton, #brickslopes #eventThemes #splashPage #publicTickets .buyTicketsButton, #brickslopes #eventRegistration #splashPage #publicTickets .buyTicketsButton {
   position: absolute;
   right: 25px;
   bottom: 30px;
 }
 
-/* line 412, ../../compass/assets/sass/brickslopes.scss */
-#splashPageCTA {
-  position: absolute;
-  width: 1245px;
-  bottom: 65px;
-  left: 15px;
-  width: 1218px;
-  height: 90px;
-  text-align: center;
-  border: none;
-  z-index: 100;
-  display: none;
-}
-/* line 424, ../../compass/assets/sass/brickslopes.scss */
-#splashPageCTA #countDown {
-  position: absolute;
-  right: 10px;
-  border: none;
-  height: 90px;
-  bottom: 0;
-  width: 500px;
-}
-/* line 433, ../../compass/assets/sass/brickslopes.scss */
-#splashPageCTA #childPackages {
-  position: absolute;
-  left: 100px;
-  height: 90px;
-  bottom: 0;
-  width: 500px;
-  border: 1px solid white;
-  background: white;
-  border-radius: 10px;
-}
-/* line 443, ../../compass/assets/sass/brickslopes.scss */
-#splashPageCTA #childPackages .text {
-  position: absolute;
-  left: 2px;
-  height: 90px;
-  width: 300px;
-  top: 2px;
-  border: none;
-}
-/* line 452, ../../compass/assets/sass/brickslopes.scss */
-#splashPageCTA #childPackages .buyTicketsButton {
-  position: absolute;
-  right: 25px;
-  top: 15px;
-}
-
-/* line 460, ../../compass/assets/sass/brickslopes.scss */
-#logo {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-}
-
-/* line 466, ../../compass/assets/sass/brickslopes.scss */
-#copyright {
-  position: absolute;
-  bottom: 0px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 25px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  width: 1245px;
-  height: auto;
-  z-index: 2;
-  color: white;
-  text-align: center;
-}
-
-/* line 483, ../../compass/assets/sass/brickslopes.scss */
+/* line 596, ../../compass/assets/sass/brickslopes.scss */
 .fig {
   height: 175px;
 }
 
-/* line 487, ../../compass/assets/sass/brickslopes.scss */
+/* line 600, ../../compass/assets/sass/brickslopes.scss */
 .figLarge {
   height: 225px;
 }
 
-/* line 491, ../../compass/assets/sass/brickslopes.scss */
+/* line 604, ../../compass/assets/sass/brickslopes.scss */
 .figXLarge {
   height: 250px;
 }
 
-/* line 495, ../../compass/assets/sass/brickslopes.scss */
+/* line 608, ../../compass/assets/sass/brickslopes.scss */
 img#miniAFOLRegistrationImage {
   height: 75px;
 }
 
-/* line 499, ../../compass/assets/sass/brickslopes.scss */
+/* line 612, ../../compass/assets/sass/brickslopes.scss */
 img#miniStarWars {
   height: 125px;
+}
+
+/* line 616, ../../compass/assets/sass/brickslopes.scss */
+#eventDashboard, #eventThemes, #eventRegistration {
+  background-color: white;
+  border-radius: 25px;
+}
+
+/* line 623, ../../compass/assets/sass/brickslopes.scss */
+#eventThemes {
+  height: 1750px;
+}
+/* line 627, ../../compass/assets/sass/brickslopes.scss */
+#eventThemes .eventThemesText {
+  position: absolute;
+  border-radius: 25px;
+  height: 1750px;
+  padding: 15px;
+  font-size: 100%;
+  text-align: left;
+  width: 1195px;
+  color: black;
+  background: white;
+  display: table;
+  line-height: normal;
+  vertical-align: middle;
+}
+
+/* line 644, ../../compass/assets/sass/brickslopes.scss */
+#eventRegistration {
+  height: 1210px;
+}
+/* line 648, ../../compass/assets/sass/brickslopes.scss */
+#eventRegistration .eventRegistrationText {
+  position: absolute;
+  border-radius: 25px;
+  height: 1210px;
+  padding: 15px;
+  font-size: 1.05em;
+  text-align: left;
+  width: 1195px;
+  color: black;
+  background: white;
+  display: table;
+  line-height: normal;
+  vertical-align: middle;
 }

@@ -1,5 +1,5 @@
 /* line 1, ../../compass/assets/sass/moc.scss */
-div#mocRegistrationCard {
+#mocRegistrationCard {
   position: absolute;
   top: 50px;
   right: 10px;
@@ -14,7 +14,7 @@ div#mocRegistrationCard {
 }
 
 /* line 15, ../../compass/assets/sass/moc.scss */
-div#mocRegistrationCatagoriesCard {
+#mocRegistrationCatagoriesCard {
   position: absolute;
   top: 360px;
   right: 10px;
@@ -50,7 +50,7 @@ div#mocRegistrationCatagoriesCard {
   left: 25px;
   height: 200px;
   text-align: center;
-  border: 0px solid red;
+  border: none;
 }
 
 /* line 52, ../../compass/assets/sass/moc.scss */
@@ -61,7 +61,7 @@ div#mocRegistrationCatagoriesCard {
   bottom: 40px;
   z-index: 1;
   font-size: 1em;
-  border: 0px solid red;
+  border: none;
 }
 
 /* line 62, ../../compass/assets/sass/moc.scss */
@@ -72,7 +72,7 @@ div#mocRegistrationCatagoriesCard {
   bottom: 5px;
   z-index: 1;
   font-size: 1.5em;
-  border: 0px solid red;
+  border: none;
 }
 
 /* line 72, ../../compass/assets/sass/moc.scss */
@@ -85,7 +85,7 @@ div#mocRegistrationCatagoriesCard {
 /* line 78, ../../compass/assets/sass/moc.scss */
 .mocListContainer {
   width: 960px;
-  border: 0px solid black;
+  border: none;
 }
 
 /* line 83, ../../compass/assets/sass/moc.scss */
@@ -98,10 +98,10 @@ div#mocRegistrationCatagoriesCard {
 }
 
 /* line 91, ../../compass/assets/sass/moc.scss */
-div.mocListTitle {
+.mocListTitle {
   position: relative;
   width: 550px;
-  border: 0px solid black;
+  border: none;
   text-align: center;
   font-size: 1.50em;
   float: left;
@@ -110,10 +110,10 @@ div.mocListTitle {
 }
 
 /* line 102, ../../compass/assets/sass/moc.scss */
-div.mocListBuilder {
+.mocListBuilder {
   position: relative;
   width: 400px;
-  border: 0px solid black;
+  border: none;
   text-align: center;
   font-size: 1.25em;
   float: left;

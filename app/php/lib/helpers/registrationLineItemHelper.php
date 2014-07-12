@@ -11,6 +11,7 @@
             $this->addEventLineItem($data);
             $this->addMeetAndGreetLineItem($data);
             $this->addTShirtLineItem($data);
+            $this->addBricks($data);
         }
 
         private function determineLineItemAmounts($data) {
@@ -31,6 +32,30 @@
 
         private function registrarGetsADiscount($discountDate) {
             return strtotime('now') < strtotime($discountDate);
+        }
+
+        private function addBrickLineItem($data, $lineItem, $brickType) {
+            $dto = $this->getDTO($data);
+            $dto['amount'] = 0;
+            $dto['discount'] = 'YES';
+            $dto['lineItem'] = $lineItem;
+            $dto['description'] = $data[$brickType];
+            $this->registrationLineItemObj->addRegistrationLineItems($dto);
+        }
+
+        private function addBricks($data) {
+            if ($data['nameBadge'] === 'YES') {
+                $dto = $this->getDTO($data);
+                $dto['amount'] = '10.00';
+                $dto['discount'] = 'YES';
+                $dto['lineItem'] = 'Complete Name Badge';
+                $dto['description'] = $data['badgeLine1'];
+                $this->registrationLineItemObj->addRegistrationLineItems($dto);
+
+                $this->addBrickLineItem($data, '1st Badge Brick', 'badgeLine2');
+                $this->addBrickLineItem($data, '2nd Badge Brick', 'badgeLine3');
+            }
+            $this->addBrickLineItem($data, 'Event Badge Brick', 'badgeLine1');
         }
 
         private function addEventLineItem($data) {

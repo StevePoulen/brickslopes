@@ -27,6 +27,10 @@ class Payment {
 
     private function patch() {
         $payload = json_decode(file_get_contents("php://input"), true);
+        if (sizeof($payload) == 0) {
+            $payload = $_POST;
+        }
+
         if ($payload['revoke'] === 'yes') {
             $response = $this->registrationLineItemObj->updateRegistrationLineItemsRevoke($payload);
         } else {
@@ -37,17 +41,21 @@ class Payment {
             $this->registrationLineItemObj->getRegistrationLineItemsByUserId($this->userId);
             if ($this->registrationLineItemObj->result) {
                 $registrationPaid = true;
+                $amountPaid = 0;
                 while ($dbObj = $this->registrationLineItemObj->result->fetch_object()) {
-
-                    if ($dbObj->paid == 'NO') {
-                        $registrationPaid = false;
+                    if ($dbObj->active === 'YES') {
+                        if ($dbObj->paid === 'NO') {
+                            $registrationPaid = false;
+                        } else {
+                            $amountPaid += $dbObj->amount;
+                        }
                     }
-
                 }
 
                 $this->registrationsObj->updateRegistrationPaid(
                     $payload['registrationId'],
-                    ($registrationPaid ? 'YES' : 'NO')
+                    ($registrationPaid ? 'YES' : 'NO'),
+                    $amountPaid
                 );
 
             }
@@ -63,6 +71,12 @@ class Payment {
     }
 }
 
-new Payment($this->userId);
+try {
+    $userId = $this->userId;
+} catch (exception $e) {
+    $userId = 1;
+}
+
+new Payment($userId);
 
 ?>

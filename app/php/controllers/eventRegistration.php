@@ -30,16 +30,14 @@ class EventRegistration {
         $eventJson = array();
         $this->registrationsObj->getRegistrationInformationByUserId($this->userId);
         if ($this->registrationsObj->result) {
+            $registrationLineItemsObj = new registrationLineItems($this->userId, false);
             while($dbObj = $this->registrationsObj->result->fetch_object()) {
                 array_push( $eventJson, 
                     array (
-                        'badgeLine1' => $dbObj->badgeLine1,
-                        'badgeLine2' => $dbObj->badgeLine2, 
-                        'meetAndGreet' => $dbObj->meetAndGreet,
                         'ageVerification' => $dbObj->ageVerification,
-                        'tShirtSize' => $dbObj->tShirtSize,
                         'paid' => $dbObj->paid,
-                        'name' => $dbObj->name
+                        'name' => $dbObj->name,
+                        'lineItems' => $registrationLineItemsObj->getRegisteredLineItems($this->userId, $dbObj->eventId)
                     )
                 );
             }

@@ -75,12 +75,24 @@ describe('controllers', function() {
                 expect(scope.discountDate).toBe(undefined);
             });
 
+            it('should have a eventYear variable', function() {
+                expect(scope.eventYear).toBe(undefined);
+            });
+
             it('should have a passDates variable', function() {
                 expect(scope.passDates).toBe(undefined);
             });
 
             it('should have a passType variable', function() {
                 expect(scope.passType).toBe(undefined);
+            });
+
+            it('should have a meetAndGreet variable', function() {
+                expect(scope.meetAndGreet).toBe('YES');
+            });
+
+            it('should have a nameBadge variable', function() {
+                expect(scope.nameBadge).toBe('NO');
             });
 
             it('should have a meetAndGreetDinnerDate variable', function() {
@@ -100,19 +112,33 @@ describe('controllers', function() {
             });
 
             it('should get event details', function() {
+                mockBackend.expectGET('/controllers/eventRegistration.php').respond(200, eventRegistration);
                 mockBackend.flush();
                 expect(scope.eventDetails).toEqualData(response.data);
                 expect(scope.discountDate).toEqualData('May 16th, 2015');
                 expect(scope.passType).toBe('4-Day');
                 expect(scope.passDates).toBe('May 14th thru 17th');
+                expect(scope.eventYear).toBe('2015');
                 expect(scope.meetAndGreetDinnerDate).toBe('Thursday, May 14th');
+            });
+        });
+
+        describe('Should redirect a registered user', function() {
+            it('should submit a valid user event registration', function() {
+                mockBackend.expectGET('/controllers/eventRegistration.php').respond(200, eventRegistration);
+                mockBackend.flush();
+                expect(location.path()).toBe('/afol/eventMe.html');
+                expect(scope.displayMessage).toBe('');
             });
         });
 
         describe('Submit Registration', function() {
             beforeEach(function() {
-                scope.badgeLine1 = 'Hello';
-                scope.badgeLine2 = 'World';
+                scope.eventYear = 2015;
+                scope.badgeLine1 = '2015 BrickSlopes';
+                scope.badgeLine2 = 'Hello';
+                scope.badgeLine3 = 'World';
+                scope.nameBadge = 'NO';
                 scope.meetAndGreet = 'Yes';
                 scope.ageVerification = 'Yes';
                 scope.tShirtSize = 'X-Large';
@@ -123,8 +149,10 @@ describe('controllers', function() {
             it('should submit a valid user event registration', function() {
                 var dto = {
                     eventId: 2,
-                    badgeLine1: 'Hello',
-                    badgeLine2: 'World',
+                    badgeLine1: '2015 BrickSlopes',
+                    badgeLine2: 'Hello',
+                    badgeLine3: 'World',
+                    nameBadge: 'NO',
                     meetAndGreet: 'Yes',
                     ageVerification: 'Yes',
                     tShirtSize: 'X-Large',
@@ -138,6 +166,7 @@ describe('controllers', function() {
                     tShirtCost: '20.00',
                     tShirtDiscount: '15.00'
                 }
+                mockBackend.expectGET('/controllers/eventRegistration.php').respond(200, {});
                 mockBackend.flush();
                 scope.submitRegistration();
                 expect(scope.verifying).toBe(true);
@@ -150,8 +179,10 @@ describe('controllers', function() {
             it('should handle an invalid user event registration', function() {
                 var dto = {
                     eventId: 2,
-                    badgeLine1: 'Hello',
-                    badgeLine2: 'World',
+                    badgeLine1: '2015 BrickSlopes',
+                    badgeLine2: 'Hello',
+                    badgeLine3: 'World',
+                    nameBadge: 'NO',
                     meetAndGreet: 'Yes',
                     ageVerification: 'Yes',
                     tShirtSize: 'X-Large',
@@ -160,6 +191,7 @@ describe('controllers', function() {
                 }
                 scope.submitRegistration();
                 expect(scope.verifying).toBe(true);
+                mockBackend.expectGET('/controllers/eventRegistration.php').respond(200, {});
                 mockBackend.expectPOST('/controllers/eventRegistration.php', dto).respond(400);
                 mockBackend.flush();
                 expect(location.path()).toBe('');
