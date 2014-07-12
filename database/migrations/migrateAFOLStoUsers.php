@@ -106,7 +106,7 @@
                     'awards' => array (
                         'Best of Castle',
                         'Best Historical',
-                        'Best'
+                        'Best War Machine'
                     )
                 ),
                 array(
@@ -139,8 +139,7 @@
                     'theme' => 'Princess',
                     'type' => 'AFOL',
                     'awards' => array (
-                        'Best Princess Theme',
-                        'Best Movie Scene'
+                        'Best Princess Theme'
                     )
                 ),
                 array(
@@ -182,7 +181,9 @@
                     'theme' => 'Public Choice',
                     'type' => 'PUBLIC',
                     'awards' => array (
-                        'Most Votes'
+                        '1st Place by Public Vote',
+                        '2nd Place by Public Vote',
+                        '3rd Place by Public Vote'
                     )
                 )
             );
