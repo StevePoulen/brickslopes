@@ -14,7 +14,7 @@
                         <title>BrickSlopes Question</title>
                     </head>
                     <body>
-                        <div style='font-size: 16px;'>
+                        {$this->getFontWrapper(16, '#000000')}
                             Cody, Steve or Brian,
 
                             {$data['firstName']} {$data['lastName']} has asked the following question:
@@ -22,7 +22,7 @@
                             {$data['comments']}
                             <p>
                             Please respond to this e-mail {$data['email']}
-                        </div>
+                        {$this->getFontClosure()}
             ";
 
             $this->message .= $this->getDisclaimer();
@@ -44,18 +44,26 @@
                         <title>BrickSlopes User Registration</title>
                     </head>
                     <body>
-                        <div style='font-size: 16px;'>
-                            $firstName,
-                            <p>
-                            You are receiving this e-mail because you registered to be a member of BrickSlopes - A LEGO Fan Event.
-                            <p>
-                            Please visit {$this->getDomain()}/#/afol/login.html for more information.
-                        </div>
-            ";
-
-            $this->message .= $this->getDisclaimer();
-
-            $this->message .= "
+                        {$this->getEmailBackgroundHeader()}
+                        {$this->getFirstLineSpoiler()}
+                        {$this->getBSLogo()}
+                        {$this->getNavigation()}
+                        {$this->getTableHeader()}
+                        <tr>
+                            <td align=left>
+                                {$this->getFontWrapper(16, '#000000')}
+                                    $firstName,
+                                    <p>
+                                    Congratulations this e-mail confirms you have registered to be a member of BrickSlopes - A LEGO Fan Event&trade;.
+                                    <p>
+                                    {$this->getPleaseVisit()}
+                                {$this->getFontClosure()}
+                            </td>
+                        </tr>
+                        {$this->getTableFooter()}
+                        {$this->getDisclaimer()}
+                        {$this->getCopyRight()}
+                        {$this->getDivClosure()}
                     </body>
                 </html>
             ";
@@ -82,26 +90,27 @@
                         </head>
                         <body>
                             {$this->getEmailBackgroundHeader()}
+                            {$this->getFirstLineSpoiler()}
                             {$this->getBSLogo()}
                             {$this->getNavigation()}
                             {$this->getTableHeader()}
                             <tr>
                                 <td align=left>
-                                    <div style='font-size: 16px;'>
+                                    {$this->getFontWrapper(16, '#000000')}
                                         {$dbObj->firstName},
                                         <p>
-                                        You are receiving this e-mail because you registered for BrickSlopes 2015 - Salt Lake City.
+                                        Congratulations! You this e-mail confirms you are registered for BrickSlopes 2015 - Salt Lake City.
                                         <p>
                                         You will receive a confirmation e-mail once your registration is complete.
                                         <p>
-                                        Please visit {$this->getDomain()}/#/afol/login.html for more information.
-                                    </div>
+                                        {$this->getPleaseVisit()}
+                                    {$this->getFontClosure()}
                                 </td>
                             </tr>
                             {$this->getTableFooter()}
                             {$this->getDisclaimer()}
                             {$this->getCopyRight()}
-                            {$this->getEmailBackgroundFooter()}
+                            {$this->getDivClosure()}
                         </body>
                     </html>
                 ";
@@ -122,25 +131,26 @@
                         <title>BrickSlopes Registration Complete</title>
                     </head>
                     <body>
+                        {$this->getEmailBackgroundHeader()}
+                        {$this->getFirstLineSpoiler()}
                         {$this->getBSLogo()}
+                        {$this->getNavigation()}
                         {$this->getTableHeader()}
                             <tr>
                                 <td align=left>
-                                    <div style='font-size: 16px;'>
+                                    {$this->getFontWrapper(16, '#000000')}
                                         $firstName,
                                         <p>
                                         You are receiving this e-mail because your BrickSlopes 2015 - Salt Lake City registration is complete.
                                         <p>
-                                        Please visit {$this->getDomain()}/#/afol/login.html for more information.
-                                    </div>
+                                        {$this->getPleaseVisit()}
+                                    {$this->getFontClosure()}
                                 </td>
                             </tr>
                         {$this->getTableFooter()}
-            ";
-
-            $this->message .= $this->getDisclaimer();
-
-            $this->message .= "
+                        {$this->getDisclaimer()}
+                        {$this->getCopyRight()}
+                        {$this->getDivClosure()}
                     </body>
                 </html>
             ";
@@ -160,20 +170,28 @@
                         <title>BrickSlopes Reset Password Request</title>
                     </head>
                     <body>
-                        <div style='font-size: 16px;'>
-                            $firstName,
-                            <p>
-                            You are receiving this e-mail because you have requested to reset your password.
-                            <p>
-                            Your new temporary password is: <b>$newPassword</b>
-                            <p>
-                            Please visit {$this->getDomain()}/#/afol/login.html to reset your password.
-                        </div>
-            ";
-
-            $this->message .= $this->getDisclaimer();
-
-            $this->message .= "
+                        {$this->getEmailBackgroundHeader()}
+                        {$this->getFirstLineSpoiler()}
+                        {$this->getBSLogo()}
+                        {$this->getNavigation()}
+                        {$this->getTableHeader()}
+                            <tr>
+                                <td align=left>
+                                    {$this->getFontWrapper(16, '#000000')}
+                                        $firstName,
+                                        <p>
+                                        You are receiving this e-mail because you have requested to reset your password.
+                                        <p>
+                                        Your new temporary password is: <b>$newPassword</b>
+                                        <p>
+                                        <a href='{$this->getDomain()}/#/afol/login.html' target='_blank'>{$this->getDomain()}</a> to reset your password.
+                                    {$this->getFontClosure()}
+                                </td>
+                            </tr>
+                        {$this->getTableFooter()}
+                        {$this->getDisclaimer()}
+                        {$this->getCopyRight()}
+                        {$this->getDivClosure()}
                     </body>
                 </html>
             ";
@@ -185,32 +203,69 @@
             }
         }
 
+        private function getFontFamily() {
+            return "FONT-FAMILY:Arial,Helvetica,Verdana,sans-serif;";
+
+        }
+
         private function getEmailBackgroundHeader() {
             return "
-                <div style='width:auto; height:800px; border-radius:10px; background:#FFFFFF; border:5px solid black;'>
+                <div style='width:auto; height:800px; border-radius:10px; background:#FFFFFF; border:5px solid black; {$this->getFontFamily()} bgcolor:#FFFFFF;'>
             ";
         }
 
-        private function getEmailBackgroundFooter() {
+        private function getDivClosure() {
             return "
                 </div>
             ";
         }
 
-        private function getTableHeader() {
+        private function getPleaseVisit() {
+            return "
+                Need more LEGO goodness? Then get over to <a href='{$this->getDomain()}' target='_blank'>{$this->getDomain()}</a> for more information about
+                <ul>
+                    <li>BrickSlopes 2015</li>
+                    <li>Games</li>
+                    <li>Themes</li>
+                    <li>Attending AFOLs and TFOLs</li>
+                    <li>Register your MOCs</li>
+                    <li>View the Schedule</li>
+                </ul>
+            ";
+        }
+
+        private function getFontWrapper($fontSize=12, $fontColor='#999999') {
+            $lineHeight = $fontSize + 1;
+            return "
+                <font style='FONT-SIZE:{$fontSize}px;COLOR:{$fontColor};LINE-HEIGHT:{$lineHeight}px;{$this->getFontFamily()}'>
+            ";
+        }
+
+        private function getFontClosure() {
+            return "
+                </font>
+            ";
+        }
+
+
+        private function getTableHeader($bgColor="#FFFFFF") {
             return "
                 <table width=100%>
-                    <tr>
-                        <td align=center>
-                            <table width=800 border=1>
+                    <tbody>
+                        <tr>
+                            <td align=center>
+                                <table width='800' cellspacing='0' cellpadding='0' border='0' align='center' style='padding-bottom:10px;' bgcolor='$bgColor'>
+                                    <tbody>
             ";
         }
 
         private function getTableFooter() {
             return "
-                            </table>
-                        </td>
-                    </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                    </tbody>
                 </table>
             ";
         }
@@ -218,20 +273,33 @@
         private function getNavigation() {
             $width='25%';
             return "
-                {
                 {$this->getTableHeader()}
                 <tr>
                     <td align=center width=$width>
-                        <a target='_new' href='{$this->getDomain()}'>Home</a>
+                        <a target='_blank' href='{$this->getDomain()}'><img src='{$this->getDomain()}/images/emails/navigation/email_header_01.gif'></a>
                     </td>
                     <td align=center width=$width>
-                        <a target='_new' href='{$this->getDomain()}/#/afol/eventMe.html'>My Site</a>
+                        <a target='_blank' href='{$this->getDomain()}/#/afol/eventMe.html'><img src='{$this->getDomain()}/images/emails/navigation/email_header_02.gif'></a>
                     </td>
                     <td align=center width=$width>
-                        <a target='_new' href='{$this->getDomain()}/#/afol/eventThemes.html'>Themes</a>
+                        <a target='_blank' href='{$this->getDomain()}/#/afol/eventTheme.html'><img src='{$this->getDomain()}/images/emails/navigation/email_header_03.gif'></a>
                     </td>
                     <td align=center width=$width>
-                        <a target='_new' href='{$this->getDomain()}/#/afol/eventGames.html'>Games</a>
+                        <a target='_blank' href='{$this->getDomain()}/#/afol/eventGames.html'><img src='{$this->getDomain()}/images/emails/navigation/email_header_04.gif'></a>
+                    </td>
+                </tr>
+                {$this->getTableFooter()}
+            ";
+        }
+
+        private function getFirstLineSpoiler() {
+            return "
+                {$this->getTableHeader()}
+                <tr>
+                    <td align=left>
+                        {$this->getFontWrapper()}
+                        <b> BrickSlopes -- A LEGO Fan Event&trade;. Home of <i>endless</i> Swag&trade;</b>
+                        {$this->getFontClosure()}
                     </td>
                 </tr>
                 {$this->getTableFooter()}
@@ -240,10 +308,12 @@
 
         private function getBSLogo() {
             return "
-                {$this->getTableHeader()}
+                {$this->getTableHeader('#000000')}
                 <tr>
                     <td align=right>
-                        <img src='{$this->getDomain()}/images/brickslopes_official.png'>
+                        <div style='padding-right:25px'>
+                            <img src='{$this->getDomain()}/images/brickslopes_official.png'>
+                        </div>
                     </td>
                 </tr>
                 {$this->getTableFooter()}
@@ -255,10 +325,11 @@
                 {$this->getTableHeader()}
                 <tr>
                     <td algin=center>
-                        <div style='font-size: 12px;'>
+                        {$this->getFontWrapper()}
                             Copyright © BRICKSLOPES • SBC Corporation 2013-2014<br>
+                            BrickSlopes, BrickSlopes -- A LEGO Fan Event&trade; and Home of <i>endless</i> Swag are registered trademarks of SBC Corporation.<br>
                             LEGO® is a trademark of the LEGO Group of companies which does not sponsor, authorize, or endorse this event or site. LEGOLAND® is a Merlin Entertainments Group Attraction which does not sponsor, authorize or endorse this event or site. 
-                        </div>
+                        {$this->getFontClosure()}
                     </td>
                 </tr>
                 {$this->getTableFooter()}
@@ -270,9 +341,10 @@
                 {$this->getTableHeader()}
                 <tr>
                     <td algin=center>
-                        <div style='font-size: 12px;'>
+                        {$this->getFontWrapper()}
+                            You are receiving this email because you signed up to receive emails at {$this->getDomain()}. If you no longer wish to receive our email updates, please click here.<br>
                             The information contained in this communication is confidential. This communication is intended only for the use of the addressee ({$this->email}). If you are not the intended recipient, please notify legal@brickslopes.com promptly and delete the message.<br>Any distribution or copying of this message without the consent of BrickSlopes is prohibited.
-                        </div>
+                        {$this->getFontClosure()}
                     </td>
                 </tr>
                 {$this->getTableFooter()}

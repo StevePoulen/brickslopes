@@ -106,7 +106,6 @@ class SendEmail {
     private function displayResetPasswordMessage() {
         header("HTTP/1.0 200 Success");
         $emailObj = new mail('not_needed');
-        echo "\n\n\n\nhere\n\n\n";
         echo $emailObj->sendResetEmailMessage('Brian', 'New Password', true);
     }
 }

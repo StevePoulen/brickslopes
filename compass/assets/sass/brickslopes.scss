@@ -660,3 +660,93 @@ $event_registration_height: 1210px;
         vertical-align: middle;
     }
 }
+
+$email_height: 1210px;
+$email_link_color: $bs_blue;
+#emailDashboard {
+    @extend #eventDashboard;
+    height: $email_height;
+
+    .emailText { 
+        position: absolute;
+        border-radius:25px;
+        height: $email_height;
+        margin: 20px;
+        padding: 15px;
+        font-size: 1.05em;
+        text-align: left;
+        width: $dashboard_width - 70;
+        color: black;
+        background: white;
+        display: table;
+        line-height: normal;  
+        vertical-align: middle;
+
+        a {
+            color: $email_link_color;
+            text-decoration: none;
+        }
+
+        a:link {
+            color: $email_link_color;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: $email_link_color;
+            text-decoration: none;
+        }
+
+        a:active {
+            color: $email_link_color;
+            text-decoration: none;	
+        }
+
+        a:visited {
+            color: $email_link_color;
+            text-decoration: none;	
+        }
+    }
+}
+
+$paypal_height: 1125px;
+#paypalDashboard {
+    @extend #eventDashboard;
+    height: $paypal_height;
+
+    .paypalText { 
+        position: absolute;
+        border-radius:25px;
+        height: $paypal_height;
+        padding: 15px;
+        font-size: 1.05em;
+        text-align: left;
+        width: $dashboard_width - 30;
+        color: black;
+        background: white;
+        display: table;
+        line-height: normal;  
+        vertical-align: middle;
+    }
+}
+
+$event_me_height: 700px;
+#eventMeDashboard {
+    @extend #eventDashboard;
+    height: $event_me_height;
+
+    .eventMeText { 
+        position: absolute;
+        border-radius:25px;
+        height: $event_me_height;
+        padding: 15px;
+        font-size: 1.05em;
+        text-align: left;
+        width: $dashboard_width - 30;
+        color: black;
+        background: white;
+        display: table;
+        line-height: normal;  
+        vertical-align: middle;
+    }
+}
