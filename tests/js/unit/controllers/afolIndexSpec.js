@@ -33,6 +33,10 @@ describe('controllers', function() {
                 expect(scope.mocCount).toBe(0);
             });
 
+            it('should have an afolCount variable', function() {
+                expect(scope.afolCount).toBe(0);
+            });
+
             it('should have a vendorCount variable', function() {
                 expect(scope.vendorCount).toBe(0);
             });
@@ -47,6 +51,10 @@ describe('controllers', function() {
 
             it('should have a isRegistered variable', function() {
                 expect(scope.isRegistered).toBe(false);
+            });
+
+            it('should have an eventId variable', function() {
+                expect(scope.eventId).toBe(2);
             });
         });
 
@@ -66,6 +74,11 @@ describe('controllers', function() {
             it('should redirect to eventMe', function() {
                 scope.clickMe();
                 expect(location.path()).toBe('/afol/eventMe.html');
+            });
+
+            it('should redirect to eventAfols', function() {
+                scope.clickAfols();
+                expect(location.path()).toBe('/afol/eventAfols.html');
             });
 
             it('should redirect to eventThemes', function() {
@@ -109,6 +122,7 @@ describe('controllers', function() {
             mockBackend.expectGET('/controllers/eventDates.php').respond(201, eventDates);
             mockBackend.expectGET('/controllers/eventRegistration.php').respond(201, eventRegistration);
             mockBackend.expectGET('/controllers/mocs/getRegisteredMocList.php').respond(returnList);
+            mockBackend.expectGET('/controllers/registeredAfols.php?eventId=2').respond(201, registeredAfols);
 
             mockBackend.flush();
         }));
@@ -131,6 +145,10 @@ describe('controllers', function() {
 
         it('should set the eventMonthYear', function() {
             expect(scope.eventMonthYear).toEqual('May, 2015');
+        });
+
+        it('should set the afolCount variable', function() {
+            expect(scope.afolCount).toBe(2);
         });
     });
 });

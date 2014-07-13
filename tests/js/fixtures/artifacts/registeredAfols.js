@@ -3,10 +3,125 @@ var registeredAfols = {
         'eventName': 'BrickSlopes - Salt Lake City',
         'registeredAfols': [
             {
-                registrationId: 1,
+                registrationId: 28,
+                userId: 2,
+                firstName: 'Cody',
+                lastName: 'Ottley',
+                email: 'blackdragon5555@hotmail.com',
+                city: 'Spanish Fork',
+                state: 'Utah',
+                paid: 'NO',
+                lineItems: {
+                    "total": '25.00',
+                    "lineItems": [
+                        {
+                            "registrationLineItemId": 1,
+                            "lineItem": "T-Shirt",
+                            "amount": "25.00",
+                            "total": "25.00",
+                            "paid": "NO",
+                            "discount": "NO",
+                            "description": "",
+                            "size": "X-Large",
+                            "quantity": 1,
+                            "active": "YES",
+                            "entryDate": "2014-04-04 18:50:00" 
+                        }
+                    ]
+                }
+            },
+            {
+                registrationId: 27,
+                userId: 26,
                 firstName: 'Brian',
                 lastName: 'Pilati',
-                email: 'brianpilati@gmail.com'
+                email: 'brianpilati@gmail.com',
+                city: 'LEGOVille',
+                state: 'LEGOState',
+                paid: 'NO',
+                lineItems: {
+                    "total": '25.00',
+                    "lineItems": [
+                        {
+                            "registrationLineItemId": 1,
+                            "lineItem": "T-Shirt",
+                            "amount": "25.00",
+                            "total": "25.00",
+                            "paid": "NO",
+                            "discount": "NO",
+                            "description": "",
+                            "size": "X-Large",
+                            "quantity": 1,
+                            "active": "YES",
+                            "entryDate": "2014-04-04 18:50:00" 
+                        },
+                        {
+                            "registrationLineItemId": 2,
+                            "lineItem": "Complete Name Badge",
+                            "amount": "25.00",
+                            "total": "25.00",
+                            "paid": "NO",
+                            "discount": "NO",
+                            "description": "",
+                            "size": "X-Large",
+                            "quantity": 1,
+                            "active": "YES",
+                            "entryDate": "2014-04-04 18:50:00" 
+                        },
+                        {
+                            "registrationLineItemId": 3,
+                            "lineItem": "Event Badge Brick",
+                            "amount": "25.00",
+                            "total": "25.00",
+                            "paid": "NO",
+                            "discount": "NO",
+                            "description": "2015 BrickSlopes",
+                            "size": "X-Large",
+                            "quantity": 1,
+                            "active": "YES",
+                            "entryDate": "2014-04-04 18:50:00" 
+                        },
+                        {
+                            "registrationLineItemId": 4,
+                            "lineItem": "1st Badge Brick",
+                            "amount": "25.00",
+                            "total": "25.00",
+                            "paid": "NO",
+                            "discount": "NO",
+                            "description": "Badge Line Two",
+                            "size": "X-Large",
+                            "quantity": 1,
+                            "active": "YES",
+                            "entryDate": "2014-04-04 18:50:00" 
+                        },
+                        {
+                            "registrationLineItemId": 5,
+                            "lineItem": "2nd Badge Brick",
+                            "amount": "25.00",
+                            "total": "25.00",
+                            "paid": "NO",
+                            "discount": "NO",
+                            "description": "Badge Line Three",
+                            "size": "X-Large",
+                            "quantity": 1,
+                            "active": "YES",
+                            "entryDate": "2014-04-04 18:50:00" 
+                        },
+                        {
+                            "registrationLineItemId": 6,
+                            "lineItem": "Meet and Greet",
+                            "amount": "25.00",
+                            "total": "25.00",
+                            "paid": "NO",
+                            "discount": "NO",
+                            "description": "",
+                            "size": "X-Large",
+                            "quantity": 1,
+                            "active": "YES",
+                            "entryDate": "2014-04-04 18:50:00" 
+                        }
+                    ]
+                }
             } 
         ]
     }

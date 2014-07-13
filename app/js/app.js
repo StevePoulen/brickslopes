@@ -118,6 +118,13 @@ config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvide
         }
     )
     .when(
+        '/afol/eventAfols.html',
+        {
+            templateUrl: '/partials/afol/eventAfols.html',
+            controller: 'eventAfols'
+        }
+    )
+    .when(
         '/afol/eventMe.html',
         {
             templateUrl: '/partials/afol/eventMe.html',

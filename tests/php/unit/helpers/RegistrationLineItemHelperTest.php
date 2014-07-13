@@ -27,6 +27,15 @@ class RegistrationLineItemHelperTest extends PHPUnit_Framework_TestCase
         $this->helper = new RegistrationLineItemHelper();
     }
 
+    public function testDeleteRegistrationLineItems() 
+    {
+        $GLOBALS['db_query'] = '1';
+        $this->helper->deleteRegistrationLineItems(20123, 256);
+        $queryObj = $GLOBALS['deleteRegistrationLineItems'];
+        $this->assertEquals($queryObj['userId'], 20123);
+        $this->assertEquals($queryObj['eventId'], 256);
+    }
+
     public function testAddRegistrationLineItemsBrickOne() 
     {
         $GLOBALS['fetch_object'] = "RegistrationLineItemsMock";

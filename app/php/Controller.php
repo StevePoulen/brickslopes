@@ -8,9 +8,12 @@
     header( 'Pragma: no-cache' ); 
 
     class Controller {
+        private $userId;
+        private $isAdmin;
 
         public function __construct() {
             $this->userId = null;
+            $this->isAdmin = false;
             $this->setControllerModuleValues();
             $this->setHeader();
         }
@@ -74,7 +77,7 @@
                 );
         }
 
-        private function isAdmin($decodedJWT) {
+        private function determineAdminFromJWT($decodedJWT) {
             return ($decodedJWT->admin == 'YES') ;
         }
 
@@ -85,8 +88,9 @@
                 $decodedJWT = JWT::decode($jwt, JWT_KEY);
                 if (preg_match('/\d+/', $decodedJWT->userId)) {
                     $this->userId = $decodedJWT->userId;
+                    $this->isAdmin = $this->determineAdminFromJWT($decodedJWT);
                     if ($this->isAdminRequest()) {
-                        return $this->isAdmin($decodedJWT);
+                        return $this->isAdmin;
                     }
                     return true;
                 } else {

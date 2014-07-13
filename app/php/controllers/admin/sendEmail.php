@@ -1,13 +1,11 @@
 <?php
 
 class SendEmail {
-    private $usersObj;
     private $requestMethod;
     private $userId;
 
     public function __construct($userId = null) {
         $this->userId = $userId;
-        $this->usersObj = new users();
         $this->determineRequestMethod();
     }
 
@@ -73,22 +71,15 @@ class SendEmail {
     }
 
     private function sendRegistrationPaidMessage($payload) {
-        $this->usersObj->getUserInformation($payload['userId']);
-        if($this->usersObj->result) {
-            $dbObj = $this->usersObj->result->fetch_object();
-            $email = $dbObj->email;
-            $emailObj = new mail($email);
-            $emailObj->sendRegistrationPaidMessage($dbObj->firstName);
-            header("HTTP/1.0 200 Success");
-        } else {
-            header("HTTP/1.0 412 Precondition Failed");
-        }
+        $emailObj = new mail('provided_later');
+        $emailObj->sendRegistrationPaidMessage($payload['userId'], $payload['eventId']);
+        header("HTTP/1.0 200 Success");
     }
 
     private function displayEventRegistrationMessage() {
         header("HTTP/1.0 200 Success");
         $emailObj = new mail('not_needed');
-        echo $emailObj->sendEventRegistrationMessage($this->userId, true);
+        echo $emailObj->sendEventRegistrationMessage(21, 2, true);
     }
 
     private function displayUserRegistrationMessage() {
@@ -100,7 +91,7 @@ class SendEmail {
     private function displayRegistrationPaidMessage() {
         header("HTTP/1.0 200 Success");
         $emailObj = new mail('not_needed');
-        echo $emailObj->sendRegistrationPaidMessage('Brian', true);
+        echo $emailObj->sendRegistrationPaidMessage(21, 2, true);
     }
 
     private function displayResetPasswordMessage() {

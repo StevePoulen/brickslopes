@@ -16,9 +16,9 @@
       top: -20px;
       right: -20px;
       cursor: pointer;
-    }
+}
 
-#dashboardText { 
+.dashboardText { 
         position: absolute;
         border-radius:25px;
         padding: 15px;
@@ -30,6 +30,7 @@
         display: table;
         line-height: normal;  
         vertical-align: middle;
+        height: auto;
 
         #login {
             position: absolute;
@@ -61,7 +62,6 @@
             top: 75px;
             height: $dashboard_height / 2;
             width: $dashboard_width / 2 - 20;
-            border: none;
             opacity: 0;
 
         .loginForm {
@@ -103,7 +103,6 @@
         top: $dashboard_height / 2 - $dashboard_height / 4;
         height: $dashboard_height / 2;
         width: $dashboard_width / 2 - 20;
-        border: none;
         
         .center {
             left: 105px;
@@ -113,7 +112,6 @@
             position: absolute;
             left:0;
             width: $dashboard_width / 2 - 20;
-            border: none;
             text-align: center;
 
             .loginField {
@@ -198,7 +196,7 @@
         position: absolute;
         left: 25px;
         width: 550px;
-        height: 900px;
+        height: 950px;
         top: 325px;
         padding-left: 4px;
         background: white;
@@ -236,15 +234,17 @@
                 margin-top: 10px;
 
                 .legoBrick {
-                    height: 3.2 * 3 * 5 - 5;
+                    height: 3.2 * 3 * 5 - 5 + px;
                     padding-top: 5px;
-                    margin-left: 0;
+                    margin-left: 0px;
 
                     input {
                         border: 1px solid black;
-                        margin-left: 0;
+                        margin-left: 0px;
                         width: 315px;
                         height: 40px;
+                        text-align: center;
+                        font-size: 1.25em;
                     }
                     
                     .logoBrick {
@@ -271,8 +271,6 @@
 
         .asterickField {
             @extend .optionField;
-            border: none;
-            border-radius: 0;
             width: 425px;
             padding-top: 15px;
             left: 0;
@@ -307,7 +305,6 @@
     left: 4px;
     width: $pane_width - 4;
     height: $dashboard_height;
-    border: none;
 
     .changePassword {
         position: relative;
@@ -354,7 +351,7 @@
         position: relative;
         float: left;
         width: $meEventPane_width;
-        height: $eventPane_height * 3;
+        height: $eventPane_height * 2;
         margin: 0px $eventPane_margin $eventPane_margin 0px;
         border: 2px solid black;
         border-radius: 12px;
@@ -363,12 +360,19 @@
             position: relative;
             width: $meEventPane_width - 40;
             height: auto;
-            min-height: 35px;
-            border: none;
+            min-height: 25px;
             margin-top: 5px;
-            margin-bottom: 5px;
+            margin-bottom: 10px;
             margin-left: 20px;
-            text-align: center;
+
+            table {
+                margin-bottom: 10px;
+            }
+
+            td {
+                width: 200px;
+                text-align: left;
+            }
         }
 
         .brickCenter {
@@ -384,7 +388,6 @@
           left:0;
           width: 100%;
           text-align: center;
-          border: none;
     }
 }
 
@@ -393,7 +396,6 @@
     top:0;
     right:0;
     width: $pane_width;
-    border: none;
 }
 
 #eventContainer {
@@ -512,7 +514,6 @@
 
 #themes {
     position: absolute;
-    border: none;
     top: 100px;
     left: 10px;
     width: $dashboard_width;
@@ -539,4 +540,37 @@
     padding: 0;
     margin-left: 45px;
     margin-top: 5px;
+}
+
+.afolRow {
+    position: relative;
+    height: 80px;
+    margin-bottom: 10px;
+    padding: 10px;
+
+    .afolName {
+        font-size: 2.0em;
+        font-weight: bold;
+    }
+
+    .afolCity {
+        font-size: 1.0em;
+        font-weight: bold;
+    }
+
+    .leftPosition {
+        position: absolute;
+        width: 350px;
+        height: 80px;
+        left: 10px;
+    }
+
+    .rightPosition {
+        position: absolute;
+        width: 350px;
+        height: 25px;
+        bottom: 10px;
+        right: 10px;
+        text-align: right;
+    }
 }

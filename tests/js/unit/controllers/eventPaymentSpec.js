@@ -62,7 +62,7 @@ describe('controllers', function() {
             });
 
             it('should have an totalAmount variable ', function() {
-                expect(scope.totalAmount).toBe('100.00');
+                expect(scope.totalAmount).toBe('90.00');
             });
         });
 
@@ -71,7 +71,6 @@ describe('controllers', function() {
                 setFixtures('<form id="paypalSubmitForm"></form>');
                 mockBackend.expectGET('/controllers/registrationLineItems.php?eventId=2').respond(registrationLineItems);
                 mockBackend.flush();
-                scope.createFormData();
             });
 
             it('should have a paypal payload cart object', function() {
@@ -119,37 +118,19 @@ describe('controllers', function() {
             it('should have a paypal payload item_name_2 object', function() {
                 expect($('#paypalSubmitForm').find('input')[7].type).toBe('hidden');
                 expect($('#paypalSubmitForm').find('input')[7].name).toBe('item_name_2');
-                expect($('#paypalSubmitForm').find('input')[7].value).toBe('Meet and Greet');
-            });
-
-            it('should have a paypal payload amount_2 object', function() {
-                expect($('#paypalSubmitForm').find('input')[8].type).toBe('hidden');
-                expect($('#paypalSubmitForm').find('input')[8].name).toBe('amount_2');
-                expect($('#paypalSubmitForm').find('input')[8].value).toBe('10.00');
-            });
-
-            it('should have a paypal payload shipping_2 object', function() {
-                expect($('#paypalSubmitForm').find('input')[9].type).toBe('hidden');
-                expect($('#paypalSubmitForm').find('input')[9].name).toBe('shipping_2');
-                expect($('#paypalSubmitForm').find('input')[9].value).toBe('0');
-            });
-
-            it('should have a paypal payload item_name_3 object', function() {
-                expect($('#paypalSubmitForm').find('input')[10].type).toBe('hidden');
-                expect($('#paypalSubmitForm').find('input')[10].name).toBe('item_name_3');
-                expect($('#paypalSubmitForm').find('input')[10].value).toBe('T-Shirt');
+                expect($('#paypalSubmitForm').find('input')[7].value).toBe('T-Shirt');
             });
 
             it('should have a paypal payload amount_3 object', function() {
-                expect($('#paypalSubmitForm').find('input')[11].type).toBe('hidden');
-                expect($('#paypalSubmitForm').find('input')[11].name).toBe('amount_3');
-                expect($('#paypalSubmitForm').find('input')[11].value).toBe('30.00');
+                expect($('#paypalSubmitForm').find('input')[8].type).toBe('hidden');
+                expect($('#paypalSubmitForm').find('input')[8].name).toBe('amount_2');
+                expect($('#paypalSubmitForm').find('input')[8].value).toBe('30.00');
             });
 
             it('should have a paypal payload shipping_3 object', function() {
-                expect($('#paypalSubmitForm').find('input')[12].type).toBe('hidden');
-                expect($('#paypalSubmitForm').find('input')[12].name).toBe('shipping_3');
-                expect($('#paypalSubmitForm').find('input')[12].value).toBe('0');
+                expect($('#paypalSubmitForm').find('input')[9].type).toBe('hidden');
+                expect($('#paypalSubmitForm').find('input')[9].name).toBe('shipping_2');
+                expect($('#paypalSubmitForm').find('input')[9].value).toBe('0');
             });
         });
     });

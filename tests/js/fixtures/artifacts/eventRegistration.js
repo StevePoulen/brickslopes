@@ -1,5 +1,6 @@
 var eventRegistration = [
     {
+        "registrationId": 27,
         "ageVerification": "YES",
         "paid": "NO",
         "name": "BrickSlopes - Salt Lake City",
@@ -74,6 +75,32 @@ var eventRegistration = [
                 {
                     "registrationLineItemId": 6,
                     "lineItem": "Meet and Greet",
+                    "amount": "25.00",
+                    "total": "25.00",
+                    "paid": "NO",
+                    "discount": "NO",
+                    "description": "",
+                    "size": "X-Large",
+                    "quantity": 1,
+                    "active": "YES",
+                    "entryDate": "2014-04-04 18:50:00" 
+                }
+            ]
+        }
+    }
+];
+
+var eventRegistrationPaid = [
+    {
+        "ageVerification": "YES",
+        "paid": "YES",
+        "name": "BrickSlopes - Salt Lake City",
+        "lineItems": {
+            "total": '25.00',
+            "lineItems": [
+                {
+                    "registrationLineItemId": 1,
+                    "lineItem": "T-Shirt",
                     "amount": "25.00",
                     "total": "25.00",
                     "paid": "NO",

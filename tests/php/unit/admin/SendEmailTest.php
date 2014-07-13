@@ -43,6 +43,7 @@ class SendEmailTest extends PHPUnit_Framework_TestCase
     {
         $_GET = array(
             'userId' => 1,
+            'eventId' => 2,
             'type' => 'registrationPaid'
         );
         $_SERVER['REQUEST_METHOD'] = "GET";
@@ -50,6 +51,6 @@ class SendEmailTest extends PHPUnit_Framework_TestCase
         $GLOBALS['fetch_object'] = "usersObject";
         $event = new SendEmail();
         $this->assertEquals(http_response_code(), 200);
-        $this->assertEquals($GLOBALS['sendRegistrationPaidMessage'], 'Brian');
+        $this->assertEquals($GLOBALS['sendRegistrationPaidMessage'], 1);
     }
 }

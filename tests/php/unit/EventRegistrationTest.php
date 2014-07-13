@@ -28,6 +28,7 @@ class EventRegistrationTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($output['ageVerification'] , 'YES');
         $this->assertEquals($output['paid'] , 'NO');
         $this->assertEquals($output['name'] , 'BrickSlopes - SLC');
+        $this->assertEquals($output['registrationId'] , '1');
         $this->assertEquals($lineItems['registrationLineItemId'] , 1);
         $this->assertEquals($lineItems['lineItem'] , 'T-Shirt');
         $this->assertEquals($lineItems['amount'] , '25.00');
@@ -70,6 +71,31 @@ class EventRegistrationTest extends PHPUnit_Framework_TestCase
         $GLOBALS['db_query'] = 12345;
         $eventRegistration = new EventRegistration($this->userId);
         $this->assertEquals(http_response_code(), 201);
+        $this->expectOutputString('');
+    }
+
+    public function testAuthenticatedPatch() 
+    {
+        $_POST = array (
+            'registrationId' => '27',
+            'eventId' => '256',
+            'discountDate' => '2015-05-16 08:00:00',
+            'eventDiscount' => '60.00',
+            'meetAndGreetDiscount' => '10.00',
+            'meetAndGreet' => 'YES',
+            'nameBadge' => 'NO',
+            'badgeLine1' => '2015 BrickSlopes',
+            'tShirtDiscount' => '15.00',
+            'tShirtSize' => 'X-Large'
+        );
+        $this->userId = 12345;
+        $_SERVER['REQUEST_METHOD'] = "PATCH";
+        $GLOBALS['db_query'] = 12345;
+        $eventRegistration = new EventRegistration($this->userId);
+        $this->assertEquals(http_response_code(), 201);
+        $queryObj = $GLOBALS['deleteRegistrationLineItems'];
+        $this->assertEquals($queryObj['userId'], 12345);
+        $this->assertEquals($queryObj['eventId'], 256);
         $this->expectOutputString('');
     }
 

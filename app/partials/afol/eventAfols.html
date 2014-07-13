@@ -1,0 +1,20 @@
+<div id="eventAfols">
+    <div class="eventAfolsText">
+        <div>
+            <h1>
+                <bs-logo font-size="1.25"></bs-logo> &#8226; <bs-text text="AFOLs" font-color=black></bs-text>
+            </h1>
+        </div>
+        <div ng-class="{evenRow: $even}" ng-repeat="afol in registeredAfols | orderBy:'lastName'">
+            <div class="afolRow">
+                <div class="afolName leftPosition">
+                    {{afol.firstName}} {{afol.lastName}}
+                </div>
+                <div class="afolCity rightPosition">
+                    {{afol.city}}, {{afol.state}}
+                </div>
+            </div>
+        </div>
+    </div>
+   <div id="dashboardCloseButton" ng-click="closeDialog()"></div>
+</div>

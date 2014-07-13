@@ -83,7 +83,7 @@
                                         <div class="stud blue"></div>
                                         <div class="stud blue"></div>
                                     </div>
-                                    <input type="text" placeholder="Badge Line 1:" ng-model="badgeLine2" ng-required="nameBadge=='YES'" ng-maxlength=15>
+                                    <input type="text" name="badgeLine2" placeholder="Badge Line 1:" ng-model="badgeLine2" ng-required="nameBadge=='YES'" ng-maxlength=26>
                                 </div>
                             </div>
                             <div class="brickHolder interlock2">
@@ -98,10 +98,16 @@
                                         <div class="stud yellow"></div>
                                         <div class="stud yellow"></div>
                                     </div>
-                                    <input type="text" placeholder="Badge Line 2:" ng-model="badgeLine3" ng-required="nameBadge=='YES'" ng-maxlength=15>
+                                    <input type="text" name="badgeLine3" placeholder="Badge Line 2:" ng-model="badgeLine3" ng-required="nameBadge=='YES'" ng-maxlength=26>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="errorFont" ng-show="registration.badgeLine2.$error.maxlength">
+                        Your badge line 1 text cannot be longer than 26 characters
+                    </div>
+                    <div class="errorFont" ng-show="registration.badgeLine3.$error.maxlength">
+                        Your badge line 2 text cannot be longer than 26 characters
                     </div>
                     <div class="optionField">
                         <label>Meet & Greet Event:</label> Yes <input type="radio" ng-model="meetAndGreet" value="YES" checked> No <input type="radio" ng-model="meetAndGreet" value="NO">

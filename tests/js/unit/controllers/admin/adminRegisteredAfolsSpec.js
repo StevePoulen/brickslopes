@@ -29,6 +29,13 @@ describe('controllers', function() {
             mockBackend.expectGET('/controllers/registeredAfols.php?eventId=2').respond(201, registeredAfols);
         }));
 
+        describe('Close Dialog', function() {
+            it('should redirect to index page', function() {
+                scope.closeDialog();
+                expect(location.path()).toBe('/afol/admin.html');
+            });
+        });
+
         describe('Default Variables', function() {
             it('should have an eventId variable', function() {
                 expect(scope.eventId).toBe(2);
@@ -75,7 +82,7 @@ describe('controllers', function() {
 
             it('should send an email request', function() {
                 scope.sendEmail();
-                mockBackend.expectGET('/controllers/admin/sendEmail.php?type=registrationPaid&userId=32').respond(201);
+                mockBackend.expectGET('/controllers/admin/sendEmail.php?eventId=2&type=registrationPaid&userId=32').respond(201);
                 mockBackend.flush();
             });
         });

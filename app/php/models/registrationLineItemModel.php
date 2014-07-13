@@ -13,6 +13,11 @@ class registrationLineItemModel extends db {
         return $this->query($this->insertQuery($data));
     }
 
+    public function deleteRegistrationLineItems($userId, $eventId) {
+        echo $this->deleteQuery($userId, $eventId);
+        return $this->query($this->deleteQuery($userId, $eventId));
+    }
+
     public function updateRegistrationLineItemsPaid($data) {
         return $this->query($this->updateQuery($data, 'YES'));
     }
@@ -41,6 +46,17 @@ class registrationLineItemModel extends db {
                 registrationLineItems
             WHERE
                 userId = '{$userId}'
+        ;
+      ";
+    }
+
+    private function deleteQuery($userId, $eventId) {
+        return "
+            DELETE FROM
+                registrationLineItems
+            WHERE
+                userId = '{$userId}'
+                AND eventId = '{$eventId}'
         ;
       ";
     }

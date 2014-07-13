@@ -55,7 +55,7 @@ describe('controllers', function() {
         describe('Default Values', function() {
             it('should have a shirt sizes variable', function() {
                 expect(scope.shirtSizes).toEqualData(
-                    ['No Thanks', 'Small', 'Medium', 'Large', 'X-Large', 'XX-Large']
+                    ['No Thanks', 'Small', 'Medium', 'Large', 'X-Large', 'XX-Large', 'XXX-Large']
                 );
             });
 
@@ -107,8 +107,16 @@ describe('controllers', function() {
                 expect(scope.success).toBe(true);
             });
 
+            it('should have an registrationId variable', function() {
+                expect(scope.registrationId).toBeUndefined();
+            });
+
             it('should have an eventId variable', function() {
                 expect(scope.eventId).toBe(2);
+            });
+
+            it('should have an isCreate variable', function() {
+                expect(scope.isCreate).toBe(true);
             });
 
             it('should get event details', function() {
@@ -124,11 +132,46 @@ describe('controllers', function() {
         });
 
         describe('Should redirect a registered user', function() {
-            it('should submit a valid user event registration', function() {
+            beforeEach(function() {
                 mockBackend.expectGET('/controllers/eventRegistration.php').respond(200, eventRegistration);
                 mockBackend.flush();
-                expect(location.path()).toBe('/afol/eventMe.html');
-                expect(scope.displayMessage).toBe('');
+            });
+
+            it('should deserialize a valid user event registration', function() {
+                expect(scope.registrationId).toEqualData(27);
+                expect(scope.badgeLine2).toBe('Badge Line Two');
+                expect(scope.badgeLine3).toBe('Badge Line Three');
+                expect(scope.nameBadge).toBe('YES');
+                expect(scope.meetAndGreet).toBe('YES');
+                expect(scope.ageVerification).toBe('YES');
+                expect(scope.tShirtSize).toBe('X-Large');
+                expect(scope.comments).toBeUndefined();
+            });
+
+            it('should patch a valid user event registration', function() {
+                var dto = {
+                    registrationId: 27,
+                    eventId: 2,
+                    badgeLine1: '2015 BrickSlopes',
+                    badgeLine2: 'Badge Line Two',
+                    badgeLine3: 'Badge Line Three',
+                    nameBadge: 'YES',
+                    meetAndGreet: 'YES',
+                    ageVerification: 'YES',
+                    tShirtSize: 'X-Large',
+                    //comments: "Can't Wait!",
+                    type: 'afol',
+                    discountDate: '2015-05-16 08:00:00',
+                    eventCost: '65.00',
+                    eventDiscount: '60.00',
+                    meetAndGreetCost: '15.00',
+                    meetAndGreetDiscount: '10.00',
+                    tShirtCost: '20.00',
+                    tShirtDiscount: '15.00'
+                }
+                scope.submitRegistration();
+                mockBackend.expectPATCH('/controllers/eventRegistration.php', dto).respond(200);
+                mockBackend.flush();
             });
         });
 
@@ -152,7 +195,7 @@ describe('controllers', function() {
                     badgeLine1: '2015 BrickSlopes',
                     badgeLine2: 'Hello',
                     badgeLine3: 'World',
-                    nameBadge: 'NO',
+                    nameBadge: 'YES',
                     meetAndGreet: 'Yes',
                     ageVerification: 'Yes',
                     tShirtSize: 'X-Large',
@@ -199,6 +242,51 @@ describe('controllers', function() {
                 expect(scope.displayMessage).toBe('There was an error submitting your data. Please try again.');
                 expect(scope.success).toBe(false);
                 expect(scope.timer).toBe(true);
+            });
+        });
+
+        describe('Validate the badgeLine2 and badgeLine3 watcher', function() {
+            beforeEach(function() {
+                mockBackend.expectGET('/controllers/eventRegistration.php').respond(200, {});
+            });
+
+            it('should change the badgeName to YES when badgeLine2 is changed', function() {
+                expect(scope.nameBadge).toBe('NO');
+                scope.badgeLine2 = "hello";
+                scope.$digest();
+                expect(scope.nameBadge).toBe('YES');
+            });
+
+            it('should change the badgeName to YES when badgeLine3 is changed', function() {
+                expect(scope.nameBadge).toBe('NO');
+                scope.badgeLine3 = "there";
+                scope.$digest();
+                expect(scope.nameBadge).toBe('YES');
+            });
+
+            it('should change the badgeName to YES when badgeLine2 is empty', function() {
+                expect(scope.nameBadge).toBe('NO');
+                scope.badgeLine2 = undefined;
+                scope.badgeLine3 = "Hello";
+                scope.$digest();
+                expect(scope.nameBadge).toBe('YES');
+            });
+
+            it('should change the badgeName to YES when badgeLine3 is empty', function() {
+                expect(scope.nameBadge).toBe('NO');
+                scope.badgeLine2 = "Hello";
+                scope.badgeLine3 = undefined;
+                scope.$digest();
+                expect(scope.nameBadge).toBe('YES');
+            });
+
+            it('should change the badgeName to NO when badgeLine2 and badgeLine3 is empty', function() {
+                scope.nameBadge = 'YES';
+                expect(scope.nameBadge).toBe('YES');
+                scope.badgeLine2 = undefined;
+                scope.badgeLine3 = undefined;
+                scope.$digest();
+                expect(scope.nameBadge).toBe('NO');
             });
         });
     });

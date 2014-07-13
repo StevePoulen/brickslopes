@@ -6,6 +6,11 @@
             $this->registrationLineItemObj = new registrationLineItemModel();
         }
 
+        public function deleteRegistrationLineItems($userId, $eventId) {
+            echo "deleting";
+            echo $this->registrationLineItemObj->deleteRegistrationLineItems($userId, $eventId);
+        }
+
         public function addRegistrationLineItems($data) {
             $data = $this->determineLineItemAmounts($data);
             $this->addEventLineItem($data);

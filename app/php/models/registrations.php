@@ -18,8 +18,12 @@ class registrations extends db {
         return $this->query($this->insertQuery($data));
     }
 
+    public function updateRegistrationInformation($data) {
+        return $this->query($this->updateQuery($data));
+    }
+
     public function updateRegistrationPaid($registrationId, $paidStatus, $amountPaid) {
-        return $this->query($this->updateQuery($registrationId, $paidStatus, $amountPaid));
+        return $this->query($this->updatePaidQuery($registrationId, $paidStatus, $amountPaid));
     }
 
     private function selectQueryByEventId($eventId) {
@@ -32,6 +36,8 @@ class registrations extends db {
                 u.firstName as firstName,
                 u.lastName as lastName,
                 u.email as email,
+                u.city as city,
+                u.state as state,
                 IFNULL(r.paid,'NO') as paid
             FROM
                 registrations r,
@@ -48,7 +54,7 @@ class registrations extends db {
       ";
     }
 
-    private function updateQuery($registrationId, $paidStatus, $amountPaid) {
+    private function updatePaidQuery($registrationId, $paidStatus, $amountPaid) {
         return "
             UPDATE 
                 registrations
@@ -64,6 +70,7 @@ class registrations extends db {
     private function selectQuery($userId) {
         return "
             SELECT 
+                r.registrationId as registrationId,
                 r.ageVerification as ageVerification,
                 IFNULL(r.paid,'NO') as paid,
                 e.name as name,
@@ -107,6 +114,19 @@ class registrations extends db {
                 '{$this->escapeCharacters($data['type'])}',
                 NOW()
           )
+        ;
+      ";
+    }
+
+    private function updateQuery($data) {
+        return "
+            UPDATE 
+                registrations 
+            SET
+                ageVerification = '{$this->escapeCharacters($data['ageVerification'])}',
+                comments = '{$this->escapeCharacters($data['comments'])}'
+            WHERE
+                registrationId = '{$this->escapeCharacters($data['registrationId'])}'
         ;
       ";
     }

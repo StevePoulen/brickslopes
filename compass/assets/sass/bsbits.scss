@@ -1,5 +1,7 @@
 $bs_red: #FF0500;
 $bs_blue: #35469A;
+$bs_light_blue: #D7DAEB;
+$bs_medium_blue: #8690C2;
 $bs_green: green;
 $bs_grey: #BCBEBF;
 $bs_black: #000000;
@@ -91,6 +93,14 @@ textarea.input::-moz-placeholder {
     @extend .actionButton;
     width: 150px;
     padding-top: 3px;
+}
+
+.actionButtonSquareSmall {
+    @extend .actionButton;
+    width: 150px;
+    height: 20px;
+    margin: 0;
+    padding-top: 1px;
 }
 
 .actionButtonSmall {
@@ -227,11 +237,11 @@ input.ng-dirty {
   font-style:italic;
 }
 
-label.normalFont {
+.normalFont {
   color: black;
 }
 
-label.errorFont {
+.errorFont {
   color: red;
 }
 
@@ -253,4 +263,8 @@ label.errorFont {
 
 .textRight {
     text-align: right;
+}
+
+.evenRow {
+    background: $bs_light_blue;
 }

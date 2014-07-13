@@ -101,6 +101,15 @@
                     )
                 ),
                 array(
+                    'theme' => 'The BCS Awards',
+                    'type' => 'AFOL',
+                    'awards' => array (
+                        "Brian's Choice Award",
+                        "Cody's Choice Award",
+                        "Steve's Choice Award"
+                    )
+                ),
+                array(
                     'theme' => 'Castle',
                     'type' => 'AFOL',
                     'awards' => array (
@@ -368,7 +377,7 @@
                     } else if ($userMap['email'] == 'blackdragon5555@hotmail.com') {
                         $userMap['admin'] = 'YES';
                         $userMap['password'] = '12345678';
-                    } else if ($userMap['email'] == 'spoulsen@gmail.com') {
+                    } else if ($userMap['email'] == 'spoulsen.sp@gmail.com') {
                         $userMap['admin'] = 'YES';
                         $userMap['password'] = '12345678';
                     } else {

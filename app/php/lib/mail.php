@@ -56,7 +56,7 @@
                                 {$this->getFontWrapper(16, '#000000')}
                                     $firstName,
                                     <p>
-                                    Congratulations this e-mail confirms you have registered to be a member of BrickSlopes - A LEGO Fan Event&trade;.
+                                    <b>Congratulations!</b> this e-mail confirms you are a registered member of BrickSlopes - A LEGO Fan Event&trade;.
                                     <p>
                                     {$this->getPleaseVisit()}
                                 {$this->getFontClosure()}
@@ -77,9 +77,11 @@
             }
         }
 
-        public function sendEventRegistrationMessage($userId, $display=false) {
+        public function sendEventRegistrationMessage($userId, $eventId, $display=false) {
             $usersObj = new users();
             $usersObj->getUserInformation($userId);
+            $registrationLineItemsObj = new registrationLineItems($userId, false);
+            $lineItems = $registrationLineItemsObj->getRegisteredLineItems($userId, $eventId);
             if($usersObj->result) {
                 $dbObj = $usersObj->result->fetch_object();
                 $this->email = $dbObj->email;
@@ -102,9 +104,21 @@
                                     {$this->getFontWrapper(16, '#000000')}
                                         {$dbObj->firstName},
                                         <p>
-                                        Congratulations! You this e-mail confirms you are registered for BrickSlopes 2015 - Salt Lake City.
+                                        <b>Congratulations!</b> This e-mail confirms you are registered for BrickSlopes 2015 - Salt Lake City.
                                         <p>
-                                        You will receive a confirmation e-mail once your registration is complete.
+                                        You will receive a confirmation e-mail once your payment is received and your registration is complete.
+                                        <p>
+                                        <b>Your Event Experience</b>
+                                        {$this->parseLineItems($lineItems)}
+                                        <p>
+                                        <b>Have You Considered?</b>
+                                        <p>
+                                        We need LEGO presenters and panels speakers. Do you have a topic you are passionate about and are willing to share with the community? 
+                                        <p>
+                                        <b>Let the fun begin ...</b>
+                                        <p>
+                                        Dont' forget to sign-up to bring your MOCs or register for event games.
+                                        <p>
                                         <p>
                                         {$this->getPleaseVisit()}
                                     {$this->getFontClosure()}
@@ -126,43 +140,63 @@
             }
         }
 
-        public function sendRegistrationPaidMessage($firstName, $display=false) {
-            $this->subject = "BrickSlopes Registration Complete";
-            $this->message = "
-                <!doctype html>
-                <html>
-                    <head>
-                        <title>BrickSlopes Registration Complete</title>
-                    </head>
-                    <body>
-                        {$this->getEmailBackgroundHeader()}
-                        {$this->getFirstLineSpoiler()}
-                        {$this->getBSLogo()}
-                        {$this->getNavigation()}
-                        {$this->getTableHeader()}
-                            <tr>
-                                <td align=left>
-                                    {$this->getFontWrapper(16, '#000000')}
-                                        $firstName,
-                                        <p>
-                                        You are receiving this e-mail because your BrickSlopes 2015 - Salt Lake City registration is complete.
-                                        <p>
-                                        {$this->getPleaseVisit()}
-                                    {$this->getFontClosure()}
-                                </td>
-                            </tr>
-                        {$this->getTableFooter()}
-                        {$this->getDisclaimer()}
-                        {$this->getCopyRight()}
-                        {$this->getDivClosure()}
-                    </body>
-                </html>
-            ";
+        public function sendRegistrationPaidMessage($userId, $eventId, $display=false) {
+            $usersObj = new users();
+            $usersObj->getUserInformation($userId);
+            $registrationLineItemsObj = new registrationLineItems($userId, false);
+            $lineItems = $registrationLineItemsObj->getRegisteredLineItems($userId, $eventId);
+            if($usersObj->result) {
+                $dbObj = $usersObj->result->fetch_object();
+                $this->email = $dbObj->email;
 
-            if ($display) {
-                return $this->message;
-            } else {
-                $this->sendEmail();
+                $this->subject = "BrickSlopes Registration Complete";
+                $this->message = "
+                    <!doctype html>
+                    <html>
+                        <head>
+                            <title>BrickSlopes Registration Complete</title>
+                        </head>
+                        <body>
+                            {$this->getEmailBackgroundHeader()}
+                            {$this->getFirstLineSpoiler()}
+                            {$this->getBSLogo()}
+                            {$this->getNavigation()}
+                            {$this->getTableHeader()}
+                                <tr>
+                                    <td align=left>
+                                        {$this->getFontWrapper(16, '#000000')}
+                                            {$dbObj->firstName},
+                                            <p>
+                                            Thank you for your payment. Your BrickSlopes 2015 - Salt Lake City registration is now complete.
+                                            <p>
+                                            <b>Your Event Experience</b>
+                                            {$this->parseLineItems($lineItems)}
+                                            <p>
+                                            <b>Have You Considered?</b>
+                                            <p>
+                                            We need LEGO presenters and panels speakers. Do you have a topic you are passionate about and are willing to share with the community? 
+                                            <p>
+                                            <b>Let the fun begin ...</b>
+                                            <p>
+                                            Dont' forget to sign-up to bring your MOCs or register for event games.
+                                            <p>
+                                            {$this->getPleaseVisit()}
+                                        {$this->getFontClosure()}
+                                    </td>
+                                </tr>
+                            {$this->getTableFooter()}
+                            {$this->getDisclaimer()}
+                            {$this->getCopyRight()}
+                            {$this->getDivClosure()}
+                        </body>
+                    </html>
+                ";
+
+                if ($display) {
+                    return $this->message;
+                } else {
+                    $this->sendEmail();
+                }
             }
         }
 
@@ -215,7 +249,7 @@
 
         private function getEmailBackgroundHeader() {
             return "
-                <div style='width:auto; height:800px; border-radius:10px; background:#FFFFFF; border:5px solid black; {$this->getFontFamily()} bgcolor:#FFFFFF;'>
+                <div style='width:auto; height:auto; border-radius:10px; background:#FFFFFF; border:5px solid black; {$this->getFontFamily()} bgcolor:#FFFFFF;'>
             ";
         }
 
@@ -225,9 +259,68 @@
             ";
         }
 
+        private function parseLineItems($lineItems) {
+            $message = $this->getTableHeader('#FFFFFF', 1, 600, 0);
+
+            $message .= "
+                <tr>
+                    <th align='center'>
+                        Item
+                    </th>
+                    <th align='center'>
+                        Quantity 
+                    </th>
+                    <th align='center'>
+                        Amount 
+                    </th>
+                    <th align='center'>
+                        Total 
+                    </th>
+                </tr>
+            ";
+
+            foreach($lineItems['lineItems'] as $lineItem) {
+                $message .= "
+                    <tr>
+                        <td align='center'>
+                            {$lineItem['lineItem']}
+                        </td>
+                        <td align='center'>
+                            {$lineItem['quantity']}
+                        </td>
+                        <td align='right'>
+                            \${$lineItem['amount']}
+                        </td>
+                        <td align='right'>
+                            \${$lineItem['total']}
+                        </td>
+                    </tr>
+                ";
+            }
+
+            $message .= "
+                <tr>
+                    <td align='right' colspan=3>
+                        <b>Total &nbsp; &nbsp;</b>
+                    </td>
+                    <td align='right'>
+                        <b>\${$lineItems['total']}</b>
+                    </td>
+                </tr>
+            ";
+
+            $message .= "
+                {$this->getTableFooter()}
+            ";
+
+            return $message;
+        }
+
         private function getPleaseVisit() {
             return "
-                Need more LEGO goodness? Then get over to <a href='{$this->getDomain()}' target='_blank'>{$this->getDomain()}</a> for more information about
+                <b>Need more LEGO goodness?</b>
+                <p>
+                Then get over to <a href='{$this->getDomain()}' target='_blank'>{$this->getDomain()}</a> for more information about
                 <ul>
                     <li>BrickSlopes 2015</li>
                     <li>Games</li>
@@ -253,13 +346,13 @@
         }
 
 
-        private function getTableHeader($bgColor="#FFFFFF") {
+        private function getTableHeader($bgColor="#FFFFFF", $border=0, $width=800, $padding=10) {
             return "
                 <table width=100%>
                     <tbody>
                         <tr>
                             <td align=center>
-                                <table width='800' cellspacing='0' cellpadding='0' border='0' align='center' style='padding-bottom:10px;' bgcolor='$bgColor'>
+                                <table width='{$width}' cellspacing='0' cellpadding='0' border='{$border}' align='center' style='padding-bottom:{$padding}px;' bgcolor='$bgColor'>
                                     <tbody>
             ";
         }

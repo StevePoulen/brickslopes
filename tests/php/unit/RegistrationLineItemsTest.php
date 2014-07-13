@@ -4,8 +4,8 @@ class RegistrationLineItemsTest extends PHPUnit_Framework_TestCase
 {
     public function setUp() 
     {
-        new RegistrationLineItemsMock();
         $this->userId = 22;
+        new RegistrationLineItemsMock();
         include_once('controllers/registrationLineItems.php');
     }
 
@@ -27,7 +27,9 @@ class RegistrationLineItemsTest extends PHPUnit_Framework_TestCase
         $output = json_decode(ob_get_contents(), true)['2'];
         $lineItems = $output['lineItems'];
 
-        $this->assertEquals($output['total'], '141.50');
+        $this->assertEquals($output['total'], '110.00');
+        $this->assertEquals($output['totalPaid'], '65.00');
+        $this->assertEquals($output['totalRemaining'], '45.00');
 
         $this->assertEquals($lineItems[0]['registrationLineItemId'] , 1);
         $this->assertEquals($lineItems[0]['lineItem'] , 'Event Pass');
@@ -41,17 +43,36 @@ class RegistrationLineItemsTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($lineItems[0]['active'] , 'YES');
         $this->assertEquals($lineItems[0]['entryDate'] , '2014-06-29 08:46:00');
 
-        $this->assertEquals($lineItems[1]['registrationLineItemId'] , 2);
-        $this->assertEquals($lineItems[1]['lineItem'] , 'T-Shirt');
-        $this->assertEquals($lineItems[1]['amount'] , '15.75');
-        $this->assertEquals($lineItems[1]['total'] , '31.50');
+        $this->assertEquals($lineItems[1]['registrationLineItemId'] , 3);
+        $this->assertEquals($lineItems[1]['lineItem'] , 'Meet And Greet');
+        $this->assertEquals($lineItems[1]['amount'] , '15.00');
+        $this->assertEquals($lineItems[1]['total'] , '45.00');
         $this->assertEquals($lineItems[1]['paid'] , 'NO');
-        $this->assertEquals($lineItems[1]['discount'] , 'YES');
+        $this->assertEquals($lineItems[1]['discount'] , 'NO');
         $this->assertEquals($lineItems[1]['description'] , '');
-        $this->assertEquals($lineItems[1]['size'] , 'X-Large');
-        $this->assertEquals($lineItems[1]['quantity'] , '2');
-        $this->assertEquals($lineItems[1]['active'] , 'YES');
+        $this->assertEquals($lineItems[1]['size'] , '');
+        $this->assertEquals($lineItems[1]['quantity'] , '3');
+        $this->assertEquals($lineItems[1]['active'] , 'NO');
         $this->assertEquals($lineItems[1]['entryDate'] , '2014-06-29 08:46:00');
+
+        $output = json_decode(ob_get_contents(), true)['1'];
+        $lineItems = $output['lineItems'];
+
+        $this->assertEquals($output['total'], '31.50');
+        $this->assertEquals($output['totalPaid'], '0.00');
+        $this->assertEquals($output['totalRemaining'], '31.50');
+
+        $this->assertEquals($lineItems[0]['registrationLineItemId'] , 2);
+        $this->assertEquals($lineItems[0]['lineItem'] , 'T-Shirt');
+        $this->assertEquals($lineItems[0]['amount'] , '15.75');
+        $this->assertEquals($lineItems[0]['total'] , '31.50');
+        $this->assertEquals($lineItems[0]['paid'] , 'NO');
+        $this->assertEquals($lineItems[0]['discount'] , 'YES');
+        $this->assertEquals($lineItems[0]['description'] , '');
+        $this->assertEquals($lineItems[0]['size'] , 'X-Large');
+        $this->assertEquals($lineItems[0]['quantity'] , '2');
+        $this->assertEquals($lineItems[0]['active'] , 'YES');
+        $this->assertEquals($lineItems[0]['entryDate'] , '2014-06-29 08:46:00');
     }
 
     public function testBuildLineItemObject() 
@@ -62,7 +83,9 @@ class RegistrationLineItemsTest extends PHPUnit_Framework_TestCase
         $output = $registrationLineItem->getRegisteredLineItems(1,2);
         $lineItems = $output['lineItems'];
 
-        $this->assertEquals($output['total'], '141.50');
+        $this->assertEquals($output['total'], '110.00');
+        $this->assertEquals($output['totalPaid'], '65.00');
+        $this->assertEquals($output['totalRemaining'], '45.00');
 
         $this->assertEquals($lineItems[0]['registrationLineItemId'] , 1);
         $this->assertEquals($lineItems[0]['lineItem'] , 'Event Pass');
@@ -76,28 +99,16 @@ class RegistrationLineItemsTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($lineItems[0]['active'] , 'YES');
         $this->assertEquals($lineItems[0]['entryDate'] , '2014-06-29 08:46:00');
 
-        $this->assertEquals($lineItems[1]['registrationLineItemId'] , 2);
-        $this->assertEquals($lineItems[1]['lineItem'] , 'T-Shirt');
-        $this->assertEquals($lineItems[1]['amount'] , '15.75');
+        $this->assertEquals($lineItems[1]['registrationLineItemId'] , 3);
+        $this->assertEquals($lineItems[1]['lineItem'] , 'Meet And Greet');
+        $this->assertEquals($lineItems[1]['amount'] , '15.00');
         $this->assertEquals($lineItems[1]['paid'] , 'NO');
-        $this->assertEquals($lineItems[1]['total'] , '31.50');
-        $this->assertEquals($lineItems[1]['discount'] , 'YES');
+        $this->assertEquals($lineItems[1]['total'] , '45.00');
+        $this->assertEquals($lineItems[1]['discount'] , 'NO');
         $this->assertEquals($lineItems[1]['description'] , '');
-        $this->assertEquals($lineItems[1]['size'] , 'X-Large');
-        $this->assertEquals($lineItems[1]['quantity'] , '2');
-        $this->assertEquals($lineItems[1]['active'] , 'YES');
+        $this->assertEquals($lineItems[1]['size'] , '');
+        $this->assertEquals($lineItems[1]['quantity'] , '3');
+        $this->assertEquals($lineItems[1]['active'] , 'NO');
         $this->assertEquals($lineItems[1]['entryDate'] , '2014-06-29 08:46:00');
-
-        $this->assertEquals($lineItems[2]['registrationLineItemId'] , 3);
-        $this->assertEquals($lineItems[2]['lineItem'] , 'Meet And Greet');
-        $this->assertEquals($lineItems[2]['amount'] , '15.00');
-        $this->assertEquals($lineItems[2]['paid'] , 'NO');
-        $this->assertEquals($lineItems[2]['total'] , '45.00');
-        $this->assertEquals($lineItems[2]['discount'] , 'NO');
-        $this->assertEquals($lineItems[2]['description'] , '');
-        $this->assertEquals($lineItems[2]['size'] , '');
-        $this->assertEquals($lineItems[2]['quantity'] , '3');
-        $this->assertEquals($lineItems[2]['active'] , 'NO');
-        $this->assertEquals($lineItems[2]['entryDate'] , '2014-06-29 08:46:00');
     }
 }

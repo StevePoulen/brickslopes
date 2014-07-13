@@ -19,8 +19,18 @@ describe('service', function() {
             beforeEach(inject(function(_$httpBackend_, RegisteredAfols) {
                 mockBackend = _$httpBackend_;
                 service = RegisteredAfols;
-                mockBackend.expectGET('/controllers/registeredAfols.php?eventId=2').respond(201);
+                mockBackend.expectGET('/controllers/registeredAfols.php?eventId=2').respond(201, registeredAfols);
             }));
+
+            it('should load registered afols count', function() {
+                var load = service.getCount(2);
+                load.then(function(_data) {
+                    data = _data;
+                });
+
+                mockBackend.flush();
+                expect(data).toEqualData(2);
+            });
 
             it('should get all of the registered afols', function() {
                 var load = service.get(2);
@@ -30,7 +40,7 @@ describe('service', function() {
                 });
 
                 mockBackend.flush();
-                expect(data).toBe(undefined);
+                expect(data).toEqualData(registeredAfols);
             });
         });
 

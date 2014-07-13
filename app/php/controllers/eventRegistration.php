@@ -21,6 +21,8 @@ class EventRegistration {
             $this->get();
         } else if ($requestMethod == "POST") {
             $this->post();
+        } else if ($requestMethod == "PATCH") {
+            $this->patch();
         } else {
             header("HTTP/1.0 405 Method Not Allowed");
         }
@@ -37,6 +39,7 @@ class EventRegistration {
                         'ageVerification' => $dbObj->ageVerification,
                         'paid' => $dbObj->paid,
                         'name' => $dbObj->name,
+                        'registrationId' => $dbObj->registrationId,
                         'lineItems' => $registrationLineItemsObj->getRegisteredLineItems($this->userId, $dbObj->eventId)
                     )
                 );
@@ -44,6 +47,34 @@ class EventRegistration {
         }
         header("HTTP/1.0 200 Success");
         echo json_encode ($eventJson);
+    }
+
+    private function patch() {
+        $payload = json_decode(file_get_contents("php://input"), true);
+        if (sizeof($payload) == 0) {
+            $payload = $_POST;
+        }
+        $payload['userId'] = $this->userId;
+        $response = $this->registrationsObj->updateRegistrationInformation($payload);
+
+        $this->registrationLineItemHelper = new registrationLineItemHelper();
+        $this->registrationLineItemHelper->deleteRegistrationLineItems(
+            $payload['userId'],
+            $payload['eventId']
+        );
+        echo $response;
+
+        if (preg_match ( '/\d+/', $response )) {
+            $this->registrationLineItemHelper->addRegistrationLineItems($payload);
+
+            $emailObj = new mail('to_be_set_later');
+            $emailObj->sendEventRegistrationMessage($this->userId, $payload['eventId']);
+
+            header("HTTP/1.0 201 Created");
+
+        } else {
+            header("HTTP/1.0 400 Bad Request");
+        }
     }
 
     private function post() {
@@ -59,7 +90,7 @@ class EventRegistration {
             $this->registrationLineItemHelper->addRegistrationLineItems($payload);
 
             $emailObj = new mail('to_be_set_later');
-            $emailObj->sendEventRegistrationMessage($this->userId);
+            $emailObj->sendEventRegistrationMessage($this->userId, $payload['eventId']);
 
             header("HTTP/1.0 201 Created");
 

@@ -58,7 +58,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     }
 }])
 .controller('bsHeader', ['$scope', '$window', '$location', function($scope, $window, $location) {
-    $scope.showAfolLogin = false;
+    $scope.showAfolLogin = true;
     $scope.clickBuilder = function() {
         if ($window.sessionStorage.token) {
             $location.path("/afol/index.html");
@@ -214,22 +214,23 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     function getPaypalPayload() {
         var lineItemCounter = 1;
         _.each($scope.registrationLineItems, function(lineItem) {
-            $scope.paypalPayload['item_name_' + lineItemCounter] = lineItem.lineItem;
-            $scope.paypalPayload['amount_' + lineItemCounter] = lineItem.total;
-            $scope.paypalPayload['shipping_' + lineItemCounter] = 0;
-            lineItemCounter++;
+            if (lineItem.paid !== 'YES') {
+                $scope.paypalPayload['item_name_' + lineItemCounter] = lineItem.lineItem;
+                $scope.paypalPayload['amount_' + lineItemCounter] = lineItem.total;
+                $scope.paypalPayload['shipping_' + lineItemCounter] = 0;
+                lineItemCounter++;
+            }
         });
         return $scope.paypalPayload;
     }
 
     RegistrationLineItems.get($scope.eventId).then(function(data) {
         $scope.registrationLineItems = data[$scope.eventId]['lineItems'];
-        $scope.totalAmount = data[$scope.eventId]['total'];
-
-        $scope.createFormData();
+        $scope.totalAmount = data[$scope.eventId]['totalRemaining'];
+        createFormData();
     });
 
-    $scope.createFormData = function() {
+    function createFormData() {
         _.each(getPaypalPayload(), function(value, key) {
             var element = $("<input type='hidden'>")
                 .attr("name", key)
@@ -248,6 +249,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     $scope.displayMessage = "";
     $scope.success = true;
     $scope.timer = false;
+    $scope.registrationId = undefined;
     $scope.eventId = $route.current.params.eventId;
     $scope.eventDetails = {city: 'loading'};
     $scope.nameBadge = 'NO';
@@ -259,11 +261,33 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     $scope.eventYear = undefined;
     $scope.passType = undefined;
     $scope.meetAndGreetDinnerDate = undefined;
-    $scope.shirtSizes = ['No Thanks', 'Small', 'Medium', 'Large', 'X-Large', 'XX-Large'];
+    $scope.isCreate = true;
+    $scope.shirtSizes = ['No Thanks', 'Small', 'Medium', 'Large', 'X-Large', 'XX-Large', 'XXX-Large'];
     $scope.tShirtSize = "X-Large";
+
+    $scope.$watchCollection("[badgeLine3, badgeLine2]", function() {
+        if (angular.isDefined($scope.badgeLine3) || angular.isDefined($scope.badgeLine2)) {
+            $scope.nameBadge = 'YES';
+        } else if ($scope.badgeLine3 === undefined && $scope.badgeLine2 === undefined) {
+            $scope.nameBadge = 'NO';
+        }
+
+    });
+
+    function deSerializeRegistrationJson(data) {
+        $scope.registrationId = data.registrationId,
+        $scope.badgeLine2 = data.badgeLine2,
+        $scope.badgeLine3 = data.badgeLine3,
+        $scope.nameBadge = data.nameBadge,
+        $scope.meetAndGreet = data.meetAndGreet,
+        $scope.ageVerification = data.ageVerification,
+        $scope.tShirtSize = data.tShirtSize,
+        $scope.comments = data.comments
+    }
 
     function serializeRegistrationJson() {
         return {
+            registrationId: $scope.registrationId,
             eventId: $scope.eventId,
             badgeLine1: $scope.eventYear + " BrickSlopes",
             badgeLine2: $scope.badgeLine2,
@@ -286,7 +310,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
 
     $scope.submitRegistration = function() {
         $scope.verifying = true;
-        eventRegistration.create(serializeRegistrationJson()).then(function(response) {
+        eventRegistration.submitRegistration($scope.isCreate, serializeRegistrationJson()).then(function(response) {
             $location.path('/afol/eventPayment.html');
         }, function() {
             $scope.verifying = false;
@@ -324,7 +348,8 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     eventRegistration.get().then(function(data) {
         var isRegistered = (Object.keys(data).length ? true : false);
         if (isRegistered) {
-            $location.path("/afol/eventMe.html");
+            $scope.isCreate = false;
+            deSerializeRegistrationJson(data[0]);
         }
     });
 
@@ -366,6 +391,10 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         $scope.oldPassword = "";
         $scope.newPassword = "";
         $scope.newPasswordVerify = "";
+    }
+
+    $scope.payNow = function() {
+        $location.path('/afol/eventPayment.html');
     }
 
     $scope.changePassword = function() {
@@ -444,6 +473,21 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         $location.path('/afol/admin/resetPassword/emails');
     }
 }])
+.controller('eventAfols', ['$scope', 'RegisteredAfols','$location', function($scope, RegisteredAfols, $location) {
+    $("#splashPageCTA").hide();
+    $scope.registeredAfols = undefined;
+    $scope.eventId = 2;
+    $scope.eventName = undefined;
+
+    RegisteredAfols.get($scope.eventId).then(function(data) {
+        $scope.registeredAfols = data[$scope.eventId]['registeredAfols'];
+        $scope.eventName = data[$scope.eventId]['eventName'];
+    });
+
+    $scope.closeDialog = function() {
+        $location.path("/afol/index.html");
+    }
+}])
 .controller('adminRegisteredAfols', ['$scope', 'RegisteredAfols', 'RegistrationLineItems', '$location', function($scope, RegisteredAfols, RegistrationLineItems, $location) {
     $("#splashPageCTA").hide();
     $scope.registeredAfols = undefined;
@@ -460,7 +504,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     }
 
     $scope.sendEmail = function() {
-        RegisteredAfols.sendPaymentEmail(this.afol.userId);
+        RegisteredAfols.sendPaymentEmail(this.afol.userId, $scope.eventId);
     }
 
     $scope.confirmPayment = function(lineItem) {
@@ -482,19 +526,21 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         $location.path("/afol/admin.html");
     }
 }])
-.controller('afolIndex', ['$scope', '$location', 'GetAfolMocList', '$window', 'EventDates', 'EventRegistration', function($scope, $location, GetAfolMocList, $window, EventDates, EventRegistration) {
+.controller('afolIndex', ['$scope', '$location', 'GetAfolMocList', 'RegisteredAfols', '$window', 'EventDates', 'EventRegistration', function($scope, $location, GetAfolMocList, RegisteredAfols, $window, EventDates, EventRegistration) {
     $("#splashPageCTA").hide();
     $scope.mocCount = 0;
+    $scope.afolCount = 0;
     $scope.vendorCount = 0;
     $scope.mocList = [];
     $scope.userName = $window.sessionStorage.firstName + "'s Site";
     $scope.isRegistered = false;
+    $scope.eventId = 2;
 
-    EventDates.getEventYear(2).then(function(year) {
+    EventDates.getEventYear($scope.eventId).then(function(year) {
         $scope.eventYear = year;
     });
 
-    EventDates.getEventMonthYear(2).then(function(monthYear) {
+    EventDates.getEventMonthYear($scope.eventId).then(function(monthYear) {
         $scope.eventMonthYear = monthYear;
     });
 
@@ -519,7 +565,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         if ($scope.isRegistered) {
             $location.path("/afol/eventMe.html");
         } else {
-            $location.path("/afol/2/eventRegistration.html");
+            $location.path("/afol/" + $scope.eventId + "/eventRegistration.html");
         }
     }
 
@@ -554,8 +600,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     }
 
     $scope.clickAfols= function() {
-        //$location.path("/afol/eventVfols.html");
-        $location.path("/afol/comingSoon.html");
+        $location.path("/afol/eventAfols.html");
     }
 
     $scope.clickFAQ = function() {
@@ -581,5 +626,9 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         GetAfolMocList.getCount().then(function(data) {
             $scope.mocCount = data;
         });
+    });
+
+    RegisteredAfols.getCount($scope.eventId).then(function(data) {
+        $scope.afolCount = data;
     });
 }]);

@@ -3,14 +3,10 @@
   width: 100%;
 }
 /* line 4, ../../compass/assets/sass/admin.scss */
-.registeredAfols .evenRow {
-  background: lightgrey;
-}
-/* line 8, ../../compass/assets/sass/admin.scss */
 .registeredAfols table {
   width: 100%;
 }
-/* line 12, ../../compass/assets/sass/admin.scss */
+/* line 8, ../../compass/assets/sass/admin.scss */
 .registeredAfols td {
   border: 1px solid black;
   width: auto;

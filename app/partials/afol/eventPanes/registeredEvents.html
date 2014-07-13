@@ -1,25 +1,61 @@
 <div>
     <div ng-repeat="event in eventList">
-        <div class="info">
+        <div class="textCenter info">
             <bs-text text="BrickSlopes - Salt Lake City" font-size=1.25></bs-text>
         </div>
-        <div class="info">
+        <div class="textCenter info">
             <bs-text text="{{passType}} Event Pass - {{passDates}}"></bs-text>
         </div>
-        <div class="info">
-            <bs-text text="Paid: {{event.paid}}"></bs-text>
-        </div>
-        <div class="info">
-            <bs-text text="{{event.type}}: YES"></bs-text>
-        </div>
-        <div class="info">
-            <bs-text text="T-Shirt: {{event.tShirtSize}}"></bs-text>
-        </div>
-        <div class="info">
-            <bs-text text="Name Badge: {{event.nameBadge}}"></bs-text>
-        </div>
-        <div class="info">
-            <bs-text text="Meet and Greet: {{event.meetAndGreet}}"></bs-text>
+        <div class="textLeft info">
+            <table>
+                <tbody>
+                    <tr>
+                        <td>
+                            <bs-text text="Paid"></bs-text>
+                        </td>
+                        <td>
+                            <span ng-show="paidCTA">
+                                <bs-text text="Thank You"></bs-text>
+                            </span>
+                            <span ng-hide="paidCTA" class="actionButtonSquareSmall" ng-click="payNow()">
+                                <bs-text text="Pay Now" font-color=white font-size=1></bs-text>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <bs-text text="{{event.type}}"></bs-text>
+                        </td>
+                        <td>
+                            <bs-text text="YES"></bs-text>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <bs-text text="T-Shirt"></bs-text>
+                        </td>
+                        <td>
+                            <bs-text text="{{event.tShirtSize}}"></bs-text>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <bs-text text="Meet & Greet"></bs-text>
+                        </td>
+                        <td>
+                            <bs-text text="{{event.meetAndGreet}}"></bs-text>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <bs-text text="Name Badge"></bs-text>
+                        </td>
+                        <td>
+                            <bs-text text="{{event.nameBadge}}"></bs-text>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
         <div class="brickCenter">
             <div class="brickHolder" ng-show="{{event.showBadgeLine1}}">

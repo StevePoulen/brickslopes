@@ -424,25 +424,37 @@ angular.module('brickSlopes.services', [])
     }
 }])
 .factory('RegisteredAfols', ['$q', '$http', function($q, $http) {
-    return {
-        get: function(eventId) {
-            var delay= $q.defer();
-            $http (
-                {
-                    method: 'GET',
-                    url: '/controllers/registeredAfols.php',
-                    params: {'eventId': eventId}
-                }
-            ).success(function(data, status, headers, config) {
-                delay.resolve(data);
-            }).error(function(data, status, headers, config) {
-                delay.reject(data);
-            });
+    afolList = undefined;
 
-            return delay.promise;
+    return {
+        getCount: function($eventId) {
+            if (afolList) {
+                return $q.when(afolList[$eventId].registeredAfols.length);
+            } else {
+                return $q.when(this.get($eventId).then(function(data) {
+                    return afolList[$eventId].registeredAfols.length;
+                }));
+            }
         },
 
-        sendPaymentEmail: function(userId) {
+        get: function(eventId) {
+            if (afolList) {
+                return $q.when(afolList);
+            }   else {
+                return $q.when($http (
+                    {
+                        method: 'GET',
+                        url: '/controllers/registeredAfols.php',
+                        params: {'eventId': eventId}
+                    }
+                ).then(function(data) {
+                    afolList = data.data;
+                    return afolList;
+                }));
+            }
+        },
+
+        sendPaymentEmail: function(userId, eventId) {
             var delay= $q.defer();
             $http (
                 {
@@ -450,6 +462,7 @@ angular.module('brickSlopes.services', [])
                     url: '/controllers/admin/sendEmail.php',
                     params: {
                         'userId': userId,
+                        'eventId': eventId,
                         'type': 'registrationPaid'
                     }
                 }
@@ -489,6 +502,7 @@ angular.module('brickSlopes.services', [])
             eventObj.tShirtSize = 'NO';
             eventObj.type = (eventObj.ageVerification == 'YES' ? 'AFOL' : 'TFOL');
             eventObj.meetAndGreet = 'NO';
+            eventObj.paidCTA = (eventObj.paid == 'YES');
             eventObj.nameBadge = 'NO';
             eventObj.showBadgeLine1 = false;
             eventObj.badgeLine1 = 'One';
@@ -529,6 +543,28 @@ angular.module('brickSlopes.services', [])
                 }
             ).success(function(data, status, headers, config) {
                 delay.resolve(parseEventRegistrationData(data));
+            }).error(function(data, status, headers, config) {
+                delay.reject(data);
+            });
+
+            return delay.promise;
+        },
+
+        submitRegistration: function(isCreate, dto) {
+            return (isCreate ? this.create(dto) : this.patch(dto));
+        },
+
+        patch: function(eventRegistrationDTO) {
+            var delay= $q.defer();
+            $http (
+                {
+                    method: 'PATCH',
+                    url: '/controllers/eventRegistration.php',
+                    data: eventRegistrationDTO,
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+                }
+            ).success(function(data, status, headers, config) {
+                delay.resolve(data);
             }).error(function(data, status, headers, config) {
                 delay.reject(data);
             });

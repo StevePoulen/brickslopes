@@ -44,12 +44,21 @@ class registrationLineItems {
     }
 
     private function buildTotalAmounts($lineItemMap) {
-        $total = 0;
         foreach($lineItemMap as $key => $lineItemObject) {
+            $total = 0;
+            $totalPaid = 0;
+            $totalRemaining = 0;
             foreach($lineItemObject['lineItems'] as $lineItem) {
                 $total += $lineItem['total'];
+                if ($lineItem['paid'] === 'YES') {
+                    $totalPaid += $lineItem['total'];
+                } else {
+                    $totalRemaining += $lineItem['total'];
+                }
             }
             $lineItemMap[$key]['total'] = $this->calculateTotal($total, 1);
+            $lineItemMap[$key]['totalPaid'] = $this->calculateTotal($totalPaid, 1);
+            $lineItemMap[$key]['totalRemaining'] = $this->calculateTotal($totalRemaining, 1);
         }
 
         return $lineItemMap;

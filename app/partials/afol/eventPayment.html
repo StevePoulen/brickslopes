@@ -9,7 +9,7 @@
                 <div class="description"><bs-text text=Description font-color=black></bs-text></div>
                 <div class="amount"><bs-text text=Amount font-color=black></bs-text></div>
             </div>
-            <div ng-repeat="lineItem in registrationLineItems">
+            <div ng-repeat="lineItem in registrationLineItems | filter:{paid:'NO'}">
                 <div class="cellWidth">
                     <div class='payment paymentFontOne'>
                         <div class='description'>{{lineItem.lineItem}}</div>

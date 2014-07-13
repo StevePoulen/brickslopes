@@ -12,6 +12,8 @@ class RegisteredAfolsMock extends modelObjects {
         $this->firstName = $this->firstName();
         $this->lastName = $this->lastName();
         $this->email = $this->email();
+        $this->city = $this->city();
+        $this->state = $this->state();
         $this->paid = $this->paid();
         $this->userId = $this->userId();
         $this->registrationLineItemId = $this->registrationLineItemId();
@@ -31,16 +33,18 @@ class RegisteredAfolsMock extends modelObjects {
     public function firstName() { return $this->getData(__FUNCTION__, 3); }
     public function lastName() { return $this->getData(__FUNCTION__, 4); }
     public function email() { return $this->getData(__FUNCTION__, 5); }
-    public function paid() { return $this->getData(__FUNCTION__, 6); }
-    public function userId() { return $this->getData(__FUNCTION__, 7); }
-    public function registrationLineItemId() { return $this->getData(__FUNCTION__,8); }
-    public function lineItem() { return $this->getData(__FUNCTION__,9); }
-    public function amount() { return $this->getData(__FUNCTION__,10); }
-    public function discount() { return $this->getData(__FUNCTION__,11); }
-    public function description() { return $this->getData(__FUNCTION__,12); }
-    public function size() { return $this->getData(__FUNCTION__,13); }
-    public function quantity() { return $this->getData(__FUNCTION__,14); }
-    public function active() { return $this->getData(__FUNCTION__,15); }
-    public function entryDate() { return $this->getData(__FUNCTION__,16); }
+    public function city() { return $this->getData(__FUNCTION__, 6); }
+    public function state() { return $this->getData(__FUNCTION__, 7); }
+    public function paid() { return $this->getData(__FUNCTION__, 8); }
+    public function userId() { return $this->getData(__FUNCTION__, 9); }
+    public function registrationLineItemId() { return $this->getData(__FUNCTION__,10); }
+    public function lineItem() { return $this->getData(__FUNCTION__,11); }
+    public function amount() { return $this->getData(__FUNCTION__,12); }
+    public function discount() { return $this->getData(__FUNCTION__,13); }
+    public function description() { return $this->getData(__FUNCTION__,14); }
+    public function size() { return $this->getData(__FUNCTION__,15); }
+    public function quantity() { return $this->getData(__FUNCTION__,16); }
+    public function active() { return $this->getData(__FUNCTION__,17); }
+    public function entryDate() { return $this->getData(__FUNCTION__,18); }
 }
 ?>

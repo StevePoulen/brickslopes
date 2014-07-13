@@ -1,6 +1,8 @@
 var registrationLineItems = {
     "2": {
         'total': '100.00',
+        'totalPaid': '10.00',
+        'totalRemaining': '90.00',
         'lineItems': [
             {
                 "registrationLineItemid": "1",
@@ -20,7 +22,7 @@ var registrationLineItems = {
                 "lineItem": "Meet and Greet",
                 "amount": "10.00",
                 "total": "10.00",
-                "paid": "NO",
+                "paid": "YES",
                 "discount": "YES",
                 "description": "",
                 "size": "",

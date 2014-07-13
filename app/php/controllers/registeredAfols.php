@@ -4,8 +4,10 @@ class RegisteredAfols {
     private $registrationsObj;
     private $registrationLineItemsObj;
     private $requestMethod;
+    private $isAdmin;
 
-    public function __construct() {
+    public function __construct($isAdmin) {
+        $this->isAdmin = $isAdmin;
         $this->registrationsObj = new registrations();
         $this->registrationLineItemsObj = new registrationLineItems();
         $this->determineRequestMethod();
@@ -35,16 +37,24 @@ class RegisteredAfols {
                     );
                 }
 
-                array_push( $eventJson[$dbObj->eventId]['registeredAfols'], 
-                    array (
-                        'registrationId' => $dbObj->registrationId,
-                        'userId' => $dbObj->userId,
-                        'firstName' => $dbObj->firstName,
-                        'lastName' => $dbObj->lastName,
-                        'email' => $dbObj->email,
-                        'paid' => $dbObj->paid,
-                        'lineItems' => $this->registrationLineItemsObj->getRegisteredLineItems($dbObj->userId, $dbObj->eventId)
-                    )
+                $afolArray = array (
+                    'registrationId' => $dbObj->registrationId,
+                    'userId' => $dbObj->userId,
+                    'firstName' => $dbObj->firstName,
+                    'lastName' => $dbObj->lastName,
+                    'city' => $dbObj->city,
+                    'state' => $dbObj->state
+                );
+
+                if ($this->isAdmin) {
+                    $afolArray['email'] = $dbObj->email;
+                    $afolArray['paid'] = $dbObj->paid;
+                    $afolArray['lineItems'] = $this->registrationLineItemsObj->getRegisteredLineItems($dbObj->userId, $dbObj->eventId);
+                }
+
+                array_push( 
+                    $eventJson[$dbObj->eventId]['registeredAfols'], 
+                    $afolArray
                 );
             }
         }
@@ -53,5 +63,5 @@ class RegisteredAfols {
     }
 }
 
-new RegisteredAfols();
+new RegisteredAfols($this->isAdmin);
 ?>

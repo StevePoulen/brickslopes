@@ -2,6 +2,8 @@
 
 .animationContainer .view-animate-fade {
     height: auto;
+    width: 100%;
+    display: block;
 }
 
 .view-animate-fade.ng-enter, .view-animate-fade.ng-leave {
@@ -10,13 +12,14 @@
     -moz-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
     transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
 
-    display:inline;
+    display: block;
 
     position: absolute;
     top:0;
     left:0;
     right:0;
     bottom:0;
+    width: 100%;
 }
 
 .view-animate-fade.ng-enter {

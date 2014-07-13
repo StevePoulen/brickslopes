@@ -19,6 +19,10 @@ class registrations extends db {
         return $this->query();
     }
 
+    public function updateRegistrationInformation($data) {
+        return $this->query();
+    }
+
     public function getRegistrationInformationByUserId($data) {
         return $this->query();
     }
@@ -34,6 +38,7 @@ class RegistrationsMock extends modelObjects {
     public function __construct() {
         $this->dataSet = file(__DIR__ . '/../artifacts/registrationsDB.txt');
         $GLOBALS['fetch_object_counter_limit'] = sizeOf($this->dataSet);
+        $this->registrationId = $this->registrationId();
         $this->ageVerification = $this->ageVerification();
         $this->paid = $this->paid();
         $this->name = $this->name();
@@ -49,19 +54,20 @@ class RegistrationsMock extends modelObjects {
         $this->entryDate = $this->entryDate();
     }
 
-    public function ageVerification() { return $this->getData(__FUNCTION__,0); }
-    public function paid() { return $this->getData(__FUNCTION__,1); }
-    public function name() { return $this->getData(__FUNCTION__,2); }
-    public function eventId() { return $this->getData(__FUNCTION__,3); }
-    public function registrationLineItemId() { return $this->getData(__FUNCTION__,4); }
-    public function lineItem() { return $this->getData(__FUNCTION__,5); }
-    public function amount() { return $this->getData(__FUNCTION__,6); }
-    public function discount() { return $this->getData(__FUNCTION__,7); }
-    public function description() { return $this->getData(__FUNCTION__,8); }
-    public function size() { return $this->getData(__FUNCTION__,9); }
-    public function quantity() { return $this->getData(__FUNCTION__,10); }
-    public function active() { return $this->getData(__FUNCTION__,11); }
-    public function entryDate() { return $this->getData(__FUNCTION__,12); }
+    public function registrationId() { return $this->getData(__FUNCTION__,0); }
+    public function ageVerification() { return $this->getData(__FUNCTION__,1); }
+    public function paid() { return $this->getData(__FUNCTION__,2); }
+    public function name() { return $this->getData(__FUNCTION__,3); }
+    public function eventId() { return $this->getData(__FUNCTION__,4); }
+    public function registrationLineItemId() { return $this->getData(__FUNCTION__,5); }
+    public function lineItem() { return $this->getData(__FUNCTION__,6); }
+    public function amount() { return $this->getData(__FUNCTION__,7); }
+    public function discount() { return $this->getData(__FUNCTION__,8); }
+    public function description() { return $this->getData(__FUNCTION__,9); }
+    public function size() { return $this->getData(__FUNCTION__,10); }
+    public function quantity() { return $this->getData(__FUNCTION__,11); }
+    public function active() { return $this->getData(__FUNCTION__,12); }
+    public function entryDate() { return $this->getData(__FUNCTION__,13); }
 }
 
 ?>
