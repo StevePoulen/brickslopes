@@ -1,7 +1,5 @@
 #!/bin/bash
 
-WORKING_DIR=`pwd`
-
 while getopts i:d:p: option
 do
     case "${option}"
@@ -12,11 +10,20 @@ do
     esac
 done
 
+
 OUTPUT_FILE_NAME=brickSlopes_backup_$(date +%Y-%m-%d_%H:%M).sql.bz2
 OUTPUT_DIRECTORY=archives
-OUTPUT_FILE=$WORKING_DIR/backups/$OUTPUT_DIRECTORY/$OUTPUT_FILE_NAME;
 STEP_COUNTER=1;
 BRICKSLOPES_DATABASE="brickslopes";
+
+buildOutputFile() {
+    WORKING_DIR=`pwd`
+    OUTPUT_DIR=$WORKING_DIR/$OUTPUT_DIRECTORY;
+    if [ ! -d $OUTPUT_DIR ]; then
+        OUTPUT_DIR=$WORKING_DIR/backups/$OUTPUT_DIRECTORY;
+    fi
+    OUTPUT_FILE=$OUTPUT_DIR/$OUTPUT_FILE_NAME;
+}
 
 incStep() {
     ((STEP_COUNTER++))
@@ -72,9 +79,10 @@ printInstructions() {
 }
 
 userInput() {
-    clear;
+    buildOutputFile;
     if [[ "$INTERACTIVE" != "Y" ]]
     then
+        clear;
         printInstructions;
         brickSlopesEnvironment;
         mysqlRootPassword;
