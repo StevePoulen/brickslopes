@@ -38,6 +38,7 @@ class EventRegistration {
                     array (
                         'ageVerification' => $dbObj->ageVerification,
                         'paid' => $dbObj->paid,
+                        'comments' => $dbObj->comments,
                         'name' => $dbObj->name,
                         'registrationId' => $dbObj->registrationId,
                         'lineItems' => $registrationLineItemsObj->getRegisteredLineItems($this->userId, $dbObj->eventId)
@@ -62,7 +63,6 @@ class EventRegistration {
             $payload['userId'],
             $payload['eventId']
         );
-        echo $response;
 
         if (preg_match ( '/\d+/', $response )) {
             $this->registrationLineItemHelper->addRegistrationLineItems($payload);

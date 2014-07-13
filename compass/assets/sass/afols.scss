@@ -30,7 +30,6 @@
         display: table;
         line-height: normal;  
         vertical-align: middle;
-        height: auto;
 
         #login {
             position: absolute;
@@ -274,6 +273,7 @@
             width: 425px;
             padding-top: 15px;
             left: 0;
+            border: none;
         }
 
         .commentsField {
@@ -344,6 +344,7 @@
             padding-top: $eventPane_height / 2 - 30;
             background-color: white;
             border-radius: 12px;
+            font-size: 1em;
         }
     }
 

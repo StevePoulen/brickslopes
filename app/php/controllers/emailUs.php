@@ -19,7 +19,12 @@ class emailUs {
 
     private function post() {
         $payload = json_decode(file_get_contents("php://input"), true);
-        $emailObj = new mail('brianpilati@gmail.com');
+        if (WEBSITE === 'mybrickslopes.com') {
+            $email =  'Brian <brianpilati@gmail.com>';
+        } else {
+            $email =  'Brian <brian@brickslopes.com>,Steve <steve@brickslopes.com>,Cody <cody@brickslopes.com>';
+        }
+        $emailObj = new mail($email);
         $emailObj->sendEmailUsMessage($payload);
         header("HTTP/1.0 200 Success");
     }

@@ -31,13 +31,14 @@ class RegisteredAfolsTest extends PHPUnit_Framework_TestCase
         $afol = $output['registeredAfols'][0];
 
         $this->assertEquals($afol['registrationId'] , '1');
+        $this->assertEquals($afol['comments'] , 'This is a comment');
         $this->assertEquals($afol['firstName'] , 'Brian');
         $this->assertEquals($afol['lastName'] , 'Pilati');
         $this->assertEquals($afol['email'] , 'brianpilati@gmail.com');
         $this->assertEquals($afol['city'] , 'Spanish Fork');
         $this->assertEquals($afol['state'] , 'Utah');
         $this->assertEquals($afol['paid'] , 'NO');
-        $this->assertEquals(sizeOf($afol), 9);
+        $this->assertEquals(sizeOf($afol), 10);
 
         $total = $output['registeredAfols'][0]['lineItems']['total'];
         $this->assertEquals($total , 25.00);

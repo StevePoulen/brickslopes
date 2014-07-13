@@ -145,7 +145,7 @@ describe('controllers', function() {
                 expect(scope.meetAndGreet).toBe('YES');
                 expect(scope.ageVerification).toBe('YES');
                 expect(scope.tShirtSize).toBe('X-Large');
-                expect(scope.comments).toBeUndefined();
+                expect(scope.comments).toBe('This is my comment');
             });
 
             it('should patch a valid user event registration', function() {
@@ -159,7 +159,7 @@ describe('controllers', function() {
                     meetAndGreet: 'YES',
                     ageVerification: 'YES',
                     tShirtSize: 'X-Large',
-                    //comments: "Can't Wait!",
+                    comments: "This is my comment",
                     type: 'afol',
                     discountDate: '2015-05-16 08:00:00',
                     eventCost: '65.00',
@@ -242,6 +242,36 @@ describe('controllers', function() {
                 expect(scope.displayMessage).toBe('There was an error submitting your data. Please try again.');
                 expect(scope.success).toBe(false);
                 expect(scope.timer).toBe(true);
+            });
+        });
+
+        describe('Validate the nameBadge watcher', function() {
+            beforeEach(function() {
+                mockBackend.expectGET('/controllers/eventRegistration.php').respond(200, {});
+            });
+
+            it('should change the badgeName to NO and undefined badgeLine1 and badgeLine2', function() {
+                scope.badgeLine2 = "hello";
+                scope.badgeLine3 = "there";
+                expect(scope.nameBadge).toBe('NO');
+                scope.$digest();
+                scope.nameBadge = "NO";
+                scope.$digest();
+                expect(scope.nameBadge).toBe('NO');
+                expect(scope.badgeLine2).toBeUndefined();
+                expect(scope.badgeLine3).toBeUndefined();
+            });
+
+            it('should change the badgeName to YES and no change to badgeLine1 and badgeLine2', function() {
+                scope.badgeLine2 = "hello";
+                scope.badgeLine3 = "there";
+                expect(scope.nameBadge).toBe('NO');
+                scope.$digest();
+                scope.nameBadge = "YES";
+                scope.$digest();
+                expect(scope.nameBadge).toBe('YES');
+                expect(scope.badgeLine2).toBe('hello');
+                expect(scope.badgeLine3).toBe('there');
             });
         });
 

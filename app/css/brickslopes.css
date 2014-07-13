@@ -616,15 +616,13 @@ img#miniStarWars {
 #eventDashboard, #eventThemes, #eventRegistration, #emailDashboard, #paypalDashboard, #eventMeDashboard, #eventAfols {
   background-color: white;
   border-radius: 25px;
-  height: auto;
-  min-height: auto;
 }
 
-/* line 626, ../../compass/assets/sass/brickslopes.scss */
+/* line 624, ../../compass/assets/sass/brickslopes.scss */
 #eventThemes {
   height: 1750px;
 }
-/* line 630, ../../compass/assets/sass/brickslopes.scss */
+/* line 628, ../../compass/assets/sass/brickslopes.scss */
 #eventThemes .eventThemesText {
   position: absolute;
   border-radius: 25px;
@@ -640,11 +638,11 @@ img#miniStarWars {
   vertical-align: middle;
 }
 
-/* line 647, ../../compass/assets/sass/brickslopes.scss */
+/* line 645, ../../compass/assets/sass/brickslopes.scss */
 #eventRegistration {
   height: 1275px;
 }
-/* line 651, ../../compass/assets/sass/brickslopes.scss */
+/* line 649, ../../compass/assets/sass/brickslopes.scss */
 #eventRegistration .eventRegistrationText {
   position: absolute;
   border-radius: 25px;
@@ -660,11 +658,11 @@ img#miniStarWars {
   vertical-align: middle;
 }
 
-/* line 669, ../../compass/assets/sass/brickslopes.scss */
+/* line 667, ../../compass/assets/sass/brickslopes.scss */
 #emailDashboard {
   height: 1210px;
 }
-/* line 673, ../../compass/assets/sass/brickslopes.scss */
+/* line 671, ../../compass/assets/sass/brickslopes.scss */
 #emailDashboard .emailText {
   position: absolute;
   border-radius: 25px;
@@ -680,37 +678,37 @@ img#miniStarWars {
   line-height: normal;
   vertical-align: middle;
 }
-/* line 688, ../../compass/assets/sass/brickslopes.scss */
+/* line 686, ../../compass/assets/sass/brickslopes.scss */
 #emailDashboard .emailText a {
   color: #35469a;
   text-decoration: none;
 }
-/* line 693, ../../compass/assets/sass/brickslopes.scss */
+/* line 691, ../../compass/assets/sass/brickslopes.scss */
 #emailDashboard .emailText a:link {
   color: #35469a;
   text-decoration: none;
 }
-/* line 698, ../../compass/assets/sass/brickslopes.scss */
+/* line 696, ../../compass/assets/sass/brickslopes.scss */
 #emailDashboard .emailText a:hover {
   color: #35469a;
   text-decoration: none;
 }
-/* line 703, ../../compass/assets/sass/brickslopes.scss */
+/* line 701, ../../compass/assets/sass/brickslopes.scss */
 #emailDashboard .emailText a:active {
   color: #35469a;
   text-decoration: none;
 }
-/* line 708, ../../compass/assets/sass/brickslopes.scss */
+/* line 706, ../../compass/assets/sass/brickslopes.scss */
 #emailDashboard .emailText a:visited {
   color: #35469a;
   text-decoration: none;
 }
 
-/* line 716, ../../compass/assets/sass/brickslopes.scss */
+/* line 714, ../../compass/assets/sass/brickslopes.scss */
 #paypalDashboard {
   height: 1125px;
 }
-/* line 720, ../../compass/assets/sass/brickslopes.scss */
+/* line 718, ../../compass/assets/sass/brickslopes.scss */
 #paypalDashboard .paypalText {
   position: absolute;
   border-radius: 25px;
@@ -726,11 +724,11 @@ img#miniStarWars {
   vertical-align: middle;
 }
 
-/* line 737, ../../compass/assets/sass/brickslopes.scss */
+/* line 735, ../../compass/assets/sass/brickslopes.scss */
 #eventMeDashboard {
   height: 700px;
 }
-/* line 741, ../../compass/assets/sass/brickslopes.scss */
+/* line 739, ../../compass/assets/sass/brickslopes.scss */
 #eventMeDashboard .eventMeText {
   position: absolute;
   border-radius: 25px;
@@ -746,12 +744,11 @@ img#miniStarWars {
   vertical-align: middle;
 }
 
-/* line 758, ../../compass/assets/sass/brickslopes.scss */
+/* line 756, ../../compass/assets/sass/brickslopes.scss */
 #eventAfols {
   height: auto;
-  min-height: auto;
 }
-/* line 763, ../../compass/assets/sass/brickslopes.scss */
+/* line 760, ../../compass/assets/sass/brickslopes.scss */
 #eventAfols .eventAfolsText {
   position: relative;
   border-radius: 25px;

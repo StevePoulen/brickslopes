@@ -499,17 +499,17 @@ angular.module('brickSlopes.services', [])
     function parseEventRegistrationData(data) {
         _.each(data, function(eventObj) {
             eventObj.total = eventObj.lineItems.total;
-            eventObj.tShirtSize = 'NO';
+            eventObj.tShirtSize = 'No Thanks';
             eventObj.type = (eventObj.ageVerification == 'YES' ? 'AFOL' : 'TFOL');
             eventObj.meetAndGreet = 'NO';
             eventObj.paidCTA = (eventObj.paid == 'YES');
             eventObj.nameBadge = 'NO';
             eventObj.showBadgeLine1 = false;
-            eventObj.badgeLine1 = 'One';
+            eventObj.badgeLine1 = undefined;
             eventObj.showBadgeLine2 = false;
-            eventObj.badgeLine2 = 'Two';
+            eventObj.badgeLine2 = undefined;
             eventObj.showBadgeLine3 = false;
-            eventObj.badgeLine3 = 'Three';
+            eventObj.badgeLine3 = undefined;
             _.each(eventObj.lineItems.lineItems, function(lineItemObj) {
                 if (lineItemObj.active === 'YES') {
                     if (lineItemObj.lineItem === 'T-Shirt') {

@@ -4,6 +4,7 @@ var registeredAfols = {
         'registeredAfols': [
             {
                 registrationId: 28,
+                comments: 'This is my comment',
                 userId: 2,
                 firstName: 'Cody',
                 lastName: 'Ottley',

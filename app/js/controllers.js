@@ -58,7 +58,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     }
 }])
 .controller('bsHeader', ['$scope', '$window', '$location', function($scope, $window, $location) {
-    $scope.showAfolLogin = true;
+    $scope.showAfolLogin = false;
     $scope.clickBuilder = function() {
         if ($window.sessionStorage.token) {
             $location.path("/afol/index.html");
@@ -271,7 +271,13 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         } else if ($scope.badgeLine3 === undefined && $scope.badgeLine2 === undefined) {
             $scope.nameBadge = 'NO';
         }
+    });
 
+    $scope.$watch("nameBadge", function(currentValue, oldValue) {
+        if (currentValue == 'NO') {
+            $scope.badgeLine2 = undefined;
+            $scope.badgeLine3 = undefined;
+        }
     });
 
     function deSerializeRegistrationJson(data) {

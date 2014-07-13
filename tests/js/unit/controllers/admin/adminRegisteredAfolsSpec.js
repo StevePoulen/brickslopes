@@ -54,6 +54,11 @@ describe('controllers', function() {
                 mockBackend.flush();
                 expect(scope.eventName).toEqualData('BrickSlopes - Salt Lake City');
             });
+
+            it('should have a comments variable', function() {
+                mockBackend.flush();
+                expect(scope.registeredAfols.comments).toEqualData(registeredAfols['2']['registeredAfols'].comments);
+            });
         });
 
         describe('Show Email Option', function() {

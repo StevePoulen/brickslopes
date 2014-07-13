@@ -29,6 +29,7 @@ class EventRegistrationTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($output['paid'] , 'NO');
         $this->assertEquals($output['name'] , 'BrickSlopes - SLC');
         $this->assertEquals($output['registrationId'] , '1');
+        $this->assertEquals($output['comments'] , 'This is a comment');
         $this->assertEquals($lineItems['registrationLineItemId'] , 1);
         $this->assertEquals($lineItems['lineItem'] , 'T-Shirt');
         $this->assertEquals($lineItems['amount'] , '25.00');

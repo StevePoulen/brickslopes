@@ -38,7 +38,8 @@ class registrations extends db {
                 u.email as email,
                 u.city as city,
                 u.state as state,
-                IFNULL(r.paid,'NO') as paid
+                IFNULL(r.paid,'NO') as paid,
+                IFNULL(r.comments,'No Comments') as comments
             FROM
                 registrations r,
                 events e,
@@ -73,6 +74,7 @@ class registrations extends db {
                 r.registrationId as registrationId,
                 r.ageVerification as ageVerification,
                 IFNULL(r.paid,'NO') as paid,
+                IFNULL(r.comments,'') as comments,
                 e.name as name,
                 e.eventId
             FROM

@@ -618,8 +618,6 @@ img#miniStarWars {
     @extend #dashboard;
     background-color: white;
     border-radius: 25px;
-    height: auto;
-    min-height: auto;
 }
 
 $event_themes_height: 1750px;
@@ -758,7 +756,6 @@ $event_afols_height: auto;
 #eventAfols{
     @extend #eventDashboard;
     height: $event_afols_height;
-    min-height: auto;
 
     .eventAfolsText { 
         position: relative;

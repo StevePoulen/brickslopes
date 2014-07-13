@@ -41,6 +41,7 @@ class RegistrationsMock extends modelObjects {
         $this->registrationId = $this->registrationId();
         $this->ageVerification = $this->ageVerification();
         $this->paid = $this->paid();
+        $this->comments = $this->comments();
         $this->name = $this->name();
         $this->eventId = $this->eventId();
         $this->registrationLineItemId = $this->registrationLineItemId();
@@ -57,17 +58,18 @@ class RegistrationsMock extends modelObjects {
     public function registrationId() { return $this->getData(__FUNCTION__,0); }
     public function ageVerification() { return $this->getData(__FUNCTION__,1); }
     public function paid() { return $this->getData(__FUNCTION__,2); }
-    public function name() { return $this->getData(__FUNCTION__,3); }
-    public function eventId() { return $this->getData(__FUNCTION__,4); }
-    public function registrationLineItemId() { return $this->getData(__FUNCTION__,5); }
-    public function lineItem() { return $this->getData(__FUNCTION__,6); }
-    public function amount() { return $this->getData(__FUNCTION__,7); }
-    public function discount() { return $this->getData(__FUNCTION__,8); }
-    public function description() { return $this->getData(__FUNCTION__,9); }
-    public function size() { return $this->getData(__FUNCTION__,10); }
-    public function quantity() { return $this->getData(__FUNCTION__,11); }
-    public function active() { return $this->getData(__FUNCTION__,12); }
-    public function entryDate() { return $this->getData(__FUNCTION__,13); }
+    public function comments() { return $this->getData(__FUNCTION__,3); }
+    public function name() { return $this->getData(__FUNCTION__,4); }
+    public function eventId() { return $this->getData(__FUNCTION__,5); }
+    public function registrationLineItemId() { return $this->getData(__FUNCTION__,6); }
+    public function lineItem() { return $this->getData(__FUNCTION__,7); }
+    public function amount() { return $this->getData(__FUNCTION__,8); }
+    public function discount() { return $this->getData(__FUNCTION__,9); }
+    public function description() { return $this->getData(__FUNCTION__,10); }
+    public function size() { return $this->getData(__FUNCTION__,11); }
+    public function quantity() { return $this->getData(__FUNCTION__,12); }
+    public function active() { return $this->getData(__FUNCTION__,13); }
+    public function entryDate() { return $this->getData(__FUNCTION__,14); }
 }
 
 ?>

@@ -48,6 +48,7 @@ class RegisteredAfols {
 
                 if ($this->isAdmin) {
                     $afolArray['email'] = $dbObj->email;
+                    $afolArray['comments'] = $dbObj->comments;
                     $afolArray['paid'] = $dbObj->paid;
                     $afolArray['lineItems'] = $this->registrationLineItemsObj->getRegisteredLineItems($dbObj->userId, $dbObj->eventId);
                 }

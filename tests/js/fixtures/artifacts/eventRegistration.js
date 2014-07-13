@@ -2,6 +2,7 @@ var eventRegistration = [
     {
         "registrationId": 27,
         "ageVerification": "YES",
+        "comments": "This is my comment",
         "paid": "NO",
         "name": "BrickSlopes - Salt Lake City",
         "lineItems": {

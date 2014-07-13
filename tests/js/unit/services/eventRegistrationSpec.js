@@ -154,7 +154,7 @@ describe('service', function() {
                     eventList = _data[0];
                 });
                 mockBackend.flush();
-                expect(eventList.tShirtSize).toBe('NO');
+                expect(eventList.tShirtSize).toBe('No Thanks');
             });
 
             it('should have no meetAndGreet attribute in eventList', function() {
@@ -173,7 +173,7 @@ describe('service', function() {
                 });
                 mockBackend.flush();
                 expect(eventList.showBadgeLine1).toBe(false);
-                expect(eventList.badgeLine1).toBe('One');
+                expect(eventList.badgeLine1).toBeUndefined();
             });
 
             it('should have no badgeLine2 attribute in eventList', function() {
@@ -183,7 +183,7 @@ describe('service', function() {
                 });
                 mockBackend.flush();
                 expect(eventList.showBadgeLine2).toBe(false);
-                expect(eventList.badgeLine2).toBe('Two');
+                expect(eventList.badgeLine2).toBeUndefined();
             });
 
             it('should have a badgeLine1 and no badgeLine2 attribute in eventList', function() {
@@ -194,12 +194,10 @@ describe('service', function() {
                 mockBackend.flush();
                 expect(eventList.badgeLine1).toBe('Badge Line One');
                 expect(eventList.showBadgeLine1).toBe(true);
-                expect(eventList.badgeLine2).toBe('Two');
+                expect(eventList.badgeLine2).toBeUndefined();
                 expect(eventList.showBadgeLine2).toBe(false);
-                expect(eventList.badgeLine3).toBe('Three');
+                expect(eventList.badgeLine3).toBeUndefined();
                 expect(eventList.showBadgeLine3).toBe(false);
-                expect(eventList.badgeLine2).toBe('Two');
-                expect(eventList.showBadgeLine2).toBe(false);
             });
 
             it('should have a paidCTA attribute of true', function() {

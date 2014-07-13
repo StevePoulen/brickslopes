@@ -7,8 +7,7 @@
         }
 
         public function deleteRegistrationLineItems($userId, $eventId) {
-            echo "deleting";
-            echo $this->registrationLineItemObj->deleteRegistrationLineItems($userId, $eventId);
+            $this->registrationLineItemObj->deleteRegistrationLineItems($userId, $eventId);
         }
 
         public function addRegistrationLineItems($data) {

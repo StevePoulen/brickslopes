@@ -14,7 +14,6 @@ class registrationLineItemModel extends db {
     }
 
     public function deleteRegistrationLineItems($userId, $eventId) {
-        echo $this->deleteQuery($userId, $eventId);
         return $this->query($this->deleteQuery($userId, $eventId));
     }
 
