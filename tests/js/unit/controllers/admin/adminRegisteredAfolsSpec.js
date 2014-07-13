@@ -32,7 +32,7 @@ describe('controllers', function() {
         describe('Close Dialog', function() {
             it('should redirect to index page', function() {
                 scope.closeDialog();
-                expect(location.path()).toBe('/afol/admin.html');
+                expect(location.path()).toBe('/admin/index.html');
             });
         });
 

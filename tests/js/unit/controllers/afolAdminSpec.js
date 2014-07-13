@@ -30,7 +30,7 @@ describe('controllers', function() {
         describe('Click Registrations', function() {
             it('should redirect to the registeredAfols page', function() {
                 scope.clickRegistrations();
-                expect(location.path()).toBe('/afol/admin/registeredAfols.html');
+                expect(location.path()).toBe('/admin/registeredAfols.html');
             });
         });
     });

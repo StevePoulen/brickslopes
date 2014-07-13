@@ -148,7 +148,7 @@ class ControllerTest extends PHPUnit_Framework_TestCase
     public function testAdminAndAuthentication() 
     {
         $GLOBALS['authenticationRequest'] = true;
-        $_SERVER['REQUEST_URI'] = "/partials/afol/admin/index.html";
+        $_SERVER['REQUEST_URI'] = "/partials/admin/index.html";
         $this->controller = new Controller();
         $this->controller->invoke();
         $this->assertEquals(http_response_code(), 200);

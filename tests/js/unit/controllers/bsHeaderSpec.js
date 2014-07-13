@@ -58,7 +58,7 @@ describe('controllers', function() {
             window.sessionStorage.admin = 'YES';
             ctrl = controller('bsHeader', { $scope: scope, $window: window});
             scope.clickAdmin();
-            expect(location.path()).toBe('/afol/admin.html');
+            expect(location.path()).toBe('/admin/index.html');
         });
     });
 

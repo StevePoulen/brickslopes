@@ -68,7 +68,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     }
 
     $scope.clickAdmin = function() {
-        $location.path("/afol/admin.html");
+        $location.path("/admin/index.html");
     }
 
     $scope.authenticationText = function() {
@@ -453,30 +453,30 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     $scope.type += "&userId=not_needed";
 
     $scope.closeDialog = function() {
-        $location.path("/afol/admin.html");
+        $location.path("/admin/index.html");
     }
 }])
 .controller('afolAdmin', ['$scope', '$location', function($scope, $location) {
     $("#splashPageCTA").hide();
 
     $scope.clickRegistrations = function() {
-        $location.path('/afol/admin/registeredAfols.html');
+        $location.path('/admin/registeredAfols.html');
     }
 
     $scope.clickEventRegistrationEmail = function() {
-        $location.path('/afol/admin/eventRegistration/emails');
+        $location.path('/admin/eventRegistration/emails');
     }
 
     $scope.clickUserRegistrationEmail = function() {
-        $location.path('/afol/admin/userRegistration/emails');
+        $location.path('/admin/userRegistration/emails');
     }
 
     $scope.clickRegistrationPaidEmail = function() {
-        $location.path('/afol/admin/registrationPaidDisplay/emails');
+        $location.path('/admin/registrationPaidDisplay/emails');
     }
 
     $scope.clickResetPasswordEmail = function() {
-        $location.path('/afol/admin/resetPassword/emails');
+        $location.path('/admin/resetPassword/emails');
     }
 }])
 .controller('eventAfols', ['$scope', 'RegisteredAfols','$location', function($scope, RegisteredAfols, $location) {
@@ -529,7 +529,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     }
 
     $scope.closeDialog = function() {
-        $location.path("/afol/admin.html");
+        $location.path("/admin/index.html");
     }
 }])
 .controller('afolIndex', ['$scope', '$location', 'GetAfolMocList', 'RegisteredAfols', '$window', 'EventDates', 'EventRegistration', function($scope, $location, GetAfolMocList, RegisteredAfols, $window, EventDates, EventRegistration) {

@@ -97,23 +97,23 @@ config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvide
         }
     )
     .when(
-        '/afol/admin.html',
+        '/admin/index.html',
         {
-            templateUrl: '/partials/afol/admin/index.html',
+            templateUrl: '/partials/admin/index.html',
             controller: 'afolAdmin'
         }
     )
     .when(
-        '/afol/admin/:emailType/emails',
+        '/admin/:emailType/emails',
         {
-            templateUrl: '/partials/afol/admin/emails/eventRegistration.html',
+            templateUrl: '/partials/admin/emails/eventRegistration.html',
             controller: 'adminEmail'
         }
     )
     .when(
-        '/afol/admin/registeredAfols.html',
+        '/admin/registeredAfols.html',
         {
-            templateUrl: '/partials/afol/admin/registeredAfols.html',
+            templateUrl: '/partials/admin/registeredAfols.html',
             controller: 'adminRegisteredAfols'
         }
     )
