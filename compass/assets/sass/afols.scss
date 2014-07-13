@@ -34,7 +34,7 @@
         #login {
             position: absolute;
             left: 10px;
-            top: $dashboard_height / 2 - $dashboard_height / 4;
+            top: 200px;
             height: $dashboard_height / 2;
             width: $dashboard_width / 2 - 20;
             text-align: center;
@@ -57,32 +57,29 @@
 
         #signUpForm {
             position: absolute;
-            right: 10px;
-            top: 75px;
-            height: $dashboard_height / 2;
-            width: $dashboard_width / 2 - 20;
-            opacity: 0;
+            top: 125px;
+            left: $dashboard_width / 8;
 
-        .loginForm {
-            position: relative;
-            left: 100px;
-            width: 250px;
-
-            .loginField {
-                margin-bottom: 20px;
-                border: 1px solid #BCBEBF;
-                border-radius: 5px;
+            .loginForm {
+                position: relative;
                 width: 250px;
-                height: 42.5px;
-                padding-top: 7.5px;
-                text-align: center;
+
+                .loginField {
+                    margin-bottom: 20px;
+                    border: 1px solid #BCBEBF;
+                    border-radius: 5px;
+                    width: 250px;
+                    height: 42.5px;
+                    padding-top: 7.5px;
+                    text-align: center;
             }
         }
     }
 
-    #resetPasswordForm {
+    .resetPasswordForm {
         @extend #signUpForm;
-        top: 250px;
+        top: 235px;
+        left: $dashboard_width * 5 / 8;
     }
 
     #loginDivider {
@@ -98,9 +95,9 @@
 
     #signUpText {
         position: absolute;
-        right: 10px;
-        top: $dashboard_height / 2 - $dashboard_height / 4;
-        height: $dashboard_height / 2;
+        left: $dashboard_width * 4 / 8;
+        top: 175px;
+        height: 300px; 
         width: $dashboard_width / 2 - 20;
         
         .center {

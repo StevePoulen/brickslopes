@@ -38,7 +38,7 @@
         }
 
         public function sendUserRegistrationMessage($firstName, $display=false) {
-            $this->subject = "BrickSlopes Registration Complete";
+            $this->subject = "BrickSlopes User Registration";
             $this->message = "
                 <!doctype html>
                 <html>

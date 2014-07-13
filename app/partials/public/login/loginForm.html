@@ -1,6 +1,7 @@
-<div id="login" ng-class="{fadeOutFast : ! showLogin}">
+<div id="login" ng-class="{fadeOutNoAnimation : ! showLogin}">
     <div>
         <bs-logo font-size=1.75></bs-logo>
+        <p>
     </div>
     <div class="loginForm">
         <form name="signIn" ng-submit="signIn.$valid && submitLogin()">
@@ -22,6 +23,7 @@
     <div>
         <span class="redFont">{{displayErrorMessage}}</span>
     </div>
+    <p>
     <div ng-click="seeResetPassword()" class="pointer">
         Forgot your password?
     </div>
