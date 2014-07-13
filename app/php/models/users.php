@@ -104,21 +104,21 @@ class users extends \db {
         return "
             SELECT 
                 userId,
-                firstName,
-                lastName,
+                IFNULL(firstName, 'First Name') as firstName,
+                IFNULL(lastName, 'Last Name') as lastName,
                 email,
                 CASE 
                     WHEN 
                         phoneNumber IS NULL OR phoneNumber = '' 
                     THEN 
-                        'No Phone Number'
+                        'Phone Number'
                     ELSE 
                         phoneNumber
                 END AS 'phoneNumber',
-                address,
-                city,
-                state,
-                zipcode,
+                IFNULL(address, 'Address') as address,
+                IFNULL(city, 'City') as city,
+                IFNULL(state, 'State') as state,
+                IFNULL(zipcode, 'Zipcode') as zipcode,
                 flickr,
                 familyId,
                 admin,
