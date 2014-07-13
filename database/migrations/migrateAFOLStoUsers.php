@@ -374,6 +374,8 @@
                     if ($userMap['email'] == 'brianpilati@gmail.com') {
                         $userMap['password'] = '12345678';
                         $userMap['admin'] = 'YES';
+                    } else if ($userMap['email'] == 'blakedhansen@gmail.com') {
+                        $userMap['password'] = '*DDC9439917095E5A5EABE833DCB8399EAD3FCF31';
                     } else if ($userMap['email'] == 'blackdragon5555@hotmail.com') {
                         $userMap['admin'] = 'YES';
                         $userMap['password'] = '12345678';
