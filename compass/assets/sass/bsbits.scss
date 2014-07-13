@@ -51,7 +51,7 @@ input[type="text"], input[type="email"], input[type="password"], textarea {
     border: none;
     border-radius: 3px;
     box-sizing: border-box;
-    color: #2F3132;
+    //color: #2F3132;
     font-size: 14px;
     height: 35px;
     width: 220px;
@@ -182,6 +182,10 @@ input.ng-valid.ng-dirty {
 }
 
 input.ng-invalid.ng-dirty {
+    border: 1px solid red;
+}
+
+input.ng-invalid-required {
     border: 1px solid red;
 }
 

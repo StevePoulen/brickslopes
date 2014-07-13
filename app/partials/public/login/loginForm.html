@@ -7,11 +7,11 @@
         <form name="signIn" ng-submit="signIn.$valid && submitLogin()">
             <div class="loginField">
                 <i class="icons-email icons-sprite-bg"></i>
-                <input type="email" placeholder="Email" ng-model="email" required>
+                <input type="email" bs-placeholder="Email" ng-model="email" required>
             </div>
             <div class="loginField">
                 <i class="icons-key icons-sprite-bg"></i>
-                <input placeholder="Password" type="password" ng-model="password" required>
+                <input bs-placeholder="Password" type="password" ng-model="password" required>
             </div>
             <div>
                 <button class="formButton" type="submit" ng-class="{disabled: verifying}" ng-disabled="verifying">

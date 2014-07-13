@@ -20,8 +20,16 @@ i {
     height: image-height("icons/email.png");
 }
 
-.icons-key{
+.icons-key {
     background-position: sprite-position($icons-sprite, key);
     width: image-width("icons/key.png");
     height: image-height("icons/key.png");
+}
+
+.icons-edit {
+    background-position: sprite-position($icons-sprite, edit);
+    //width: 25px;
+    //height: 25px;
+    width: image-width("icons/edit.png");
+    height: image-height("icons/edit.png");
 }

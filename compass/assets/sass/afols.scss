@@ -128,6 +128,40 @@
     }
 }
 
+#editProfile {
+    height: 850px;
+
+    .editProfileText { 
+        position: absolute;
+        border-radius:25px;
+        height: 850px;
+        padding: 15px;
+        width: $dashboard_width;
+        color: black;
+        background: white;
+    }
+
+    .userForm {
+        position: absolute;
+        left: 25px;
+        width: 425px;
+        height: 725px;
+        top: 125px;
+        padding-left: 4px;
+        background: white;
+
+        .loginField {
+            margin-bottom: 20px;
+            border: 1px solid #BCBEBF;
+            border-radius: 5px;
+            width: 420px;
+            height: 42.5px;
+            padding-top: 7.5px;
+            text-align: left;
+        }
+    }
+}
+
 #eventRegistration {
     #discountPriceInformation {
         position: absolute;

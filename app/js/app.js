@@ -104,6 +104,13 @@ config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvide
         }
     )
     .when(
+        '/afol/editProfile.html',
+        {
+            templateUrl: '/partials/afol/editProfile.html',
+            controller: 'afolEditProfile'
+        }
+    )
+    .when(
         '/admin/:emailType/emails',
         {
             templateUrl: '/partials/admin/emails/eventRegistration.html',

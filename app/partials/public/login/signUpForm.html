@@ -2,19 +2,19 @@
     <div class="loginForm">
         <form name="registration" ng-submit="registration.$valid && register()">
             <div class="loginField">
-                <input type="text" placeholder="First Name" ng-model="firstName" required ng-pattern="/\w+/">
+                <input type="text" bs-placeholder="First Name" ng-model="firstName" required ng-pattern="/\w+/">
             </div>
             <div class="loginField">
-                <input type="text" placeholder="Last Name" ng-model="lastName" required>
+                <input type="text" bs-placeholder="Last Name" ng-model="lastName" required>
             </div>
             <div class="loginField">
-                <input type="email" placeholder="Email" ng-model="registerEmail" required>
+                <input type="email" bs-placeholder="Email" ng-model="registerEmail" required>
             </div>
             <div class="loginField">
-                <input placeholder="Password - Must be 8 characters" type="password" ng-model="registerPassword" required equals="{{registerPasswordVerification}}" ng-minlength="8">
+                <input bs-placeholder="Password - Must be 8 characters" type="password" ng-model="registerPassword" required equals="{{registerPasswordVerification}}" ng-minlength="8">
             </div>
             <div class="loginField">
-                <input placeholder="Verify Password - 8 characters" type="password" ng-model="registerPasswordVerification" equals="{{registerPassword}}" required ng-minlength="8">
+                <input bs-placeholder="Verify Password - 8 characters" type="password" ng-model="registerPasswordVerification" equals="{{registerPassword}}" required ng-minlength="8">
             </div>
             <div>
                 <button class="formButton" type="submit" ng-class="{disabled: verifying}" ng-disabled="verifying">

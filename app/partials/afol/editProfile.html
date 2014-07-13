@@ -1,0 +1,44 @@
+<div id="editProfile">
+    <div class="editProfileText">
+        <div>
+            <h1><bs-logo font-size=1.25></bs-logo> &#8226; <bs-text text="Edit Profile" font-color=black></bs-text></h1>
+        </div>
+        <div class="userForm">
+            <form name="userProfile" ng-submit="userProfile.$valid && submitProfile()">
+                <div class="loginField">
+                    <input type="text" bs-placeholder="First Name (required)" ng-model="userObject.firstName" required ng-maxlength=50>
+                </div>
+                <div class="loginField">
+                    <input type="text" bs-placeholder="Last Name (required)" ng-model="userObject.lastName" required ng-maxlength=50>
+                </div>
+                <div class="loginField">
+                    <input type="text" bs-placeholder="E-mail Address (required)" ng-model="userObject.email" required ng-maxlength=50>
+                </div>
+                <div class="loginField">
+                    <input type="text" bs-placeholder="Address (required)" ng-model="userObject.address" required ng-maxlength=50>
+                </div>
+                <div class="loginField">
+                    <input type="text" bs-placeholder="City (required)" ng-model="userObject.city" required ng-maxlength=50>
+                </div>
+                <div class="loginField">
+                    <input type="text" bs-placeholder="State (required)" ng-model="userObject.state" required ng-maxlength=50>
+                </div>
+                <div class="loginField">
+                    <input type="text" bs-placeholder="Zipcode (required)" ng-model="userObject.zipcode" required ng-maxlength=50>
+                </div>
+                <div class="loginField">
+                    <input type="text" bs-placeholder="Phone Number" ng-model="userObject.phoneNumber" ng-maxlength=15>
+                </div>
+                <div class="loginField">
+                    <input type="text" bs-placeholder="Flickr Handle" ng-model="userObject.flickr" ng-maxlength=50>
+                </div>
+                <div class="formButtonPosition">
+                    <button class="formButton" type="submit" ng-class="{disabled: verifying}" ng-disabled="verifying">
+                        <bs-text text="Update Profile" font-color=white font-size=1.75></bs-text>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </span>
+    <div id="dashboardCloseButton" ng-click="closeDialog()"></div>
+</div>

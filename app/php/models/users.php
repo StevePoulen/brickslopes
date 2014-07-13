@@ -111,7 +111,7 @@ class users extends \db {
                     WHEN 
                         phoneNumber IS NULL OR phoneNumber = '' 
                     THEN 
-                        'Phone Number'
+                        '555-555-5555'
                     ELSE 
                         phoneNumber
                 END AS 'phoneNumber',

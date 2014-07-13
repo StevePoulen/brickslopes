@@ -36,6 +36,20 @@ describe('controllers', function() {
             });
         });
 
+        describe('Click Edit Profile', function() {
+            it('should redirect to the profile edit page', function() {
+                scope.clickEditProfile();
+                expect(location.path()).toBe('/afol/editProfile.html');
+            });
+        });
+
+        describe('Click Registration', function() {
+            it('should redirect to the registration page', function() {
+                scope.clickRegistration(5);
+                expect(location.path()).toBe('/afol/5/eventRegistration.html');
+            });
+        });
+
         describe('Pay Now', function() {
             it('should redirect to the eventPayment page', function() {
                 scope.payNow();

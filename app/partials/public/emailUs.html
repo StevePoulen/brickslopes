@@ -11,19 +11,19 @@
             <div id="splashTextEmailUs">
                 <form name="emailUsForm" ng-submit="emailUsForm.$valid && submitEmail()">
                     <div class="loginField">
-                        <input type="text" placeholder="First Name (required)" ng-model="firstName" required>
+                        <input type="text" bs-placeholder="First Name (required)" ng-model="firstName" required>
                     </div>
                     <div class="loginField">
-                        <input type="text" placeholder="Last Name (required)" ng-model="lastName" required>
+                        <input type="text" bs-placeholder="Last Name (required)" ng-model="lastName" required>
                     </div>
                     <div class="loginField">
-                        <input type="email" placeholder="E-mail Address (required)" ng-model="email" required>
+                        <input type="email" bs-placeholder="E-mail Address (required)" ng-model="email" required>
                     </div>
                     <div class="commentsField">
                         <textarea id="comments" class="greyFont" ng-model="comments" required></textarea>
                     </div>
                     <div class="captchaField">
-                        <input type="text" placeholder="Captcha (required)" ng-model="captcha" required equals="{{captchaInit}}">
+                        <input type="text" bs-placeholder="Captcha (required)" ng-model="captcha" required equals="{{captchaInit}}">
                         <div class="captcha">
                             <div>Captcha Text:</div>
                             <div ng-bind="captchaInit"></div>

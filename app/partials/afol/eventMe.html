@@ -3,7 +3,10 @@
         <h1><bs-logo font-size="1.25"></bs-logo> &#8226; <bs-text text="Me" font-color=black></bs-text></h1>
         <div id="mePanes">
             <div class="user">
-                <div class="meText"><bs-text text="Your Information" font-color=black font-size=1.25></bs-text></div>
+                <div class="meText">
+                    <bs-text text="Your Information" font-color=black font-size=1.25></bs-text>
+                    <i ng-click="clickEditProfile()" class="icons-edit icons-sprite-bg"></i>
+                </div>
                 <bs-user-information></bs-user-information>
             </div>
             <div class="events">
@@ -17,11 +20,11 @@
                     <form name="changePasswordForm" ng-submit="changePasswordForm.$valid && changePassword()">
                         <div class="loginField">
                             <i class="icons-key icons-sprite-bg"></i>
-                            <input placeholder="Current Password" type="password" ng-model="oldPassword" required>
+                            <input bs-placeholder="Current Password" type="password" ng-model="oldPassword" required>
                         </div>
                         <div class="loginField">
                             <i class="icons-key icons-sprite-bg"></i>
-                            <input placeholder="New Password - 8 Characters" 
+                            <input bs-placeholder="New Password - 8 Characters" 
                                 type="password" 
                                 ng-model="newPassword" 
                                 equals={{newPasswordVerify}} 
@@ -31,7 +34,7 @@
                         </div>
                         <div class="loginField">
                             <i class="icons-key icons-sprite-bg"></i>
-                            <input placeholder="New Password Verify" 
+                            <input bs-placeholder="New Password Verify" 
                                 type="password" 
                                 ng-model="newPasswordVerify" 
                                 equals={{newPassword}} 

@@ -422,6 +422,10 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         });
     }
 
+    $scope.clickEditProfile = function(eventId) {
+        $location.path("/afol/editProfile.html");
+    }
+
     $scope.clickRegistration = function(eventId) {
         $location.path("/afol/" + eventId + "/eventRegistration.html");
     }
@@ -449,6 +453,36 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
 
     EventDates.getPassDates($scope.eventId).then(function(passDates) {
         $scope.passDates = passDates;
+    });
+}])
+.controller('afolEditProfile', ['$scope', '$location', 'UserDetails', function($scope, $location, UserDetails) {
+    $("#splashPageCTA").hide();
+    $scope.userObject = undefined;
+
+    $scope.closeDialog = function() {
+        $location.path("/admin/index.html");
+    }
+
+    function serializeProfileJson() {
+        return {
+            firstName: $scope.userObject.firstName,
+            lastName: $scope.userObject.lastName,
+            email: $scope.userObject.email,
+            address: $scope.userObject.address,
+            city: $scope.userObject.city,
+            state: $scope.userObject.state,
+            zipcode: $scope.userObject.zipcode,
+            phoneNumber: $scope.userObject.phoneNumber,
+            flickr: $scope.userObject.flickr
+        }
+    }
+
+    $scope.submitProfile = function() {
+    }
+
+    UserDetails.get().then(function(data) {
+        $scope.userObject = data;
+        console.log($scope.userObject);
     });
 }])
 .controller('adminEmail', ['$scope', '$location', '$route', 'GetEmailHtml', function($scope, $location, $route, GetEmailHtml) {
