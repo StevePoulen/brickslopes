@@ -34,7 +34,7 @@ class EventRegistration {
         if ($this->registrationsObj->result) {
             $registrationLineItemsObj = new registrationLineItems($this->userId, false);
             while($dbObj = $this->registrationsObj->result->fetch_object()) {
-                array_push( $eventJson, 
+                $eventJson[$dbObj->eventId] = 
                     array (
                         'ageVerification' => $dbObj->ageVerification,
                         'paid' => $dbObj->paid,
@@ -42,8 +42,7 @@ class EventRegistration {
                         'name' => $dbObj->name,
                         'registrationId' => $dbObj->registrationId,
                         'lineItems' => $registrationLineItemsObj->getRegisteredLineItems($this->userId, $dbObj->eventId)
-                    )
-                );
+                    );
             }
         }
         header("HTTP/1.0 200 Success");

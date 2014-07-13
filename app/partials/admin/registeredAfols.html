@@ -3,16 +3,19 @@
         <div>
             <h1><bs-logo font-size="1.25"></bs-logo> &#8226; <bs-text text="Registered Afols" font-color=black></bs-text></h1>
         </div>
+        <div class="searchField bold">
+            <input ng-model="searchText" placeholder="Search">
+        </div>
         <div class='registeredAfols'>
             <table>
                 <tr>
                     <th>#</th>
-                    <th>Name</th>
-                    <th>Cost</th>
-                    <th>Paid</th>
-                    <th>E-mail</th>
+                    <th class="textCenter"><a href="" ng-click="predicate='firstName'; reverse=!reverse">Name</a></th>
+                    <th class="textCenter">Cost</th>
+                    <th class="textCenter">Paid</th>
+                    <th class="textCenter">Email</th>
                 </tr>
-                <tr ng-class="{evenRow: $even}" ng-repeat="afol in registeredAfols">
+                <tr ng-class="{evenRow: $even}" ng-repeat="afol in registeredAfols | filter:searchText:strict | orderBy:predicate:reverse">
                     <td class="textCenter">{{$index + 1}}</td>
                     <td class="textCenter">
                         {{afol.firstName}} {{afol.lastName}}

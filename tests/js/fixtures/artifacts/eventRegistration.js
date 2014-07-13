@@ -1,5 +1,5 @@
-var eventRegistration = [
-    {
+var eventRegistration = {
+    '2' : {
         "registrationId": 27,
         "ageVerification": "YES",
         "comments": "This is my comment",
@@ -89,10 +89,10 @@ var eventRegistration = [
             ]
         }
     }
-];
+};
 
-var eventRegistrationPaid = [
-    {
+var eventRegistrationPaid = {
+    '1' : {
         "ageVerification": "YES",
         "paid": "YES",
         "name": "BrickSlopes - Salt Lake City",
@@ -115,10 +115,10 @@ var eventRegistrationPaid = [
             ]
         }
     }
-];
+};
 
-var eventRegistrationNoMeetAndGreet = [
-    {
+var eventRegistrationNoMeetAndGreet = {
+    '2': {
         "ageVerification": "YES",
         "paid": "NO",
         "name": "BrickSlopes - Salt Lake City",
@@ -141,10 +141,10 @@ var eventRegistrationNoMeetAndGreet = [
             ]
         }
     }
-];
+};
 
-var eventRegistrationNoTShirt = [
-    {
+var eventRegistrationNoTShirt = {
+    '3': {
         "ageVerification": "YES",
         "paid": "NO",
         "name": "BrickSlopes - Salt Lake City",
@@ -167,10 +167,10 @@ var eventRegistrationNoTShirt = [
             ]
         }
     }
-];
+};
 
-var eventRegistrationBadgeLineOneOnly = [
-    {
+var eventRegistrationBadgeLineOneOnly = {
+    '4': {
         "ageVerification": "YES",
         "paid": "NO",
         "name": "BrickSlopes - Salt Lake City",
@@ -206,4 +206,4 @@ var eventRegistrationBadgeLineOneOnly = [
             ]
         }
     }
-];
+};

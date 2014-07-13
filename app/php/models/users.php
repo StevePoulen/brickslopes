@@ -31,6 +31,10 @@ class users extends \db {
         return $this->query($this->selectQuery($userId));
     }
 
+    public function getAllUserInformation() {
+        return $this->query($this->selectQuery(null, false));
+    }
+
     private function updatePasswordQuery($userId, $data) {
         return "
             UPDATE 
@@ -92,14 +96,25 @@ class users extends \db {
       ";
     }
 
-    private function selectQuery($userId) {
+    private function selectQuery($userId, $isSingleUser=true) {
+        $whereStatement = "";
+        if ($isSingleUser) {
+            $whereStatement = " WHERE userId = {$userId}";
+        }
         return "
             SELECT 
                 userId,
                 firstName,
                 lastName,
                 email,
-                phoneNumber,
+                CASE 
+                    WHEN 
+                        phoneNumber IS NULL OR phoneNumber = '' 
+                    THEN 
+                        'No Phone Number'
+                    ELSE 
+                        phoneNumber
+                END AS 'phoneNumber',
                 address,
                 city,
                 state,
@@ -110,8 +125,7 @@ class users extends \db {
                 joined
             FROM
                 users 
-            WHERE
-                userId = {$userId}
+            $whereStatement
         ;
       ";
     }

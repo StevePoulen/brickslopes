@@ -1,13 +1,52 @@
-/* line 1, ../../compass/assets/sass/admin.scss */
+/* line 3, ../../compass/assets/sass/admin.scss */
 .registeredAfols {
   width: 100%;
 }
-/* line 4, ../../compass/assets/sass/admin.scss */
+/* line 6, ../../compass/assets/sass/admin.scss */
 .registeredAfols table {
   width: 100%;
 }
-/* line 8, ../../compass/assets/sass/admin.scss */
+/* line 10, ../../compass/assets/sass/admin.scss */
 .registeredAfols td {
   border: 1px solid black;
   width: auto;
+}
+
+/* line 16, ../../compass/assets/sass/admin.scss */
+.searchField {
+  margin-bottom: 20px;
+}
+
+/* line 22, ../../compass/assets/sass/admin.scss */
+#eventAfols input {
+  border: 1px solid black;
+  height: 25px;
+  width: 300px;
+  font-size: 1em;
+  padding-left: 5px;
+}
+/* line 30, ../../compass/assets/sass/admin.scss */
+#eventAfols a {
+  color: #35469a;
+  text-decoration: none;
+}
+/* line 35, ../../compass/assets/sass/admin.scss */
+#eventAfols a:link {
+  color: #35469a;
+  text-decoration: none;
+}
+/* line 40, ../../compass/assets/sass/admin.scss */
+#eventAfols a:hover {
+  color: #35469a;
+  text-decoration: none;
+}
+/* line 45, ../../compass/assets/sass/admin.scss */
+#eventAfols a:active {
+  color: #35469a;
+  text-decoration: none;
+}
+/* line 50, ../../compass/assets/sass/admin.scss */
+#eventAfols a:visited {
+  color: #35469a;
+  text-decoration: none;
 }

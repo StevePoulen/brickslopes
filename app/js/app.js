@@ -118,6 +118,13 @@ config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvide
         }
     )
     .when(
+        '/admin/registeredUsers.html',
+        {
+            templateUrl: '/partials/admin/registeredUsers.html',
+            controller: 'adminRegisteredUsers'
+        }
+    )
+    .when(
         '/afol/eventAfols.html',
         {
             templateUrl: '/partials/afol/eventAfols.html',

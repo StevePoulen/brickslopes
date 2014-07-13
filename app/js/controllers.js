@@ -355,7 +355,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         var isRegistered = (Object.keys(data).length ? true : false);
         if (isRegistered) {
             $scope.isCreate = false;
-            deSerializeRegistrationJson(data[0]);
+            deSerializeRegistrationJson(data[$scope.eventId]);
         }
     });
 
@@ -375,7 +375,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         $scope.themeList = data;
     });
 }])
-.controller('afolMe', ['$scope', '$location', 'Auth', 'EventRegistration', 'EventDates', function($scope, $location, Auth, EventRegistration, EventDates) {
+.controller('afolMe', ['$scope', '$location', 'Auth', 'EventRegistration', 'EventDates', 'UserDetails', function($scope, $location, Auth, EventRegistration, EventDates, UserDetails) {
     $("#splashPageCTA").hide();
     $scope.verifying = false;
     $scope.displayMessage = "";
@@ -383,7 +383,8 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     $scope.success = true;
     $scope.passType = undefined;
     $scope.passDates = undefined;
-    $scope.eventList = {}
+    $scope.eventList = {};
+    $scope.userObject = {};
     $scope.eventId = 2;
 
     function serializeChangePasswordJson() {
@@ -438,6 +439,10 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         $scope.displayRegisterEventCTA = displayRegisterEventButton();
     });
 
+    UserDetails.get().then(function(data) {
+        $scope.userObject = data;
+    });
+
     EventDates.getPassType($scope.eventId).then(function(passType) {
         $scope.passType = passType;
     });
@@ -456,11 +461,26 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         $location.path("/admin/index.html");
     }
 }])
-.controller('afolAdmin', ['$scope', '$location', function($scope, $location) {
+.controller('afolAdmin', ['$scope', '$location', 'UserDetails', 'RegisteredAfols', function($scope, $location, UserDetails, RegisteredAfols) {
     $("#splashPageCTA").hide();
+    $scope.userCount = 0;
+    $scope.registeredCount = 0;
+    $scope.eventId = 2;
+
+    UserDetails.getCount().then(function(data) {
+        $scope.userCount = data;
+    });
+
+    RegisteredAfols.getCount($scope.eventId).then(function(data) {
+        $scope.registeredCount = data;
+    });
 
     $scope.clickRegistrations = function() {
         $location.path('/admin/registeredAfols.html');
+    }
+
+    $scope.clickUsers = function() {
+        $location.path('/admin/registeredUsers.html');
     }
 
     $scope.clickEventRegistrationEmail = function() {
@@ -494,11 +514,27 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         $location.path("/afol/index.html");
     }
 }])
+.controller('adminRegisteredUsers', ['$scope', 'UserDetails', '$location', function($scope, UserDetails, $location) {
+    $("#splashPageCTA").hide();
+    $scope.registeredUsers = undefined;
+    $scope.predicate = 'firstName';
+    $scope.reverse = false;
+
+    UserDetails.getAll().then(function(data) {
+        $scope.registeredUsers = data;
+    });
+
+    $scope.closeDialog = function() {
+        $location.path("/admin/index.html");
+    }
+}])
 .controller('adminRegisteredAfols', ['$scope', 'RegisteredAfols', 'RegistrationLineItems', '$location', function($scope, RegisteredAfols, RegistrationLineItems, $location) {
     $("#splashPageCTA").hide();
     $scope.registeredAfols = undefined;
     $scope.eventId = 2;
     $scope.eventName = undefined;
+    $scope.predicate = 'firstName';
+    $scope.reverse = false;
 
     RegisteredAfols.get($scope.eventId).then(function(data) {
         $scope.registeredAfols = data[$scope.eventId]['registeredAfols'];

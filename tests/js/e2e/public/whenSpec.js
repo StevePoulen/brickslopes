@@ -5,6 +5,6 @@ describe('BrickSlopes When Page', function() {
     var link = element(by.id('whenLink')).click();
 
     var greeting = element(by.id('splashTextWhen'));
-    expect(greeting.getText()).toContain('WHEN');
+    expect(greeting.getText()).toContain('Ticket');
   });
 });

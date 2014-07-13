@@ -129,6 +129,13 @@ angular.module('brickSlopes.directives', [])
         templateUrl: 'partials/afol/eventPanes/registeredEvents.html'
     }
 })
+.directive('bsUserInformation', function() {
+    return {
+        restrict: 'E',
+        replace: true,
+        templateUrl: 'partials/afol/eventPanes/userInformation.html'
+    }
+})
 .directive('bsEventRegistrationCta', function() {
     return {
         restrict: 'E',

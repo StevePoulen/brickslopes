@@ -23,8 +23,8 @@ class EventRegistrationTest extends PHPUnit_Framework_TestCase
         $this->userId = 12345;
         new EventRegistration();
         $this->assertEquals(http_response_code(), 200);
-        $output = json_decode(ob_get_contents(), true)[0];
-        $lineItems = json_decode(ob_get_contents(), true)[0]['lineItems']['lineItems'][0];
+        $output = json_decode(ob_get_contents(), true)[1];
+        $lineItems = json_decode(ob_get_contents(), true)[1]['lineItems']['lineItems'][0];
         $this->assertEquals($output['ageVerification'] , 'YES');
         $this->assertEquals($output['paid'] , 'NO');
         $this->assertEquals($output['name'] , 'BrickSlopes - SLC');

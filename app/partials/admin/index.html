@@ -1,7 +1,18 @@
 <div id="dashboard">
     <div id="panes">
         <div class="eventPane" ng-click="clickRegistrations()">
-            <div class="adminText"><bs-text text='{{eventYear}} Registrations' font-size=1.85 font-color=white></bs-text></div>
+            <div class="adminText">
+                <bs-text text='Registrations' font-size=1.85 font-color=white></bs-text>
+                <p>
+                <bs-text text='{{registeredCount}}' font-size=1.85 font-color=white>
+            </div>
+        </div> 
+        <div class="eventPane" ng-click="clickUsers()">
+            <div class="adminText">
+                <bs-text text='All Users' font-size=1.85 font-color=white></bs-text>
+                <p>
+                <bs-text text='{{userCount}}' font-size=1.85 font-color=white>
+            </div>
         </div> 
         <div class="eventPane" ng-click="clickResetPasswordEmail()">
             <div class="adminText">

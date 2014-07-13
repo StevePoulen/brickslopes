@@ -1,3 +1,5 @@
+$bs_blue: #35469A;
+
 .registeredAfols {
     width: 100%;
 
@@ -8,5 +10,45 @@
     td {
         border: 1px solid black;
         width: auto;
+    }
+}
+
+.searchField {
+    margin-bottom: 20px;
+}
+
+$email_link_color: $bs_blue;
+#eventAfols {
+    input {
+        border: 1px solid black;
+        height: 25px;
+        width: 300px;
+        font-size: 1em;
+        padding-left: 5px;
+    }
+
+    a {
+        color: $email_link_color;
+        text-decoration: none;
+    }
+
+    a:link {
+        color: $email_link_color;
+        text-decoration: none;
+    }
+
+    a:hover {
+        color: $email_link_color;
+        text-decoration: none;
+    }
+
+    a:active {
+        color: $email_link_color;
+        text-decoration: none;	
+    }
+
+    a:visited {
+        color: $email_link_color;
+        text-decoration: none;	
     }
 }

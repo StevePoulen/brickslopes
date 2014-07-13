@@ -306,6 +306,22 @@
     width: $pane_width - 4;
     height: $dashboard_height;
 
+    .genericText {
+        position: relative;
+        padding: 5px;
+        font-size: 1.0em;
+    }
+
+    .user {
+        position: relative;
+        float: left;
+        width: $eventPane_width;
+        height: $eventPane_height;
+        margin: 0px $eventPane_margin $eventPane_margin 0px;
+        border: 2px solid black;
+        border-radius: 12px;
+    }
+
     .changePassword {
         position: relative;
         float: left;

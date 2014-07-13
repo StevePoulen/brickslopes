@@ -71,12 +71,21 @@ describe('controllers', function() {
             it('should have a passDates variable', function() {
                 expect(scope.passDates).toBe(undefined);
             });
+
+            it('should have an eventList variable', function() {
+                expect(scope.eventList).toEqualData({});
+            });
+
+            it('should have an userObject variable', function() {
+                expect(scope.userObject).toEqualData({});
+            });
         });
 
         describe('Digest with all add-ons', function() {
             beforeEach(function() {
                 mockBackend.expectGET('/controllers/eventDates.php').respond(eventDates);
                 mockBackend.expectGET('/controllers/eventRegistration.php').respond(eventRegistration);
+                mockBackend.expectGET('/controllers/user.php').respond(200, singleUser);
                 mockBackend.flush();
             });
 
@@ -87,6 +96,10 @@ describe('controllers', function() {
             it('should populate the passDates variable', function() {
                 expect(scope.passDates).toBe('May 14th thru 17th');
             });
+
+            it('should populate the userObject variable', function() {
+                expect(scope.userObject.memberSince).toEqualData('May 16th, 2014');
+            });
         });
 
         describe('Change Password', function() {
@@ -96,6 +109,7 @@ describe('controllers', function() {
                 expect(scope.verifying).toBe(true);
                 mockBackend.expectGET('/controllers/eventDates.php').respond(eventDates);
                 mockBackend.expectGET('/controllers/eventRegistration.php').respond(eventRegistration);
+                mockBackend.expectGET('/controllers/user.php').respond(200, singleUser);
                 mockBackend.expectPATCH('/controllers/authentication.php').respond(201);
                 mockBackend.flush();
                 expect(scope.verifying).toBe(false);
@@ -115,6 +129,7 @@ describe('controllers', function() {
                 expect(scope.verifying).toBe(true);
                 mockBackend.expectGET('/controllers/eventDates.php').respond(eventDates);
                 mockBackend.expectGET('/controllers/eventRegistration.php').respond(eventRegistration);
+                mockBackend.expectGET('/controllers/user.php').respond(200, singleUser);
                 mockBackend.expectPATCH('/controllers/authentication.php').respond(412);
                 mockBackend.flush();
                 expect(scope.verifying).toBe(false);

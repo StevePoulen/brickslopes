@@ -24,9 +24,13 @@ class users extends db {
     public function getUserInformation($userId) {
         return $this->query();
     }
+
+    public function getAllUserInformation() {
+        return $this->query();
+    }
 }
 
-class usersObject extends modelObjects {
+class UsersMock extends modelObjects {
     protected $dataSet;
 
     public function __construct() {
@@ -36,7 +40,13 @@ class usersObject extends modelObjects {
         $this->firstName = $this->firstName();
         $this->lastName = $this->lastName();
         $this->admin = $this->admin();
-        $this->email = $this->admin();
+        $this->email = $this->email();
+        $this->address = $this->address();
+        $this->city = $this->city();
+        $this->state = $this->state();
+        $this->zipcode = $this->zipcode();
+        $this->phoneNumber = $this->phoneNumber();
+        $this->joined = $this->joined();
     }
 
     public function userId() { return $this->getData(__FUNCTION__, 0); }
@@ -44,5 +54,11 @@ class usersObject extends modelObjects {
     public function lastName() { return $this->getData(__FUNCTION__, 2); }
     public function email() { return $this->getData(__FUNCTION__, 3); }
     public function admin() { return $this->getData(__FUNCTION__, 4); }
+    public function address() { return $this->getData(__FUNCTION__, 5); }
+    public function city() { return $this->getData(__FUNCTION__, 6); }
+    public function state() { return $this->getData(__FUNCTION__, 7); }
+    public function zipcode() { return $this->getData(__FUNCTION__, 8); }
+    public function phoneNumber() { return $this->getData(__FUNCTION__, 9); }
+    public function joined() { return $this->getData(__FUNCTION__, 10); }
 }
 ?>

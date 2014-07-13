@@ -37,6 +37,14 @@ describe('controllers', function() {
         });
 
         describe('Default Variables', function() {
+            it('should have a predicate variable', function() {
+                expect(scope.predicate).toBe('firstName');
+            });
+
+            it('should have a reverse variable', function() {
+                expect(scope.reverse).toBe(false);
+            });
+
             it('should have an eventId variable', function() {
                 expect(scope.eventId).toBe(2);
             });

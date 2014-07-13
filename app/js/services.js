@@ -178,6 +178,59 @@ angular.module('brickSlopes.services', [])
         }
     }
 }])
+.factory('UserDetails', ['$q', '$http', function($q, $http) {
+    userList = undefined;
+
+    function memberSince(data) {
+        data.memberSince = moment(data.joined).format('MMMM Do, YYYY');
+        return data;
+    }
+    return {
+        getCount: function() {
+            if (userList) {
+                return $q.when(userList.length);
+            } else {
+                return $q.when(this.getAll().then(function(data) {
+                    return userList.length;
+                }));
+            }
+        },
+        get: function() {
+            var delay= $q.defer();
+            $http (
+                {
+                    method: 'GET',
+                    url: '/controllers/user.php'
+                }
+            ).success(function(data, status, headers, config) {
+                delay.resolve(memberSince(data));
+            }).error(function(data, status, headers, config) {
+                delay.reject(data);
+            });
+
+            return delay.promise;
+        },
+
+        getAll: function() {
+            if (userList) {
+                return $q.when(userList);
+            }   else {
+                return $q.when($http (
+                    {
+                        method: 'GET',
+                        url: '/controllers/admin/registeredUsers.php'
+                    }
+                ).then(function(data) {
+                    userList = data.data;
+                    _.each(userList, function(user) {
+                        memberSince(user);
+                    });
+                    return userList;
+                }));
+            }
+        }
+    }
+}])
 .factory('EventDetails', ['$q', '$http', function($q, $http) {
     return {
         get: function(eventId) {
@@ -497,7 +550,7 @@ angular.module('brickSlopes.services', [])
 }])
 .factory('EventRegistration', ['$q', '$http', function($q, $http) {
     function parseEventRegistrationData(data) {
-        _.each(data, function(eventObj) {
+        _.each(data, function(eventObj, key) {
             eventObj.total = eventObj.lineItems.total;
             eventObj.tShirtSize = 'No Thanks';
             eventObj.type = (eventObj.ageVerification == 'YES' ? 'AFOL' : 'TFOL');
@@ -531,6 +584,7 @@ angular.module('brickSlopes.services', [])
                 }
             });
         });
+
         return data;
     }
     return {
