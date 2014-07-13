@@ -1,6 +1,20 @@
 #!/bin/bash
 
+WORKING_DIR=`pwd`
+
+while getopts i:d:p: option
+do
+    case "${option}"
+    in
+        i) INTERACTIVE=${OPTARG};;
+        p) MYSQL_ROOT_PASSWORD=${OPTARG};;
+        d) LOCAL_DB=${OPTARG};;
+    esac
+done
+
 OUTPUT_FILE_NAME=brickSlopes_backup_$(date +%Y-%m-%d_%H:%M).sql.bz2
+OUTPUT_DIRECTORY=archives
+OUTPUT_FILE=$WORKING_DIR/backups/$OUTPUT_DIRECTORY/$OUTPUT_FILE_NAME;
 STEP_COUNTER=1;
 BRICKSLOPES_DATABASE="brickslopes";
 
@@ -17,11 +31,11 @@ mysqlRootPassword() {
 }
 
 localDevelopment() {
-    /opt/local/bin/mysqldump5 --add-drop-table --routines -u root --password=$MYSQL_ROOT_PASSWORD $BRICKSLOPES_DATABASE | /opt/local/bin/bzip2 -c > $OUTPUT_FILE_NAME
+    /opt/local/bin/mysqldump5 --add-drop-table --routines -u root --password=$MYSQL_ROOT_PASSWORD $BRICKSLOPES_DATABASE | /opt/local/bin/bzip2 -c > $OUTPUT_FILE
 }
 
 liveServer() {
-    /usr/bin/mysqldump --add-drop-table --routines -u 7hiez8ei --password=$MYSQL_ROOT_PASSWORD $BRICKSLOPES_DATABASE -h mysql.brickslopes.com | /bin/bzip2 -c > $OUTPUT_FILE_NAME
+    /usr/bin/mysqldump --add-drop-table --routines -u 7hiez8ei --password=$MYSQL_ROOT_PASSWORD $BRICKSLOPES_DATABASE -h mysql.brickslopes.com | /bin/bzip2 -c > $OUTPUT_FILE
 }
 
 brickSlopesEnvironment() {
@@ -29,6 +43,13 @@ brickSlopesEnvironment() {
     echo -n "Local DB? (Y\n) [ENTER]: "; 
     read LOCAL_DB;
     incStep
+}
+
+validateFileCreated() {
+    if [ ! -f $OUTPUT_FILE ]; then
+        echo "The database archive file was not created!"
+        exit 1;
+    fi
 }
 
 executeBackup() {
@@ -41,16 +62,25 @@ executeBackup() {
     fi
 }
 
-userInput() {
-    clear;
+printInstructions() {
     printf "\n***********************************************";
     printf "\n* BrickSlopes Database Backup                 *";
     printf "\n***********************************************";
     printf "\n\n";
     echo "This script will backup the 'BrickSlopes' database.";
     printf "\n";
-    brickSlopesEnvironment;
-    mysqlRootPassword;
-    executeBackup;
 }
+
+userInput() {
+    clear;
+    if [[ "$INTERACTIVE" != "Y" ]]
+    then
+        printInstructions;
+        brickSlopesEnvironment;
+        mysqlRootPassword;
+    fi
+    executeBackup;
+    validateFileCreated;
+}
+
 userInput;

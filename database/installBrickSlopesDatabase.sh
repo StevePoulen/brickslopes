@@ -28,6 +28,13 @@ cleanInstallation() {
     incStep
 }
 
+archiveDatabase() {
+    printf "\nSTEP $STEP_COUNTER: Do you want to archive the 'BrickSlopes' database?\n";
+    echo -n "Archive DB? (Y\n) [ENTER]: "; 
+    read ARCHIVE_DB;
+    incStep
+}
+
 brickSlopesEnvironment() {
     printf "\nSTEP $STEP_COUNTER: Is this a local 'BrickSlopes' database?\n";
     echo -n "Local DB? (Y\n) [ENTER]: "; 
@@ -149,9 +156,11 @@ userInput() {
     printf "\n\n";
     echo "This script will install the 'BrickSlopes' database.";
     printf "\n";
+    archiveDatabase;
     cleanInstallation;
     brickSlopesEnvironment;
     mysqlRootPassword;
+    runArchiveDatabaseScript
     if [[ "$CLEAN_DB_INSTALLATION" == "Y" ]]
     then
         brickSlopesDBCreation;
@@ -167,6 +176,13 @@ userInput() {
         registrationTableCreation;
         registrationLineItemTableCreation;
         themeTableCreation;
+    fi
+}
+
+runArchiveDatabaseScript() {
+    if [[ "$ARCHIVE_DB" == "Y" ]]
+    then
+        ./backups/backup_db_script.sh -i Y -p $MYSQL_ROOT_PASSWORD  -d $LOCAL_DB
     fi
 }
 
