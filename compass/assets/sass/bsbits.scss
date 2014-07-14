@@ -185,7 +185,7 @@ input.ng-invalid.ng-dirty {
     border: 1px solid red;
 }
 
-input.ng-invalid-required {
+input.ng-pristine.ng-invalid-required {
     border: 1px solid red;
 }
 

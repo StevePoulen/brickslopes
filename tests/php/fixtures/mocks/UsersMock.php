@@ -9,6 +9,10 @@ class users extends db {
         return $this->query();
     }
 
+    public function updateUserInformation($data) {
+        return $this->query();
+    }
+
     public function authenticateUser($data) {
         return $this->query();
     }
@@ -46,19 +50,21 @@ class UsersMock extends modelObjects {
         $this->state = $this->state();
         $this->zipcode = $this->zipcode();
         $this->phoneNumber = $this->phoneNumber();
+        $this->flickr = $this->flickr();
         $this->joined = $this->joined();
     }
 
-    public function userId() { return $this->getData(__FUNCTION__, 0); }
-    public function firstName() { return $this->getData(__FUNCTION__, 1); }
-    public function lastName() { return $this->getData(__FUNCTION__, 2); }
-    public function email() { return $this->getData(__FUNCTION__, 3); }
-    public function admin() { return $this->getData(__FUNCTION__, 4); }
-    public function address() { return $this->getData(__FUNCTION__, 5); }
-    public function city() { return $this->getData(__FUNCTION__, 6); }
-    public function state() { return $this->getData(__FUNCTION__, 7); }
-    public function zipcode() { return $this->getData(__FUNCTION__, 8); }
-    public function phoneNumber() { return $this->getData(__FUNCTION__, 9); }
-    public function joined() { return $this->getData(__FUNCTION__, 10); }
+    public function userId() { return $this->getData(0); }
+    public function firstName() { return $this->getData(1); }
+    public function lastName() { return $this->getData(2); }
+    public function email() { return $this->getData(3); }
+    public function admin() { return $this->getData(4); }
+    public function address() { return $this->getData(5); }
+    public function city() { return $this->getData(6); }
+    public function state() { return $this->getData(7); }
+    public function zipcode() { return $this->getData(8); }
+    public function phoneNumber() { return $this->getData(9); }
+    public function flickr() { return $this->getData(10); }
+    public function joined() { return $this->getData(11); }
 }
 ?>

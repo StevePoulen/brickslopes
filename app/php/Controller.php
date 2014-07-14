@@ -46,14 +46,23 @@
             header('Content-type: text/html');
         }
 
+        private function isPost() {
+            return $_SERVER['REQUEST_METHOD'] === 'POST';
+        }
+
         private function isWhiteList() {
             if ($this->URI == '../index.html' ||
                 $this->URI == 'controllers/emailUs.php' ||
                 preg_match('/^..\/partials\/public/', $this->URI)
             ) {
                 return true;
-            } else if ($this->URI == 'controllers/authentication.php' ||
-                $this->URI == 'controllers/eventDates.php'
+            } else if (
+                $this->URI == 'controllers/authentication.php' ||
+                $this->URI == 'controllers/eventDates.php' ||
+                (
+                    $this->URI == 'controllers/user.php' &&
+                    $this->isPost()
+                )
             ) {
                 $this->decodeJWT();
                 return true;

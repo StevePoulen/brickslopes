@@ -228,7 +228,43 @@ angular.module('brickSlopes.services', [])
                     return userList;
                 }));
             }
-        }
+        },
+
+        register: function(userDTO) {
+            var delay= $q.defer();
+            $http (
+                {
+                    method: 'POST',
+                    url: '/controllers/user.php',
+                    data: userDTO,
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+                }
+            ).success(function(data, status, headers, config) {
+                delay.resolve(data);
+            }).error(function(data, status, headers, config) {
+                delay.reject(data);
+            });
+
+            return delay.promise;
+        },
+
+        update: function(userDTO) {
+            var delay= $q.defer();
+            $http (
+                {
+                    method: 'PATCH',
+                    url: '/controllers/user.php',
+                    data: userDTO,
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+                }
+            ).success(function(data, status, headers, config) {
+                delay.resolve(data);
+            }).error(function(data, status, headers, config) {
+                delay.reject(data);
+            });
+
+            return delay.promise;
+        },
     }
 }])
 .factory('EventDetails', ['$q', '$http', function($q, $http) {
@@ -651,32 +687,14 @@ angular.module('brickSlopes.services', [])
             var delay= $q.defer();
             $http (
                 {
-                    method: 'GET',
+                    method: 'POST',
                     url: '/controllers/authentication.php',
-                    params: credentials
+                    data: credentials
                 }
             ).success(function(data, status, headers, config) {
                 delay.resolve(data);
             }).error(function(data, status, headers, config) {
                 delay.reject('Unable to authenticate');
-            });
-
-            return delay.promise;
-        },
-
-        register: function(userDTO) {
-            var delay= $q.defer();
-            $http (
-                {
-                    method: 'POST',
-                    url: '/controllers/authentication.php',
-                    data: userDTO,
-                    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-                }
-            ).success(function(data, status, headers, config) {
-                delay.resolve(data);
-            }).error(function(data, status, headers, config) {
-                delay.reject(data);
             });
 
             return delay.promise;

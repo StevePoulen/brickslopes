@@ -37,3 +37,11 @@ function deleteSession(ngWindow) {
     delete ngWindow.sessionStorage.admin;
     delete ngWindow.sessionStorage.redirectUrl;
 }
+
+function storeSession(ngWindow, data) {
+    ngWindow.sessionStorage.token = data.token;
+    ngWindow.sessionStorage.firstName = data.firstName;
+    ngWindow.sessionStorage.lastName = data.lastName;
+    ngWindow.sessionStorage.admin = data.admin;
+}
+

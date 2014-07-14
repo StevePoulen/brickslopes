@@ -1,11 +1,12 @@
 <?php
 
-class Authentication {
+class Authentication extends jwtToken {
     private $usersObj;
     private $requestMethod;
     private $userId;
 
-    public function __construct($userId = null) {
+    function __construct($userId = null) {
+        parent::__construct();
         $this->usersObj = new users();
         $this->userId = $userId;
         $this->determineRequestMethod();
@@ -16,9 +17,7 @@ class Authentication {
             ? $_SERVER['REQUEST_METHOD']
             : 'error';
 
-        if ($requestMethod == "GET") {
-            $this->get();
-        } else if ($requestMethod == "POST") {
+        if ($requestMethod == "POST") {
             $this->post();
         } else if ($requestMethod == "PUT") {
             $this->put();
@@ -29,8 +28,9 @@ class Authentication {
         }
     }
 
-    private function get() {
-        if($this->usersObj->authenticateUser($_GET) === 1) {
+    private function post() {
+        $payload = json_decode(file_get_contents("php://input"), true);
+        if($this->usersObj->authenticateUser($payload) === 1) {
             if ($this->usersObj->result) {
                 header("HTTP/1.0 200 Success");
                 $dbObj = $this->usersObj->result->fetch_object();
@@ -44,34 +44,6 @@ class Authentication {
             }
         } else {
             header("HTTP/1.0 401 Unauthorized");
-        }
-    }
-
-    private function post() {
-        $payload = json_decode(file_get_contents("php://input"), true);
-        if (sizeof($payload) == 0) {
-            $payload = $_POST;
-        }
-        $response = $this->usersObj->addUserInformation($payload);
-        if (preg_match ( '/\d+/', $response )) {
-            $emailObj = new mail($payload['email']);
-            $emailObj->sendUserRegistrationMessage($payload['firstName']);
-            header("HTTP/1.0 201 Created");
-            echo $this->createPayload(
-                $response,
-                $payload['firstName'], 
-                $payload['lastName'], 
-                'NO',
-                201 
-            );
-        } else {
-            header("HTTP/1.0 400 Bad Request");
-            echo json_encode (
-                array (
-                    'data' => 'Duplicate E-mail',
-                    'status' => 400
-                )
-            );
         }
     }
 
@@ -101,33 +73,6 @@ class Authentication {
         return \base_convert(rand(78364164096, 2821109907455), 10, 36);
     }
 
-    private function createPayload($userId, $firstName, $lastName, $admin, $status) {
-        return json_encode (
-            array (
-                'data' => array (
-                    'firstName' => $firstName, 
-                    'lastName' => $lastName,
-                    'admin' => $admin,
-                    'token' => $this->encodeJWT($userId, $admin)
-                ),
-                'status' => $status
-            )
-        );
-    }
-
-    private function encodeJWT($userId, $admin) {
-        $token = array(
-            "iss" => "https://www.brickslopes.com",
-            "aud" => $_SERVER['HTTP_HOST'],
-            "iat" => 1356999524,
-            "nbf" => 1357000000,
-            "userId" => $userId,
-            "admin" => $admin
-         );
-
-        $jwt = JWT::encode($token, JWT_KEY);
-        return $jwt;
-    }
 }
 
 new Authentication($this->userId);

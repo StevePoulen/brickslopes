@@ -33,7 +33,52 @@ class UserTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($output['state'], 'Or State');
         $this->assertEquals($output['zipcode'], '88990');
         $this->assertEquals($output['phoneNumber'], '444 555-6666');
+        $this->assertEquals($output['flickr'], 'bflickr');
         $this->assertEquals($output['joined'], '2014-05-16 15:00:49');
+    }
+
+    public function testAuthenticatedPost() 
+    {
+        $_SERVER['REQUEST_METHOD'] = "POST";
+        $_POST = array(
+            'firstName' => 'Steve',
+            'lastName' => 'Poulsen',
+            'email' => 'steve@brickslopes.com'
+        );
+        $GLOBALS['db_query'] = 123456789;
+        $GLOBALS['users_userId'] = '123456789';
+        $GLOBALS['fetch_object'] = new UsersMock();
+        $authentication = new User($this->userId);
+        $this->assertEquals(http_response_code(), 201);
+        $output = json_decode(ob_get_contents(), true);
+        $this->assertEquals($output['data']['firstName'] , 'Steve');
+        $this->assertEquals($output['data']['lastName'] , 'Poulsen');
+        $this->assertEquals($output['data']['admin'] , 'NO');
+        $this->assertEquals($output['data']['token'] , "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvd3d3LmJyaWNrc2xvcGVzLmNvbSIsImF1ZCI6Ind3dy5teWJyaWNrc2xvcGVzLmNvbSIsImlhdCI6MTM1Njk5OTUyNCwibmJmIjoxMzU3MDAwMDAwLCJ1c2VySWQiOjEyMzQ1Njc4OSwiYWRtaW4iOiJOTyJ9.R7nid7T9h1HLyydRwZFRcYbJiqfFwgsWpTPi--F5HKE");
+        $this->assertEquals($output['status'], 201);
+
+        $this->assertEquals($GLOBALS['sendUserRegistrationMessage'], 'Steve');
+    }
+
+    public function testAuthenticatedPatch() 
+    {
+        $_SERVER['REQUEST_METHOD'] = "PATCH";
+        $_POST = array(
+            'firstName' => 'Steve',
+            'lastName' => 'Poulsen',
+            'email' => 'steve@brickslopes.com'
+        );
+        $GLOBALS['db_query'] = 123456789;
+        $GLOBALS['users_userId'] = '123456789';
+        $GLOBALS['fetch_object'] = new UsersMock();
+        $authentication = new User($this->userId);
+        $this->assertEquals(http_response_code(), 201);
+        $output = json_decode(ob_get_contents(), true);
+        $this->assertEquals($output['data']['firstName'] , 'Steve');
+        $this->assertEquals($output['data']['lastName'] , 'Poulsen');
+        $this->assertEquals($output['data']['admin'] , 'NO');
+        $this->assertEquals($output['data']['token'] , "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvd3d3LmJyaWNrc2xvcGVzLmNvbSIsImF1ZCI6Ind3dy5teWJyaWNrc2xvcGVzLmNvbSIsImlhdCI6MTM1Njk5OTUyNCwibmJmIjoxMzU3MDAwMDAwLCJ1c2VySWQiOjEyMzQ1Njc4OSwiYWRtaW4iOiJOTyJ9.R7nid7T9h1HLyydRwZFRcYbJiqfFwgsWpTPi--F5HKE");
+        $this->assertEquals($output['status'], 201);
     }
 
     public function testAuthenticatedGetFailure() 

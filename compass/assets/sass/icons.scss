@@ -28,8 +28,6 @@ i {
 
 .icons-edit {
     background-position: sprite-position($icons-sprite, edit);
-    //width: 25px;
-    //height: 25px;
     width: image-width("icons/edit.png");
     height: image-height("icons/edit.png");
 }

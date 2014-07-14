@@ -1,5 +1,7 @@
 'use strict';
 
+var afolLogin = false;
+
 /* Controllers */
 angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
 .controller('bsIndex', ['$scope', '$location', 'EventDates', function($scope, $location, EventDates) {
@@ -58,7 +60,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     }
 }])
 .controller('bsHeader', ['$scope', '$window', '$location', function($scope, $window, $location) {
-    $scope.showAfolLogin = false;
+    $scope.showAfolLogin = afolLogin;
     $scope.clickBuilder = function() {
         if ($window.sessionStorage.token) {
             $location.path("/afol/index.html");
@@ -100,7 +102,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         return ($window.sessionStorage.admin == 'YES' ? true : false);
     }
 }])
-.controller('afolLogin', ['$scope', '$location', 'Auth', '$window', function($scope, $location, Auth, $window) {
+.controller('afolLogin', ['$scope', '$location', 'Auth', '$window', 'UserDetails', function($scope, $location, Auth, $window, UserDetails) {
     $("#splashPageCTA").hide(500);
     $scope.showLogin = true;
     $scope.verifying = false;
@@ -131,17 +133,10 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         }
     }
 
-    function storeSession(data) {
-        $window.sessionStorage.token = data.token;
-        $window.sessionStorage.firstName = data.firstName;
-        $window.sessionStorage.lastName = data.lastName;
-        $window.sessionStorage.admin = data.admin;
-    }
-
     $scope.submitLogin = function() {
         $scope.verifying = true;
         Auth.login(serializeLoginJson()).then(function(response) {
-            storeSession(response.data);
+            storeSession($window, response.data);
             if($window.sessionStorage.redirectUrl) {
                 if(($window.sessionStorage.redirectUrl).match('\/partials\/afol/*')) {
                     var newRedirectUrl = $window.sessionStorage.redirectUrl.replace('\/partials', '');
@@ -164,9 +159,9 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
 
     $scope.register = function() {
         $scope.verifying = true;
-        Auth.register(serializeRegisterJson()).then(function(response) {
+        UserDetails.register(serializeRegisterJson()).then(function(response) {
             if (response.status === 201) {
-                storeSession(response.data);
+                storeSession($window, response.data);
                 $location.path('/afol/index.html');
             }
             $scope.verifying = false;
@@ -455,12 +450,14 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         $scope.passDates = passDates;
     });
 }])
-.controller('afolEditProfile', ['$scope', '$location', 'UserDetails', function($scope, $location, UserDetails) {
+.controller('afolEditProfile', ['$scope', '$location', 'UserDetails', '$window', function($scope, $location, UserDetails, $window) {
     $("#splashPageCTA").hide();
     $scope.userObject = undefined;
+    $scope.verifying = false;
+    $scope.displayErrorMessage = "";
 
     $scope.closeDialog = function() {
-        $location.path("/admin/index.html");
+        $location.path("/afol/eventMe.html");
     }
 
     function serializeProfileJson() {
@@ -478,11 +475,23 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     }
 
     $scope.submitProfile = function() {
+        $scope.verifying = true;
+        UserDetails.update(serializeProfileJson()).then(function(response) {
+            if (response.status === 201) {
+                storeSession($window, response.data);
+                $location.path('/afol/eventMe.html');
+            }
+            $scope.verifying = false;
+        }, function(data) {
+            $scope.verifying = false;
+            if (data.status === 400 && data.data === 'Duplicate E-mail') {
+                $scope.displayErrorMessage = "The email is already in our system.";
+            }
+        });
     }
 
     UserDetails.get().then(function(data) {
         $scope.userObject = data;
-        console.log($scope.userObject);
     });
 }])
 .controller('adminEmail', ['$scope', '$location', '$route', 'GetEmailHtml', function($scope, $location, $route, GetEmailHtml) {

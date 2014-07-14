@@ -1,11 +1,12 @@
 <?php
 
-class User {
+class User extends jwtToken {
     private $usersObj;
     private $requestMethod;
     private $userId;
 
-    public function __construct($userId) {
+    function __construct($userId) {
+        parent::__construct();
         $this->userId = $userId;
         $this->usersObj = new users();
         $this->determineRequestMethod();
@@ -18,6 +19,10 @@ class User {
 
         if ($requestMethod == "GET") {
             $this->get();
+        } else if ($requestMethod == "POST") {
+            $this->post();
+        } else if ($requestMethod == "PATCH") {
+            $this->patch();
         } else {
             header("HTTP/1.0 405 Method Not Allowed");
         }
@@ -39,11 +44,66 @@ class User {
                     'state' => $dbObj->state,
                     'zipcode' => $dbObj->zipcode,
                     'phoneNumber' => $dbObj->phoneNumber,
+                    'flickr' => $dbObj->flickr,
                     'joined' => $dbObj->joined
                 )
             );
         } else {
             header("HTTP/1.0 400 Bad Request");
+        }
+    }
+
+    private function post() {
+        $payload = json_decode(file_get_contents("php://input"), true);
+        if (sizeof($payload) == 0) {
+            $payload = $_POST;
+        }
+        $response = $this->usersObj->addUserInformation($payload);
+        if (preg_match ( '/\d+/', $response )) {
+            $emailObj = new mail($payload['email']);
+            $emailObj->sendUserRegistrationMessage($payload['firstName']);
+            header("HTTP/1.0 201 Created");
+            echo $this->createPayload(
+                $response,
+                $payload['firstName'], 
+                $payload['lastName'], 
+                'NO',
+                201 
+            );
+        } else {
+            header("HTTP/1.0 400 Bad Request");
+            echo json_encode (
+                array (
+                    'data' => 'Duplicate E-mail',
+                    'status' => 400
+                )
+            );
+        }
+    }
+
+    private function patch() {
+        $payload = json_decode(file_get_contents("php://input"), true);
+        if (sizeof($payload) == 0) {
+            $payload = $_POST;
+        }
+        $response = $this->usersObj->updateUserInformation($this->userId, $payload);
+        if (preg_match ( '/\d+/', $response )) {
+            header("HTTP/1.0 201 Created");
+            echo $this->createPayload(
+                $response,
+                $payload['firstName'], 
+                $payload['lastName'], 
+                'NO',
+                201 
+            );
+        } else {
+            header("HTTP/1.0 400 Bad Request");
+            echo json_encode (
+                array (
+                    'data' => 'Duplicate E-mail',
+                    'status' => 400
+                )
+            );
         }
     }
 }

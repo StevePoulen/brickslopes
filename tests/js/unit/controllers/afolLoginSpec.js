@@ -72,7 +72,7 @@ describe('controllers', function() {
                 }
 
                 scope.submitLogin();
-                mockBackend.expectGET('/controllers/authentication.php?').respond(200, response);
+                mockBackend.expectPOST('/controllers/authentication.php').respond(200, response);
                 mockBackend.flush();
             });
 
@@ -126,7 +126,7 @@ describe('controllers', function() {
                 window.sessionStorage.redirectUrl = '/partials/afol/eventMe.html';
 
                 scope.submitLogin();
-                mockBackend.expectGET('/controllers/authentication.php?').respond(200, response);
+                mockBackend.expectPOST('/controllers/authentication.php').respond(200, response);
                 mockBackend.flush();
                 expect(location.path()).toBe('/afol/eventMe.html');
                 expect(window.sessionStorage.redirectUrl).toBeUndefined();
@@ -136,7 +136,7 @@ describe('controllers', function() {
         describe('Sign in on failure ', function() {
             it('should submit to login page on failure', function() {
                 scope.submitLogin();
-                mockBackend.expectGET('/controllers/authentication.php?').respond(401);
+                mockBackend.expectPOST('/controllers/authentication.php').respond(401);
                 mockBackend.flush();
                 expect(scope.displayErrorMessage).toBe("The email or password you entered is incorrect.");
             });
@@ -162,7 +162,7 @@ describe('controllers', function() {
                 }
 
                 scope.register();
-                mockBackend.expectPOST('/controllers/authentication.php').respond(201, response);
+                mockBackend.expectPOST('/controllers/user.php').respond(201, response);
                 mockBackend.flush();
             });
 
@@ -208,7 +208,7 @@ describe('controllers', function() {
                     status: 400
                 }
 
-                mockBackend.expectPOST('/controllers/authentication.php').respond(400, response);
+                mockBackend.expectPOST('/controllers/user.php').respond(400, response);
                 mockBackend.flush();
                 expect(location.path()).toBe('');
                 expect(window.sessionStorage.token).toBe('22');

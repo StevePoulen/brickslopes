@@ -56,17 +56,17 @@ class RegistrationLineItemsMock extends modelObjects {
         $this->entryDate = $this->entryDate();
     }
 
-    public function registrationLineItemId() { return $this->getData(__FUNCTION__,0); }
-    public function eventId() { return $this->getData(__FUNCTION__,1); }
-    public function userId() { return $this->getData(__FUNCTION__,2); }
-    public function lineItem() { return $this->getData(__FUNCTION__,3); }
-    public function amount() { return $this->getData(__FUNCTION__,4); }
-    public function paid() { return $this->getData(__FUNCTION__,5); }
-    public function discount() { return $this->getData(__FUNCTION__,6); }
-    public function description() { return $this->getData(__FUNCTION__,7); }
-    public function size() { return $this->getData(__FUNCTION__,8); }
-    public function quantity() { return $this->getData(__FUNCTION__,9); }
-    public function active() { return $this->getData(__FUNCTION__,10); }
-    public function entryDate() { return $this->getData(__FUNCTION__,11); }
+    public function registrationLineItemId() { return $this->getData(0); }
+    public function eventId() { return $this->getData(1); }
+    public function userId() { return $this->getData(2); }
+    public function lineItem() { return $this->getData(3); }
+    public function amount() { return $this->getData(4); }
+    public function paid() { return $this->getData(5); }
+    public function discount() { return $this->getData(6); }
+    public function description() { return $this->getData(7); }
+    public function size() { return $this->getData(8); }
+    public function quantity() { return $this->getData(9); }
+    public function active() { return $this->getData(10); }
+    public function entryDate() { return $this->getData(11); }
 }
 ?>

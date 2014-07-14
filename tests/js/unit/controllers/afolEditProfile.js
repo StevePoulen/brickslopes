@@ -31,13 +31,21 @@ describe('controllers', function() {
         describe('Close Dialog', function() {
             it('should redirect to admin index page', function() {
                 scope.closeDialog();
-                expect(location.path()).toBe('/admin/index.html');
+                expect(location.path()).toBe('/afol/eventMe.html');
             });
         });
 
         describe('Default Values', function() {
             it('should have a userObject variable', function() {
                 expect(scope.userObject).toBeUndefined();
+            });
+
+            it('should have a verifying variable', function() {
+                expect(scope.verifying).toBe(false);
+            });
+
+            it('should have a displayErrorMessage variable', function() {
+                expect(scope.displayErrorMessage).toBe("");
             });
 
             it('should hydrate the userObject variable', function() {
@@ -47,6 +55,74 @@ describe('controllers', function() {
                 expect(scope.userObject).toEqualData(singleUser);
             });
         });
+
+        describe('Update Profile', function() {
+            beforeEach(function() {
+                var response = {
+                    data: {
+                        token: 22,
+                        firstName: 'Cody',
+                        lastName: 'Ottley',
+                        admin: 'NO'
+                    },
+                    status: 201
+                }
+
+                scope.userObject = singleUser;
+                scope.submitProfile();
+                mockBackend.expectGET('/controllers/user.php').respond(400, singleUser);
+                mockBackend.expectPATCH('/controllers/user.php').respond(201, response);
+                mockBackend.flush();
+            });
+
+            it('should update an existing user', function() {
+                expect(location.path()).toBe('/afol/eventMe.html');
+            });
+
+            it('should have a blank displayErrorMessage', function() {
+                expect(scope.displayErrorMessage).toBe("");
+            });
+
+            it('should have a true verifying message', function() {
+                expect(scope.verifying).toBe(false);
+            });
+
+            it('should have a window.sessionStorage.token variables', function() {
+                expect(window.sessionStorage.token).toBe('22');
+            });
+
+            it('should have a window.sessionStorage.firstName variables', function() {
+                expect(window.sessionStorage.firstName).toBe('Cody');
+            });
+
+            it('should have a window.sessionStorage.lastName variables', function() {
+                expect(window.sessionStorage.lastName).toBe('Ottley');
+            });
+
+            it('should have a window.sessionStorage.admin variables', function() {
+                expect(window.sessionStorage.admin).toBe('NO');
+            });
+        });
+
+        describe('Update - Email in use', function() {
+            it('should redirect for an existing user', function() {
+                scope.userObject = singleUser;
+                scope.submitProfile();
+                expect(scope.verifying).toBe(true);
+                var response = {
+                    data: 'Duplicate E-mail',
+                    status: 400
+                }
+
+                mockBackend.expectGET('/controllers/user.php').respond(400, singleUser);
+                mockBackend.expectPATCH('/controllers/user.php').respond(400, response);
+                mockBackend.flush();
+                expect(location.path()).toBe('');
+                expect(scope.verifying).toBe(false);
+                expect(scope.displayErrorMessage).toBe('The email is already in our system.');
+            });
+        });
+
     });
 });
 

@@ -66,5 +66,57 @@ describe('service', function() {
                 expect(data).toEqualData(registeredUsers);
             });
         });
+
+        describe('Register', function() {
+            var mockBackend, service, data, credentials;
+            beforeEach(inject(function(_$httpBackend_, UserDetails) {
+                credentials = {
+                    'firstName': 'Steve',
+                    'lastName': 'Poulsen',
+                    'email': 'steve@bs.com',
+                    'password': 'LEGO'
+                };
+                mockBackend = _$httpBackend_;
+                service = UserDetails;
+                mockBackend.expectPOST('/controllers/user.php', credentials).respond('success');
+            }));
+
+            it('should register a user', function() {
+                var load = service.register(credentials);
+
+                load.then(function(_data) {
+                    data = _data;
+                });
+
+                mockBackend.flush();
+                expect(data).toEqualData('success');
+            });
+        });
+
+        describe('Update Profile', function() {
+            var mockBackend, service, data, credentials;
+            beforeEach(inject(function(_$httpBackend_, UserDetails) {
+                credentials = {
+                    'firstName': 'Steve',
+                    'lastName': 'Poulsen',
+                    'email': 'steve@bs.com',
+                    'password': 'LEGO'
+                };
+                mockBackend = _$httpBackend_;
+                service = UserDetails;
+                mockBackend.expectPATCH('/controllers/user.php', credentials).respond('success');
+            }));
+
+            it('should update a user', function() {
+                var load = service.update(credentials);
+
+                load.then(function(_data) {
+                    data = _data;
+                });
+
+                mockBackend.flush();
+                expect(data).toEqualData('success');
+            });
+        });
     });
 });

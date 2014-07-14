@@ -10,16 +10,16 @@ class AuthenticationTest extends PHPUnit_Framework_TestCase
 
     public function testAuthenticatedBadMethod() 
     {
-        $_SERVER['REQUEST_METHOD'] = "purchase";
+        $_SERVER['REQUEST_METHOD'] = "GET";
         $authentication = new Authentication();
         $this->assertEquals(http_response_code(), 405);
     }
 
-    public function testAuthenticatedGet() 
+    public function testAuthenticatedPost() 
     {
-        $_SERVER['REQUEST_METHOD'] = "GET";
-        $_GET['email'] = 'brianpilati@gmail.com';
-        $_GET['password'] = 'vErYsEcUrE';
+        $_SERVER['REQUEST_METHOD'] = "POST";
+        $_POST['email'] = 'brianpilati@gmail.com';
+        $_POST['password'] = 'vErYsEcUrE';
         $GLOBALS['db_query'] = 1;
         $GLOBALS['fetch_object'] = new UsersMock();
         $authentication = new Authentication();
@@ -32,28 +32,6 @@ class AuthenticationTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($output['status'], 200);
     }
 
-    public function testAuthenticatedPost() 
-    {
-        $_SERVER['REQUEST_METHOD'] = "POST";
-        $_POST = array(
-            'firstName' => 'Steve',
-            'lastName' => 'Poulsen',
-            'email' => 'steve@brickslopes.com'
-        );
-        $GLOBALS['db_query'] = 123456789;
-        $GLOBALS['users_userId'] = '123456789';
-        $GLOBALS['fetch_object'] = new UsersMock();
-        $authentication = new Authentication();
-        $this->assertEquals(http_response_code(), 201);
-        $output = json_decode(ob_get_contents(), true);
-        $this->assertEquals($output['data']['firstName'] , 'Steve');
-        $this->assertEquals($output['data']['lastName'] , 'Poulsen');
-        $this->assertEquals($output['data']['admin'] , 'NO');
-        $this->assertEquals($output['data']['token'] , "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvd3d3LmJyaWNrc2xvcGVzLmNvbSIsImF1ZCI6Ind3dy5teWJyaWNrc2xvcGVzLmNvbSIsImlhdCI6MTM1Njk5OTUyNCwibmJmIjoxMzU3MDAwMDAwLCJ1c2VySWQiOjEyMzQ1Njc4OSwiYWRtaW4iOiJOTyJ9.R7nid7T9h1HLyydRwZFRcYbJiqfFwgsWpTPi--F5HKE");
-        $this->assertEquals($output['status'], 201);
-
-        $this->assertEquals($GLOBALS['sendUserRegistrationMessage'], 'Steve');
-    }
 
     public function testAuthenticatedPutSuccess() 
     {

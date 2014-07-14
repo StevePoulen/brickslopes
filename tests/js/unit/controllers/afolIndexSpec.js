@@ -46,7 +46,7 @@ describe('controllers', function() {
             });
 
             it('should have a userName variable', function() {
-                expect(scope.userName).toEqualData("undefined's Site");
+                expect(scope.userName).toEqualData("Cody's Site");
             });
 
             it('should have a isRegistered variable', function() {

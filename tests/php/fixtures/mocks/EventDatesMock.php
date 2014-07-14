@@ -12,9 +12,9 @@ class EventDatesMock extends modelObjects {
         $this->type = $this->type();
     }
 
-    public function eventId() { return $this->getData(__FUNCTION__, 0); }
-    public function startDate() { return $this->getData(__FUNCTION__, 1); }
-    public function endDate() { return $this->getData(__FUNCTION__, 2); }
-    public function type() { return $this->getData(__FUNCTION__, 3); }
+    public function eventId() { return $this->getData(0); }
+    public function startDate() { return $this->getData(1); }
+    public function endDate() { return $this->getData(2); }
+    public function type() { return $this->getData(3); }
 }
 ?>
