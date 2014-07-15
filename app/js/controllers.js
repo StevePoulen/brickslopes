@@ -1,6 +1,6 @@
 'use strict';
 
-var afolLogin = false;
+var afolLogin = false;;
 
 /* Controllers */
 angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])

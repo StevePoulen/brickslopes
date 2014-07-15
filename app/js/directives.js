@@ -152,7 +152,7 @@ angular.module('brickSlopes.directives', [])
             scope.color = attrs.color;
         }
     }
-}).directive("bsPlaceholder", function($log, $timeout) {
+}).directive("bsPlaceholder", function($timeout) {
     var txt;
     return {
         restrict: "A",
@@ -160,35 +160,40 @@ angular.module('brickSlopes.directives', [])
         link: function(scope, elem, attrs, ngModel) {
             var txt = attrs.bsPlaceholder;
 
-            scope.$watch(attrs.ngModel, function() {
-                if(! angular.isDefined(ngModel.$modelValue)) {
-                    $(elem).addClass("greyFont");
-                    $(elem).addClass("italic");
-                } else {
-                    $(elem).removeClass("greyFont");
-                    $(elem).removeClass("italic");
-                }
-            });
+            if(navigator.appVersion.indexOf("MSIE 9.")!=-1) {
+                scope.$watch(attrs.ngModel, function() {
+                    if(! angular.isDefined(ngModel.$modelValue)) {
+                        $(elem).addClass("greyFont");
+                        $(elem).addClass("italic");
+                    } else {
+                        $(elem).removeClass("greyFont");
+                        $(elem).removeClass("italic");
+                    }
+                });
 
-            elem.on("focus", function() {
-                if(elem.val() === txt) {
-                    elem.val("");
-                }
-                scope.$apply()
-            });
+                elem.on("focus", function() {
+                    if(elem.val() === txt) {
+                        elem.val("");
+                    }
+                    scope.$apply()
+                });
 
-            elem.on("blur", function() {
-                if(elem.val() === "") {
-                    elem.val(txt);
-                }
-                scope.$apply()
-            });
+                elem.on("blur", function() {
+                    if(elem.val() === "") {
+                        elem.val(txt);
+                    }
+                    scope.$apply()
+                });
 
-            // Initialise placeholder
-            $timeout(function() {
-                elem.val(txt)
-                scope.$apply();
-            });
+                // Initialise placeholder
+                $timeout(function() {
+                    elem.val(txt)
+                    scope.$apply();
+                });
+            } else {
+                elem.attr('placeholder', txt);
+            }
+
         }
     }
 })
