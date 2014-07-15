@@ -1,6 +1,5 @@
 <?php
 
-
 class users extends \db {
     function __construct() {
         parent::__construct();

@@ -115,6 +115,7 @@
                 if (file_exists($this->URI)) {
                     header("HTTP/1.0 200 Success");
                     include_once($this->URI);
+                    exit;
                 } else {
                     header("HTTP/1.0 404 Not Found");
                 }
