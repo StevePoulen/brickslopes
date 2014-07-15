@@ -5,19 +5,42 @@
             <div class="eventImageText" style="display: show"><bs-text text='{{userName}}' font-size=1.85 font-color=white></bs-text></div>
             <div class="eventBrickSlopesLogo smallLogo logoLeft" style="display: none"></div>
         </div> 
+        <div class="eventPane" ng-click="clickRegistration()">
+            <div class="eventText" style="display: none"><bs-text font-color=black text="Join us {{eventMonthYear}}"></bs-text><p><bs-text font-color=black text="Register Now"></bs-text></div>
+            <div class="eventImageText" style="display: show"><bs-text text='Registration' font-size=1.85 font-color=white></bs-text></div>
+            <div class="eventBrickSlopesLogo smallLogo logoLeft" style="display: none"></div>
+        </div> 
+        <div class="eventPane" ng-click="clickMocRegistration()">
+            <div class="eventText" style="display: none"><bs-text font-color=black text="Bring your MOCs"></bs-text><p><bs-text font-color=black text="Display & Share"></bs-text></div>
+            <div class="eventImageText" style="display: show"><bs-text text='MOC Registration' font-size=1.85 font-color=white></bs-text></div>
+            <div class="eventBrickSlopesLogo smallLogo logoLeft" style="display: none"></div>
+        </div> 
         <div class="eventPane" ng-click="clickThemes()">
             <div class="eventText" style="display: none"><bs-text font-color=black text="Are you ready ..."></bs-text><p><bs-text font-color=black text="To Build?"></bs-text></div>
             <div class="eventImageText" style="display: show"><bs-text text='{{eventYear}} Themes' font-size=1.85 font-color=white></bs-text></div>
             <div class="eventBrickSlopesLogo smallLogo logoLeft" style="display: none"></div>
         </div> 
+        <div class="eventPane" ng-click="clickAfols()">
+            <div class="eventText" style="display: none"><bs-text font-color=black text="The Best Builders"></bs-text><p><bs-text font-color=black text="Find out now ..."></bs-text></div>
+            <div class="eventImageText" style="display: show">
+                <bs-text text="AFOL Attendees" font-size=1.85 font-color=white></bs-text>
+                <br>
+                <bs-text text={{afolCount}} font-size=1.85 font-color=white></bs-text>
+            </div>
+            <div class="eventBrickSlopesLogo smallLogo logoLeft" style="display: none"></div>
+        </div> 
+        <div class="eventPane" ng-click="clickMocList()">
+            <div class="eventText" style="display: none"><bs-text font-color=black text="The Who's Who"></bs-text><p><bs-text font-color=black text="of MOCs"></bs-text></div>
+            <div class="eventImageText" style="display: show">
+                <bs-text text="MOC List" font-size=1.85 font-color=white></bs-text>
+                <br>
+                <bs-text text={{mocCount}} font-size=1.85 font-color=white></bs-text>
+            </div>
+            <div class="eventBrickSlopesLogo smallLogo logoLeft" style="display: none"></div>
+        </div> 
         <div class="eventPane" ng-click="clickGames()">
             <div class="eventText" style="display: none"><bs-text font-color=black text="Show Your"></bs-text><p><bs-text font-color=black text="Skills"></bs-text></div>
             <div class="eventImageText" style="display: show"><bs-text text='{{eventYear}} Games' font-size=1.85 font-color=white></bs-text></div>
-            <div class="eventBrickSlopesLogo smallLogo logoLeft" style="display: none"></div>
-        </div> 
-        <div class="eventPane" ng-click="clickRegistration()">
-            <div class="eventText" style="display: none"><bs-text font-color=black text="Join us {{eventMonthYear}}"></bs-text><p><bs-text font-color=black text="Register Now"></bs-text></div>
-            <div class="eventImageText" style="display: show"><bs-text text='Registration' font-size=1.85 font-color=white></bs-text></div>
             <div class="eventBrickSlopesLogo smallLogo logoLeft" style="display: none"></div>
         </div> 
         <div class="eventPane" ng-click="clickSchedule()">
@@ -30,25 +53,6 @@
             <div class="eventImageText" style="display: show"><bs-text text='Keynote Speaker' font-size=1.85 font-color=white></bs-text></div>
             <div class="eventBrickSlopesLogo smallLogo logoLeft" style="display: none"></div>
         </div> 
-        <div class="eventPane" ng-click="clickCollection()">
-            <div class="eventText" style="display: none"><bs-text font-color=black text="To Be"></bs-text><p><bs-text font-color=black text="Announced"></bs-text></div>
-            <div class="eventImageText" style="display: show"><bs-text text='{{eventYear}} Collection?' font-size=1.85 font-color=white></bs-text></div>
-            <div class="eventBrickSlopesLogo smallLogo logoLeft" style="display: none"></div>
-        </div> 
-        <div class="eventPane" ng-click="clickMocRegistration()">
-            <div class="eventText" style="display: none"><bs-text font-color=black text="Bring your MOCs"></bs-text><p><bs-text font-color=black text="Display & Share"></bs-text></div>
-            <div class="eventImageText" style="display: show"><bs-text text='MOC Registration' font-size=1.85 font-color=white></bs-text></div>
-            <div class="eventBrickSlopesLogo smallLogo logoLeft" style="display: none"></div>
-        </div> 
-        <div class="eventPane" ng-click="clickMocList()">
-            <div class="eventText" style="display: none"><bs-text font-color=black text="The Who's Who"></bs-text><p><bs-text font-color=black text="of MOCs"></bs-text></div>
-            <div class="eventImageText" style="display: show">
-                <bs-text text="MOC List" font-size=1.85 font-color=white></bs-text>
-                <br>
-                <bs-text text={{mocCount}} font-size=1.85 font-color=white></bs-text>
-            </div>
-            <div class="eventBrickSlopesLogo smallLogo logoLeft" style="display: none"></div>
-        </div> 
         <div class="eventPane" ng-click="clickVendors()">
             <div class="eventText" style="display: none"><bs-text font-color=black text="The Best Vendors"></bs-text><p><bs-text font-color=black text="Find out now ..."></bs-text></div>
             <div class="eventImageText" style="display: show">
@@ -58,13 +62,9 @@
             </div>
             <div class="eventBrickSlopesLogo smallLogo logoLeft" style="display: none"></div>
         </div> 
-        <div class="eventPane" ng-click="clickAfols()">
-            <div class="eventText" style="display: none"><bs-text font-color=black text="The Best Builders"></bs-text><p><bs-text font-color=black text="Find out now ..."></bs-text></div>
-            <div class="eventImageText" style="display: show">
-                <bs-text text="AFOL Attendees" font-size=1.85 font-color=white></bs-text>
-                <br>
-                <bs-text text={{afolCount}} font-size=1.85 font-color=white></bs-text>
-            </div>
+        <div class="eventPane" ng-click="clickCollection()">
+            <div class="eventText" style="display: none"><bs-text font-color=black text="To Be"></bs-text><p><bs-text font-color=black text="Announced"></bs-text></div>
+            <div class="eventImageText" style="display: show"><bs-text text='{{eventYear}} Collection?' font-size=1.85 font-color=white></bs-text></div>
             <div class="eventBrickSlopesLogo smallLogo logoLeft" style="display: none"></div>
         </div> 
         <div class="eventPane" ng-click="clickFAQ()">

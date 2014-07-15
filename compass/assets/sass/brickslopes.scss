@@ -618,6 +618,7 @@ img#miniStarWars {
     @extend #dashboard;
     background-color: white;
     border-radius: 25px;
+    height: auto;
 }
 
 $event_themes_height: 1750px;
@@ -770,4 +771,40 @@ $event_afols_height: auto;
         line-height: normal;  
         vertical-align: middle;
     }
+}
+
+$moc_registration_height: 800px;
+/*
+#eventAfols{
+    @extend #eventDashboard;
+    height: $moc_registration_height;
+
+    .eventAfolsText { 
+        position: relative;
+        border-radius: 25px;
+        height: $moc_registration_height;
+        padding: 15px;
+        font-size: 1.05em;
+        text-align: left;
+        width: $dashboard_width - 30;
+        color: black;
+        background: white;
+        line-height: normal;  
+        vertical-align: middle;
+    }
+}
+*/
+
+.mocDashboardText { 
+    position: relative;
+    border-radius: 25px;
+    height: $moc_registration_height;
+    padding: 15px;
+    font-size: 1.05em;
+    text-align: left;
+    width: $dashboard_width - 30;
+    color: black;
+    background: white;
+    line-height: normal;  
+    vertical-align: middle;
 }

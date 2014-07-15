@@ -1,79 +1,143 @@
+#mocForm {
+    position: absolute;
+    top: 100px;
+    left: 50px;
+    width: 500px;
+
+    .loginForm {
+        left: 70px;
+        position: relative;
+        width: 360px;
+        text-align: left;
+
+        .loginField {
+            margin-bottom: 20px;
+            border: 1px solid #BCBEBF;
+            border-radius: 5px;
+            width: 355px;
+            height: 42.5px;
+            padding-top: 7.5px;
+            padding-left: 5px;
+
+            input {
+                width: 350px;
+            }
+        }
+
+        .optionField {
+            margin-bottom: 20px;
+            margin-top: 10px;
+            border: 1px solid #BCBEBF;
+            border-radius: 5px;
+            width: 350px;
+            height: 35px;
+            padding-left: 10px;
+            padding-top: 20px;
+            text-align: left;
+        }
+
+        .commentsField {
+            margin-bottom: 20px;
+
+            textarea {
+                width: 365px;
+                height: 75px;
+                border: 1px solid #BCBEBF;
+                border-radius: 5px;
+                padding-top: 10px;
+            }
+        }
+
+        select.large {
+            margin-top: -25px;
+            width: 205px;
+            height: 25px;
+            font-size: 14px;
+            color: #2F3132;
+        }
+
+        select.small {
+            margin-top: -25px;
+            width: 105px;
+            height: 25px;
+            font-size: 14px;
+            color: #2F3132;
+        }
+    }
+}
+
 #mocRegistrationCard {
-  position: absolute;
-  top: 50px;
-  right: 10px;
-  height: 300px;
-  width: 500px;
-  margin-top: 50px;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-  border: 1px solid #35469A;
-  border-radius: 10px;
+    position: absolute;
+    top: 50px;
+    right: 100px;
+    height: 300px;
+    width: 500px;
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    border: 1px solid #35469A;
+    border-radius: 10px;
+
+    .sampleFont {
+        position: absolute;
+        font-size: 7em;
+        height: 100px;
+        width: 500px;
+        padding-top: 75px;
+        z-index: 0;
+        color: black;
+        opacity: .1;
+    }
+
+    .sampleMocTitle {
+        position: absolute;
+        top: 45px;
+        left: 12.5px;
+        width: 475px;
+        height: 100px;
+        z-index: 1;
+        font-size: 2.5em;
+        text-align: center;
+        overflow: none;
+    }
+
+    .sampleMocDescription {
+        position: absolute;
+        top: 150px;
+        left: 50px;
+        width: 400px;
+        height: 100px;
+        text-align: center;
+        z-index: 1;
+        font-size: 1.5em;
+        overflow: none;
+    }
+
+    .sampleMocCreator {
+        position: absolute;
+        width: 500px;
+        text-align: center;
+        bottom: 5px;
+        z-index: 1;
+        font-size: 1.5em;
+        font-weight: bold;
+        overflow: none;
+    }
+
+    #sampleBrickSlopesLogo {
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+    }
 }
 
 #mocRegistrationCatagoriesCard {
-  position: absolute;
-  top: 360px;
-  right: 10px;
-  height: 250px;
-  width: 500px;
-  margin-top: 50px;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-  border: 1px solid #35469A;
-  border-radius: 10px;
+    position: absolute;
+    top: 450px;
+    left: 575px;
 }
 
-.sampleFont {
-  position: absolute;
-  font-size: 7em;
-  height: 100px;
-  width: 500px;
-  padding-top: 75px;
-  z-index: 0;
-  color: black;
-  opacity: .1;
-}
-
-#sampleMocTitle {
-  position: absolute;
-  top: 65px;
-  z-index: 1;
-  font-size: 3em;
-  width: 450px;
-  left: 25px;
-  height: 200px;
-  text-align: center;
-  border: none;
-}
-
-#sampleCreator {
-  position: absolute;
-  width: 500px;
-  text-align: center;
-  bottom: 40px;
-  z-index: 1;
-  font-size: 1em;
-  border: none;
-}
-
-#sampleDisplayName {
-  position: absolute;
-  width: 500px;
-  text-align: center;
-  bottom: 5px;
-  z-index: 1;
-  font-size: 1.5em;
-  border: none
-}
-
-#sampleBrickSlopesLogo {
-  position: absolute;
-  bottom: 10px;
-  left: 10px;
-}
 
 .mocListContainer {
   width: 960px;

@@ -76,6 +76,11 @@ describe('controllers', function() {
                 expect(location.path()).toBe('/afol/eventMe.html');
             });
 
+            it('should redirect to eventMocRegistration', function() {
+                scope.clickMocRegistration();
+                expect(location.path()).toBe('/afol/eventMocRegistration.html');
+            });
+
             it('should redirect to eventAfols', function() {
                 scope.clickAfols();
                 expect(location.path()).toBe('/afol/eventAfols.html');

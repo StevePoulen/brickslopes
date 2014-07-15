@@ -1,109 +1,112 @@
-<div>
-    <div ng-repeat="event in eventList">
-        <div class="textCenter info">
-            <bs-text text="BrickSlopes - Salt Lake City" font-size=1.25></bs-text>
-        </div>
-        <div class="textCenter info">
-            <bs-text text="{{passType}} Event Pass - {{passDates}}"></bs-text>
-        </div>
-        <div class="textLeft info">
-            <table>
-                <tbody>
-                    <tr>
-                        <td>
-                            <bs-text text="Paid"></bs-text>
-                        </td>
-                        <td>
-                            <span ng-show="paidCTA">
-                                <bs-text text="Thank You"></bs-text>
-                            </span>
-                            <span ng-hide="paidCTA" class="actionButtonSquareSmall" ng-click="payNow()">
-                                <bs-text text="Pay Now" font-color=white font-size=1></bs-text>
-                            </span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <bs-text text="{{event.type}}"></bs-text>
-                        </td>
-                        <td>
-                            <bs-text text="YES"></bs-text>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <bs-text text="T-Shirt"></bs-text>
-                        </td>
-                        <td>
-                            <bs-text text="{{event.tShirtSize}}"></bs-text>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <bs-text text="Meet & Greet"></bs-text>
-                        </td>
-                        <td>
-                            <bs-text text="{{event.meetAndGreet}}"></bs-text>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <bs-text text="Name Badge"></bs-text>
-                        </td>
-                        <td>
-                            <bs-text text="{{event.nameBadge}}"></bs-text>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="brickCenter">
-            <div class="brickHolder" ng-show="{{event.showBadgeLine1}}">
-                <div class="legoBrick black">
-                    <div class="studs">
-                        <div class="stud black"></div>
-                        <div class="stud black"></div>
-                        <div class="stud black"></div>
-                        <div class="stud black"></div>
-                        <div class="stud black"></div>
-                        <div class="stud black"></div>
-                        <div class="stud black"></div>
-                        <div class="stud black"></div>
+<div class="largePane events">
+    <div class="meText"><bs-text text="Your Events" font-color=black font-size=1.25></bs-text></div>
+    <div>
+        <div ng-repeat="event in eventList">
+            <div class="textCenter info">
+                <bs-text text="BrickSlopes - Salt Lake City" font-size=1.25></bs-text>
+            </div>
+            <div class="textCenter info">
+                <bs-text text="{{passType}} Event Pass - {{passDates}}"></bs-text>
+            </div>
+            <div class="textLeft info">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <bs-text text="Paid"></bs-text>
+                            </td>
+                            <td>
+                                <span ng-show="paidCTA">
+                                    <bs-text text="Thank You"></bs-text>
+                                </span>
+                                <span ng-hide="paidCTA" class="actionButtonSquareSmall" ng-click="payNow()">
+                                    <bs-text text="Pay Now" font-color=white font-size=1></bs-text>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <bs-text text="{{event.type}}"></bs-text>
+                            </td>
+                            <td>
+                                <bs-text text="YES"></bs-text>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <bs-text text="T-Shirt"></bs-text>
+                            </td>
+                            <td>
+                                <bs-text text="{{event.tShirtSize}}"></bs-text>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <bs-text text="Meet & Greet"></bs-text>
+                            </td>
+                            <td>
+                                <bs-text text="{{event.meetAndGreet}}"></bs-text>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <bs-text text="Name Badge"></bs-text>
+                            </td>
+                            <td>
+                                <bs-text text="{{event.nameBadge}}"></bs-text>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="brickCenter">
+                <div class="brickHolder" ng-show="{{event.showBadgeLine1}}">
+                    <div class="legoBrick black">
+                        <div class="studs">
+                            <div class="stud black"></div>
+                            <div class="stud black"></div>
+                            <div class="stud black"></div>
+                            <div class="stud black"></div>
+                            <div class="stud black"></div>
+                            <div class="stud black"></div>
+                            <div class="stud black"></div>
+                            <div class="stud black"></div>
+                        </div>
+                        <bs-text text="{{event.badgeLine1}}" font-color=white></bs-text>
                     </div>
-                    <bs-text text="{{event.badgeLine1}}" font-color=white></bs-text>
+                </div>
+                <div class="brickHolder interlock" ng-show="{{event.showBadgeLine2}}">
+                    <div class="legoBrick blue">
+                        <div class="studs">
+                            <div class="stud blue"></div>
+                            <div class="stud blue"></div>
+                            <div class="stud blue"></div>
+                            <div class="stud blue"></div>
+                            <div class="stud blue"></div>
+                            <div class="stud blue"></div>
+                            <div class="stud blue"></div>
+                            <div class="stud blue"></div>
+                        </div>
+                        <bs-text text="{{event.badgeLine2}}" font-color=black></bs-text>
+                    </div>
+                </div>
+                <div class="brickHolder interlock2" ng-show="{{event.showBadgeLine3}}">
+                    <div class="legoBrick yellow">
+                        <div class="studs">
+                            <div class="stud yellow"></div>
+                            <div class="stud yellow"></div>
+                            <div class="stud yellow"></div>
+                            <div class="stud yellow"></div>
+                            <div class="stud yellow"></div>
+                            <div class="stud yellow"></div>
+                            <div class="stud yellow"></div>
+                            <div class="stud yellow"></div>
+                        </div>
+                        <bs-text text="{{event.badgeLine3}}" font-color=black></bs-text>
+                    </div>
                 </div>
             </div>
-            <div class="brickHolder interlock" ng-show="{{event.showBadgeLine2}}">
-                <div class="legoBrick blue">
-                    <div class="studs">
-                        <div class="stud blue"></div>
-                        <div class="stud blue"></div>
-                        <div class="stud blue"></div>
-                        <div class="stud blue"></div>
-                        <div class="stud blue"></div>
-                        <div class="stud blue"></div>
-                        <div class="stud blue"></div>
-                        <div class="stud blue"></div>
-                    </div>
-                    <bs-text text="{{event.badgeLine2}}" font-color=black></bs-text>
-                </div>
-            </div>
-            <div class="brickHolder interlock2" ng-show="{{event.showBadgeLine3}}">
-                <div class="legoBrick yellow">
-                    <div class="studs">
-                        <div class="stud yellow"></div>
-                        <div class="stud yellow"></div>
-                        <div class="stud yellow"></div>
-                        <div class="stud yellow"></div>
-                        <div class="stud yellow"></div>
-                        <div class="stud yellow"></div>
-                        <div class="stud yellow"></div>
-                        <div class="stud yellow"></div>
-                    </div>
-                    <bs-text text="{{event.badgeLine3}}" font-color=black></bs-text>
-                </div>
-            </div>
+            <div class="eventBrickSlopesLogo mediumLogo logoRight"></div>
         </div>
-        <div class="eventBrickSlopesLogo mediumLogo logoRight"></div>
     </div>
 </div>

@@ -1,13 +1,19 @@
-<div class="genericText">
-    <span class="bold">{{userObject.firstName}} {{userObject.lastName}}</span>
-    <br>
-    {{userObject.address}}
-    <br>
-    {{userObject.city}}, {{userObject.state}} {{userObject.zipcode}}
-    <p>
-    {{userObject.email}}
-    <br>
-    {{userObject.phoneNumber}}
-    <p>
-    Member Since: {{userObject.memberSince}}
+<div class="normalPane">
+    <div class="meText">
+        <bs-text text="Your Information" font-color=black font-size=1.25></bs-text>
+        <i ng-click="clickEditProfile()" class="icons-edit icons-sprite-bg"></i>
+    </div>
+    <div class="genericText">
+        <span class="bold">{{userObject.firstName}} {{userObject.lastName}}</span>
+        <br>
+        {{userObject.address}}
+        <br>
+        {{userObject.city}}, {{userObject.state}} {{userObject.zipcode}}
+        <p>
+        {{userObject.email}}
+        <br>
+        {{userObject.phoneNumber}}
+        <p>
+        Member Since: {{userObject.memberSince}}
+    </div>
 </div>

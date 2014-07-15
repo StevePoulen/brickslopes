@@ -1,6 +1,6 @@
 'use strict';
 
-var afolLogin = false;;
+var afolLogin = false;
 
 /* Controllers */
 angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
@@ -450,6 +450,35 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         $scope.passDates = passDates;
     });
 }])
+.controller('afolMocRegistration', ['$scope', '$location', '$window', 'Themes', function($scope, $location, $window, Themes) {
+    $("#splashPageCTA").hide();
+    $scope.firstName = $window.sessionStorage.firstName;
+    $scope.lastName = $window.sessionStorage.lastName;
+    $scope.displayName = $scope.firstName + " " + $scope.lastName;
+    $scope.baseplateWidth = 1;
+    $scope.baseplateDepth = 1;
+    $scope.width = buildRange(1,55);
+    $scope.depth = buildRange(1,7);
+    $scope.eventId = 2;
+    $scope.theme = "Castle";
+
+    function buildRange(start, end) {
+        var range = [];
+        for(var i = start; i < end; i++) {
+            range.push(i);
+        }
+
+        return range;
+    }
+
+    Themes.get($scope.eventId).then(function(data) {
+        $scope.themeList = data;
+    });
+
+    $scope.closeDialog = function() {
+        $location.path("/afol/index.html");
+    }
+}])
 .controller('afolEditProfile', ['$scope', '$location', 'UserDetails', '$window', function($scope, $location, UserDetails, $window) {
     $("#splashPageCTA").hide();
     $scope.userObject = undefined;
@@ -670,8 +699,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     }
 
     $scope.clickMocRegistration = function() {
-        //$location.path("/afol/eventMocRegistration.html");
-        $location.path("/afol/comingSoon.html");
+        $location.path("/afol/eventMocRegistration.html");
     }
 
     $scope.clickMocList = function() {

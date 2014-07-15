@@ -68,11 +68,25 @@ input[type="text"], input[type="email"], input[type="password"], textarea {
     width: 305px;
 }
 
+input[type="text"]::-webkit-input-placeholder, 
+input[type="email"]::-webkit-input-placeholder, 
+input[type="password"]::-webkit-input-placeholder, 
+textarea::-webkit-input-placeholder {
+    color: $bs_blue;
+}
+
+input[type="text"]:-ms-input-placeholder, 
+input[type="email"]:-ms-input-placeholder, 
+input[type="password"]:-ms-input-placeholder, 
+textarea:-ms-input-placeholder {
+    color: $bs_blue;
+}
+
 input[type="text"]::-moz-placeholder, 
 input[type="email"]::-moz-placeholder, 
 input[type="password"]::-moz-placeholder, 
-textarea.input::-moz-placeholder {
-    color: #BCBEBF;
+textarea::-moz-placeholder {
+    color: $bs_blue;
 }
 
 .actionButton {
@@ -215,6 +229,10 @@ input.ng-dirty {
 
 .blueFont {
     color: $bs_blue;
+}
+
+.lightBlueFont {
+    color: $bs_light_blue;
 }
 
 .blackFont {

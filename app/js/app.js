@@ -193,7 +193,7 @@ config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvide
         '/afol/eventMocRegistration.html',
         {
             templateUrl: '/partials/afol/eventMocRegistration.html',
-            controller: 'afolIndex'
+            controller: 'afolMocRegistration'
         }
     )
     .when(

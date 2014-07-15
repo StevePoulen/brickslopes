@@ -1,7 +1,7 @@
     $dashboard_width: 1220px;
     $dashboard_height: 700px;
     $eventPane_height: 200px;
-    $eventPane_width: 300px;
+    $eventPane_width: 297px;
     $meEventPane_width: 350px;
     $eventPane_margin: 5px;
     $pane_width: 1238px;
@@ -19,59 +19,59 @@
 }
 
 .dashboardText { 
+    position: absolute;
+    border-radius:25px;
+    padding: 15px;
+    font-size: 100%;
+    text-align: left;
+    width: $dashboard_width - 30;
+    color: black;
+    background: white;
+    display: table;
+    line-height: normal;  
+    vertical-align: middle;
+
+    #login {
         position: absolute;
-        border-radius:25px;
-        padding: 15px;
-        font-size: 100%;
-        text-align: left;
-        width: $dashboard_width - 30;
-        color: black;
-        background: white;
-        display: table;
-        line-height: normal;  
-        vertical-align: middle;
+        left: 10px;
+        top: 200px;
+        height: $dashboard_height / 2;
+        width: $dashboard_width / 2 - 20;
+        text-align: center;
 
-        #login {
-            position: absolute;
-            left: 10px;
-            top: 200px;
-            height: $dashboard_height / 2;
-            width: $dashboard_width / 2 - 20;
-            text-align: center;
+        .loginForm {
+            position: relative;
+            left: $dashboard_width / 4 - 135;
+            width: 250px;
 
-            .loginForm {
-                position: relative;
-                left: $dashboard_width / 4 - 135;
+            .loginField {
+                margin-bottom: 10px;
+                border: 1px solid #BCBEBF;
+                border-radius: 5px;
                 width: 250px;
-
-                .loginField {
-                    margin-bottom: 10px;
-                    border: 1px solid #BCBEBF;
-                    border-radius: 5px;
-                    width: 250px;
-                    height: 42.5px;
-                    padding-top: 7.5px;
-                }
+                height: 42.5px;
+                padding-top: 7.5px;
             }
         }
+    }
 
-        #signUpForm {
-            position: absolute;
-            top: 125px;
-            left: $dashboard_width / 8;
+    #signUpForm {
+        position: absolute;
+        top: 125px;
+        left: $dashboard_width / 8;
 
-            .loginForm {
-                position: relative;
+        .loginForm {
+            position: relative;
+            width: 250px;
+
+            .loginField {
+                margin-bottom: 20px;
+                border: 1px solid #BCBEBF;
+                border-radius: 5px;
                 width: 250px;
-
-                .loginField {
-                    margin-bottom: 20px;
-                    border: 1px solid #BCBEBF;
-                    border-radius: 5px;
-                    width: 250px;
-                    height: 42.5px;
-                    padding-top: 7.5px;
-                    text-align: center;
+                height: 42.5px;
+                padding-top: 7.5px;
+                text-align: center;
             }
         }
     }
@@ -85,7 +85,7 @@
     #loginDivider {
         position: absolute;
         left: $dashboard_width / 2 - 1;
-        width:0;
+        width: 0;
         height: $dashboard_height - 300;
         top: 150px;
         border: 1px solid black;
@@ -343,7 +343,17 @@
         font-size: 1.0em;
     }
 
-    .user {
+    .smallPane {
+        position: relative;
+        float: left;
+        width: $eventPane_width;
+        height: $eventPane_height / 2;
+        margin: 0px $eventPane_margin $eventPane_margin 0px;
+        border: 2px solid black;
+        border-radius: 12px;
+    }
+
+    .normalPane {
         position: relative;
         float: left;
         width: $eventPane_width;
@@ -353,15 +363,17 @@
         border-radius: 12px;
     }
 
-    .changePassword {
+    .largePane {
         position: relative;
         float: left;
-        width: $eventPane_width;
-        height: $eventPane_height;
+        width: $meEventPane_width;
+        height: $eventPane_height * 2;
         margin: 0px $eventPane_margin $eventPane_margin 0px;
         border: 2px solid black;
         border-radius: 12px;
+    }
 
+    .changePassword {
         .loginForm {
             position: relative;
             margin-right: auto;
@@ -396,13 +408,6 @@
     }
 
     .events {
-        position: relative;
-        float: left;
-        width: $meEventPane_width;
-        height: $eventPane_height * 2;
-        margin: 0px $eventPane_margin $eventPane_margin 0px;
-        border: 2px solid black;
-        border-radius: 12px;
 
         .info {
             position: relative;

@@ -30,4 +30,5 @@ i {
     background-position: sprite-position($icons-sprite, edit);
     width: image-width("icons/edit.png");
     height: image-height("icons/edit.png");
+    cursor: pointer;
 }

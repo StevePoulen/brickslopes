@@ -136,6 +136,13 @@ angular.module('brickSlopes.directives', [])
         templateUrl: 'partials/afol/eventPanes/userInformation.html'
     }
 })
+.directive('bsChangePassword', function() {
+    return {
+        restrict: 'E',
+        replace: true,
+        templateUrl: 'partials/afol/eventPanes/changePassword.html'
+    }
+})
 .directive('bsEventRegistrationCta', function() {
     return {
         restrict: 'E',
@@ -163,10 +170,10 @@ angular.module('brickSlopes.directives', [])
             if(navigator.appVersion.indexOf("MSIE 9.")!=-1) {
                 scope.$watch(attrs.ngModel, function() {
                     if(! angular.isDefined(ngModel.$modelValue)) {
-                        $(elem).addClass("greyFont");
+                        $(elem).addClass("lightBlueFont");
                         $(elem).addClass("italic");
                     } else {
-                        $(elem).removeClass("greyFont");
+                        $(elem).removeClass("lightBlueFont");
                         $(elem).removeClass("italic");
                     }
                 });
