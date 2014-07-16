@@ -1,0 +1,27 @@
+-- MySQL dump 10.11
+--
+-- Host: localhost    Database: mysql
+-- ------------------------------------------------------
+-- Server version	5.0.83
+
+USE `brickslopes`;
+
+DROP TABLE IF EXISTS `mocs`;
+
+CREATE TABLE `mocs` (
+  `mocId` INT(10) UNSIGNED UNIQUE NOT NULL auto_increment,
+  `eventId` INT(10) UNSIGNED NOT NULL,
+  `userId` INT(10) UNSIGNED NOT NULL,
+  `themeId` INT(10) UNSIGNED NOT NULL,
+  `title` VARCHAR(255),
+  `displayName` VARCHAR(255),
+  `mocImageUrl` VARCHAR(255),
+  `baseplateWidth` INT(3),
+  `baseplateDepth` INT(3),
+  `description` VARCHAR(255),
+  PRIMARY KEY (`mocId`),
+  FOREIGN KEY (`eventId`) REFERENCES `events` (`eventId`),
+  FOREIGN KEY (`userId`) REFERENCES `users` (`userId`),
+  FOREIGN KEY (`themeId`) REFERENCES `themes` (`themeId`),
+  UNIQUE KEY `mocId_UNIQUE` (`mocId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='The Moc Table';

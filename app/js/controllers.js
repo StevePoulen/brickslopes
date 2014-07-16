@@ -450,7 +450,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         $scope.passDates = passDates;
     });
 }])
-.controller('afolMocRegistration', ['$scope', '$location', '$window', 'Themes', function($scope, $location, $window, Themes) {
+.controller('afolMocRegistration', ['$scope', '$location', '$window', 'Themes', 'MocDetails', function($scope, $location, $window, Themes, MocDetails) {
     $("#splashPageCTA").hide();
     $scope.firstName = $window.sessionStorage.firstName;
     $scope.lastName = $window.sessionStorage.lastName;
@@ -460,7 +460,16 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     $scope.width = buildRange(1,55);
     $scope.depth = buildRange(1,7);
     $scope.eventId = 2;
-    $scope.theme = "Castle";
+    $scope.theme = undefined;
+    $scope.themeId = undefined;
+    $scope.displayErrorMessage = undefined;
+    $scope.displayMessage = undefined;
+
+    $scope.$watch("theme", function(oldTheme, newTheme) {
+        if (angular.isDefined(newTheme)) {
+            $scope.themeId = newTheme.themeId;
+        }
+    });
 
     function buildRange(start, end) {
         var range = [];
@@ -473,7 +482,37 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
 
     Themes.get($scope.eventId).then(function(data) {
         $scope.themeList = data;
+        $scope.theme = $scope.themeList[0];
+        $scope.themeId = $scope.theme.themeId;
     });
+
+    function serializeMocJson() {
+        return {
+            themeId: $scope.themeId,
+            eventId: $scope.eventId,
+            title: $scope.title,
+            displayName: $scope.displayName,
+            mocImageUrl: $scope.mocImageUrl,
+            baseplateWidth: $scope.baseplateWidth,
+            baseplateDepth: $scope.baseplateDepth,
+            description: $scope.description
+        }
+    }
+
+    $scope.submitRegistration = function() {
+        $scope.verifying = true;
+        MocDetails.create(serializeMocJson()).then(function(status) {
+            if (status === 201) {
+                $scope.displayMessage = "Start Again.";
+            }
+            $scope.verifying = false;
+        }, function(status) {
+            $scope.verifying = false;
+            if (status === 400) {
+                $scope.displayErrorMessage = "The MOC travails.";
+            }
+        });
+    }
 
     $scope.closeDialog = function() {
         $location.path("/afol/index.html");
@@ -640,7 +679,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         $location.path("/admin/index.html");
     }
 }])
-.controller('afolIndex', ['$scope', '$location', 'GetAfolMocList', 'RegisteredAfols', '$window', 'EventDates', 'EventRegistration', function($scope, $location, GetAfolMocList, RegisteredAfols, $window, EventDates, EventRegistration) {
+.controller('afolIndex', ['$scope', '$location', 'MocDetails', 'RegisteredAfols', '$window', 'EventDates', 'EventRegistration', function($scope, $location, MocDetails, RegisteredAfols, $window, EventDates, EventRegistration) {
     $("#splashPageCTA").hide();
     $scope.mocCount = 0;
     $scope.afolCount = 0;
@@ -733,10 +772,10 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         $location.path("/afol/index.html");
     }
 
-    GetAfolMocList.getList().then(function(data) {
+    MocDetails.getList().then(function(data) {
         $scope.mocList = data;
 
-        GetAfolMocList.getCount().then(function(data) {
+        MocDetails.getCount().then(function(data) {
             $scope.mocCount = data;
         });
     });

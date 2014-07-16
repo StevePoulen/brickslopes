@@ -26,6 +26,7 @@ class ThemesTest extends PHPUnit_Framework_TestCase
         $output = json_decode(ob_get_contents(), true);
         $themeObj = $output[0];
         $this->assertEquals($themeObj['eventId'] , 2);
+        $this->assertEquals($themeObj['themeId'] , 1);
         $this->assertEquals($themeObj['theme'], 'Castle');
         $this->assertEquals($themeObj['type'], 'AFOL');
         $this->assertEquals($themeObj['awards'][0]['award'], "First Place");

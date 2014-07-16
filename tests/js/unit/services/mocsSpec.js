@@ -13,17 +13,17 @@ describe('service', function() {
         });
     });
 
-    describe('GetAfolMocList', function() {
-        var mockBackend, loader, data;
-        beforeEach(inject(function(_$httpBackend_, GetAfolMocList) {
+    describe('MocDetails', function() {
+        var mockBackend, service, data;
+        beforeEach(inject(function(_$httpBackend_, MocDetails) {
             var returnList = {'afolMocCount': 22, 'mocs': {'firstName': 'Cody'}};
             mockBackend = _$httpBackend_;
-            loader = GetAfolMocList;
-            mockBackend.expectGET('/controllers/mocs/getRegisteredMocList.php').respond(returnList);
+            service = MocDetails;
+            mockBackend.expectGET('/controllers/mocs/mocs.php').respond(returnList);
         }));
 
         it('should load registered afol moc list count', function() {
-            var load = loader.getCount();
+            var load = service.getCount();
             load.then(function(_data) {
                 data = _data;
             });
@@ -33,13 +33,33 @@ describe('service', function() {
         });
 
         it('should load registered afol moc list count', function() {
-            var load = loader.getList();
+            var load = service.getList();
             load.then(function(_data) {
                 data = _data;
             });
 
             mockBackend.flush();
             expect(data).toEqualData({firstName: 'Cody'});
+        });
+    });
+
+    describe('Create Moc', function() {
+        var mockBackend, service, data, dto;
+        beforeEach(inject(function(_$httpBackend_, MocDetails) {
+            dto = {};
+            mockBackend = _$httpBackend_;
+            service = MocDetails;
+            mockBackend.expectPOST('/controllers/mocs/mocs.php', dto).respond(201);
+        }));
+
+        it('should create a user moc', function() {
+            var load = service.create(dto);
+            load.then(function(_data) {
+                data = _data;
+            });
+
+            mockBackend.flush();
+            expect(data).toEqualData(201);
         });
     });
 });

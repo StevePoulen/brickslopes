@@ -107,6 +107,14 @@ registrationLineItemTableCreation() {
     incStep
 }
 
+mocTableCreation() {
+    printf "\nSTEP $STEP_COUNTER: Create the 'BrickSlopes' moc table?\n";
+    echo "* WARNING * This is delete the current table";
+    echo -n "Create table? (Y\n) [ENTER]: "; 
+    read CREATE_MOC_TABLE;
+    incStep
+}
+
 themeTableCreation() {
     printf "\nSTEP $STEP_COUNTER: Create the 'BrickSlopes' theme table?\n";
     echo "* WARNING * This is delete the current table";
@@ -176,6 +184,7 @@ userInput() {
         registrationTableCreation;
         registrationLineItemTableCreation;
         themeTableCreation;
+        mocTableCreation;
     fi
 }
 
@@ -209,6 +218,13 @@ createRegistrationLineItemTable() {
     if [[ "$CREATE_REGISTRATION_LINE_ITEM_TABLE" == "Y" || isDropAllTables ]]
     then
         executeDBStatement "08_dbCreateRegistrationLineItemsTable.txt"
+    fi
+}
+
+createMocTable() {
+    if [[ "$CREATE_MOC_TABLE" == "Y" || isDropAllTables ]]
+    then
+        executeDBStatement "09_dbCreateMocTable.txt"
     fi
 }
 
@@ -274,3 +290,4 @@ createUserTable;
 createRegistrationTable;
 createThemesTable;
 createRegistrationLineItemTable;
+createMocTable;

@@ -37,6 +37,17 @@ describe('controllers', function() {
         });
 
         describe('Default Values', function() {
+            it('should have a displayErrorMessage variable ', function() {
+                expect(scope.displayErrorMessage).toBeUndefined();
+            });
+
+            it('should have a displayMessage variable ', function() {
+                expect(scope.displayMessage).toBeUndefined();
+            });
+
+            it('should have a lastName variable ', function() {
+                expect(scope.lastName).toBe('Ottley');
+            });
             it('should have a firstName variable ', function() {
                 expect(scope.firstName).toBe('Cody');
             });
@@ -70,13 +81,16 @@ describe('controllers', function() {
             });
 
             it('should have a theme variable ', function() {
-                expect(scope.theme).toBe('Castle');
+                expect(scope.theme).toBeUndefined();
             });
 
             it('should have an eventId variable ', function() {
                 expect(scope.eventId).toBe(2);
             });
 
+            it('should have an themeId variable ', function() {
+                expect(scope.themeId).toBeUndefined;
+            });
         });
 
         describe('Close Dialog', function() {
@@ -94,6 +108,61 @@ describe('controllers', function() {
 
             it('should populate the themeList variable', function() {
                 expect(scope.themeList).toEqualData(themes);
+            });
+
+            it('should have a theme variable ', function() {
+                expect(scope.theme).toEqualData(themes[0]);
+            });
+
+            it('should have an themeId variable ', function() {
+                expect(scope.themeId).toBe(12);
+            });
+        });
+
+        describe('Create Moc', function() {
+            var mocDto;
+            beforeEach(function() {
+                mocDto = {
+                    themeId: 12,
+                    eventId: 2,
+                    title: 'My Fine Title',
+                    displayName: 'Cody Ottley',
+                    mocImageUrl: 'https://www.smile.com',
+                    baseplateWidth: 1,
+                    baseplateDepth: 1,
+                    description: 'I worked really hard on this MOC'
+                }
+                mockBackend.expectGET('/controllers/themes.php?eventId=2').respond(themes);
+                mockBackend.flush();
+            });
+
+            it('should create a moc', function() {
+                scope.title = 'My Fine Title';
+                scope.mocImageUrl = 'https://www.smile.com';
+                scope.description = 'I worked really hard on this MOC';
+                scope.submitRegistration();
+                mockBackend.expectPOST('/controllers/mocs/mocs.php', mocDto).respond(201);
+                mockBackend.flush();
+                expect(scope.displayMessage).toBe('Start Again.');
+                /*
+                it('should have a displayErrorMessage variable ', function() {
+                    expect(scope.displayErrorMessage).toBeUndefined();
+                });
+
+                it('should have a displayMessage variable ', function() {
+                });
+                */
+
+            });
+
+            it('should display an error', function() {
+                scope.title = 'My Fine Title';
+                scope.mocImageUrl = 'https://www.smile.com';
+                scope.description = 'I worked really hard on this MOC';
+                scope.submitRegistration();
+                mockBackend.expectPOST('/controllers/mocs/mocs.php', mocDto).respond(400);
+                mockBackend.flush();
+                expect(scope.displayErrorMessage).toBe('The MOC travails.');
             });
         });
     });

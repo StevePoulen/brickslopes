@@ -1,7 +1,8 @@
 var themes = [
     {
         "theme": "Adventure",
-        "eventId": "2",
+        "themeId": 12,
+        "eventId": 2,
         "type": "AFOL",
         "awards": [
             {
@@ -20,7 +21,8 @@ var themes = [
     },
     {
         "theme": "Bionicle",
-        "eventId": "2",
+        "themeId": 2,
+        "eventId": 2,
         "type": "AFOL",
         "awards": [
             {
@@ -35,7 +37,8 @@ var themes = [
     },
     {
         "theme": "Castle",
-        "eventId": "2",
+        "themeId": 3,
+        "eventId": 2,
         "type": "AFOL",
         "awards": [
             {

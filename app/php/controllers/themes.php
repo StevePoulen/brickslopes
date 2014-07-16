@@ -38,6 +38,7 @@ class Themes {
                     $themesMap[$dbObj->themeId] = array(
                         'theme' => $dbObj->theme,
                         'eventId' => $dbObj->eventId,
+                        'themeId' => $dbObj->themeId,
                         'type' => $dbObj->type,
                         'awards' => array (
                             array (

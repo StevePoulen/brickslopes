@@ -14,7 +14,7 @@
                     </div>
                     <div><bs-text text="MOC Theme" font-size=1.25></bs-text></div>
                     <div class="loginField">
-                        <select class="large" ng-model="theme" ng-options="theme.theme as theme.theme for theme in themeList"></select>
+                        <select class="large" ng-model="theme" ng-options="theme as theme.theme for theme in themeList"></select>
                     </div>
                     <div><bs-text text="MOC Creator" font-size=1.25></bs-text></div>
                     <div class="loginField">
@@ -22,7 +22,7 @@
                     </div>
                     <div><bs-text text="MOC Image" font-size=1.25></bs-text></div>
                     <div class="loginField">
-                        <input type="text" ng-model="image" bs-placeholder="Moc Image URL (flickr?)">
+                        <input type="text" ng-model="mocImageUrl" bs-placeholder="Moc Image URL (flickr?)">
                     </div>
                     <div><bs-text text="MOC Dimensions in 32x32 baseplates" font-size=1.25></bs-text></div>
                     <div class="optionField">

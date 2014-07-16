@@ -735,7 +735,7 @@ angular.module('brickSlopes.services', [])
         }
     }
 }])
-.factory('GetAfolMocList', ['$q', '$http', function($q, $http) {
+.factory('MocDetails', ['$q', '$http', function($q, $http) {
     var mocList = undefined;
 
     return {
@@ -753,11 +753,28 @@ angular.module('brickSlopes.services', [])
             if (mocList) {
                 return $q.when(mocList);
             } else {
-                return $q.when($http.get('/controllers/mocs/getRegisteredMocList.php').then(function(data) {
+                return $q.when($http.get('/controllers/mocs/mocs.php').then(function(data) {
                     mocList = data.data;
                     return mocList.mocs;
                 }));
             }
+        },
+
+        create: function(mocDTO) {
+            var delay= $q.defer();
+            $http (
+                {
+                    method: 'POST',
+                    url: '/controllers/mocs/mocs.php',
+                    data: mocDTO
+                }
+            ).success(function(data, status, headers, config) {
+                delay.resolve(status);
+            }).error(function(data, status, headers, config) {
+                delay.reject(status);
+            });
+
+            return delay.promise;
         }
     };
 }])

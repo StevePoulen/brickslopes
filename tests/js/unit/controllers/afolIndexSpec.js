@@ -115,18 +115,18 @@ describe('controllers', function() {
     });
 
     describe('afolIndex Controller', function() {
-        var mockBackend, loader;
-        beforeEach(inject(function($controller, $rootScope, $location, _$httpBackend_, GetAfolMocList) {
+        var mockBackend, service;
+        beforeEach(inject(function($controller, $rootScope, $location, _$httpBackend_, MocDetails) {
             scope = $rootScope.$new();
             ctrl = $controller('afolIndex', { $scope: scope});
             location = $location;
             mockBackend = _$httpBackend_;
-            loader = GetAfolMocList;
+            service = MocDetails;
 
             var returnList = {'afolMocCount': 22, 'mocs': {'firstName': 'Steve'}};
             mockBackend.expectGET('/controllers/eventDates.php').respond(201, eventDates);
             mockBackend.expectGET('/controllers/eventRegistration.php').respond(201, eventRegistration);
-            mockBackend.expectGET('/controllers/mocs/getRegisteredMocList.php').respond(returnList);
+            mockBackend.expectGET('/controllers/mocs/mocs.php').respond(returnList);
             mockBackend.expectGET('/controllers/registeredAfols.php?eventId=2').respond(201, registeredAfols);
 
             mockBackend.flush();
