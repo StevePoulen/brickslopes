@@ -70,7 +70,7 @@ describe('controllers', function() {
                 expect(scope.lastName).toBe('');
                 expect(scope.email).toBe('');
                 expect(scope.comments).toBe('Comments ...');
-                expect(scope.captchaInit).toBe('AwEs0me');
+                expect(scope.captchaInit).toBe('WylDstYl3');
                 expect(scope.captcha).toBe('');
             });
         });

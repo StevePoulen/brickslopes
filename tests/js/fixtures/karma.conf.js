@@ -7,6 +7,7 @@ module.exports = function(config){
       'app/lib/**/angular-route.min.js',
       'tests/js/lib/angular-mocks.min.js',
       'app/partials/afol/**/*.html',
+      'app/partials/directives/**/*.html',
       'app/lib/**/*.js',
       'app/js/**/*.js',
       'tests/js/fixtures/artifacts/**/*.js',
@@ -33,6 +34,7 @@ module.exports = function(config){
    ],
 
     preprocessors : {
-        'app/partials/afol/**/*.html': 'html2js'
+        'app/partials/afol/**/*.html': 'html2js',
+        'app/partials/directives/**/*.html': 'html2js'
     }
 })}

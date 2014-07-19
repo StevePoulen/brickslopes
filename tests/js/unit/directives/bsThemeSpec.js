@@ -22,7 +22,6 @@ describe('directives', function() {
     });
 
     describe('bsTheme', function() {
-        var template;
         beforeEach(inject(function($compile, $rootScope, $templateCache) {
             var template = $templateCache.get('app/partials/afol/eventThemesDirective.html');
             $templateCache.put('partials/afol/eventThemesDirective.html', template);

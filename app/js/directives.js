@@ -36,6 +36,20 @@ angular.module('brickSlopes.directives', [])
         }
     }
 }])
+.directive('bsModal', [function() {
+    return {
+        restrict: 'E',
+        replace: true,
+        transclude: true,
+        templateUrl: 'partials/directives/modal.html',
+        link: function(scope, element, attrs) {
+            scope.modalTitle = attrs.title;
+            scope.closeModal = function() {
+                scope.showModal = false;
+            }
+        }
+    }
+}])
 .directive('bsText', ['BrickSlopesText', '$sce',  function(brickSlopesText, $sce) {
     return {
         restrict: 'E',

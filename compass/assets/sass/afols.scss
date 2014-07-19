@@ -7,7 +7,7 @@ $eventPane_margin: 5px;
 $pane_width: 1238px;
 $bs_blue: #35469A;
 
-#dashboardCloseButton {
+#modalCloseButton, #dashboardCloseButton {
       position: absolute;
       background: url("/images/closeButton_blue.png") no-repeat scroll 0 center transparent;
       background-size: 40px 40px;

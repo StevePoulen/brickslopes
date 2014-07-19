@@ -1,0 +1,10 @@
+<div class="bsModal" ng-show="showModal">
+    <div id="modalCloseButton" ng-click="closeModal()"></div>
+    <div class="title" ng-bind="modalTitle"></div>
+    <div ng-transclude></div>
+    <div class="formButtonPosition">
+        <div class="actionButtonSmall" ng-click="closeModal()">
+            <bs-text text="Continue" font-color=white font-size=1></bs-text>
+        </div>
+    </div>
+</div>

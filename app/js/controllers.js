@@ -29,10 +29,18 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
 }])
 .controller('emailUs', ['$scope', 'EmailUs', function($scope, EmailUs) {
     $("#splashPageCTA").show(500);
-    $scope.comments = 'Comments ...';
-    $scope.captchaInit = "LeGo1";
+    setDefaultScopeVariables("LeGo1");
     $scope.timer = false;
     $scope.verifying = false;
+
+    function setDefaultScopeVariables(captchaInit) {
+        $scope.firstName = "";
+        $scope.lastName = "";
+        $scope.email = "";
+        $scope.comments = "Comments ...";
+        $scope.captchaInit = captchaInit;
+        $scope.captcha= "";
+    }
 
     function serializeEmailUsJson() {
         return {
@@ -47,12 +55,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         $scope.verifying = true;
         EmailUs.create(serializeEmailUsJson()).then(function(response) {
             $scope.emailUsForm.$setPristine();
-            $scope.firstName = "";
-            $scope.lastName = "";
-            $scope.email = "";
-            $scope.comments = "Comments ...";
-            $scope.captchaInit = "AwEs0me";
-            $scope.captcha= "";
+            setDefaultScopeVariables("WylDstYl3");
             $scope.displayMessage = "Your e-mail has been sent.";
             $scope.timer = true;
             $scope.verifying = false;
@@ -454,16 +457,24 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     $("#splashPageCTA").hide();
     $scope.firstName = $window.sessionStorage.firstName;
     $scope.lastName = $window.sessionStorage.lastName;
-    $scope.displayName = $scope.firstName + " " + $scope.lastName;
-    $scope.baseplateWidth = 1;
-    $scope.baseplateDepth = 1;
+    setDefaultScopeVariables();
     $scope.width = buildRange(1,55);
     $scope.depth = buildRange(1,7);
     $scope.eventId = 2;
-    $scope.theme = undefined;
-    $scope.themeId = undefined;
     $scope.displayErrorMessage = undefined;
     $scope.displayMessage = undefined;
+    $scope.showModal = false;
+
+    function setDefaultScopeVariables() {
+        $scope.displayName = $scope.firstName + " " + $scope.lastName;
+        $scope.baseplateWidth = 1;
+        $scope.baseplateDepth = 1;
+        $scope.theme = ($scope.themeList ? $scope.themeList[0] : undefined);
+        $scope.themeId = undefined;
+        $scope.title = undefined;
+        $scope.mocImageUrl = undefined;
+        $scope.description = undefined;
+    }
 
     $scope.$watch("theme", function(newTheme, oldTheme) {
         if (angular.isDefined(newTheme)) {
@@ -503,7 +514,9 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         $scope.verifying = true;
         MocDetails.create(serializeMocJson()).then(function(status) {
             if (status === 201) {
-                $scope.displayMessage = "Start Again.";
+                $scope.registrationForm.$setPristine();
+                setDefaultScopeVariables();
+                $scope.showModal = true;
             }
             $scope.verifying = false;
         }, function(status) {

@@ -7,7 +7,7 @@
         </div>
         <div id="mocForm">
             <div class="loginForm">
-                <form name="registration" ng-submit="registration.$valid && submitRegistration()">
+                <form name="registrationForm" ng-submit="registrationForm.$valid && submitRegistration()">
                     <div><bs-text text="MOC Title" font-size=1.25></bs-text></div>
                     <div class="loginField">
                         <input ng-model="title" type="text" bs-placeholder="MOC Title (required)" ng-maxlength=47 required maxlength=47>
@@ -53,5 +53,6 @@
             <bs-theme></bs-theme>
         </div>
     </div>
+    <div><bs-modal title="Success">Congratulations! Your MOC has been submitted.<p>Would you like to add another MOC?</bs-modal></div>
     <div id="dashboardCloseButton" ng-click="closeDialog()"></div>
 </div>
