@@ -29,7 +29,7 @@ class AuthenticationTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($output['data']['lastName'] , 'Pilati');
         $this->assertEquals($output['data']['admin'] , 'YES');
         $this->assertEquals($output['data']['registered'] , 'YES');
-        $this->assertEquals($output['data']['token'] , "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvd3d3LmJyaWNrc2xvcGVzLmNvbSIsImF1ZCI6Ind3dy5teWJyaWNrc2xvcGVzLmNvbSIsImlhdCI6MTM1Njk5OTUyNCwibmJmIjoxMzU3MDAwMDAwLCJ1c2VySWQiOiIxIiwiYWRtaW4iOiJZRVMiLCJyZWdpc3RlcmVkIjoiWUVTIn0.0zlIaa4F-hsxEadwNW1eAtWSq4lKAv-Y4jUzZ2WlEDo");
+        $this->validateJwt($output['data']['token']);
         $this->assertEquals($output['status'], 200);
     }
 
@@ -70,5 +70,16 @@ class AuthenticationTest extends PHPUnit_Framework_TestCase
         $GLOBALS['db_query'] = null;
         $authentication = new Authentication();
         $this->assertEquals(http_response_code(), 412);
+    }
+
+    public function validateJwt($token, $admin='YES', $registered='YES') {
+        $jwt = JWT::decode($token, JWT_KEY);
+        $this->assertEquals($jwt->iss, 'https://www.brickslopes.com');
+        $this->assertEquals($jwt->aud, 'www.mybrickslopes.com');
+        $this->assertEquals($jwt->iat, '1356999524');
+        $this->assertEquals($jwt->nbf, '1357000000');
+        $this->assertEquals($jwt->userId, '123456789');
+        $this->assertEquals($jwt->admin, $admin);
+        $this->assertEquals($jwt->registered, $registered);
     }
 }

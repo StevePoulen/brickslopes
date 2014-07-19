@@ -23,7 +23,7 @@ class RegisteredUsersTest extends PHPUnit_Framework_TestCase
         $event = new RegisteredUsers();
         $this->assertEquals(http_response_code(), 200);
         $output = json_decode(ob_get_contents(), true)[0];
-        $this->assertEquals($output['userId'], '1');
+        $this->assertEquals($output['userId'], '123456789');
         $this->assertEquals($output['firstName'], 'Brian');
         $this->assertEquals($output['lastName'], 'Pilati');
         $this->assertEquals($output['email'], 'brianpilati@gmail.com');

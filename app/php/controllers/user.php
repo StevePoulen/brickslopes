@@ -4,10 +4,14 @@ class User extends jwtToken {
     private $usersObj;
     private $requestMethod;
     private $userId;
+    private $isAdmin;
+    private $isRegistered;
 
-    function __construct($userId) {
+    function __construct($userId, $isAdmin, $isRegistered) {
         parent::__construct();
         $this->userId = $userId;
+        $this->isAdmin = $isAdmin;
+        $this->isRegistered = $isRegistered;
         $this->usersObj = new users();
         $this->determineRequestMethod();
     }
@@ -63,7 +67,7 @@ class User extends jwtToken {
             $emailObj = new mail($payload['email']);
             $emailObj->sendUserRegistrationMessage($payload['firstName']);
             header("HTTP/1.0 201 Created");
-            echo $this->createPayload(
+            echo $this->createPayload (
                 $response,
                 $payload['firstName'], 
                 $payload['lastName'], 
@@ -90,12 +94,12 @@ class User extends jwtToken {
         $response = $this->usersObj->updateUserInformation($this->userId, $payload);
         if (preg_match ( '/\d+/', $response )) {
             header("HTTP/1.0 201 Created");
-            echo $this->createPayload(
-                $response,
+            echo $this->createPayload (
+                $this->userId,
                 $payload['firstName'], 
                 $payload['lastName'], 
-                'NO',
-                'NO',
+                ($this->isAdmin ? 'YES' : 'NO'),
+                ($this->isRegistered ? 'YES' : 'NO'),
                 201 
             );
         } else {
@@ -110,6 +114,6 @@ class User extends jwtToken {
     }
 }
 
-new User($this->userId);
+new User($this->userId, $this->isAdmin, $this->isRegistered);
 
 ?>
