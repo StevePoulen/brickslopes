@@ -16,30 +16,29 @@ describe('service', function() {
     describe('MocDetails', function() {
         var mockBackend, service, data;
         beforeEach(inject(function(_$httpBackend_, MocDetails) {
-            var returnList = {'afolMocCount': 22, 'mocs': {'firstName': 'Cody'}};
             mockBackend = _$httpBackend_;
             service = MocDetails;
-            mockBackend.expectGET('/controllers/mocs/mocs.php').respond(returnList);
+            mockBackend.expectGET('/controllers/mocs/mocs.php?eventId=2').respond(mocs);
         }));
 
         it('should load registered afol moc list count', function() {
-            var load = service.getCount();
+            var load = service.getCount(2);
             load.then(function(_data) {
                 data = _data;
             });
 
             mockBackend.flush();
-            expect(data).toEqualData(22);
+            expect(data).toEqualData(3);
         });
 
         it('should load registered afol moc list count', function() {
-            var load = service.getList();
+            var load = service.getList(2);
             load.then(function(_data) {
                 data = _data;
             });
 
             mockBackend.flush();
-            expect(data).toEqualData({firstName: 'Cody'});
+            expect(data).toEqualData(mocs);
         });
     });
 

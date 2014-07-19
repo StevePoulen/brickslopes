@@ -1,0 +1,45 @@
+<div id="eventDashboard">
+    <div class="dashboardText dashboardTextHeightAuto">
+        <div>
+            <h1><bs-logo font-size="1.25"></bs-logo> &#8226; <bs-text text="Registered MOCs" font-color=black></bs-text></h1>
+        </div>
+        <div class="searchField bold">
+            <input ng-model="searchText" bs-placeholder="Search">
+        </div>
+        <div class='registeredAfols orderTitles'>
+            <table>
+                <tr>
+                    <th class="textCenter">#</th>
+                    <th class="textCenter"><a href="" ng-click="predicate='theme'; reverse=!reverse">Theme</a></th>
+                    <th class="textCenter"><a href="" ng-click="predicate='displayName'; reverse=!reverse">Display Name</a></th>
+                    <th class="textCenter"><a href="" ng-click="predicate='title'; reverse=!reverse">Title</a></th>
+                    <th class="textCenter"><a href="" ng-click="predicate='description'; reverse=!reverse">Description</a></th>
+                    <th class="textCenter"><a href="" ng-click="predicate='baseplateWidth'; reverse=!reverse">Width</a></th>
+                    <th class="textCenter"><a href="" ng-click="predicate='baseplateDepth'; reverse=!reverse">Depth</a></th>
+                </tr>
+                <tr ng-class="{evenRow: $even}" ng-repeat="moc in registeredMocs | filter:searchText:strict | orderBy:predicate:reverse">
+                    <td class="textCenter">{{$index + 1}}</td>
+                    <td class="textCenter">
+                        {{moc.theme}}
+                    </td>
+                    <td class="textCenter">
+                        {{moc.displayName}}
+                    </td>
+                    <td class="textCenter">
+                        {{moc.title}}
+                    </td>
+                    <td class="textCenter">
+                        {{moc.description}}
+                    </td>
+                    <td class="textCenter">
+                        {{moc.baseplateWidth}}
+                    </td>
+                    <td class="textCenter">
+                        {{moc.baseplateDepth}}
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div id="dashboardCloseButton" ng-click="closeDialog()"></div>
+</div>

@@ -28,6 +28,7 @@ describe('controllers', function() {
             mockBackend = _$httpBackend_;
             mockBackend.expectGET('/controllers/admin/registeredUsers.php').respond(201, registeredUsers);
             mockBackend.expectGET('/controllers/registeredAfols.php?eventId=2').respond(201, registeredAfols);
+            mockBackend.expectGET('/controllers/mocs/mocs.php?eventId=2').respond(201, mocs);
         }));
 
         describe('Default Variables', function() {
@@ -37,6 +38,10 @@ describe('controllers', function() {
 
             it('should have a registeredCount variable', function() {
                 expect(scope.registeredCount).toBe(0);
+            });
+
+            it('should have a mocCount variable', function() {
+                expect(scope.mocCount).toBe(0);
             });
 
             it('should have an eventId variable', function() {
@@ -52,6 +57,11 @@ describe('controllers', function() {
                 mockBackend.flush();
                 expect(scope.registeredCount).toBe(2);
             });
+
+            it('should have a mocCount variable', function() {
+                mockBackend.flush();
+                expect(scope.mocCount).toBe(3);
+            });
         });
 
         describe('Click Registrations', function() {
@@ -65,6 +75,13 @@ describe('controllers', function() {
             it('should redirect to the registeredUsers page', function() {
                 scope.clickUsers();
                 expect(location.path()).toBe('/admin/registeredUsers.html');
+            });
+        });
+
+        describe('Click MOCs', function() {
+            it('should redirect to the registeredMocs page', function() {
+                scope.clickMocs();
+                expect(location.path()).toBe('/admin/registeredMocs.html');
             });
         });
     });

@@ -1,17 +1,26 @@
 <div id="eventDashboard">
-    <span id="dashboardText">
-        <h1><bs-logo font-size="1.25"></bs-logo> &#8226; <bs-text text="MOCs and Builders" font-color=black></bs-text></h1>
-        <p>
-        <div class='mocListContainer'>
-            <div class='singleMocListContainer $backgroundClass' ng-repeat="moc in mocList">
-                <div class='mocListTitle'>{{moc.title}}</div>
-                <div class='mocListBuilder'>
-                    <span class='bold'>{{moc.firstName}} {{moc.lastName}}</span>
-                    <br>
-                    Baseplate Size: {{moc.baseplateWidth}} x {{moc.baseplateDepth}}
+    <div class="dashboardText heightAuto">
+        <div>
+            <h1>
+                <bs-logo font-size="1.25"></bs-logo> &#8226; <bs-text text="MOCs" font-color=black></bs-text>
+            </h1>
+        </div>
+        <div class="searchField bold">
+            <input ng-model="searchText" bs-placeholder="Search">
+        </div>
+        <div ng-class="{evenRow: $even}" ng-repeat="moc in mocList | filter:searchText:strict | orderBy:'displayName'">
+            <div class="mocRow">
+                <div class="mocTitle leftPosition" ng-bind="moc.title"></div>
+                <div class="mocDisplayName" ng-bind="moc.displayName"></div>
+                <div class="mocDescription" ng-bind="moc.description"></div>
+                <div class="mocSize rightPosition">
+                    <div ng-bind="moc.theme"></div> 
+                    <div>
+                        Size: <span ng-bind="moc.baseplateWidth"></span>, <span ng-bind="moc.baseplateDepth"></span>
+                    </div>
                 </div>
             </div>
         </div>
-    </span>
+    </div>
     <div id="dashboardCloseButton" ng-click="closeDialog()"></div>
 </div>

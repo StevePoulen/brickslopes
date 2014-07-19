@@ -125,6 +125,13 @@ config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvide
         }
     )
     .when(
+        '/admin/registeredMocs.html',
+        {
+            templateUrl: '/partials/admin/registeredMocs.html',
+            controller: 'adminRegisteredMocs'
+        }
+    )
+    .when(
         '/admin/registeredUsers.html',
         {
             templateUrl: '/partials/admin/registeredUsers.html',

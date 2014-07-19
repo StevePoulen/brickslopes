@@ -5,8 +5,8 @@
         parent::__construct();
     }
 
-    public function selectAllAfolMocs() {
-       return $this->query($this->selectQuery());
+    public function getMocInformation($eventId) {
+       return $this->query($this->selectQuery($eventId));
     }
 
     public function addMocInformation($data) {
@@ -41,27 +41,32 @@
                     '{$this->escapeCharacters($data['description'])}'
                 )
             ;
-      ";
+        ";
     }
 
-    private function selectQuery() {
-      return "
-        SELECT
-          firstName,
-          lastName,
-          email,
-          title,
-          displayName,
-          mocImage,
-          baseplateWidth,
-          baseplateDepth,
-          comments
-        FROM
-         afolMocs
-        ORDER BY
-          afolMocsId 
-        ;
-      ";
+    private function selectQuery($eventId) {
+        return "
+            SELECT
+                m.eventId,
+                m.userId,
+                m.themeId,
+                m.title,
+                m.displayName,
+                m.mocImageUrl,
+                m.baseplateWidth,
+                m.baseplateDepth,
+                m.description,
+                t.theme
+            FROM
+                mocs m,
+                themes t
+            WHERE
+                m.themeId = t.themeId
+                AND m.eventId = '{$this->escapeCharacters($eventId)}'
+            ORDER BY
+                m.mocId 
+            ;
+        ";
     }
-  }
+}
 ?>

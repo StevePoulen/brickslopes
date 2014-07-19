@@ -99,7 +99,7 @@
         z-index: 1;
         font-size: 2.5em;
         text-align: center;
-        overflow: none;
+        overflow: hidden;
     }
 
     .sampleMocDescription {
@@ -111,7 +111,7 @@
         text-align: center;
         z-index: 1;
         font-size: 1.5em;
-        overflow: none;
+        overflow: hidden;
     }
 
     .sampleMocCreator {
@@ -122,7 +122,7 @@
         z-index: 1;
         font-size: 1.5em;
         font-weight: bold;
-        overflow: none;
+        overflow: hidden;
     }
 
     #sampleBrickSlopesLogo {
@@ -139,37 +139,50 @@
 }
 
 
-.mocListContainer {
-  width: 960px;
-  border: none;
-}
+.mocRow {
+    position: relative;
+    height: 80px;
+    margin-bottom: 10px;
+    padding: 10px;
 
-.singleMocListContainer {
-  width: 960px;
-  height: 75px;
-  border: 1px solid black;
-  margin-bottom: 25px;
-  border-radius: 10px;
-}
+    .mocTitle {
+        font-size: 2.0em;
+        font-weight: bold;
+    }
 
-.mocListTitle {
-  position: relative;
-  width: 550px;
-  border: none;
-  text-align: center;
-  font-size: 1.50em;
-  float: left;
-  padding-top: 10px;
-  height: auto;
-}
+    .mocDisplayName {
+        position: absolute;
+        font-size: 1.0em;
+        top: 45px;
+        left: 15px;
+    }
 
-.mocListBuilder {
-  position: relative;
-  width: 400px;
-  border: none;
-  text-align: center;
-  font-size: 1.25em;
-  float: left;
-  padding-top: 10px;
-  height: auto;
+    .mocSize {
+        font-size: 1.0em;
+        font-weight: bold;
+    }
+
+    .mocDescription {
+        position: absolute;
+        width: 950px;
+        height: 28px;
+        left: 150px;
+        top: 70px;
+    }
+
+    .leftPosition {
+        position: absolute;
+        width: auto;
+        height: 80px;
+        left: 10px;
+    }
+
+    .rightPosition {
+        position: absolute;
+        width: 350px;
+        height: 25px;
+        top: 10px;
+        right: 10px;
+        text-align: right;
+    }
 }

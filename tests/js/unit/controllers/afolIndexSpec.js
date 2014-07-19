@@ -123,21 +123,20 @@ describe('controllers', function() {
             mockBackend = _$httpBackend_;
             service = MocDetails;
 
-            var returnList = {'afolMocCount': 22, 'mocs': {'firstName': 'Steve'}};
             mockBackend.expectGET('/controllers/eventDates.php').respond(201, eventDates);
             mockBackend.expectGET('/controllers/eventRegistration.php').respond(201, eventRegistration);
-            mockBackend.expectGET('/controllers/mocs/mocs.php').respond(returnList);
+            mockBackend.expectGET('/controllers/mocs/mocs.php?eventId=2').respond(mocs);
             mockBackend.expectGET('/controllers/registeredAfols.php?eventId=2').respond(201, registeredAfols);
 
             mockBackend.flush();
         }));
 
         it('should set the mocCount variable', function() {
-            expect(scope.mocCount).toBe(22);
+            expect(scope.mocCount).toBe(3);
         });
 
         it('should set the mocListvariable', function() {
-            expect(scope.mocList).toEqual({'firstName': 'Steve'});
+            expect(scope.mocList).toEqual(mocs);
         });
 
         it('should set the mocListvariable', function() {

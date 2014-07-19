@@ -739,23 +739,29 @@ angular.module('brickSlopes.services', [])
     var mocList = undefined;
 
     return {
-        getCount: function() {
+        getCount: function(eventId) {
             if (mocList) {
-                return $q.when(mocList.afolMocCount);
+                return $q.when(mocList.length);
             } else {
-                return $q.when(this.getList().then(function(data) {
-                    return mocList.afolMocCount;
+                return $q.when(this.getList(eventId).then(function(data) {
+                    return mocList.length;
                 }));
             }
         },
 
-        getList: function() {
+        getList: function(eventId) {
             if (mocList) {
                 return $q.when(mocList);
             } else {
-                return $q.when($http.get('/controllers/mocs/mocs.php').then(function(data) {
+                return $q.when($http (
+                    {
+                        method: 'GET',
+                        url: '/controllers/mocs/mocs.php',
+                        params: {eventId: eventId}
+                    }
+                ).then(function(data) {
                     mocList = data.data;
-                    return mocList.mocs;
+                    return mocList;
                 }));
             }
         },

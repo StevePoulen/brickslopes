@@ -1,12 +1,13 @@
-    $dashboard_width: 1220px;
-    $dashboard_height: 700px;
-    $eventPane_height: 200px;
-    $eventPane_width: 297px;
-    $meEventPane_width: 350px;
-    $eventPane_margin: 5px;
-    $pane_width: 1238px;
+$dashboard_width: 1220px;
+$dashboard_height: 700px;
+$eventPane_height: 200px;
+$eventPane_width: 297px;
+$meEventPane_width: 350px;
+$eventPane_margin: 5px;
+$pane_width: 1238px;
+$bs_blue: #35469A;
 
-#dashboardCloseButton, div#reserveStarWarsSet div#reserveCloseButton {
+#dashboardCloseButton {
       position: absolute;
       background: url("/images/closeButton_blue.png") no-repeat scroll 0 center transparent;
       background-size: 40px 40px;
@@ -14,8 +15,32 @@
       width: 40px;
       z-index: 6;
       top: -20px;
-      right: -20px;
+      right: -15px;
       cursor: pointer;
+}
+
+.height700 {
+    height: 700px;
+}
+
+.height800 {
+    height: 800px;
+}
+
+.height1125  {
+    height: 1125px;
+}
+
+.height1275  {
+    height: 1275px;
+}
+
+.height1950  {
+    height: 1950px;
+}
+
+.heightAuto {
+    height: auto;
 }
 
 .dashboardText { 
@@ -24,12 +49,13 @@
     padding: 15px;
     font-size: 100%;
     text-align: left;
-    width: $dashboard_width - 30;
+    width: $dashboard_width - 26;
     color: black;
     background: white;
     display: table;
     line-height: normal;  
     vertical-align: middle;
+    min-height: 700px;
 
     #login {
         position: absolute;
@@ -349,8 +375,8 @@
         width: $eventPane_width;
         height: $eventPane_height / 2;
         margin: 0px $eventPane_margin $eventPane_margin 0px;
-        border: 2px solid black;
         border-radius: 12px;
+        border: 2px solid $bs_blue;
     }
 
     .normalPane {
@@ -359,8 +385,8 @@
         width: $eventPane_width;
         height: $eventPane_height;
         margin: 0px $eventPane_margin $eventPane_margin 0px;
-        border: 2px solid black;
         border-radius: 12px;
+        border: 2px solid $bs_blue;
     }
 
     .largePane {
@@ -369,8 +395,8 @@
         width: $meEventPane_width;
         height: $eventPane_height * 2;
         margin: 0px $eventPane_margin $eventPane_margin 0px;
-        border: 2px solid black;
         border-radius: 12px;
+        border: 2px solid $bs_blue;
     }
 
     .changePassword {

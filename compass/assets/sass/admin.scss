@@ -15,18 +15,21 @@ $bs_blue: #35469A;
 
 .searchField {
     margin-bottom: 20px;
-}
 
-$email_link_color: $bs_blue;
-#eventAfols {
     input {
-        border: 1px solid black;
+        border: 1px solid $bs_blue;
         height: 25px;
+        width: 250px;
+        border-radius: 10px;
         width: 300px;
         font-size: 1em;
         padding-left: 5px;
-    }
 
+    }
+}
+
+$email_link_color: $bs_blue;
+.orderTitles {
     a {
         color: $email_link_color;
         text-decoration: none;
