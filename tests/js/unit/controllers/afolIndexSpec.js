@@ -59,6 +59,15 @@ describe('controllers', function() {
         });
 
         describe('Actions', function() {
+            var window;
+            beforeEach(inject(function(_$window_) {
+                window = _$window_;
+            }));
+
+            afterEach(function() {
+                deleteSession(window);
+            });
+
             it('should redirect to eventRegistration', function() {
                 scope.isRegistered = false;
                 scope.clickRegistration();
@@ -76,9 +85,26 @@ describe('controllers', function() {
                 expect(location.path()).toBe('/afol/eventMe.html');
             });
 
-            it('should redirect to eventMocRegistration', function() {
+            it('should redirect to eventMocRegistration Registered', function() {
+                window.sessionStorage.registered = 'YES';
                 scope.clickMocRegistration();
                 expect(location.path()).toBe('/afol/eventMocRegistration.html');
+            });
+
+            it('should redirect to eventMocRegistration Not Registered', function() {
+                scope.clickMocRegistration();
+                expect(location.path()).toBe('');
+            });
+
+            it('should redirect to eventMocList Registered', function() {
+                window.sessionStorage.registered = 'YES';
+                scope.clickMocList();
+                expect(location.path()).toBe('/afol/eventMocList.html');
+            });
+
+            it('should redirect to eventMocList Not Registered', function() {
+                scope.clickMocList();
+                expect(location.path()).toBe('');
             });
 
             it('should redirect to eventAfols', function() {
@@ -86,15 +112,28 @@ describe('controllers', function() {
                 expect(location.path()).toBe('/afol/eventAfols.html');
             });
 
-            it('should redirect to eventThemes', function() {
+            it('should redirect to eventThemes Registered', function() {
+                window.sessionStorage.registered = 'YES';
                 scope.clickThemes();
                 expect(location.path()).toBe('/afol/eventThemes.html');
             });
 
-            it('should redirect to eventGames', function() {
+            it('should redirect to eventThemes Not Registered', function() {
+                scope.clickThemes();
+                expect(location.path()).toBe('');
+            });
+
+            it('should redirect to eventGames Registered', function() {
+                window.sessionStorage.registered = 'YES';
                 scope.clickGames();
                 //expect(location.path()).toBe('/afol/eventGames.html');
                 expect(location.path()).toBe('/afol/comingSoon.html');
+            });
+
+            it('should redirect to eventGames Not Registered', function() {
+                scope.clickGames();
+                //expect(location.path()).toBe('/afol/eventGames.html');
+                expect(location.path()).toBe('');
             });
 
             it('should redirect to eventVenue', function() {
@@ -125,7 +164,7 @@ describe('controllers', function() {
 
             mockBackend.expectGET('/controllers/eventDates.php').respond(201, eventDates);
             mockBackend.expectGET('/controllers/eventRegistration.php').respond(201, eventRegistration);
-            mockBackend.expectGET('/controllers/mocs/mocs.php?eventId=2').respond(mocs);
+            mockBackend.expectGET('/controllers/registered/mocs.php?eventId=2').respond(mocs);
             mockBackend.expectGET('/controllers/registeredAfols.php?eventId=2').respond(201, registeredAfols);
 
             mockBackend.flush();

@@ -66,7 +66,8 @@ describe('controllers', function() {
                         token: 22,
                         firstName: 'Cody',
                         lastName: 'Ottley',
-                        admin: 'NO'
+                        admin: 'NO',
+                        registered: 'YES'
                     },
                     status: 201
                 }
@@ -106,6 +107,10 @@ describe('controllers', function() {
 
             it('should have a window.sessionStorage.admin variables', function() {
                 expect(window.sessionStorage.admin).toBe('NO');
+            });
+
+            it('should have a window.sessionStorage.registered variables', function() {
+                expect(window.sessionStorage.registered).toBe('YES');
             });
         });
 
@@ -156,7 +161,8 @@ describe('controllers', function() {
                         token: 22,
                         firstName: 'Cody',
                         lastName: 'Ottley',
-                        admin: 'NO'
+                        admin: 'NO',
+                        registered: 'YES'
                     },
                     status: 201
                 }
@@ -196,6 +202,10 @@ describe('controllers', function() {
 
             it('should have a window.sessionStorage.admin variables', function() {
                 expect(window.sessionStorage.admin).toBe('NO');
+            });
+
+            it('should have a window.sessionStorage.registered variables', function() {
+                expect(window.sessionStorage.registered).toBe('YES');
             });
         });
 

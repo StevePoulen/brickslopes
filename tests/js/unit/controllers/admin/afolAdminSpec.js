@@ -28,7 +28,7 @@ describe('controllers', function() {
             mockBackend = _$httpBackend_;
             mockBackend.expectGET('/controllers/admin/registeredUsers.php').respond(201, registeredUsers);
             mockBackend.expectGET('/controllers/registeredAfols.php?eventId=2').respond(201, registeredAfols);
-            mockBackend.expectGET('/controllers/mocs/mocs.php?eventId=2').respond(201, mocs);
+            mockBackend.expectGET('/controllers/registered/mocs.php?eventId=2').respond(201, mocs);
         }));
 
         describe('Default Variables', function() {

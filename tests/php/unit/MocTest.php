@@ -6,7 +6,7 @@ class MocTest extends PHPUnit_Framework_TestCase
     {
         $this->userId = 5;
         new MocsMock();
-        include_once('controllers/mocs/mocs.php');
+        include_once('controllers/registered/mocs.php');
     }
 
     public function testAuthenticatedBadMethod() 

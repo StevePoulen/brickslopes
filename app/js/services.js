@@ -178,7 +178,7 @@ angular.module('brickSlopes.services', [])
         }
     }
 }])
-.factory('UserDetails', ['$q', '$http', function($q, $http) {
+.factory('UserDetails', ['$q', '$http', '$window', function($q, $http, $window) {
     userList = undefined;
 
     function memberSince(data) {
@@ -186,6 +186,9 @@ angular.module('brickSlopes.services', [])
         return data;
     }
     return {
+        isUserRegistered: function() {
+            return ($window.sessionStorage.registered == 'YES');
+        },
         getCount: function() {
             if (userList) {
                 return $q.when(userList.length);
@@ -756,7 +759,7 @@ angular.module('brickSlopes.services', [])
                 return $q.when($http (
                     {
                         method: 'GET',
-                        url: '/controllers/mocs/mocs.php',
+                        url: '/controllers/registered/mocs.php',
                         params: {eventId: eventId}
                     }
                 ).then(function(data) {
@@ -771,7 +774,7 @@ angular.module('brickSlopes.services', [])
             $http (
                 {
                     method: 'POST',
-                    url: '/controllers/mocs/mocs.php',
+                    url: '/controllers/registered/mocs.php',
                     data: mocDTO
                 }
             ).success(function(data, status, headers, config) {

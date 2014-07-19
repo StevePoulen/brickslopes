@@ -36,6 +36,16 @@ angular.module('brickSlopes.directives', [])
         }
     }
 }])
+.directive('bsEventLocked', ['UserDetails', function(UserDetails) {
+    return {
+        restrict: 'E',
+        replace: true,
+        templateUrl: 'partials/directives/eventLocked.html',
+        link: function(scope, element, attrs) {
+            scope.isUserRegistered = ! UserDetails.isUserRegistered();
+        }
+    }
+}])
 .directive('bsModal', [function() {
     return {
         restrict: 'E',

@@ -159,7 +159,7 @@ describe('controllers', function() {
                 scope.mocImageUrl = 'https://www.smile.com';
                 scope.description = 'I worked really hard on this MOC';
                 scope.submitRegistration();
-                mockBackend.expectPOST('/controllers/mocs/mocs.php', mocDto).respond(201);
+                mockBackend.expectPOST('/controllers/registered/mocs.php', mocDto).respond(201);
                 mockBackend.flush();
                 expect(scope.displayName).toBe('Cody Ottley');
                 expect(scope.baseplateWidth).toBe(1);
@@ -176,7 +176,7 @@ describe('controllers', function() {
                 scope.mocImageUrl = 'https://www.smile.com';
                 scope.description = 'I worked really hard on this MOC';
                 scope.submitRegistration();
-                mockBackend.expectPOST('/controllers/mocs/mocs.php', mocDto).respond(400);
+                mockBackend.expectPOST('/controllers/registered/mocs.php', mocDto).respond(400);
                 mockBackend.flush();
                 expect(scope.displayErrorMessage).toBe('The MOC travails.');
             });

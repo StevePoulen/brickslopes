@@ -7,7 +7,9 @@ function buildJWT() {
             "aud" => "https://www.myjwt.com",
             "iat" => 1356999524,
             "nbf" => 1357000000,
-            "admin" => 'YES' 
+            "userId" => 13,
+            "admin" => 'YES',
+            "registered" => 'YES' 
         )
     , JWT_KEY);
 }
@@ -15,7 +17,7 @@ function buildJWT() {
 function apache_request_headers() {
     if ($GLOBALS['authenticationRequest']) {
         return Array(
-            'Authtoken' => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvd3d3LmJyaWNrc2xvcGVzLmNvbSIsImF1ZCI6Imh0dHBzOlwvXC93d3cubXlqd3QuY29tIiwiaWF0IjoxMzU2OTk5NTI0LCJuYmYiOjEzNTcwMDAwMDAsInVzZXJJZCI6MzM0LCJhZG1pbiI6IllFUyJ9.TQK2dHqJr9JCohYxPH1GM89IOOATEn-X8QOKxES9XZw'
+            'Authtoken' => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvd3d3LmJyaWNrc2xvcGVzLmNvbSIsImF1ZCI6Imh0dHBzOlwvXC93d3cubXlqd3QuY29tIiwiaWF0IjoxMzU2OTk5NTI0LCJuYmYiOjEzNTcwMDAwMDAsInVzZXJJZCI6MTMsImFkbWluIjoiWUVTIiwicmVnaXN0ZXJlZCI6IllFUyJ9.pTg2RbrtEzb70KBJLMb8hSXkvvDCmvRWEDfwi3SWbKY'
         );
     } else if (array_key_exists('badAuthenticationRequest', $GLOBALS) && $GLOBALS['badAuthenticationRequest']) {
         return Array(
@@ -23,7 +25,15 @@ function apache_request_headers() {
         );
     } else if (array_key_exists('adminRequestNoAuth', $GLOBALS)) {
         return Array(
-            'AuthToken' => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvd3d3LmJyaWNrc2xvcGVzLmNvbSIsImF1ZCI6Imh0dHBzOlwvXC93d3cubXlqd3QuY29tIiwiaWF0IjoxMzU2OTk5NTI0LCJuYmYiOjEzNTcwMDAwMDAsImFkbWluIjoiWUVTIn0.PkUeockWzb5nVBtJecANB9NYNmdyR1Eg6Mjcw9If_1w'
+            'Authtoken' => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvd3d3LmJyaWNrc2xvcGVzLmNvbSIsImF1ZCI6Imh0dHBzOlwvXC93d3cubXlqd3QuY29tIiwiaWF0IjoxMzU2OTk5NTI0LCJuYmYiOjEzNTcwMDAwMDAsImFkbWluIjoiWUVTIn0.PkUeockWzb5nVBtJecANB9NYNmdyR1Eg6Mjcw9If_1w'
+        );
+    } else if (array_key_exists('noRegistrationRequest', $GLOBALS)) {
+        return Array(
+            'Authtoken' => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvd3d3LmJyaWNrc2xvcGVzLmNvbSIsImF1ZCI6Imh0dHBzOlwvXC93d3cubXlqd3QuY29tIiwiaWF0IjoxMzU2OTk5NTI0LCJuYmYiOjEzNTcwMDAwMDAsInVzZXJJZCI6MTMsImFkbWluIjoiTk8iLCJyZWdpc3RlcmVkIjoiTk8ifQ.c82hoaC4cPd63v8XTXKE1kM3kmsJ3FO0KisU7wyWtdg'
+        );
+    } else if (array_key_exists('noRegistrationAdminRequest', $GLOBALS)) {
+        return Array(
+            'Authtoken' => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvd3d3LmJyaWNrc2xvcGVzLmNvbSIsImF1ZCI6Imh0dHBzOlwvXC93d3cubXlqd3QuY29tIiwiaWF0IjoxMzU2OTk5NTI0LCJuYmYiOjEzNTcwMDAwMDAsInVzZXJJZCI6MTMsImFkbWluIjoiWUVTIiwicmVnaXN0ZXJlZCI6Ik5PIn0.4sdaH7I-3z9ADTG2IWj91an26VkCiWynB7USJpLbAXU'
         );
     } else {
         return Array();
@@ -118,7 +128,7 @@ class ControllerTest extends PHPUnit_Framework_TestCase
 
     public function testAnonymousAdmin() 
     {
-        $_SERVER['REQUEST_URI'] = "/partials/afol/admin/index.html";
+        $_SERVER['REQUEST_URI'] = "/partials/admin/index.html";
         $this->controller = new Controller();
         $this->controller->invoke();
         $this->assertEquals(http_response_code(), 403);
@@ -128,7 +138,7 @@ class ControllerTest extends PHPUnit_Framework_TestCase
     public function testAuthenticatedNoAdmin() 
     {
         $GLOBALS['badAuthenticationRequest'] = true;
-        $_SERVER['REQUEST_URI'] = "/partials/afol/admin/index.html";
+        $_SERVER['REQUEST_URI'] = "/partials/admin/index.html";
         $this->controller = new Controller();
         $this->controller->invoke();
         $this->assertEquals(http_response_code(), 403);
@@ -138,7 +148,7 @@ class ControllerTest extends PHPUnit_Framework_TestCase
     public function testAdminNoAuthentication() 
     {
         $GLOBALS['adminRequestNoAuth'] = true;
-        $_SERVER['REQUEST_URI'] = "/partials/afol/admin/index.html";
+        $_SERVER['REQUEST_URI'] = "/partials/admin/index.html";
         $this->controller = new Controller();
         $this->controller->invoke();
         $this->assertEquals(http_response_code(), 403);
@@ -159,6 +169,85 @@ class ControllerTest extends PHPUnit_Framework_TestCase
     {
         $GLOBALS['authenticationRequest'] = true;
         $_SERVER['REQUEST_URI'] = "/controllers/admin/payment.php";
+        $this->controller = new Controller();
+        $this->controller->invoke();
+        $this->assertEquals(http_response_code(), 405);
+    }
+
+    public function testAnonymousRegistered() 
+    {
+        $_SERVER['REQUEST_URI'] = "/partials/registered/index.html";
+        $this->controller = new Controller();
+        $this->controller->invoke();
+        $this->assertEquals(http_response_code(), 403);
+        $this->expectOutputString('');
+    }
+
+
+    public function testAuthenticatedNoRegistration() 
+    {
+        $GLOBALS['noRegistrationRequest'] = true;
+        $_SERVER['REQUEST_URI'] = "/partials/registered/eventGames.html";
+        $this->controller = new Controller();
+        $this->controller->invoke();
+        $this->assertEquals(http_response_code(), 412);
+        $this->expectOutputString('');
+    }
+
+    public function testAuthenticatedNoRegistrationControllers() 
+    {
+        $GLOBALS['noRegistrationRequest'] = true;
+        $_SERVER['REQUEST_URI'] = "/controllers/registered/mocs.php";
+        $this->controller = new Controller();
+        $this->controller->invoke();
+        $this->assertEquals(http_response_code(), 412);
+        $this->expectOutputString('');
+    }
+
+    public function testAuthenticatedNoRegistrationAdminControllers() 
+    {
+        $GLOBALS['noRegistrationAdminRequest'] = true;
+        $_SERVER['REQUEST_URI'] = "/controllers/registered/mocs.php";
+        $this->controller = new Controller();
+        $this->controller->invoke();
+        $this->assertEquals(http_response_code(), 405);
+        $this->expectOutputString('');
+    }
+
+    public function testAuthenticatedNoRegistrationControllersCrazyUrl() 
+    {
+        $GLOBALS['noRegistrationRequest'] = true;
+        $_SERVER['REQUEST_URI'] = "/controllers/registeredAfols.php?eventId=2";
+        $this->controller = new Controller();
+        $this->controller->invoke();
+        $this->assertEquals(http_response_code(), 405);
+        $this->expectOutputString('');
+    }
+
+    public function testRegistrationNoAuthentication() 
+    {
+        $GLOBALS['adminRequestNoAuth'] = true;
+        $_SERVER['REQUEST_URI'] = "/partials/registered/index.html";
+        $this->controller = new Controller();
+        $this->controller->invoke();
+        $this->assertEquals(http_response_code(), 403);
+        $this->expectOutputString('');
+    }
+
+    public function testRegisteredAndAuthentication() 
+    {
+        $GLOBALS['authenticationRequest'] = true;
+        $_SERVER['REQUEST_URI'] = "/partials/registered/eventGames.html";
+        $this->controller = new Controller();
+        $this->controller->invoke();
+        $this->assertEquals(http_response_code(), 200);
+        $this->expectOutputRegex('/Games/');
+    }
+
+    public function testRegisteredAndAuthenticationControllers() 
+    {
+        $GLOBALS['authenticationRequest'] = true;
+        $_SERVER['REQUEST_URI'] = "/controllers/registered/games.php";
         $this->controller = new Controller();
         $this->controller->invoke();
         $this->assertEquals(http_response_code(), 405);

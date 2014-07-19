@@ -45,6 +45,10 @@ describe('controllers', function() {
                 expect(scope.reverse).toBe(false);
             });
 
+            it('should have a showModal variable', function() {
+                expect(scope.showModal).toBe(false);
+            });
+
             it('should have an eventId variable', function() {
                 expect(scope.eventId).toBe(2);
             });

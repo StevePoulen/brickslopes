@@ -26,7 +26,7 @@ describe('controllers', function() {
             ctrl = $controller('adminRegisteredMocs', { $scope: scope});
             location = $location;
             mockBackend = _$httpBackend_;
-            mockBackend.expectGET('/controllers/mocs/mocs.php?eventId=2').respond(201, mocs);
+            mockBackend.expectGET('/controllers/registered/mocs.php?eventId=2').respond(201, mocs);
         }));
 
         describe('Close Dialog', function() {

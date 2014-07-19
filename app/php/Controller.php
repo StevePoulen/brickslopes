@@ -10,12 +10,25 @@
     class Controller {
         private $userId;
         private $isAdmin;
+        private $isRegistered;
+        private $error;
 
         public function __construct() {
             $this->userId = null;
             $this->isAdmin = false;
+            $this->isRegistered = false;
+            $this->error = 403;
             $this->setControllerModuleValues();
             $this->setHeader();
+        }
+
+        private function getError() {
+            $error = array (
+                '403' => '403 Forbidden',
+                '412' => '412 Precondition Failed'
+            );
+
+            return $error[$this->error];
         }
 
         private function addControllerRouting() {
@@ -81,13 +94,24 @@
 
         private function isAdminRequest() {
             return (
-                preg_match('/^controllers\/admin\/*/', $this->URI) ||
-                preg_match('/^..\/partials\/afol\/admin\/*/', $this->URI)
-                );
+                preg_match('/^controllers\/admin\/.*/', $this->URI) ||
+                preg_match('/^..\/partials\/admin\/.*/', $this->URI)
+            );
+        }
+
+        private function isRegisteredRequest() {
+            return (
+                preg_match('/^controllers\/registered\/.*/', $this->URI) ||
+                preg_match('/^..\/partials\/registered\/.*/', $this->URI)
+            );
         }
 
         private function determineAdminFromJWT($decodedJWT) {
             return ($decodedJWT->admin == 'YES') ;
+        }
+
+        private function determineRegisteredFromJWT($decodedJWT) {
+            return ($decodedJWT->registered == 'YES') ;
         }
 
         private function decodeJWT() {
@@ -98,9 +122,20 @@
                 if (preg_match('/\d+/', $decodedJWT->userId)) {
                     $this->userId = $decodedJWT->userId;
                     $this->isAdmin = $this->determineAdminFromJWT($decodedJWT);
+                    $this->isRegistered = $this->determineRegisteredFromJWT($decodedJWT);
                     if ($this->isAdminRequest()) {
                         return $this->isAdmin;
                     }
+
+                    if ($this->isRegisteredRequest()) {
+                        if ($this->isAdmin) {
+                            return true;
+                        } else {
+                            $this->error = 412;
+                            return $this->isRegistered;
+                        }
+                    }
+
                     return true;
                 } else {
                     return false;
@@ -119,7 +154,7 @@
                     header("HTTP/1.0 404 Not Found");
                 }
             } else {
-                header("HTTP/1.0 403 Forbidden");
+                header("HTTP/1.0 {$this->getError()}");
             }
         }
     }

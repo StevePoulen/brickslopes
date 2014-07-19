@@ -1,6 +1,5 @@
 @import "compass/utilities/sprites";
-//@import "icons/*.png";
-//@include all-icons-sprites;
+$bs_blue: #35469A;
 
 
 /* Sprite maps */
@@ -31,4 +30,35 @@ i {
     width: image-width("icons/edit.png");
     height: image-height("icons/edit.png");
     cursor: pointer;
+}
+
+.icons-lock {
+    background-position: sprite-position($icons-sprite, lock_black);
+    width: image-width("icons/lock_black.png");
+    height: image-height("icons/lock_black.png");
+    z-index: 5;
+}
+
+.eventLocked {
+    position: absolute;
+    width: 100%;
+    border: 1px solid white;
+    bottom: 15px;
+    background: $bs_blue;
+    z-index: 100;
+    height: 35px;
+    cursor: pointer;
+
+    .lock {
+        position: absolute;
+        top: 0px;
+        left: 25px;
+    }
+    
+    .cta {
+        position: absolute;
+        top: 7px;
+        left: 70px;
+        color: yellow;
+    }
 }

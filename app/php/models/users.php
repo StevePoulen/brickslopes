@@ -60,12 +60,19 @@ class users extends \db {
     private function authenticationQuery($data) {
         return "
             SELECT 
-                userId,
-                firstName,
-                lastName,
-                admin
+                u.userId,
+                u.firstName,
+                u.lastName,
+                u.admin,
+                IF(r.paid = 'YES', 'YES', 'NO') AS 'registered'
             FROM
-                users 
+                users u
+                    LEFT JOIN
+                registrations r
+                    ON
+                u.userId = r.userId
+                AND r.paid = 'YES'
+                AND r.eventId = 2
             WHERE
                 email = '{$this->escapeCharacters($data['email'])}'
                 AND password = password('{$this->escapeCharacters($data['password'])}')

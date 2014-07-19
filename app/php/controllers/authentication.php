@@ -34,11 +34,12 @@ class Authentication extends jwtToken {
             if ($this->usersObj->result) {
                 header("HTTP/1.0 200 Success");
                 $dbObj = $this->usersObj->result->fetch_object();
-                echo $this->createPayload(
+                echo $this->createPayload (
                     $dbObj->userId,
                     $dbObj->firstName, 
                     $dbObj->lastName, 
                     $dbObj->admin,
+                    $dbObj->registered,
                     200 
                 );
             }

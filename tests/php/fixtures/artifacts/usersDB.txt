@@ -1,2 +1,2 @@
-1,Brian,Pilati,brianpilati@gmail.com,YES,Some Address,In A City,Or State,88990,444 555-6666,bflickr,2014-05-16 15:00:49
-2,Cody,Ottley,blackdragon5555@yahoo.com,YES,New Address,In A Town,And State,09988,777 888-9999,cflickr,2013-05-16 15:00:49
+1,Brian,Pilati,brianpilati@gmail.com,YES,Some Address,In A City,Or State,88990,444 555-6666,bflickr,2014-05-16 15:00:49,YES
+2,Cody,Ottley,blackdragon5555@yahoo.com,YES,New Address,In A Town,And State,09988,777 888-9999,cflickr,2013-05-16 15:00:49,NO

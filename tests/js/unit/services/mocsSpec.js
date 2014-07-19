@@ -18,7 +18,7 @@ describe('service', function() {
         beforeEach(inject(function(_$httpBackend_, MocDetails) {
             mockBackend = _$httpBackend_;
             service = MocDetails;
-            mockBackend.expectGET('/controllers/mocs/mocs.php?eventId=2').respond(mocs);
+            mockBackend.expectGET('/controllers/registered/mocs.php?eventId=2').respond(mocs);
         }));
 
         it('should load registered afol moc list count', function() {
@@ -48,7 +48,7 @@ describe('service', function() {
             dto = {};
             mockBackend = _$httpBackend_;
             service = MocDetails;
-            mockBackend.expectPOST('/controllers/mocs/mocs.php', dto).respond(201);
+            mockBackend.expectPOST('/controllers/registered/mocs.php', dto).respond(201);
         }));
 
         it('should create a user moc', function() {

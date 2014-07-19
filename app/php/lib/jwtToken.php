@@ -6,28 +6,30 @@ class jwtToken {
 
     }
 
-    public function createPayload($userId, $firstName, $lastName, $admin, $status) {
+    public function createPayload($userId, $firstName, $lastName, $admin, $registered, $status) {
         return json_encode (
             array (
                 'data' => array (
                     'firstName' => $firstName, 
                     'lastName' => $lastName,
                     'admin' => $admin,
-                    'token' => $this->encodeJWT($userId, $admin)
+                    'registered' => $registered,
+                    'token' => $this->encodeJWT($userId, $admin, $registered)
                 ),
                 'status' => $status
             )
         );
     }
 
-    private function encodeJWT($userId, $admin) {
+    private function encodeJWT($userId, $admin, $registered) {
         $token = array(
             "iss" => "https://www.brickslopes.com",
             "aud" => $_SERVER['HTTP_HOST'],
             "iat" => 1356999524,
             "nbf" => 1357000000,
             "userId" => $userId,
-            "admin" => $admin
+            "admin" => $admin,
+            "registered" => $registered
          );
 
         $jwt = JWT::encode($token, JWT_KEY);

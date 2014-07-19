@@ -68,6 +68,7 @@ class User extends jwtToken {
                 $payload['firstName'], 
                 $payload['lastName'], 
                 'NO',
+                'NO',
                 201 
             );
         } else {
@@ -93,6 +94,7 @@ class User extends jwtToken {
                 $response,
                 $payload['firstName'], 
                 $payload['lastName'], 
+                'NO',
                 'NO',
                 201 
             );

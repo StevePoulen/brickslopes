@@ -118,5 +118,27 @@ describe('service', function() {
                 expect(data).toEqualData('success');
             });
         });
+
+        describe('User Registration Validation', function() {
+            var service, window;
+            beforeEach(inject(function($window, UserDetails) {
+                window = $window;
+                service = UserDetails;
+            }));
+
+            afterEach(function() {
+                deleteSession(window);
+            });
+
+            it('should validate a user registration', function() {
+                window.sessionStorage.registered = 'YES';
+                expect(service.isUserRegistered()).toBe(true);
+            });
+
+            it('should validate a user is not registered', function() {
+                window.sessionStorage.registered = 'yes';
+                expect(service.isUserRegistered()).toBe(false);
+            });
+        });
     });
 });

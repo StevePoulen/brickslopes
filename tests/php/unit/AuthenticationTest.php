@@ -28,7 +28,8 @@ class AuthenticationTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($output['data']['firstName'] , 'Brian');
         $this->assertEquals($output['data']['lastName'] , 'Pilati');
         $this->assertEquals($output['data']['admin'] , 'YES');
-        $this->assertEquals($output['data']['token'] , "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvd3d3LmJyaWNrc2xvcGVzLmNvbSIsImF1ZCI6Ind3dy5teWJyaWNrc2xvcGVzLmNvbSIsImlhdCI6MTM1Njk5OTUyNCwibmJmIjoxMzU3MDAwMDAwLCJ1c2VySWQiOiIxIiwiYWRtaW4iOiJZRVMifQ.Uz4-hSQIyz0YvJ7BkvbmJsxGoVLedGZCLxxfySAbWIk");
+        $this->assertEquals($output['data']['registered'] , 'YES');
+        $this->assertEquals($output['data']['token'] , "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvd3d3LmJyaWNrc2xvcGVzLmNvbSIsImF1ZCI6Ind3dy5teWJyaWNrc2xvcGVzLmNvbSIsImlhdCI6MTM1Njk5OTUyNCwibmJmIjoxMzU3MDAwMDAwLCJ1c2VySWQiOiIxIiwiYWRtaW4iOiJZRVMiLCJyZWdpc3RlcmVkIjoiWUVTIn0.0zlIaa4F-hsxEadwNW1eAtWSq4lKAv-Y4jUzZ2WlEDo");
         $this->assertEquals($output['status'], 200);
     }
 

@@ -54,7 +54,8 @@ class UserTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($output['data']['firstName'] , 'Steve');
         $this->assertEquals($output['data']['lastName'] , 'Poulsen');
         $this->assertEquals($output['data']['admin'] , 'NO');
-        $this->assertEquals($output['data']['token'] , "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvd3d3LmJyaWNrc2xvcGVzLmNvbSIsImF1ZCI6Ind3dy5teWJyaWNrc2xvcGVzLmNvbSIsImlhdCI6MTM1Njk5OTUyNCwibmJmIjoxMzU3MDAwMDAwLCJ1c2VySWQiOjEyMzQ1Njc4OSwiYWRtaW4iOiJOTyJ9.R7nid7T9h1HLyydRwZFRcYbJiqfFwgsWpTPi--F5HKE");
+        $this->assertEquals($output['data']['registered'] , 'NO');
+        $this->assertEquals($output['data']['token'] , "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvd3d3LmJyaWNrc2xvcGVzLmNvbSIsImF1ZCI6Ind3dy5teWJyaWNrc2xvcGVzLmNvbSIsImlhdCI6MTM1Njk5OTUyNCwibmJmIjoxMzU3MDAwMDAwLCJ1c2VySWQiOjEyMzQ1Njc4OSwiYWRtaW4iOiJOTyIsInJlZ2lzdGVyZWQiOiJOTyJ9.RU3tdPj41zsU3DTltyX4PDEiPwxIuDUCN-ttvSPbXco");
         $this->assertEquals($output['status'], 201);
 
         $this->assertEquals($GLOBALS['sendUserRegistrationMessage'], 'Steve');
@@ -77,7 +78,8 @@ class UserTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($output['data']['firstName'] , 'Steve');
         $this->assertEquals($output['data']['lastName'] , 'Poulsen');
         $this->assertEquals($output['data']['admin'] , 'NO');
-        $this->assertEquals($output['data']['token'] , "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvd3d3LmJyaWNrc2xvcGVzLmNvbSIsImF1ZCI6Ind3dy5teWJyaWNrc2xvcGVzLmNvbSIsImlhdCI6MTM1Njk5OTUyNCwibmJmIjoxMzU3MDAwMDAwLCJ1c2VySWQiOjEyMzQ1Njc4OSwiYWRtaW4iOiJOTyJ9.R7nid7T9h1HLyydRwZFRcYbJiqfFwgsWpTPi--F5HKE");
+        $this->assertEquals($output['data']['registered'] , 'NO');
+        $this->assertEquals($output['data']['token'] , "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvd3d3LmJyaWNrc2xvcGVzLmNvbSIsImF1ZCI6Ind3dy5teWJyaWNrc2xvcGVzLmNvbSIsImlhdCI6MTM1Njk5OTUyNCwibmJmIjoxMzU3MDAwMDAwLCJ1c2VySWQiOjEyMzQ1Njc4OSwiYWRtaW4iOiJOTyIsInJlZ2lzdGVyZWQiOiJOTyJ9.RU3tdPj41zsU3DTltyX4PDEiPwxIuDUCN-ttvSPbXco");
         $this->assertEquals($output['status'], 201);
     }
 

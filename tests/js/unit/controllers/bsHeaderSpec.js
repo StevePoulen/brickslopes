@@ -71,6 +71,7 @@ describe('controllers', function() {
             window.sessionStorage.firstName = 'Ember';
             window.sessionStorage.lastName = 'Pilati';
             window.sessionStorage.admin = 'YES';
+            window.sessionStorage.registered = 'YES';
             ctrl = $controller('bsHeader', { $scope: scope, $window: window});
             location = $location;
         }));
@@ -101,6 +102,12 @@ describe('controllers', function() {
             expect(window.sessionStorage.admin).toBe('YES');
             scope.logout();
             expect(window.sessionStorage.admin).toBe(undefined);
+        });
+
+        it('should have an undefined Registered', function() {
+            expect(window.sessionStorage.registered).toBe('YES');
+            scope.logout();
+            expect(window.sessionStorage.registered).toBe(undefined);
         });
 
         it('should have a login path', function() {
