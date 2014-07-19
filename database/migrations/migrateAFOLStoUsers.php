@@ -18,6 +18,9 @@
             $this->addInitialEvents();
             $this->migrateUsers($this->firstYearEventId);
             $this->addInitialThemes($this->secondYearEventId);
+            if ($_SERVER['HTTP_HOST'] == 'mybrickslopes.com') {
+                $this->addDummyMocs();
+            }
         }
 
 
@@ -74,6 +77,49 @@
             } else {
                 return 'NO';
             }
+        }
+
+        private function addDummyMocs() {
+            $mocsObj = new mocModel();
+            $mocsCount = 0;
+            $themeId = 1;
+
+            $mocsCollection = array(
+                array(
+                    'title' => 'My Cool Creation',
+                    'mocImageUrl' => 'https://My_Cool_Creation.org',
+                    'baseplateWidth' => 2,
+                    'baseplateDepth' => 2,
+                    'description' => 'I ruled this moc'
+                ),
+                array(
+                    'title' => 'My Cool Creation -- Part II',
+                    'mocImageUrl' => 'https://My_Cool_Creation_part_II.org',
+                    'baseplateWidth' => 4,
+                    'baseplateDepth' => 4,
+                    'description' => 'I ruled this moc a lot'
+                )
+            );
+
+            foreach ($mocsCollection as $mocMap) {
+                $mocMap = array(
+                    'userId' => 1,
+                    'eventId' => 2,
+                    'themeId' => $themeId++,
+                    'displayName' => 'Brian Pilati',
+                    'title' => $mocMap['title'],
+                    'mocImageUrl' => $mocMap['mocImageUrl'],
+                    'baseplateWidth' => $mocMap['baseplateWidth'],
+                    'baseplateDepth' => $mocMap['baseplateDepth'],
+                    'description' => $mocMap['description']
+                );
+
+                $mocId = $mocsObj->addMocInformation($mocMap);
+                $mocsCount++;
+            }
+
+            $this->validatetable('mocs', $mocsCount);
+
         }
 
         private function addInitialThemes($eventId) {
