@@ -88,7 +88,7 @@ describe('controllers', function() {
             it('should redirect to eventMocRegistration Registered', function() {
                 window.sessionStorage.registered = 'YES';
                 scope.clickMocRegistration();
-                expect(location.path()).toBe('/afol/eventMocRegistration.html');
+                expect(location.path()).toBe('/afol/2/eventMocRegistration.html');
             });
 
             it('should redirect to eventMocRegistration Not Registered', function() {

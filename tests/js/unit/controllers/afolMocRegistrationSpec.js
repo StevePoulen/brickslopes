@@ -20,14 +20,16 @@ describe('controllers', function() {
     });
 
     describe('eventMocRegistration Controller', function() {
-        var mockBackend, loader, window, location, response;
+        var mockBackend, loader, window, location, response, route;
 
-        beforeEach(inject(function($controller, $rootScope, $location, _$httpBackend_ , _$window_) {
+        beforeEach(inject(function($controller, $rootScope, $location, _$httpBackend_ , _$window_, $route) {
+            route = $route;
+            route = {current: {params:{eventId:2}}};
             scope = $rootScope.$new();
             window = _$window_;
             window.sessionStorage.firstName = 'Cody';
             window.sessionStorage.lastName = 'Ottley';
-            ctrl = $controller('afolMocRegistration', { $scope: scope, $window: window});
+            ctrl = $controller('afolMocRegistration', { $scope: scope, $window: window, $route: route});
             location = $location;
             mockBackend = _$httpBackend_;
         }));

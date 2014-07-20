@@ -373,7 +373,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         $scope.themeList = data;
     });
 }])
-.controller('afolMe', ['$scope', '$location', 'Auth', 'EventRegistration', 'EventDates', 'UserDetails', function($scope, $location, Auth, EventRegistration, EventDates, UserDetails) {
+.controller('afolMe', ['$scope', '$location', 'Auth', 'EventRegistration', 'EventDates', 'UserDetails', 'MocDetails', function($scope, $location, Auth, EventRegistration, EventDates, UserDetails, MocDetails) {
     $("#splashPageCTA").hide();
     $scope.verifying = false;
     $scope.displayMessage = "";
@@ -382,8 +382,11 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     $scope.passType = undefined;
     $scope.passDates = undefined;
     $scope.eventList = {};
+    $scope.mocList = {};
     $scope.userObject = {};
     $scope.eventId = 2;
+    $scope.displayRegisterEventCTA = true;
+    $scope.displayRegisterEventMocsCTA = true;
 
     function serializeChangePasswordJson() {
         return {
@@ -428,6 +431,12 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         $location.path("/afol/" + eventId + "/eventRegistration.html");
     }
 
+    $scope.clickMocRegistration = function(eventId) {
+        if (UserDetails.isUserRegistered()) {
+            $location.path("/afol/" + eventId + "/eventMocRegistration.html");
+        }
+    }
+
     $scope.closeDialog = function() {
         $location.path("/afol/index.html");
     }
@@ -436,9 +445,18 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         return Object.keys($scope.eventList).length;
     }
 
+    function displayEventMocRegisterButton() {
+        return Object.keys($scope.mocList).length;
+    }
+
     EventRegistration.get().then(function(data) {
         $scope.eventList = data;
-        $scope.displayRegisterEventCTA = displayRegisterEventButton();
+        $scope.displayRegisterEventCTA = ! displayRegisterEventButton();
+    });
+
+    MocDetails.getList($scope.eventId).then(function(data) {
+        $scope.mocList = data;
+        $scope.displayRegisterEventMocsCTA = ! displayRegisterEventButton();
     });
 
     UserDetails.get().then(function(data) {
@@ -453,14 +471,14 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         $scope.passDates = passDates;
     });
 }])
-.controller('afolMocRegistration', ['$scope', '$location', '$window', 'Themes', 'MocDetails', function($scope, $location, $window, Themes, MocDetails) {
+.controller('afolMocRegistration', ['$scope', '$location', '$window', 'Themes', 'MocDetails', '$route', function($scope, $location, $window, Themes, MocDetails, $route) {
     $("#splashPageCTA").hide();
     $scope.firstName = $window.sessionStorage.firstName;
     $scope.lastName = $window.sessionStorage.lastName;
     setDefaultScopeVariables();
     $scope.width = buildRange(1,55);
     $scope.depth = buildRange(1,7);
-    $scope.eventId = 2;
+    $scope.eventId = $route.current.params.eventId;
     $scope.displayErrorMessage = undefined;
     $scope.displayMessage = undefined;
     $scope.showModal = false;
@@ -759,7 +777,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
 
     $scope.clickMocRegistration = function() {
         if (UserDetails.isUserRegistered()) {
-            $location.path("/afol/eventMocRegistration.html");
+            $location.path("/afol/" + $scope.eventId + "/eventMocRegistration.html");
         }
     }
 

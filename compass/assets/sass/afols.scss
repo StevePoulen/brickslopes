@@ -4,6 +4,7 @@ $eventPane_height: 200px;
 $eventPane_width: 297px;
 $meEventPane_width: 350px;
 $eventPane_margin: 5px;
+$eventPane_border: 2px;
 $pane_width: 1238px;
 $bs_blue: #35469A;
 
@@ -376,7 +377,7 @@ $bs_blue: #35469A;
         height: $eventPane_height / 2;
         margin: 0px $eventPane_margin $eventPane_margin 0px;
         border-radius: 12px;
-        border: 2px solid $bs_blue;
+        border: $eventPane_border solid $bs_blue;
     }
 
     .normalPane {
@@ -386,17 +387,17 @@ $bs_blue: #35469A;
         height: $eventPane_height;
         margin: 0px $eventPane_margin $eventPane_margin 0px;
         border-radius: 12px;
-        border: 2px solid $bs_blue;
+        border: $eventPane_border solid $bs_blue;
     }
 
     .largePane {
         position: relative;
         float: left;
         width: $meEventPane_width;
-        height: $eventPane_height * 2;
+        height: $eventPane_height * 2 + $eventPane_border * 2 + $eventPane_margin;
         margin: 0px $eventPane_margin $eventPane_margin 0px;
         border-radius: 12px;
-        border: 2px solid $bs_blue;
+        border: $eventPane_border solid $bs_blue;
     }
 
     .changePassword {

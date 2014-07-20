@@ -30,7 +30,7 @@ describe('directives', function() {
             compile = $compile;
         }));
 
-        afterEach(function(){
+        afterEach(function() {
             deleteSession(window);
         });
 

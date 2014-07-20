@@ -145,14 +145,6 @@ angular.module('brickSlopes.directives', [])
         templateUrl: 'partials/public/login/signUpText.html'
     }
 })
-.directive('bsRegisteredEvents', function() {
-    return {
-        restrict: 'E',
-        scope: true,
-        replace: true,
-        templateUrl: 'partials/afol/eventPanes/registeredEvents.html'
-    }
-})
 .directive('bsUserInformation', function() {
     return {
         restrict: 'E',
@@ -165,6 +157,29 @@ angular.module('brickSlopes.directives', [])
         restrict: 'E',
         replace: true,
         templateUrl: 'partials/afol/eventPanes/changePassword.html'
+    }
+})
+.directive('bsEventMocs', function() {
+    return {
+        restrict: 'E',
+        scope: true,
+        replace: true,
+        templateUrl: 'partials/afol/eventPanes/eventMocs.html'
+    }
+})
+.directive('bsEventMocsCta', function() {
+    return {
+        restrict: 'E',
+        replace: true,
+        templateUrl: 'partials/afol/eventPanes/eventMocsCTA.html'
+    }
+})
+.directive('bsRegisteredEvents', function() {
+    return {
+        restrict: 'E',
+        scope: true,
+        replace: true,
+        templateUrl: 'partials/afol/eventPanes/registeredEvents.html'
     }
 })
 .directive('bsEventRegistrationCta', function() {

@@ -22,12 +22,17 @@ describe('controllers', function() {
 
     describe('afolMe Controller', function() {
         var mockBackend, loader, window, location;
-        beforeEach(inject(function($controller, $rootScope, _$httpBackend_, $location) {
+        beforeEach(inject(function($controller, $rootScope, _$httpBackend_, $location, _$window_) {
+            window = _$window_;
             scope = $rootScope.$new();
             ctrl = $controller('afolMe', { $scope: scope});
             mockBackend = _$httpBackend_;
             location = $location
         }));
+
+        afterEach(function() {
+            deleteSession(window);
+        });
 
         describe('Close Dialog', function() {
             it('should redirect to the index page', function() {
@@ -47,6 +52,21 @@ describe('controllers', function() {
             it('should redirect to the registration page', function() {
                 scope.clickRegistration(5);
                 expect(location.path()).toBe('/afol/5/eventRegistration.html');
+            });
+        });
+
+        describe('Click Moc Registration not registered', function() {
+            it('should redirect to the moc registration page', function() {
+                scope.clickMocRegistration(5);
+                expect(location.path()).toBe('');
+            });
+        });
+
+        describe('Click Moc Registration registered', function() {
+            it('should redirect to the moc registration page', function() {
+                window.sessionStorage.registered = 'YES';
+                scope.clickMocRegistration(5);
+                expect(location.path()).toBe('/afol/5/eventMocRegistration.html');
             });
         });
 
@@ -78,6 +98,14 @@ describe('controllers', function() {
                 expect(scope.eventId).toBe(2);
             });
 
+            it('should have an displayRegisteredEventCTA variable', function() {
+                expect(scope.displayRegisterEventCTA).toBe(true);
+            });
+
+            it('should have an displayRegisterEventMocsCTA variable', function() {
+                expect(scope.displayRegisterEventMocsCTA).toBe(true);
+            });
+
             it('should have a passType variable', function() {
                 expect(scope.passType).toBe(undefined);
             });
@@ -90,6 +118,10 @@ describe('controllers', function() {
                 expect(scope.eventList).toEqualData({});
             });
 
+            it('should have an mocList variable', function() {
+                expect(scope.mocList).toEqualData({});
+            });
+
             it('should have an userObject variable', function() {
                 expect(scope.userObject).toEqualData({});
             });
@@ -99,6 +131,7 @@ describe('controllers', function() {
             beforeEach(function() {
                 mockBackend.expectGET('/controllers/eventDates.php').respond(eventDates);
                 mockBackend.expectGET('/controllers/eventRegistration.php').respond(eventRegistration);
+                mockBackend.expectGET('/controllers/registered/mocs.php?eventId=2').respond(200, mocs);
                 mockBackend.expectGET('/controllers/user.php').respond(200, singleUser);
                 mockBackend.flush();
             });
@@ -114,6 +147,14 @@ describe('controllers', function() {
             it('should populate the userObject variable', function() {
                 expect(scope.userObject.memberSince).toEqualData('May 16th, 2014');
             });
+
+            it('should have an displayRegisteredEventCTA variable', function() {
+                expect(scope.displayRegisterEventCTA).toBe(false);
+            });
+
+            it('should have an displayRegisterEventMocsCTA variable', function() {
+                expect(scope.displayRegisterEventMocsCTA).toBe(false);
+            });
         });
 
         describe('Change Password', function() {
@@ -123,6 +164,7 @@ describe('controllers', function() {
                 expect(scope.verifying).toBe(true);
                 mockBackend.expectGET('/controllers/eventDates.php').respond(eventDates);
                 mockBackend.expectGET('/controllers/eventRegistration.php').respond(eventRegistration);
+                mockBackend.expectGET('/controllers/registered/mocs.php?eventId=2').respond(200, mocs);
                 mockBackend.expectGET('/controllers/user.php').respond(200, singleUser);
                 mockBackend.expectPATCH('/controllers/authentication.php').respond(201);
                 mockBackend.flush();
@@ -143,6 +185,7 @@ describe('controllers', function() {
                 expect(scope.verifying).toBe(true);
                 mockBackend.expectGET('/controllers/eventDates.php').respond(eventDates);
                 mockBackend.expectGET('/controllers/eventRegistration.php').respond(eventRegistration);
+                mockBackend.expectGET('/controllers/registered/mocs.php?eventId=2').respond(200, mocs);
                 mockBackend.expectGET('/controllers/user.php').respond(200, singleUser);
                 mockBackend.expectPATCH('/controllers/authentication.php').respond(412);
                 mockBackend.flush();

@@ -197,9 +197,11 @@ config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvide
         }
     )
     .when(
-        '/afol/eventMocRegistration.html',
+        '/afol/:eventId/eventMocRegistration.html',
         {
-            templateUrl: '/partials/afol/eventMocRegistration.html',
+            templateUrl: function(params) {
+                return '/partials/afol/eventMocRegistration.html?eventId='+params.eventId
+            },
             controller: 'afolMocRegistration'
         }
     )

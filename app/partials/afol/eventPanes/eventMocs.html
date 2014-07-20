@@ -1,0 +1,16 @@
+<div class="largePane events">
+    <div class="meText"><bs-text text="Your MOCs" font-color=black font-size=1.25></bs-text></div>
+    <div>
+        <div ng-class="{eventRow: $even}"  ng-repeat="moc in mocList">
+            <div class="mocRow">
+                <div><bs-text text="{{moc.title}}" font-size=1.25></bs-text></div>
+                <div ng-bind="moc.theme"></div>
+                <div>
+                    <span ng-bind="moc.baseplateWidth"></span>
+                    <span>x</span>
+                    <span ng-bind="moc.baseplateDepth"></span>
+                </div>
+            <div>
+        </div>
+    </div>
+</div>
