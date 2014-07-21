@@ -50,6 +50,12 @@ regexHtaccess() {
     printf "\n\n";
 }
 
+removeTestIds() {
+    printf "\nRemoving the t_* testing ids ...\n\n";
+    find ./app/partials -name \*\.html -exec perl -i -pe 's/id="t_.*?"\s//g' {} \;
+    printf "\n\n";
+}
+
 cssGeneration() {
     printf "\nUpdating the css files ...\n\n";
     compass clean
@@ -65,6 +71,7 @@ upgrade() {
         stashRepo;
         pullRepo;
         regexHtaccess;
+        removeTestIds;
         cssGeneration;
     fi
 }
