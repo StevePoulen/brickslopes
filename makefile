@@ -26,6 +26,10 @@ unit_auto_watch_js:
 e2e_js:
 	@$(PROTRACTOR_PATH) $(PROTRACTOR_CONFIG)
 
+# Performs JavaScript end-to-end tests
+e2e_js_suite:
+	@$(PROTRACTOR_PATH) $(PROTRACTOR_CONFIG) --suite=$(SUITE)
+
 # Performs PHP unit tests
 unit_php:
 	phpunit
@@ -48,6 +52,9 @@ js_test:
 
 e2e_test:
 	@make e2e_js
+
+e2e_test_suite:
+	@make e2e_js_suite
 
 php_test:
 	@make unit_php

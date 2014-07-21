@@ -138,6 +138,37 @@
     left: 575px;
 }
 
+.myMocs {
+    margin-top: 10px;
+    position: relative;
+    overflow: scroll;
+    height: 365px;
+}
+
+.myMocButtonPosition {
+    position: absolute;
+    top: 0px;
+    right: 5px;
+}
+
+.myMocRow {
+    position: relative;
+    height: 40px;
+    padding-left: 3px;
+    margin-bottom: 10px;
+
+    .mocSize {
+        position: absolute;
+        right: 10px;
+        bottom: 0px;
+    }
+
+    .mocTheme {
+        position: absolute;
+        left: 10px;
+        bottom: 0px;
+    }
+}
 
 .mocRow {
     position: relative;

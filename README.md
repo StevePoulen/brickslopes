@@ -36,5 +36,8 @@ Unit Tests
 # e2e Tests
 `$ make e2e_test`
 
+# e2e Tests Suites
+`$ make e2e_test_suite SUITE=<suite_name>`
+
 # css Tests
 `$ make css_test`

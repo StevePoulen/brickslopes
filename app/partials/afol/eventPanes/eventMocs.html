@@ -1,14 +1,19 @@
 <div class="largePane events">
-    <div class="meText"><bs-text text="Your MOCs" font-color=black font-size=1.25></bs-text></div>
-    <div>
-        <div ng-class="{eventRow: $even}"  ng-repeat="moc in mocList">
-            <div class="mocRow">
-                <div><bs-text text="{{moc.title}}" font-size=1.25></bs-text></div>
-                <div ng-bind="moc.theme"></div>
-                <div>
-                    <span ng-bind="moc.baseplateWidth"></span>
-                    <span>x</span>
-                    <span ng-bind="moc.baseplateDepth"></span>
+    <div class="meText">
+        <bs-text text="Your MOCs" font-color=black font-size=1.25></bs-text>
+        <div class="myMocButtonPosition">
+            <div class="actionButtonTiny" ng-click="clickMocRegistration(2)">
+                <bs-text text="Add + " font-color=white font-size=.85></bs-text>
+            </div>
+        </div>
+    </div>
+    <div class="myMocs">
+        <div ng-class="{eventRow: $even}"  ng-repeat="moc in mocList | orderBy:'title'">
+            <div class="myMocRow">
+                <div><bs-text text="{{moc.title}}" max-size=35 font-size=1.25></bs-text></div>
+                <div class="mocTheme"><bs-text text="{{moc.theme}}" font-color=black></bs-text></div>
+                <div class="mocSize">
+                    <bs-text font-color=black text="Size: {{moc.baseplateWidth}} x {{moc.baseplateDepth}}"><bs-text>
                 </div>
             <div>
         </div>

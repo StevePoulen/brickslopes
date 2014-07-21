@@ -29,6 +29,7 @@ class ThemesTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($themeObj['themeId'] , 1);
         $this->assertEquals($themeObj['theme'], 'Castle');
         $this->assertEquals($themeObj['type'], 'AFOL');
+        $this->assertEquals($themeObj['selectable'], 'YES');
         $this->assertEquals($themeObj['awards'][0]['award'], "First Place");
         $this->assertEquals($themeObj['awards'][0]['place'], "1");
         $this->assertEquals($themeObj['awards'][1]['award'], "Second Place");

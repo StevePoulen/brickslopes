@@ -40,6 +40,7 @@ class Themes {
                         'eventId' => $dbObj->eventId,
                         'themeId' => $dbObj->themeId,
                         'type' => $dbObj->type,
+                        'selectable' => $dbObj->selectable,
                         'awards' => array (
                             array (
                                 'award' => $dbObj->award,

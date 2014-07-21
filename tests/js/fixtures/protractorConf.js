@@ -33,7 +33,7 @@ exports.config = {
   // Additional command line options to pass to selenium. For example,
   // if you need to change the browser timeout, use
   // seleniumArgs: ['-browserTimeout=60'],
-  seleniumArgs: [],
+  seleniumArgs: ['--window-size=1440,900'],
 
   // If sauceUser and sauceKey are specified, seleniumServerJar will be ignored.
   // The tests will be run remotely using SauceLabs.
@@ -63,8 +63,9 @@ exports.config = {
   // all suites will run. If run with --suite=smoke, only the patterns matched
   // by that suite will run.
   suites: {
-    smoke: 'spec/smoketests/*.js',
-    full: 'spec/*.js'
+    registration: '../e2e/afol/RegistrationPageSpec.js',
+    login: '../e2e/afol/LoginPageSpec.js',
+    full: '../e2e/**/*Spec.js',
   },
 
   // ----- Capabilities to be passed to the webdriver instance ----
@@ -110,8 +111,11 @@ exports.config = {
   //   --params.login.user 'Joe'
   params: {
     login: {
-      user: 'Jane',
-      password: '1234'
+      primaryUser: 'brianpilati@gmail.com',
+      primaryUserPwd:  '12345678',
+    },
+    env:{
+      baseUrl: 'https://www.mybrickslopes.com'
     }
   },
 

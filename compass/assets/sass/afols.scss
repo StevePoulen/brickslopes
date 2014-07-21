@@ -20,10 +20,6 @@ $bs_blue: #35469A;
       cursor: pointer;
 }
 
-.height700 {
-    height: 700px;
-}
-
 .height800 {
     height: 800px;
 }
@@ -40,12 +36,8 @@ $bs_blue: #35469A;
     height: 1950px;
 }
 
-.heightAuto {
-    height: auto;
-}
-
 .dashboardText { 
-    position: absolute;
+    position: relative;
     border-radius:25px;
     padding: 15px;
     font-size: 100%;
@@ -593,17 +585,16 @@ $bs_blue: #35469A;
 }
 
 #themes {
-    position: absolute;
-    top: 100px;
+    position: relative;
+    top: 0px;
     left: 10px;
-    width: $dashboard_width;
 }
 
 .theme {
     position: relative;
     float: left;
     border: 1px solid black;
-    width: $dashboard_width / 2 - 25;
+    width: $dashboard_width / 2 - 40;
     padding: 5px;
     height: 250px;
     border-radius: 5px;

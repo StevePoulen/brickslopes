@@ -13,6 +13,7 @@ class ThemesMock extends modelObjects {
         $this->type = $this->type();
         $this->award = $this->award();
         $this->place = $this->place();
+        $this->selectable = $this->selectable();
     }
 
     public function themeId() { return $this->getData(0); }
@@ -22,5 +23,6 @@ class ThemesMock extends modelObjects {
     public function themeAwardId() { return $this->getData(4); }
     public function award() { return $this->getData(5); }
     public function place() { return $this->getData(6); }
+    public function selectable() { return $this->getData(7); }
 }
 ?>

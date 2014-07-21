@@ -83,21 +83,82 @@
             $mocsObj = new mocModel();
             $mocsCount = 0;
             $themeId = 1;
+            //Title => 47 Characters
+            //Display Name => 33 Characters
+            //Descripton => 147 Characters
 
             $mocsCollection = array(
                 array(
                     'title' => 'My Cool Creation',
+                    'displayName' => 'BP',
                     'mocImageUrl' => 'https://My_Cool_Creation.org',
-                    'baseplateWidth' => 2,
-                    'baseplateDepth' => 2,
+                    'baseplateWidth' => 1,
+                    'baseplateDepth' => 1,
                     'description' => 'I ruled this moc'
                 ),
                 array(
                     'title' => 'My Cool Creation -- Part II',
+                    'displayName' => 'Brian',
                     'mocImageUrl' => 'https://My_Cool_Creation_part_II.org',
+                    'baseplateWidth' => 2,
+                    'baseplateDepth' => 2,
+                    'description' => 'I ruled this moc a lot'
+                ),
+                array(
+                    'title' => 'My Cool Creation -- Part II twenty eight charac',
+                    'displayName' => 'Brian Pilati',
+                    'mocImageUrl' => 'https://My_Cool_Creation_part_III.org',
+                    'baseplateWidth' => 3,
+                    'baseplateDepth' => 3,
+                    'description' => 'I ruled this moc a lot'
+                ),
+                array(
+                    'title' => 'My Cool Creation -- Part II twenty eight charac',
+                    'displayName' => 'Brian Pilati is my full-name than',
+                    'mocImageUrl' => 'https://My_Cool_Creation_part_IV.org',
                     'baseplateWidth' => 4,
                     'baseplateDepth' => 4,
                     'description' => 'I ruled this moc a lot'
+                ),
+                array(
+                    'title' => 'My Cool Creation -- Part III twenty eight chara',
+                    'displayName' => 'Brian Pilati is my full-name than',
+                    'mocImageUrl' => 'https://My_Cool_Creation_part_V.org',
+                    'baseplateWidth' => 5,
+                    'baseplateDepth' => 5,
+                    'description' => 'I ruled this moc a lot'
+                ),
+                array(
+                    'title' => 'My Cool Creation -- Part IV twenty eight charac',
+                    'displayName' => 'Brian Pilati is my full-name than',
+                    'mocImageUrl' => 'https://My_Cool_Creation_part_V.org',
+                    'baseplateWidth' => 6,
+                    'baseplateDepth' => 6,
+                    'description' => 'I ruled this moc a lot'
+                ),
+                array(
+                    'title' => 'My Cool Creation -- Part V twenty eight charact',
+                    'displayName' => 'Brian Pilati is my full-name than',
+                    'mocImageUrl' => 'https://My_Cool_Creation_part_VI.org',
+                    'baseplateWidth' => 7,
+                    'baseplateDepth' => 7,
+                    'description' => 'I ruled this moc a lot. It was very hard to build but I persevered until it was finished. I only had to spend a million dollars to get it finished'
+                ),
+                array(
+                    'title' => 'My Cool Creation -- Part VI twenty eight charac',
+                    'displayName' => 'Brian Pilati is my full-name than',
+                    'mocImageUrl' => 'https://My_Cool_Creation_part_VII.org',
+                    'baseplateWidth' => 8,
+                    'baseplateDepth' => 8,
+                    'description' => 'I ruled this moc a lot. It was very hard to build but I persevered until it was finished. I only had to spend a million dollars to get it finished'
+                ),
+                array(
+                    'title' => 'My Cool Creation -- Part VIII twenty eight char',
+                    'displayName' => 'Brian Pilati is my full-name than',
+                    'mocImageUrl' => 'https://My_Cool_Creation_part_VIII.org',
+                    'baseplateWidth' => 9,
+                    'baseplateDepth' => 9,
+                    'description' => 'I ruled this moc a lot. It was very hard to build but I persevered until it was finished. I only had to spend a million dollars to get it finished'
                 )
             );
 
@@ -106,7 +167,7 @@
                     'userId' => 1,
                     'eventId' => 2,
                     'themeId' => $themeId++,
-                    'displayName' => 'Brian Pilati',
+                    'displayName' => $mocMap['displayName'],
                     'title' => $mocMap['title'],
                     'mocImageUrl' => $mocMap['mocImageUrl'],
                     'baseplateWidth' => $mocMap['baseplateWidth'],
@@ -132,6 +193,7 @@
                 array(
                     'theme' => 'Adventure',
                     'type' => 'AFOL',
+                    'selectable' => 'YES',
                     'awards' => array (
                         'Best Pirate',
                         'Best Steam Punk',
@@ -141,6 +203,7 @@
                 array(
                     'theme' => 'Bionicle',
                     'type' => 'AFOL',
+                    'selectable' => 'YES',
                     'awards' => array (
                         'Best of Bionicle',
                         'Best use of Bionicle Parts'
@@ -149,6 +212,7 @@
                 array(
                     'theme' => 'The BCS Awards',
                     'type' => 'AFOL',
+                    'selectable' => 'NO',
                     'awards' => array (
                         "Brian's Choice Award",
                         "Cody's Choice Award",
@@ -158,6 +222,7 @@
                 array(
                     'theme' => 'Castle',
                     'type' => 'AFOL',
+                    'selectable' => 'YES',
                     'awards' => array (
                         'Best of Castle',
                         'Best Historical',
@@ -167,6 +232,7 @@
                 array(
                     'theme' => 'City & Train',
                     'type' => 'AFOL',
+                    'selectable' => 'YES',
                     'awards' => array (
                         'Best of City & Train',
                         'Most Original Building',
@@ -178,6 +244,7 @@
                 array(
                     'theme' => 'NPU (Nice Part Usage)',
                     'type' => 'AFOL',
+                    'selectable' => 'NO',
                     'awards' => array (
                         'Best NPU'
                     )
@@ -185,6 +252,7 @@
                 array(
                     'theme' => 'Pop Culture',
                     'type' => 'AFOL',
+                    'selectable' => 'YES',
                     'awards' => array (
                         'Best of Pop Culture',
                         'Best Movie Scene'
@@ -193,6 +261,7 @@
                 array(
                     'theme' => 'Princess',
                     'type' => 'AFOL',
+                    'selectable' => 'YES',
                     'awards' => array (
                         'Best Princess Theme'
                     )
@@ -200,6 +269,7 @@
                 array(
                     'theme' => 'Sculpture / Mosiac',
                     'type' => 'AFOL',
+                    'selectable' => 'YES',
                     'awards' => array (
                         'Best Sculpture',
                         'Best Mosaic',
@@ -209,6 +279,7 @@
                 array(
                     'theme' => 'Space',
                     'type' => 'AFOL',
+                    'selectable' => 'YES',
                     'awards' => array (
                         'Best of Space',
                         'Best Space Base',
@@ -218,6 +289,7 @@
                 array(
                     'theme' => 'Technic',
                     'type' => 'AFOL',
+                    'selectable' => 'YES',
                     'awards' => array (
                         'Best of Technic',
                         'Best Use of Motion',
@@ -227,6 +299,7 @@
                 array(
                     'theme' => 'Vignette',
                     'type' => 'AFOL',
+                    'selectable' => 'YES',
                     'awards' => array (
                         'Best Vignette',
                         'Best Custom Fig'
@@ -235,6 +308,7 @@
                 array(
                     'theme' => 'Public Choice',
                     'type' => 'PUBLIC',
+                    'selectable' => 'NO',
                     'awards' => array (
                         '1st Place by Public Vote',
                         '2nd Place by Public Vote',
@@ -247,6 +321,7 @@
                 $themeMap = array(
                     'theme' => $themesMap['theme'],
                     'type' => $themesMap['type'],
+                    'selectable' => $themesMap['selectable'],
                     'eventId' => $eventId
                 );
                 $themeId = $themesObj->addThemeInformation($themeMap);

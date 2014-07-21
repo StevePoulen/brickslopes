@@ -4,7 +4,7 @@ angular.module('brickSlopes.services', [])
 .factory('BrickSlopesText', [ function() {
     var __fontSize = undefined;
     var __fontColor = undefined;
-    var __eventImageText = undefined;
+    var __maxSize = undefined;
 
     return {
         __setFontSize: function(fontSize) {
@@ -15,6 +15,17 @@ angular.module('brickSlopes.services', [])
             __fontColor = (fontColor) ? fontColor + "Font" : "blueFont";
         },
 
+        __setMaxSize: function(text, maxSize) {
+            if(maxSize) {
+                if (text.length>maxSize) {
+                    text = text.substr(0,maxSize-3);
+                    text += ' ...';
+                };
+            }
+
+            return text;
+        },
+
         __styleRemainder: function(smallFont, remainder) {
             if (remainder) {
                 return '<span style="' + smallFont + '">' + remainder + '</span>';
@@ -23,13 +34,14 @@ angular.module('brickSlopes.services', [])
             }
         },
 
-        createText: function(text, fontSize, fontColor) {
+        createText: function(text, fontSize, fontColor, maxSize) {
             var self = this;
             if (! text) {
                 return text;
             }
             this.__setFontSize(fontSize);
             this.__setFontColor(fontColor);
+            text = this.__setMaxSize(text, maxSize);
 
             var capsFont = "font-size: " + __fontSize + "em;";
             var smallFontNumber = __fontSize * .8;

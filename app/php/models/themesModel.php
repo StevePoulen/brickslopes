@@ -20,6 +20,7 @@ class themesModel extends db {
                 t.eventId as eventId, 
                 t.theme as theme,
                 t.type as type,
+                t.selectable as selectable,
                 ta.themeAwardId as themeAwardId,
                 ta.award as award,
                 ta.place as place
@@ -41,13 +42,15 @@ class themesModel extends db {
             (
                 eventId, 
                 theme,
-                type 
+                type,
+                selectable
             )
         VALUES
           (
                 '{$this->escapeCharacters($data['eventId'])}',
                 '{$this->escapeCharacters($data['theme'])}',
-                '{$this->escapeCharacters($data['type'])}'
+                '{$this->escapeCharacters($data['type'])}',
+                '{$this->escapeCharacters($data['selectable'])}'
           )
         ;
       ";

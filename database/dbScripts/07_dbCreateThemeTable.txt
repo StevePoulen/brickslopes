@@ -14,6 +14,7 @@ CREATE TABLE `themes` (
   `eventId` INT(10) UNSIGNED NOT NULL,
   `theme` VARCHAR(255),
   `type` ENUM('AFOL', 'PUBLIC'),
+  `selectable` ENUM('YES', 'NO'),
   PRIMARY KEY (`themeId`),
   FOREIGN KEY (`eventId`) REFERENCES `events` (`eventId`),
   UNIQUE KEY `themeId_UNIQUE` (`themeId`)

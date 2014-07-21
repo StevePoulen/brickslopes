@@ -1,2 +1,2 @@
-1,2,Castle,AFOL,1,First Place,1
-1,2,Star Wars,PUBLIC,2,Second Place,2
+1,2,Castle,AFOL,1,First Place,1,YES
+1,2,Star Wars,PUBLIC,2,Second Place,2,NO

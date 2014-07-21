@@ -118,5 +118,27 @@ describe('service', function() {
                 + buildPostWrapper();
             expect(bsTextFactory.createText('Travel Lodge')).toBe(expectedValue);
         });
+
+        it('should create brickSlopes Text with ... at maxsize', function() {
+            var expectedValue = buildPreFontWrapper()
+                + buildPreCapWrapper("T")
+                + buildPostCapWrapper("RAVEL")
+                + "&nbsp;"
+                + buildPreCapWrapper("L")
+                + buildPostCapWrapper(" ...")
+                + buildPostWrapper();
+            expect(bsTextFactory.createText('Travel Lodge of America',1,'blue', 12)).toBe(expectedValue);
+        });
+
+        it('should create brickSlopes Text in its entirety at maxsize', function() {
+            var expectedValue = buildPreFontWrapper()
+                + buildPreCapWrapper("T")
+                + buildPostCapWrapper("RAVEL")
+                + "&nbsp;"
+                + buildPreCapWrapper("L")
+                + buildPostCapWrapper("ODGE")
+                + buildPostWrapper();
+            expect(bsTextFactory.createText('Travel Lodge',1,'blue', 12)).toBe(expectedValue);
+        });
     });
 });

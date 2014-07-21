@@ -67,12 +67,13 @@ angular.module('brickSlopes.directives', [])
         scope: {
             fontColor: '@',
             fontSize: '@',
-            text: '@'
+            text: '@',
+            maxSize: '@'
         },
         template: '<span ng-bind-html="bsText"></span>',
         link: function(scope, element, attrs) {
             scope.$watch("text", function() {
-                scope.bsText = $sce.trustAsHtml(brickSlopesText.createText(attrs.text, attrs.fontSize, attrs.fontColor));
+                scope.bsText = $sce.trustAsHtml(brickSlopesText.createText(attrs.text, attrs.fontSize, attrs.fontColor, attrs.maxSize));
             });
         }
     }

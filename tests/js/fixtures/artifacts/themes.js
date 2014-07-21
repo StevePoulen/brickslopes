@@ -4,6 +4,7 @@ var themes = [
         "themeId": 12,
         "eventId": 2,
         "type": "AFOL",
+        "selectable": "YES",
         "awards": [
             {
                 "award": "Best Pirate",
@@ -24,6 +25,7 @@ var themes = [
         "themeId": 2,
         "eventId": 2,
         "type": "AFOL",
+        "selectable": "YES",
         "awards": [
             {
                 "award": "Best of Bionicle",
@@ -40,6 +42,7 @@ var themes = [
         "themeId": 3,
         "eventId": 2,
         "type": "AFOL",
+        "selectable": "NO",
         "awards": [
             {
                 "award": "Best of Castle",
