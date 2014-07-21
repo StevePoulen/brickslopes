@@ -18,7 +18,7 @@ angular.module('brickSlopes.services', [])
         __setMaxSize: function(text, maxSize) {
             if(maxSize) {
                 if (text.length>maxSize) {
-                    text = text.substr(0,maxSize-3);
+                    text = text.substr(0,maxSize-4);
                     text += ' ...';
                 };
             }

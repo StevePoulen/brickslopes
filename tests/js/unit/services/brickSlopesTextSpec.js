@@ -125,7 +125,9 @@ describe('service', function() {
                 + buildPostCapWrapper("RAVEL")
                 + "&nbsp;"
                 + buildPreCapWrapper("L")
-                + buildPostCapWrapper(" ...")
+                + "&nbsp;"
+                + buildPreCapWrapper(".")
+                + buildPostCapWrapper("..")
                 + buildPostWrapper();
             expect(bsTextFactory.createText('Travel Lodge of America',1,'blue', 12)).toBe(expectedValue);
         });
