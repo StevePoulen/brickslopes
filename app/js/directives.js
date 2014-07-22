@@ -199,7 +199,15 @@ angular.module('brickSlopes.directives', [])
             scope.color = attrs.color;
         }
     }
-}).directive("bsPlaceholder", function($timeout) {
+})
+.directive('bsFeedback', function() {
+    return {
+        restrict: 'E',
+        replace: true,
+        templateUrl: 'partials/public/feedback.html',
+    }
+})
+.directive("bsPlaceholder", function($timeout) {
     var txt;
     return {
         restrict: "A",

@@ -118,6 +118,13 @@ config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvide
         }
     )
     .when(
+        '/admin/feedback.html',
+        {
+            templateUrl: '/partials/admin/feedback.html',
+            controller: 'adminFeedback'
+        }
+    )
+    .when(
         '/admin/registeredAfols.html',
         {
             templateUrl: '/partials/admin/registeredAfols.html',

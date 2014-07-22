@@ -799,6 +799,41 @@ angular.module('brickSlopes.services', [])
         }
     };
 }])
+.factory('Feedback', ['$q', '$http', function($q, $http) {
+    return {
+        get: function() {
+            var delay= $q.defer();
+            $http (
+                {
+                    method: 'GET',
+                    url: '/controllers/public/feedback.php'
+                }
+            ).success(function(data, status, headers, config) {
+                delay.resolve(data);
+            }).error(function(data, status, headers, config) {
+                delay.reject(data);
+            });
+
+            return delay.promise;
+        },
+        create: function(feedbackDTO) {
+            var delay= $q.defer();
+            $http (
+                {
+                    method: 'POST',
+                    url: '/controllers/public/feedback.php',
+                    data: feedbackDTO
+                }
+            ).success(function(data, status, headers, config) {
+                delay.resolve(status);
+            }).error(function(data, status, headers, config) {
+                delay.reject(data);
+            });
+
+            return delay.promise;
+        }
+    };
+}])
 .factory('GetEmailHtml', ['$q', '$http', function($q, $http) {
     return {
         getEventRegistration: function() {

@@ -64,6 +64,13 @@ describe('controllers', function() {
             });
         });
 
+        describe('Click Feedback', function() {
+            it('should redirect to the feedback page', function() {
+                scope.clickFeedback();
+                expect(location.path()).toBe('/admin/feedback.html');
+            });
+        });
+
         describe('Click Registrations', function() {
             it('should redirect to the registeredAfols page', function() {
                 scope.clickRegistrations();

@@ -60,7 +60,7 @@
         }
 
         private function isPost() {
-            return $_SERVER['REQUEST_METHOD'] === 'POST';
+            return (ISSET($__SERVER['REQUEST_METHOD']) ? $_SERVER['REQUEST_METHOD'] === 'POST' : false);
         }
 
         private function isWhiteList() {
@@ -71,6 +71,7 @@
                 return true;
             } else if (
                 $this->URI == 'controllers/authentication.php' ||
+                preg_match('/controllers\/public\/.*/', $this->URI) ||
                 $this->URI == 'controllers/eventDates.php' ||
                 (
                     $this->URI == 'controllers/user.php' &&

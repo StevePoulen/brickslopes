@@ -459,7 +459,7 @@
             $headers .= "Reply-To: 'BrickSlopes' <cody@brickslopes.com>\r\n";
             $headers .= "X-Mailer: PHP/".phpversion();
             // send email
-            mail($to, $this->subject, $this->message, $headers, '-fwebmaster@brickslopes.com');
+            mail($to, $this->subject, $this->message, $headers, '-fcody@brickslopes.com');
         }
 
         private function getDomain() {

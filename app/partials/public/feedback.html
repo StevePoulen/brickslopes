@@ -1,0 +1,38 @@
+<div ng-controller="bsFeedback">
+    <div class="feedbackPanel">
+        <div class="feedbackTab" ng-click="clickFeedbackTab()">
+            <i class="icons-feedback icons-sprite-bg"></i>
+        </div>
+        <div>
+            <h1>
+                <bs-logo font-size="1.0"></bs-logo> &#8226; <bs-text text="Feedback" font-color=black></bs-text>
+            </h1>
+        </div>
+        <div class="feedbackForm">
+            <form name="feedbackForm" ng-submit="feedbackForm.$valid && submitFeedback()">
+                <div><bs-text text="Email" font-size=1.25></bs-text></div>
+                <div class="loginField">
+                    <input ng-model="email" type="text" bs-placeholder="Email (optional)" ng-maxlength=50 maxlength=50>
+                </div>
+                <div><bs-text text="Feedback" font-size=1.25></bs-text></div>
+                <div class="commentsField">
+                    <textarea bs-placeholder="Feedback ..."  ng-model="feedback" ng-maxlength=255 maxlength=255 required></textarea>
+                </div>
+                <div><bs-text text="Captcha" font-size=1.25></bs-text></div>
+                <div class="captchaField">
+                    <input type="text" bs-placeholder="Captcha (required)" ng-model="captcha" required equals="{{captchaInit}}">
+                    <div class="captcha">
+                        <div>Captcha Text:</div>
+                        <div ng-bind="captchaInit"></div>
+                    </div>
+                </div>
+                <div class="formButtonPosition">
+                    <button class="formButton" type="submit" ng-class="{disabled: verifying}" ng-disabled="verifying">
+                        <bs-text text="Share Feedback" font-color=white font-size=1.75></bs-text>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="mask" ng-click="clickMask()"></div>
+</div>

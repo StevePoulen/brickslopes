@@ -115,6 +115,14 @@ mocTableCreation() {
     incStep
 }
 
+feedbackTableCreation() {
+    printf "\nSTEP $STEP_COUNTER: Create the 'BrickSlopes' feedback table?\n";
+    echo "* WARNING * This is delete the current table";
+    echo -n "Create table? (Y\n) [ENTER]: "; 
+    read CREATE_FEEDBACK_TABLE;
+    incStep
+}
+
 themeTableCreation() {
     printf "\nSTEP $STEP_COUNTER: Create the 'BrickSlopes' theme table?\n";
     echo "* WARNING * This is delete the current table";
@@ -185,6 +193,7 @@ userInput() {
         registrationLineItemTableCreation;
         themeTableCreation;
         mocTableCreation;
+        feedbackTableCreation;
     fi
 }
 
@@ -218,6 +227,13 @@ createRegistrationLineItemTable() {
     if [[ "$CREATE_REGISTRATION_LINE_ITEM_TABLE" == "Y" || isDropAllTables ]]
     then
         executeDBStatement "08_dbCreateRegistrationLineItemsTable.txt"
+    fi
+}
+
+createFeedbackTable() {
+    if [[ "$CREATE_FEEDBACK_TABLE" == "Y" || isDropAllTables ]]
+    then
+        executeDBStatement "10_dbCreateFeedbackTable.txt"
     fi
 }
 
@@ -291,3 +307,4 @@ createRegistrationTable;
 createThemesTable;
 createRegistrationLineItemTable;
 createMocTable;
+createFeedbackTable;

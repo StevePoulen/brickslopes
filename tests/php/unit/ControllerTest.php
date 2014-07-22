@@ -62,10 +62,10 @@ class ControllerTest extends PHPUnit_Framework_TestCase
     public function testAuthenticatedSuccessController() 
     {
         $GLOBALS['authenticationRequest'] = true;
-        $_SERVER['REQUEST_URI'] = "/controllers/authentication.php";
+        $_SERVER['REQUEST_URI'] = "/controllers/user.php";
         $this->controller = new Controller();
         $this->controller->invoke();
-        $this->assertEquals(http_response_code(), 200);
+        $this->assertEquals(http_response_code(), 405);
         $this->expectOutputString('');
     }
 
@@ -76,6 +76,26 @@ class ControllerTest extends PHPUnit_Framework_TestCase
         $this->controller = new Controller();
         $this->controller->invoke();
         $this->assertEquals(http_response_code(), 404);
+        $this->expectOutputString('');
+    }
+
+    public function testPublicRequestNoAuthenticationHeader() 
+    {
+        $GLOBALS['authenticationRequest'] = false;
+        $_SERVER['REQUEST_URI'] = "/controllers/eventDates.php";
+        $this->controller = new Controller();
+        $this->controller->invoke();
+        $this->assertEquals(http_response_code(), 405);
+        $this->expectOutputString('');
+    }
+
+    public function testPublicRequestNoAuthenticationHeaderTwo() 
+    {
+        $GLOBALS['authenticationRequest'] = false;
+        $_SERVER['REQUEST_URI'] = "/controllers/public/feedback.php";
+        $this->controller = new Controller();
+        $this->controller->invoke();
+        $this->assertEquals(http_response_code(), 405);
         $this->expectOutputString('');
     }
 

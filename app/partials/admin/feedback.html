@@ -1,0 +1,37 @@
+<div id="eventDashboard">
+    <div class="dashboardText dashboardTextHeightAuto">
+        <div>
+            <h1><bs-logo font-size="1.25"></bs-logo> &#8226; <bs-text text="Registered MOCs" font-color=black></bs-text></h1>
+        </div>
+        <div class="searchField bold">
+            <input ng-model="searchText" bs-placeholder="Search">
+        </div>
+        <div class='registeredAfols orderTitles'>
+            <table>
+                <tr>
+                    <th class="textCenter">#</th>
+                    <th class="textCenter"><a href="" ng-click="predicate='userId'; reverse=!reverse">UserId</a></th>
+                    <th class="textCenter"><a href="" ng-click="predicate='email'; reverse=!reverse">Email</a></th>
+                    <th class="textCenter"><a href="" ng-click="predicate='feedback'; reverse=!reverse">Feedback</a></th>
+                    <th class="textCenter"><a href="" ng-click="predicate='posted'; reverse=!reverse">Posted</a></th>
+                </tr>
+                <tr ng-class="{evenRow: $even}" ng-repeat="feedback in allFeedback | filter:searchText:strict | orderBy:predicate:reverse">
+                    <td class="textCenter">{{$index + 1}}</td>
+                    <td class="textCenter">
+                        {{feedback.userId}}
+                    </td>
+                    <td class="textCenter">
+                        {{feedback.email}}
+                    </td>
+                    <td class="textCenter">
+                        {{feedback.feedback}}
+                    </td>
+                    <td class="textCenter">
+                        {{feedback.posted}}
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div id="dashboardCloseButton" ng-click="closeDialog()"></div>
+</div>

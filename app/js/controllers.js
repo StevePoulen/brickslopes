@@ -6,6 +6,9 @@ var showAfolLogin = false;
 angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
 .controller('bsIndex', ['$scope', '$location', 'EventDates', function($scope, $location, EventDates) {
     $("#splashPageCTA").show(500);
+    $scope.eventYear = '2014';
+    $scope.publicEventDates = undefined;
+    $scope.publicDateList = [];
 
     EventDates.getEventYear(2).then(function(year) {
         $scope.eventYear = year;
@@ -25,6 +28,54 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
 
     $scope.packages = function() {
         $location.path("/packages.html");
+    }
+}])
+.controller('bsFeedback', ['$scope', 'Feedback', function($scope, Feedback) {
+    $("#splashPageCTA").show(500);
+    $scope.feedbackOpen = false;
+    setDefaultFeedbackVariables('D@rKGr3y');
+    $scope.verifying = false;
+
+    function feedbackAction() {
+        if ($scope.feedbackOpen) {
+            $( ".feedbackPanel" ).animate({ "left": "-=426px" }, "slow" );
+        } else {
+            $( ".feedbackPanel" ).animate({ "left": "+=426px" }, "slow" );
+        }
+        $('.mask').toggle();
+        $scope.feedbackOpen = ! $scope.feedbackOpen;
+    }
+
+    $scope.clickMask = function() {
+        feedbackAction();
+    }
+
+    $scope.clickFeedbackTab = function() {
+        feedbackAction();
+    }
+
+    function serializeFeedbackJson() {
+        return {
+            email: $scope.email,
+            feedback: $scope.feedback
+        }
+    }
+
+    function setDefaultFeedbackVariables(captchaInit) {
+        $scope.email = "";
+        $scope.feedback = "";
+        $scope.captchaInit = captchaInit;
+        $scope.captcha= "";
+    }
+
+    $scope.submitFeedback = function() {
+        $scope.verifying = true;
+        Feedback.create(serializeFeedbackJson()).then(function(response) {
+            $scope.feedbackForm.$setPristine();
+            setDefaultFeedbackVariables('B#tm@n');
+            $scope.displayMessage = "Your feedback has been received.";
+            $scope.verifying = false;
+        });
     }
 }])
 .controller('emailUs', ['$scope', 'EmailUs', function($scope, EmailUs) {
@@ -622,6 +673,10 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         $scope.mocCount = data;
     });
 
+    $scope.clickFeedback = function() {
+        $location.path('/admin/feedback.html');
+    }
+
     $scope.clickRegistrations = function() {
         $location.path('/admin/registeredAfols.html');
     }
@@ -674,6 +729,20 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
 
     MocDetails.getList($scope.eventId).then(function(data) {
         $scope.registeredMocs = data;
+    });
+
+    $scope.closeDialog = function() {
+        $location.path("/admin/index.html");
+    }
+}])
+.controller('adminFeedback', ['$scope', 'Feedback', '$location', function($scope, Feedback, $location) {
+    $("#splashPageCTA").hide();
+    $scope.allFeedback = undefined;
+    $scope.predicate = 'posted';
+    $scope.reverse = false;
+
+    Feedback.get().then(function(data) {
+        $scope.allFeedback = data;
     });
 
     $scope.closeDialog = function() {

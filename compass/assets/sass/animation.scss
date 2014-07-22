@@ -156,3 +156,13 @@
     from { left: 410px; }
     to { left: 10px; }
 }
+
+#legoCanvas {
+    position: absolute;
+    top: 130px;
+    left: 340px;
+    height: 800px;
+    width: 1230px;
+    background: black;
+    z-index: 10000;
+}

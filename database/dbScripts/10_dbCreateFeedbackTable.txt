@@ -1,0 +1,19 @@
+-- MySQL dump 10.11
+--
+-- Host: localhost    Database: mysql
+-- ------------------------------------------------------
+-- Server version	5.0.83
+
+USE `brickslopes`;
+
+DROP TABLE IF EXISTS `feedback`;
+
+CREATE TABLE `feedback` (
+  `feedbackId` INT(10) UNSIGNED UNIQUE NOT NULL auto_increment,
+  `userId` INT(20),
+  `email` VARCHAR(255),
+  `feedback` VARCHAR(255),
+  `posted` DATETIME,
+  PRIMARY KEY (`feedbackId`),
+  UNIQUE KEY `feedbackId_UNIQUE` (`feedbackId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='The Feedback Table';

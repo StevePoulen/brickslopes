@@ -39,6 +39,13 @@ i {
     z-index: 5;
 }
 
+.icons-feedback {
+    background-position: sprite-position($icons-sprite, feedback);
+    width: image-width("icons/feedback.png");
+    height: image-height("icons/feedback.png");
+    cursor: pointer;
+}
+
 .eventLocked {
     position: absolute;
     width: 100%;
