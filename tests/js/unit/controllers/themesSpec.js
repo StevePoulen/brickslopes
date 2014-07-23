@@ -37,7 +37,7 @@ describe('controllers', function() {
             });
         });
 
-        describe('Default Values', function() {
+        describe('Defult Values', function() {
             it('should have an eventId variable', function() {
                 expect(scope.eventId).toBe(2);
             });

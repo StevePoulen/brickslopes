@@ -6,6 +6,9 @@
 
 USE `brickslopes`;
 
+DROP TABLE IF EXISTS `gamesConnector`;
+DROP TABLE IF EXISTS `gameAwards`;
+DROP TABLE IF EXISTS `games`;
 DROP TABLE IF EXISTS `feedback`;
 DROP TABLE IF EXISTS `mocs`;
 DROP TABLE IF EXISTS `themeAwards`;

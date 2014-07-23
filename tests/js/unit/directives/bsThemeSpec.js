@@ -7,7 +7,7 @@ describe('directives', function() {
         module(
             'brickSlopes.directives',
             'brickSlopes.services',
-            'app/partials/afol/eventThemesDirective.html'
+            'app/partials/registered/eventThemesDirective.html'
         )
     );
 
@@ -23,8 +23,8 @@ describe('directives', function() {
 
     describe('bsTheme', function() {
         beforeEach(inject(function($compile, $rootScope, $templateCache) {
-            var template = $templateCache.get('app/partials/afol/eventThemesDirective.html');
-            $templateCache.put('partials/afol/eventThemesDirective.html', template);
+            var template = $templateCache.get('app/partials/registered/eventThemesDirective.html');
+            $templateCache.put('partials/registered/eventThemesDirective.html', template);
             scope = $rootScope.$new();
             scope.theme = {
                 'theme': 'Brian',

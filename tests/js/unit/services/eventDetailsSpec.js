@@ -15,23 +15,21 @@ describe('service', function() {
 
     describe('Event Details', function() {
         describe('Get', function() {
-            var mockBackend, loader, data, eventId;
+            var mockBackend, service, data, eventId;
             beforeEach(inject(function(_$httpBackend_, EventDetails) {
                 eventId = 22;
                 mockBackend = _$httpBackend_;
-                loader = EventDetails;
-                mockBackend.expectGET('/controllers/event.php?eventId=22').respond('success');
+                service = EventDetails;
+                mockBackend.expectGET('/controllers/event.php?eventId=22').respond(201);
             }));
 
             it('should get event details', function() {
-                var load = loader.get(eventId);
-
-                load.then(function(_data) {
+                service.query({eventId: eventId}, function(_data) {
                     data = _data;
                 });
 
                 mockBackend.flush();
-                expect(data).toEqualData('success');
+                expect(data).toEqualData([]);
             });
         });
     });

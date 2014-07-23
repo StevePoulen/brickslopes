@@ -3,7 +3,7 @@
 /* jasmine specs for services go here */
 
 describe('service', function() {
-    beforeEach(module('brickSlopes.services'));
+    beforeEach(module('brickSlopes.services', 'brickSlopes'));
 
     beforeEach(function() {
         this.addMatchers({

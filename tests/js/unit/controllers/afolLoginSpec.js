@@ -73,7 +73,7 @@ describe('controllers', function() {
                 }
 
                 scope.submitLogin();
-                mockBackend.expectPOST('/controllers/authentication.php').respond(200, response);
+                mockBackend.expectPOST('/controllers/public/authentication.php').respond(200, response);
                 mockBackend.flush();
             });
 
@@ -131,7 +131,7 @@ describe('controllers', function() {
                 window.sessionStorage.redirectUrl = '/partials/afol/eventMe.html';
 
                 scope.submitLogin();
-                mockBackend.expectPOST('/controllers/authentication.php').respond(200, response);
+                mockBackend.expectPOST('/controllers/public/authentication.php').respond(200, response);
                 mockBackend.flush();
                 expect(location.path()).toBe('/afol/eventMe.html');
                 expect(window.sessionStorage.redirectUrl).toBeUndefined();
@@ -141,7 +141,7 @@ describe('controllers', function() {
         describe('Sign in on failure ', function() {
             it('should submit to login page on failure', function() {
                 scope.submitLogin();
-                mockBackend.expectPOST('/controllers/authentication.php').respond(401);
+                mockBackend.expectPOST('/controllers/public/authentication.php').respond(401);
                 mockBackend.flush();
                 expect(scope.displayErrorMessage).toBe("The email or password you entered is incorrect.");
             });
@@ -242,7 +242,7 @@ describe('controllers', function() {
                 scope.resetPassword();
                 scope.resetPasswordForm = {'$setPristine': function() {}};
                 expect(scope.verifying).toBe(true);
-                mockBackend.expectPUT('/controllers/authentication.php').respond(201);
+                mockBackend.expectPUT('/controllers/public/authentication.php').respond(201);
                 mockBackend.flush();
                 expect(scope.verifying).toBe(false);
                 expect(scope.displayErrorMessage).toBe('');

@@ -1,6 +1,6 @@
 // Demonstrate how to register services
 // In this case it is a simple value service.
-angular.module('brickSlopes.services', [])
+angular.module('brickSlopes.services', ['ngResource'])
 .factory('BrickSlopesText', [ function() {
     var __fontSize = undefined;
     var __fontColor = undefined;
@@ -87,6 +87,15 @@ angular.module('brickSlopes.services', [])
         }
     }
 }])
+.factory('Games', ['$resource', function($resource) {
+    return $resource('/controllers/registered/games.php', { eventId: '@eventId' });
+}])
+.factory('Themes', ['$resource', function($resource) {
+    return $resource('/controllers/themes.php', { eventId: '@eventId' });
+}])
+.factory('EventDetails', ['$resource', function($resource) {
+    return $resource('/controllers/event.php', { eventId: '@eventId' });
+}])
 .factory('EmailUs', ['$q', '$http', function($q, $http) {
     return {
         create: function(emailDTO) {
@@ -97,26 +106,6 @@ angular.module('brickSlopes.services', [])
                     url: '/controllers/emailUs.php',
                     data: emailDTO,
                     headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-                }
-            ).success(function(data, status, headers, config) {
-                delay.resolve(data);
-            }).error(function(data, status, headers, config) {
-                delay.reject(data);
-            });
-
-            return delay.promise;
-        }
-    }
-}])
-.factory('Themes', ['$q', '$http', function($q, $http) {
-    return {
-        get: function(eventId) {
-            var delay= $q.defer();
-            $http (
-                {
-                    method: 'GET',
-                    url: '/controllers/themes.php',
-                    params: {'eventId': eventId}
                 }
             ).success(function(data, status, headers, config) {
                 delay.resolve(data);
@@ -280,26 +269,6 @@ angular.module('brickSlopes.services', [])
 
             return delay.promise;
         },
-    }
-}])
-.factory('EventDetails', ['$q', '$http', function($q, $http) {
-    return {
-        get: function(eventId) {
-            var delay= $q.defer();
-            $http (
-                {
-                    method: 'GET',
-                    url: '/controllers/event.php',
-                    params: {'eventId': eventId}
-                }
-            ).success(function(data, status, headers, config) {
-                delay.resolve(data);
-            }).error(function(data, status, headers, config) {
-                delay.reject(data);
-            });
-
-            return delay.promise;
-        }
     }
 }])
 .factory('EventDates', ['EventDatesAPI', '$q', function(EventDatesAPI, $q) {
@@ -587,7 +556,7 @@ angular.module('brickSlopes.services', [])
             $http (
                 {
                     method: 'GET',
-                    url: '/controllers/eventDates.php'
+                    url: '/controllers/public/eventDates.php'
                 }
             ).success(function(data, status, headers, config) {
                 delay.resolve(data);
@@ -703,7 +672,7 @@ angular.module('brickSlopes.services', [])
             $http (
                 {
                     method: 'POST',
-                    url: '/controllers/authentication.php',
+                    url: '/controllers/public/authentication.php',
                     data: credentials
                 }
             ).success(function(data, status, headers, config) {
@@ -720,7 +689,7 @@ angular.module('brickSlopes.services', [])
             $http (
                 {
                     method: 'PUT',
-                    url: '/controllers/authentication.php',
+                    url: '/controllers/public/authentication.php',
                     data: userDTO
                 }
             ).success(function(data, status, headers, config) {
@@ -737,7 +706,7 @@ angular.module('brickSlopes.services', [])
             $http (
                 {
                     method: 'PATCH',
-                    url: '/controllers/authentication.php',
+                    url: '/controllers/public/authentication.php',
                     data: passwordDTO
                 }
             ).success(function(data, status, headers, config) {

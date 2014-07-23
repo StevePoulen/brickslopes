@@ -18,6 +18,7 @@
             $this->addInitialEvents();
             $this->migrateUsers($this->firstYearEventId);
             $this->addInitialThemes($this->secondYearEventId);
+            $this->addInitialGames($this->secondYearEventId);
             if ($_SERVER['HTTP_HOST'] == 'mybrickslopes.com') {
                 $this->addDummyMocs();
             }
@@ -339,6 +340,55 @@
 
             $this->validatetable('themes', $themesCount);
             $this->validatetable('themeAwards', $themeAwardsCount);
+        }
+
+        private function addInitialGames($eventId) {
+            $gamesObj = new gamesModel();
+            $gameAwardsObj = new gameAwards();
+            $gamesCount = 0;
+            $gameAwardsCount = 0;
+
+            $gamesCollection = array(
+                array(
+                    'game' => 'Blind Man Build',
+                    'description' => 'Build a LEGO Set in pairs.',
+                    'image' => 'https://www.images.com',
+                    'maxParticipants' => '20',
+                    'currentParticipants' => '0',
+                    'openRegistration' => 'YES',
+                    'awards' => array (
+                        'First Place',
+                        'Second Place',
+                        'Third Place'
+                    )
+                ),
+            );
+
+            foreach ($gamesCollection as $gamesMap) {
+                $gameMap = array(
+                    'game' => $gamesMap['game'],
+                    'description' => $gamesMap['description'],
+                    'image' => $gamesMap['image'],
+                    'maxParticipants' => $gamesMap['maxParticipants'],
+                    'currentParticipants' => $gamesMap['currentParticipants'],
+                    'openRegistration' => $gamesMap['openRegistration'],
+                    'eventId' => $eventId
+                );
+                $gameId = $gamesObj->addGameInformation($gameMap);
+                $gamesCount++;
+                $place = 1;
+                foreach ($gamesMap['awards'] as $gameAward) {
+                    $gameAwardMap = array ('award' => $gameAward);
+                    $gameAwardMap['gameId'] = $gameId;
+                    $gameAwardMap['place'] = $place++;
+                    $gameAwardsObj->addGameAwardInformation($gameAwardMap);
+                    $gameAwardsCount++;
+                }
+
+            }
+
+            $this->validatetable('games', $gamesCount);
+            $this->validatetable('gameAwards', $gameAwardsCount);
         }
 
         private function addInitialEvents() {

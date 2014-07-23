@@ -375,7 +375,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         });
     }
 
-    EventDetails.get($scope.eventId).then(function(data) {
+    EventDetails.get({eventId: $scope.eventId}, function(data) {
         $scope.eventDetails=data.data;
         $scope.discountDate = moment($scope.eventDetails.discountDate).format('MMMM Do, YYYY');
     });
@@ -420,7 +420,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         $location.path("/afol/index.html");
     }
 
-    Themes.get($scope.eventId).then(function(data) {
+    Themes.query({eventId: $scope.eventId}, function(data) {
         $scope.themeList = data;
     });
 }])
@@ -560,7 +560,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         return range;
     }
 
-    Themes.get($scope.eventId).then(function(data) {
+    Themes.query({eventId: $scope.eventId}, function(data) {
         $scope.themeList = data;
         $scope.theme = $scope.themeList[0];
         $scope.themeId = $scope.theme.themeId;

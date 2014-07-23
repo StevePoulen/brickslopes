@@ -5,7 +5,7 @@ class AuthenticationTest extends PHPUnit_Framework_TestCase
     public function setUp() 
     {
         $this->userId = null;
-        include_once('controllers/authentication.php');
+        include_once('controllers/public/authentication.php');
     }
 
     public function testAuthenticatedBadMethod() 

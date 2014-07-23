@@ -40,7 +40,7 @@ describe('controllers', function() {
                     'tShirtDiscount': '15.00'
                 }
             };
-            mockBackend.expectGET('/controllers/eventDates.php').respond(201, eventDates);
+            mockBackend.expectGET('/controllers/public/eventDates.php').respond(201, eventDates);
             mockBackend.expectGET('/controllers/event.php?eventId=2').respond(201, response);
             location = $location;
         }));

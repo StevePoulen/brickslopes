@@ -4,6 +4,7 @@
 angular.module('brickSlopes', [
     'ngRoute',
     'ngAnimate',
+    'ngResource',
     'brickSlopes.directives',
     'brickSlopes.services',
     'brickSlopes.controllers'
@@ -15,7 +16,7 @@ config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvide
     .when(
         '/',
         {
-            templateUrl: '/partials/public/index.html',
+            templateUrl: 'partials/public/index.html',
             controller: 'bsIndex'
         }
     )
@@ -160,16 +161,16 @@ config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvide
         }
     )
     .when(
-        '/afol/eventGames.html',
+        '/registered/eventGames.html',
         {
-            templateUrl: '/partials/afol/eventGames.html',
+            templateUrl: '/partials/registered/eventGames.html',
             controller: 'afolIndex'
         }
     )
     .when(
-        '/afol/eventThemes.html',
+        '/registered/eventThemes.html',
         {
-            templateUrl: '/partials/afol/eventThemes.html',
+            templateUrl: '/partials/registered/eventThemes.html',
             controller: 'afolEventThemes'
         }
     )
@@ -204,10 +205,10 @@ config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvide
         }
     )
     .when(
-        '/afol/:eventId/eventMocRegistration.html',
+        '/registered/:eventId/eventMocRegistration.html',
         {
             templateUrl: function(params) {
-                return '/partials/afol/eventMocRegistration.html?eventId='+params.eventId
+                return '/partials/registered/eventMocRegistration.html?eventId='+params.eventId
             },
             controller: 'afolMocRegistration'
         }
@@ -227,9 +228,9 @@ config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvide
         }
     )
     .when(
-        '/afol/eventMocList.html',
+        '/registered/eventMocList.html',
         {
-            templateUrl: '/partials/afol/eventMocList.html',
+            templateUrl: '/partials/registered/eventMocList.html',
             controller: 'afolIndex'
         }
     )

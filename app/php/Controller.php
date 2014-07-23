@@ -70,9 +70,7 @@
             ) {
                 return true;
             } else if (
-                $this->URI == 'controllers/authentication.php' ||
                 preg_match('/controllers\/public\/.*/', $this->URI) ||
-                $this->URI == 'controllers/eventDates.php' ||
                 (
                     $this->URI == 'controllers/user.php' &&
                     $this->isPost()

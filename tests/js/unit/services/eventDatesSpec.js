@@ -19,7 +19,7 @@ describe('service', function() {
             beforeEach(inject(function(_$httpBackend_, EventDatesAPI) {
                 mockBackend = _$httpBackend_;
                 service = EventDatesAPI;
-                mockBackend.expectGET('/controllers/eventDates.php').respond(201);
+                mockBackend.expectGET('/controllers/public/eventDates.php').respond(201);
             }));
 
             it('should get all the dates for all events', function() {
@@ -46,7 +46,7 @@ describe('service', function() {
             var mockBackend, data;
             beforeEach(inject(function(_$httpBackend_) {
                 mockBackend = _$httpBackend_;
-                mockBackend.expectGET('/controllers/eventDates.php').respond(201, eventDates);
+                mockBackend.expectGET('/controllers/public/eventDates.php').respond(201, eventDates);
             }));
 
             it('should get all the events', function() {

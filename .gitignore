@@ -25,6 +25,7 @@ app/lib/jquery.min.js
 app/lib/moment.min.js
 app/images/icons-*
 app/lib/angular-animate.min.js
+app/lib/angular-resource.min.js
 composer.lock
 GoodToKnowDBStuff.txt
 _alterTables.txt

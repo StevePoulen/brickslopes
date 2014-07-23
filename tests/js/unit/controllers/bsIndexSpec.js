@@ -63,7 +63,7 @@ describe('controllers', function() {
             ctrl = $controller('bsIndex', { $scope: scope});
             mockBackend = _$httpBackend_;
 
-            mockBackend.expectGET('/controllers/eventDates.php').respond(201, eventDates);
+            mockBackend.expectGET('/controllers/public/eventDates.php').respond(201, eventDates);
             mockBackend.flush();
         }));
 

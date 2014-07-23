@@ -18,19 +18,38 @@ describe('app', function() {
         });
     });
 
-    describe('Authentication', function() {
-        describe('Login', function() {
-            var scope, location;
-            beforeEach(inject(function($location, $controller, $rootScope) {
-                location = $location;
-                scope = $rootScope.$new();
-                ctrl = $controller('afolMe', { $scope: scope });
-            }));
+    describe('RouteProvider', function() {
+        var rootScope, route, location, mockBackend;
+        beforeEach(inject(function(_$rootScope_, _$route_, _$location_, _$httpBackend_) {
+            mockBackend = _$httpBackend_;
+            route = _$route_;
+            rootScope = _$rootScope_;
+            location = _$location_;
+        }));
 
-            it('should register a user', function() {
-                scope.clickRegistration(15)
-                expect(location.path()).toEqualData('/afol/15/eventRegistration.html');
-            });
+        it('should route to the index page', function() {
+            location.path('/');
+            mockBackend.expectGET('partials/public/index.html').respond(200);
+            rootScope.$digest();
+            expect(route.current.controller).toBe('bsIndex')
+            expect(route.current.templateUrl).toBe('partials/public/index.html')
         });
+
+        it('should route to the tickets page', function() {
+            location.path('/tickets.html');
+            mockBackend.expectGET('partials/public/tickets.html').respond(200);
+            rootScope.$digest();
+            expect(route.current.controller).toBe('bsIndex')
+            expect(route.current.templateUrl).toBe('partials/public/tickets.html')
+        });
+
+        it('should route to the packages page', function() {
+            location.path('/packages.html');
+            mockBackend.expectGET('partials/public/packages.html').respond(200);
+            rootScope.$digest();
+            expect(route.current.controller).toBe('bsIndex')
+            expect(route.current.templateUrl).toBe('partials/public/packages.html')
+        });
+
     });
 });

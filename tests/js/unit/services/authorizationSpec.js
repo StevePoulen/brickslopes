@@ -24,7 +24,7 @@ describe('service', function() {
                     email: 'brian@bs.com',
                     password: 'LEGO'
                 };
-                mockBackend.expectPOST('/controllers/authentication.php', payload).respond('success');
+                mockBackend.expectPOST('/controllers/public/authentication.php', payload).respond('success');
             }));
 
             it('should register a user', function() {
@@ -48,7 +48,7 @@ describe('service', function() {
                 };
                 mockBackend = _$httpBackend_;
                 loader = Auth;
-                mockBackend.expectPUT('/controllers/authentication.php', credentials).respond('success');
+                mockBackend.expectPUT('/controllers/public/authentication.php', credentials).respond('success');
             }));
 
             it('should register a user', function() {
@@ -69,7 +69,7 @@ describe('service', function() {
                 credentials = {'oldPassword': 'oldSecure', 'newPassword': 'newSecure'};
                 mockBackend = _$httpBackend_;
                 loader = Auth;
-                mockBackend.expectPATCH('/controllers/authentication.php', credentials).respond('success');
+                mockBackend.expectPATCH('/controllers/public/authentication.php', credentials).respond('success');
             }));
 
             it('should update a user\'s password', function() {

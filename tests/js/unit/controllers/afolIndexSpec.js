@@ -162,7 +162,7 @@ describe('controllers', function() {
             mockBackend = _$httpBackend_;
             service = MocDetails;
 
-            mockBackend.expectGET('/controllers/eventDates.php').respond(201, eventDates);
+            mockBackend.expectGET('/controllers/public/eventDates.php').respond(201, eventDates);
             mockBackend.expectGET('/controllers/eventRegistration.php').respond(201, eventRegistration);
             mockBackend.expectGET('/controllers/registered/mocs.php?eventId=2').respond(mocs);
             mockBackend.expectGET('/controllers/registeredAfols.php?eventId=2').respond(201, registeredAfols);

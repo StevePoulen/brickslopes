@@ -4,9 +4,11 @@ module.exports = function(config){
 
     files : [
       'app/lib/**/angular.min.js',
+      'app/lib/**/angular-resource.min.js',
       'app/lib/**/angular-route.min.js',
       'tests/js/lib/angular-mocks.min.js',
       'app/partials/afol/**/*.html',
+      'app/partials/registered/**/*.html',
       'app/partials/directives/**/*.html',
       'app/lib/**/*.js',
       'app/js/**/*.js',
@@ -30,11 +32,13 @@ module.exports = function(config){
       'karma-ng-html2js-preprocessor',
       'karma-chrome-launcher',
       'karma-jasmine',
+      'karma-commonjs',
       'jasmine-jquery'
    ],
 
     preprocessors : {
         'app/partials/afol/**/*.html': 'html2js',
+        'app/partials/registered/**/*.html': 'html2js',
         'app/partials/directives/**/*.html': 'html2js'
     }
 })}

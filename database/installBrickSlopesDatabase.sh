@@ -131,6 +131,14 @@ themeTableCreation() {
     incStep
 }
 
+gameTableCreation() {
+    printf "\nSTEP $STEP_COUNTER: Create the 'BrickSlopes' game table?\n";
+    echo "* WARNING * This is delete the current table";
+    echo -n "Create table? (Y\n) [ENTER]: "; 
+    read CREATE_GAME_TABLE;
+    incStep
+}
+
 eventTableCreation() {
     printf "\nSTEP $STEP_COUNTER: Create the 'BrickSlopes' event table?\n";
     echo "* WARNING * This is delete the current table";
@@ -194,6 +202,7 @@ userInput() {
         themeTableCreation;
         mocTableCreation;
         feedbackTableCreation;
+        gameTableCreation;
     fi
 }
 
@@ -248,6 +257,13 @@ createThemesTable() {
     if [[ "$CREATE_THEME_TABLE" == "Y" || isDropAllTables ]]
     then
         executeDBStatement "07_dbCreateThemeTable.txt"
+    fi
+}
+
+createGamesTable() {
+    if [[ "$CREATE_GAME_TABLE" == "Y" || isDropAllTables ]]
+    then
+        executeDBStatement "11_dbCreateGamesTable.txt"
     fi
 }
 
@@ -308,3 +324,4 @@ createThemesTable;
 createRegistrationLineItemTable;
 createMocTable;
 createFeedbackTable;
+createGamesTable;

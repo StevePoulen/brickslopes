@@ -82,7 +82,7 @@ class ControllerTest extends PHPUnit_Framework_TestCase
     public function testPublicRequestNoAuthenticationHeader() 
     {
         $GLOBALS['authenticationRequest'] = false;
-        $_SERVER['REQUEST_URI'] = "/controllers/eventDates.php";
+        $_SERVER['REQUEST_URI'] = "/controllers/public/eventDates.php";
         $this->controller = new Controller();
         $this->controller->invoke();
         $this->assertEquals(http_response_code(), 405);

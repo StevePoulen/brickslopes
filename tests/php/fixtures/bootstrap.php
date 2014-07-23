@@ -28,6 +28,7 @@ include join('/', array(__DIR__, '..', 'fixtures', 'mocks', 'UsersMock.php'));
 include join('/', array(__DIR__, '..', 'fixtures', 'mocks', 'EventsMock.php'));
 include join('/', array(__DIR__, '..', 'fixtures', 'mocks', 'EventDatesMock.php'));
 include join('/', array(__DIR__, '..', 'fixtures', 'mocks', 'ThemesMock.php'));
+include join('/', array(__DIR__, '..', 'fixtures', 'mocks', 'GamesMock.php'));
 include join('/', array(__DIR__, '..', 'fixtures', 'mocks', 'FeedbackMock.php'));
 
 /**

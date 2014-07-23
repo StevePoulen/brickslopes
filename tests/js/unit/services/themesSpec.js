@@ -28,9 +28,7 @@ describe('service', function() {
             }));
 
             it('should get a list of themes and awards for an event', function() {
-                var load = loader.get(2);
-
-                load.then(function(_data) {
+                var load = loader.get({eventId: 2}, function(_data) {
                     data = _data;
                 });
 

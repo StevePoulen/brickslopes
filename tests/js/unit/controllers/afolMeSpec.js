@@ -129,7 +129,7 @@ describe('controllers', function() {
 
         describe('Digest with all add-ons', function() {
             beforeEach(function() {
-                mockBackend.expectGET('/controllers/eventDates.php').respond(eventDates);
+                mockBackend.expectGET('/controllers/public/eventDates.php').respond(eventDates);
                 mockBackend.expectGET('/controllers/eventRegistration.php').respond(eventRegistration);
                 mockBackend.expectGET('/controllers/registered/mocs.php?eventId=2').respond(200, mocs);
                 mockBackend.expectGET('/controllers/user.php').respond(200, singleUser);
@@ -162,11 +162,11 @@ describe('controllers', function() {
                 scope.changePassword();
                 scope.changePasswordForm = {'$setPristine': function() {}};
                 expect(scope.verifying).toBe(true);
-                mockBackend.expectGET('/controllers/eventDates.php').respond(eventDates);
+                mockBackend.expectGET('/controllers/public/eventDates.php').respond(eventDates);
                 mockBackend.expectGET('/controllers/eventRegistration.php').respond(eventRegistration);
                 mockBackend.expectGET('/controllers/registered/mocs.php?eventId=2').respond(200, mocs);
                 mockBackend.expectGET('/controllers/user.php').respond(200, singleUser);
-                mockBackend.expectPATCH('/controllers/authentication.php').respond(201);
+                mockBackend.expectPATCH('/controllers/public/authentication.php').respond(201);
                 mockBackend.flush();
                 expect(scope.verifying).toBe(false);
                 expect(scope.displayMessage).toBe('Password Changed');
@@ -183,11 +183,11 @@ describe('controllers', function() {
                 scope.changePassword();
                 scope.changePasswordForm = {'$setPristine': function() {}};
                 expect(scope.verifying).toBe(true);
-                mockBackend.expectGET('/controllers/eventDates.php').respond(eventDates);
+                mockBackend.expectGET('/controllers/public/eventDates.php').respond(eventDates);
                 mockBackend.expectGET('/controllers/eventRegistration.php').respond(eventRegistration);
                 mockBackend.expectGET('/controllers/registered/mocs.php?eventId=2').respond(200, mocs);
                 mockBackend.expectGET('/controllers/user.php').respond(200, singleUser);
-                mockBackend.expectPATCH('/controllers/authentication.php').respond(412);
+                mockBackend.expectPATCH('/controllers/public/authentication.php').respond(412);
                 mockBackend.flush();
                 expect(scope.verifying).toBe(false);
                 expect(scope.displayMessage).toBe('The password you entered is incorrect.');
