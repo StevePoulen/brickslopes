@@ -123,6 +123,13 @@ textarea::-moz-placeholder {
     padding-top: 6px;
 }
 
+.actionButtonGames {
+    @extend .actionButton;
+    height: 30px;
+    width: 75px;
+    padding-top: 6px;
+}
+
 .actionButtonTiny {
     @extend .actionButton;
     width: 45px;

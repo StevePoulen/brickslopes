@@ -410,6 +410,40 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
 
 
 }])
+.controller('afolEventGames', ['$scope', '$location', 'Games', function($scope, $location, Games) {
+    $("#splashPageCTA").hide();
+    $scope.eventId = 2;
+    $scope.gameList = [];
+    $scope.showModal = false;
+    $scope.verifying = false;
+
+    $scope.closeDialog = function() {
+        $location.path("/afol/index.html");
+    }
+
+    Games.getList($scope.eventId).then(function(data) {
+        $scope.gameList = data;
+        _.each($scope.gameList, function(game, index) {
+            game.registration = (game.openRegistration === 'YES' ? 'Open' : 'Closed');
+            game.showCTAButton = (game.openRegistration === 'YES');
+        })
+    });
+
+    $scope.clickGameRegistration = function(myGameId) {
+        $scope.verifying = true;
+        Games.create({eventId: $scope.eventId, gameId: myGameId}).then(function(status) {
+            if (status === 201) {
+                $scope.showModal = true;
+                $scope.verifying = false;
+            }
+        }, function(status) {
+            $scope.verifying = false;
+            if (status === 400) {
+                $scope.displayErrorMessage = "The Game travails.";
+            }
+        });
+    }
+}])
 .controller('afolEventThemes', ['$scope', '$location', 'Themes', function($scope, $location, Themes) {
     $("#splashPageCTA").hide();
     $scope.eventId = 2;
@@ -484,7 +518,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
 
     $scope.clickMocRegistration = function(eventId) {
         if (UserDetails.isUserRegistered()) {
-            $location.path("/afol/" + eventId + "/eventMocRegistration.html");
+            $location.path("/registered/" + eventId + "/eventMocRegistration.html");
         }
     }
 
@@ -833,26 +867,25 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
 
     $scope.clickThemes = function() {
         if (UserDetails.isUserRegistered()) {
-            $location.path("/afol/eventThemes.html");
+            $location.path("/registered/eventThemes.html");
         }
     }
 
     $scope.clickGames = function() {
         if (UserDetails.isUserRegistered()) {
-            //$location.path("/afol/eventGames.html");
-            $location.path("/afol/comingSoon.html");
+            $location.path("/registered/eventGames.html");
         }
     }
 
     $scope.clickMocRegistration = function() {
         if (UserDetails.isUserRegistered()) {
-            $location.path("/afol/" + $scope.eventId + "/eventMocRegistration.html");
+            $location.path("/registered/" + $scope.eventId + "/eventMocRegistration.html");
         }
     }
 
     $scope.clickMocList = function() {
         if (UserDetails.isUserRegistered()) {
-            $location.path("/afol/eventMocList.html");
+            $location.path("/registered/eventMocList.html");
         }
     }
 

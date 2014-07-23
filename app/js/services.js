@@ -87,8 +87,54 @@ angular.module('brickSlopes.services', ['ngResource'])
         }
     }
 }])
-.factory('Games', ['$resource', function($resource) {
-    return $resource('/controllers/registered/games.php', { eventId: '@eventId' });
+.factory('Games', ['$q', '$http', function($q, $http) {
+    var gameList = undefined;
+
+    return {
+        getCount: function(eventId) {
+            if (gameList) {
+                return $q.when(gameList.length);
+            } else {
+                return $q.when(this.getList(eventId).then(function(data) {
+                    return gameList.length;
+                }));
+            }
+        },
+
+        getList: function(eventId) {
+            if (gameList) {
+                return $q.when(gameList);
+            } else {
+                return $q.when($http (
+                    {
+                        method: 'GET',
+                        url: '/controllers/registered/games.php',
+                        params: {eventId: eventId}
+                    }
+                ).then(function(data) {
+                    gameList = data.data;
+                    return gameList;
+                }));
+            }
+        },
+
+        create: function(gameDTO) {
+            var delay= $q.defer();
+            $http (
+                {
+                    method: 'POST',
+                    url: '/controllers/registered/games.php',
+                    data: gameDTO
+                }
+            ).success(function(data, status, headers, config) {
+                delay.resolve(status);
+            }).error(function(data, status, headers, config) {
+                delay.reject(status);
+            });
+
+            return delay.promise;
+        }
+    };
 }])
 .factory('Themes', ['$resource', function($resource) {
     return $resource('/controllers/themes.php', { eventId: '@eventId' });

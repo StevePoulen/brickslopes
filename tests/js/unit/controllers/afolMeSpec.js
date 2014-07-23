@@ -66,7 +66,7 @@ describe('controllers', function() {
             it('should redirect to the moc registration page', function() {
                 window.sessionStorage.registered = 'YES';
                 scope.clickMocRegistration(5);
-                expect(location.path()).toBe('/afol/5/eventMocRegistration.html');
+                expect(location.path()).toBe('/registered/5/eventMocRegistration.html');
             });
         });
 

@@ -23,29 +23,44 @@ describe('service', function() {
                     'eventId': '2'
                 };
                 mockBackend = _$httpBackend_;
+                mockBackend.expectGET('/controllers/registered/games.php?eventId=2').respond(201, gameDetails);
                 service = Games;
             }));
 
             it('should get a list of games and awards for an event', function() {
-                mockBackend.expectGET('/controllers/registered/games.php?eventId=2').respond(201, gameDetails);
-                var load = service.get({eventId: 2}, function(_data) {
+                var load = service.getList(2);
+
+                load.then(function(_data) {
                     data = _data;
                 });
 
                 mockBackend.flush();
                 expect(data).toEqualData(gameDetails);
             });
+        });
+
+        describe('Create', function() {
+            var mockBackend, service, data, gameDetails, eventId, payload;
+            beforeEach(inject(function(_$httpBackend_, Games) {
+                eventId = 2;
+                mockBackend = _$httpBackend_;
+                payload = {
+                    eventId: 2, 
+                    gameId: 2
+                };
+                mockBackend.expectPOST('/controllers/registered/games.php', payload).respond(201);
+                service = Games;
+            }));
 
             it('should get a list of games and awards for an event', function() {
-                mockBackend.expectGET('/controllers/registered/games.php?eventId=2').respond(403, gameDetails);
-                var load = service.get({eventId: 2}, function(_data) {
-                    data = "this should never happen";
-                }, function(_data) {
-                    data = _data.status;
+                var load = service.create(payload);
+
+                load.then(function(_data) {
+                    data = _data;
                 });
 
                 mockBackend.flush();
-                expect(data).toBe(403);
+                expect(data).toEqualData(201);
             });
         });
     });

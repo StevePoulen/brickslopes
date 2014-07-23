@@ -33,7 +33,7 @@ class gamesModel extends db {
             WHERE
                 g.eventId = '{$this->escapeCharacters($data['eventId'])}'
                 AND g.gameId = ga.gameId
-                ORDER by g.game, aa.place
+                ORDER by g.game, ga.place
         ;
       ";
     }

@@ -362,6 +362,18 @@
                         'Third Place'
                     )
                 ),
+                array(
+                    'game' => 'Speed Build',
+                    'description' => 'Build a LEGO Set as fast as possible.',
+                    'image' => 'https://www.images.com',
+                    'maxParticipants' => '10',
+                    'currentParticipants' => '10',
+                    'openRegistration' => 'NO',
+                    'awards' => array (
+                        'First Place',
+                        'Second Place'
+                    )
+                ),
             );
 
             foreach ($gamesCollection as $gamesMap) {
