@@ -60,7 +60,7 @@
         }
 
         private function isPost() {
-            return (ISSET($__SERVER['REQUEST_METHOD']) ? $_SERVER['REQUEST_METHOD'] === 'POST' : false);
+            return (ISSET($_SERVER['REQUEST_METHOD']) ? $_SERVER['REQUEST_METHOD'] === 'POST' : false);
         }
 
         private function isWhiteList() {
