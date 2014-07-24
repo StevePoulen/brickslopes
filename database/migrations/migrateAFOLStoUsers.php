@@ -329,7 +329,10 @@
                 $themesCount++;
                 $place = 1;
                 foreach ($themesMap['awards'] as $themeAward) {
-                    $themeAwardMap = array ('award' => $themeAward);
+                    $themeAwardMap = array (
+                        'award' => $themeAward,
+                        'eventId' => $eventId
+                    );
                     $themeAwardMap['themeId'] = $themeId;
                     $themeAwardMap['place'] = $place++;
                     $themeAwardsObj->addThemeAwardInformation($themeAwardMap);
@@ -350,8 +353,141 @@
 
             $gamesCollection = array(
                 array(
-                    'game' => 'Blind Man Build',
-                    'description' => 'Build a LEGO Set in pairs.',
+                    'game' => 'Swap Meet',
+                    'description' => 'Bring as many bags of LEGO bricks as you want - any color, size, amount, quality, etc. -- and barter with other AFOLS. <p>The risks are high! What do you want and what are you willing to trade?',
+                    'image' => 'https://www.images.com',
+                    'maxParticipants' => '50',
+                    'currentParticipants' => '0',
+                    'openRegistration' => 'YES'
+                ),
+                array(
+                    'game' => 'Skyscaper',
+                    'description' => 'Build the tallest LEGO-only structure out of the "Free-Play Bricks" in under 25 minutes. <p>The structure has to be able to stand by itself for 5 minutes at the end of the building. <p>After the 5 minutes, the last tallest standing structure wins!',
+                    'image' => 'https://www.images.com',
+                    'maxParticipants' => '50',
+                    'currentParticipants' => '0',
+                    'openRegistration' => 'YES',
+                    'awards' => array (
+                        'First Place'
+                    )
+                ),
+                array(
+                    'game' => 'Draft Small Money - $15',
+                    'description' => 'Each participant pays $15 to divide up $300 worth of LEGO sets. <p>The parts are separated into similar parts then each participant, in order picks an entire pile of similar parts.',
+                    'image' => 'https://www.images.com',
+                    'maxParticipants' => '20',
+                    'currentParticipants' => '0',
+                    'openRegistration' => 'YES'
+                ),
+                array(
+                    'game' => 'Draft Big Money - $25',
+                    'description' => 'Each participant pays $25 to divide up $500 worth of LEGO sets. <p>The parts are separated into similar parts then each participant, in order picks an entire pile of similar parts.',
+                    'image' => 'https://www.images.com',
+                    'maxParticipants' => '20',
+                    'currentParticipants' => '0',
+                    'openRegistration' => 'YES'
+                ),
+                array(
+                    'game' => 'LEGO Poker',
+                    'description' => 'Bring your bricks, shades and poker face.<p>This is the traditional Texas-style Hold\'em -- just without the money!',
+                    'image' => 'https://www.images.com',
+                    'maxParticipants' => '50',
+                    'currentParticipants' => '0',
+                    'openRegistration' => 'YES',
+                    'awards' => array (
+                        'First Place',
+                        'Second Place',
+                        'Third Place'
+                    )
+                ),
+                array(
+                    'game' => 'Build in a Bag',
+                    'description' => 'Each participant must build a LEGO set while it is still in the poly-bag. <p>This is an individual game and the first three people to "CORRECTLY" finish the set win.',
+                    'image' => 'https://www.images.com',
+                    'maxParticipants' => '10',
+                    'currentParticipants' => '0',
+                    'openRegistration' => 'YES',
+                    'awards' => array (
+                        'First Place',
+                        'Second Place',
+                        'Third Place'
+                    )
+                ),
+                array(
+                    'game' => '101 Bricks',
+                    'description' => 'Each participant brings 101 of their best LEGO bricks to build four different items pulled randomly selected during the competition. <p>Select your 101 bricks cautiously because the item-to-build might be a castle, alien, women\'s shoe or a horse. A judge will select a winner from each category. <p>The four category winners will compete in the final round.',
+                    'image' => 'https://www.images.com',
+                    'maxParticipants' => '50',
+                    'currentParticipants' => '0',
+                    'openRegistration' => 'YES',
+                    'awards' => array (
+                        'First Place',
+                        'Second Place',
+                        'Third Place'
+                    )
+                ),
+                array(
+                    'game' => 'Pimp out Kevin',
+                    'description' => 'Bring your favorite accessories to pimp out your Kevin Hinckle mini-fig. <p>Every part in the LEGO universe is available to use during this competition. <p>Rumor has it that Kevin looks best as a blonde in stiletto heels.',
+                    'image' => 'https://www.images.com',
+                    'maxParticipants' => '20',
+                    'currentParticipants' => '0',
+                    'openRegistration' => 'YES',
+                    'awards' => array (
+                        'First Place',
+                        'Second Place',
+                        'Third Place'
+                    )
+                ),
+                array(
+                    'game' => 'Cupcake Catapult',
+                    'description' => 'Build a LEGO Catapult to successfully throw a standard cupcake the farthest distance. <p>No other rules apply other than everything must be LEGO bricks -- expect the cupcake. <p>The cupcake will be provided by BrickSlopes.',
+                    'image' => 'https://www.images.com',
+                    'maxParticipants' => '20',
+                    'currentParticipants' => '0',
+                    'openRegistration' => 'YES',
+                    'awards' => array (
+                        'First Place',
+                        'Second Place',
+                        'Third Place'
+                    )
+                ),
+                array(
+                    'game' => 'Dirty Brickster',
+                    'description' => 'Each participant brings an unmarked-brown paper bag full of LEGO bricks. <p>These LEGO bricks can be of any condition, color, size, etc. The only rule is they must be LEGO. <p>The bags are placed in the center of the room on a table. A participant is randomly selected to go first, second and so forth. Each participant may then decide to pick a bag from the table or from someone else with a bag.',
+                    'image' => 'https://www.images.com',
+                    'maxParticipants' => '50',
+                    'currentParticipants' => '0',
+                    'openRegistration' => 'YES',
+                ),
+                array(
+                    'game' => 'Wacky Racers',
+                    'description' => 'Each participant builds a non-powered racer to go the farthest distance. <p>The racers are released on a four foot high and eight foot long plank of wood. <p>The racers can not have any external power sources. <p>The wacky racer to go the farthest distance wins.',
+                    'image' => 'https://www.images.com',
+                    'maxParticipants' => '50',
+                    'currentParticipants' => '0',
+                    'openRegistration' => 'YES',
+                    'awards' => array (
+                        'First Place',
+                        'Second Place',
+                        'Third Place'
+                    )
+                ),
+                array(
+                    'game' => '2 Team Blind Build',
+                    'description' => 'Two teams square-off to correctly build a LEGO Set. <p>Each team is split into two mini-teams. One mini-team can only see the bricks. The other mini-team can only see the instructions. <p>The two mini-teams must communicate with each other using only words to build the set. <p>The first team to correctly build the set wins.',
+                    'image' => 'https://www.images.com',
+                    'maxParticipants' => '20',
+                    'currentParticipants' => '0',
+                    'openRegistration' => 'YES',
+                    'awards' => array (
+                        'First Place',
+                        'Second Place'
+                    )
+                ),
+                array(
+                    'game' => 'Blind Build',
+                    'description' => 'Ten teams of two participants square-off to correctly build a LEGO Set. <p>One team member can only see the bricks. The other team member can only see the instructions. <p>The two individuals must communicate with each other using only words to build the set. <p>The first team to correctly build the set wins.',
                     'image' => 'https://www.images.com',
                     'maxParticipants' => '20',
                     'currentParticipants' => '0',
@@ -364,14 +500,24 @@
                 ),
                 array(
                     'game' => 'Speed Build',
-                    'description' => 'Build a LEGO Set as fast as possible.',
+                    'description' => 'First person to correctly build a LEGO Set wins.',
                     'image' => 'https://www.images.com',
                     'maxParticipants' => '10',
                     'currentParticipants' => '10',
                     'openRegistration' => 'NO',
                     'awards' => array (
-                        'First Place',
-                        'Second Place'
+                        'First Place'
+                    )
+                ),
+                array(
+                    'game' => 'Team Speed Build',
+                    'description' => 'First team to correctly build a LEGO Set wins.',
+                    'image' => 'https://www.images.com',
+                    'maxParticipants' => '20',
+                    'currentParticipants' => '10',
+                    'openRegistration' => 'NO',
+                    'awards' => array (
+                        'First Place'
                     )
                 ),
             );
@@ -389,12 +535,17 @@
                 $gameId = $gamesObj->addGameInformation($gameMap);
                 $gamesCount++;
                 $place = 1;
-                foreach ($gamesMap['awards'] as $gameAward) {
-                    $gameAwardMap = array ('award' => $gameAward);
-                    $gameAwardMap['gameId'] = $gameId;
-                    $gameAwardMap['place'] = $place++;
-                    $gameAwardsObj->addGameAwardInformation($gameAwardMap);
-                    $gameAwardsCount++;
+                if (ISSET($gamesMap['awards'])) {
+                    foreach ($gamesMap['awards'] as $gameAward) {
+                        $gameAwardMap = array (
+                            'award' => $gameAward,
+                            'eventId' => $eventId
+                        );
+                        $gameAwardMap['gameId'] = $gameId;
+                        $gameAwardMap['place'] = $place++;
+                        $gameAwardsObj->addGameAwardInformation($gameAwardMap);
+                        $gameAwardsCount++;
+                    }
                 }
 
             }

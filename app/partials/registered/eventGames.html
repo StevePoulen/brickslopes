@@ -11,7 +11,7 @@
         <div ng-class="{evenRow: $even}" ng-repeat="game in gameList | filter:searchText:strict | orderBy:'displayName'">
             <div class="game">
                 <div ng-class="{title: $even, titleRight: !$even}"><bs-text text="{{game.game}}" font-size=2></bs-text></div>
-                <div ng-class="{description: $even, descriptionRight: !$even}" ng-bind="game.description"></div>
+                <div ng-class="{description: $even, descriptionRight: !$even}" ng-bind-html="game.description"></div>
                 <div ng-class="{image: $even, imageRight: !$even}"><img class="imageSize" ng-src="game.image"></div>
                 <div ng-class="{cta: $even, ctaRight: !$even}">
                     <div ng-class="{maxParticipants: $even, maxParticipantsRight: !$even}"> 
@@ -28,7 +28,7 @@
                     </div>
                     <div ng-show="game.showCTAButton" class="registrationButton">
                         <div class="actionButtonGames" ng-click="clickGameRegistration()">
-                            <bs-text text="Play !" font-color=white font-size=1.25></bs-text>
+                            <bs-text text="Play!" font-color=white font-size=1.25></bs-text>
                         </div>
                     </div>
                     <div class="awards">

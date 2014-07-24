@@ -87,7 +87,7 @@ angular.module('brickSlopes.services', ['ngResource'])
         }
     }
 }])
-.factory('Games', ['$q', '$http', function($q, $http) {
+.factory('Games', ['$q', '$http', '$sce', function($q, $http, $sce) {
     var gameList = undefined;
 
     return {
@@ -113,6 +113,11 @@ angular.module('brickSlopes.services', ['ngResource'])
                     }
                 ).then(function(data) {
                     gameList = data.data;
+                    _.each(gameList, function(game, index) {
+                        game.description = $sce.trustAsHtml(game.description);
+                        game.registration = (game.openRegistration === 'YES' ? 'Open' : 'Closed');
+                        game.showCTAButton = (game.openRegistration === 'YES');
+                    })
                     return gameList;
                 }));
             }
@@ -136,8 +141,37 @@ angular.module('brickSlopes.services', ['ngResource'])
         }
     };
 }])
-.factory('Themes', ['$resource', function($resource) {
-    return $resource('/controllers/themes.php', { eventId: '@eventId' });
+.factory('Themes', ['$q', '$http', function($q, $http) {
+    var themeList = undefined;
+
+    return {
+        getCount: function(eventId) {
+            if (themeList) {
+                return $q.when(themeList.length);
+            } else {
+                return $q.when(this.getList(eventId).then(function(data) {
+                    return themeList.length;
+                }));
+            }
+        },
+
+        getList: function(eventId) {
+            if (themeList) {
+                return $q.when(themeList);
+            } else {
+                return $q.when($http (
+                    {
+                        method: 'GET',
+                        url: '/controllers/registered/themes.php',
+                        params: {eventId: eventId}
+                    }
+                ).then(function(data) {
+                    themeList = data.data;
+                    return themeList;
+                }));
+            }
+        }
+    }
 }])
 .factory('EventDetails', ['$resource', function($resource) {
     return $resource('/controllers/event.php', { eventId: '@eventId' });

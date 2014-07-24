@@ -8,6 +8,7 @@ var games = [
         "maxParticipants": "20",
         "currentParticipants": "0",
         "openRegistration": "YES",
+        "display": "YES",
         "awards": [
             {
                 "award": "First Place",
@@ -32,6 +33,7 @@ var games = [
         "maxParticipants": "10",
         "currentParticipants": "10",
         "openRegistration": "NO",
+        "display": "NO",
         "awards": [
             {
                 "award": "First Place",

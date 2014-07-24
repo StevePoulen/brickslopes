@@ -5,7 +5,6 @@ var showAfolLogin = false;
 /* Controllers */
 angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
 .controller('bsIndex', ['$scope', '$location', 'EventDates', function($scope, $location, EventDates) {
-    $("#splashPageCTA").show(500);
     $scope.eventYear = '2014';
     $scope.publicEventDates = undefined;
     $scope.publicDateList = [];
@@ -31,7 +30,6 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     }
 }])
 .controller('bsFeedback', ['$scope', 'Feedback', function($scope, Feedback) {
-    $("#splashPageCTA").show(500);
     $scope.feedbackOpen = false;
     setDefaultFeedbackVariables('D@rKGr3y');
     $scope.verifying = false;
@@ -79,7 +77,6 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     }
 }])
 .controller('emailUs', ['$scope', 'EmailUs', function($scope, EmailUs) {
-    $("#splashPageCTA").show(500);
     setDefaultScopeVariables("LeGo1");
     $scope.timer = false;
     $scope.verifying = false;
@@ -157,7 +154,6 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     }
 }])
 .controller('afolLogin', ['$scope', '$location', 'Auth', '$window', 'UserDetails', function($scope, $location, Auth, $window, UserDetails) {
-    $("#splashPageCTA").hide(500);
     $scope.showLogin = true;
     $scope.verifying = false;
     $scope.showResetPassword = false;
@@ -249,7 +245,6 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     }
 }])
 .controller('afolEventPayment', ['$scope', '$location', 'RegistrationLineItems', '$http', function($scope, $location, RegistrationLineItems, $http) {
-    $("#splashPageCTA").hide();
     $scope.registrationLineItems = undefined;
     $scope.eventId = 2;
     $scope.totalAmount = 0;
@@ -293,7 +288,6 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     }
 }])
 .controller('afolEventRegistration', ['$scope', '$location', 'EventDetails', 'EventRegistration', '$route', 'EventDates', function($scope, $location, EventDetails, eventRegistration, $route, EventDates) {
-    $("#splashPageCTA").hide();
     $scope.verifying = false;
     $scope.displayMessage = "";
     $scope.success = true;
@@ -411,7 +405,6 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
 
 }])
 .controller('afolEventGames', ['$scope', '$location', 'Games', function($scope, $location, Games) {
-    $("#splashPageCTA").hide();
     $scope.eventId = 2;
     $scope.gameList = [];
     $scope.showModal = false;
@@ -423,10 +416,6 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
 
     Games.getList($scope.eventId).then(function(data) {
         $scope.gameList = data;
-        _.each($scope.gameList, function(game, index) {
-            game.registration = (game.openRegistration === 'YES' ? 'Open' : 'Closed');
-            game.showCTAButton = (game.openRegistration === 'YES');
-        })
     });
 
     $scope.clickGameRegistration = function(myGameId) {
@@ -445,7 +434,6 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     }
 }])
 .controller('afolEventThemes', ['$scope', '$location', 'Themes', function($scope, $location, Themes) {
-    $("#splashPageCTA").hide();
     $scope.eventId = 2;
     $scope.themeList = [];
 
@@ -454,12 +442,11 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         $location.path("/afol/index.html");
     }
 
-    Themes.query({eventId: $scope.eventId}, function(data) {
+    Themes.getList($scope.eventId).then(function(data) {
         $scope.themeList = data;
     });
 }])
 .controller('afolMe', ['$scope', '$location', 'Auth', 'EventRegistration', 'EventDates', 'UserDetails', 'MocDetails', function($scope, $location, Auth, EventRegistration, EventDates, UserDetails, MocDetails) {
-    $("#splashPageCTA").hide();
     $scope.verifying = false;
     $scope.displayMessage = "";
     $scope.timer = false;
@@ -557,7 +544,6 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     });
 }])
 .controller('afolMocRegistration', ['$scope', '$location', '$window', 'Themes', 'MocDetails', '$route', function($scope, $location, $window, Themes, MocDetails, $route) {
-    $("#splashPageCTA").hide();
     $scope.firstName = $window.sessionStorage.firstName;
     $scope.lastName = $window.sessionStorage.lastName;
     setDefaultScopeVariables();
@@ -594,7 +580,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         return range;
     }
 
-    Themes.query({eventId: $scope.eventId}, function(data) {
+    Themes.getList($scope.eventId).then(function(data) {
         $scope.themeList = data;
         $scope.theme = $scope.themeList[0];
         $scope.themeId = $scope.theme.themeId;
@@ -635,7 +621,6 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     }
 }])
 .controller('afolEditProfile', ['$scope', '$location', 'UserDetails', '$window', function($scope, $location, UserDetails, $window) {
-    $("#splashPageCTA").hide();
     $scope.userObject = undefined;
     $scope.verifying = false;
     $scope.displayErrorMessage = "";
@@ -679,7 +664,6 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     });
 }])
 .controller('adminEmail', ['$scope', '$location', '$route', 'GetEmailHtml', function($scope, $location, $route, GetEmailHtml) {
-    $("#splashPageCTA").hide();
     $scope.type = "/controllers/admin/sendEmail.php?";
     $scope.type += "type=" + $route.current.params.emailType;
     $scope.type += "&userId=not_needed";
@@ -689,7 +673,6 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     }
 }])
 .controller('afolAdmin', ['$scope', '$location', 'UserDetails', 'RegisteredAfols', 'MocDetails', function($scope, $location, UserDetails, RegisteredAfols, MocDetails) {
-    $("#splashPageCTA").hide();
     $scope.userCount = 0;
     $scope.registeredCount = 0;
     $scope.mocCount = 0;
@@ -740,7 +723,6 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     }
 }])
 .controller('eventAfols', ['$scope', 'RegisteredAfols','$location', function($scope, RegisteredAfols, $location) {
-    $("#splashPageCTA").hide();
     $scope.registeredAfols = undefined;
     $scope.eventId = 2;
     $scope.eventName = undefined;
@@ -755,7 +737,6 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     }
 }])
 .controller('adminRegisteredMocs', ['$scope', 'MocDetails', '$location', function($scope, MocDetails, $location) {
-    $("#splashPageCTA").hide();
     $scope.registeredMocs = undefined;
     $scope.predicate = 'firstName';
     $scope.reverse = false;
@@ -770,7 +751,6 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     }
 }])
 .controller('adminFeedback', ['$scope', 'Feedback', '$location', function($scope, Feedback, $location) {
-    $("#splashPageCTA").hide();
     $scope.allFeedback = undefined;
     $scope.predicate = 'posted';
     $scope.reverse = false;
@@ -784,7 +764,6 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     }
 }])
 .controller('adminRegisteredUsers', ['$scope', 'UserDetails', '$location', function($scope, UserDetails, $location) {
-    $("#splashPageCTA").hide();
     $scope.registeredUsers = undefined;
     $scope.predicate = 'firstName';
     $scope.reverse = false;
@@ -798,7 +777,6 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     }
 }])
 .controller('adminRegisteredAfols', ['$scope', 'RegisteredAfols', 'RegistrationLineItems', '$location', function($scope, RegisteredAfols, RegistrationLineItems, $location) {
-    $("#splashPageCTA").hide();
     $scope.registeredAfols = undefined;
     $scope.eventId = 2;
     $scope.eventName = undefined;
@@ -839,12 +817,12 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         $location.path("/admin/index.html");
     }
 }])
-.controller('afolIndex', ['$scope', '$location', 'MocDetails', 'RegisteredAfols', '$window', 'EventDates', 'EventRegistration', 'UserDetails', function($scope, $location, MocDetails, RegisteredAfols, $window, EventDates, EventRegistration, UserDetails) {
-    $("#splashPageCTA").hide();
+.controller('afolIndex', ['$scope', '$location', 'MocDetails', 'Games', 'RegisteredAfols', '$window', 'EventDates', 'EventRegistration', 'UserDetails', 'Themes', function($scope, $location, MocDetails, Games, RegisteredAfols, $window, EventDates, EventRegistration, UserDetails, Themes) {
     $scope.mocCount = 0;
+    $scope.themeCount = 0;
+    $scope.gameCount = 0;
     $scope.afolCount = 0;
     $scope.vendorCount = 0;
-    $scope.mocList = [];
     $scope.userName = $window.sessionStorage.firstName + "'s Site";
     $scope.isRegistered = false;
     $scope.eventId = 2;
@@ -939,12 +917,16 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         $location.path("/afol/index.html");
     }
 
-    MocDetails.getList($scope.eventId).then(function(data) {
-        $scope.mocList = data;
+    MocDetails.getCount($scope.eventId).then(function(data) {
+        $scope.mocCount = data;
+    });
 
-        MocDetails.getCount($scope.eventId).then(function(data) {
-            $scope.mocCount = data;
-        });
+    Themes.getCount($scope.eventId).then(function(data) {
+        $scope.themeCount = data;
+    });
+
+    Games.getCount($scope.eventId).then(function(data) {
+        $scope.gameCount = data;
     });
 
     RegisteredAfols.getCount($scope.eventId).then(function(data) {

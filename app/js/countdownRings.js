@@ -106,4 +106,3 @@ var ringer = {
     }
 }
 
-ringer.init();

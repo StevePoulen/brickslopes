@@ -121,7 +121,7 @@ describe('controllers', function() {
 
         describe('Digest', function() {
             beforeEach(function() {
-                mockBackend.expectGET('/controllers/themes.php?eventId=2').respond(themes);
+                mockBackend.expectGET('/controllers/registered/themes.php?eventId=2').respond(themes);
                 mockBackend.flush();
             });
 
@@ -151,7 +151,7 @@ describe('controllers', function() {
                     baseplateDepth: 1,
                     description: 'I worked really hard on this MOC'
                 }
-                mockBackend.expectGET('/controllers/themes.php?eventId=2').respond(themes);
+                mockBackend.expectGET('/controllers/registered/themes.php?eventId=2').respond(themes);
                 mockBackend.flush();
             });
 

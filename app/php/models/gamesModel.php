@@ -9,15 +9,47 @@ class gamesModel extends db {
         return $this->query($this->selectQuery($data));
     }
 
+    public function getGameUserInformation($data) {
+        return $this->query($this->selectGameUserQuery($data));
+    }
+
     public function addGameInformation($data) {
-        return $this->query($this->insertQuery($data));
+        $gameId = $this->query($this->insertQuery($data));
+        if ($gameId > 0) {
+            $this->query($this->insertGameEventQuery($data['eventId'], $gameId));
+        }
+
+        return $gameId;
+    }
+
+    public function addGameUserInformation($data) {
+        return $this->query($this->insertGameUserQuery($data));
+    }
+
+    private function selectGameUserQuery($data) {
+        return "
+            SELECT 
+                guc.gameId as gameId,
+                guc.userId as userId,
+                guc.eventId as eventId,
+                guc.gameTeamId as gameTeamId,
+                guc.type as type
+            FROM
+                gamesUsersConnector guc
+            WHERE
+                guc.gameId = '{$this->escapeCharacters($data['gameId'])}'
+                AND guc.userId = '{$this->escapeCharacters($data['userId'])}'
+                AND guc.eventId = '{$this->escapeCharacters($data['eventId'])}'
+        ;
+      ";
     }
 
     private function selectQuery($data) {
         return "
             SELECT 
                 g.gameId as gameId,
-                g.eventId as eventId, 
+                gec.eventId as eventId, 
+                gec.display as display,
                 g.game as game,
                 g.description as description,
                 g.image as image,
@@ -28,12 +60,57 @@ class gamesModel extends db {
                 ga.award as award,
                 ga.place as place
             FROM
-                games g,
-                gameAwards ga
+                gamesEventsConnector gec,
+                games g LEFT JOIN 
+                    gameAwards ga on
+                        g.gameId = ga.gameId
+                        
             WHERE
-                g.eventId = '{$this->escapeCharacters($data['eventId'])}'
-                AND g.gameId = ga.gameId
+                gec.eventId = '{$this->escapeCharacters($data['eventId'])}'
+                AND gec.gameId = g.gameId
+                AND gec.display = 'YES'
                 ORDER by g.game, ga.place
+        ;
+      ";
+    }
+
+    private function insertGameUserQuery($data) {
+        $gameTeamId = (ISSET($data['gameTeamId']) ? $this->escapeCharacters($data['gameTeamId']) : 'NULL');
+        return "
+            INSERT INTO
+                gamesEventsConnector
+            (
+                gameId,
+                userId, 
+                eventId, 
+                gameTeamId, 
+                type 
+            )
+        VALUES
+          (
+                '{$this->escapeCharacters($data['gameId'])}',
+                '{$this->escapeCharacters($data['userId'])}',
+                '{$this->escapeCharacters($data['eventId'])}',
+                '{$gameTeam}',
+                '{$this->escapeCharacters($data['type'])}'
+          )
+        ;
+      ";
+    }
+
+    private function insertGameEventQuery($eventId, $gameId) {
+        return "
+            INSERT INTO
+                gamesEventsConnector
+            (
+                eventId, 
+                gameId
+            )
+        VALUES
+          (
+                '{$this->escapeCharacters($eventId)}',
+                '{$this->escapeCharacters($gameId)}'
+          )
         ;
       ";
     }
@@ -43,7 +120,6 @@ class gamesModel extends db {
             INSERT INTO
                 games 
             (
-                eventId, 
                 game,
                 description,
                 image,
@@ -53,7 +129,6 @@ class gamesModel extends db {
             )
         VALUES
           (
-                '{$this->escapeCharacters($data['eventId'])}',
                 '{$this->escapeCharacters($data['game'])}',
                 '{$this->escapeCharacters($data['description'])}',
                 '{$this->escapeCharacters($data['image'])}',

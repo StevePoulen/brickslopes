@@ -18,12 +18,8 @@ describe('service', function() {
             var mockBackend, service, data, gameDetails, eventId;
             beforeEach(inject(function(_$httpBackend_, Games) {
                 eventId = 2;
-                gameDetails = {
-                    'userId': '1',
-                    'eventId': '2'
-                };
                 mockBackend = _$httpBackend_;
-                mockBackend.expectGET('/controllers/registered/games.php?eventId=2').respond(201, gameDetails);
+                mockBackend.expectGET('/controllers/registered/games.php?eventId=2').respond(201, games);
                 service = Games;
             }));
 
@@ -35,7 +31,17 @@ describe('service', function() {
                 });
 
                 mockBackend.flush();
-                expect(data).toEqualData(gameDetails);
+                expect(data[0].game).toEqualData('Blind Man Build');
+            });
+
+            it('should load the game list count', function() {
+                var load = service.getCount(2);
+                load.then(function(_data) {
+                    data = _data;
+                });
+
+                mockBackend.flush();
+                expect(data).toEqualData(2);
             });
         });
 
@@ -45,7 +51,7 @@ describe('service', function() {
                 eventId = 2;
                 mockBackend = _$httpBackend_;
                 payload = {
-                    eventId: 2, 
+                    eventId: 2,
                     gameId: 2
                 };
                 mockBackend.expectPOST('/controllers/registered/games.php', payload).respond(201);

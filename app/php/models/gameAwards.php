@@ -15,12 +15,14 @@ class gameAwards extends db {
                 gameAwards 
             (
                 gameId, 
+                eventId, 
                 award,
                 place
             )
         VALUES
           (
                 '{$this->escapeCharacters($data['gameId'])}',
+                '{$this->escapeCharacters($data['eventId'])}',
                 '{$this->escapeCharacters($data['award'])}',
                 '{$this->escapeCharacters($data['place'])}'
           )

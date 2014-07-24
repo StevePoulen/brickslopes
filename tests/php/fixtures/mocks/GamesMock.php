@@ -1,5 +1,23 @@
 <?php
 
+class gamesModel extends db {
+    function __construct() {
+        parent::__construct();
+    }
+
+    public function getGameUserInformation($data) {
+        return $this->query();
+    }
+
+    public function addGameUserInformation($data) {
+        return $this->query();
+    }
+
+    public function getGameInformation($data) {
+        return $this->query();
+    }
+}
+
 class GamesMock extends modelObjects {
     protected $dataSet;
 
@@ -14,6 +32,7 @@ class GamesMock extends modelObjects {
         $this->maxParticipants = $this->maxParticipants();
         $this->currentParticipants = $this->currentParticipants();
         $this->openRegistration = $this->openRegistration();
+        $this->display = $this->display();
         $this->award = $this->award();
         $this->place = $this->place();
         $this->gameAwardId = $this->gameAwardId();
@@ -27,8 +46,9 @@ class GamesMock extends modelObjects {
     public function maxParticipants() { return $this->getData(5); }
     public function currentParticipants() { return $this->getData(6); }
     public function openRegistration() { return $this->getData(7); }
-    public function gameAwardId() { return $this->getData(8); }
-    public function award() { return $this->getData(9); }
-    public function place() { return $this->getData(10); }
+    public function display() { return $this->getData(8); }
+    public function gameAwardId() { return $this->getData(9); }
+    public function award() { return $this->getData(10); }
+    public function place() { return $this->getData(11); }
 }
 ?>

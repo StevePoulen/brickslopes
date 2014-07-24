@@ -200,6 +200,28 @@ angular.module('brickSlopes.directives', [])
         }
     }
 })
+.directive('bsSplashPageCta', ['$location', function($location) {
+    return {
+        restrict: 'E',
+        replace: true,
+        templateUrl: 'partials/directives/splashPageCTA.html',
+        link: function(scope, elem, attrs) {
+            ringer.init();
+
+            scope.makeACalculation = function() {
+                if (
+                    $location.path().match('\/afol\/.*') ||
+                    $location.path().match('\/admin\/.*') ||
+                    $location.path().match('\/registered\/.*')
+                ) {
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+        }
+    }
+}])
 .directive('bsFeedback', function() {
     return {
         restrict: 'E',

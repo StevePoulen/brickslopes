@@ -29,8 +29,16 @@ describe('controllers', function() {
 
 
         describe('Default Variables', function() {
+            it('should set the gameCount variable', function() {
+                expect(scope.gameCount).toBe(0);
+            });
+
             it('should have a mocCount variable', function() {
                 expect(scope.mocCount).toBe(0);
+            });
+
+            it('should have a themeCount variable', function() {
+                expect(scope.themeCount).toBe(0);
             });
 
             it('should have an afolCount variable', function() {
@@ -39,10 +47,6 @@ describe('controllers', function() {
 
             it('should have a vendorCount variable', function() {
                 expect(scope.vendorCount).toBe(0);
-            });
-
-            it('should have a mocList variable', function() {
-                expect(scope.mocList).toEqualData([]);
             });
 
             it('should have a userName variable', function() {
@@ -163,20 +167,26 @@ describe('controllers', function() {
             mockBackend.expectGET('/controllers/public/eventDates.php').respond(201, eventDates);
             mockBackend.expectGET('/controllers/eventRegistration.php').respond(201, eventRegistration);
             mockBackend.expectGET('/controllers/registered/mocs.php?eventId=2').respond(mocs);
+            mockBackend.expectGET('/controllers/registered/themes.php?eventId=2').respond(themes);
+            mockBackend.expectGET('/controllers/registered/games.php?eventId=2').respond(games);
             mockBackend.expectGET('/controllers/registeredAfols.php?eventId=2').respond(201, registeredAfols);
 
             mockBackend.flush();
         }));
 
+        it('should set the gameCount variable', function() {
+            expect(scope.gameCount).toBe(2);
+        });
+
+        it('should have a themeCount variable', function() {
+            expect(scope.themeCount).toBe(3);
+        });
+
         it('should set the mocCount variable', function() {
             expect(scope.mocCount).toBe(3);
         });
 
-        it('should set the mocListvariable', function() {
-            expect(scope.mocList).toEqual(mocs);
-        });
-
-        it('should set the mocListvariable', function() {
+        it('should set the isRegistered variable', function() {
             expect(scope.isRegistered).toEqual(true);
         });
 

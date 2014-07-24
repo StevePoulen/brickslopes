@@ -72,7 +72,7 @@
             } else if (
                 preg_match('/controllers\/public\/.*/', $this->URI) ||
                 (
-                    $this->URI == 'controllers/user.php' &&
+                    preg_match('/controllers\/user.php/', $this->URI) &&
                     $this->isPost()
                 )
             ) {

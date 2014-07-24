@@ -15,25 +15,33 @@ describe('service', function() {
 
     describe('Themes', function() {
         describe('Get', function() {
-            var mockBackend, loader, data, themeDetails, eventId;
+            var mockBackend, service, data, eventId;
             beforeEach(inject(function(_$httpBackend_, Themes) {
                 eventId = 2;
-                themeDetails = {
-                    'userId': '1',
-                    'eventId': '2'
-                };
                 mockBackend = _$httpBackend_;
-                loader = Themes;
-                mockBackend.expectGET('/controllers/themes.php?eventId=2').respond(201, themeDetails);
+                service = Themes;
+                mockBackend.expectGET('/controllers/registered/themes.php?eventId=2').respond(201, themes);
             }));
 
             it('should get a list of themes and awards for an event', function() {
-                var load = loader.get({eventId: 2}, function(_data) {
+                var load = service.getList(2);
+
+                load.then(function(_data) {
                     data = _data;
                 });
 
                 mockBackend.flush();
-                expect(data).toEqualData(themeDetails);
+                expect(data[0].theme).toEqualData('Adventure');
+            });
+
+            it('should load the game list count', function() {
+                var load = service.getCount(2);
+                load.then(function(_data) {
+                    data = _data;
+                });
+
+                mockBackend.flush();
+                expect(data).toEqualData(3);
             });
         });
     });

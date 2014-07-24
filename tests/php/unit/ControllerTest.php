@@ -61,12 +61,14 @@ class ControllerTest extends PHPUnit_Framework_TestCase
 
     public function testAuthenticatedSuccessController() 
     {
-        $GLOBALS['authenticationRequest'] = true;
+        $GLOBALS['authenticationRequest'] = false;
+        $GLOBALS['db_query'] = false;
+        $_SERVER['REQUEST_METHOD'] = 'POST';
         $_SERVER['REQUEST_URI'] = "/controllers/user.php";
         $this->controller = new Controller();
         $this->controller->invoke();
-        $this->assertEquals(http_response_code(), 405);
-        $this->expectOutputString('');
+        $this->assertEquals(http_response_code(), 400);
+        $this->expectOutputString('{"data":"Duplicate E-mail","status":400}');
     }
 
     public function testAuthenticatedSuccessNotFound() 

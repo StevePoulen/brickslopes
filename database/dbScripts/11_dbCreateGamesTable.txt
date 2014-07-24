@@ -6,44 +6,77 @@
 
 USE `brickslopes`;
 
-DROP TABLE IF EXISTS `gamesConnector`;
+DROP TABLE IF EXISTS `gamesEventsConnector`;
+DROP TABLE IF EXISTS `gamesUsersConnector`;
+DROP TABLE IF EXISTS `gameTeams`;
 DROP TABLE IF EXISTS `gameAwards`;
 DROP TABLE IF EXISTS `games`;
 
 CREATE TABLE `games` (
   `gameId` INT(10) UNSIGNED UNIQUE NOT NULL auto_increment,
-  `eventId` INT(10) UNSIGNED NOT NULL,
   `game` VARCHAR(255),
-  `description` VARCHAR(255),
+  `description` VARCHAR(500),
   `image` VARCHAR(255),
   `maxParticipants` INT(10),
   `currentParticipants` INT(10),
   `openRegistration` ENUM('YES', 'NO'),
   PRIMARY KEY (`gameId`),
-  FOREIGN KEY (`eventId`) REFERENCES `events` (`eventId`),
   UNIQUE KEY `gameId_UNIQUE` (`gameId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='The Games Table';
 
 CREATE TABLE `gameAwards` (
   `gameAwardId` INT(10) UNSIGNED UNIQUE NOT NULL auto_increment,
   `gameId` INT(10) UNSIGNED NOT NULL,
+  `eventId` INT(10) UNSIGNED NOT NULL,
   `userId` INT(10) UNSIGNED NULL,
   `award` VARCHAR(255),
   `place` INT(2),
   PRIMARY KEY (`gameAwardId`),
   FOREIGN KEY (`gameId`) REFERENCES `games` (`gameId`),
   FOREIGN KEY (`userId`) REFERENCES `users` (`userId`),
+  FOREIGN KEY (`eventId`) REFERENCES `events` (`eventId`),
   UNIQUE KEY `gameAwardId_UNIQUE` (`gameAwardId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='The Game Awards Table';
 
-CREATE TABLE `gamesConnector` (
-  `gameConnectorId` INT(10) UNSIGNED UNIQUE NOT NULL auto_increment,
+CREATE TABLE `gameTeams` (
+  `gameTeamId` INT(10) UNSIGNED UNIQUE NOT NULL auto_increment,
+  `gameId` INT(10) UNSIGNED NOT NULL,
+  `eventId` INT(10) UNSIGNED NOT NULL,
+  `team` VARCHAR(255),
+  `maxParticipants` INT(10),
+  `currentParticipants` INT(10),
+  `openRegistration` ENUM('YES', 'NO'),
+  PRIMARY KEY (`gameTeamId`),
+  FOREIGN KEY (`gameId`) REFERENCES `games` (`gameId`),
+  FOREIGN KEY (`eventId`) REFERENCES `events` (`eventId`),
+  UNIQUE KEY `gameTeamId_UNIQUE` (`gameTeamId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='The Game Teams Table';
+
+CREATE TABLE `gamesEventsConnector` (
+  `gameEventConnectorId` INT(10) UNSIGNED UNIQUE NOT NULL auto_increment,
+  `gameId` INT(10) UNSIGNED NOT NULL,
+  `eventId` INT(10) UNSIGNED NULL,
+  `display` ENUM('YES', 'NO') DEFAULT 'YES',
+  PRIMARY KEY (`gameEventConnectorId`),
+  FOREIGN KEY (`gameId`) REFERENCES `games` (`gameId`),
+  FOREIGN KEY (`eventId`) REFERENCES `events` (`eventId`),
+  UNIQUE INDEX (`eventId`, `gameId`),
+  UNIQUE KEY `gameEventConnectorId_UNIQUE` (`gameEventConnectorId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='The Game Event Connector Table';
+
+CREATE TABLE `gamesUsersConnector` (
+  `gameUserConnectorId` INT(10) UNSIGNED UNIQUE NOT NULL auto_increment,
   `gameId` INT(10) UNSIGNED NOT NULL,
   `userId` INT(10) UNSIGNED NULL,
+  `eventId` INT(10) UNSIGNED NOT NULL,
+  `gameTeamId` INT(10) UNSIGNED NULL,
   `type` ENUM('PARTICIPANT', 'VOLUNTEER', 'COORDINATOR'),
-  PRIMARY KEY (`gameConnectorId`),
+  PRIMARY KEY (`gameUserConnectorId`),
   FOREIGN KEY (`gameId`) REFERENCES `games` (`gameId`),
+  FOREIGN KEY (`eventId`) REFERENCES `events` (`eventId`),
   FOREIGN KEY (`userId`) REFERENCES `users` (`userId`),
-  UNIQUE KEY `gameConnectorId_UNIQUE` (`gameConnectorId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='The Game Connector Table';
+  FOREIGN KEY (`gameTeamId`) REFERENCES `gameTeams` (`gameTeamId`),
+  UNIQUE INDEX (`userId`, `gameId`, `eventId`),
+  UNIQUE KEY `gameUserConnectorId_UNIQUE` (`gameUserConnectorId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='The Game User Connector Table';
 

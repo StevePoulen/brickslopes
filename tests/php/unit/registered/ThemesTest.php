@@ -1,18 +1,18 @@
 <?php
 
-class gamesTest extends PHPUnit_Framework_TestCase 
+class ThemesTest extends PHPUnit_Framework_TestCase 
 {
     public function setUp() 
     {
         $_GET['eventId'] = 2;
-        new GamesMock();
-        include_once('controllers/registered/games.php');
+        new ThemesMock();
+        include_once('controllers/registered/themes.php');
     }
 
     public function testAuthenticatedBadMethod() 
     {
         $_SERVER['REQUEST_METHOD'] = "post";
-        new Games();
+        new Themes();
         $this->assertEquals(http_response_code(), 405);
     }
 
@@ -20,19 +20,16 @@ class gamesTest extends PHPUnit_Framework_TestCase
     {
         $_SERVER['REQUEST_METHOD'] = "GET";
         $GLOBALS['db_query'] = '1';
-        $GLOBALS['fetch_object'] = "GamesMock";
-        new Games();
+        $GLOBALS['fetch_object'] = "ThemesMock";
+        new Themes();
         $this->assertEquals(http_response_code(), 200);
         $output = json_decode(ob_get_contents(), true);
         $themeObj = $output[0];
         $this->assertEquals($themeObj['eventId'] , 2);
-        $this->assertEquals($themeObj['gameId'] , 1);
-        $this->assertEquals($themeObj['game'], 'Blind Man Build');
-        $this->assertEquals($themeObj['description'], 'You use blindfolds to build');
-        $this->assertEquals($themeObj['image'], 'https://blindman.org');
-        $this->assertEquals($themeObj['maxParticipants'], '10');
-        $this->assertEquals($themeObj['currentParticipants'], '5');
-        $this->assertEquals($themeObj['openRegistration'], 'YES');
+        $this->assertEquals($themeObj['themeId'] , 1);
+        $this->assertEquals($themeObj['theme'], 'Castle');
+        $this->assertEquals($themeObj['type'], 'AFOL');
+        $this->assertEquals($themeObj['selectable'], 'YES');
         $this->assertEquals($themeObj['awards'][0]['award'], "First Place");
         $this->assertEquals($themeObj['awards'][0]['place'], "1");
         $this->assertEquals($themeObj['awards'][1]['award'], "Second Place");
@@ -44,7 +41,7 @@ class gamesTest extends PHPUnit_Framework_TestCase
         $_SERVER['REQUEST_METHOD'] = "GET";
         $GLOBALS['db_result'] = false;
         $GLOBALS['db_query'] = 0;
-        new Games();
+        new Themes();
         $this->assertEquals(http_response_code(), 400);
     }
 }

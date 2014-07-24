@@ -26,7 +26,7 @@ describe('controllers', function() {
             ctrl = $controller('afolEventThemes', { $scope: scope});
             mockBackend = _$httpBackend_;
             response = [{'eventId': 234, 'theme': 'Pirates'}];
-            mockBackend.expectGET('/controllers/themes.php?eventId=2').respond(201, response);
+            mockBackend.expectGET('/controllers/registered/themes.php?eventId=2').respond(201, response);
             location = $location;
         }));
 

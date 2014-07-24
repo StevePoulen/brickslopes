@@ -3,7 +3,8 @@ $bs_blue: #35469A;
 .game {
     position: relative;
     width: 100%;
-    height: 300px;
+    min-height: 325px;
+    height: auto;
 
     .title {
         position: absolute;
@@ -17,13 +18,14 @@ $bs_blue: #35469A;
     }
 
     .description {
-        position: absolute;
+        position: relative;
         left: 25px;
         top: 50px;
         width: 490px;
-        height: 205px;
+        height: 245px;
         border: 1px solid $bs_blue;
         padding: 10px;
+        font-size: 1.25em;
     }
 
     .descriptionRight {
