@@ -53,14 +53,9 @@ describe('controllers', function() {
                 expect(scope.gameList).toEqualData([]);
             });
 
-            it('should get event details', function() {
+            it('should get game details', function() {
                 mockBackend.flush();
                 expect(scope.gameList[0].game).toBe('Blind Man Build');
-                expect(scope.gameList[0].registration).toBe('Open');
-                expect(scope.gameList[0].showCTAButton).toBe(true);
-                expect(scope.gameList[1].game).toBe('Speed Build');
-                expect(scope.gameList[1].registration).toBe('Closed');
-                expect(scope.gameList[1].showCTAButton).toBe(false);
             });
         });
     });
@@ -73,14 +68,18 @@ describe('controllers', function() {
             mockBackend = _$httpBackend_;
             var expectedPayload = {
                 eventId: 2,
-                gameId: 1
+                gameId: 1,
+                type: 'PARTICIPANT' 
             }
             mockBackend.expectGET('/controllers/registered/games.php?eventId=2').respond(201, games);
-            mockBackend.expectPOST('/controllers/registered/games.php', expectedPayload).respond(201);
+            mockBackend.expectPOST('/controllers/registered/gameUser.php', expectedPayload).respond(201);
         }));
 
         it('should register for a game', function() {
-            scope.clickGameRegistration(1);
+            scope.game = {
+                gameId: 1
+            }
+            scope.clickGameRegistration();
             expect(scope.verifying).toBe(true);
             mockBackend.flush();
             expect(scope.showModal).toBe(true);

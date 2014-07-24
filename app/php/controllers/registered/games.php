@@ -27,15 +27,17 @@ class Games {
             $gamesMap = array();
             while($dbObj = $this->gamesObj->result->fetch_object()) {
                 if(array_key_exists($dbObj->gameId, $gamesMap)) {
-                    array_push (
-                        $gamesMap[$dbObj->gameId]['awards'],
-                        array (
-                            'award' => $dbObj->award,
-                            'place' => $dbObj->place
-                        )
-                    );
+                    if ($dbObj->award) {
+                        array_push (
+                            $gamesMap[$dbObj->gameId]['awards'],
+                            array (
+                                'award' => $dbObj->award,
+                                'place' => $dbObj->place
+                            )
+                        );
+                    }
                 } else {
-                    $gamesMap[$dbObj->gameId] = array(
+                    $gamesMap[$dbObj->gameId] = array (
                         'eventId' => $dbObj->eventId,
                         'gameId' => $dbObj->gameId,
                         'game' => $dbObj->game,
@@ -44,14 +46,17 @@ class Games {
                         'image' => $dbObj->image,
                         'maxParticipants' => $dbObj->maxParticipants,
                         'currentParticipants' => $dbObj->currentParticipants,
-                        'openRegistration' => $dbObj->openRegistration,
-                        'awards' => array (
+                        'openRegistration' => $dbObj->openRegistration
+                    );
+
+                    if ($dbObj->award) {
+                        $gamesMap[$dbObj->gameId]['awards'] = array (
                             array (
                                 'award' => $dbObj->award,
                                 'place' => $dbObj->place,
                             )
-                        )
-                    );
+                        );
+                    }
                 }
             }
             header("HTTP/1.0 200 Success");

@@ -372,7 +372,7 @@
                     )
                 ),
                 array(
-                    'game' => 'Draft Small Money - $15',
+                    'game' => 'Draft - $15',
                     'description' => 'Each participant pays $15 to divide up $300 worth of LEGO sets. <p>The parts are separated into similar parts then each participant, in order picks an entire pile of similar parts.',
                     'image' => 'https://www.images.com',
                     'maxParticipants' => '20',
@@ -380,7 +380,7 @@
                     'openRegistration' => 'YES'
                 ),
                 array(
-                    'game' => 'Draft Big Money - $25',
+                    'game' => 'Draft - $25',
                     'description' => 'Each participant pays $25 to divide up $500 worth of LEGO sets. <p>The parts are separated into similar parts then each participant, in order picks an entire pile of similar parts.',
                     'image' => 'https://www.images.com',
                     'maxParticipants' => '20',
@@ -427,7 +427,7 @@
                     )
                 ),
                 array(
-                    'game' => 'Pimp out Kevin',
+                    'game' => 'Pimp Out Kevin',
                     'description' => 'Bring your favorite accessories to pimp out your Kevin Hinckle mini-fig. <p>Every part in the LEGO universe is available to use during this competition. <p>Rumor has it that Kevin looks best as a blonde in stiletto heels.',
                     'image' => 'https://www.images.com',
                     'maxParticipants' => '20',

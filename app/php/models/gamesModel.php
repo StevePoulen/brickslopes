@@ -9,10 +9,6 @@ class gamesModel extends db {
         return $this->query($this->selectQuery($data));
     }
 
-    public function getGameUserInformation($data) {
-        return $this->query($this->selectGameUserQuery($data));
-    }
-
     public function addGameInformation($data) {
         $gameId = $this->query($this->insertQuery($data));
         if ($gameId > 0) {
@@ -20,6 +16,10 @@ class gamesModel extends db {
         }
 
         return $gameId;
+    }
+
+    public function getGameUserInformation($data) {
+        return $this->query($this->selectGameUserQuery($data));
     }
 
     public function addGameUserInformation($data) {
@@ -78,7 +78,7 @@ class gamesModel extends db {
         $gameTeamId = (ISSET($data['gameTeamId']) ? $this->escapeCharacters($data['gameTeamId']) : 'NULL');
         return "
             INSERT INTO
-                gamesEventsConnector
+                gamesUsersConnector
             (
                 gameId,
                 userId, 
@@ -91,7 +91,7 @@ class gamesModel extends db {
                 '{$this->escapeCharacters($data['gameId'])}',
                 '{$this->escapeCharacters($data['userId'])}',
                 '{$this->escapeCharacters($data['eventId'])}',
-                '{$gameTeam}',
+                {$gameTeamId},
                 '{$this->escapeCharacters($data['type'])}'
           )
         ;

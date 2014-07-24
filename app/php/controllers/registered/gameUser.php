@@ -58,7 +58,7 @@ class GameUser {
         $payload['userId'] = $this->userId;
         $response = $this->gamesObj->addGameUserInformation($payload);
 
-        if (preg_match ( '/\d+/', $response )) {
+        if (preg_match ( '/^\d+/', $response )) {
             header("HTTP/1.0 201 Created");
         } else {
             header("HTTP/1.0 400 Bad Request");

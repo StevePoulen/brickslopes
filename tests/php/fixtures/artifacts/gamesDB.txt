@@ -1,2 +1,2 @@
 1,2,Blind Man Build,You use blindfolds to build,https://blindman.org,10,5,YES,NO,10,First Place,1
-1,2,Blind Man Build,You use blindfolds to build,https://blindman.org,10,5,YES,NO,10,Second Place,2
+1,2,Blind Man Build,You use blindfolds to build,https://blindman.org,10,5,YES,NO,10,null,null

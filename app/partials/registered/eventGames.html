@@ -31,7 +31,7 @@
                             <bs-text text="Play!" font-color=white font-size=1.25></bs-text>
                         </div>
                     </div>
-                    <div class="awards">
+                    <div class="awards" ng-show="game.isAwards">
                         <bs-text text="Awards" font-size=1.25></bs-text>
                         <div ng-repeat="award in game.awards | orderBy:'place'">
                             <div class="award"><bs-text text="{{award.award}}" font-color=black><bs-text></div>

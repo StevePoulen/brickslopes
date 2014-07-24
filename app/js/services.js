@@ -117,18 +117,19 @@ angular.module('brickSlopes.services', ['ngResource'])
                         game.description = $sce.trustAsHtml(game.description);
                         game.registration = (game.openRegistration === 'YES' ? 'Open' : 'Closed');
                         game.showCTAButton = (game.openRegistration === 'YES');
+                        game.isAwards = (game.awards ? (game.awards.length ? true : false) : false);
                     })
                     return gameList;
                 }));
             }
         },
 
-        create: function(gameDTO) {
+        gameRegistration: function(gameDTO) {
             var delay= $q.defer();
             $http (
                 {
                     method: 'POST',
-                    url: '/controllers/registered/games.php',
+                    url: '/controllers/registered/gameUser.php',
                     data: gameDTO
                 }
             ).success(function(data, status, headers, config) {

@@ -49,6 +49,28 @@ class modelObjects {
 
     }
 
+    private function replaceNull($input) {
+        return preg_replace('/null/', null, $input);
+    }
+
+    private function rTrim($input) {
+        return rtrim($input);
+    }
+
+    private function columnize($input) {
+        return preg_split(
+            '/,/', 
+            $input
+        );
+    }
+
+    private function getRowData() {
+        return $this->dataSet[$this->currentLineNumber];
+    }
+    private function getColumns() {
+     return $this->columnize($this->replaceNull($this->rTrim($this->getRowData())));
+    }
+
     public function getData($position = 0) {
         if (ISSET($GLOBALS['current_fetch_object_counter'])) {
             $this->currentLineNumber = $GLOBALS['current_fetch_object_counter'];
@@ -57,7 +79,7 @@ class modelObjects {
         }
 
         if (ISSET($this->dataSet)) {
-            $columns = preg_split('/,/', rtrim($this->dataSet[$this->currentLineNumber]));
+            $columns = $this->getColumnS();
             return $columns[$position];
         }
     }

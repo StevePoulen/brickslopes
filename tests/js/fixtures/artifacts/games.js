@@ -48,5 +48,28 @@ var games = [
                 "place": "3"
             }
         ]
-    }
+    },
+    {
+        "eventId": "2",
+        "gameId": "3",
+        "game": "Pimp Out Kevin",
+        "description": "Make Kevin Look Good.",
+        "image": "https://www.images.com",
+        "maxParticipants": "20",
+        "currentParticipants": "0",
+        "openRegistration": "YES",
+        "display": "YES"
+    },
+    {
+        "eventId": "2",
+        "gameId": "4",
+        "game": "Skyscraper",
+        "description": "Build a tall building.",
+        "image": "https://www.images.com",
+        "maxParticipants": "20",
+        "currentParticipants": "0",
+        "openRegistration": "YES",
+        "display": "YES",
+        awards: []
+    },
 ];

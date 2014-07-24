@@ -175,7 +175,7 @@ describe('controllers', function() {
         }));
 
         it('should set the gameCount variable', function() {
-            expect(scope.gameCount).toBe(2);
+            expect(scope.gameCount).toBe(4);
         });
 
         it('should have a themeCount variable', function() {

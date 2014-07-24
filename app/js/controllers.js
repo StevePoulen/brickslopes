@@ -418,9 +418,15 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         $scope.gameList = data;
     });
 
-    $scope.clickGameRegistration = function(myGameId) {
+    $scope.clickGameRegistration = function() {
         $scope.verifying = true;
-        Games.create({eventId: $scope.eventId, gameId: myGameId}).then(function(status) {
+        Games.gameRegistration (
+            {
+                eventId: $scope.eventId, 
+                gameId: this.game.gameId,
+                type: 'PARTICIPANT'
+            }
+        ).then(function(status) {
             if (status === 201) {
                 $scope.showModal = true;
                 $scope.verifying = false;

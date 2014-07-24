@@ -36,8 +36,8 @@ class gamesTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($themeObj['display'], 'NO');
         $this->assertEquals($themeObj['awards'][0]['award'], "First Place");
         $this->assertEquals($themeObj['awards'][0]['place'], "1");
-        $this->assertEquals($themeObj['awards'][1]['award'], "Second Place");
-        $this->assertEquals($themeObj['awards'][1]['place'], "2");
+        $this->assertEquals(ISSET($themeObj['awards'][1]['award']), false);
+        $this->assertEquals(ISSET($themeObj['awards'][1]['place']), false);
     }
 
     public function testAuthenticatedGetFailure() 
