@@ -59,7 +59,7 @@ class ControllerTest extends PHPUnit_Framework_TestCase
         $this->expectOutputRegex('/{{eventYear}}/');
     }
 
-    public function testAuthenticatedSuccessController() 
+    public function testNoAuthenticatedSuccessController() 
     {
         $GLOBALS['authenticationRequest'] = false;
         $GLOBALS['db_query'] = false;
@@ -69,6 +69,15 @@ class ControllerTest extends PHPUnit_Framework_TestCase
         $this->controller->invoke();
         $this->assertEquals(http_response_code(), 400);
         $this->expectOutputString('{"data":"Duplicate E-mail","status":400}');
+    }
+
+    public function testNoAuthenticatedDirective() 
+    {
+        $GLOBALS['authenticationRequest'] = false;
+        $_SERVER['REQUEST_URI'] = "/partials/directives/splashPageCTA.html";
+        $this->controller = new Controller();
+        $this->controller->invoke();
+        $this->assertEquals(http_response_code(), 200);
     }
 
     public function testAuthenticatedSuccessNotFound() 

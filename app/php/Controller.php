@@ -66,7 +66,8 @@
         private function isWhiteList() {
             if ($this->URI == '../index.html' ||
                 $this->URI == 'controllers/emailUs.php' ||
-                preg_match('/^..\/partials\/public/', $this->URI)
+                preg_match('/^..\/partials\/public/', $this->URI) ||
+                preg_match('/^..\/partials\/directives/', $this->URI)
             ) {
                 return true;
             } else if (
