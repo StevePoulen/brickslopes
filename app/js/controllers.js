@@ -112,6 +112,9 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
 }])
 .controller('bsHeader', ['$scope', '$window', '$location', function($scope, $window, $location) {
     $scope.showAfolLogin = showAfolLogin;
+    if ($window.sessionStorage.admin === 'YES') {
+        $scope.showAfolLogin = true;
+    }
     $scope.clickBuilder = function() {
         if ($window.sessionStorage.token) {
             $location.path("/afol/index.html");
@@ -196,6 +199,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
             } else {
                 $location.path('/afol/index.html');
             }
+
             $scope.verifying = false;
         }, function() {
             $scope.verifying = false;
@@ -872,7 +876,6 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
             $location.path("/registered/eventMocList.html");
         }
     }
-
 
     $scope.clickRegistration = function() {
         if ($scope.isRegistered) {
