@@ -692,6 +692,12 @@ $email_link_color: $bs_blue;
         border-radius: 0px 5px 5px 0px;
         border-left: 0;
     }
+    
+    .feedbackMessage {
+        position: relative;
+        width: 100%;
+        text-align: center;
+    }
 
     .feedbackForm {
         position: relative;

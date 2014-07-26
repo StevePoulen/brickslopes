@@ -8,6 +8,9 @@
                 <bs-logo font-size="1.0"></bs-logo> &#8226; <bs-text text="Feedback" font-color=black></bs-text>
             </h1>
         </div>
+        <div class="feedbackMessage">
+            <span class="greenFont" ng-show="timer" ng-class="{fadeOut5: timer, greenFont: true}">{{displayMessage}}</span>
+        </div>
         <div class="feedbackForm">
             <form name="feedbackForm" ng-submit="feedbackForm.$valid && submitFeedback()">
                 <div><bs-text text="Email" font-size=1.25></bs-text></div>

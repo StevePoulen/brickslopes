@@ -29,6 +29,10 @@ describe('controllers', function() {
             expect(scope.feedbackOpen).toBe(false);
         });
 
+        it('should have a timer variable', function() {
+            expect(scope.timer).toBe(false);
+        });
+
         it('should have a verifying variable', function() {
             expect(scope.verifying).toBe(false);
         });
@@ -126,6 +130,7 @@ describe('controllers', function() {
             expect(scope.captcha).toBe('');
             expect(scope.email).toBe('');
             expect(scope.feedback).toBe('');
+            expect(scope.timer).toBe(true);
         });
     });
 });

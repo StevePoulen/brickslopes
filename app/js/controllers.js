@@ -32,6 +32,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
 .controller('bsFeedback', ['$scope', 'Feedback', function($scope, Feedback) {
     $scope.feedbackOpen = false;
     setDefaultFeedbackVariables('D@rKGr3y');
+    $scope.timer = false;
     $scope.verifying = false;
 
     function feedbackAction() {
@@ -73,6 +74,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
             setDefaultFeedbackVariables('B#tm@n');
             $scope.displayMessage = "Your feedback has been received.";
             $scope.verifying = false;
+            $scope.timer = true;
         });
     }
 }])
