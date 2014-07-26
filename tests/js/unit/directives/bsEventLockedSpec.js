@@ -41,6 +41,12 @@ describe('directives', function() {
                 expect(element.hasClass('eventLocked')).toBe(true);
             });
 
+            it('should have an eventLocked Bottom Class', function() {
+                element = compile(element)(scope);
+                scope.$digest();
+                expect(element.hasClass('eventBottomIndex')).toBe(true);
+            });
+
             it('should have a lock icon', function() {
                 element = compile(element)(scope);
                 scope.$digest();
@@ -53,6 +59,13 @@ describe('directives', function() {
                 element = compile(element)(scope);
                 scope.$digest();
                 expect(element.hasClass('ng-hide')).toBe(false);
+            });
+
+            it('should have eventLockedMe class with attribute', function() {
+                element = angular.element('<bs-event-locked bottom="eventLockedMe"></bs-event-locked>');
+                element = compile(element)(scope);
+                scope.$digest();
+                expect(element.hasClass('eventLockedMe')).toBe(true);
             });
 
             it('should be visible with no registration', function() {

@@ -238,7 +238,7 @@
                         'Best of City & Train',
                         'Most Original Building',
                         'Best Skyscraper',
-                        'Best Custom/Original',
+                        'Best Custom/Original Train',
                         'Most Attention to Detail'
                     )
                 ),

@@ -42,6 +42,7 @@ angular.module('brickSlopes.directives', [])
         replace: true,
         templateUrl: 'partials/directives/eventLocked.html',
         link: function(scope, element, attrs) {
+            scope.bottom = attrs.bottom || "eventLockedIndex";
             scope.isUserRegistered = ! UserDetails.isUserRegistered();
         }
     }

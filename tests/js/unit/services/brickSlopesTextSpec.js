@@ -41,6 +41,16 @@ describe('service', function() {
             expect(bsTextFactory.createText('travel')).toBe(expectedValue);
         });
 
+        it('should create brickSlopes Text', function() {
+            var expectedValue = buildPreFontWrapper()
+                + buildPreCapWrapper("BCS")
+                + "&nbsp;"
+                + buildPreCapWrapper("A")
+                + buildPostCapWrapper("WARDS")
+                + buildPostWrapper();
+            expect(bsTextFactory.createText('BCS Awards')).toBe(expectedValue);
+        });
+
         it('should create brickSlopes Text with a space a the first', function() {
             var expectedValue = buildPreFontWrapper()
                 + "&nbsp;"

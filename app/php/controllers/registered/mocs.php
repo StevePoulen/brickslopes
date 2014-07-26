@@ -62,7 +62,6 @@ class Mocs {
         }
         $payload['userId'] = $this->userId;
         $response = $this->mocObj->addMocInformation($payload);
-        echo $response;
         if (preg_match ( '/\d+/', $response )) {
             header("HTTP/1.0 201 Created");
         } else {
