@@ -44,7 +44,7 @@ describe('directives', function() {
             it('should have an eventLocked Bottom Class', function() {
                 element = compile(element)(scope);
                 scope.$digest();
-                expect(element.hasClass('eventBottomIndex')).toBe(true);
+                expect(element.hasClass('eventLockedIndex')).toBe(true);
             });
 
             it('should have a lock icon', function() {

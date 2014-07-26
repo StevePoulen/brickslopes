@@ -69,7 +69,7 @@ describe('controllers', function() {
             var expectedPayload = {
                 eventId: 2,
                 gameId: 1,
-                type: 'PARTICIPANT' 
+                type: 'PARTICIPANT'
             }
             mockBackend.expectGET('/controllers/registered/games.php?eventId=2').respond(201, games);
             mockBackend.expectPOST('/controllers/registered/gameUser.php', expectedPayload).respond(201);

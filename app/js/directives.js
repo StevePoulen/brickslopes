@@ -54,9 +54,16 @@ angular.module('brickSlopes.directives', [])
         transclude: true,
         templateUrl: 'partials/directives/modal.html',
         link: function(scope, element, attrs) {
+            calculateWidth();
             scope.modalTitle = attrs.title;
             scope.closeModal = function() {
                 scope.showModal = false;
+            }
+
+            function calculateWidth() {
+                var windowWidth = $( $('.bsModal').parent()).width()/2;
+                var modalWidth = $('.bsModal').width()/2;
+                $('.bsModal').css('left', windowWidth - modalWidth);
             }
         }
     }

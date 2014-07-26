@@ -307,14 +307,12 @@ input.ng-dirty {
 }
 
 .bsModal {
-    position: relative;
+    position: absolute;
     top: 150px;
     z-index: 1000;
     min-height: 200px;
     height: auto;
     width: 430px;
-    margin-right: auto;
-    margin-left: auto;
     border: 5px solid $bs_blue;
     background: white;
     border-radius: 10px;

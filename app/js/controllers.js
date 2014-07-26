@@ -426,7 +426,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         $scope.verifying = true;
         Games.gameRegistration (
             {
-                eventId: $scope.eventId, 
+                eventId: $scope.eventId,
                 gameId: this.game.gameId,
                 type: 'PARTICIPANT'
             }

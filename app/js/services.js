@@ -73,7 +73,10 @@ angular.module('brickSlopes.services', ['ngResource'])
                     outputWord += ">";
                     nextCapitalize = true;
                 } else {
-                    if (index === 0 || nextCapitalize) {
+                    if (
+                        index === 0 ||
+                        nextCapitalize
+                    ) {
                         outputWord += '<span style="' + capsFont + '">' + letter.toUpperCase() + '</span>';
                         nextCapitalize = false;
                     } else {
