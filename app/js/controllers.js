@@ -491,6 +491,8 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     $scope.passDates = undefined;
     $scope.eventList = {};
     $scope.mocList = {};
+    $scope.mocCount = 0;
+    $scope.gameCount = 0;
     $scope.userGameList = {};
     $scope.userObject = {};
     $scope.eventId = 2;
@@ -577,11 +579,15 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     MocDetails.getList($scope.eventId).then(function(data) {
         $scope.mocList = data;
         $scope.displayRegisterEventMocsCTA = ! displayEventMocRegisterButton();
+        MocDetails.getCount($scope.eventId).then(function(data) {
+            $scope.mocCount = data;
+        });
     });
 
     Games.getUserGameList($scope.eventId).then(function(data) {
         $scope.userGameList = data;
         $scope.displayRegisterEventGamesCTA = ! displayEventGamesRegisterButton();
+        $scope.gameCount = Object.keys(data).length;
     });
 
     UserDetails.get().then(function(data) {

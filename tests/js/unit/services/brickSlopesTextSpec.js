@@ -41,7 +41,6 @@ describe('service', function() {
             expect(bsTextFactory.createText('travel')).toBe(expectedValue);
         });
 
-/*
         it('should create brickSlopes Text', function() {
             var expectedValue = buildPreFontWrapper()
                 + buildPreCapWrapper("B")
@@ -53,15 +52,46 @@ describe('service', function() {
                 + buildPostWrapper();
             expect(bsTextFactory.createText('BCS Awards')).toBe(expectedValue);
         });
-        */
 
         it('should create brickSlopes Text with a space a the first', function() {
             var expectedValue = buildPreFontWrapper()
                 + "&nbsp;"
                 + buildPreCapWrapper("M")
-                + buildPostCapWrapper("YSPACETEST")
+                + buildPostCapWrapper("Y")
+                + buildPreCapWrapper("S")
+                + buildPostCapWrapper("PACE")
+                + buildPreCapWrapper("T")
+                + buildPostCapWrapper("EST")
                 + buildPostWrapper();
             expect(bsTextFactory.createText(' mySpaceTest')).toBe(expectedValue);
+        });
+
+        it('should create brickSlopes Text with a parenthesis at the end', function() {
+            var expectedValue = buildPreFontWrapper()
+                + buildPreCapWrapper("G")
+                + buildPostCapWrapper("AMES")
+                + "&nbsp;"
+                + buildPreCapWrapper("(")
+                + buildPreCapWrapper("9")
+                + buildPreCapWrapper(")")
+                + buildPostWrapper();
+            expect(bsTextFactory.createText('Games (9)')).toBe(expectedValue);
+        });
+
+        it('should create brickSlopes Text with a parenthesis at the end', function() {
+            var expectedValue = buildPreFontWrapper()
+                + buildPreCapWrapper("(")
+                + buildPreCapWrapper("N")
+                + buildPostCapWrapper("ICE")
+                + "&nbsp;"
+                + buildPreCapWrapper("P")
+                + buildPostCapWrapper("ART")
+                + "&nbsp;"
+                + buildPreCapWrapper("U")
+                + buildPostCapWrapper("SAGE")
+                + buildPreCapWrapper(")")
+                + buildPostWrapper();
+            expect(bsTextFactory.createText('(Nice Part Usage)')).toBe(expectedValue);
         });
 
         it('should create brickSlopes Text with a hyphen and a space', function() {

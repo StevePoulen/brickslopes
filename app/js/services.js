@@ -72,6 +72,16 @@ angular.module('brickSlopes.services', ['ngResource'])
                     remainder = "";
                     outputWord += ">";
                     nextCapitalize = true;
+                } else if (letter.match(/\)/)) {
+                    outputWord += self.__styleRemainder(smallFont, remainder);
+                    remainder = "";
+                    outputWord += '<span style="' + capsFont + '">)</span>';
+                    nextCapitalize = true;
+                } else if (letter.match(/[A-Z]/)) {
+                    outputWord += self.__styleRemainder(smallFont, remainder);
+                    remainder = "";
+                    outputWord += '<span style="' + capsFont + '">' + letter.toUpperCase() + '</span>';
+                    nextCapitalize = false;
                 } else {
                     if (
                         index === 0 ||

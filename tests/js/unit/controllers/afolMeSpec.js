@@ -145,6 +145,14 @@ describe('controllers', function() {
                 expect(scope.mocList).toEqualData({});
             });
 
+            it('should have an mocCount variable', function() {
+                expect(scope.mocCount).toBe(0);
+            });
+
+            it('should have a gameCount variable', function() {
+                expect(scope.gameCount).toBe(0);
+            });
+
             it('should have an userObject variable', function() {
                 expect(scope.userObject).toEqualData({});
             });
@@ -189,6 +197,14 @@ describe('controllers', function() {
 
             it('should have an displayRegisterEventGamesCTA variable', function() {
                 expect(scope.displayRegisterEventGamesCTA).toBe(false);
+            });
+
+            it('should have a mocCount variable', function() {
+                expect(scope.mocCount).toBe(3);
+            });
+
+            it('should have a gameCount variable', function() {
+                expect(scope.gameCount).toBe(1);
             });
         });
 
