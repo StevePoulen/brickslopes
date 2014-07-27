@@ -16,6 +16,10 @@ class gamesModel extends db {
     public function getGameInformation($data) {
         return $this->query();
     }
+
+    public function deleteGameUserInformation($data) {
+        return $this->query();
+    }
 }
 
 class GamesMock extends modelObjects {

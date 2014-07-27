@@ -43,7 +43,8 @@ angular.module('brickSlopes.directives', [])
         templateUrl: 'partials/directives/eventLocked.html',
         link: function(scope, element, attrs) {
             scope.bottom = attrs.bottom || "eventLockedIndex";
-            scope.isUserRegistered = ! UserDetails.isUserRegistered();
+            scope.isUserRegistered = UserDetails.isUserRegistered();
+            scope.isUserPaid = UserDetails.isUserRegistered() && UserDetails.isUserPaid();
         }
     }
 }])
@@ -168,6 +169,14 @@ angular.module('brickSlopes.directives', [])
         templateUrl: 'partials/afol/eventPanes/changePassword.html'
     }
 })
+.directive('bsEventGames', function() {
+    return {
+        restrict: 'E',
+        scope: true,
+        replace: true,
+        templateUrl: 'partials/afol/eventPanes/eventGames.html'
+    }
+})
 .directive('bsEventMocs', function() {
     return {
         restrict: 'E',
@@ -235,6 +244,18 @@ angular.module('brickSlopes.directives', [])
         restrict: 'E',
         replace: true,
         templateUrl: 'partials/public/feedback.html',
+    }
+})
+.directive('bsGameRegistration', function() {
+    return {
+        restrict: 'E',
+        replace: true,
+        templateUrl: 'partials/registered/bsGameRegistration.html',
+        link: function(scope, elem, attrs) {
+            scope.$watch("userGameList", function() {
+                scope.isRegistered = (scope.userGameList[scope.game.gameId] ? true : false);
+            });
+        }
     }
 })
 .directive("bsPlaceholder", function($timeout) {

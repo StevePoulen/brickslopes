@@ -99,3 +99,23 @@ $bs_blue: #35469A;
         left: 325px;
     }
 }
+
+.myGames {
+    margin-top: 10px;
+    position: relative;
+    overflow: scroll;
+    height: 160px;
+    cursor: pointer;
+}
+
+.myGameRow {
+    position: relative;
+    height: 30px;
+    padding-left: 3px;
+
+    .gameParticipation {
+        position: absolute;
+        right: 10px;
+        top: 0px;
+    }
+}

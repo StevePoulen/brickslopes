@@ -361,7 +361,7 @@
                     'openRegistration' => 'YES'
                 ),
                 array(
-                    'game' => 'Skyscaper',
+                    'game' => 'Skyscraper',
                     'description' => 'Build the tallest LEGO-only structure out of the "Free-Play Bricks" in under 25 minutes. <p>The structure has to be able to stand by itself for 5 minutes at the end of the building. <p>After the 5 minutes, the last tallest standing structure wins!',
                     'image' => 'https://www.images.com',
                     'maxParticipants' => '50',

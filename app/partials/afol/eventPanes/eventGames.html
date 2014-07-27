@@ -1,0 +1,29 @@
+<div>
+    <div class="smallPane" ng-if="displayRegisterEventGamesCTA">
+        <div class="meText"><bs-text text="Your Games" font-color=black font-size=1.25></bs-text></div>
+        <div class="formButtonPosition">
+            <div class="actionButtonSmall" ng-click="clickGames()">
+                <bs-text text="Games Registration" font-color=white font-size=1.25></bs-text>
+            </div>
+        </div>
+        <div><bs-event-locked bottom="eventLockedMe"><bs-event-locked></div>
+    </div>
+    <div class="normalPane events" ng-if="! displayRegisterEventGamesCTA">
+        <div class="meText">
+            <bs-text text="Your Games" font-color=black font-size=1.25></bs-text>
+            <div class="myEventButtonPosition">
+                <div class="actionButtonTiny" ng-click="clickGames()">
+                    <bs-text text="Add + " font-color=white font-size=.85></bs-text>
+                </div>
+            </div>
+        </div>
+        <div class="myGames" ng-click="clickGames()">
+            <div ng-class="{eventRow: $even}"  ng-repeat="game in userGameList | orderBy:'gameTitle'">
+                <div class="myGameRow">
+                    <div><bs-text text="{{game.gameTitle}}" max-size=35 font-size=1.25></bs-text></div>
+                    <div class="gameParticipation"><bs-text text="{{game.type}}" max-size=25 font-size=.85></bs-text></div>
+                <div>
+            </div>
+        </div>
+    </div>
+</div>

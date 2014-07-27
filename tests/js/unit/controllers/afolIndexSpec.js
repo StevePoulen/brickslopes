@@ -89,26 +89,44 @@ describe('controllers', function() {
                 expect(location.path()).toBe('/afol/eventMe.html');
             });
 
-            it('should redirect to eventMocRegistration Registered', function() {
-                window.sessionStorage.registered = 'YES';
-                scope.clickMocRegistration();
-                expect(location.path()).toBe('/registered/2/eventMocRegistration.html');
+            describe('Click Moc Registration', function() {
+                it('should redirect to the moc registration page', function() {
+                    window.sessionStorage.registered = 'YES';
+                    window.sessionStorage.paid = 'YES';
+                    scope.clickMocRegistration();
+                    expect(location.path()).toBe('/registered/2/eventMocRegistration.html');
+                });
+
+                it('should not redirect to the registration page', function() {
+                    window.sessionStorage.registered = 'YES';
+                    scope.clickMocRegistration();
+                    expect(location.path()).toBe('/afol/eventPayment.html');
+                });
+
+                it('should not redirect to the payment page', function() {
+                    scope.clickMocRegistration();
+                    expect(location.path()).toBe('/afol/2/eventRegistration.html');
+                });
             });
 
-            it('should redirect to eventMocRegistration Not Registered', function() {
-                scope.clickMocRegistration();
-                expect(location.path()).toBe('');
-            });
+            describe('Click Moc List Registration', function() {
+                it('should redirect to the moc list page', function() {
+                    window.sessionStorage.registered = 'YES';
+                    window.sessionStorage.paid = 'YES';
+                    scope.clickMocList();
+                    expect(location.path()).toBe('/registered/eventMocList.html');
+                });
 
-            it('should redirect to eventMocList Registered', function() {
-                window.sessionStorage.registered = 'YES';
-                scope.clickMocList();
-                expect(location.path()).toBe('/registered/eventMocList.html');
-            });
+                it('should not redirect to the registration page', function() {
+                    window.sessionStorage.registered = 'YES';
+                    scope.clickMocList();
+                    expect(location.path()).toBe('/afol/eventPayment.html');
+                });
 
-            it('should redirect to eventMocList Not Registered', function() {
-                scope.clickMocList();
-                expect(location.path()).toBe('');
+                it('should not redirect to the payment page', function() {
+                    scope.clickMocList();
+                    expect(location.path()).toBe('/afol/2/eventRegistration.html');
+                });
             });
 
             it('should redirect to eventAfols', function() {
@@ -116,26 +134,44 @@ describe('controllers', function() {
                 expect(location.path()).toBe('/afol/eventAfols.html');
             });
 
-            it('should redirect to eventThemes Registered', function() {
-                window.sessionStorage.registered = 'YES';
-                scope.clickThemes();
-                expect(location.path()).toBe('/registered/eventThemes.html');
+            describe('Click Theme Registration', function() {
+                it('should redirect to the game registration page', function() {
+                    window.sessionStorage.registered = 'YES';
+                    window.sessionStorage.paid = 'YES';
+                    scope.clickThemes();
+                    expect(location.path()).toBe('/registered/eventThemes.html');
+                });
+
+                it('should not redirect to the registration page', function() {
+                    window.sessionStorage.registered = 'YES';
+                    scope.clickThemes();
+                    expect(location.path()).toBe('/afol/eventPayment.html');
+                });
+
+                it('should not redirect to the payment page', function() {
+                    scope.clickThemes();
+                    expect(location.path()).toBe('/afol/2/eventRegistration.html');
+                });
             });
 
-            it('should redirect to eventThemes Not Registered', function() {
-                scope.clickThemes();
-                expect(location.path()).toBe('');
-            });
+            describe('Click Games Registration', function() {
+                it('should redirect to the game registration page', function() {
+                    window.sessionStorage.registered = 'YES';
+                    window.sessionStorage.paid = 'YES';
+                    scope.clickGames();
+                    expect(location.path()).toBe('/registered/eventGames.html');
+                });
 
-            it('should redirect to eventGames Registered', function() {
-                window.sessionStorage.registered = 'YES';
-                scope.clickGames();
-                expect(location.path()).toBe('/registered/eventGames.html');
-            });
+                it('should not redirect to the registration page', function() {
+                    window.sessionStorage.registered = 'YES';
+                    scope.clickGames();
+                    expect(location.path()).toBe('/afol/eventPayment.html');
+                });
 
-            it('should redirect to eventGames Not Registered', function() {
-                scope.clickGames();
-                expect(location.path()).toBe('');
+                it('should not redirect to the payment page', function() {
+                    scope.clickGames();
+                    expect(location.path()).toBe('/afol/2/eventRegistration.html');
+                });
             });
 
             it('should redirect to eventVenue', function() {

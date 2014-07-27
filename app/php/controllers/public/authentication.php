@@ -40,6 +40,7 @@ class Authentication extends jwtToken {
                     $dbObj->lastName, 
                     $dbObj->admin,
                     $dbObj->registered,
+                    $dbObj->paid,
                     200 
                 );
             }

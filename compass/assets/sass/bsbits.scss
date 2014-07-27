@@ -130,6 +130,14 @@ textarea::-moz-placeholder {
     padding-top: 6px;
 }
 
+.actionButtonDeleteGames {
+    @extend .actionButton;
+    background: $bs_red;
+    height: 30px;
+    width: 115px;
+    padding-top: 6px;
+}
+
 .actionButtonTiny {
     @extend .actionButton;
     width: 45px;

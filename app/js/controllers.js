@@ -413,6 +413,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
 .controller('afolEventGames', ['$scope', '$location', 'Games', function($scope, $location, Games) {
     $scope.eventId = 2;
     $scope.gameList = [];
+    $scope.userGameList = [];
     $scope.showModal = false;
     $scope.verifying = false;
 
@@ -424,15 +425,21 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         $scope.gameList = data;
     });
 
+    Games.getUserGameList($scope.eventId).then(function(data) {
+        $scope.userGameList = data;
+    });
+
     $scope.clickGameRegistration = function() {
         $scope.verifying = true;
+        var self = this;
         Games.gameRegistration (
             {
                 eventId: $scope.eventId,
-                gameId: this.game.gameId,
+                gameId: self.game.gameId,
                 type: 'PARTICIPANT'
             }
         ).then(function(status) {
+            self.isRegistered = true;
             if (status === 201) {
                 $scope.showModal = true;
                 $scope.verifying = false;
@@ -443,7 +450,24 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
                 $scope.displayErrorMessage = "The Game travails.";
             }
         });
-    }
+    };
+
+    $scope.clickGameDeletion = function() {
+        $scope.verifying = true;
+        var self = this;
+        Games.gameDeletion($scope.eventId, self.game.gameId).then(function(status) {
+            self.isRegistered = false;
+            if (status === 200) {
+                $scope.showModal = true;
+                $scope.verifying = false;
+            }
+        }, function(status) {
+            $scope.verifying = false;
+            if (status === 400) {
+                $scope.displayErrorMessage = "The Game travails.";
+            }
+        });
+    };
 }])
 .controller('afolEventThemes', ['$scope', '$location', 'Themes', function($scope, $location, Themes) {
     $scope.eventId = 2;
@@ -458,7 +482,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         $scope.themeList = data;
     });
 }])
-.controller('afolMe', ['$scope', '$location', 'Auth', 'EventRegistration', 'EventDates', 'UserDetails', 'MocDetails', function($scope, $location, Auth, EventRegistration, EventDates, UserDetails, MocDetails) {
+.controller('afolMe', ['$scope', '$location', 'Auth', 'EventRegistration', 'EventDates', 'UserDetails', 'MocDetails', 'Games', function($scope, $location, Auth, EventRegistration, EventDates, UserDetails, MocDetails, Games) {
     $scope.verifying = false;
     $scope.displayMessage = "";
     $scope.timer = false;
@@ -467,10 +491,12 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     $scope.passDates = undefined;
     $scope.eventList = {};
     $scope.mocList = {};
+    $scope.userGameList = {};
     $scope.userObject = {};
     $scope.eventId = 2;
     $scope.displayRegisterEventCTA = true;
     $scope.displayRegisterEventMocsCTA = true;
+    $scope.displayRegisterEventGamesCTA = true;
 
     function serializeChangePasswordJson() {
         return {
@@ -516,8 +542,14 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     }
 
     $scope.clickMocRegistration = function(eventId) {
-        if (UserDetails.isUserRegistered()) {
+        if (UserDetails.isUserPaid()) {
             $location.path("/registered/" + eventId + "/eventMocRegistration.html");
+        }
+    }
+
+    $scope.clickGames = function() {
+        if (UserDetails.isUserPaid()) {
+            $location.path("/registered/eventGames.html");
         }
     }
 
@@ -530,7 +562,11 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     }
 
     function displayEventMocRegisterButton() {
-        return Object.keys($scope.mocList).length;
+        return Object.keys($scope.mocList).length && UserDetails.isUserRegistered() && UserDetails.isUserPaid();
+    }
+
+    function displayEventGamesRegisterButton() {
+        return Object.keys($scope.userGameList).length && UserDetails.isUserRegistered() && UserDetails.isUserPaid();
     }
 
     EventRegistration.get().then(function(data) {
@@ -540,7 +576,12 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
 
     MocDetails.getList($scope.eventId).then(function(data) {
         $scope.mocList = data;
-        $scope.displayRegisterEventMocsCTA = ! displayRegisterEventButton();
+        $scope.displayRegisterEventMocsCTA = ! displayEventMocRegisterButton();
+    });
+
+    Games.getUserGameList($scope.eventId).then(function(data) {
+        $scope.userGameList = data;
+        $scope.displayRegisterEventGamesCTA = ! displayEventGamesRegisterButton();
     });
 
     UserDetails.get().then(function(data) {
@@ -855,28 +896,30 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         $location.path("/afol/eventMe.html");
     }
 
-    $scope.clickThemes = function() {
-        if (UserDetails.isUserRegistered()) {
-            $location.path("/registered/eventThemes.html");
+    function determineClickAction(finalPage) {
+        if (! UserDetails.isUserRegistered()) {
+            $scope.clickRegistration();
+        } else if (! UserDetails.isUserPaid() ) {
+            $location.path("/afol/eventPayment.html");
+        } else {
+            $location.path(finalPage);
         }
+    }
+
+    $scope.clickThemes = function() {
+        determineClickAction("/registered/eventThemes.html");
     }
 
     $scope.clickGames = function() {
-        if (UserDetails.isUserRegistered()) {
-            $location.path("/registered/eventGames.html");
-        }
+        determineClickAction("/registered/eventGames.html");
     }
 
     $scope.clickMocRegistration = function() {
-        if (UserDetails.isUserRegistered()) {
-            $location.path("/registered/" + $scope.eventId + "/eventMocRegistration.html");
-        }
+        determineClickAction("/registered/" + $scope.eventId + "/eventMocRegistration.html");
     }
 
     $scope.clickMocList = function() {
-        if (UserDetails.isUserRegistered()) {
-            $location.path("/registered/eventMocList.html");
-        }
+        determineClickAction("/registered/eventMocList.html");
     }
 
     $scope.clickRegistration = function() {

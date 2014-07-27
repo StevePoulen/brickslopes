@@ -1,8 +1,11 @@
-<div class="eventLocked" ng-class="bottom" ng-show="isUserRegistered">
+<div class="eventLocked" ng-class="bottom" ng-hide="isUserPaid">
     <span class="lock">
         <i class="icons-lock icons-sprite-bg"></i>
     </span>
-    <span class="cta">
+    <span class="cta" ng-if="!isUserRegistered" ng-click="clickRegistration(2)">
         Register to Unlock
+    </span>
+    <span class="cta" ng-if="isUserRegistered" ng-click="payNow()">
+        Pay to Unlock
     </span>
 </div>

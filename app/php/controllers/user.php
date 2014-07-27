@@ -6,12 +6,14 @@ class User extends jwtToken {
     private $userId;
     private $isAdmin;
     private $isRegistered;
+    private $isPaid;
 
-    function __construct($userId, $isAdmin, $isRegistered) {
+    function __construct($userId, $isAdmin, $isRegistered, $isPaid) {
         parent::__construct();
         $this->userId = $userId;
         $this->isAdmin = $isAdmin;
         $this->isRegistered = $isRegistered;
+        $this->isPaid = $isPaid;
         $this->usersObj = new users();
         $this->determineRequestMethod();
     }
@@ -73,6 +75,7 @@ class User extends jwtToken {
                 $payload['lastName'], 
                 'NO',
                 'NO',
+                'NO',
                 201 
             );
         } else {
@@ -100,6 +103,7 @@ class User extends jwtToken {
                 $payload['lastName'], 
                 ($this->isAdmin ? 'YES' : 'NO'),
                 ($this->isRegistered ? 'YES' : 'NO'),
+                ($this->isPaid? 'YES' : 'NO'),
                 201 
             );
         } else {
@@ -114,6 +118,6 @@ class User extends jwtToken {
     }
 }
 
-new User($this->userId, $this->isAdmin, $this->isRegistered);
+new User($this->userId, $this->isAdmin, $this->isRegistered, $this->isPaid);
 
 ?>

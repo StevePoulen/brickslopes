@@ -70,16 +70,29 @@ describe('directives', function() {
 
             it('should be visible with no registration', function() {
                 window.sessionStorage.registered = 'NO';
+                window.sessionStorage.paid = 'NO';
                 compile(element)(scope);
                 scope.$digest();
                 expect(element.hasClass('ng-hide')).toBe(false);
+                expect($(element).find('.cta').html()).toContain('Register to Unlock');
             });
 
             it('should be hidden with registration', function() {
                 window.sessionStorage.registered = 'YES';
+                window.sessionStorage.paid = 'NO';
+                element = compile(element)(scope);
+                scope.$digest();
+                expect(element.hasClass('ng-hide')).toBe(false);
+                expect($(element).find('.cta').html()).toContain('Pay to Unlock');
+            });
+
+            it('should be hidden with registration and payment', function() {
+                window.sessionStorage.registered = 'YES';
+                window.sessionStorage.paid = 'YES';
                 element = compile(element)(scope);
                 scope.$digest();
                 expect(element.hasClass('ng-hide')).toBe(true);
+                expect($(element).find('.cta').html()).toContain('Pay to Unlock');
             });
         });
     });

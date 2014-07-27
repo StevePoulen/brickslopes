@@ -110,7 +110,7 @@ angular.module('brickSlopes.services', ['ngResource'])
             } else {
                 return $q.when($http (
                     {
-                        method: 'GET',
+                        method: 'get',
                         url: '/controllers/registered/games.php',
                         params: {eventId: eventId}
                     }
@@ -134,6 +134,45 @@ angular.module('brickSlopes.services', ['ngResource'])
                     method: 'POST',
                     url: '/controllers/registered/gameUser.php',
                     data: gameDTO
+                }
+            ).success(function(data, status, headers, config) {
+                delay.resolve(status);
+            }).error(function(data, status, headers, config) {
+                delay.reject(status);
+            });
+
+            return delay.promise;
+        },
+
+        getUserGameList: function(eventId) {
+            var delay= $q.defer();
+            $http (
+                {
+                    method: 'GET',
+                    url: '/controllers/registered/gameUser.php',
+                    params: {
+                        eventId: eventId
+                    }
+                }
+            ).success(function(data, status, headers, config) {
+                delay.resolve(data);
+            }).error(function(data, status, headers, config) {
+                delay.reject(data);
+            });
+
+            return delay.promise;
+        },
+
+        gameDeletion: function(eventId, gameId) {
+            var delay= $q.defer();
+            $http (
+                {
+                    method: 'DELETE',
+                    url: '/controllers/registered/gameUser.php',
+                    params: {
+                        eventId: eventId,
+                        gameId: gameId
+                    }
                 }
             ).success(function(data, status, headers, config) {
                 delay.resolve(status);
@@ -274,6 +313,11 @@ angular.module('brickSlopes.services', ['ngResource'])
         isUserRegistered: function() {
             return ($window.sessionStorage.registered == 'YES');
         },
+
+        isUserPaid: function() {
+            return ($window.sessionStorage.paid == 'YES');
+        },
+
         getCount: function() {
             if (userList) {
                 return $q.when(userList.length);

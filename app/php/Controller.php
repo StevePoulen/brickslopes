@@ -10,12 +10,14 @@
     class Controller {
         private $userId;
         private $isAdmin;
+        private $isPaid;
         private $isRegistered;
         private $error;
 
         public function __construct() {
             $this->userId = null;
             $this->isAdmin = false;
+            $this->isPaid= false;
             $this->isRegistered = false;
             $this->error = 403;
             $this->setControllerModuleValues();
@@ -107,11 +109,27 @@
         }
 
         private function determineAdminFromJWT($decodedJWT) {
-            return ($decodedJWT->admin == 'YES') ;
+            try {
+                return ($decodedJWT->admin == 'YES') ;
+            } catch (exception $e) {
+                return false;
+            }
+        }
+
+        private function determinePaidFromJWT($decodedJWT) {
+            try {
+                return ($decodedJWT->paid == 'YES') ;
+            } catch (exception $e) {
+                return false;
+            }
         }
 
         private function determineRegisteredFromJWT($decodedJWT) {
-            return ($decodedJWT->registered == 'YES') ;
+            try {
+                return ($decodedJWT->registered == 'YES') ;
+            } catch (exception $e) {
+                return false;
+            }
         }
 
         private function decodeJWT() {
@@ -122,6 +140,7 @@
                 if (preg_match('/\d+/', $decodedJWT->userId)) {
                     $this->userId = $decodedJWT->userId;
                     $this->isAdmin = $this->determineAdminFromJWT($decodedJWT);
+                    $this->isPaid = $this->determinePaidFromJWT($decodedJWT);
                     $this->isRegistered = $this->determineRegisteredFromJWT($decodedJWT);
                     if ($this->isAdminRequest()) {
                         return $this->isAdmin;

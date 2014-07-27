@@ -55,25 +55,40 @@ describe('controllers', function() {
             });
         });
 
-        describe('Click Moc Registration not registered', function() {
-            it('should redirect to the moc registration page', function() {
-                scope.clickMocRegistration(5);
+        describe('Click Moc Registration', function() {
+            it('should redirect to the payment page', function() {
+                window.sessionStorage.registered = 'YES';
+                scope.clickMocRegistration();
                 expect(location.path()).toBe('');
             });
-        });
 
-        describe('Click Moc Registration registered', function() {
             it('should redirect to the moc registration page', function() {
                 window.sessionStorage.registered = 'YES';
+                window.sessionStorage.paid = 'YES';
                 scope.clickMocRegistration(5);
                 expect(location.path()).toBe('/registered/5/eventMocRegistration.html');
             });
+
         });
+
 
         describe('Pay Now', function() {
             it('should redirect to the eventPayment page', function() {
                 scope.payNow();
                 expect(location.path()).toBe('/afol/eventPayment.html');
+            });
+        });
+
+        describe('Click Games Registration', function() {
+            it('should redirect to the game registration page', function() {
+                window.sessionStorage.paid = 'YES';
+                scope.clickGames();
+                expect(location.path()).toBe('/registered/eventGames.html');
+            });
+
+            it('should not redirect to the registration page', function() {
+                scope.clickGames();
+                expect(location.path()).toBe('');
             });
         });
 
@@ -98,6 +113,10 @@ describe('controllers', function() {
                 expect(scope.eventId).toBe(2);
             });
 
+            it('should have an displayRegisteredEventGamesCTA variable', function() {
+                expect(scope.displayRegisterEventGamesCTA).toBe(true);
+            });
+
             it('should have an displayRegisteredEventCTA variable', function() {
                 expect(scope.displayRegisterEventCTA).toBe(true);
             });
@@ -118,6 +137,10 @@ describe('controllers', function() {
                 expect(scope.eventList).toEqualData({});
             });
 
+            it('should have an userGameList variable', function() {
+                expect(scope.userGameList).toEqualData({});
+            });
+
             it('should have an mocList variable', function() {
                 expect(scope.mocList).toEqualData({});
             });
@@ -129,11 +152,19 @@ describe('controllers', function() {
 
         describe('Digest with all add-ons', function() {
             beforeEach(function() {
+                window.sessionStorage.registered = 'YES';
+                window.sessionStorage.paid = 'YES';
                 mockBackend.expectGET('/controllers/public/eventDates.php').respond(eventDates);
                 mockBackend.expectGET('/controllers/eventRegistration.php').respond(eventRegistration);
                 mockBackend.expectGET('/controllers/registered/mocs.php?eventId=2').respond(200, mocs);
+                mockBackend.expectGET('/controllers/registered/gameUser.php?eventId=2').respond(200, userGames);
                 mockBackend.expectGET('/controllers/user.php').respond(200, singleUser);
                 mockBackend.flush();
+
+            });
+
+            afterEach(function() {
+                deleteSession(window);
             });
 
             it('should populate the passType variable', function() {
@@ -155,6 +186,10 @@ describe('controllers', function() {
             it('should have an displayRegisterEventMocsCTA variable', function() {
                 expect(scope.displayRegisterEventMocsCTA).toBe(false);
             });
+
+            it('should have an displayRegisterEventGamesCTA variable', function() {
+                expect(scope.displayRegisterEventGamesCTA).toBe(false);
+            });
         });
 
         describe('Change Password', function() {
@@ -165,6 +200,7 @@ describe('controllers', function() {
                 mockBackend.expectGET('/controllers/public/eventDates.php').respond(eventDates);
                 mockBackend.expectGET('/controllers/eventRegistration.php').respond(eventRegistration);
                 mockBackend.expectGET('/controllers/registered/mocs.php?eventId=2').respond(200, mocs);
+                mockBackend.expectGET('/controllers/registered/gameUser.php?eventId=2').respond(200, userGames);
                 mockBackend.expectGET('/controllers/user.php').respond(200, singleUser);
                 mockBackend.expectPATCH('/controllers/public/authentication.php').respond(201);
                 mockBackend.flush();
@@ -186,6 +222,7 @@ describe('controllers', function() {
                 mockBackend.expectGET('/controllers/public/eventDates.php').respond(eventDates);
                 mockBackend.expectGET('/controllers/eventRegistration.php').respond(eventRegistration);
                 mockBackend.expectGET('/controllers/registered/mocs.php?eventId=2').respond(200, mocs);
+                mockBackend.expectGET('/controllers/registered/gameUser.php?eventId=2').respond(200, userGames);
                 mockBackend.expectGET('/controllers/user.php').respond(200, singleUser);
                 mockBackend.expectPATCH('/controllers/public/authentication.php').respond(412);
                 mockBackend.flush();

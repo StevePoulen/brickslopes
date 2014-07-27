@@ -140,5 +140,27 @@ describe('service', function() {
                 expect(service.isUserRegistered()).toBe(false);
             });
         });
+
+        describe('User Registration Payment Validation', function() {
+            var service, window;
+            beforeEach(inject(function($window, UserDetails) {
+                window = $window;
+                service = UserDetails;
+            }));
+
+            afterEach(function() {
+                deleteSession(window);
+            });
+
+            it('should validate a user registration payment', function() {
+                window.sessionStorage.paid = 'YES';
+                expect(service.isUserPaid()).toBe(true);
+            });
+
+            it('should validate a user has not paid for registered', function() {
+                window.sessionStorage.paid = 'yes';
+                expect(service.isUserPaid()).toBe(false);
+            });
+        });
     });
 });

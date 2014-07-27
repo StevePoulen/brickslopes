@@ -11,6 +11,7 @@ class GameUserMock extends modelObjects {
         $this->userId = $this->userId();
         $this->gameTeamId = $this->gameTeamId();
         $this->type = $this->type();
+        $this->gameTitle = $this->gameTitle();
     }
 
     public function gameId() { return $this->getData(0); }
@@ -18,5 +19,6 @@ class GameUserMock extends modelObjects {
     public function userId() { return $this->getData(2); }
     public function gameTeamId() { return $this->getData(3); }
     public function type() { return $this->getData(4); }
+    public function gameTitle() { return $this->getData(5); }
 }
 ?>

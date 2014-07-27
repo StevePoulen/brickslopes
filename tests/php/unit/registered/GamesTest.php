@@ -24,20 +24,20 @@ class gamesTest extends PHPUnit_Framework_TestCase
         new Games();
         $this->assertEquals(http_response_code(), 200);
         $output = json_decode(ob_get_contents(), true);
-        $themeObj = $output[0];
-        $this->assertEquals($themeObj['eventId'] , 2);
-        $this->assertEquals($themeObj['gameId'] , 1);
-        $this->assertEquals($themeObj['game'], 'Blind Man Build');
-        $this->assertEquals($themeObj['description'], 'You use blindfolds to build');
-        $this->assertEquals($themeObj['image'], 'https://blindman.org');
-        $this->assertEquals($themeObj['maxParticipants'], '10');
-        $this->assertEquals($themeObj['currentParticipants'], '5');
-        $this->assertEquals($themeObj['openRegistration'], 'YES');
-        $this->assertEquals($themeObj['display'], 'NO');
-        $this->assertEquals($themeObj['awards'][0]['award'], "First Place");
-        $this->assertEquals($themeObj['awards'][0]['place'], "1");
-        $this->assertEquals(ISSET($themeObj['awards'][1]['award']), false);
-        $this->assertEquals(ISSET($themeObj['awards'][1]['place']), false);
+        $gameObj = $output[0];
+        $this->assertEquals($gameObj['eventId'] , 2);
+        $this->assertEquals($gameObj['gameId'] , 1);
+        $this->assertEquals($gameObj['game'], 'Blind Man Build');
+        $this->assertEquals($gameObj['description'], 'You use blindfolds to build');
+        $this->assertEquals($gameObj['image'], 'https://blindman.org');
+        $this->assertEquals($gameObj['maxParticipants'], '10');
+        $this->assertEquals($gameObj['currentParticipants'], '5');
+        $this->assertEquals($gameObj['openRegistration'], 'YES');
+        $this->assertEquals($gameObj['display'], 'NO');
+        $this->assertEquals($gameObj['awards'][0]['award'], "First Place");
+        $this->assertEquals($gameObj['awards'][0]['place'], "1");
+        $this->assertEquals(ISSET($gameObj['awards'][1]['award']), false);
+        $this->assertEquals(ISSET($gameObj['awards'][1]['place']), false);
     }
 
     public function testAuthenticatedGetFailure() 

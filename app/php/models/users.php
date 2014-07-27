@@ -64,15 +64,19 @@ class users extends \db {
                 u.firstName,
                 u.lastName,
                 u.admin,
-                IF(r.paid = 'YES', 'YES', 'NO') AS 'registered'
+                IF(
+                    'NO' = IFNULL(r.registrationId, 'NO'), 
+                    'NO', 
+                    'YES'
+                ) AS 'registered',
+                IF(r.paid = 'YES', 'YES', 'NO') AS 'paid'
             FROM
                 users u
                     LEFT JOIN
                 registrations r
                     ON
-                u.userId = r.userId
-                AND r.paid = 'YES'
-                AND r.eventId = 2
+                    u.userId = r.userId
+                    AND r.eventId = 2
             WHERE
                 email = '{$this->escapeCharacters($data['email'])}'
                 AND password = password('{$this->escapeCharacters($data['password'])}')

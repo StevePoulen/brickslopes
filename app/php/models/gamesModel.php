@@ -26,6 +26,10 @@ class gamesModel extends db {
         return $this->query($this->insertGameUserQuery($data));
     }
 
+    public function deleteGameUserInformation($data) {
+        return $this->query($this->deleteGameUserQuery($data));
+    }
+
     private function selectGameUserQuery($data) {
         return "
             SELECT 
@@ -33,13 +37,15 @@ class gamesModel extends db {
                 guc.userId as userId,
                 guc.eventId as eventId,
                 guc.gameTeamId as gameTeamId,
-                guc.type as type
+                guc.type as type,
+                g.game as gameTitle
             FROM
-                gamesUsersConnector guc
+                gamesUsersConnector guc,
+                games g
             WHERE
-                guc.gameId = '{$this->escapeCharacters($data['gameId'])}'
-                AND guc.userId = '{$this->escapeCharacters($data['userId'])}'
+                guc.userId = '{$this->escapeCharacters($data['userId'])}'
                 AND guc.eventId = '{$this->escapeCharacters($data['eventId'])}'
+                AND guc.gameId = g.gameId
         ;
       ";
     }
@@ -94,6 +100,18 @@ class gamesModel extends db {
                 {$gameTeamId},
                 '{$this->escapeCharacters($data['type'])}'
           )
+        ;
+      ";
+    }
+
+    private function deleteGameUserQuery($data) {
+        return "
+            DELETE FROM
+                gamesUsersConnector
+            WHERE
+                gameId = '{$this->escapeCharacters($data['gameId'])}'
+                AND userId = '{$this->escapeCharacters($data['userId'])}'
+                AND eventId = '{$this->escapeCharacters($data['eventId'])}'
         ;
       ";
     }

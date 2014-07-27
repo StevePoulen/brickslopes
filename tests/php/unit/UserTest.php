@@ -7,6 +7,7 @@ class UserTest extends PHPUnit_Framework_TestCase
         $this->userId = 123456789;
         $this->isAdmin = true;
         $this->isRegistered = true;
+        $this->isPaid = true;
         new UsersMock();
         include_once('controllers/user.php');
     }
@@ -14,7 +15,7 @@ class UserTest extends PHPUnit_Framework_TestCase
     public function testAuthenticatedBadMethod() 
     {
         $_SERVER['REQUEST_METHOD'] = "post";
-        new User($this->userId, $this->isAdmin, $this->isRegistered);
+        new User($this->userId, $this->isAdmin, $this->isRegistered, $this->isPaid);
         $this->assertEquals(http_response_code(), 405);
     }
 
@@ -23,7 +24,7 @@ class UserTest extends PHPUnit_Framework_TestCase
         $_SERVER['REQUEST_METHOD'] = "GET";
         $GLOBALS['db_query'] = '1';
         $GLOBALS['fetch_object'] = "UsersMock";
-        $event = new User($this->userId, true, true);
+        $event = new User($this->userId, true, true, true);
         $this->assertEquals(http_response_code(), 200);
         $output = json_decode(ob_get_contents(), true);
         $this->assertEquals($output['userId'], '123456789');
@@ -49,13 +50,14 @@ class UserTest extends PHPUnit_Framework_TestCase
         );
         $GLOBALS['db_query'] = 123456789;
         $GLOBALS['fetch_object'] = new UsersMock();
-        $authentication = new User($this->userId, true, true);
+        $authentication = new User($this->userId, false, false, false);
         $this->assertEquals(http_response_code(), 201);
         $output = json_decode(ob_get_contents(), true);
         $this->assertEquals($output['data']['firstName'] , 'Steve');
         $this->assertEquals($output['data']['lastName'] , 'Poulsen');
         $this->assertEquals($output['data']['admin'] , 'NO');
         $this->assertEquals($output['data']['registered'] , 'NO');
+        $this->assertEquals($output['data']['paid'] , 'NO');
         $this->validateJwt($output['data']['token'], 'NO', 'NO');
         $this->assertEquals($output['status'], 201);
 
@@ -72,13 +74,14 @@ class UserTest extends PHPUnit_Framework_TestCase
         );
         $GLOBALS['db_query'] = 123456789;
         $GLOBALS['fetch_object'] = new UsersMock();
-        $authentication = new User($this->userId, true, true);
+        $authentication = new User($this->userId, true, true, true);
         $this->assertEquals(http_response_code(), 201);
         $output = json_decode(ob_get_contents(), true);
         $this->assertEquals($output['data']['firstName'] , 'Steve');
         $this->assertEquals($output['data']['lastName'] , 'Poulsen');
         $this->assertEquals($output['data']['admin'] , 'YES');
         $this->assertEquals($output['data']['registered'] , 'YES');
+        $this->assertEquals($output['data']['paid'] , 'YES');
         $this->validateJwt($output['data']['token']);
         $this->assertEquals($output['status'], 201);
     }
@@ -88,7 +91,7 @@ class UserTest extends PHPUnit_Framework_TestCase
         $_SERVER['REQUEST_METHOD'] = "GET";
         $GLOBALS['db_result'] = false;
         $GLOBALS['db_query'] = 0;
-        $event = new User($this->userId, true, true);
+        $event = new User($this->userId, true, true, true);
         $this->assertEquals(http_response_code(), 400);
     }
 

@@ -71,5 +71,16 @@ var games = [
         "openRegistration": "YES",
         "display": "YES",
         awards: []
-    },
+    }
 ];
+
+var userGames = {
+    1: 
+        {
+            eventId: 2,
+            gameId: 1,
+            userId: 3,
+            gameTeamId: undefined,
+            type: 'PARTICIPANT'
+        }
+};

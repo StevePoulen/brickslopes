@@ -77,5 +77,25 @@ describe('service', function() {
                 expect(data).toEqualData(201);
             });
         });
+
+        describe('Get UserGames', function() {
+            var mockBackend, service, data;
+            beforeEach(inject(function(_$httpBackend_, Games) {
+                mockBackend = _$httpBackend_;
+                mockBackend.expectGET('/controllers/registered/gameUser.php?eventId=2').respond(userGames);
+                service = Games;
+            }));
+
+            it('should get a list of games and awards for an event', function() {
+                var load = service.getUserGameList(2);
+
+                load.then(function(_data) {
+                    data = _data;
+                });
+
+                mockBackend.flush();
+                expect(data[1].userId).toEqualData(3);
+            });
+        });
     });
 });

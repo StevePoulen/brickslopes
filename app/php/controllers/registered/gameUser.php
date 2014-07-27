@@ -20,25 +20,27 @@ class GameUser {
             $this->get();
         } else if ($requestMethod == "POST") {
             $this->post();
+        } else if ($requestMethod == "DELETE") {
+            $this->delete();
         } else {
             header("HTTP/1.0 405 Method Not Allowed");
         }
     }
 
     private function get() {
-        $this->gamesObj->getGameUserInformation($_GET);
+        $payload = $_GET;
+        $payload['userId'] = $this->userId;
+        $this->gamesObj->getGameUserInformation($payload);
         if ($this->gamesObj->result) {
             $gamesUsersMap = array();
             while($dbObj = $this->gamesObj->result->fetch_object()) {
-                array_push(
-                    $gamesUsersMap,
-                    array(
-                        'eventId' => $dbObj->eventId,
-                        'gameId' => $dbObj->gameId,
-                        'userId' => $dbObj->userId,
-                        'gameTeamId' => $dbObj->gameTeamId,
-                        'type' => $dbObj->type
-                    )
+                $gamesUsersMap[$dbObj->gameId] = array (
+                    'eventId' => $dbObj->eventId,
+                    'gameId' => $dbObj->gameId,
+                    'userId' => $dbObj->userId,
+                    'gameTeamId' => $dbObj->gameTeamId,
+                    'type' => $dbObj->type,
+                    'gameTitle' => $dbObj->gameTitle
                 );
             }
             header("HTTP/1.0 200 Success");
@@ -60,6 +62,18 @@ class GameUser {
 
         if (preg_match ( '/^\d+/', $response )) {
             header("HTTP/1.0 201 Created");
+        } else {
+            header("HTTP/1.0 400 Bad Request");
+        }
+    }
+
+    private function delete() {
+        $payload = $_GET;
+        $payload['userId'] = $this->userId;
+        $response = $this->gamesObj->deleteGameUserInformation($payload);
+
+        if (preg_match ( '/^\d+/', $response )) {
+            header("HTTP/1.0 200 Success");
         } else {
             header("HTTP/1.0 400 Bad Request");
         }

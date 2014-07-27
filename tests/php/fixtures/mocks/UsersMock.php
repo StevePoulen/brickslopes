@@ -53,6 +53,7 @@ class UsersMock extends modelObjects {
         $this->flickr = $this->flickr();
         $this->joined = $this->joined();
         $this->registered = $this->registered();
+        $this->paid = $this->paid();
     }
 
     public function userId() { return $this->getData(0); }
@@ -68,5 +69,6 @@ class UsersMock extends modelObjects {
     public function flickr() { return $this->getData(10); }
     public function joined() { return $this->getData(11); }
     public function registered() { return $this->getData(12); }
+    public function paid() { return $this->getData(13); }
 }
 ?>

@@ -26,6 +26,7 @@ describe('controllers', function() {
             ctrl = $controller('afolEventGames', { $scope: scope});
             mockBackend = _$httpBackend_;
             mockBackend.expectGET('/controllers/registered/games.php?eventId=2').respond(201, games);
+            mockBackend.expectGET('/controllers/registered/gameUser.php?eventId=2').respond(userGames);
             location = $location;
         }));
 
@@ -53,9 +54,14 @@ describe('controllers', function() {
                 expect(scope.gameList).toEqualData([]);
             });
 
+            it('should have an userGameList variable', function() {
+                expect(scope.userGameList).toEqualData([]);
+            });
+
             it('should get game details', function() {
                 mockBackend.flush();
                 expect(scope.gameList[0].game).toBe('Blind Man Build');
+                expect(scope.userGameList[1].userId).toBe(3);
             });
         });
     });
@@ -72,6 +78,7 @@ describe('controllers', function() {
                 type: 'PARTICIPANT'
             }
             mockBackend.expectGET('/controllers/registered/games.php?eventId=2').respond(201, games);
+            mockBackend.expectGET('/controllers/registered/gameUser.php?eventId=2').respond(userGames);
             mockBackend.expectPOST('/controllers/registered/gameUser.php', expectedPayload).respond(201);
         }));
 
@@ -84,6 +91,30 @@ describe('controllers', function() {
             mockBackend.flush();
             expect(scope.showModal).toBe(true);
             expect(scope.verifying).toBe(false);
+        });
+    });
+
+    describe('Game Deletion', function() {
+        var mockBackend;
+        beforeEach(inject(function($controller, $rootScope, _$httpBackend_) {
+            scope = $rootScope.$new();
+            ctrl = $controller('afolEventGames', { $scope: scope});
+            mockBackend = _$httpBackend_;
+            mockBackend.expectGET('/controllers/registered/games.php?eventId=2').respond(201, games);
+            mockBackend.expectGET('/controllers/registered/gameUser.php?eventId=2').respond(userGames);
+            mockBackend.expectDELETE('/controllers/registered/gameUser.php?eventId=2&gameId=1').respond(200);
+        }));
+
+        it('should delete a game', function() {
+            scope.game = {
+                gameId: 1
+            }
+            scope.clickGameDeletion();
+            expect(scope.verifying).toBe(true);
+            mockBackend.flush();
+            expect(scope.showModal).toBe(true);
+            expect(scope.verifying).toBe(false);
+            expect(scope.userGameList['1'].eventId).toBe(2);
         });
     });
 });
