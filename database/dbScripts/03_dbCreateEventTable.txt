@@ -6,7 +6,9 @@
 
 USE `brickslopes`;
 
+DROP TABLE IF EXISTS `eventLineItems`;
 DROP TABLE IF EXISTS `events`;
+
 CREATE TABLE `events` (
   `eventId` INT(10) UNSIGNED UNIQUE NOT NULL auto_increment,
   `name` VARCHAR(255),
@@ -23,3 +25,16 @@ CREATE TABLE `events` (
   PRIMARY KEY (`eventId`),
   UNIQUE KEY `eventId_UNIQUE` (`eventId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='The Event Table';
+
+CREATE TABLE `eventLineItems` (
+  `eventLineItemId` INT(10) UNSIGNED UNIQUE NOT NULL auto_increment,
+  `eventId` INT(10) UNSIGNED NOT NULL,
+  `lineItem` VARCHAR(255),
+  `cost` NUMERIC(10,2),
+  `discount` NUMERIC(10,2),
+  `active` ENUM('YES', 'NO'),
+  PRIMARY KEY (`eventLineItemId`),
+  FOREIGN KEY (`eventId`) REFERENCES `events` (`eventId`),
+  UNIQUE KEY `eventLineItemId_UNIQUE` (`eventLineItemId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='The Event Line Item Table';
+

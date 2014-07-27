@@ -407,8 +407,6 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
             deSerializeRegistrationJson(data[$scope.eventId]);
         }
     });
-
-
 }])
 .controller('afolEventGames', ['$scope', '$location', 'Games', function($scope, $location, Games) {
     $scope.eventId = 2;

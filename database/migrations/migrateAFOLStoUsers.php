@@ -573,6 +573,53 @@
 
             $this->validateTable('events', 1);
 
+            $eventLineItemsObj = new eventLineItems();
+            $eventLineItemMap = array (
+                'eventId' => $eventId,
+                'lineItem' => '4 Day Event Pass',
+                'cost' => '65.00',
+                'discount' => '60.00',
+                'active' => 'YES'
+            );
+            $eventLineItemsObj->addEventLineItem($eventLineItemMap);
+
+            $eventLineItemMap = array (
+                'eventId' => $eventId,
+                'lineItem' => 'T-Shirt',
+                'cost' => '20.00',
+                'discount' => '15.00',
+                'active' => 'YES'
+            );
+            $eventLineItemsObj->addEventLineItem($eventLineItemMap);
+
+            $eventLineItemMap = array (
+                'eventId' => $eventId,
+                'lineItem' => 'Meet And Greet',
+                'cost' => '20.00',
+                'discount' => '15.00',
+                'active' => 'YES'
+            );
+            $eventLineItemsObj->addEventLineItem($eventLineItemMap);
+
+            $eventLineItemMap = array (
+                'eventId' => $eventId,
+                'lineItem' => 'Draft - $15',
+                'cost' => '15.00',
+                'discount' => '15.00',
+                'active' => 'YES'
+            );
+            $eventLineItemsObj->addEventLineItem($eventLineItemMap);
+
+            $eventLineItemMap = array (
+                'eventId' => $eventId,
+                'lineItem' => 'Draft - $25',
+                'cost' => '25.00',
+                'discount' => '25.00',
+                'active' => 'YES'
+            );
+            $eventLineItemsObj->addEventLineItem($eventLineItemMap);
+
+
             $eventDatesObj = new eventDatesModel();
             $eventDatesMap = array (
                 'eventId' => $eventId,
@@ -626,6 +673,52 @@
 
             $this->validateTable('events', 2);
 
+            $eventLineItemsObj = new eventLineItems();
+            $eventLineItemMap = array (
+                'eventId' => $eventId,
+                'lineItem' => '4 Day Event Pass',
+                'cost' => '65.00',
+                'discount' => '60.00',
+                'active' => 'YES'
+            );
+            $eventLineItemsObj->addEventLineItem($eventLineItemMap);
+
+            $eventLineItemMap = array (
+                'eventId' => $eventId,
+                'lineItem' => 'T-Shirt',
+                'cost' => '20.00',
+                'discount' => '15.00',
+                'active' => 'YES'
+            );
+            $eventLineItemsObj->addEventLineItem($eventLineItemMap);
+
+            $eventLineItemMap = array (
+                'eventId' => $eventId,
+                'lineItem' => 'Meet And Greet',
+                'cost' => '20.00',
+                'discount' => '15.00',
+                'active' => 'YES'
+            );
+            $eventLineItemsObj->addEventLineItem($eventLineItemMap);
+
+            $eventLineItemMap = array (
+                'eventId' => $eventId,
+                'lineItem' => 'Draft - $15',
+                'cost' => '15.00',
+                'discount' => '15.00',
+                'active' => 'YES'
+            );
+            $eventLineItemsObj->addEventLineItem($eventLineItemMap);
+
+            $eventLineItemMap = array (
+                'eventId' => $eventId,
+                'lineItem' => 'Draft - $25',
+                'cost' => '25.00',
+                'discount' => '25.00',
+                'active' => 'YES'
+            );
+            $eventLineItemsObj->addEventLineItem($eventLineItemMap);
+
             $eventDatesObj = new eventDatesModel();
             $eventDatesMap = array (
                 'eventId' => $eventId,
@@ -676,6 +769,8 @@
             $eventDatesObj->addEventDates($eventDatesMap);
 
             $this->validateTable('eventDates', 10);
+
+            $this->validateTable('eventLineItems', 10);
         }
 
         private function migrateUsers($eventId) {
