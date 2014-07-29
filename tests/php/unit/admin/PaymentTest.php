@@ -24,7 +24,6 @@ class PaymentTest extends PHPUnit_Framework_TestCase
             'registrationId' => '22',
         );
         $GLOBALS['db_query'] = '1';
-        $GLOBALS['fetch_object'] = "RegistrationLineItemsMock";
         $payment = new Payment($this->userId);
         $this->assertEquals(http_response_code(), 200);
         $output = json_decode(ob_get_contents(),true);
@@ -43,7 +42,6 @@ class PaymentTest extends PHPUnit_Framework_TestCase
             'registrationId' => '22',
         );
         $GLOBALS['db_query'] = '1';
-        $GLOBALS['fetch_object'] = "RegistrationLineItemsMock";
         $payment = new Payment($this->userId);
         $this->assertEquals(http_response_code(), 200);
         $output = json_decode(ob_get_contents(),true);
@@ -62,7 +60,6 @@ class PaymentTest extends PHPUnit_Framework_TestCase
             'registrationId' => '22',
         );
         $GLOBALS['db_query'] = 0;
-        $GLOBALS['fetch_object'] = "RegistrationLineItemsMock";
         $payment = new Payment($this->userId);
         $this->assertEquals(http_response_code(), 412);
     }

@@ -5,7 +5,7 @@ class eventLineItems extends db {
         parent::__construct();
     }
 
-    public function getRegistrationLineItemsByEventId($eventId) {
+    public function getEventLineItems($eventId) {
         return $this->query($this->selectQuery($eventId));
     }
 

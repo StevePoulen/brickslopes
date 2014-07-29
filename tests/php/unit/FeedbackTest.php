@@ -20,7 +20,6 @@ class FeedbackTest extends PHPUnit_Framework_TestCase
     {
         $_SERVER['REQUEST_METHOD'] = "GET";
         $GLOBALS['db_query'] = '1';
-        $GLOBALS['fetch_object'] = "FeedbackMock";
         $event = new Feedback($this->userId);
         $this->assertEquals(http_response_code(), 200);
         $output = json_decode(ob_get_contents(), true)[0];
@@ -41,7 +40,6 @@ class FeedbackTest extends PHPUnit_Framework_TestCase
         );
         $GLOBALS['db_query'] = 123456789;
         $GLOBALS['users_userId'] = '123456789';
-        $GLOBALS['fetch_object'] = new FeedbackMock();
         $authentication = new Feedback($this->userId);
         $this->assertEquals(http_response_code(), 201);
         $this->expectOutputString('');

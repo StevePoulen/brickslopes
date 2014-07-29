@@ -1,17 +1,31 @@
 <?php
 
+class gameUserModel extends db {
+    protected $dbResult;
+
+    function __construct() {
+        $this->dbResult = new GameUserMock();
+        parent::__construct();
+    }
+
+    public function getGameUserInformation($data) {
+        return $this->query();
+    }
+
+    public function addGameUserInformation($data) {
+        return $this->query();
+    }
+
+    public function deleteGameUserInformation($data) {
+        return $this->query();
+    }
+}
+
 class GameUserMock extends modelObjects {
     protected $dataSet;
 
     public function __construct() {
-        $this->dataSet = file(__DIR__ . '/../artifacts/gameUserDB.txt');
-        $GLOBALS['fetch_object_counter_limit'] = sizeOf($this->dataSet);
-        $this->gameId = $this->gameId();
-        $this->eventId = $this->eventId();
-        $this->userId = $this->userId();
-        $this->gameTeamId = $this->gameTeamId();
-        $this->type = $this->type();
-        $this->gameTitle = $this->gameTitle();
+        parent::__construct('gameUserDB.txt');
     }
 
     public function gameId() { return $this->getData(0); }

@@ -1,0 +1,2 @@
+Event Cost,65.00,60.00,YES
+T-Shirt,25.00,20.00,YES

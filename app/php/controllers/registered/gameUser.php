@@ -1,13 +1,13 @@
 <?php
 
 class GameUser {
-    private $gamesObj;
+    private $gameUserObj;
     private $userId;
     private $requestMethod;
 
     public function __construct($userId) {
         $this->userId = $userId;
-        $this->gamesObj = new gamesModel();
+        $this->gameUserObj = new gameUserModel();
         $this->determineRequestMethod();
     }
 
@@ -30,10 +30,10 @@ class GameUser {
     private function get() {
         $payload = $_GET;
         $payload['userId'] = $this->userId;
-        $this->gamesObj->getGameUserInformation($payload);
-        if ($this->gamesObj->result) {
+        $this->gameUserObj->getGameUserInformation($payload);
+        if ($this->gameUserObj->result) {
             $gamesUsersMap = array();
-            while($dbObj = $this->gamesObj->result->fetch_object()) {
+            while($dbObj = $this->gameUserObj->result->fetch_object()) {
                 $gamesUsersMap[$dbObj->gameId] = array (
                     'eventId' => $dbObj->eventId,
                     'gameId' => $dbObj->gameId,
@@ -58,7 +58,7 @@ class GameUser {
             $payload = $_POST;
         }
         $payload['userId'] = $this->userId;
-        $response = $this->gamesObj->addGameUserInformation($payload);
+        $response = $this->gameUserObj->addGameUserInformation($payload);
 
         if (preg_match ( '/^\d+/', $response )) {
             header("HTTP/1.0 201 Created");
@@ -70,7 +70,7 @@ class GameUser {
     private function delete() {
         $payload = $_GET;
         $payload['userId'] = $this->userId;
-        $response = $this->gamesObj->deleteGameUserInformation($payload);
+        $response = $this->gameUserObj->deleteGameUserInformation($payload);
 
         if (preg_match ( '/^\d+/', $response )) {
             header("HTTP/1.0 200 Success");

@@ -1,28 +1,5 @@
 <?php
 
-class dbObject {
-    private $fetchObjectCounter=0;
-    private $fetchObjectCounterLimit=1;
-
-    public function __construct() {
-        $this->setFetchObjectCounterLimit();
-    }
-
-    private function setFetchObjectCounterLimit() {
-        $this->fetchObjectCounterLimit = (ISSET($GLOBALS['fetch_object_counter_limit']) ? $GLOBALS['fetch_object_counter_limit'] : 1);
-    }
-
-    public function fetch_object() {
-        if ($this->fetchObjectCounter < $this->fetchObjectCounterLimit ) {
-            $GLOBALS['current_fetch_object_counter'] = $this->fetchObjectCounter;
-            $this->fetchObjectCounter++;
-            return new $GLOBALS['fetch_object']();
-        } else {
-            return null;
-        }
-    }
-}
-    
 class db {
     public function __construct() {
         $this->result = $this->getResult();
@@ -32,11 +9,12 @@ class db {
         if(ISSET($GLOBALS['db_result'])) {
             return false;
         } else {
-            return new dbObject();
+            return $this->dbResult;
         }
     }
 
     public function query($query=NULL) {
+        $this->dbResult->currentLineNumber = -1;
         return $GLOBALS['db_query'];
     }
 
@@ -44,9 +22,21 @@ class db {
 }
 
 class modelObjects {
-    protected $currentLineNumber = 0;
-    public function __construct() {
+    public $rowsOfData = 0;
+    public $currentLineNumber = -1;
+    public function __construct($file) {
+        $this->currentLineNumber = -1;
+        $this->dataSet = file(__DIR__ . "/../artifacts/$file");
+        $this->rowsOfData = sizeOf($this->dataSet);
+    }
 
+    public function fetch_object() {
+        $this->currentLineNumber++;
+        if ($this->currentLineNumber < $this->rowsOfData) {
+            return $this;
+        } else {
+            return null;
+        }
     }
 
     private function replaceNull($input) {
@@ -68,18 +58,21 @@ class modelObjects {
         return $this->dataSet[$this->currentLineNumber];
     }
     private function getColumns() {
-     return $this->columnize($this->replaceNull($this->rTrim($this->getRowData())));
+        return $this->columnize($this->replaceNull($this->rTrim($this->getRowData())));
+    }
+
+    public function __get($name) {
+        if (method_exists($this, $name)) {
+            return $this->$name();
+        } else {
+            print "\n\n\n$name\n\n\n";
+            throw "error";
+        }
     }
 
     public function getData($position = 0) {
-        if (ISSET($GLOBALS['current_fetch_object_counter'])) {
-            $this->currentLineNumber = $GLOBALS['current_fetch_object_counter'];
-        } else {
-            $this->currentLineNumber = 0;
-        }
-
-        if (ISSET($this->dataSet)) {
-            $columns = $this->getColumnS();
+        if (ISSET($this->dataSet) && $this->currentLineNumber > -1) {
+            $columns = $this->getColumns();
             return $columns[$position];
         }
     }

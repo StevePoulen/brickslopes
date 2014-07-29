@@ -1,7 +1,9 @@
 <?php
 
 class FeedbackModel extends db {
+    protected $dbResult;
     function __construct() {
+        $this->dbResult = new FeedbackMock();
         parent::__construct();
     }
 
@@ -18,13 +20,7 @@ class FeedbackMock extends modelObjects {
     protected $dataSet;
 
     public function __construct() {
-        $this->dataSet = file(__DIR__ . '/../artifacts/feedbackDB.txt');
-        $GLOBALS['fetch_object_counter_limit'] = sizeOf($this->dataSet);
-        $this->feedbackId = $this->feedbackId();
-        $this->userId = $this->userId();
-        $this->email = $this->email();
-        $this->feedback = $this->feedback();
-        $this->posted = $this->posted();
+        parent::__construct('feedbackDB.txt');
     }
 
     public function feedbackId() { return $this->getData(0); }

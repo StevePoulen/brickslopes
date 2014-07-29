@@ -1,45 +1,21 @@
 <?php
 
 class gamesModel extends db {
+    protected $dbResult;
+
     function __construct() {
+        $this->dbResult = new GamesMock();
         parent::__construct();
-    }
-
-    public function getGameUserInformation($data) {
-        return $this->query();
-    }
-
-    public function addGameUserInformation($data) {
-        return $this->query();
     }
 
     public function getGameInformation($data) {
         return $this->query();
     }
-
-    public function deleteGameUserInformation($data) {
-        return $this->query();
-    }
 }
 
 class GamesMock extends modelObjects {
-    protected $dataSet;
-
     public function __construct() {
-        $this->dataSet = file(__DIR__ . '/../artifacts/gamesDB.txt');
-        $GLOBALS['fetch_object_counter_limit'] = sizeOf($this->dataSet);
-        $this->gameId = $this->gameId();
-        $this->eventId = $this->eventId();
-        $this->game = $this->game();
-        $this->description = $this->description();
-        $this->image = $this->image();
-        $this->maxParticipants = $this->maxParticipants();
-        $this->currentParticipants = $this->currentParticipants();
-        $this->openRegistration = $this->openRegistration();
-        $this->display = $this->display();
-        $this->award = $this->award();
-        $this->place = $this->place();
-        $this->gameAwardId = $this->gameAwardId();
+        parent::__construct('gamesDB.txt');
     }
 
     public function gameId() { return $this->getData(0); }

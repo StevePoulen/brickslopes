@@ -19,28 +19,27 @@ class EventRegistrationTest extends PHPUnit_Framework_TestCase
     {
         $_SERVER['REQUEST_METHOD'] = "GET";
         $GLOBALS['db_query'] = 12345;
-        $GLOBALS['fetch_object'] = "RegistrationsMock";
-        $this->userId = 12345;
-        new EventRegistration();
+        $this->userId = 2;
+        new EventRegistration($this->userId);
         $this->assertEquals(http_response_code(), 200);
-        $output = json_decode(ob_get_contents(), true)[1];
-        $lineItems = json_decode(ob_get_contents(), true)[1]['lineItems']['lineItems'][0];
+        $output = json_decode(ob_get_contents(), true)['1'];
+        $lineItems = $output['lineItems']['lineItems'][0];
         $this->assertEquals($output['ageVerification'] , 'YES');
         $this->assertEquals($output['paid'] , 'NO');
         $this->assertEquals($output['name'] , 'BrickSlopes - SLC');
         $this->assertEquals($output['registrationId'] , '1');
         $this->assertEquals($output['comments'] , 'This is a comment');
-        $this->assertEquals($lineItems['registrationLineItemId'] , 1);
+        $this->assertEquals($lineItems['registrationLineItemId'] , 2);
         $this->assertEquals($lineItems['lineItem'] , 'T-Shirt');
-        $this->assertEquals($lineItems['amount'] , '25.00');
-        $this->assertEquals($lineItems['total'] , '25.00');
+        $this->assertEquals($lineItems['amount'] , '15.75');
+        $this->assertEquals($lineItems['total'] , '31.50');
         $this->assertEquals($lineItems['paid'] , 'NO');
-        $this->assertEquals($lineItems['discount'] , 'NO');
+        $this->assertEquals($lineItems['discount'] , 'YES');
         $this->assertEquals($lineItems['description'] , '');
         $this->assertEquals($lineItems['size'] , 'X-Large');
-        $this->assertEquals($lineItems['quantity'] , '1');
+        $this->assertEquals($lineItems['quantity'] , '2');
         $this->assertEquals($lineItems['active'] , 'YES');
-        $this->assertEquals($lineItems['entryDate'] , '2014-04-04 18:50:00');
+        $this->assertEquals($lineItems['entryDate'] , '2014-06-29 08:46:00');
     }
 
     public function testAuthenticatedGetNoRegistration() 

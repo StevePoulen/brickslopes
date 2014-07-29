@@ -1,1 +1,2 @@
-1,YES,NO,This is a comment,BrickSlopes - SLC,1,1,T-Shirt,25.00,NO,,X-Large,1,YES,2014-04-04 18:50:00
+1,YES,NO,This is a comment,BrickSlopes - SLC,1,1,Brian,Pilati,Spanish Fork,Utah,brian@brickslopes.com
+2,YES,NO,This is a comment,BrickSlopes - Salt Lake City,2,2,Ember,Pilati,Salem,Colorado,ember@brickslopes.com

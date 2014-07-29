@@ -23,7 +23,6 @@ class UserTest extends PHPUnit_Framework_TestCase
     {
         $_SERVER['REQUEST_METHOD'] = "GET";
         $GLOBALS['db_query'] = '1';
-        $GLOBALS['fetch_object'] = "UsersMock";
         $event = new User($this->userId, true, true, true);
         $this->assertEquals(http_response_code(), 200);
         $output = json_decode(ob_get_contents(), true);
@@ -49,7 +48,6 @@ class UserTest extends PHPUnit_Framework_TestCase
             'email' => 'steve@brickslopes.com'
         );
         $GLOBALS['db_query'] = 123456789;
-        $GLOBALS['fetch_object'] = new UsersMock();
         $authentication = new User($this->userId, false, false, false);
         $this->assertEquals(http_response_code(), 201);
         $output = json_decode(ob_get_contents(), true);
@@ -73,7 +71,6 @@ class UserTest extends PHPUnit_Framework_TestCase
             'email' => 'steve@brickslopes.com'
         );
         $GLOBALS['db_query'] = 123456789;
-        $GLOBALS['fetch_object'] = new UsersMock();
         $authentication = new User($this->userId, true, true, true);
         $this->assertEquals(http_response_code(), 201);
         $output = json_decode(ob_get_contents(), true);

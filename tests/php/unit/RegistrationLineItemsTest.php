@@ -20,7 +20,6 @@ class RegistrationLineItemsTest extends PHPUnit_Framework_TestCase
     {
         $_SERVER['REQUEST_METHOD'] = "GET";
         $GLOBALS['db_query'] = 12345;
-        $GLOBALS['fetch_object'] = "RegistrationLineItemsMock";
         $this->userId = 12345;
         new RegistrationLineItems($this->userId, true);
         $this->assertEquals(http_response_code(), 200);
@@ -78,7 +77,6 @@ class RegistrationLineItemsTest extends PHPUnit_Framework_TestCase
     public function testBuildLineItemObject() 
     {
         $GLOBALS['db_query'] = 12345;
-        $GLOBALS['fetch_object'] = "RegistrationLineItemsMock";
         $registrationLineItem = new RegistrationLineItems();
         $output = $registrationLineItem->getRegisteredLineItems(1,2);
         $lineItems = $output['lineItems'];

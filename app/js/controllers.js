@@ -293,7 +293,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         $location.path("/afol/index.html");
     }
 }])
-.controller('afolEventRegistration', ['$scope', '$location', 'EventDetails', 'EventRegistration', '$route', 'EventDates', function($scope, $location, EventDetails, eventRegistration, $route, EventDates) {
+.controller('afolEventRegistration', ['$scope', '$location', 'EventDetails', 'EventRegistration', '$route', 'EventDates', function($scope, $location, EventDetails, EventRegistration, $route, EventDates) {
     $scope.verifying = false;
     $scope.displayMessage = "";
     $scope.success = true;
@@ -365,7 +365,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
 
     $scope.submitRegistration = function() {
         $scope.verifying = true;
-        eventRegistration.submitRegistration($scope.isCreate, serializeRegistrationJson()).then(function(response) {
+        EventRegistration.submitRegistration($scope.isCreate, serializeRegistrationJson()).then(function(response) {
             $location.path('/afol/eventPayment.html');
         }, function() {
             $scope.verifying = false;
@@ -400,7 +400,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         $location.path("/afol/index.html");
     }
 
-    eventRegistration.get().then(function(data) {
+    EventRegistration.get().then(function(data) {
         var isRegistered = (Object.keys(data).length ? true : false);
         if (isRegistered) {
             $scope.isCreate = false;

@@ -75,7 +75,7 @@ class registrations extends db {
                 r.ageVerification as ageVerification,
                 IFNULL(r.paid,'NO') as paid,
                 IFNULL(r.comments,'') as comments,
-                e.name as name,
+                e.name as eventName,
                 e.eventId
             FROM
                 registrations r,

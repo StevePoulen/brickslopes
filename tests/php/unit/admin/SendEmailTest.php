@@ -21,7 +21,6 @@ class SendEmailTest extends PHPUnit_Framework_TestCase
         );
         $_SERVER['REQUEST_METHOD'] = "GET";
         $GLOBALS['db_query'] = '1';
-        $GLOBALS['fetch_object'] = "usersObject";
         $event = new SendEmail();
         $this->assertEquals(http_response_code(), 400);
     }
@@ -34,7 +33,6 @@ class SendEmailTest extends PHPUnit_Framework_TestCase
         );
         $_SERVER['REQUEST_METHOD'] = "GET";
         $GLOBALS['db_query'] = '1';
-        $GLOBALS['fetch_object'] = "usersObject";
         $event = new SendEmail();
         $this->assertEquals(http_response_code(), 412);
     }
@@ -48,7 +46,6 @@ class SendEmailTest extends PHPUnit_Framework_TestCase
         );
         $_SERVER['REQUEST_METHOD'] = "GET";
         $GLOBALS['db_query'] = '1';
-        $GLOBALS['fetch_object'] = "usersObject";
         $event = new SendEmail();
         $this->assertEquals(http_response_code(), 200);
         $this->assertEquals($GLOBALS['sendRegistrationPaidMessage'], 1);

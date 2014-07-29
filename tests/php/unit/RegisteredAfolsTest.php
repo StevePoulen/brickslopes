@@ -7,7 +7,6 @@ class RegisteredAfolsTest extends PHPUnit_Framework_TestCase
     {
         $this->userId = 22;
         $this->isAdmin = true;
-        new RegisteredAfolsMock();
         include_once('controllers/registeredAfols.php');
     }
 
@@ -23,28 +22,28 @@ class RegisteredAfolsTest extends PHPUnit_Framework_TestCase
         $_SERVER['REQUEST_METHOD'] = "GET";
         $_GET['eventId'] = 2;
         $GLOBALS['db_query'] = '1';
-        $GLOBALS['fetch_object'] = "RegisteredAfolsMock";
         new RegisteredAfols($this->isAdmin);
         $this->assertEquals(http_response_code(), 200);
         $output = json_decode(ob_get_contents(), true)[2];
         $this->assertEquals($output['eventName'] , 'BrickSlopes - Salt Lake City');
         $afol = $output['registeredAfols'][0];
 
-        $this->assertEquals($afol['registrationId'] , '1');
+        $this->assertEquals($afol['registrationId'] , '2');
+        $this->assertEquals($afol['userId'] , '2');
         $this->assertEquals($afol['comments'] , 'This is a comment');
-        $this->assertEquals($afol['firstName'] , 'Brian');
+        $this->assertEquals($afol['firstName'] , 'Ember');
         $this->assertEquals($afol['lastName'] , 'Pilati');
-        $this->assertEquals($afol['email'] , 'brianpilati@gmail.com');
-        $this->assertEquals($afol['city'] , 'Spanish Fork');
-        $this->assertEquals($afol['state'] , 'Utah');
+        $this->assertEquals($afol['email'] , 'ember@brickslopes.com');
+        $this->assertEquals($afol['city'] , 'Salem');
+        $this->assertEquals($afol['state'] , 'Colorado');
         $this->assertEquals($afol['paid'] , 'NO');
         $this->assertEquals(sizeOf($afol), 10);
 
-        $total = $output['registeredAfols'][0]['lineItems']['total'];
-        $this->assertEquals($total , 25.00);
+        $total = $afol['lineItems']['total'];
+        $this->assertEquals($total, 110.00);
 
-        $lineItems = $output['registeredAfols'][0]['lineItems']['lineItems'][0];
-        $this->assertEquals($lineItems['lineItem'] , 'T-Shirt');
+        $lineItems = $afol['lineItems']['lineItems'][0];
+        $this->assertEquals($lineItems['lineItem'] , 'Event Pass');
     }
 
     public function testAuthenticatedGETAsNonAdmin() 
@@ -52,18 +51,17 @@ class RegisteredAfolsTest extends PHPUnit_Framework_TestCase
         $_SERVER['REQUEST_METHOD'] = "GET";
         $_GET['eventId'] = 2;
         $GLOBALS['db_query'] = '1';
-        $GLOBALS['fetch_object'] = "RegisteredAfolsMock";
         new RegisteredAfols(false);
         $this->assertEquals(http_response_code(), 200);
         $output = json_decode(ob_get_contents(), true)[2];
         $this->assertEquals($output['eventName'] , 'BrickSlopes - Salt Lake City');
         $afol = $output['registeredAfols'][0];
 
-        $this->assertEquals($afol['registrationId'] , '1');
-        $this->assertEquals($afol['firstName'] , 'Brian');
+        $this->assertEquals($afol['registrationId'] , '2');
+        $this->assertEquals($afol['firstName'] , 'Ember');
         $this->assertEquals($afol['lastName'] , 'Pilati');
-        $this->assertEquals($afol['city'] , 'Spanish Fork');
-        $this->assertEquals($afol['state'] , 'Utah');
+        $this->assertEquals($afol['city'] , 'Salem');
+        $this->assertEquals($afol['state'] , 'Colorado');
         $this->assertEquals(sizeOf($afol), 6);
     }
 }

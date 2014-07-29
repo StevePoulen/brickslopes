@@ -24,26 +24,37 @@ class Event {
     private function get() {
         $response = $this->eventsObj->getEventInformation($_GET);
         if ($response) {
+            $eventLineItemsObj = new eventLineItems();
+            $eventLineItemsObj->getEventLineItems($_GET['eventId']);
             header("HTTP/1.0 200 Success");
-            $dbObj = $this->eventsObj->result->fetch_object();
-            echo json_encode (
-                array (
+            if($dbObj = $this->eventsObj->result->fetch_object()) {
+                $eventResponse = array (
                     'data' => array (
                         'name' => $dbObj->name,
                         'city' => $dbObj->city, 
                         'state' => $dbObj->state,
                         'year' => $dbObj->year,
-                        'cost' => $dbObj->cost,
-                        'discount' => $dbObj->discount,
-                        'meetAndGreetCost' => $dbObj->meetAndGreetCost,
-                        'meetAndGreetDiscount' => $dbObj->meetAndGreetDiscount,
-                        'discountDate' => $dbObj->discountDate,
-                        'tShirtCost' => $dbObj->tShirtCost,
-                        'tShirtDiscount' => $dbObj->tShirtDiscount
+                        'lineItems' => array ()
                     ),
                     'status' => 200
-                )
-            );
+                );
+
+                $lineItemsMap = array();
+                while ($dbObj = $eventLineItemsObj->result->fetch_object()) {
+                    $lineItemsMap[$dbObj->lineItem] = array (
+                        'lineItem' => $dbObj->lineItem,
+                        'cost' => $dbObj->cost,
+                        'discount' => $dbObj->discount,
+                        'active' => $dbObj->active
+                    );
+                }
+
+                $eventResponse['data']['lineItems'] = $lineItemsMap;
+
+                echo json_encode (
+                    $eventResponse
+                );
+            }
         } else {
             header("HTTP/1.0 400 Bad Request");
         }

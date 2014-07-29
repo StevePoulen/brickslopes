@@ -1,7 +1,10 @@
 <?php
 
 class registrationLineItemModel extends db {
+    protected $dbResult;
+
     function __construct() {
+        $this->dbResult = new RegistrationLineItemsMock();
         parent::__construct();
     }
 
@@ -36,24 +39,8 @@ class registrationLineItemModel extends db {
 }
 
 class RegistrationLineItemsMock extends modelObjects {
-    protected $className;
-    protected $dataSet;
-
     public function __construct() {
-        $this->dataSet = file(__DIR__ . '/../artifacts/registrationLineItemsDB.txt');
-        $GLOBALS['fetch_object_counter_limit'] = sizeOf($this->dataSet);
-        $this->registrationLineItemId = $this->registrationLineItemId();
-        $this->eventId = $this->eventId();
-        $this->userId = $this->userId();
-        $this->lineItem = $this->lineItem();
-        $this->amount = $this->amount();
-        $this->paid = $this->paid();
-        $this->discount = $this->discount();
-        $this->description = $this->description();
-        $this->size = $this->size();
-        $this->quantity = $this->quantity();
-        $this->active = $this->active();
-        $this->entryDate = $this->entryDate();
+        parent::__construct('registrationLineItemsDB.txt');
     }
 
     public function registrationLineItemId() { return $this->getData(0); }

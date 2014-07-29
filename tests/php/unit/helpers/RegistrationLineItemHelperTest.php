@@ -24,6 +24,7 @@ class RegistrationLineItemHelperTest extends PHPUnit_Framework_TestCase
             'badgeLine3' => 'Thank you Third Line'
         );
         new RegistrationLineItemsMock();
+        include_once('lib/helpers/registrationLineItemHelper.php');
         $this->helper = new RegistrationLineItemHelper();
     }
 
@@ -38,7 +39,6 @@ class RegistrationLineItemHelperTest extends PHPUnit_Framework_TestCase
 
     public function testAddRegistrationLineItemsBrickOne() 
     {
-        $GLOBALS['fetch_object'] = "RegistrationLineItemsMock";
         $GLOBALS['db_query'] = '1';
         $this->helper->addRegistrationLineItems($this->dto);
         $lineItemObj = $GLOBALS['addRegistrationLineItems'][3];
@@ -58,7 +58,6 @@ class RegistrationLineItemHelperTest extends PHPUnit_Framework_TestCase
 
     public function testAddRegistrationLineItemsBrickTwo() 
     {
-        $GLOBALS['fetch_object'] = "RegistrationLineItemsMock";
         $GLOBALS['db_query'] = '1';
         $this->helper->addRegistrationLineItems($this->dto);
         $lineItemObj = $GLOBALS['addRegistrationLineItems'][4];
@@ -78,7 +77,6 @@ class RegistrationLineItemHelperTest extends PHPUnit_Framework_TestCase
 
     public function testAddRegistrationLineItemsBrickThree() 
     {
-        $GLOBALS['fetch_object'] = "RegistrationLineItemsMock";
         $GLOBALS['db_query'] = '1';
         $this->helper->addRegistrationLineItems($this->dto);
         $lineItemObj = $GLOBALS['addRegistrationLineItems'][5];
@@ -98,7 +96,6 @@ class RegistrationLineItemHelperTest extends PHPUnit_Framework_TestCase
 
     public function testAddRegistrationLineItemsEventPassWithDiscount() 
     {
-        $GLOBALS['fetch_object'] = "RegistrationLineItemsMock";
         $GLOBALS['db_query'] = '1';
         $this->helper->addRegistrationLineItems($this->dto);
         $lineItemObj = $GLOBALS['addRegistrationLineItems'][0];
@@ -118,7 +115,6 @@ class RegistrationLineItemHelperTest extends PHPUnit_Framework_TestCase
 
     public function testAddRegistrationLineItemsMeetAndGreetWithDiscount() 
     {
-        $GLOBALS['fetch_object'] = "RegistrationLineItemsMock";
         $GLOBALS['db_query'] = '1';
         $this->helper->addRegistrationLineItems($this->dto);
         $lineItemObj = $GLOBALS['addRegistrationLineItems'][1];
@@ -138,7 +134,6 @@ class RegistrationLineItemHelperTest extends PHPUnit_Framework_TestCase
 
     public function testAddRegistrationLineItemsTShirtWithDiscount() 
     {
-        $GLOBALS['fetch_object'] = "RegistrationLineItemsMock";
         $GLOBALS['db_query'] = '1';
         $this->helper->addRegistrationLineItems($this->dto);
         $lineItemObj = $GLOBALS['addRegistrationLineItems'][2];
@@ -159,7 +154,6 @@ class RegistrationLineItemHelperTest extends PHPUnit_Framework_TestCase
     public function testAddRegistrationLineItemsEventPassWithoutDiscount() 
     {
         $this->dto['discountDate'] = $this->yesterday;
-        $GLOBALS['fetch_object'] = "RegistrationLineItemsMock";
         $GLOBALS['db_query'] = '1';
         $this->helper->addRegistrationLineItems($this->dto);
         $lineItemObj = $GLOBALS['addRegistrationLineItems'][0];
@@ -180,7 +174,6 @@ class RegistrationLineItemHelperTest extends PHPUnit_Framework_TestCase
     public function testAddRegistrationLineItemsMeetAndGreetWithoutDiscount() 
     {
         $this->dto['discountDate'] = $this->yesterday;
-        $GLOBALS['fetch_object'] = "RegistrationLineItemsMock";
         $GLOBALS['db_query'] = '1';
         $this->helper->addRegistrationLineItems($this->dto);
         $lineItemObj = $GLOBALS['addRegistrationLineItems'][1];
@@ -201,7 +194,6 @@ class RegistrationLineItemHelperTest extends PHPUnit_Framework_TestCase
     public function testAddRegistrationLineItemsTShirtWithoutDiscount() 
     {
         $this->dto['discountDate'] = $this->yesterday;
-        $GLOBALS['fetch_object'] = "RegistrationLineItemsMock";
         $GLOBALS['db_query'] = '1';
         $this->helper->addRegistrationLineItems($this->dto);
         $lineItemObj = $GLOBALS['addRegistrationLineItems'][2];
@@ -224,7 +216,6 @@ class RegistrationLineItemHelperTest extends PHPUnit_Framework_TestCase
         $this->dto['discountDate'] = $this->yesterday;
         $this->dto['meetAndGreet'] = 'NO';
         $this->dto['tShirtSize'] = 'No Thanks';
-        $GLOBALS['fetch_object'] = "RegistrationLineItemsMock";
         $GLOBALS['db_query'] = '1';
         $this->helper->addRegistrationLineItems($this->dto);
         $lineItemObj = $GLOBALS['addRegistrationLineItems'][0];
@@ -245,7 +236,6 @@ class RegistrationLineItemHelperTest extends PHPUnit_Framework_TestCase
     public function testAddRegistrationLineItemsNoNameBadge() 
     {
         $this->dto['nameBadge'] = 'NO';
-        $GLOBALS['fetch_object'] = "RegistrationLineItemsMock";
         $GLOBALS['db_query'] = '1';
         $this->helper->addRegistrationLineItems($this->dto);
         $lineItemObj = $GLOBALS['addRegistrationLineItems'][3];

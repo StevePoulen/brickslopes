@@ -1,19 +1,20 @@
 <?php
 
-class ThemesMock extends modelObjects {
-    protected $dataSet;
+class themesModel extends db {
+    protected $dbResult;
+    function __construct() {
+        $this->dbResult = new ThemesMock();
+        parent::__construct();
+    }
 
+    public function getThemeInformation() {
+        return $this->query();
+    }
+}
+
+class ThemesMock extends modelObjects {
     public function __construct() {
-        $this->dataSet = file(__DIR__ . '/../artifacts/themesDB.txt');
-        $GLOBALS['fetch_object_counter_limit'] = sizeOf($this->dataSet);
-        $this->themeId = $this->themeId();
-        $this->eventId = $this->eventId();
-        $this->themeAwardId = $this->themeAwardId();
-        $this->theme = $this->theme();
-        $this->type = $this->type();
-        $this->award = $this->award();
-        $this->place = $this->place();
-        $this->selectable = $this->selectable();
+        parent::__construct('themesDB.txt');
     }
 
     public function themeId() { return $this->getData(0); }

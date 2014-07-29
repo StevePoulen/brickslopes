@@ -1,7 +1,9 @@
 <?php
 
 class mocModel extends db {
+    protected $dbResult;
     function __construct() {
+        $this->dbResult = new MocsMock();
         parent::__construct();
     }
 
@@ -19,18 +21,7 @@ class MocsMock extends modelObjects {
     protected $dataSet;
 
     public function __construct() {
-        $this->dataSet = file(__DIR__ . '/../artifacts/mocsDB.txt');
-        $GLOBALS['fetch_object_counter_limit'] = sizeOf($this->dataSet);
-        $this->eventId = $this->eventId();
-        $this->userId = $this->userId();
-        $this->themeId = $this->themeId();
-        $this->title = $this->title();
-        $this->displayName = $this->displayName();
-        $this->mocImageUrl = $this->mocImageUrl();
-        $this->baseplateWidth = $this->baseplateWidth();
-        $this->baseplateDepth = $this->baseplateDepth();
-        $this->description = $this->description();
-        $this->theme = $this->theme();
+        parent::__construct('mocsDB.txt');
     }
 
     public function eventId() { return $this->getData(0); }

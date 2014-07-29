@@ -1,14 +1,8 @@
 <?php
 
 class EventRegistrationsObject extends modelObjects {
-    protected $dataSet;
-
     public function __construct() {
-        $this->dataSet = file(__DIR__ . '/../artifacts/eventRegistrationsDB.txt');
-        $GLOBALS['fetch_object_counter_limit'] = sizeOf($this->dataSet);
-        $this->userId = $this->userId();
-        $this->firstName = $this->firstName();
-        $this->lastName = $this->lastName();
+        parent::__construct('eventRegistrationsDB.txt');
     }
 
     public function userId() { return $this->getData(0); }

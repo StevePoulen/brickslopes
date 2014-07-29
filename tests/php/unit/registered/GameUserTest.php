@@ -20,7 +20,6 @@ class GameUserTest extends PHPUnit_Framework_TestCase
     {
         $_SERVER['REQUEST_METHOD'] = "GET";
         $GLOBALS['db_query'] = '1';
-        $GLOBALS['fetch_object'] = "GameUserMock";
         new GameUser($this->userId);
         $this->assertEquals(http_response_code(), 200);
         $output = json_decode(ob_get_contents(), true)['1'];
@@ -37,7 +36,6 @@ class GameUserTest extends PHPUnit_Framework_TestCase
         $_SERVER['REQUEST_METHOD'] = "POST";
         $_POST['userId'] = 5;
         $GLOBALS['db_query'] = '1';
-        $GLOBALS['fetch_object'] = "GameUserMock";
         new GameUser($this->userId);
         $this->assertEquals(http_response_code(), 201);
     }
@@ -47,7 +45,6 @@ class GameUserTest extends PHPUnit_Framework_TestCase
         $_SERVER['REQUEST_METHOD'] = "DELETE";
         $_POST['userId'] = 5;
         $GLOBALS['db_query'] = '1';
-        $GLOBALS['fetch_object'] = "GameUserMock";
         new GameUser($this->userId);
         $this->assertEquals(http_response_code(), 200);
     }
@@ -57,7 +54,6 @@ class GameUserTest extends PHPUnit_Framework_TestCase
         $_SERVER['REQUEST_METHOD'] = "DELETE";
         $_POST['userId'] = 5;
         $GLOBALS['db_query'] = 'failure';
-        $GLOBALS['fetch_object'] = "GameUserMock";
         new GameUser($this->userId);
         $this->assertEquals(http_response_code(), 400);
     }

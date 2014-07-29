@@ -39,7 +39,7 @@ class EventRegistration {
                         'ageVerification' => $dbObj->ageVerification,
                         'paid' => $dbObj->paid,
                         'comments' => $dbObj->comments,
-                        'name' => $dbObj->name,
+                        'name' => $dbObj->eventName,
                         'registrationId' => $dbObj->registrationId,
                         'lineItems' => $registrationLineItemsObj->getRegisteredLineItems($this->userId, $dbObj->eventId)
                     );

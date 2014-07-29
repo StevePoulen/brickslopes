@@ -21,7 +21,6 @@ class AuthenticationTest extends PHPUnit_Framework_TestCase
         $_POST['email'] = 'brianpilati@gmail.com';
         $_POST['password'] = 'vErYsEcUrE';
         $GLOBALS['db_query'] = 1;
-        $GLOBALS['fetch_object'] = new UsersMock();
         $authentication = new Authentication();
         $this->assertEquals(http_response_code(), 200);
         $output = json_decode(ob_get_contents(), true);
@@ -38,7 +37,6 @@ class AuthenticationTest extends PHPUnit_Framework_TestCase
     {
         $_SERVER['REQUEST_METHOD'] = "PUT";
         $GLOBALS['db_query'] = 123456789;
-        $GLOBALS['fetch_object'] = new UsersMock();
         $authentication = new Authentication();
         $this->assertEquals(http_response_code(), 200);
         $this->assertEquals(strlen($GLOBALS['sendResetEmailMessage_password']), 8);
@@ -58,7 +56,6 @@ class AuthenticationTest extends PHPUnit_Framework_TestCase
     {
         $_SERVER['REQUEST_METHOD'] = "PATCH";
         $GLOBALS['db_query'] = 1;
-        $GLOBALS['fetch_object'] = new UsersMock();
         $authentication = new Authentication(12345678);
         $this->assertEquals(http_response_code(), 200);
     }

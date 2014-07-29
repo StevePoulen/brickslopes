@@ -1,15 +1,22 @@
 <?php
 
+class eventDatesModel extends db {
+    protected $dbResult;
+    function __construct() {
+        $this->dbResult = new EventDatesMock();
+        parent::__construct();
+    }
+
+    public function getEventDates() {
+        return $this->query();
+    }
+}
+
 class EventDatesMock extends modelObjects {
     protected $dataSet;
 
     public function __construct() {
-        $this->dataSet = file(__DIR__ . '/../artifacts/eventDatesDB.txt');
-        $GLOBALS['fetch_object_counter_limit'] = sizeOf($this->dataSet);
-        $this->eventId = $this->eventId();
-        $this->startDate = $this->startDate();
-        $this->endDate = $this->endDate();
-        $this->type = $this->type();
+        parent::__construct('eventDatesDB.txt');
     }
 
     public function eventId() { return $this->getData(0); }
