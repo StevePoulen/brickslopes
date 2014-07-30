@@ -21,5 +21,6 @@ class EventLineItemsMock extends modelObjects {
     public function cost() { return $this->getData(1); }
     public function discount() { return $this->getData(2); }
     public function active() { return $this->getData(3); }
+    public function code() { return $this->getData(4); }
 }
 ?>

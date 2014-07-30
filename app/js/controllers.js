@@ -303,6 +303,8 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     $scope.eventDetails = {city: 'loading'};
     $scope.nameBadge = 'NO';
     $scope.meetAndGreet = 'YES';
+    $scope.draftOne = 'YES';
+    $scope.draftTwo = 'YES';
     $scope.comments = 'Comments ...';
     $scope.ageVerification = 'YES';
     $scope.discountDate = undefined;
@@ -335,31 +337,33 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         $scope.badgeLine3 = data.badgeLine3,
         $scope.nameBadge = data.nameBadge,
         $scope.meetAndGreet = data.meetAndGreet,
+        $scope.draftOne = data.draftOne,
+        $scope.draftTwo = data.draftTwo,
         $scope.ageVerification = data.ageVerification,
         $scope.tShirtSize = data.tShirtSize,
         $scope.comments = data.comments
     }
 
     function serializeRegistrationJson() {
-        return {
-            registrationId: $scope.registrationId,
-            eventId: $scope.eventId,
-            badgeLine1: $scope.eventYear + " BrickSlopes",
-            badgeLine2: $scope.badgeLine2,
-            badgeLine3: $scope.badgeLine3,
-            nameBadge: $scope.nameBadge,
-            meetAndGreet: $scope.meetAndGreet,
-            ageVerification: $scope.ageVerification,
-            tShirtSize: $scope.tShirtSize,
-            comments: $scope.comments,
-            type: 'afol',
-            discountDate: $scope.eventDetails.discountDate,
-            eventCost: $scope.eventDetails.cost,
-            eventDiscount: $scope.eventDetails.discount,
-            meetAndGreetCost: $scope.eventDetails.meetAndGreetCost,
-            meetAndGreetDiscount: $scope.eventDetails.meetAndGreetDiscount,
-            tShirtCost: $scope.eventDetails.tShirtCost,
-            tShirtDiscount: $scope.eventDetails.tShirtDiscount
+        try {
+            return {
+                registrationId: $scope.registrationId,
+                eventId: $scope.eventId,
+                badgeLine1: $scope.eventYear + " BrickSlopes",
+                badgeLine2: $scope.badgeLine2,
+                badgeLine3: $scope.badgeLine3,
+                nameBadge: $scope.nameBadge,
+                meetAndGreet: $scope.meetAndGreet,
+                draftOne: $scope.draftOne,
+                draftTwo: $scope.draftTwo,
+                ageVerification: $scope.ageVerification,
+                tShirtSize: $scope.tShirtSize,
+                comments: $scope.comments,
+                type: 'afol',
+                discountDate: $scope.eventDetails.discountDate
+            }
+        } catch (err) {
+            return {};
         }
     }
 
@@ -375,8 +379,8 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         });
     }
 
-    EventDetails.get({eventId: $scope.eventId}, function(data) {
-        $scope.eventDetails=data.data;
+    EventDetails.get($scope.eventId).then(function(data) {
+        $scope.eventDetails=data;
         $scope.discountDate = moment($scope.eventDetails.discountDate).format('MMMM Do, YYYY');
     });
 

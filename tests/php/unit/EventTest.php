@@ -21,22 +21,25 @@ class EventTest extends PHPUnit_Framework_TestCase
         $GLOBALS['db_query'] = '1';
         $event = new Event();
         $this->assertEquals(http_response_code(), 200);
-        $output = json_decode(ob_get_contents(), true)['data'];
+        $output = json_decode(ob_get_contents(), true);
+        $this->assertEquals($output['eventId'], 2);
         $this->assertEquals($output['name'], 'BrickSlopes 2015');
         $this->assertEquals($output['city'], 'Salt Lake City');
         $this->assertEquals($output['state'], 'Utah');
         $this->assertEquals($output['year'], '2015');
+        $this->assertEquals($output['discountDate'], '2015-03-25 14:23:22');
 
-        $lineItems = $output['lineItems'];
-        $this->assertEquals($lineItems['Event Cost']['cost'], '65.00');
-        $this->assertEquals($lineItems['Event Cost']['discount'], '60.00');
-        $this->assertEquals($lineItems['Event Cost']['active'], 'YES');
-        $this->assertEquals($lineItems['Event Cost']['lineItem'], 'Event Cost');
+        $lineItems = $output['lineItems']['10001'];
+        $this->assertEquals($lineItems['cost'], '65.00');
+        $this->assertEquals($lineItems['discount'], '60.00');
+        $this->assertEquals($lineItems['active'], 'YES');
+        $this->assertEquals($lineItems['lineItem'], 'Event Cost');
 
-        $this->assertEquals($lineItems['T-Shirt']['cost'], '25.00');
-        $this->assertEquals($lineItems['T-Shirt']['discount'], '20.00');
-        $this->assertEquals($lineItems['T-Shirt']['active'], 'YES');
-        $this->assertEquals($lineItems['T-Shirt']['lineItem'], 'T-Shirt');
+        $lineItems = $output['lineItems']['10002'];
+        $this->assertEquals($lineItems['cost'], '25.00');
+        $this->assertEquals($lineItems['discount'], '20.00');
+        $this->assertEquals($lineItems['active'], 'YES');
+        $this->assertEquals($lineItems['lineItem'], 'T-Shirt');
     }
 
     public function testAuthenticatedGetFailure() 

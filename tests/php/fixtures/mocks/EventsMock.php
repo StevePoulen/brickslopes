@@ -17,9 +17,11 @@ class EventsMock extends modelObjects {
         parent::__construct('eventsDB.txt');
     }
 
-    public function name() { return $this->getData(0); }
-    public function city() { return $this->getData(1); }
-    public function state() { return $this->getData(2); }
-    public function year() { return $this->getData(3); }
+    public function eventId() { return $this->getData(0); }
+    public function name() { return $this->getData(1); }
+    public function city() { return $this->getData(2); }
+    public function state() { return $this->getData(3); }
+    public function year() { return $this->getData(4); }
+    public function discountDate() { return $this->getData(5); }
 }
 ?>

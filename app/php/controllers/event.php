@@ -29,19 +29,18 @@ class Event {
             header("HTTP/1.0 200 Success");
             if($dbObj = $this->eventsObj->result->fetch_object()) {
                 $eventResponse = array (
-                    'data' => array (
-                        'name' => $dbObj->name,
-                        'city' => $dbObj->city, 
-                        'state' => $dbObj->state,
-                        'year' => $dbObj->year,
-                        'lineItems' => array ()
-                    ),
-                    'status' => 200
+                    'eventId' => $dbObj->eventId,
+                    'name' => $dbObj->name,
+                    'city' => $dbObj->city, 
+                    'state' => $dbObj->state,
+                    'year' => $dbObj->year,
+                    'discountDate' => $dbObj->discountDate,
+                    'lineItems' => array ()
                 );
 
                 $lineItemsMap = array();
                 while ($dbObj = $eventLineItemsObj->result->fetch_object()) {
-                    $lineItemsMap[$dbObj->lineItem] = array (
+                    $lineItemsMap[$dbObj->code] = array (
                         'lineItem' => $dbObj->lineItem,
                         'cost' => $dbObj->cost,
                         'discount' => $dbObj->discount,
@@ -49,7 +48,7 @@ class Event {
                     );
                 }
 
-                $eventResponse['data']['lineItems'] = $lineItemsMap;
+                $eventResponse['lineItems'] = $lineItemsMap;
 
                 echo json_encode (
                     $eventResponse

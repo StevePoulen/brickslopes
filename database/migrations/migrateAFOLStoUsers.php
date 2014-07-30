@@ -576,6 +576,7 @@
             $eventLineItemsObj = new eventLineItems();
             $eventLineItemMap = array (
                 'eventId' => $eventId,
+                'eventLineItemCodeId' => 1,
                 'lineItem' => '4 Day Event Pass',
                 'cost' => '65.00',
                 'discount' => '60.00',
@@ -585,6 +586,7 @@
 
             $eventLineItemMap = array (
                 'eventId' => $eventId,
+                'eventLineItemCodeId' => 2,
                 'lineItem' => 'T-Shirt',
                 'cost' => '20.00',
                 'discount' => '15.00',
@@ -594,15 +596,57 @@
 
             $eventLineItemMap = array (
                 'eventId' => $eventId,
+                'eventLineItemCodeId' => 3,
                 'lineItem' => 'Meet And Greet',
-                'cost' => '20.00',
-                'discount' => '15.00',
+                'cost' => '15.00',
+                'discount' => '10.00',
                 'active' => 'YES'
             );
             $eventLineItemsObj->addEventLineItem($eventLineItemMap);
 
             $eventLineItemMap = array (
                 'eventId' => $eventId,
+                'eventLineItemCodeId' => 4,
+                'lineItem' => 'Complete Name Badge',
+                'cost' => '10.00',
+                'discount' => '10.00',
+                'active' => 'YES'
+            );
+            $eventLineItemsObj->addEventLineItem($eventLineItemMap);
+
+            $eventLineItemMap = array (
+                'eventId' => $eventId,
+                'eventLineItemCodeId' => 5,
+                'lineItem' => '1st Badge Brick',
+                'cost' => '0.00',
+                'discount' => '0.00',
+                'active' => 'YES'
+            );
+            $eventLineItemsObj->addEventLineItem($eventLineItemMap);
+
+            $eventLineItemMap = array (
+                'eventId' => $eventId,
+                'eventLineItemCodeId' => 6,
+                'lineItem' => '2nd Badge Brick',
+                'cost' => '0.00',
+                'discount' => '0.00',
+                'active' => 'YES'
+            );
+            $eventLineItemsObj->addEventLineItem($eventLineItemMap);
+
+            $eventLineItemMap = array (
+                'eventId' => $eventId,
+                'eventLineItemCodeId' => 7,
+                'lineItem' => 'Event Badge Brick',
+                'cost' => '0.00',
+                'discount' => '0.00',
+                'active' => 'YES'
+            );
+            $eventLineItemsObj->addEventLineItem($eventLineItemMap);
+
+            $eventLineItemMap = array (
+                'eventId' => $eventId,
+                'eventLineItemCodeId' => 8,
                 'lineItem' => 'Draft - $15',
                 'cost' => '15.00',
                 'discount' => '15.00',
@@ -612,6 +656,7 @@
 
             $eventLineItemMap = array (
                 'eventId' => $eventId,
+                'eventLineItemCodeId' => 9,
                 'lineItem' => 'Draft - $25',
                 'cost' => '25.00',
                 'discount' => '25.00',
@@ -676,6 +721,7 @@
             $eventLineItemsObj = new eventLineItems();
             $eventLineItemMap = array (
                 'eventId' => $eventId,
+                'eventLineItemCodeId' => 1,
                 'lineItem' => '4 Day Event Pass',
                 'cost' => '65.00',
                 'discount' => '60.00',
@@ -685,6 +731,7 @@
 
             $eventLineItemMap = array (
                 'eventId' => $eventId,
+                'eventLineItemCodeId' => 2,
                 'lineItem' => 'T-Shirt',
                 'cost' => '20.00',
                 'discount' => '15.00',
@@ -694,6 +741,7 @@
 
             $eventLineItemMap = array (
                 'eventId' => $eventId,
+                'eventLineItemCodeId' => 3,
                 'lineItem' => 'Meet And Greet',
                 'cost' => '20.00',
                 'discount' => '15.00',
@@ -703,6 +751,47 @@
 
             $eventLineItemMap = array (
                 'eventId' => $eventId,
+                'eventLineItemCodeId' => 4,
+                'lineItem' => 'Complete Name Badge',
+                'cost' => '10.00',
+                'discount' => '10.00',
+                'active' => 'YES'
+            );
+            $eventLineItemsObj->addEventLineItem($eventLineItemMap);
+
+            $eventLineItemMap = array (
+                'eventId' => $eventId,
+                'eventLineItemCodeId' => 5,
+                'lineItem' => '1st Badge Brick',
+                'cost' => '0.00',
+                'discount' => '0.00',
+                'active' => 'YES'
+            );
+            $eventLineItemsObj->addEventLineItem($eventLineItemMap);
+
+            $eventLineItemMap = array (
+                'eventId' => $eventId,
+                'eventLineItemCodeId' => 6,
+                'lineItem' => '2nd Badge Brick',
+                'cost' => '0.00',
+                'discount' => '0.00',
+                'active' => 'YES'
+            );
+            $eventLineItemsObj->addEventLineItem($eventLineItemMap);
+
+            $eventLineItemMap = array (
+                'eventId' => $eventId,
+                'eventLineItemCodeId' => 7,
+                'lineItem' => 'Event Badge Brick',
+                'cost' => '0.00',
+                'discount' => '0.00',
+                'active' => 'YES'
+            );
+            $eventLineItemsObj->addEventLineItem($eventLineItemMap);
+
+            $eventLineItemMap = array (
+                'eventId' => $eventId,
+                'eventLineItemCodeId' => 8,
                 'lineItem' => 'Draft - $15',
                 'cost' => '15.00',
                 'discount' => '15.00',
@@ -712,6 +801,7 @@
 
             $eventLineItemMap = array (
                 'eventId' => $eventId,
+                'eventLineItemCodeId' => 9,
                 'lineItem' => 'Draft - $25',
                 'cost' => '25.00',
                 'discount' => '25.00',
@@ -770,7 +860,7 @@
 
             $this->validateTable('eventDates', 10);
 
-            $this->validateTable('eventLineItems', 10);
+            $this->validateTable('eventLineItems', 18);
         }
 
         private function migrateUsers($eventId) {

@@ -225,8 +225,62 @@ angular.module('brickSlopes.services', ['ngResource'])
         }
     }
 }])
-.factory('EventDetails', ['$resource', function($resource) {
-    return $resource('/controllers/event.php', { eventId: '@eventId' });
+.factory('EventDetails', ['$q', '$http', function($q, $http) {
+    function parseEventDetailsData(data) {
+        data.costs = {
+            'eventCost': undefined,
+            'eventDiscount': undefined,
+            'tShirtCost': undefined,
+            'tShirtDiscount': undefined,
+            'meetAndGreetCost': undefined,
+            'meetAndGreetDiscount': undefined
+        };
+        _.each(data.lineItems, function(lineItem, key) {
+            if (key === '10000') {
+                data.costs.eventCost = lineItem.cost;
+                data.costs.eventDiscount = lineItem.discount;
+            } else if (key === '10001') {
+                data.costs.tShirtCost = lineItem.cost;
+                data.costs.tShirtDiscount = lineItem.discount;
+            } else if (key === '10002') {
+                data.costs.meetAndGreetCost = lineItem.cost;
+                data.costs.meetAndGreetDiscount = lineItem.discount;
+            } else if (key === '10003') {
+                data.costs.completeNameBadgeCost = lineItem.cost;
+                data.costs.completeNameBadgeDiscount = lineItem.discount;
+            } else if (key === '10007') {
+                data.costs.draftOneCost = lineItem.cost;
+                data.costs.draftOneDiscount = lineItem.discount;
+                data.costs.draftOneDescription = lineItem.lineItem;
+            } else if (key === '10008') {
+                data.costs.draftTwoCost = lineItem.cost;
+                data.costs.draftTwoDiscount = lineItem.discount;
+                data.costs.draftTwoDescription = lineItem.lineItem;
+            }
+        });
+
+        return data;
+    }
+    return {
+        get: function(eventId) {
+            var delay= $q.defer();
+            $http (
+                {
+                    method: 'GET',
+                    url: '/controllers/event.php',
+                    params: {
+                        'eventId': eventId
+                    }
+                }
+            ).success(function(data, status, headers, config) {
+                delay.resolve(parseEventDetailsData(data));
+            }).error(function(data, status, headers, config) {
+                delay.reject(data);
+            });
+
+            return delay.promise;
+        }
+    }
 }])
 .factory('EmailUs', ['$q', '$http', function($q, $http) {
     return {
@@ -712,6 +766,8 @@ angular.module('brickSlopes.services', ['ngResource'])
             eventObj.tShirtSize = 'No Thanks';
             eventObj.type = (eventObj.ageVerification == 'YES' ? 'AFOL' : 'TFOL');
             eventObj.meetAndGreet = 'NO';
+            eventObj.draftOne = 'NO';
+            eventObj.draftTwo = 'NO';
             eventObj.paidCTA = (eventObj.paid == 'YES');
             eventObj.nameBadge = 'NO';
             eventObj.showBadgeLine1 = false;
@@ -726,6 +782,10 @@ angular.module('brickSlopes.services', ['ngResource'])
                         eventObj.tShirtSize = lineItemObj.size;
                     } else if (lineItemObj.lineItem === 'Meet and Greet') {
                         eventObj.meetAndGreet = 'YES'
+                    } else if (lineItemObj.lineItem === 'Draft - $15') {
+                        eventObj.draftOne = 'YES'
+                    } else if (lineItemObj.lineItem === 'Draft - $25') {
+                        eventObj.draftTwo = 'YES'
                     } else if (lineItemObj.lineItem === 'Event Badge Brick') {
                         eventObj.badgeLine1 = lineItemObj.description;
                         eventObj.showBadgeLine1 = true;

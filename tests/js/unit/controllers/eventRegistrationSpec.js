@@ -20,28 +20,15 @@ describe('controllers', function() {
     });
 
     describe('afolEventRegistration Controller', function() {
-        var mockBackend, loader, window, location, route, response;
+        var mockBackend, loader, window, location, route;
         beforeEach(inject(function($controller, $rootScope, _$httpBackend_, $location, $route) {
             scope = $rootScope.$new();
             route = $route;
             route = {current: {params: {eventId: 2}}};
             ctrl = $controller('afolEventRegistration', { $scope: scope, $route: route});
             mockBackend = _$httpBackend_;
-            response = {
-                data: {
-                    'eventId': 2,
-                    'eventName': 'BrickSlopes 2015',
-                    'discountDate': '2015-05-16 08:00:00',
-                    'cost': '65.00',
-                    'discount': '60.00',
-                    'meetAndGreetCost': '15.00',
-                    'meetAndGreetDiscount': '10.00',
-                    'tShirtCost': '20.00',
-                    'tShirtDiscount': '15.00'
-                }
-            };
             mockBackend.expectGET('/controllers/public/eventDates.php').respond(201, eventDates);
-            mockBackend.expectGET('/controllers/event.php?eventId=2').respond(201, response);
+            mockBackend.expectGET('/controllers/event.php?eventId=2').respond(201, eventDetails);
             location = $location;
         }));
 
@@ -91,6 +78,14 @@ describe('controllers', function() {
                 expect(scope.meetAndGreet).toBe('YES');
             });
 
+            it('should have a draftOne variable', function() {
+                expect(scope.draftOne).toBe('YES');
+            });
+
+            it('should have a draftTwo variable', function() {
+                expect(scope.draftTwo).toBe('YES');
+            });
+
             it('should have a nameBadge variable', function() {
                 expect(scope.nameBadge).toBe('NO');
             });
@@ -122,8 +117,8 @@ describe('controllers', function() {
             it('should get event details', function() {
                 mockBackend.expectGET('/controllers/eventRegistration.php').respond(200, eventRegistration);
                 mockBackend.flush();
-                expect(scope.eventDetails).toEqualData(response.data);
-                expect(scope.discountDate).toEqualData('May 16th, 2015');
+                expect(scope.eventDetails.costs.eventCost).toEqualData('65.00');
+                expect(scope.discountDate).toEqualData('March 25th, 2015');
                 expect(scope.passType).toBe('4-Day');
                 expect(scope.passDates).toBe('May 14th thru 17th');
                 expect(scope.eventYear).toBe('2015');
@@ -143,6 +138,8 @@ describe('controllers', function() {
                 expect(scope.badgeLine3).toBe('Badge Line Three');
                 expect(scope.nameBadge).toBe('YES');
                 expect(scope.meetAndGreet).toBe('YES');
+                expect(scope.draftOne).toBe('YES');
+                expect(scope.draftTwo).toBe('YES');
                 expect(scope.ageVerification).toBe('YES');
                 expect(scope.tShirtSize).toBe('X-Large');
                 expect(scope.comments).toBe('This is my comment');
@@ -157,17 +154,13 @@ describe('controllers', function() {
                     badgeLine3: 'Badge Line Three',
                     nameBadge: 'YES',
                     meetAndGreet: 'YES',
+                    draftOne: 'YES',
+                    draftTwo: 'YES',
                     ageVerification: 'YES',
                     tShirtSize: 'X-Large',
                     comments: "This is my comment",
                     type: 'afol',
-                    discountDate: '2015-05-16 08:00:00',
-                    eventCost: '65.00',
-                    eventDiscount: '60.00',
-                    meetAndGreetCost: '15.00',
-                    meetAndGreetDiscount: '10.00',
-                    tShirtCost: '20.00',
-                    tShirtDiscount: '15.00'
+                    discountDate: '2015-03-25 14:23:22'
                 }
                 scope.submitRegistration();
                 mockBackend.expectPATCH('/controllers/eventRegistration.php', dto).respond(200);
@@ -183,6 +176,8 @@ describe('controllers', function() {
                 scope.badgeLine3 = 'World';
                 scope.nameBadge = 'NO';
                 scope.meetAndGreet = 'Yes';
+                scope.draftOne = 'Yes';
+                scope.draftTwo = 'Yes';
                 scope.ageVerification = 'Yes';
                 scope.tShirtSize = 'X-Large';
                 scope.comments = "Can't Wait!";
@@ -197,17 +192,13 @@ describe('controllers', function() {
                     badgeLine3: 'World',
                     nameBadge: 'YES',
                     meetAndGreet: 'Yes',
+                    draftOne: 'Yes',
+                    draftTwo: 'Yes',
                     ageVerification: 'Yes',
                     tShirtSize: 'X-Large',
                     comments: "Can't Wait!",
                     type: 'afol',
-                    discountDate: '2015-05-16 08:00:00',
-                    eventCost: '65.00',
-                    eventDiscount: '60.00',
-                    meetAndGreetCost: '15.00',
-                    meetAndGreetDiscount: '10.00',
-                    tShirtCost: '20.00',
-                    tShirtDiscount: '15.00'
+                    discountDate: '2015-03-25 14:23:22'
                 }
                 mockBackend.expectGET('/controllers/eventRegistration.php').respond(200, {});
                 mockBackend.flush();
@@ -220,22 +211,10 @@ describe('controllers', function() {
             });
 
             it('should handle an invalid user event registration', function() {
-                var dto = {
-                    eventId: 2,
-                    badgeLine1: '2015 BrickSlopes',
-                    badgeLine2: 'Hello',
-                    badgeLine3: 'World',
-                    nameBadge: 'NO',
-                    meetAndGreet: 'Yes',
-                    ageVerification: 'Yes',
-                    tShirtSize: 'X-Large',
-                    comments: "Can't Wait!",
-                    type: 'afol'
-                }
                 scope.submitRegistration();
                 expect(scope.verifying).toBe(true);
                 mockBackend.expectGET('/controllers/eventRegistration.php').respond(200, {});
-                mockBackend.expectPOST('/controllers/eventRegistration.php', dto).respond(400);
+                mockBackend.expectPOST('/controllers/eventRegistration.php').respond(400);
                 mockBackend.flush();
                 expect(location.path()).toBe('');
                 expect(scope.verifying).toBe(false);

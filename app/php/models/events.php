@@ -21,11 +21,6 @@ class events extends db {
                 state,
                 year,
                 cost,
-                discount,
-                tShirtCost,
-                tShirtDiscount,
-                meetAndGreetCost,
-                meetAndGreetDiscount,
                 discountDate
             FROM
                 events
@@ -44,12 +39,6 @@ class events extends db {
                 city, 
                 state,
                 year,
-                cost,
-                discount,
-                tShirtCost,
-                tShirtDiscount,
-                meetAndGreetCost,
-                meetAndGreetDiscount,
                 discountDate
             )
         VALUES
@@ -58,12 +47,6 @@ class events extends db {
                 '{$this->escapeCharacters($data['city'])}',
                 '{$this->escapeCharacters($data['state'])}',
                 '{$this->escapeCharacters($data['year'])}',
-                '{$this->escapeCharacters($data['cost'])}',
-                '{$this->escapeCharacters($data['discount'])}',
-                '{$this->escapeCharacters($data['tShirtCost'])}',
-                '{$this->escapeCharacters($data['tShirtDiscount'])}',
-                '{$this->escapeCharacters($data['meetAndGreetCost'])}',
-                '{$this->escapeCharacters($data['meetAndGreetDiscount'])}',
                 '{$this->escapeCharacters($data['discountDate'])}'
           )
         ;

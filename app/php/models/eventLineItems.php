@@ -16,16 +16,19 @@ class eventLineItems extends db {
     private function selectQuery($eventId) {
         return "
             SELECT 
-                eventLineItemId,
-                eventId, 
-                lineItem,
-                cost,
-                discount,
-                active
+                e.eventLineItemId,
+                e.eventId, 
+                ec.code, 
+                e.lineItem,
+                e.cost,
+                e.discount,
+                e.active
             FROM
-                eventLineItems
+                eventLineItems e,
+                eventLineItemCodes ec
             WHERE
-                eventId = '{$eventId}'
+                e.eventId = '{$eventId}'
+                AND e.eventLineItemCodeId = ec.eventLineItemCodeId
         ;
       ";
     }
@@ -36,6 +39,7 @@ class eventLineItems extends db {
                 eventLineItems
             (
                 eventId, 
+                eventLineItemCodeId,
                 lineItem,
                 cost,
                 discount,
@@ -44,6 +48,7 @@ class eventLineItems extends db {
         VALUES
           (
                 '{$this->escapeCharacters($data['eventId'])}',
+                '{$this->escapeCharacters($data['eventLineItemCodeId'])}',
                 '{$this->escapeCharacters($data['lineItem'])}',
                 '{$this->escapeCharacters($data['cost'])}',
                 '{$this->escapeCharacters($data['discount'])}',

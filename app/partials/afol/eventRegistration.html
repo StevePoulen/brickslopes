@@ -6,37 +6,37 @@
         <div id="discountPriceInformation">
             <h2>Before {{discountDate}}</h2>
             <div>
-                <span class="blueFont">AFOL {{passType}} Event Pass</span> -- <span class="bold">{{eventDetails.discount | currency}}</span> per person 
+                <span class="blueFont">AFOL {{passType}} Event Pass</span> -- <span class="bold">{{eventDetails.costs.eventDiscount | currency}}</span> per person 
             </div>
             <p>
             <div>
-                <span class="blueFont">Meet & Greet Event Pass</span> -- <span class="bold">{{eventDetails.meetAndGreetDiscount | currency}}</span> per person
+                <span class="blueFont">Meet & Greet Event Pass</span> -- <span class="bold">{{eventDetails.costs.meetAndGreetDiscount | currency}}</span> per person
             </div>
             <p>
             <div>
-                <bs-logo></bs-logo> <span class="blueFont">T-Shirt</span> -- <span class="bold">{{eventDetails.tShirtDiscount | currency}}</span> per person
+                <bs-logo></bs-logo> <span class="blueFont">T-Shirt</span> -- <span class="bold">{{eventDetails.costs.tShirtDiscount | currency}}</span> per person
             </div>
             <p>
             <div>
-                <bs-logo></bs-logo> <span class="blueFont">Name Badge</span> -- <span class="bold">{{10.00 | currency}}</span> per person
+                <bs-logo></bs-logo> <span class="blueFont">Name Badge</span> -- <span class="bold">{{eventDetails.costs.completeNameBadgeDiscount | currency}}</span> per person
             </div>
         </div>
         <div id="fullPriceInformation">
             <h2>After {{discountDate}}</h2>
             <div>
-                <span class="blueFont">AFOL {{passType}} Event Pass</span> -- <span class="bold">{{eventDetails.cost | currency}}</span> per person
+                <span class="blueFont">AFOL {{passType}} Event Pass</span> -- <span class="bold">{{eventDetails.costs.eventCost | currency}}</span> per person
             </div>
             <p>
             <div>
-                <span class="blueFont">Meet & Greet Event Pass</span> -- <span class="bold">{{eventDetails.meetAndGreetCost | currency}}</span> per person
+                <span class="blueFont">Meet & Greet Event Pass</span> -- <span class="bold">{{eventDetails.costs.meetAndGreetCost | currency}}</span> per person
             </div>
             <p>
             <div>
-                <bs-logo></bs-logo> <span class="blueFont">T-Shirt</span> -- <span class="bold">{{eventDetails.tShirtCost | currency}}</span> per person
+                <bs-logo></bs-logo> <span class="blueFont">T-Shirt</span> -- <span class="bold">{{eventDetails.costs.tShirtCost | currency}}</span> per person
             </div>
             <p>
             <div>
-                <bs-logo></bs-logo> <span class="blueFont">Name Badge</span> -- <span class="bold">{{10.00 | currency}}</span> per person
+                <bs-logo></bs-logo> <span class="blueFont">Name Badge</span> -- <span class="bold">{{eventDetails.costs.completeNameBadgeCost | currency}}</span> per person
             </div>
         </div>
         <div id="eventDivider">
@@ -115,6 +115,12 @@
                     <div class="optionField">
                         <label><bs-logo></bs-logo> T-Shirt Size:</label>
                         <select ng-model="tShirtSize" ng-options="size for size in shirtSizes"></select>
+                    </div>
+                    <div class="optionField">
+                        <label ng-bind="eventDetails.costs.draftOneDescription"></label> Yes <input type="radio" ng-model="draftOne" value="YES" checked> No <input type="radio" ng-model="draftOne" value="NO">
+                    </div>
+                    <div class="optionField">
+                        <label ng-bind="eventDetails.costs.draftTwoDescription"></label> Yes <input type="radio" ng-model="draftTwo" value="YES" checked> No <input type="radio" ng-model="draftTwo" value="NO">
                     </div>
                     <div class="group">
                         <bs-text text="AFOL or TFOL" font-size=1.25></bs-text>
