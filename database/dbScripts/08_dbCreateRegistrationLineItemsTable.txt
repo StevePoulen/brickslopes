@@ -12,6 +12,7 @@ CREATE TABLE `registrationLineItems` (
   `registrationLineItemId` INT(10) UNSIGNED UNIQUE NOT NULL auto_increment,
   `eventId` INT(10) UNSIGNED NOT NULL,
   `userId` INT(10) UNSIGNED NOT NULL,
+  `eventLineItemCodeId` INT(10) UNSIGNED NOT NULL,
   `lineItem` VARCHAR(255),
   `amount` NUMERIC(10,2),
   `paid` ENUM('YES', 'NO'),
@@ -24,5 +25,6 @@ CREATE TABLE `registrationLineItems` (
   PRIMARY KEY (`registrationLineItemId`),
   FOREIGN KEY (`eventId`) REFERENCES `events` (`eventId`),
   FOREIGN KEY (`userId`) REFERENCES `users` (`userId`),
+  FOREIGN KEY (`eventLineItemCodeId`) REFERENCES `eventLineItemCodes` (`eventLineItemCodeId`),
   UNIQUE KEY `registrationLineItemId_UNIQUE` (`registrationLineItemId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='The Registration Line Item Table';

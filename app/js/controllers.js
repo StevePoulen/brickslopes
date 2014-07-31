@@ -431,20 +431,26 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         $scope.userGameList = data;
     });
 
+    function serializeGameRegistrationJson($gameId) {
+        return {
+            eventId: $scope.eventId,
+            gameId: $gameId,
+            type: 'PARTICIPANT'
+        }
+    }
+
     $scope.clickGameRegistration = function() {
         $scope.verifying = true;
         var self = this;
-        Games.gameRegistration (
-            {
-                eventId: $scope.eventId,
-                gameId: self.game.gameId,
-                type: 'PARTICIPANT'
-            }
-        ).then(function(status) {
+        Games.gameRegistration(serializeGameRegistrationJson(self.game.gameId)).then(function(status) {
             self.isRegistered = true;
             if (status === 201) {
-                $scope.showModal = true;
                 $scope.verifying = false;
+                if (self.game.fee === 'YES') {
+                    $location.path('/afol/eventPayment.html');
+                } else {
+                    $scope.showModal = true;
+                }
             }
         }, function(status) {
             $scope.verifying = false;

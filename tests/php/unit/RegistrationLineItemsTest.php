@@ -31,6 +31,7 @@ class RegistrationLineItemsTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($output['totalRemaining'], '45.00');
 
         $this->assertEquals($lineItems[0]['registrationLineItemId'] , 1);
+        $this->assertEquals($lineItems[0]['lineItemCode'] , '10000');
         $this->assertEquals($lineItems[0]['lineItem'] , 'Event Pass');
         $this->assertEquals($lineItems[0]['amount'] , '65.00');
         $this->assertEquals($lineItems[0]['total'] , '65.00');
@@ -43,6 +44,7 @@ class RegistrationLineItemsTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($lineItems[0]['entryDate'] , '2014-06-29 08:46:00');
 
         $this->assertEquals($lineItems[1]['registrationLineItemId'] , 3);
+        $this->assertEquals($lineItems[1]['lineItemCode'] , '10002');
         $this->assertEquals($lineItems[1]['lineItem'] , 'Meet And Greet');
         $this->assertEquals($lineItems[1]['amount'] , '15.00');
         $this->assertEquals($lineItems[1]['total'] , '45.00');
@@ -62,6 +64,7 @@ class RegistrationLineItemsTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($output['totalRemaining'], '31.50');
 
         $this->assertEquals($lineItems[0]['registrationLineItemId'] , 2);
+        $this->assertEquals($lineItems[0]['lineItemCode'] , '10001');
         $this->assertEquals($lineItems[0]['lineItem'] , 'T-Shirt');
         $this->assertEquals($lineItems[0]['amount'] , '15.75');
         $this->assertEquals($lineItems[0]['total'] , '31.50');
@@ -86,6 +89,7 @@ class RegistrationLineItemsTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($output['totalRemaining'], '45.00');
 
         $this->assertEquals($lineItems[0]['registrationLineItemId'] , 1);
+        $this->assertEquals($lineItems[0]['lineItemCode'] , '10000');
         $this->assertEquals($lineItems[0]['lineItem'] , 'Event Pass');
         $this->assertEquals($lineItems[0]['amount'] , '65.00');
         $this->assertEquals($lineItems[0]['paid'] , 'YES');
@@ -98,6 +102,7 @@ class RegistrationLineItemsTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($lineItems[0]['entryDate'] , '2014-06-29 08:46:00');
 
         $this->assertEquals($lineItems[1]['registrationLineItemId'] , 3);
+        $this->assertEquals($lineItems[1]['lineItemCode'] , '10002');
         $this->assertEquals($lineItems[1]['lineItem'] , 'Meet And Greet');
         $this->assertEquals($lineItems[1]['amount'] , '15.00');
         $this->assertEquals($lineItems[1]['paid'] , 'NO');

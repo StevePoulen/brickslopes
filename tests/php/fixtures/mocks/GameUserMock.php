@@ -17,6 +17,19 @@ class gameUserModel extends db {
     }
 
     public function deleteGameUserInformation($data) {
+        if(!ISSET($GLOBALS['deleteGameUserInformation'])) {
+            $GLOBALS['deleteGameUserInformation'] = array();
+        }
+        try {
+            array_push(
+                $GLOBALS['deleteGameUserInformation'],
+                array (
+                    'gameId' => $data['gameId'],
+                    'userId' => $data['userId'],
+                    'eventId' => $data['eventId']
+                )
+            );
+        } catch (exception $err) {}
         return $this->query();
     }
 }

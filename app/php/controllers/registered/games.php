@@ -41,6 +41,7 @@ class Games {
                         'eventId' => $dbObj->eventId,
                         'gameId' => $dbObj->gameId,
                         'game' => $dbObj->game,
+                        'fee' => $dbObj->fee,
                         'display' => $dbObj->display,
                         'description' => $dbObj->description,
                         'image' => $dbObj->image,

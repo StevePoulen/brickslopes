@@ -16,10 +16,11 @@ describe('service', function() {
     describe('authInterceptor', function() {
         var auth, window, location, request;
         beforeEach(inject(function(authInterceptor, _$window_, $location) {
-            auth = authInterceptor;
             window = _$window_;
+            window._ga = { push: function(data) { } };
             location = $location;
             request = { 'url': 'partials/afol/index.html' };
+            auth = authInterceptor;
         }));
 
         afterEach(function() {
@@ -35,6 +36,14 @@ describe('service', function() {
             it('should not have an Authtoken header', function() {
                 request = { 'url': 'partials/afol/index.html' };
                 expect(auth.request(request).headers.Authtoken).toBeUndefined();
+            });
+
+            it('should call google analytics', function() {
+                location.host = function() { return 'www.brickslopes.com';}
+                spyOn(window._gaq, "push");
+                request = { 'url': 'partials/afol/index.html' };
+                expect(auth.request(request).headers.Authtoken).toBeUndefined();
+                expect(window._gaq.push).toHaveBeenCalledWith([ '_trackPageview', 'partials/afol/index.html']);
             });
         });
 

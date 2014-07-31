@@ -19,8 +19,10 @@ describe('app', function() {
     });
 
     describe('RouteProvider', function() {
-        var rootScope, route, location, mockBackend;
-        beforeEach(inject(function(_$rootScope_, _$route_, _$location_, _$httpBackend_) {
+        var rootScope, route, location, mockBackend, window;
+        beforeEach(inject(function(_$rootScope_, _$route_, _$location_, _$httpBackend_, _$window_) {
+            window = _$window_;
+            window._ga = { push: function(data) { } };
             mockBackend = _$httpBackend_;
             route = _$route_;
             rootScope = _$rootScope_;

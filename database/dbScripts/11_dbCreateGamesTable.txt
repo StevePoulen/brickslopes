@@ -20,6 +20,7 @@ CREATE TABLE `games` (
   `maxParticipants` INT(10),
   `currentParticipants` INT(10),
   `openRegistration` ENUM('YES', 'NO'),
+  `fee` ENUM('YES', 'NO'),
   PRIMARY KEY (`gameId`),
   UNIQUE KEY `gameId_UNIQUE` (`gameId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='The Games Table';

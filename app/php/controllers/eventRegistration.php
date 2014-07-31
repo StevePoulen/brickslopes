@@ -49,6 +49,14 @@ class EventRegistration {
         echo json_encode ($eventJson);
     }
 
+    private function deleteGameUserInformation($payload) {
+        $payload['gameId'] = 3;
+        $gameUserObj = new gameUserModel();
+        $gameUserObj->deleteGameUserInformation($payload);
+        $payload['gameId'] = 4;
+        $gameUserObj->deleteGameUserInformation($payload);
+    }
+
     private function patch() {
         $payload = json_decode(file_get_contents("php://input"), true);
         if (sizeof($payload) == 0) {
@@ -57,11 +65,13 @@ class EventRegistration {
         $payload['userId'] = $this->userId;
         $response = $this->registrationsObj->updateRegistrationInformation($payload);
 
-        $this->registrationLineItemHelper = new registrationLineItemHelper();
+        $this->registrationLineItemHelper = new registrationLineItemHelper($payload['eventId']);
         $this->registrationLineItemHelper->deleteRegistrationLineItems(
             $payload['userId'],
             $payload['eventId']
         );
+        
+        $this->deleteGameUserInformation($payload);
 
         if (preg_match ( '/\d+/', $response )) {
             $this->registrationLineItemHelper->addRegistrationLineItems($payload);
@@ -85,7 +95,7 @@ class EventRegistration {
         $response = $this->registrationsObj->addRegistrationInformation($payload);
 
         if (preg_match ( '/\d+/', $response )) {
-            $this->registrationLineItemHelper = new registrationLineItemHelper();
+            $this->registrationLineItemHelper = new registrationLineItemHelper($payload['eventId']);
             $this->registrationLineItemHelper->addRegistrationLineItems($payload);
 
             $emailObj = new mail('to_be_set_later');

@@ -1,2 +1,9 @@
-Event Cost,65.00,60.00,YES,10001
-T-Shirt,25.00,20.00,YES,10002
+Event Cost,65.00,60.00,YES,10000
+T-Shirt,20.00,15.00,YES,10001
+Meet And Greet,15.00,10.00,YES,10002
+Complete Name Badge,10.00,10.00,YES,10003
+1st Badge Brick,0.00,0.00,YES,10004
+2nd Badge Brick,0.00,0.00,YES,10005
+Event Badge Brick,0.00,0.00,YES,10006
+Draft - $15,15.00,15.00,YES,10007
+Draft - $25,25.00,25.00,YES,10008

@@ -40,19 +40,20 @@
         }
 
         private function addRegistrationEventPass($eventId, $userId) {
-            $this->addRegistrationLineItem($eventId, $userId, 'Event Pass', '65.00');
+            $this->addRegistrationLineItem(1, $eventId, $userId, 'Event Pass', '65.00');
         }
 
         private function addRegistrationTShirt($eventId, $userId) {
-            $this->addRegistrationLineItem($eventId, $userId, 'T-Shirt', '25.00', 'X-Large');
+            $this->addRegistrationLineItem(2, $eventId, $userId, 'T-Shirt', '25.00', 'X-Large');
         }
 
         private function addRegistrationBrick($eventId, $userId) {
-            $this->addRegistrationLineItem($eventId, $userId, 'brickLine1', '0.00', '', 'Brick Line 1');
+            $this->addRegistrationLineItem(5, $eventId, $userId, 'brickLine1', '0.00', '', 'Brick Line 1');
         }
 
-        private function addRegistrationLineItem($eventId, $userId, $lineItem, $amount, $size='', $description='') {
+        private function addRegistrationLineItem($eventLineItemCodeId, $eventId, $userId, $lineItem, $amount, $size='', $description='') {
             $registrationLineItemObj = new registrationLineItemModel();
+            $registrationLineItemMap['eventLineItemCodeId'] = $eventLineItemCodeId;
             $registrationLineItemMap['eventId'] = $eventId;
             $registrationLineItemMap['userId'] = $userId;
             $registrationLineItemMap['lineItem'] = $lineItem;
@@ -376,6 +377,7 @@
                     'description' => 'Each participant pays $15 to divide up $300 worth of LEGO sets. <p>The parts are separated into similar parts then each participant, in order picks an entire pile of similar parts.',
                     'image' => 'https://www.images.com',
                     'maxParticipants' => '20',
+                    'fee' => 'YES',
                     'currentParticipants' => '0',
                     'openRegistration' => 'YES'
                 ),
@@ -383,6 +385,7 @@
                     'game' => 'Draft - $25',
                     'description' => 'Each participant pays $25 to divide up $500 worth of LEGO sets. <p>The parts are separated into similar parts then each participant, in order picks an entire pile of similar parts.',
                     'image' => 'https://www.images.com',
+                    'fee' => 'YES',
                     'maxParticipants' => '20',
                     'currentParticipants' => '0',
                     'openRegistration' => 'YES'
@@ -527,6 +530,7 @@
                     'game' => $gamesMap['game'],
                     'description' => $gamesMap['description'],
                     'image' => $gamesMap['image'],
+                    'fee' => (ISSET($gamesMap['fee']) ? $gamesMap['fee'] : 'NO'),
                     'maxParticipants' => $gamesMap['maxParticipants'],
                     'currentParticipants' => $gamesMap['currentParticipants'],
                     'openRegistration' => $gamesMap['openRegistration'],

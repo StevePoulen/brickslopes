@@ -3,7 +3,7 @@
 /* jasmine specs for controllers go here */
 
 describe('controllers', function() {
-    var scope, ctrl, location;
+    var scope, ctrl;
 
     beforeEach(
         module(
@@ -67,8 +67,9 @@ describe('controllers', function() {
     });
 
     describe('Game Registration', function() {
-        var mockBackend;
-        beforeEach(inject(function($controller, $rootScope, _$httpBackend_) {
+        var mockBackend, location;
+        beforeEach(inject(function($controller, $rootScope, _$httpBackend_, $location) {
+            location = $location;
             scope = $rootScope.$new();
             ctrl = $controller('afolEventGames', { $scope: scope});
             mockBackend = _$httpBackend_;
@@ -84,13 +85,28 @@ describe('controllers', function() {
 
         it('should register for a game', function() {
             scope.game = {
-                gameId: 1
+                gameId: 1,
+                fee: 'NO'
             }
             scope.clickGameRegistration();
             expect(scope.verifying).toBe(true);
             mockBackend.flush();
             expect(scope.showModal).toBe(true);
             expect(scope.verifying).toBe(false);
+            expect(location.path()).toBe('');
+        });
+
+        it('should register for a game and redirect to payments', function() {
+            scope.game = {
+                gameId: 1,
+                fee: 'YES'
+            }
+            scope.clickGameRegistration();
+            expect(scope.verifying).toBe(true);
+            mockBackend.flush();
+            expect(scope.showModal).toBe(false);
+            expect(scope.verifying).toBe(false);
+            expect(location.path()).toBe('/afol/eventPayment.html');
         });
     });
 

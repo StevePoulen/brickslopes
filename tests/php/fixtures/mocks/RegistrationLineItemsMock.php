@@ -46,14 +46,15 @@ class RegistrationLineItemsMock extends modelObjects {
     public function registrationLineItemId() { return $this->getData(0); }
     public function eventId() { return $this->getData(1); }
     public function userId() { return $this->getData(2); }
-    public function lineItem() { return $this->getData(3); }
-    public function amount() { return $this->getData(4); }
-    public function paid() { return $this->getData(5); }
-    public function discount() { return $this->getData(6); }
-    public function description() { return $this->getData(7); }
-    public function size() { return $this->getData(8); }
-    public function quantity() { return $this->getData(9); }
-    public function active() { return $this->getData(10); }
-    public function entryDate() { return $this->getData(11); }
+    public function lineItemCode() { return $this->getData(3); }
+    public function lineItem() { return $this->getData(4); }
+    public function amount() { return $this->getData(5); }
+    public function paid() { return $this->getData(6); }
+    public function discount() { return $this->getData(7); }
+    public function description() { return $this->getData(8); }
+    public function size() { return $this->getData(9); }
+    public function quantity() { return $this->getData(10); }
+    public function active() { return $this->getData(11); }
+    public function entryDate() { return $this->getData(12); }
 }
 ?>

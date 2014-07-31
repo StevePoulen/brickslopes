@@ -62,6 +62,8 @@ class EventRegistrationTest extends PHPUnit_Framework_TestCase
             'meetAndGreetDiscount' => '10.00',
             'meetAndGreet' => 'YES',
             'nameBadge' => 'NO',
+            'draftOne' => 'NO',
+            'draftTwo' => 'NO',
             'badgeLine1' => '2015 BrickSlopes',
             'tShirtDiscount' => '15.00',
             'tShirtSize' => 'X-Large'
@@ -84,6 +86,8 @@ class EventRegistrationTest extends PHPUnit_Framework_TestCase
             'meetAndGreetDiscount' => '10.00',
             'meetAndGreet' => 'YES',
             'nameBadge' => 'NO',
+            'draftOne' => 'NO',
+            'draftTwo' => 'NO',
             'badgeLine1' => '2015 BrickSlopes',
             'tShirtDiscount' => '15.00',
             'tShirtSize' => 'X-Large'
@@ -96,6 +100,16 @@ class EventRegistrationTest extends PHPUnit_Framework_TestCase
         $queryObj = $GLOBALS['deleteRegistrationLineItems'];
         $this->assertEquals($queryObj['userId'], 12345);
         $this->assertEquals($queryObj['eventId'], 256);
+        $queryObj = $GLOBALS['deleteGameUserInformation'];
+        //Draft One
+        $this->assertEquals($queryObj[0]['gameId'], 3);
+        $this->assertEquals($queryObj[0]['userId'], 12345);
+        $this->assertEquals($queryObj[0]['eventId'], 256);
+
+        //Draft Two 
+        $this->assertEquals($queryObj[1]['gameId'], 4);
+        $this->assertEquals($queryObj[1]['userId'], 12345);
+        $this->assertEquals($queryObj[1]['eventId'], 256);
         $this->expectOutputString('');
     }
 

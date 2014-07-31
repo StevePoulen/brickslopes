@@ -26,6 +26,7 @@ class registrationLineItems {
     private function buildLineItemDTO($dbObj) {
         return array (
             'registrationLineItemId' => $dbObj->registrationLineItemId,
+            'lineItemCode' => $dbObj->lineItemCode,
             'lineItem' => $dbObj->lineItem,
             'amount' => $dbObj->amount,
             'total' => $this->calculateTotal($dbObj->amount, $dbObj->quantity),

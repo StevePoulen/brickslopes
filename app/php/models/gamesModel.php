@@ -25,6 +25,7 @@ class gamesModel extends db {
                 gec.eventId as eventId, 
                 gec.display as display,
                 g.game as game,
+                g.fee as fee,
                 g.description as description,
                 g.image as image,
                 g.maxParticipants as maxParticipants,
@@ -73,6 +74,7 @@ class gamesModel extends db {
                 game,
                 description,
                 image,
+                fee,
                 maxParticipants,
                 currentParticipants,
                 openRegistration
@@ -82,6 +84,7 @@ class gamesModel extends db {
                 '{$this->escapeCharacters($data['game'])}',
                 '{$this->escapeCharacters($data['description'])}',
                 '{$this->escapeCharacters($data['image'])}',
+                '{$this->escapeCharacters($data['fee'])}',
                 '{$this->escapeCharacters($data['maxParticipants'])}',
                 '{$this->escapeCharacters($data['currentParticipants'])}',
                 '{$this->escapeCharacters($data['openRegistration'])}'

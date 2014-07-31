@@ -29,15 +29,15 @@ class EventTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($output['year'], '2015');
         $this->assertEquals($output['discountDate'], '2015-03-25 14:23:22');
 
-        $lineItems = $output['lineItems']['10001'];
+        $lineItems = $output['lineItems']['10000'];
         $this->assertEquals($lineItems['cost'], '65.00');
         $this->assertEquals($lineItems['discount'], '60.00');
         $this->assertEquals($lineItems['active'], 'YES');
         $this->assertEquals($lineItems['lineItem'], 'Event Cost');
 
-        $lineItems = $output['lineItems']['10002'];
-        $this->assertEquals($lineItems['cost'], '25.00');
-        $this->assertEquals($lineItems['discount'], '20.00');
+        $lineItems = $output['lineItems']['10001'];
+        $this->assertEquals($lineItems['cost'], '20.00');
+        $this->assertEquals($lineItems['discount'], '15.00');
         $this->assertEquals($lineItems['active'], 'YES');
         $this->assertEquals($lineItems['lineItem'], 'T-Shirt');
     }

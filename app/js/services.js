@@ -778,23 +778,23 @@ angular.module('brickSlopes.services', ['ngResource'])
             eventObj.badgeLine3 = undefined;
             _.each(eventObj.lineItems.lineItems, function(lineItemObj) {
                 if (lineItemObj.active === 'YES') {
-                    if (lineItemObj.lineItem === 'T-Shirt') {
+                    if (lineItemObj.lineItemCode === '10001') {
                         eventObj.tShirtSize = lineItemObj.size;
-                    } else if (lineItemObj.lineItem === 'Meet and Greet') {
+                    } else if (lineItemObj.lineItemCode === '10002') {
                         eventObj.meetAndGreet = 'YES'
-                    } else if (lineItemObj.lineItem === 'Draft - $15') {
+                    } else if (lineItemObj.lineItemCode === '10007') {
                         eventObj.draftOne = 'YES'
-                    } else if (lineItemObj.lineItem === 'Draft - $25') {
+                    } else if (lineItemObj.lineItemCode === '10008') {
                         eventObj.draftTwo = 'YES'
-                    } else if (lineItemObj.lineItem === 'Event Badge Brick') {
+                    } else if (lineItemObj.lineItemCode === '10006') {
                         eventObj.badgeLine1 = lineItemObj.description;
                         eventObj.showBadgeLine1 = true;
-                    } else if (lineItemObj.lineItem === 'Complete Name Badge') {
+                    } else if (lineItemObj.lineItemCode === '10003') {
                         eventObj.nameBadge = 'YES';
-                    } else if (lineItemObj.lineItem === '1st Badge Brick') {
+                    } else if (lineItemObj.lineItemCode === '10004') {
                         eventObj.badgeLine2 = lineItemObj.description;
                         eventObj.showBadgeLine2 = true;
-                    } else if (lineItemObj.lineItem === '2nd Badge Brick') {
+                    } else if (lineItemObj.lineItemCode === '10005') {
                         eventObj.badgeLine3 = lineItemObj.description;
                         eventObj.showBadgeLine3 = true;
                     }
@@ -1029,6 +1029,12 @@ angular.module('brickSlopes.services', ['ngResource'])
             config.headers = config.headers || {};
             if ($window.sessionStorage.token) {
                 config.headers.Authtoken = $window.sessionStorage.token;
+            }
+
+            if ($location.host() === 'www.brickslopes.com') {
+                //https://developers.google.com/analytics/devguides/collection/gajs/
+                //This should only run on the live server
+                $window._gaq.push(['_trackPageview', config.url]);
             }
 
             return config;

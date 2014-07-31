@@ -31,7 +31,8 @@ class registrationLineItemModel extends db {
                 registrationLineItemId,
                 eventId, 
                 userId, 
-                lineItem,
+                ec.code as lineItemCode,
+                r.lineItem as lineItem,
                 amount,
                 paid,
                 discount,
@@ -42,9 +43,11 @@ class registrationLineItemModel extends db {
                 size,
                 entryDate
             FROM
-                registrationLineItems
+                registrationLineItems r,
+                eventLineItemCodes ec
             WHERE
                 userId = '{$userId}'
+                AND r.eventLineItemCodeId = ec.eventLineItemCodeId
         ;
       ";
     }
@@ -67,6 +70,7 @@ class registrationLineItemModel extends db {
             (
                 eventId, 
                 userId, 
+                eventLineItemCodeId,
                 lineItem,
                 amount,
                 paid,
@@ -81,6 +85,7 @@ class registrationLineItemModel extends db {
           (
                 '{$this->escapeCharacters($data['eventId'])}',
                 '{$this->escapeCharacters($data['userId'])}',
+                '{$this->escapeCharacters($data['eventLineItemCodeId'])}',
                 '{$this->escapeCharacters($data['lineItem'])}',
                 '{$this->escapeCharacters($data['amount'])}',
                 '{$this->escapeCharacters($data['paid'])}',

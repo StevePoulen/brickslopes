@@ -10,6 +10,7 @@ var eventRegistration = {
             "lineItems": [
                 {
                     "registrationLineItemId": 1,
+                    "lineItemCode": "10001",
                     "lineItem": "T-Shirt",
                     "amount": "25.00",
                     "total": "25.00",
@@ -23,6 +24,7 @@ var eventRegistration = {
                 },
                 {
                     "registrationLineItemId": 2,
+                    "lineItemCode": "10003",
                     "lineItem": "Complete Name Badge",
                     "amount": "25.00",
                     "total": "25.00",
@@ -36,6 +38,7 @@ var eventRegistration = {
                 },
                 {
                     "registrationLineItemId": 3,
+                    "lineItemCode": "10006",
                     "lineItem": "Event Badge Brick",
                     "amount": "25.00",
                     "total": "25.00",
@@ -49,6 +52,7 @@ var eventRegistration = {
                 },
                 {
                     "registrationLineItemId": 4,
+                    "lineItemCode": "10004",
                     "lineItem": "1st Badge Brick",
                     "amount": "25.00",
                     "total": "25.00",
@@ -62,6 +66,7 @@ var eventRegistration = {
                 },
                 {
                     "registrationLineItemId": 5,
+                    "lineItemCode": "10005",
                     "lineItem": "2nd Badge Brick",
                     "amount": "25.00",
                     "total": "25.00",
@@ -75,6 +80,7 @@ var eventRegistration = {
                 },
                 {
                     "registrationLineItemId": 6,
+                    "lineItemCode": "10002",
                     "lineItem": "Meet and Greet",
                     "amount": "25.00",
                     "total": "25.00",
@@ -88,6 +94,7 @@ var eventRegistration = {
                 },
                 {
                     "registrationLineItemId": 7,
+                    "lineItemCode": "10007",
                     "lineItem": "Draft - $15",
                     "amount": "15.00",
                     "total": "15.00",
@@ -101,6 +108,7 @@ var eventRegistration = {
                 },
                 {
                     "registrationLineItemId": 8,
+                    "lineItemCode": "10008",
                     "lineItem": "Draft - $25",
                     "amount": "25.00",
                     "total": "25.00",
@@ -127,6 +135,7 @@ var eventRegistrationPaid = {
             "lineItems": [
                 {
                     "registrationLineItemId": 1,
+                    "lineItemCode": "10001",
                     "lineItem": "T-Shirt",
                     "amount": "25.00",
                     "total": "25.00",
@@ -153,6 +162,7 @@ var eventRegistrationNoMeetAndGreet = {
             "lineItems": [
                 {
                     "registrationLineItemId": 1,
+                    "lineItemCode": "10001",
                     "lineItem": "T-Shirt",
                     "amount": "25.00",
                     "total": "25.00",
@@ -179,6 +189,7 @@ var eventRegistrationNoTShirt = {
             "lineItems": [
                 {
                     "registrationLineItemId": 1,
+                    "lineItemCode": "10002",
                     "lineItem": "Meet and Greet",
                     "amount": "25.00",
                     "total": "25.00",
@@ -205,6 +216,7 @@ var eventRegistrationBadgeLineOneOnly = {
             "lineItems": [
                 {
                     "registrationLineItemId": 1,
+                    "lineItemCode": "10006",
                     "lineItem": "Event Badge Brick",
                     "amount": "25.00",
                     "total": "25.00",
@@ -218,6 +230,7 @@ var eventRegistrationBadgeLineOneOnly = {
                 },
                 {
                     "registrationLineItemId": 2,
+                    "lineItemCode": "10005",
                     "lineItem": "1st Badge Brick",
                     "amount": "25.00",
                     "total": "25.00",

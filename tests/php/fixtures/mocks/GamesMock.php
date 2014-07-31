@@ -23,12 +23,13 @@ class GamesMock extends modelObjects {
     public function game() { return $this->getData(2); }
     public function description() { return $this->getData(3); }
     public function image() { return $this->getData(4); }
-    public function maxParticipants() { return $this->getData(5); }
-    public function currentParticipants() { return $this->getData(6); }
-    public function openRegistration() { return $this->getData(7); }
-    public function display() { return $this->getData(8); }
-    public function gameAwardId() { return $this->getData(9); }
-    public function award() { return $this->getData(10); }
-    public function place() { return $this->getData(11); }
+    public function fee() { return $this->getData(5); }
+    public function maxParticipants() { return $this->getData(6); }
+    public function currentParticipants() { return $this->getData(7); }
+    public function openRegistration() { return $this->getData(8); }
+    public function display() { return $this->getData(9); }
+    public function gameAwardId() { return $this->getData(10); }
+    public function award() { return $this->getData(11); }
+    public function place() { return $this->getData(12); }
 }
 ?>

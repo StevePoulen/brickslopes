@@ -29,6 +29,7 @@ class gamesTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($gameObj['game'], 'Blind Man Build');
         $this->assertEquals($gameObj['description'], 'You use blindfolds to build');
         $this->assertEquals($gameObj['image'], 'https://blindman.org');
+        $this->assertEquals($gameObj['fee'], 'YES');
         $this->assertEquals($gameObj['maxParticipants'], '10');
         $this->assertEquals($gameObj['currentParticipants'], '5');
         $this->assertEquals($gameObj['openRegistration'], 'YES');
