@@ -40,7 +40,7 @@ class RegistrationLineItemHelperTest extends PHPUnit_Framework_TestCase
         $GLOBALS['db_query'] = '1';
         $this->helper->addRegistrationLineItems($this->dto);
         $lineItemObj = $GLOBALS['addRegistrationLineItems'][3];
-        $this->assertEquals($lineItemObj['code'], '10003');
+        $this->assertEquals($lineItemObj['eventLineItemCodeId'], '4');
         $this->assertEquals($lineItemObj['eventId'], 2);
         $this->assertEquals($lineItemObj['userId'], 3);
         $this->assertEquals($lineItemObj['lineItem'], 'Complete Name Badge');
@@ -60,7 +60,7 @@ class RegistrationLineItemHelperTest extends PHPUnit_Framework_TestCase
         $GLOBALS['db_query'] = '1';
         $this->helper->addRegistrationLineItems($this->dto);
         $lineItemObj = $GLOBALS['addRegistrationLineItems'][4];
-        $this->assertEquals($lineItemObj['code'], '10004');
+        $this->assertEquals($lineItemObj['eventLineItemCodeId'], '5');
         $this->assertEquals($lineItemObj['eventId'], 2);
         $this->assertEquals($lineItemObj['userId'], 3);
         $this->assertEquals($lineItemObj['lineItem'], '1st Badge Brick');
@@ -80,7 +80,7 @@ class RegistrationLineItemHelperTest extends PHPUnit_Framework_TestCase
         $GLOBALS['db_query'] = '1';
         $this->helper->addRegistrationLineItems($this->dto);
         $lineItemObj = $GLOBALS['addRegistrationLineItems'][5];
-        $this->assertEquals($lineItemObj['code'], '10005');
+        $this->assertEquals($lineItemObj['eventLineItemCodeId'], '6');
         $this->assertEquals($lineItemObj['eventId'], 2);
         $this->assertEquals($lineItemObj['userId'], 3);
         $this->assertEquals($lineItemObj['lineItem'], '2nd Badge Brick');
@@ -100,7 +100,7 @@ class RegistrationLineItemHelperTest extends PHPUnit_Framework_TestCase
         $GLOBALS['db_query'] = '1';
         $this->helper->addRegistrationLineItems($this->dto);
         $lineItemObj = $GLOBALS['addRegistrationLineItems'][0];
-        $this->assertEquals($lineItemObj['code'], '10000');
+        $this->assertEquals($lineItemObj['eventLineItemCodeId'], '1');
         $this->assertEquals($lineItemObj['eventId'], 2);
         $this->assertEquals($lineItemObj['userId'], 3);
         $this->assertEquals($lineItemObj['lineItem'], 'Event Pass');
@@ -120,7 +120,7 @@ class RegistrationLineItemHelperTest extends PHPUnit_Framework_TestCase
         $GLOBALS['db_query'] = '1';
         $this->helper->addRegistrationLineItems($this->dto);
         $lineItemObj = $GLOBALS['addRegistrationLineItems'][1];
-        $this->assertEquals($lineItemObj['code'], '10002');
+        $this->assertEquals($lineItemObj['eventLineItemCodeId'], '3');
         $this->assertEquals($lineItemObj['eventId'], 2);
         $this->assertEquals($lineItemObj['userId'], 3);
         $this->assertEquals($lineItemObj['lineItem'], 'Meet and Greet');
@@ -140,7 +140,7 @@ class RegistrationLineItemHelperTest extends PHPUnit_Framework_TestCase
         $GLOBALS['db_query'] = '1';
         $this->helper->addRegistrationLineItems($this->dto);
         $lineItemObj = $GLOBALS['addRegistrationLineItems'][2];
-        $this->assertEquals($lineItemObj['code'], '10001');
+        $this->assertEquals($lineItemObj['eventLineItemCodeId'], '2');
         $this->assertEquals($lineItemObj['eventId'], 2);
         $this->assertEquals($lineItemObj['userId'], 3);
         $this->assertEquals($lineItemObj['lineItem'], 'T-Shirt');
@@ -161,7 +161,7 @@ class RegistrationLineItemHelperTest extends PHPUnit_Framework_TestCase
         $GLOBALS['db_query'] = '1';
         $this->helper->addRegistrationLineItems($this->dto);
         $lineItemObj = $GLOBALS['addRegistrationLineItems'][0];
-        $this->assertEquals($lineItemObj['code'], '10000');
+        $this->assertEquals($lineItemObj['eventLineItemCodeId'], '1');
         $this->assertEquals($lineItemObj['eventId'], 2);
         $this->assertEquals($lineItemObj['userId'], 3);
         $this->assertEquals($lineItemObj['lineItem'], 'Event Pass');
@@ -182,7 +182,7 @@ class RegistrationLineItemHelperTest extends PHPUnit_Framework_TestCase
         $GLOBALS['db_query'] = '1';
         $this->helper->addRegistrationLineItems($this->dto);
         $lineItemObj = $GLOBALS['addRegistrationLineItems'][1];
-        $this->assertEquals($lineItemObj['code'], '10002');
+        $this->assertEquals($lineItemObj['eventLineItemCodeId'], '3');
         $this->assertEquals($lineItemObj['eventId'], 2);
         $this->assertEquals($lineItemObj['userId'], 3);
         $this->assertEquals($lineItemObj['lineItem'], 'Meet and Greet');
@@ -203,7 +203,7 @@ class RegistrationLineItemHelperTest extends PHPUnit_Framework_TestCase
         $GLOBALS['db_query'] = '1';
         $this->helper->addRegistrationLineItems($this->dto);
         $lineItemObj = $GLOBALS['addRegistrationLineItems'][2];
-        $this->assertEquals($lineItemObj['code'], '10001');
+        $this->assertEquals($lineItemObj['eventLineItemCodeId'], '2');
         $this->assertEquals($lineItemObj['eventId'], 2);
         $this->assertEquals($lineItemObj['userId'], 3);
         $this->assertEquals($lineItemObj['lineItem'], 'T-Shirt');
@@ -226,7 +226,7 @@ class RegistrationLineItemHelperTest extends PHPUnit_Framework_TestCase
         $GLOBALS['db_query'] = '1';
         $this->helper->addRegistrationLineItems($this->dto);
         $lineItemObj = $GLOBALS['addRegistrationLineItems'][0];
-        $this->assertEquals($lineItemObj['code'], '10000');
+        $this->assertEquals($lineItemObj['eventLineItemCodeId'], '1');
         $this->assertEquals($lineItemObj['eventId'], 2);
         $this->assertEquals($lineItemObj['userId'], 3);
         $this->assertEquals($lineItemObj['lineItem'], 'Event Pass');
@@ -247,7 +247,7 @@ class RegistrationLineItemHelperTest extends PHPUnit_Framework_TestCase
         $GLOBALS['db_query'] = '1';
         $this->helper->addRegistrationLineItems($this->dto);
         $lineItemObj = $GLOBALS['addRegistrationLineItems'][3];
-        $this->assertEquals($lineItemObj['code'], '10006');
+        $this->assertEquals($lineItemObj['eventLineItemCodeId'], '7');
         $this->assertEquals($lineItemObj['eventId'], 2);
         $this->assertEquals($lineItemObj['userId'], 3);
         $this->assertEquals($lineItemObj['lineItem'], 'Event Badge Brick');
@@ -272,7 +272,7 @@ class RegistrationLineItemHelperTest extends PHPUnit_Framework_TestCase
         $GLOBALS['db_query'] = '1';
         $this->helper->addRegistrationLineItems($this->dto);
         $lineItemObj = $GLOBALS['addRegistrationLineItems'][1];
-        $this->assertEquals($lineItemObj['code'], '10007');
+        $this->assertEquals($lineItemObj['eventLineItemCodeId'], '8');
         $this->assertEquals($lineItemObj['eventId'], 2);
         $this->assertEquals($lineItemObj['userId'], 3);
         $this->assertEquals($lineItemObj['lineItem'], 'Draft - $15');
@@ -296,7 +296,7 @@ class RegistrationLineItemHelperTest extends PHPUnit_Framework_TestCase
         $GLOBALS['db_query'] = '1';
         $this->helper->addRegistrationLineItems($this->dto);
         $lineItemObj = $GLOBALS['addRegistrationLineItems'][1];
-        $this->assertEquals($lineItemObj['code'], '10008');
+        $this->assertEquals($lineItemObj['eventLineItemCodeId'], '9');
         $this->assertEquals($lineItemObj['eventId'], 2);
         $this->assertEquals($lineItemObj['userId'], 3);
         $this->assertEquals($lineItemObj['lineItem'], 'Draft - $25');

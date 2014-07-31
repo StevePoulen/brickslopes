@@ -70,10 +70,10 @@
             return strtotime('now') < strtotime($discountDate);
         }
 
-        private function addBrickLineItem($data, $lineItem, $brickType, $code) {
+        private function addBrickLineItem($data, $lineItem, $brickType, $code, $amount) {
             $dto = $this->getDTO($data);
-            $dto['code'] = $code;
-            $dto['amount'] = $this->eventLineItemCodes[$code]['cost'];
+            $dto['eventLineItemCodeId'] = $code;
+            $dto['amount'] = $amount;
             $dto['discount'] = 'YES';
             $dto['lineItem'] = $lineItem;
             $dto['description'] = $data[$brickType];
@@ -84,22 +84,40 @@
             if ($data['nameBadge'] === 'YES') {
                 $dto = $this->getDTO($data);
                 $dto['amount'] = $this->eventLineItemCodes['10003']['cost'];
-                $dto['code'] = '10003';
+                $dto['eventLineItemCodeId'] = 4;
                 $dto['discount'] = 'YES';
                 $dto['lineItem'] = 'Complete Name Badge';
                 $dto['description'] = $data['badgeLine1'];
                 $this->registrationLineItemObj->addRegistrationLineItems($dto);
 
-                $this->addBrickLineItem($data, '1st Badge Brick', 'badgeLine2', 10004);
-                $this->addBrickLineItem($data, '2nd Badge Brick', 'badgeLine3', 10005);
+                $this->addBrickLineItem(
+                    $data, 
+                    '1st Badge Brick', 
+                    'badgeLine2', 
+                    5,
+                    $data['badgeBrickOneAmount']
+                );
+                $this->addBrickLineItem(
+                    $data, 
+                    '2nd Badge Brick', 
+                    'badgeLine3', 
+                    6,
+                    $data['badgeBrickTwoAmount']
+                );
             }
-            $this->addBrickLineItem($data, 'Event Badge Brick', 'badgeLine1', 10006);
+            $this->addBrickLineItem(
+                $data, 
+                'Event Badge Brick', 
+                'badgeLine1', 
+                7,
+                $data['eventBadgeBrickAmount']
+            );
         }
 
         private function addEventLineItem($data) {
             try {
                 $dto = $this->getDTO($data);
-                $dto['code'] = '10000';
+                $dto['eventLineItemCodeId'] = 1;
                 $dto['amount'] = $data['eventAmount'];
                 $dto['discount'] = $data['discount'];
                 $dto['lineItem'] = 'Event Pass';
@@ -111,7 +129,7 @@
             try {
                 if ($data['meetAndGreet'] === 'YES') {
                     $dto = $this->getDTO($data);
-                    $dto['code'] = '10002';
+                    $dto['eventLineItemCodeId'] = 3;
                     $dto['amount'] = $data['meetAndGreetAmount'];
                     $dto['discount'] = $data['discount'];
                     $dto['lineItem'] = 'Meet and Greet';
@@ -124,7 +142,7 @@
             try {
                 if ($data['tShirtSize'] !== 'No Thanks') {
                     $dto = $this->getDTO($data);
-                    $dto['code'] = '10001';
+                    $dto['eventLineItemCodeId'] = 2;
                     $dto['amount'] = $data['tShirtAmount'];
                     $dto['discount'] = $data['discount'];
                     $dto['lineItem'] = 'T-Shirt';
@@ -138,7 +156,7 @@
             try {
                 if ($data['draftOne'] === 'YES') {
                     $dto = $this->getDTO($data);
-                    $dto['code'] = '10007';
+                    $dto['eventLineItemCodeId'] = 8;
                     $dto['amount'] = $data['draftOneAmount'];
                     $dto['discount'] = $data['discount'];
                     $dto['lineItem'] = $data['draftOneLineItem'];
@@ -164,7 +182,7 @@
             try {
                 if ($data['draftTwo'] === 'YES') {
                     $dto = $this->getDTO($data);
-                    $dto['code'] = '10008';
+                    $dto['eventLineItemCodeId'] = 9;
                     $dto['amount'] = $data['draftTwoAmount'];
                     $dto['discount'] = $data['discount'];
                     $dto['lineItem'] = $data['draftTwoLineItem'];
