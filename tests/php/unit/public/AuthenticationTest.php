@@ -23,7 +23,7 @@ class AuthenticationTest extends PHPUnit_Framework_TestCase
         $GLOBALS['db_query'] = 1;
         $authentication = new Authentication();
         $this->assertEquals(http_response_code(), 200);
-        $output = json_decode(ob_get_contents(), true);
+        $output = json_decode(get_ob(), true);
         $this->assertEquals($output['firstName'] , 'Brian');
         $this->assertEquals($output['lastName'] , 'Pilati');
         $this->assertEquals($output['admin'] , 'YES');
@@ -38,7 +38,7 @@ class AuthenticationTest extends PHPUnit_Framework_TestCase
         $GLOBALS['db_query'] = 123456789;
         $authentication = new Authentication();
         $this->assertEquals(http_response_code(), 200);
-        $this->assertEquals(strlen($GLOBALS['sendResetEmailMessage_password']), 8);
+        $this->assertEquals($GLOBALS['phpmailer_subject'][0], 'BrickSlopes Reset Password Request');
     }
 
     public function testAuthenticatedPutFailure() 
@@ -48,7 +48,7 @@ class AuthenticationTest extends PHPUnit_Framework_TestCase
         $GLOBALS['db_query'] = 123456789;
         $authentication = new Authentication();
         $this->assertEquals(http_response_code(), 200);
-        $this->assertEquals(ISSET($GLOBALS['sendResetEmailMessage_password']), false);
+        $this->assertEquals(ISSET($GLOBALS['phpmailer_subject']), false);
     }
 
     public function testAuthenticatedPatchSuccess() 

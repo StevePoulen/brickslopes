@@ -21,7 +21,8 @@ class RegisteredUsersTest extends PHPUnit_Framework_TestCase
         $GLOBALS['db_query'] = '1';
         $event = new RegisteredUsers();
         $this->assertEquals(http_response_code(), 200);
-        $output = json_decode(ob_get_contents(), true)[0];
+        $buffer = json_decode(get_ob(), true);
+        $output = $buffer[0];
         $this->assertEquals($output['userId'], '123456789');
         $this->assertEquals($output['firstName'], 'Brian');
         $this->assertEquals($output['lastName'], 'Pilati');
@@ -33,7 +34,7 @@ class RegisteredUsersTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($output['phoneNumber'], '444 555-6666');
         $this->assertEquals($output['joined'], '2014-05-16 15:00:49');
 
-        $output = json_decode(ob_get_contents(), true)[1];
+        $output = $buffer[1];
         $this->assertEquals($output['userId'], '2');
         $this->assertEquals($output['firstName'], 'Cody');
         $this->assertEquals($output['lastName'], 'Ottley');

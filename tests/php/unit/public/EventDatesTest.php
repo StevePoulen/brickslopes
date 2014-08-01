@@ -21,7 +21,7 @@ class EventDatesTest extends PHPUnit_Framework_TestCase
         $GLOBALS['db_query'] = '1';
         new eventDates();
         $this->assertEquals(http_response_code(), 200);
-        $output = json_decode(ob_get_contents(), true)[2];
+        $output = json_decode(get_ob(), true)[2];
         $this->assertEquals($output[0]['eventId'] , '2');
         $this->assertEquals($output[0]['startDate'] , '2014-05-16 08:00:00');
         $this->assertEquals($output[0]['endDate'] , '2014-05-16 20:00:00');

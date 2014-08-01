@@ -22,7 +22,7 @@ class gamesTest extends PHPUnit_Framework_TestCase
         $GLOBALS['db_query'] = '1';
         new Games();
         $this->assertEquals(http_response_code(), 200);
-        $output = json_decode(ob_get_contents(), true);
+        $output = json_decode(get_ob(), true);
         $gameObj = $output[0];
         $this->assertEquals($gameObj['eventId'] , 2);
         $this->assertEquals($gameObj['gameId'] , 1);

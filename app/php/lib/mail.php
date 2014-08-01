@@ -3,10 +3,36 @@
         public function __construct($email) {
             $this->message = "";
             $this->subject = "";
-            $this->email = $email;
+            $this->email = array($email);
+        }
+
+        public function sendEmailTest() {
+            $this->subject = "BrickSlopes Question Time: " . time();
+            $this->message = "
+                <!doctype html>
+                <html>
+                    <head>
+                        <title>BrickSlopes Question</title>
+                    </head>
+                    <body>
+                        {$this->getFontWrapper(24, '#FF0000')}
+                        Test Email - 24 Font, Red, <b>Bold</b>, <i>Italics</i> and <u>Underlined</u>
+                        {$this->getFontClosure()}
+            ";
+
+            $this->message .= $this->getDisclaimer();
+
+            $this->message .= "
+                    </body>
+                </html>
+            ";
+
+            $this->sendEmail();
+
         }
 
         public function sendEmailUsMessage($data) {
+            $this->email = array('brian@brickslopes.com', 'steve@brickslopes.com', 'cody@brickslopes.com');
             $this->subject = "BrickSlopes Question";
             $this->message = "
                 <!doctype html>
@@ -84,7 +110,7 @@
             $lineItems = $registrationLineItemsObj->getRegisteredLineItems($userId, $eventId);
             if($usersObj->result) {
                 $dbObj = $usersObj->result->fetch_object();
-                $this->email = $dbObj->email;
+                $this->email = array($dbObj->email);
 
                 $this->subject = "BrickSlopes Registration";
                 $this->message = "
@@ -147,7 +173,7 @@
             $lineItems = $registrationLineItemsObj->getRegisteredLineItems($userId, $eventId);
             if($usersObj->result) {
                 $dbObj = $usersObj->result->fetch_object();
-                $this->email = $dbObj->email;
+                $this->email = array($dbObj->email);
 
                 $this->subject = "BrickSlopes Registration Complete";
                 $this->message = "
@@ -239,6 +265,55 @@
                 return $this->message;
             } else {
                 $this->sendEmail();
+            }
+        }
+
+        public function sendSiteNewsMessage($body, $display=false) {
+            $usersObj = new users();
+            if ($display) {
+                $usersObj->getUserInformation(1); //This is my user
+            } else {
+                $usersObj->getAllUserInformation();
+            }
+            while($dbObj = $usersObj->result->fetch_object()) {
+                $this->email = array($dbObj->email);
+
+                $this->subject = "BrickSlopes News Announcement";
+                $this->message = "
+                    <!doctype html>
+                    <html>
+                        <head>
+                            <title>BrickSlopes News Announcement</title>
+                        </head>
+                        <body>
+                            {$this->getEmailBackgroundHeader()}
+                            {$this->getFirstLineSpoiler()}
+                            {$this->getBSLogo()}
+                            {$this->getNavigation()}
+                            {$this->getTableHeader()}
+                            <tr>
+                                <td align=left>
+                                    {$this->getFontWrapper(16, '#000000')}
+                                        {$dbObj->firstName},
+                                        <p>
+                                        {$body}
+                                        {$this->getPleaseVisit()}
+                                    {$this->getFontClosure()}
+                                </td>
+                            </tr>
+                            {$this->getTableFooter()}
+                            {$this->getDisclaimer()}
+                            {$this->getCopyRight()}
+                            {$this->getDivClosure()}
+                        </body>
+                    </html>
+                ";
+
+                if ($display) {
+                    return $this->message;
+                } else {
+                    $this->sendEmail();
+                }
             }
         }
 
@@ -441,7 +516,7 @@
                     <td algin=center>
                         {$this->getFontWrapper()}
                             You are receiving this email because you signed up to receive emails at {$this->getDomain()}. If you no longer wish to receive our email updates, please click here.<br>
-                            The information contained in this communication is confidential. This communication is intended only for the use of the addressee ({$this->email}). If you are not the intended recipient, please notify legal@brickslopes.com promptly and delete the message.<br>Any distribution or copying of this message without the consent of BrickSlopes is prohibited.
+                            The information contained in this communication is confidential. This communication is intended only for the use of the addressee ({$this->email[0]}). If you are not the intended recipient, please notify legal@brickslopes.com promptly and delete the message.<br>Any distribution or copying of this message without the consent of BrickSlopes is prohibited.
                         {$this->getFontClosure()}
                     </td>
                 </tr>
@@ -450,16 +525,27 @@
         }
 
         private function sendEmail() {
-            $to = $this->email;
-            // compose headers
-            // To send HTML mail, the Content-type header must be set
-            $headers = 'MIME-Version: 1.0' . "\r\n";
-            $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-            $headers .= "From: 'BrickSlopes' <cody@brickslopes.com>\r\n";
-            $headers .= "Reply-To: 'BrickSlopes' <cody@brickslopes.com>\r\n";
-            $headers .= "X-Mailer: PHP/".phpversion();
-            // send email
-            mail($to, $this->subject, $this->message, $headers, '-fcody@brickslopes.com');
+            require_once __DIR__ . '/../../../vendor/phpmailer/phpmailer/PHPMailerAutoload.php';
+            $mail = new PHPMailer();
+
+            $mail->Host = "smtp.gmail.com";
+            $mail->IsSMTP();
+            $mail->SMTPAuth = true;
+            //$mail->SMTPDebug = 2;
+            $mail->SMTPSecure = "ssl";
+            $mail->Username = EMAIL_ACCOUNT;
+            $mail->Password = EMAIL_PASSWORD;
+            $mail->Port = 465;
+            $mail->FromName = 'Cody Ottley';
+            $mail->From     = "cody@brickslopes.com";
+            foreach($this->email as $emailAddress) {
+                $mail->AddAddress($emailAddress);
+            }
+            $mail->Subject = $this->subject;
+            $mail->Body = $this->message;
+            $mail->isHTML(true); 
+            $mail->WordWrap = 50;
+            $mail->Send();
         }
 
         private function getDomain() {
@@ -467,4 +553,13 @@
         }
     }
 
+$sendTestEmail = false;
+if ($sendTestEmail) {
+    $_SERVER['HTTP_HOST'] = 'mybrickslopes.com';
+    include_once(__DIR__ . '/../../../config/config.php');
+    $myMail = new mail('brianpilati@hotmail.com');
+    //$myMail = new mail('brianpilati@gmail.com');
+    //$myMail = new mail('brian.pilati@domo.com');
+    $myMail->sendEmailTest();
+}
 ?>

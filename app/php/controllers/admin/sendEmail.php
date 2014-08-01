@@ -50,6 +50,14 @@ class SendEmail {
         return $payload['type'] === 'resetPassword';
     }
 
+    private function isPreviewSiteNewsMessage($payload) {
+        return $payload['type'] === 'previewSiteNews';
+    }
+
+    private function isSendSiteNewsMessage($payload) {
+        return $payload['type'] === 'siteNews';
+    }
+
     private function get() {
         $payload = $_GET;
 
@@ -64,6 +72,10 @@ class SendEmail {
                 $this->displayRegistrationPaidMessage();
             } else if ($this->isResetPasswordMessage($payload)) {
                 $this->displayResetPasswordMessage();
+            } else if ($this->isPreviewSiteNewsMessage($payload)) {
+                $this->sendSiteNewsMessage($payload, true);
+            } else if ($this->isSendSiteNewsMessage($payload)) {
+                $this->sendSiteNewsMessage($payload );
             } else {
                 header("HTTP/1.0 412 Precondition Failed");
             }
@@ -74,6 +86,19 @@ class SendEmail {
         $emailObj = new mail('provided_later');
         $emailObj->sendRegistrationPaidMessage($payload['userId'], $payload['eventId']);
         header("HTTP/1.0 200 Success");
+    }
+
+    private function sendSiteNewsMessage($payload, $isPreview=false) {
+        if ($this->userId == '1') {
+            $emailObj = new mail('provided_later');
+            $previewBody = $emailObj->sendSiteNewsMessage($payload['emailBody'], $isPreview);
+            if ($isPreview) {
+                echo $previewBody;
+            } 
+            header("HTTP/1.0 200 Success");
+        } else {
+            header("HTTP/1.0 412 Precondition Failed");
+        }
     }
 
     private function displayEventRegistrationMessage() {
@@ -112,5 +137,4 @@ try {
 }
 
 new SendEmail($userId);
-
 ?>

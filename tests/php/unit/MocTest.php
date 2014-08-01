@@ -40,7 +40,7 @@ class MocTest extends PHPUnit_Framework_TestCase
         $GLOBALS['db_query'] = '1';
         $event = new Mocs($this->userId);
         $this->assertEquals(http_response_code(), 200);
-        $allMocs = json_decode(ob_get_contents(), true);
+        $allMocs = json_decode(get_ob(), true);
         $output = $allMocs[0];
         $this->assertEquals($output['eventId'], '2');
         $this->assertEquals($output['userId'], '1');

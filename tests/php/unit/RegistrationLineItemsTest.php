@@ -23,7 +23,8 @@ class RegistrationLineItemsTest extends PHPUnit_Framework_TestCase
         $this->userId = 12345;
         new RegistrationLineItems($this->userId, true);
         $this->assertEquals(http_response_code(), 200);
-        $output = json_decode(ob_get_contents(), true)['2'];
+        $buffer = json_decode(get_ob(), true);
+        $output = $buffer['2'];
         $lineItems = $output['lineItems'];
 
         $this->assertEquals($output['total'], '110.00');
@@ -56,7 +57,7 @@ class RegistrationLineItemsTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($lineItems[1]['active'] , 'NO');
         $this->assertEquals($lineItems[1]['entryDate'] , '2014-06-29 08:46:00');
 
-        $output = json_decode(ob_get_contents(), true)['1'];
+        $output = $buffer['1'];
         $lineItems = $output['lineItems'];
 
         $this->assertEquals($output['total'], '31.50');

@@ -22,7 +22,7 @@ class FeedbackTest extends PHPUnit_Framework_TestCase
         $GLOBALS['db_query'] = '1';
         $event = new Feedback($this->userId);
         $this->assertEquals(http_response_code(), 200);
-        $output = json_decode(ob_get_contents(), true)[0];
+        $output = json_decode(get_ob(), true)[0];
         $this->assertEquals($output['feedbackId'], '1');
         $this->assertEquals($output['userId'], '23');
         $this->assertEquals($output['email'], 'brianpilati@gmail.com');

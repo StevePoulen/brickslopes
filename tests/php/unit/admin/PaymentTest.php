@@ -26,7 +26,7 @@ class PaymentTest extends PHPUnit_Framework_TestCase
         $GLOBALS['db_query'] = '1';
         $payment = new Payment($this->userId);
         $this->assertEquals(http_response_code(), 200);
-        $output = json_decode(ob_get_contents(),true);
+        $output = json_decode(get_ob(),true);
         $this->assertEquals($output['registrationPaid'], false);
         $dbObj = $GLOBALS['updateRegistrationPaid'];
         $this->assertEquals($dbObj['id'], 22);
@@ -44,7 +44,7 @@ class PaymentTest extends PHPUnit_Framework_TestCase
         $GLOBALS['db_query'] = '1';
         $payment = new Payment($this->userId);
         $this->assertEquals(http_response_code(), 200);
-        $output = json_decode(ob_get_contents(),true);
+        $output = json_decode(get_ob(),true);
         $this->assertEquals($output['registrationPaid'], false);
         $dbObj = $GLOBALS['updateRegistrationPaid'];
         $this->assertEquals($dbObj['id'], 22);

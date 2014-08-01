@@ -25,7 +25,7 @@ class UserTest extends PHPUnit_Framework_TestCase
         $GLOBALS['db_query'] = '1';
         $event = new User($this->userId, true, true, true);
         $this->assertEquals(http_response_code(), 200);
-        $output = json_decode(ob_get_contents(), true);
+        $output = json_decode(get_ob(), true);
         $this->assertEquals($output['userId'], '123456789');
         $this->assertEquals($output['firstName'], 'Brian');
         $this->assertEquals($output['lastName'], 'Pilati');
@@ -50,7 +50,7 @@ class UserTest extends PHPUnit_Framework_TestCase
         $GLOBALS['db_query'] = 123456789;
         $authentication = new User($this->userId, false, false, false);
         $this->assertEquals(http_response_code(), 201);
-        $output = json_decode(ob_get_contents(), true);
+        $output = json_decode(get_ob(), true);
         $this->assertEquals($output['firstName'] , 'Steve');
         $this->assertEquals($output['lastName'] , 'Poulsen');
         $this->assertEquals($output['admin'] , 'NO');
@@ -59,7 +59,8 @@ class UserTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($output['userId'] , '123456789');
         $this->validateJwt($output['token'], 'NO', 'NO');
 
-        $this->assertEquals($GLOBALS['sendUserRegistrationMessage'], 'Steve');
+        $this->assertEquals($GLOBALS['phpmailer_subject'][0], 'BrickSlopes User Registration');
+        $this->assertContains('registered member of BrickSlopes', $GLOBALS['phpmailer_body'][0]);
     }
 
     public function testAuthenticatedPatch() 
@@ -73,7 +74,7 @@ class UserTest extends PHPUnit_Framework_TestCase
         $GLOBALS['db_query'] = 123456789;
         $authentication = new User($this->userId, true, true, true);
         $this->assertEquals(http_response_code(), 201);
-        $output = json_decode(ob_get_contents(), true);
+        $output = json_decode(get_ob(), true);
         $this->assertEquals($output['firstName'] , 'Steve');
         $this->assertEquals($output['lastName'] , 'Poulsen');
         $this->assertEquals($output['admin'] , 'YES');

@@ -52,6 +52,22 @@ class GameUser {
         }
     }
 
+    private function getDiscountDateOfTomorrow() {
+        return date('Y-m-d h:i:s', mktime(0, 0, 0, date("m")  , date("d")+1, date("Y")));
+    }
+
+    private function addGameFees($payload) {
+        if ($payload['gameId'] === 3 or $payload['gameId'] === 4) {
+            $payload['discountDate'] = $this->getDiscountDateOfTomorrow();
+            $registrationLineItemHelper = new registrationLineItemHelper($payload['eventId']);
+            if ($payload['gameId'] === 3) {
+                $registrationLineItemHelper->addDraftOneLineItemFromGames($payload);
+            } else {
+                $registrationLineItemHelper->addDraftTwoLineItemFromGames($payload);
+            }
+        }
+    }
+
     private function post() {
         $payload = json_decode(file_get_contents("php://input"), true);
         if (sizeof($payload) == 0) {
@@ -59,6 +75,7 @@ class GameUser {
         }
         $payload['userId'] = $this->userId;
         $response = $this->gameUserObj->addGameUserInformation($payload);
+        $this->addGameFees($payload);
 
         if (preg_match ( '/^\d+/', $response )) {
             header("HTTP/1.0 201 Created");

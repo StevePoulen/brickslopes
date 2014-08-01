@@ -3,6 +3,7 @@
   "description": "The website for BrickSlopes, A LEGO Fan Event",
   "require": {
     "php": ">=5.3.0",
-    "firebase/php-jwt": "dev-master"
+    "firebase/php-jwt": "dev-master",
+    "phpmailer/phpmailer": "5.2.8"
   }
 }

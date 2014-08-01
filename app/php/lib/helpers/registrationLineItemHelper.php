@@ -152,7 +152,20 @@
             } catch (exception $err) { }
         }
 
+        private function addDraftOneLineItemFromRegistration($data) {
+            if ($this->addDraftOneLineItem($data)) {
+                $this->addGameUserInformation($data, 3);
+            }
+        }
+
+        public function addDraftOneLineItemFromGames($data) {
+            $data['draftOne'] = 'YES';
+            $data = $this->determineLineItemAmounts($data);
+            $this->addDraftOneLineItem($data);
+        }
+
         private function addDraftOneLineItem($data) {
+            $returnValue = false;
             try {
                 if ($data['draftOne'] === 'YES') {
                     $dto = $this->getDTO($data);
@@ -161,9 +174,11 @@
                     $dto['discount'] = $data['discount'];
                     $dto['lineItem'] = $data['draftOneLineItem'];
                     $this->registrationLineItemObj->addRegistrationLineItems($dto);
-                    $this->addGameUserInformation($data, 3);
+                    $returnValue = true;
                 }
             } catch (exception $err) { }
+
+            return $returnValue;
         }
 
         private function addGameUserInformation($data, $gameId) {
@@ -178,7 +193,20 @@
             $gameUserObj->addGameUserInformation($gameData);
         }
 
+        private function addDraftTwoLineItemFromRegistration($data) {
+            if ($this->addDraftTwoLineItem($data)) {
+                $this->addGameUserInformation($data, 4);
+            }
+        }
+
+        public function addDraftTwoLineItemFromGames($data) {
+            $data['draftTwo'] = 'YES';
+            $data = $this->determineLineItemAmounts($data);
+            $this->addDraftTwoLineItem($data);
+        }
+
         private function addDraftTwoLineItem($data) {
+            $returnValue = false;
             try {
                 if ($data['draftTwo'] === 'YES') {
                     $dto = $this->getDTO($data);
@@ -187,9 +215,10 @@
                     $dto['discount'] = $data['discount'];
                     $dto['lineItem'] = $data['draftTwoLineItem'];
                     $this->registrationLineItemObj->addRegistrationLineItems($dto);
-                    $this->addGameUserInformation($data, 4);
+                    $returnValue = true;
                 }
             } catch (exception $err) { }
+            return $returnValue;
         }
 
         private function getDTO($data) {
