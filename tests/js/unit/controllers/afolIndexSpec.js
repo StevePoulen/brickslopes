@@ -21,12 +21,14 @@ describe('controllers', function() {
     });
 
     describe('afolIndex Controller', function() {
-        beforeEach(inject(function($controller, $rootScope, $location) {
+        var window;
+        beforeEach(inject(function($controller, $rootScope, $location, $window) {
+            window = $window;
+            storeSession(window, sessionData);
             scope = $rootScope.$new();
             ctrl = $controller('afolIndex', { $scope: scope});
             location = $location;
         }));
-
 
         describe('Default Variables', function() {
             it('should set the gameCount variable', function() {
@@ -50,7 +52,7 @@ describe('controllers', function() {
             });
 
             it('should have a userName variable', function() {
-                expect(scope.userName).toEqualData("Cody's Site");
+                expect(scope.userName).toEqualData("Ember's Site");
             });
 
             it('should have a isRegistered variable', function() {
@@ -63,14 +65,9 @@ describe('controllers', function() {
         });
 
         describe('Actions', function() {
-            var window;
-            beforeEach(inject(function(_$window_) {
-                window = _$window_;
+            beforeEach(inject(function($window) {
+                deleteSession($window);
             }));
-
-            afterEach(function() {
-                deleteSession(window);
-            });
 
             it('should redirect to eventRegistration', function() {
                 scope.isRegistered = false;

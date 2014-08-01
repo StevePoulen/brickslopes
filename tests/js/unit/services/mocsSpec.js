@@ -14,10 +14,11 @@ describe('service', function() {
     });
 
     describe('MocDetails', function() {
-        var mockBackend, service, data;
-        beforeEach(inject(function(_$httpBackend_, MocDetails) {
+        var mockBackend, service, data, window;
+        beforeEach(inject(function(_$httpBackend_, MocDetails, $window) {
             mockBackend = _$httpBackend_;
             service = MocDetails;
+            window = $window;
             mockBackend.expectGET('/controllers/registered/mocs.php?eventId=2').respond(mocs);
         }));
 
@@ -39,6 +40,28 @@ describe('service', function() {
 
             mockBackend.flush();
             expect(data).toEqualData(mocs);
+        });
+
+        it('should load an individuals afol moc list', function() {
+            window.sessionStorage.userId = 2;
+            var load = service.getListByUserId(2);
+            load.then(function(_data) {
+                data = _data;
+            });
+
+            mockBackend.flush();
+            expect(data).toEqualData(userTwoMoc);
+        });
+
+        it('should load individual afol moc list count', function() {
+            window.sessionStorage.userId = 2;
+            var load = service.getCountByUser(2);
+            load.then(function(_data) {
+                data = _data;
+            });
+
+            mockBackend.flush();
+            expect(data).toEqualData(1);
         });
     });
 

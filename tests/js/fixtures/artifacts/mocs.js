@@ -32,4 +32,7 @@ var mocs = [
         "baseplateDepth": "3",
         "description": "My out-of-this-world castle with peeps!"
     }
-]
+];
+
+var userOneMoc = [mocs[1], mocs[2]];
+var userTwoMoc = [mocs[0]];

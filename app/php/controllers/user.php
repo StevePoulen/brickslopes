@@ -64,19 +64,18 @@ class User extends jwtToken {
         if (sizeof($payload) == 0) {
             $payload = $_POST;
         }
-        $response = $this->usersObj->addUserInformation($payload);
-        if (preg_match ( '/\d+/', $response )) {
+        $userId = $this->usersObj->addUserInformation($payload);
+        if (preg_match ( '/\d+/', $userId)) {
             $emailObj = new mail($payload['email']);
             $emailObj->sendUserRegistrationMessage($payload['firstName']);
             header("HTTP/1.0 201 Created");
             echo $this->createPayload (
-                $response,
+                $userId,
                 $payload['firstName'], 
                 $payload['lastName'], 
                 'NO',
                 'NO',
-                'NO',
-                201 
+                'NO'
             );
         } else {
             header("HTTP/1.0 400 Bad Request");
@@ -103,8 +102,7 @@ class User extends jwtToken {
                 $payload['lastName'], 
                 ($this->isAdmin ? 'YES' : 'NO'),
                 ($this->isRegistered ? 'YES' : 'NO'),
-                ($this->isPaid? 'YES' : 'NO'),
-                201 
+                ($this->isPaid? 'YES' : 'NO')
             );
         } else {
             header("HTTP/1.0 400 Bad Request");

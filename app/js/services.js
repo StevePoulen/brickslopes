@@ -761,14 +761,14 @@ angular.module('brickSlopes.services', ['ngResource'])
 }])
 .factory('EventRegistration', ['$q', '$http', function($q, $http) {
     function parseEventRegistrationData(data) {
-        _.each(data, function(eventObj, key) {
+        data = _.each(data, function(eventObj, key) {
             eventObj.total = eventObj.lineItems.total;
             eventObj.tShirtSize = 'No Thanks';
             eventObj.type = (eventObj.ageVerification == 'YES' ? 'AFOL' : 'TFOL');
             eventObj.meetAndGreet = 'NO';
             eventObj.draftOne = 'NO';
             eventObj.draftTwo = 'NO';
-            eventObj.paidCTA = (eventObj.paid == 'YES');
+            eventObj.paidCTA = (eventObj.paid === 'YES');
             eventObj.nameBadge = 'NO';
             eventObj.showBadgeLine1 = false;
             eventObj.badgeLine1 = undefined;
@@ -800,6 +800,7 @@ angular.module('brickSlopes.services', ['ngResource'])
                     }
                 }
             });
+            return eventObj;
         });
 
         return data;
@@ -916,8 +917,18 @@ angular.module('brickSlopes.services', ['ngResource'])
         }
     }
 }])
-.factory('MocDetails', ['$q', '$http', function($q, $http) {
+.factory('MocDetails', ['$q', '$http', '$window', function($q, $http, $window) {
     var mocList = undefined;
+    var individualMocList = undefined;
+    function filterMocsByUsers() {
+        individualMocList = [];
+        _.each(mocList, function(moc, index) {
+            if (moc.userId == $window.sessionStorage.userId) {
+                individualMocList.push(moc);
+            }
+        });
+        return individualMocList;
+    }
 
     return {
         getCount: function(eventId) {
@@ -926,6 +937,26 @@ angular.module('brickSlopes.services', ['ngResource'])
             } else {
                 return $q.when(this.getList(eventId).then(function(data) {
                     return mocList.length;
+                }));
+            }
+        },
+
+        getCountByUser: function(eventId) {
+            if (individualMocList) {
+                return $q.when(individualMocList.length);
+            } else {
+                return $q.when(this.getListByUserId(eventId).then(function(data) {
+                    return individualMocList.length;
+                }));
+            }
+        },
+
+        getListByUserId: function(eventId) {
+            if (individualMocList) {
+                return $q.when(individualMocList);
+            } else {
+                return $q.when(this.getList(eventId).then(function(data) {
+                    return filterMocsByUsers();
                 }));
             }
         },

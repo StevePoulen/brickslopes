@@ -61,19 +61,8 @@ describe('controllers', function() {
 
         describe('Sign in on success', function() {
             beforeEach(function() {
-                var response = {
-                    data: {
-                        token: 22,
-                        firstName: 'Cody',
-                        lastName: 'Ottley',
-                        admin: 'NO',
-                        registered: 'YES'
-                    },
-                    status: 201
-                }
-
                 scope.submitLogin();
-                mockBackend.expectPOST('/controllers/public/authentication.php').respond(200, response);
+                mockBackend.expectPOST('/controllers/public/authentication.php').respond(200, sessionData);
                 mockBackend.flush();
             });
 
@@ -94,15 +83,15 @@ describe('controllers', function() {
             });
 
             it('should have a window.sessionStorage.token variables', function() {
-                expect(window.sessionStorage.token).toBe('22');
+                expect(window.sessionStorage.token).toBe('1234567890');
             });
 
             it('should have a window.sessionStorage.firstName variables', function() {
-                expect(window.sessionStorage.firstName).toBe('Cody');
+                expect(window.sessionStorage.firstName).toBe('Ember');
             });
 
             it('should have a window.sessionStorage.lastName variables', function() {
-                expect(window.sessionStorage.lastName).toBe('Ottley');
+                expect(window.sessionStorage.lastName).toBe('Pilati');
             });
 
             it('should have a window.sessionStorage.admin variables', function() {
@@ -112,26 +101,22 @@ describe('controllers', function() {
             it('should have a window.sessionStorage.registered variables', function() {
                 expect(window.sessionStorage.registered).toBe('YES');
             });
+
+            it('should have a window.sessionStorage.paid variables', function() {
+                expect(window.sessionStorage.paid).toBe('YES');
+            });
+
+            it('should have a window.sessionStorage.userId variables', function() {
+                expect(window.sessionStorage.userId).toBe('080898');
+            });
         });
 
         describe('Sign in on a redirect', function() {
-            var response;
-            beforeEach(function() {
-                response = {
-                    data: {
-                        token: 22,
-                        firstName: 'Cody',
-                        lastName: 'Ottley',
-                        admin: 'NO'
-                    },
-                    status: 201
-                }
-            });
             it('should redirect to an afol page after an initial failure', function() {
                 window.sessionStorage.redirectUrl = '/partials/afol/eventMe.html';
 
                 scope.submitLogin();
-                mockBackend.expectPOST('/controllers/public/authentication.php').respond(200, response);
+                mockBackend.expectPOST('/controllers/public/authentication.php').respond(200, sessionData);
                 mockBackend.flush();
                 expect(location.path()).toBe('/afol/eventMe.html');
                 expect(window.sessionStorage.redirectUrl).toBeUndefined();
@@ -156,19 +141,8 @@ describe('controllers', function() {
 
         describe('Register', function() {
             beforeEach(function() {
-                var response = {
-                    data: {
-                        token: 22,
-                        firstName: 'Cody',
-                        lastName: 'Ottley',
-                        admin: 'NO',
-                        registered: 'YES'
-                    },
-                    status: 201
-                }
-
                 scope.register();
-                mockBackend.expectPOST('/controllers/user.php').respond(201, response);
+                mockBackend.expectPOST('/controllers/user.php').respond(201, sessionData);
                 mockBackend.flush();
             });
 
@@ -189,15 +163,15 @@ describe('controllers', function() {
             });
 
             it('should have a window.sessionStorage.token variables', function() {
-                expect(window.sessionStorage.token).toBe('22');
+                expect(window.sessionStorage.token).toBe('1234567890');
             });
 
             it('should have a window.sessionStorage.firstName variables', function() {
-                expect(window.sessionStorage.firstName).toBe('Cody');
+                expect(window.sessionStorage.firstName).toBe('Ember');
             });
 
             it('should have a window.sessionStorage.lastName variables', function() {
-                expect(window.sessionStorage.lastName).toBe('Ottley');
+                expect(window.sessionStorage.lastName).toBe('Pilati');
             });
 
             it('should have a window.sessionStorage.admin variables', function() {
@@ -206,6 +180,14 @@ describe('controllers', function() {
 
             it('should have a window.sessionStorage.registered variables', function() {
                 expect(window.sessionStorage.registered).toBe('YES');
+            });
+
+            it('should have a window.sessionStorage.paid variables', function() {
+                expect(window.sessionStorage.paid).toBe('YES');
+            });
+
+            it('should have a window.sessionStorage.userId variables', function() {
+                expect(window.sessionStorage.userId).toBe('080898');
             });
         });
 
@@ -221,7 +203,7 @@ describe('controllers', function() {
                 mockBackend.expectPOST('/controllers/user.php').respond(400, response);
                 mockBackend.flush();
                 expect(location.path()).toBe('');
-                expect(window.sessionStorage.token).toBe('22');
+                expect(window.sessionStorage.token).toBe('1234567890');
                 expect(scope.verifying).toBe(false);
                 expect(scope.showLogin).toBe(true);
                 expect(scope.showResetPassword).toBe(true);

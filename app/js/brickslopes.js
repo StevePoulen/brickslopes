@@ -38,14 +38,21 @@ function deleteSession(ngWindow) {
     delete ngWindow.sessionStorage.redirectUrl;
     delete ngWindow.sessionStorage.registered;
     delete ngWindow.sessionStorage.paid;
+    delete ngWindow.sessionStorage.userId;
 }
 
 function storeSession(ngWindow, data) {
-    ngWindow.sessionStorage.token = data.token;
-    ngWindow.sessionStorage.firstName = data.firstName;
-    ngWindow.sessionStorage.lastName = data.lastName;
-    ngWindow.sessionStorage.admin = data.admin;
-    ngWindow.sessionStorage.registered = data.registered;
-    ngWindow.sessionStorage.paid = data.paid;
+    var callDelete = false;
+    (data.token ? ngWindow.sessionStorage.token = data.token : callDelete = true);
+    (data.firstName ? ngWindow.sessionStorage.firstName = data.firstName : callDelete = true);
+    (data.lastName ? ngWindow.sessionStorage.lastName = data.lastName : callDelete = true);
+    (data.admin ? ngWindow.sessionStorage.admin = data.admin : callDelete = true);
+    (data.registered ? ngWindow.sessionStorage.registered = data.registered : callDelete = true);
+    (data.paid ? ngWindow.sessionStorage.paid = data.paid : callDelete = true);
+    (data.userId ? ngWindow.sessionStorage.userId = data.userId : deleteSession(ngWindow));
+
+    if (callDelete) {
+        deleteSession(ngWindow);
+    }
 }
 

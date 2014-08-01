@@ -67,11 +67,16 @@ describe('controllers', function() {
         beforeEach(inject(function($controller, $rootScope, $location, _$window_) {
             scope = $rootScope.$new();
             window = _$window_;
-            window.sessionStorage.token = '1234567890';
-            window.sessionStorage.firstName = 'Ember';
-            window.sessionStorage.lastName = 'Pilati';
-            window.sessionStorage.admin = 'YES';
-            window.sessionStorage.registered = 'YES';
+            var data = {
+                token: '1234567890',
+                firstName: 'Ember',
+                lastName: 'Pilati',
+                admin: 'YES',
+                registered: 'YES',
+                paid: 'NO',
+                userId: '051675'
+            };
+            storeSession(window, data);
             ctrl = $controller('bsHeader', { $scope: scope, $window: window});
             location = $location;
         }));
@@ -108,6 +113,18 @@ describe('controllers', function() {
             expect(window.sessionStorage.registered).toBe('YES');
             scope.logout();
             expect(window.sessionStorage.registered).toBe(undefined);
+        });
+
+        it('should have an undefined paid', function() {
+            expect(window.sessionStorage.paid).toBe('NO');
+            scope.logout();
+            expect(window.sessionStorage.paid).toBe(undefined);
+        });
+
+        it('should have an undefined userId', function() {
+            expect(window.sessionStorage.userId).toBe('051675');
+            scope.logout();
+            expect(window.sessionStorage.userId).toBe(undefined);
         });
 
         it('should have a login path', function() {

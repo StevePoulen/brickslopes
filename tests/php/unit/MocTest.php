@@ -40,7 +40,8 @@ class MocTest extends PHPUnit_Framework_TestCase
         $GLOBALS['db_query'] = '1';
         $event = new Mocs($this->userId);
         $this->assertEquals(http_response_code(), 200);
-        $output = json_decode(ob_get_contents(), true)[0];
+        $allMocs = json_decode(ob_get_contents(), true);
+        $output = $allMocs[0];
         $this->assertEquals($output['eventId'], '2');
         $this->assertEquals($output['userId'], '1');
         $this->assertEquals($output['themeId'], '3');
@@ -51,6 +52,8 @@ class MocTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($output['baseplateDepth'], '7');
         $this->assertEquals($output['description'], 'This was so original');
         $this->assertEquals($output['theme'], 'Princess');
+        $this->assertEquals(sizeOf($allMocs), 3);
+
     }
 
     public function testAuthenticatedGETFailure() 

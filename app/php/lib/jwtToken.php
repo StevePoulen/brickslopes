@@ -6,18 +6,16 @@ class jwtToken {
 
     }
 
-    public function createPayload($userId, $firstName, $lastName, $admin, $registered, $paid, $status) {
+    public function createPayload($userId, $firstName, $lastName, $admin, $registered, $paid) {
         return json_encode (
             array (
-                'data' => array (
-                    'firstName' => $firstName, 
-                    'lastName' => $lastName,
-                    'admin' => $admin,
-                    'registered' => $registered,
-                    'paid' => $paid,
-                    'token' => $this->encodeJWT($userId, $admin, $registered, $paid)
-                ),
-                'status' => $status
+                'firstName' => $firstName, 
+                'lastName' => $lastName,
+                'admin' => $admin,
+                'registered' => $registered,
+                'paid' => $paid,
+                'userId' => $userId,
+                'token' => $this->encodeJWT($userId, $admin, $registered, $paid)
             )
         );
     }

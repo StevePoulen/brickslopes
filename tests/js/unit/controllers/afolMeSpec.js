@@ -162,6 +162,7 @@ describe('controllers', function() {
             beforeEach(function() {
                 window.sessionStorage.registered = 'YES';
                 window.sessionStorage.paid = 'YES';
+                window.sessionStorage.userId = '1';
                 mockBackend.expectGET('/controllers/public/eventDates.php').respond(eventDates);
                 mockBackend.expectGET('/controllers/eventRegistration.php').respond(eventRegistration);
                 mockBackend.expectGET('/controllers/registered/mocs.php?eventId=2').respond(200, mocs);
@@ -200,7 +201,11 @@ describe('controllers', function() {
             });
 
             it('should have a mocCount variable', function() {
-                expect(scope.mocCount).toBe(3);
+                expect(scope.mocCount).toBe(2);
+            });
+
+            it('should have an mocList variable', function() {
+                expect(scope.mocList).toEqualData(userOneMoc);
             });
 
             it('should have a gameCount variable', function() {

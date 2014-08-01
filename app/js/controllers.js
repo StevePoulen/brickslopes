@@ -191,7 +191,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     $scope.submitLogin = function() {
         $scope.verifying = true;
         Auth.login(serializeLoginJson()).then(function(response) {
-            storeSession($window, response.data);
+            storeSession($window, response);
             if($window.sessionStorage.redirectUrl) {
                 if(($window.sessionStorage.redirectUrl).match('\/partials\/afol/*')) {
                     var newRedirectUrl = $window.sessionStorage.redirectUrl.replace('\/partials', '');
@@ -216,10 +216,8 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     $scope.register = function() {
         $scope.verifying = true;
         UserDetails.register(serializeRegisterJson()).then(function(response) {
-            if (response.status === 201) {
-                storeSession($window, response.data);
-                $location.path('/afol/index.html');
-            }
+            storeSession($window, response);
+            $location.path('/afol/index.html');
             $scope.verifying = false;
         }, function(data) {
             $scope.verifying = false;
@@ -584,10 +582,10 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         $scope.displayRegisterEventCTA = ! displayRegisterEventButton();
     });
 
-    MocDetails.getList($scope.eventId).then(function(data) {
+    MocDetails.getListByUserId($scope.eventId).then(function(data) {
         $scope.mocList = data;
         $scope.displayRegisterEventMocsCTA = ! displayEventMocRegisterButton();
-        MocDetails.getCount($scope.eventId).then(function(data) {
+        MocDetails.getCountByUser($scope.eventId).then(function(data) {
             $scope.mocCount = data;
         });
     });
@@ -713,10 +711,8 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     $scope.submitProfile = function() {
         $scope.verifying = true;
         UserDetails.update(serializeProfileJson()).then(function(response) {
-            if (response.status === 201) {
-                storeSession($window, response.data);
-                $location.path('/afol/eventMe.html');
-            }
+            storeSession($window, response);
+            $location.path('/afol/eventMe.html');
             $scope.verifying = false;
         }, function(data) {
             $scope.verifying = false;

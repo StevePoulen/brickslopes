@@ -92,6 +92,7 @@
             $mocsCollection = array(
                 array(
                     'title' => 'My Cool Creation',
+                    'userId' => '1',
                     'displayName' => 'BP',
                     'mocImageUrl' => 'https://My_Cool_Creation.org',
                     'baseplateWidth' => 1,
@@ -100,6 +101,7 @@
                 ),
                 array(
                     'title' => 'My Cool Creation -- Part II',
+                    'userId' => '1',
                     'displayName' => 'Brian',
                     'mocImageUrl' => 'https://My_Cool_Creation_part_II.org',
                     'baseplateWidth' => 2,
@@ -108,6 +110,7 @@
                 ),
                 array(
                     'title' => 'My Cool Creation -- Part II twenty eight charac',
+                    'userId' => '1',
                     'displayName' => 'Brian Pilati',
                     'mocImageUrl' => 'https://My_Cool_Creation_part_III.org',
                     'baseplateWidth' => 3,
@@ -116,6 +119,7 @@
                 ),
                 array(
                     'title' => 'My Cool Creation -- Part II twenty eight charac',
+                    'userId' => '1',
                     'displayName' => 'Brian Pilati is my full-name than',
                     'mocImageUrl' => 'https://My_Cool_Creation_part_IV.org',
                     'baseplateWidth' => 4,
@@ -124,6 +128,7 @@
                 ),
                 array(
                     'title' => 'My Cool Creation -- Part III twenty eight chara',
+                    'userId' => '1',
                     'displayName' => 'Brian Pilati is my full-name than',
                     'mocImageUrl' => 'https://My_Cool_Creation_part_V.org',
                     'baseplateWidth' => 5,
@@ -132,7 +137,8 @@
                 ),
                 array(
                     'title' => 'My Cool Creation -- Part IV twenty eight charac',
-                    'displayName' => 'Brian Pilati is my full-name than',
+                    'userId' => '2',
+                    'displayName' => 'Ember Pilati is my full-name than',
                     'mocImageUrl' => 'https://My_Cool_Creation_part_V.org',
                     'baseplateWidth' => 6,
                     'baseplateDepth' => 6,
@@ -140,7 +146,8 @@
                 ),
                 array(
                     'title' => 'My Cool Creation -- Part V twenty eight charact',
-                    'displayName' => 'Brian Pilati is my full-name than',
+                    'userId' => '2',
+                    'displayName' => 'Ember Pilati is my full-name than',
                     'mocImageUrl' => 'https://My_Cool_Creation_part_VI.org',
                     'baseplateWidth' => 7,
                     'baseplateDepth' => 7,
@@ -148,7 +155,8 @@
                 ),
                 array(
                     'title' => 'My Cool Creation -- Part VI twenty eight charac',
-                    'displayName' => 'Brian Pilati is my full-name than',
+                    'userId' => '2',
+                    'displayName' => 'Ember Pilati is my full-name than',
                     'mocImageUrl' => 'https://My_Cool_Creation_part_VII.org',
                     'baseplateWidth' => 8,
                     'baseplateDepth' => 8,
@@ -156,7 +164,8 @@
                 ),
                 array(
                     'title' => 'My Cool Creation -- Part VIII twenty eight char',
-                    'displayName' => 'Brian Pilati is my full-name than',
+                    'userId' => '2',
+                    'displayName' => 'Ember Pilati is my full-name than',
                     'mocImageUrl' => 'https://My_Cool_Creation_part_VIII.org',
                     'baseplateWidth' => 9,
                     'baseplateDepth' => 9,
@@ -166,7 +175,7 @@
 
             foreach ($mocsCollection as $mocMap) {
                 $mocMap = array(
-                    'userId' => 1,
+                    'userId' => $mocMap['userId'],
                     'eventId' => 2,
                     'themeId' => $themeId++,
                     'displayName' => $mocMap['displayName'],

@@ -58,20 +58,10 @@ describe('controllers', function() {
 
         describe('Update Profile', function() {
             beforeEach(function() {
-                var response = {
-                    data: {
-                        token: 22,
-                        firstName: 'Cody',
-                        lastName: 'Ottley',
-                        admin: 'NO'
-                    },
-                    status: 201
-                }
-
                 scope.userObject = singleUser;
                 scope.submitProfile();
                 mockBackend.expectGET('/controllers/user.php').respond(400, singleUser);
-                mockBackend.expectPATCH('/controllers/user.php').respond(201, response);
+                mockBackend.expectPATCH('/controllers/user.php').respond(201, sessionData);
                 mockBackend.flush();
             });
 
@@ -88,19 +78,31 @@ describe('controllers', function() {
             });
 
             it('should have a window.sessionStorage.token variables', function() {
-                expect(window.sessionStorage.token).toBe('22');
+                expect(window.sessionStorage.token).toBe('1234567890');
             });
 
             it('should have a window.sessionStorage.firstName variables', function() {
-                expect(window.sessionStorage.firstName).toBe('Cody');
+                expect(window.sessionStorage.firstName).toBe('Ember');
             });
 
             it('should have a window.sessionStorage.lastName variables', function() {
-                expect(window.sessionStorage.lastName).toBe('Ottley');
+                expect(window.sessionStorage.lastName).toBe('Pilati');
             });
 
             it('should have a window.sessionStorage.admin variables', function() {
                 expect(window.sessionStorage.admin).toBe('NO');
+            });
+
+            it('should have a window.sessionStorage.registered variables', function() {
+                expect(window.sessionStorage.registered).toBe('YES');
+            });
+
+            it('should have a window.sessionStorage.paid variables', function() {
+                expect(window.sessionStorage.paid).toBe('YES');
+            });
+
+            it('should have a window.sessionStorage.userId variables', function() {
+                expect(window.sessionStorage.userId).toBe('080898');
             });
         });
 

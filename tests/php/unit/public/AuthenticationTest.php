@@ -24,12 +24,11 @@ class AuthenticationTest extends PHPUnit_Framework_TestCase
         $authentication = new Authentication();
         $this->assertEquals(http_response_code(), 200);
         $output = json_decode(ob_get_contents(), true);
-        $this->assertEquals($output['data']['firstName'] , 'Brian');
-        $this->assertEquals($output['data']['lastName'] , 'Pilati');
-        $this->assertEquals($output['data']['admin'] , 'YES');
-        $this->assertEquals($output['data']['registered'] , 'YES');
-        $this->validateJwt($output['data']['token']);
-        $this->assertEquals($output['status'], 200);
+        $this->assertEquals($output['firstName'] , 'Brian');
+        $this->assertEquals($output['lastName'] , 'Pilati');
+        $this->assertEquals($output['admin'] , 'YES');
+        $this->assertEquals($output['registered'] , 'YES');
+        $this->validateJwt($output['token']);
     }
 
 

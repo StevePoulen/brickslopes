@@ -51,13 +51,13 @@ class UserTest extends PHPUnit_Framework_TestCase
         $authentication = new User($this->userId, false, false, false);
         $this->assertEquals(http_response_code(), 201);
         $output = json_decode(ob_get_contents(), true);
-        $this->assertEquals($output['data']['firstName'] , 'Steve');
-        $this->assertEquals($output['data']['lastName'] , 'Poulsen');
-        $this->assertEquals($output['data']['admin'] , 'NO');
-        $this->assertEquals($output['data']['registered'] , 'NO');
-        $this->assertEquals($output['data']['paid'] , 'NO');
-        $this->validateJwt($output['data']['token'], 'NO', 'NO');
-        $this->assertEquals($output['status'], 201);
+        $this->assertEquals($output['firstName'] , 'Steve');
+        $this->assertEquals($output['lastName'] , 'Poulsen');
+        $this->assertEquals($output['admin'] , 'NO');
+        $this->assertEquals($output['registered'] , 'NO');
+        $this->assertEquals($output['paid'] , 'NO');
+        $this->assertEquals($output['userId'] , '123456789');
+        $this->validateJwt($output['token'], 'NO', 'NO');
 
         $this->assertEquals($GLOBALS['sendUserRegistrationMessage'], 'Steve');
     }
@@ -74,13 +74,13 @@ class UserTest extends PHPUnit_Framework_TestCase
         $authentication = new User($this->userId, true, true, true);
         $this->assertEquals(http_response_code(), 201);
         $output = json_decode(ob_get_contents(), true);
-        $this->assertEquals($output['data']['firstName'] , 'Steve');
-        $this->assertEquals($output['data']['lastName'] , 'Poulsen');
-        $this->assertEquals($output['data']['admin'] , 'YES');
-        $this->assertEquals($output['data']['registered'] , 'YES');
-        $this->assertEquals($output['data']['paid'] , 'YES');
-        $this->validateJwt($output['data']['token']);
-        $this->assertEquals($output['status'], 201);
+        $this->assertEquals($output['firstName'] , 'Steve');
+        $this->assertEquals($output['lastName'] , 'Poulsen');
+        $this->assertEquals($output['admin'] , 'YES');
+        $this->assertEquals($output['registered'] , 'YES');
+        $this->assertEquals($output['paid'] , 'YES');
+        $this->assertEquals($output['userId'] , '123456789');
+        $this->validateJwt($output['token']);
     }
 
     public function testAuthenticatedGetFailure() 
