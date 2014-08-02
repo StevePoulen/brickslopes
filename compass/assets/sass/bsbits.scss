@@ -103,6 +103,12 @@ textarea::-moz-placeholder {
     display: inline-block;
 }
 
+.actionButtonError {
+    @extend .actionButton;
+    width: 300px;
+    padding-top: 3px;
+}
+
 .actionButtonSquare {
     @extend .actionButton;
     width: 150px;
@@ -333,4 +339,23 @@ input.ng-dirty {
         margin: 10px;
         margin-bottom: 20px;
     }
+}
+
+#errorPage {
+    margin-top: -20px;
+    margin-left: -10px;
+    padding: 10px;
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    text-align: center;
+}
+
+#errorContainer {
+    text-align: center;
+    position: relative;
+    height: 100%;
+    width: 950px;
+    margin-left: auto;
+    margin-right: auto;
 }

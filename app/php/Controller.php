@@ -174,6 +174,7 @@
                 }
             } else {
                 header("HTTP/1.0 {$this->getError()}");
+                include_once('../partials/public/error.html');
             }
         }
     }
