@@ -894,6 +894,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
 }])
 .controller('afolIndex', ['$scope', '$location', 'MocDetails', 'Games', 'RegisteredAfols', '$window', 'EventDates', 'EventRegistration', 'UserDetails', 'Themes', function($scope, $location, MocDetails, Games, RegisteredAfols, $window, EventDates, EventRegistration, UserDetails, Themes) {
     $scope.mocCount = 0;
+    $scope.mocList = [];
     $scope.themeCount = 0;
     $scope.gameCount = 0;
     $scope.afolCount = 0;
@@ -992,8 +993,12 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         $location.path("/afol/index.html");
     }
 
-    MocDetails.getCount($scope.eventId).then(function(data) {
-        $scope.mocCount = data;
+    MocDetails.getList($scope.eventId).then(function(data) {
+        $scope.mocList = data;
+
+        MocDetails.getCount($scope.eventId).then(function(data) {
+            $scope.mocCount = data;
+        });
     });
 
     Themes.getCount($scope.eventId).then(function(data) {

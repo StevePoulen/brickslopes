@@ -39,6 +39,10 @@ describe('controllers', function() {
                 expect(scope.mocCount).toBe(0);
             });
 
+            it('should have a mocList variable', function() {
+                expect(scope.mocList).toEqual([]);
+            });
+
             it('should have a themeCount variable', function() {
                 expect(scope.themeCount).toBe(0);
             });
@@ -222,6 +226,10 @@ describe('controllers', function() {
 
         it('should set the mocCount variable', function() {
             expect(scope.mocCount).toBe(3);
+        });
+
+        it('should set the mocList variable', function() {
+            expect(scope.mocList).toEqual(mocs);
         });
 
         it('should set the isRegistered variable', function() {
