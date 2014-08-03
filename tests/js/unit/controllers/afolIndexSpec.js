@@ -176,6 +176,11 @@ describe('controllers', function() {
                 expect(location.path()).toBe('/afol/eventVenue.html');
             });
 
+            it('should redirect to eventFAQ', function() {
+                scope.clickFAQ();
+                expect(location.path()).toBe('/afol/eventFAQ.html');
+            });
+
             it('should redirect to eventHotel', function() {
                 scope.clickHotel();
                 expect(location.path()).toBe('/afol/eventHotel.html');

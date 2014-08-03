@@ -977,8 +977,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     }
 
     $scope.clickFAQ = function() {
-        //$location.path("/afol/eventFAQ.html");
-        $location.path("/afol/comingSoon.html");
+        $location.path("/afol/eventFAQ.html");
     }
 
     $scope.clickVenue = function() {

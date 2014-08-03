@@ -7,7 +7,7 @@
             </div>
         </div>
     </div>
-    <div class="myMocs">
+    <div class="myMocs" ng-click="clickMocRegistration()">
         <div ng-class="{eventRow: $even}"  ng-repeat="moc in mocList | orderBy:'title'">
             <div class="myMocRow">
                 <div><bs-text text="{{moc.title}}" max-size=35 font-size=1.25></bs-text></div>
