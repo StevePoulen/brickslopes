@@ -14,6 +14,13 @@ executionPrompt() {
     incStep
 }
 
+deletePrompt() {
+    printf "\nSTEP $STEP_COUNTER: Do you want to drop the current stash?\n";
+    echo -n "Are you sure? (Y\n) [ENTER]: "; 
+    read DROP_STASH;
+    incStep
+}
+
 repositoryBranch() {
     printf "\nSTEP $STEP_COUNTER: Which repository branch do you want to use to upgrade BrickSlopes.com?\n";
     echo -n "Branch Name? (The 'master' branch is the default) [ENTER]: "; 
@@ -35,6 +42,12 @@ scriptOutput() {
 stashRepo() {
     printf "\nGit stash output ...\n\n";
     git stash
+    printf "\n\n";
+}
+
+dropStash() {
+    printf "\nGit stash drop ...\n\n";
+    git stash drop
     printf "\n\n";
 }
 
@@ -73,6 +86,9 @@ upgrade() {
         regexHtaccess;
         removeTestIds;
         cssGeneration;
+        if [ "$DROP_STASH" == "Y" ]; then
+            dropStash;
+        fi
     fi
 }
 
@@ -80,6 +96,7 @@ userInput() {
     scriptOutput;
     executionPrompt;
     if [ "$INSTALL_UPGRADE" == "Y" ]; then
+        deletePrompt;
         repositoryBranch;
         upgrade;
     else
