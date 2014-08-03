@@ -36,20 +36,22 @@ describe('service', function() {
         });
 
         describe('Confirm Payment', function() {
-            var mockBackend, loader, data, registrationLineItemId;
+            var mockBackend, loader, data, dto;
             beforeEach(inject(function(_$httpBackend_, RegistrationLineItems) {
-                registrationLineItemId = 22;
-                var payload = {
+                dto = {
                     registrationLineItemId: 22,
-                    revoke: 'no'
-                };
+                    userId: 1234,
+                    registrationId: 11
+                }
+                var payload = dto;
+                payload.revoke = 'no';
                 mockBackend = _$httpBackend_;
                 loader = RegistrationLineItems;
                 mockBackend.expectPATCH('/controllers/admin/payment.php', payload).respond('success');
             }));
 
             it('should patch a registration line item confirm payment', function() {
-                var load = loader.confirmPayment(registrationLineItemId);
+                var load = loader.confirmPayment(dto);
 
                 load.then(function(_data) {
                     data = _data;
@@ -61,20 +63,22 @@ describe('service', function() {
         });
 
         describe('Revoke Payment', function() {
-            var mockBackend, loader, data, registrationLineItemId;
+            var mockBackend, loader, data, dto;
             beforeEach(inject(function(_$httpBackend_, RegistrationLineItems) {
-                registrationLineItemId = 22;
-                var payload = {
+                dto = {
                     registrationLineItemId: 22,
-                    revoke: 'yes'
-                };
+                    userId: 1234,
+                    registrationId: 11
+                }
+                var payload = dto;
+                payload.revoke = 'yes';
                 mockBackend = _$httpBackend_;
                 loader = RegistrationLineItems;
                 mockBackend.expectPATCH('/controllers/admin/payment.php', payload).respond('success');
             }));
 
             it('should patch a registration line item confirm payment', function() {
-                var load = loader.revokePayment(registrationLineItemId);
+                var load = loader.revokePayment(dto);
 
                 load.then(function(_data) {
                     data = _data;

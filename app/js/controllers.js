@@ -861,16 +861,28 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         $scope.showModal = true;
     }
 
+    function serializePaymentJson(lineItem, afol) {
+        return {
+            registrationLineItemId: lineItem.registrationLineItemId,
+            registrationId: afol.registrationId,
+            userId: afol.userId
+        }
+    }
+
     $scope.confirmPayment = function(lineItem) {
         var self = this;
         if (lineItem.paid === 'YES') {
             lineItem.paid = 'NO';
-            RegistrationLineItems.revokePayment(lineItem.registrationLineItemId,this.afol.registrationId).then(function(data) {
+            RegistrationLineItems.revokePayment(
+                serializePaymentJson(lineItem, self.afol)
+            ).then(function(data) {
                 self.afol.paid = 'NO';
             });
         } else {
             lineItem.paid = 'YES';
-            RegistrationLineItems.confirmPayment(lineItem.registrationLineItemId, this.afol.registrationId).then(function(data) {
+            RegistrationLineItems.confirmPayment(
+                serializePaymentJson(lineItem, self.afol)
+            ).then(function(data) {
                 self.afol.paid = data.registrationPaid ? 'YES' : 'NO';
             });
         }

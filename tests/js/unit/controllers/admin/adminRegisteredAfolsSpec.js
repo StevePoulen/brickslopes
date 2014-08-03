@@ -109,7 +109,8 @@ describe('controllers', function() {
             beforeEach(function() {
                 scope.afol = {
                     'paid': 'maybe',
-                    'registrationId': 32
+                    'registrationId': 32,
+                    'userId': 1234 
                 };
 
                 lineItem = {
@@ -120,6 +121,7 @@ describe('controllers', function() {
                 payload = {
                     registrationLineItemId: 22,
                     registrationId: 32,
+                    userId: 1234,
                     revoke: 'no'
                 }
             });
@@ -154,7 +156,8 @@ describe('controllers', function() {
             beforeEach(function() {
                 scope.afol = {
                     'paid': 'maybe',
-                    'registrationId': 32
+                    'registrationId': 32,
+                    'userId': 1324
                 };
 
                 lineItem = {
@@ -165,6 +168,7 @@ describe('controllers', function() {
                 payload = {
                     registrationLineItemId: 22,
                     registrationId: 32,
+                    userId: 1324,
                     revoke: 'yes'
                 }
             });

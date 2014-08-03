@@ -5,14 +5,13 @@ class PaymentTest extends PHPUnit_Framework_TestCase
     public function setUp() 
     {
         new RegistrationLineItemsMock();
-        $this->userId = 123445;
         include_once('controllers/admin/payment.php');
     }
 
     public function testAuthenticatedBadMethod() 
     {
         $_SERVER['REQUEST_METHOD'] = "post";
-        new Payment($this->userId);
+        new Payment();
         $this->assertEquals(http_response_code(), 405);
     }
 
@@ -22,9 +21,10 @@ class PaymentTest extends PHPUnit_Framework_TestCase
         $_POST = array (
             'revoke' => 'no',
             'registrationId' => '22',
+            'userId' => '123445'
         );
         $GLOBALS['db_query'] = '1';
-        $payment = new Payment($this->userId);
+        $payment = new Payment();
         $this->assertEquals(http_response_code(), 200);
         $output = json_decode(get_ob(),true);
         $this->assertEquals($output['registrationPaid'], false);
@@ -40,9 +40,10 @@ class PaymentTest extends PHPUnit_Framework_TestCase
         $_POST = array (
             'revoke' => 'yes',
             'registrationId' => '22',
+            'userId' => '123445',
         );
         $GLOBALS['db_query'] = '1';
-        $payment = new Payment($this->userId);
+        $payment = new Payment();
         $this->assertEquals(http_response_code(), 200);
         $output = json_decode(get_ob(),true);
         $this->assertEquals($output['registrationPaid'], false);
@@ -58,9 +59,10 @@ class PaymentTest extends PHPUnit_Framework_TestCase
         $_POST = array (
             'revoke' => 'yes',
             'registrationId' => '22',
+            'userId' => '123445',
         );
         $GLOBALS['db_query'] = 0;
-        $payment = new Payment($this->userId);
+        $payment = new Payment();
         $this->assertEquals(http_response_code(), 412);
     }
 }

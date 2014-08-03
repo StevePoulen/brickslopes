@@ -322,15 +322,16 @@ angular.module('brickSlopes.services', ['ngResource'])
             return delay.promise;
         },
 
-        revokePayment: function(registrationLineItemId, registrationId) {
+        revokePayment: function(dto) {
             var delay= $q.defer();
             $http (
                 {
                     method: 'PATCH',
                     url: '/controllers/admin/payment.php',
                     data: {
-                        'registrationLineItemId': registrationLineItemId,
-                        'registrationId': registrationId,
+                        'registrationLineItemId': dto.registrationLineItemId,
+                        'registrationId': dto.registrationId,
+                        'userId': dto.userId,
                         'revoke': 'yes'
                     }
                 }
@@ -343,15 +344,16 @@ angular.module('brickSlopes.services', ['ngResource'])
             return delay.promise;
         },
 
-        confirmPayment: function(registrationLineItemId, registrationId) {
+        confirmPayment: function(dto) {
             var delay= $q.defer();
             $http (
                 {
                     method: 'PATCH',
                     url: '/controllers/admin/payment.php',
                     data: {
-                        'registrationLineItemId': registrationLineItemId,
-                        'registrationId': registrationId,
+                        'registrationLineItemId': dto.registrationLineItemId,
+                        'registrationId': dto.registrationId,
+                        'userId': dto.userId,
                         'revoke': 'no'
                     }
                 }

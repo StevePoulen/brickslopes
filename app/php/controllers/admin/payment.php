@@ -4,10 +4,8 @@ class Payment {
     private $registrationLineItemObj;
     private $registrationsObj;
     private $requestMethod;
-    private $userId;
 
-    public function __construct($userId) {
-        $this->userId = $userId;
+    public function __construct() {
         $this->registrationLineItemObj = new registrationLineItemModel();
         $this->registrationsObj = new registrations();
         $this->determineRequestMethod();
@@ -38,7 +36,7 @@ class Payment {
         }
 
         if ($response != 0) {
-            $this->registrationLineItemObj->getRegistrationLineItemsByUserId($this->userId);
+            $this->registrationLineItemObj->getRegistrationLineItemsByUserId($payload['userId']);
             if ($this->registrationLineItemObj->result) {
                 $registrationPaid = true;
                 $amountPaid = 0;
@@ -71,12 +69,5 @@ class Payment {
     }
 }
 
-try {
-    $userId = $this->userId;
-} catch (exception $e) {
-    $userId = 1;
-}
-
-new Payment($userId);
-
+new Payment();
 ?>

@@ -118,7 +118,7 @@ class ControllerTest extends PHPUnit_Framework_TestCase
         $this->controller = new Controller();
         $this->controller->invoke();
         $this->assertEquals(http_response_code(), 403);
-        $this->expectOutputString('');
+        $this->assertContains("we can't find that page", get_ob());
     }
 
     public function testAuthenticatedRequestBadJWT() 
