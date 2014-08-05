@@ -15,7 +15,7 @@ executionPrompt() {
 }
 
 deletePrompt() {
-    printf "\nSTEP $STEP_COUNTER: Do you want to drop the current stash?\n";
+    printf "\nSTEP $STEP_COUNTER: Do you want to drop the n-1 stash?\n";
     echo -n "Are you sure? (Y\n) [ENTER]: "; 
     read DROP_STASH;
     incStep
@@ -47,7 +47,7 @@ stashRepo() {
 
 dropStash() {
     printf "\nGit stash drop ...\n\n";
-    git stash drop 1
+    git stash drop stash@{1}
     printf "\n\n";
 }
 
