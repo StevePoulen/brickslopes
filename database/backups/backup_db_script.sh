@@ -20,9 +20,8 @@ buildOutputFile() {
     WORKING_DIR=`pwd`
     OUTPUT_DIR=$WORKING_DIR/$OUTPUT_DIRECTORY;
     if [ ! -d $OUTPUT_DIR ]; then
+        OUTPUT_DIR=$WORKING_DIR/backups/$OUTPUT_DIRECTORY;
         if [ ! -d $OUTPUT_DIR ]; then
-            OUTPUT_DIR=$WORKING_DIR/backups/$OUTPUT_DIRECTORY;
-        else
             OUTPUT_DIR=$WORKING_DIR/database/backups/$OUTPUT_DIRECTORY;
         fi
         if [ ! -d $OUTPUT_DIR ]; then
