@@ -59,7 +59,7 @@ pullRepo() {
 
 setCronProcess() {
     printf "\nUpdating the cronprocess ...\n\n";
-    crontab /home/stepou4/brickslopes.com/config/confile
+    crontab /home/stepou4/brickslopes.com/config/cronfile
     crontab -l
     printf "\n\n";
 }
