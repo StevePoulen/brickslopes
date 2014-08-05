@@ -47,7 +47,7 @@ stashRepo() {
 
 dropStash() {
     printf "\nGit stash drop ...\n\n";
-    git stash drop stash@{1}
+    `git stash drop stash@{1}`
     printf "\n\n";
 }
 
