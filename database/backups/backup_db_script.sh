@@ -17,17 +17,19 @@ STEP_COUNTER=1;
 BRICKSLOPES_DATABASE="brickslopes";
 
 buildOutputFile() {
-    WORKING_DIR=`pwd`
+    if [[ "$LOCAL_DB" == "Y" ]]
+    then
+        WORKING_DIR=`pwd`
+    else
+        WORKING_DIR=/home/stepou4/brickslopes.com/database/backups
+    fi
     OUTPUT_DIR=$WORKING_DIR/$OUTPUT_DIRECTORY;
     if [ ! -d $OUTPUT_DIR ]; then
         OUTPUT_DIR=$WORKING_DIR/backups/$OUTPUT_DIRECTORY;
-        if [ ! -d $OUTPUT_DIR ]; then
-            OUTPUT_DIR=$WORKING_DIR/database/backups/$OUTPUT_DIRECTORY;
-        fi
-        if [ ! -d $OUTPUT_DIR ]; then
-            echo "The database output directory was not created!"
-            exit 1;
-        fi
+    fi
+    if [ ! -d $OUTPUT_DIR ]; then
+        echo "The database output directory was not created!"
+        exit 1;
     fi
     OUTPUT_FILE=$OUTPUT_DIR/$OUTPUT_FILE_NAME;
 }
