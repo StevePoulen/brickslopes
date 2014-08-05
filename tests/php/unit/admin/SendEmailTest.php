@@ -47,10 +47,17 @@ class SendEmailTest extends PHPUnit_Framework_TestCase
         );
         $_SERVER['REQUEST_METHOD'] = "GET";
         $GLOBALS['db_query'] = '1';
-        new SendEmail();
+        new SendEmail(15);
         $this->assertEquals(http_response_code(), 200);
-        $this->assertEquals($GLOBALS['phpmailer_subject'][0], 'BrickSlopes Registration Complete');
-        $this->assertContains('Thank you for your payment.', $GLOBALS['phpmailer_body'][0]);
+        $emailOutput = $GLOBALS['addEmailHistoryInformation'][0];
+        $this->assertEquals($emailOutput['subject'], 'BrickSlopes Registration Complete');
+        $this->assertEquals($emailOutput['creatorId'], 15);
+        $this->assertEquals($emailOutput['recipientId'], '123456789');
+        $this->assertEquals($emailOutput['type'], 'mail::sendRegistrationPaidMessage');
+        $this->assertEquals($emailOutput['priority'], 10);
+        $this->assertEquals($emailOutput['emailAddress'], 'brianpilati@gmail.com');
+        $this->assertContains('Thank you for your payment', $emailOutput['body']);
+        $this->assertEquals(sizeOf($emailOutput), 7);
     }
 
     public function testPreviewSiteNewsMessage() 
@@ -81,11 +88,27 @@ class SendEmailTest extends PHPUnit_Framework_TestCase
         $GLOBALS['db_query'] = '1';
         new SendEmail(1);
         $this->assertEquals(http_response_code(), 200);
-        $this->assertEquals($GLOBALS['phpmailer_subject'][0], 'BrickSlopes News Announcement');
-        $this->assertEquals(sizeOf($GLOBALS['phpmailer_body']), 2);
-        $this->assertContains('Hello World Send', $GLOBALS['phpmailer_body'][0]);
-        $this->assertContains('Brian', $GLOBALS['phpmailer_body'][0]);
-        $this->assertContains('Cody', $GLOBALS['phpmailer_body'][1]);
+        $emailOutput = $GLOBALS['addEmailHistoryInformation'];
+        $this->assertEquals(sizeOf($emailOutput), 2);
+        $this->assertContains('Hello World Send', $emailOutput[0]['body']);
+        $this->assertContains('Brian', $emailOutput[0]['body']);
+        $this->assertContains('Cody', $emailOutput[1]['body']);
+
+        $this->assertEquals($emailOutput[0]['subject'], 'BrickSlopes News Announcement');
+        $this->assertEquals($emailOutput[0]['creatorId'], 1);
+        $this->assertEquals($emailOutput[0]['recipientId'], '123456789');
+        $this->assertEquals($emailOutput[0]['type'], 'mail::sendSiteNewsMessage');
+        $this->assertEquals($emailOutput[0]['priority'], 10);
+        $this->assertEquals($emailOutput[0]['emailAddress'], 'brianpilati@gmail.com');
+        $this->assertContains('Hello World Send', $emailOutput[0]['body']);
+
+        $this->assertEquals($emailOutput[1]['subject'], 'BrickSlopes News Announcement');
+        $this->assertEquals($emailOutput[1]['creatorId'], 1);
+        $this->assertEquals($emailOutput[1]['recipientId'], 2);
+        $this->assertEquals($emailOutput[1]['type'], 'mail::sendSiteNewsMessage');
+        $this->assertEquals($emailOutput[1]['priority'], 10);
+        $this->assertEquals($emailOutput[1]['emailAddress'], 'blackdragon5555@yahoo.com');
+        $this->assertContains('Hello World Send', $emailOutput[1]['body']);
     }
 
     public function testSendSiteNewsMessageNotAdmin() 

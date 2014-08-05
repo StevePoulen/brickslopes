@@ -47,13 +47,20 @@ stashRepo() {
 
 dropStash() {
     printf "\nGit stash drop ...\n\n";
-    git stash drop
+    git stash drop 1
     printf "\n\n";
 }
 
 pullRepo() {
     printf "\nGit pull output ...\n\n";
     git pull origin $REPOSITORY_BRANCH 
+    printf "\n\n";
+}
+
+setCronProcess() {
+    printf "\nUpdating the cronprocess ...\n\n";
+    crontab /home/stepou4/brickslopes.com/config/confile
+    crontab -l
     printf "\n\n";
 }
 
@@ -86,6 +93,7 @@ upgrade() {
         regexHtaccess;
         removeTestIds;
         cssGeneration;
+        setCronProcess;
         if [ "$DROP_STASH" == "Y" ]; then
             dropStash;
         fi

@@ -76,7 +76,7 @@ class EventRegistration {
         if (preg_match ( '/\d+/', $response )) {
             $this->registrationLineItemHelper->addRegistrationLineItems($payload);
 
-            $emailObj = new mail('to_be_set_later');
+            $emailObj = new mail('to_be_set_later', $this->userId);
             $emailObj->sendEventRegistrationMessage($this->userId, $payload['eventId']);
 
             header("HTTP/1.0 201 Created");
@@ -98,7 +98,7 @@ class EventRegistration {
             $this->registrationLineItemHelper = new registrationLineItemHelper($payload['eventId']);
             $this->registrationLineItemHelper->addRegistrationLineItems($payload);
 
-            $emailObj = new mail('to_be_set_later');
+            $emailObj = new mail('to_be_set_later', $this->userId);
             $emailObj->sendEventRegistrationMessage($this->userId, $payload['eventId']);
 
             header("HTTP/1.0 201 Created");

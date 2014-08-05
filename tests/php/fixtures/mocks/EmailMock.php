@@ -4,7 +4,16 @@ class PHPMailer {
     public function __construct() { }
 
     public function IsSMTP() {}
-    public function AddAddress() {}
+    public function AddAddress($email) {
+        if(! ISSET($GLOBALS['phpmailer_email'])) {
+            $GLOBALS['phpmailer_email'] = array();
+        }
+
+        array_push(
+            $GLOBALS['phpmailer_email'],
+            $email
+        );
+    }
     public function isHTML() {}
     public function Send() {}
     public function __set($name, $value) {

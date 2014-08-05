@@ -38,7 +38,8 @@ class AuthenticationTest extends PHPUnit_Framework_TestCase
         $GLOBALS['db_query'] = 123456789;
         $authentication = new Authentication();
         $this->assertEquals(http_response_code(), 200);
-        $this->assertEquals($GLOBALS['phpmailer_subject'][0], 'BrickSlopes Reset Password Request');
+        $emailOutput = $GLOBALS['addEmailHistoryInformation'][0];
+        $this->assertEquals($emailOutput['subject'], 'BrickSlopes Reset Password Request');
     }
 
     public function testAuthenticatedPutFailure() 

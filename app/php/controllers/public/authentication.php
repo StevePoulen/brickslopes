@@ -54,8 +54,8 @@ class Authentication extends jwtToken {
         $this->usersObj->resetPassword($payload, $newPassword);
         if ($this->usersObj->result) {
             $dbObj = $this->usersObj->result->fetch_object();
-            $emailObj = new mail($payload['email']);
-            $emailObj->sendResetEmailMessage($dbObj->firstName, $newPassword);
+            $emailObj = new mail($payload['email'], $this->userId);
+            $emailObj->sendResetEmailMessage($dbObj->userId, $newPassword);
         }
         header("HTTP/1.0 200 Success");
     }
@@ -73,7 +73,6 @@ class Authentication extends jwtToken {
     private function generatePassword() {
         return \base_convert(rand(78364164096, 2821109907455), 10, 36);
     }
-
 }
 
 new Authentication($this->userId);

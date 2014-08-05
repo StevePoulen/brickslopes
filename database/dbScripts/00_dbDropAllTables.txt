@@ -6,6 +6,7 @@
 
 USE `brickslopes`;
 
+DROP TABLE IF EXISTS `emailHistory`;
 DROP TABLE IF EXISTS `gamesEventsConnector`;
 DROP TABLE IF EXISTS `gamesUsersConnector`;
 DROP TABLE IF EXISTS `gameTeams`;

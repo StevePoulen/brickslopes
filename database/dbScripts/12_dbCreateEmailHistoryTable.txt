@@ -1,0 +1,27 @@
+-- MySQL dump 10.11
+--
+-- Host: localhost    Database: mysql
+-- ------------------------------------------------------
+-- Server version	5.0.83
+
+USE `brickslopes`;
+
+DROP TABLE IF EXISTS `emailHistory`;
+
+CREATE TABLE `emailHistory` (
+  `emailHistoryId` INT(10) UNSIGNED UNIQUE NOT NULL auto_increment,
+  `creatorId` INT(10) UNSIGNED NOT NULL,
+  `recipientId` INT(10) UNSIGNED NOT NULL,
+  `type` VARCHAR(255),
+  `priority` INT(10),
+  `emailAddress` VARCHAR(255),
+  `subject` VARCHAR(255),
+  `body` TEXT,
+  `errorMessage` TINYTEXT,
+  `created` DATETIME,
+  `sent` DATETIME,
+  PRIMARY KEY (`emailHistoryId`),
+  FOREIGN KEY (`creatorId`) REFERENCES `users` (`userId`),
+  FOREIGN KEY (`recipientId`) REFERENCES `users` (`userId`),
+  UNIQUE KEY `emailHistoryId_UNIQUE` (`emailHistoryId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='The Email History Table';

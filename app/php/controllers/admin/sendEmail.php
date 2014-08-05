@@ -83,14 +83,14 @@ class SendEmail {
     }
 
     private function sendRegistrationPaidMessage($payload) {
-        $emailObj = new mail('provided_later');
+        $emailObj = new mail('provided_later', $this->userId);
         $emailObj->sendRegistrationPaidMessage($payload['userId'], $payload['eventId']);
         header("HTTP/1.0 200 Success");
     }
 
     private function sendSiteNewsMessage($payload, $isPreview=false) {
         if ($this->userId == '1') {
-            $emailObj = new mail('provided_later');
+            $emailObj = new mail('provided_later', $this->userId);
             $previewBody = $emailObj->sendSiteNewsMessage($payload['emailBody'], $isPreview);
             if ($isPreview) {
                 echo $previewBody;
@@ -103,26 +103,26 @@ class SendEmail {
 
     private function displayEventRegistrationMessage() {
         header("HTTP/1.0 200 Success");
-        $emailObj = new mail('not_needed');
+        $emailObj = new mail('not_needed', $this->userId);
         echo $emailObj->sendEventRegistrationMessage(21, 2, true);
     }
 
     private function displayUserRegistrationMessage() {
         header("HTTP/1.0 200 Success");
-        $emailObj = new mail('not_needed');
-        echo $emailObj->sendUserRegistrationMessage('Brian', true);
+        $emailObj = new mail('not_needed', $this->userId);
+        echo $emailObj->sendUserRegistrationMessage(1, true);
     }
 
     private function displayRegistrationPaidMessage() {
         header("HTTP/1.0 200 Success");
-        $emailObj = new mail('not_needed');
+        $emailObj = new mail('not_needed', $this->userId);
         echo $emailObj->sendRegistrationPaidMessage(21, 2, true);
     }
 
     private function displayResetPasswordMessage() {
         header("HTTP/1.0 200 Success");
-        $emailObj = new mail('not_needed');
-        echo $emailObj->sendResetEmailMessage('Brian', 'New Password', true);
+        $emailObj = new mail('not_needed', $this->userId);
+        echo $emailObj->sendResetEmailMessage(1, true);
     }
 }
 

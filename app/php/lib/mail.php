@@ -1,9 +1,11 @@
 <?php
     class mail {
-        public function __construct($email) {
+        public function __construct($email, $creatorId) {
             $this->message = "";
             $this->subject = "";
-            $this->email = array($email);
+            $this->email = $email;
+            $this->creatorId = $creatorId;
+            $this->emailHistoryObj = new emailHistory();
         }
 
         public function sendEmailTest() {
@@ -27,12 +29,16 @@
                 </html>
             ";
 
-            $this->sendEmail();
+            return array (
+                'subject' => $this->subject,
+                'body' => $this->message,
+                'email' => $this->email
+            );
 
         }
 
         public function sendEmailUsMessage($data) {
-            $this->email = array('brian@brickslopes.com', 'steve@brickslopes.com', 'cody@brickslopes.com');
+            $this->email = 'TBD';
             $this->subject = "BrickSlopes Question";
             $this->message = "
                 <!doctype html>
@@ -59,47 +65,72 @@
                 </html>
             ";
 
-            $this->sendEmail();
-
+            $this->emailHistoryObj->addEmailHistoryInformation (
+                array (
+                    'creatorId' => $this->creatorId,
+                    'recipientId' => 1,
+                    'type' => __METHOD__,
+                    'priority' => 10,
+                    'emailAddress' => $this->email,
+                    'subject' => $this->subject,
+                    'body' => $this->message
+                )
+            );
         }
 
-        public function sendUserRegistrationMessage($firstName, $display=false) {
-            $this->subject = "BrickSlopes User Registration";
-            $this->message = "
-                <!doctype html>
-                <html>
-                    <head>
-                        <title>BrickSlopes User Registration</title>
-                    </head>
-                    <body>
-                        {$this->getEmailBackgroundHeader()}
-                        {$this->getFirstLineSpoiler()}
-                        {$this->getBSLogo()}
-                        {$this->getNavigation()}
-                        {$this->getTableHeader()}
-                        <tr>
-                            <td align=left>
-                                {$this->getFontWrapper(16, '#000000')}
-                                    $firstName,
-                                    <p>
-                                    <b>Congratulations!</b> this e-mail confirms you are a registered member of BrickSlopes - A LEGO Fan Event&trade;.
-                                    <p>
-                                    {$this->getPleaseVisit()}
-                                {$this->getFontClosure()}
-                            </td>
-                        </tr>
-                        {$this->getTableFooter()}
-                        {$this->getDisclaimer()}
-                        {$this->getCopyRight()}
-                        {$this->getDivClosure()}
-                    </body>
-                </html>
-            ";
+        public function sendUserRegistrationMessage($userId, $display=false) {
+            $usersObj = new users();
+            $usersObj->getUserInformation($userId);
+            if($usersObj->result) {
+                while($dbObj = $usersObj->result->fetch_object()) {
+                    $this->subject = "BrickSlopes User Registration";
+                    $this->message = "
+                        <!doctype html>
+                        <html>
+                            <head>
+                                <title>BrickSlopes User Registration</title>
+                            </head>
+                            <body>
+                                {$this->getEmailBackgroundHeader()}
+                                {$this->getFirstLineSpoiler()}
+                                {$this->getBSLogo()}
+                                {$this->getNavigation()}
+                                {$this->getTableHeader()}
+                                <tr>
+                                    <td align=left>
+                                        {$this->getFontWrapper(16, '#000000')}
+                                            {$dbObj->firstName},
+                                            <p>
+                                            <b>Congratulations!</b> this e-mail confirms you are a registered member of BrickSlopes - A LEGO Fan Event&trade;.
+                                            <p>
+                                            {$this->getPleaseVisit()}
+                                        {$this->getFontClosure()}
+                                    </td>
+                                </tr>
+                                {$this->getTableFooter()}
+                                {$this->getDisclaimer()}
+                                {$this->getCopyRight()}
+                                {$this->getDivClosure()}
+                            </body>
+                        </html>
+                    ";
 
-            if ($display) {
-                return $this->message;
-            } else {
-                $this->sendEmail();
+                    if ($display) {
+                        return $this->message;
+                    } else {
+                        $this->emailHistoryObj->addEmailHistoryInformation (
+                            array (
+                                'creatorId' => $this->creatorId,
+                                'recipientId' => $dbObj->userId,
+                                'type' => __METHOD__,
+                                'priority' => 10,
+                                'emailAddress' => $this->email,
+                                'subject' => $this->subject,
+                                'body' => $this->message
+                            )
+                        );
+                    }
+                }
             }
         }
 
@@ -109,59 +140,70 @@
             $registrationLineItemsObj = new registrationLineItems($userId, false);
             $lineItems = $registrationLineItemsObj->getRegisteredLineItems($userId, $eventId);
             if($usersObj->result) {
-                $dbObj = $usersObj->result->fetch_object();
-                $this->email = array($dbObj->email);
+                while($dbObj = $usersObj->result->fetch_object()) {
+                    $this->email = $dbObj->email;
 
-                $this->subject = "BrickSlopes Registration";
-                $this->message = "
-                    <!doctype html>
-                    <html>
-                        <head>
-                            <title>BrickSlopes Registration</title>
-                        </head>
-                        <body>
-                            {$this->getEmailBackgroundHeader()}
-                            {$this->getFirstLineSpoiler()}
-                            {$this->getBSLogo()}
-                            {$this->getNavigation()}
-                            {$this->getTableHeader()}
-                            <tr>
-                                <td align=left>
-                                    {$this->getFontWrapper(16, '#000000')}
-                                        {$dbObj->firstName},
-                                        <p>
-                                        <b>Congratulations!</b> This e-mail confirms you are registered for BrickSlopes 2015 - Salt Lake City.
-                                        <p>
-                                        You will receive a confirmation e-mail once your payment is received and your registration is complete.
-                                        <p>
-                                        <b>Your Event Experience</b>
-                                        {$this->parseLineItems($lineItems)}
-                                        <p>
-                                        <b>Have You Considered?</b>
-                                        <p>
-                                        We need LEGO presenters and panels speakers. Do you have a topic you are passionate about and are willing to share with the community? 
-                                        <p>
-                                        <b>Let the fun begin ...</b>
-                                        <p>
-                                        Dont' forget to sign-up to bring your MOCs or register for event games.
-                                        <p>
-                                        <p>
-                                        {$this->getPleaseVisit()}
-                                    {$this->getFontClosure()}
-                                </td>
-                            </tr>
-                            {$this->getTableFooter()}
-                            {$this->getDisclaimer()}
-                            {$this->getCopyRight()}
-                            {$this->getDivClosure()}
-                        </body>
-                    </html>
-                ";
+                    $this->subject = "BrickSlopes Registration";
+                    $this->message = "
+                        <!doctype html>
+                        <html>
+                            <head>
+                                <title>BrickSlopes Registration</title>
+                            </head>
+                            <body>
+                                {$this->getEmailBackgroundHeader()}
+                                {$this->getFirstLineSpoiler()}
+                                {$this->getBSLogo()}
+                                {$this->getNavigation()}
+                                {$this->getTableHeader()}
+                                <tr>
+                                    <td align=left>
+                                        {$this->getFontWrapper(16, '#000000')}
+                                            {$dbObj->firstName},
+                                            <p>
+                                            <b>Congratulations!</b> This e-mail confirms you are registered for BrickSlopes 2015 - Salt Lake City.
+                                            <p>
+                                            You will receive a confirmation e-mail once your payment is received and your registration is complete.
+                                            <p>
+                                            <b>Your Event Experience</b>
+                                            {$this->parseLineItems($lineItems)}
+                                            <p>
+                                            <b>Have You Considered?</b>
+                                            <p>
+                                            We need LEGO presenters and panels speakers. Do you have a topic you are passionate about and are willing to share with the community? 
+                                            <p>
+                                            <b>Let the fun begin ...</b>
+                                            <p>
+                                            Dont' forget to sign-up to bring your MOCs or register for event games.
+                                            <p>
+                                            <p>
+                                            {$this->getPleaseVisit()}
+                                        {$this->getFontClosure()}
+                                    </td>
+                                </tr>
+                                {$this->getTableFooter()}
+                                {$this->getDisclaimer()}
+                                {$this->getCopyRight()}
+                                {$this->getDivClosure()}
+                            </body>
+                        </html>
+                    ";
 
-                if ($display) {
-                    return $this->message;
-                } else {
-                    $this->sendEmail();
+                    if ($display) {
+                        return $this->message;
+                    } else {
+                        $this->emailHistoryObj->addEmailHistoryInformation (
+                            array (
+                                'creatorId' => $this->creatorId,
+                                'recipientId' => $dbObj->userId,
+                                'type' => __METHOD__,
+                                'priority' => 10,
+                                'emailAddress' => $this->email,
+                                'subject' => $this->subject,
+                                'body' => $this->message
+                            )
+                        );
+                    }
                 }
             }
         }
@@ -173,7 +215,7 @@
             $lineItems = $registrationLineItemsObj->getRegisteredLineItems($userId, $eventId);
             if($usersObj->result) {
                 $dbObj = $usersObj->result->fetch_object();
-                $this->email = array($dbObj->email);
+                $this->email = $dbObj->email;
 
                 $this->subject = "BrickSlopes Registration Complete";
                 $this->message = "
@@ -221,50 +263,76 @@
                 if ($display) {
                     return $this->message;
                 } else {
-                    $this->sendEmail();
+                    $this->emailHistoryObj->addEmailHistoryInformation (
+                        array (
+                            'creatorId' => $this->creatorId,
+                            'recipientId' => $dbObj->userId,
+                            'type' => __METHOD__,
+                            'priority' => 10,
+                            'emailAddress' => $this->email,
+                            'subject' => $this->subject,
+                            'body' => $this->message
+                        )
+                    );
                 }
             }
         }
 
-        public function sendResetEmailMessage($firstName, $newPassword, $display=false) {
-            $this->subject = "BrickSlopes Reset Password Request";
-            $this->message = "
-                <!doctype html>
-                <html>
-                    <head>
-                        <title>BrickSlopes Reset Password Request</title>
-                    </head>
-                    <body>
-                        {$this->getEmailBackgroundHeader()}
-                        {$this->getFirstLineSpoiler()}
-                        {$this->getBSLogo()}
-                        {$this->getNavigation()}
-                        {$this->getTableHeader()}
-                            <tr>
-                                <td align=left>
-                                    {$this->getFontWrapper(16, '#000000')}
-                                        $firstName,
-                                        <p>
-                                        You are receiving this e-mail because you have requested to reset your password.
-                                        <p>
-                                        Your new temporary password is: <b>$newPassword</b>
-                                        <p>
-                                        <a href='{$this->getDomain()}/#/afol/login.html' target='_blank'>{$this->getDomain()}</a> to reset your password.
-                                    {$this->getFontClosure()}
-                                </td>
-                            </tr>
-                        {$this->getTableFooter()}
-                        {$this->getDisclaimer()}
-                        {$this->getCopyRight()}
-                        {$this->getDivClosure()}
-                    </body>
-                </html>
-            ";
+        public function sendResetEmailMessage($userId, $newPassword, $display=false) {
+            $usersObj = new users();
+            $usersObj->getUserInformation($userId);
+            if($usersObj->result) {
+                while($dbObj = $usersObj->result->fetch_object()) {
+                    $this->subject = "BrickSlopes Reset Password Request";
+                    $this->message = "
+                        <!doctype html>
+                        <html>
+                            <head>
+                                <title>BrickSlopes Reset Password Request</title>
+                            </head>
+                            <body>
+                                {$this->getEmailBackgroundHeader()}
+                                {$this->getFirstLineSpoiler()}
+                                {$this->getBSLogo()}
+                                {$this->getNavigation()}
+                                {$this->getTableHeader()}
+                                    <tr>
+                                        <td align=left>
+                                            {$this->getFontWrapper(16, '#000000')}
+                                                {$dbObj->firstName},
+                                                <p>
+                                                You are receiving this e-mail because you have requested to reset your password.
+                                                <p>
+                                                Your new temporary password is: <b>{$newPassword}</b>
+                                                <p>
+                                                <a href='{$this->getDomain()}/#/afol/login.html' target='_blank'>{$this->getDomain()}</a> to reset your password.
+                                            {$this->getFontClosure()}
+                                        </td>
+                                    </tr>
+                                {$this->getTableFooter()}
+                                {$this->getDisclaimer()}
+                                {$this->getCopyRight()}
+                                {$this->getDivClosure()}
+                            </body>
+                        </html>
+                    ";
 
-            if ($display) {
-                return $this->message;
-            } else {
-                $this->sendEmail();
+                    if ($display) {
+                        return $this->message;
+                    } else {
+                        $this->emailHistoryObj->addEmailHistoryInformation (
+                            array (
+                                'creatorId' => $this->creatorId,
+                                'recipientId' => $dbObj->userId,
+                                'type' => __METHOD__,
+                                'priority' => 10,
+                                'emailAddress' => $this->email,
+                                'subject' => $this->subject,
+                                'body' => $this->message
+                            )
+                        );
+                    }
+                }
             }
         }
 
@@ -276,7 +344,7 @@
                 $usersObj->getAllUserInformation();
             }
             while($dbObj = $usersObj->result->fetch_object()) {
-                $this->email = array($dbObj->email);
+                $this->email = $dbObj->email;
 
                 $this->subject = "BrickSlopes News Announcement";
                 $this->message = "
@@ -312,7 +380,17 @@
                 if ($display) {
                     return $this->message;
                 } else {
-                    $this->sendEmail();
+                    $this->emailHistoryObj->addEmailHistoryInformation (
+                        array (
+                            'creatorId' => $this->creatorId,
+                            'recipientId' => $dbObj->userId,
+                            'type' => __METHOD__,
+                            'priority' => 10,
+                            'emailAddress' => $this->email,
+                            'subject' => $this->subject,
+                            'body' => $this->message
+                        )
+                    );
                 }
             }
         }
@@ -516,7 +594,7 @@
                     <td algin=center>
                         {$this->getFontWrapper()}
                             You are receiving this email because you signed up to receive emails at {$this->getDomain()}. If you no longer wish to receive our email updates, please click here.<br>
-                            The information contained in this communication is confidential. This communication is intended only for the use of the addressee ({$this->email[0]}). If you are not the intended recipient, please notify legal@brickslopes.com promptly and delete the message.<br>Any distribution or copying of this message without the consent of BrickSlopes is prohibited.
+                            The information contained in this communication is confidential. This communication is intended only for the use of the addressee ({$this->email}). If you are not the intended recipient, please notify legal@brickslopes.com promptly and delete the message.<br>Any distribution or copying of this message without the consent of BrickSlopes is prohibited.
                         {$this->getFontClosure()}
                     </td>
                 </tr>
@@ -524,42 +602,8 @@
             ";
         }
 
-        private function sendEmail() {
-            require_once __DIR__ . '/../../../vendor/phpmailer/phpmailer/PHPMailerAutoload.php';
-            $mail = new PHPMailer();
-
-            $mail->Host = "smtp.gmail.com";
-            $mail->IsSMTP();
-            $mail->SMTPAuth = true;
-            //$mail->SMTPDebug = 2;
-            $mail->SMTPSecure = "ssl";
-            $mail->Username = EMAIL_ACCOUNT;
-            $mail->Password = EMAIL_PASSWORD;
-            $mail->Port = 465;
-            $mail->FromName = 'Cody Ottley';
-            $mail->From     = "cody@brickslopes.com";
-            foreach($this->email as $emailAddress) {
-                $mail->AddAddress($emailAddress);
-            }
-            $mail->Subject = $this->subject;
-            $mail->Body = $this->message;
-            $mail->isHTML(true); 
-            $mail->WordWrap = 50;
-            $mail->Send();
-        }
-
         private function getDomain() {
             return "https://www." . WEBSITE;
         }
     }
-
-$sendTestEmail = false;
-if ($sendTestEmail) {
-    $_SERVER['HTTP_HOST'] = 'mybrickslopes.com';
-    include_once(__DIR__ . '/../../../config/config.php');
-    $myMail = new mail('brianpilati@hotmail.com');
-    //$myMail = new mail('brianpilati@gmail.com');
-    //$myMail = new mail('brian.pilati@domo.com');
-    $myMail->sendEmailTest();
-}
 ?>

@@ -66,8 +66,8 @@ class User extends jwtToken {
         }
         $userId = $this->usersObj->addUserInformation($payload);
         if (preg_match ( '/\d+/', $userId)) {
-            $emailObj = new mail($payload['email']);
-            $emailObj->sendUserRegistrationMessage($payload['firstName']);
+            $emailObj = new mail($payload['email'], $this->userId);
+            $emailObj->sendUserRegistrationMessage($userId);
             header("HTTP/1.0 201 Created");
             echo $this->createPayload (
                 $userId,

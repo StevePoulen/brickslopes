@@ -139,6 +139,14 @@ gameTableCreation() {
     incStep
 }
 
+emailHistoryTableCreation() {
+    printf "\nSTEP $STEP_COUNTER: Create the 'BrickSlopes' emailHistory table?\n";
+    echo "* WARNING * This is delete the current table";
+    echo -n "Create table? (Y\n) [ENTER]: "; 
+    read CREATE_EMAIL_HISTORY_TABLE;
+    incStep
+}
+
 eventTableCreation() {
     printf "\nSTEP $STEP_COUNTER: Create the 'BrickSlopes' event table?\n";
     echo "* WARNING * This is delete the current table";
@@ -203,6 +211,7 @@ userInput() {
         mocTableCreation;
         feedbackTableCreation;
         gameTableCreation;
+        emailHistoryTableCreation;
     fi
 }
 
@@ -267,6 +276,13 @@ createGamesTable() {
     fi
 }
 
+createEmailHistoryTable() {
+    if [[ "$CREATE_EMAIL_HISTORY_TABLE" == "Y" || isDropAllTables ]]
+    then
+        executeDBStatement "12_dbCreateEmailHistoryTable.txt"
+    fi
+}
+
 createEventTable() {
     if [[ "$CREATE_EVENT_TABLE" == "Y" || isDropAllTables ]]
     then
@@ -325,3 +341,4 @@ createRegistrationLineItemTable;
 createMocTable;
 createFeedbackTable;
 createGamesTable;
+createEmailHistoryTable;

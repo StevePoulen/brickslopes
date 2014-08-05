@@ -59,8 +59,10 @@ class UserTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($output['userId'] , '123456789');
         $this->validateJwt($output['token'], 'NO', 'NO');
 
-        $this->assertEquals($GLOBALS['phpmailer_subject'][0], 'BrickSlopes User Registration');
-        $this->assertContains('registered member of BrickSlopes', $GLOBALS['phpmailer_body'][0]);
+        $emailOutput = $GLOBALS['addEmailHistoryInformation'][0];
+        $this->assertEquals($emailOutput['subject'], 'BrickSlopes User Registration');
+        $this->assertContains('registered member of BrickSlopes', $emailOutput['body']);
+        $this->assertEquals(sizeOf($emailOutput), 7);
     }
 
     public function testAuthenticatedPatch() 

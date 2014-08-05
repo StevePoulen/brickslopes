@@ -73,8 +73,11 @@ class EventRegistrationTest extends PHPUnit_Framework_TestCase
         $GLOBALS['db_query'] = 12345;
         $eventRegistration = new EventRegistration($this->userId);
         $this->assertEquals(http_response_code(), 201);
-        $this->assertEquals($GLOBALS['phpmailer_subject'][0], 'BrickSlopes Registration');
-        $this->assertContains('confirms you are registered for BrickSlopes 2015', $GLOBALS['phpmailer_body'][0]);
+
+        $emailOutput = $GLOBALS['addEmailHistoryInformation'][0];
+        $this->assertEquals($emailOutput['subject'], 'BrickSlopes Registration');
+        $this->assertContains('confirms you are registered for BrickSlopes 2015', $emailOutput['body']);
+        $this->assertEquals(sizeOf($emailOutput), 7);
         $this->expectOutputString('');
     }
 
@@ -112,9 +115,12 @@ class EventRegistrationTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($queryObj[1]['gameId'], 4);
         $this->assertEquals($queryObj[1]['userId'], 12345);
         $this->assertEquals($queryObj[1]['eventId'], 2);
+
+        $emailOutput = $GLOBALS['addEmailHistoryInformation'][0];
+        $this->assertEquals($emailOutput['subject'], 'BrickSlopes Registration');
+        $this->assertContains('confirms you are registered for BrickSlopes 2015', $emailOutput['body']);
+        $this->assertEquals(sizeOf($emailOutput), 7);
         $this->expectOutputString('');
-        $this->assertEquals($GLOBALS['phpmailer_subject'][0], 'BrickSlopes Registration');
-        $this->assertContains('confirms you are registered for BrickSlopes 2015', $GLOBALS['phpmailer_body'][0]);
     }
 
     public function testAuthenticatedPostFailure() 
