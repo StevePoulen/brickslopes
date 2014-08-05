@@ -47,7 +47,7 @@ stashRepo() {
 
 dropStash() {
     printf "\nGit stash drop ...\n\n";
-    `git stash drop stash@{1}`
+    `git stash drop stash@{2}`
     printf "\n\n";
 }
 
@@ -57,8 +57,15 @@ pullRepo() {
     printf "\n\n";
 }
 
+mysqlRootPassword() {
+    printf "\nSTEP $STEP_COUNTER: What is your 'MYSQL' root user password?\n";
+    read -p "Password:" -s MYSQL_ROOT_PASSWORD;
+    printf "\n";
+}
+
 setCronProcess() {
     printf "\nUpdating the cronprocess ...\n\n";
+    `perl -i -pe s/mysql_password/${MYSQL_ROOT_PASSWORD}/g ./config/cronfile`
     crontab /home/stepou4/brickslopes.com/config/cronfile
     crontab -l
     printf "\n\n";
@@ -106,6 +113,7 @@ userInput() {
     if [ "$INSTALL_UPGRADE" == "Y" ]; then
         deletePrompt;
         repositoryBranch;
+        mysqlRootPassword;
         upgrade;
     else
         printf "\n\nGood-bye\n\n";

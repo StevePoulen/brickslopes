@@ -2,4 +2,5 @@ MAILTO=brian@brickslopes.com
 
 # Minute   Hour   Day of Month       Month          Day of Week        Command    
 # (0-59)  (0-23)     (1-31)    (1-12 or Jan-Dec)  (0-6 or Sun-Sat)                
-    5        *          *             *                *            /usr/local/php54/bin/php /home/stepou4/brickslopes.com/app/php/lib/mailCronProcess.php
+5 * * * * /usr/local/php54/bin/php /home/stepou4/brickslopes.com/app/php/lib/mailCronProcess.php
+25 1 * * * /bin/bash /home/stepou4/brickslopes.com/backups/backup_db_script.sh -i Y -p mysql_password -d N
