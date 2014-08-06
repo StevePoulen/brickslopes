@@ -2,14 +2,14 @@
     <div class="meText">
         <bs-text text="Your MOCs ({{mocCount}})" font-color=black font-size=1.25></bs-text>
         <div class="myEventButtonPosition">
-            <div class="actionButtonTiny" ng-click="clickMocRegistration(2)">
+            <div class="actionButtonTiny" ng-click="clickMocRegistration()">
                 <bs-text text="Add + " font-color=white font-size=.85></bs-text>
             </div>
         </div>
     </div>
-    <div class="myMocs" ng-click="clickMocRegistration()">
+    <div class="myMocs"> 
         <div ng-class="{eventRow: $even}"  ng-repeat="moc in mocList | orderBy:'title'">
-            <div class="myMocRow">
+            <div class="myMocRow" ng-click="clickUpdateMocRegistration()">
                 <div><bs-text text="{{moc.title}}" max-size=35 font-size=1.25></bs-text></div>
                 <div class="mocTheme"><bs-text text="{{moc.theme}}" font-color=black></bs-text></div>
                 <div class="mocSize">

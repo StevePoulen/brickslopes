@@ -4,7 +4,6 @@ class PaymentTest extends PHPUnit_Framework_TestCase
 {
     public function setUp() 
     {
-        new RegistrationLineItemsMock();
         include_once('controllers/admin/payment.php');
     }
 

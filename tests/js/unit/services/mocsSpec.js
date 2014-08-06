@@ -63,6 +63,36 @@ describe('service', function() {
             mockBackend.flush();
             expect(data).toEqualData(1);
         });
+
+        it('should load individual moc', function() {
+            window.sessionStorage.userId = 1;
+            service.getMocById(2, 3).then(function(_data) {
+                data = _data;
+            });
+
+            mockBackend.flush();
+            expect(data.title).toEqualData("Corey's Castle");
+        });
+
+        it('should return undefined if the moc is not found', function() {
+            window.sessionStorage.userId = 2;
+            service.getMocById(2, 3).then(function(_data) {
+                data = _data;
+            });
+
+            mockBackend.flush();
+            expect(data).toBeUndefined();
+        });
+
+        it('should return undefined if the moc is not found', function() {
+            window.sessionStorage.userId = 2;
+            service.getMocById(2, 3).then(function(_data) {
+                data = _data;
+            });
+
+            mockBackend.flush();
+            expect(data).toBeUndefined();
+        });
     });
 
     describe('Create Moc', function() {
@@ -84,4 +114,79 @@ describe('service', function() {
             expect(data).toEqualData(201);
         });
     });
+
+    describe('Update Moc', function() {
+        var mockBackend, service, data, dto;
+        beforeEach(inject(function(_$httpBackend_, MocDetails) {
+            dto = {};
+            mockBackend = _$httpBackend_;
+            service = MocDetails;
+            mockBackend.expectPATCH('/controllers/registered/mocs.php', dto).respond(200);
+        }));
+
+        it('should update a user moc', function() {
+            var load = service.update(dto);
+            load.then(function(_data) {
+                data = _data;
+            });
+
+            mockBackend.flush();
+            expect(data).toEqualData(200);
+        });
+    });
+
+    describe('MocDetails Cached', function() {
+        var mockBackend, service, data, window;
+        beforeEach(inject(function(_$httpBackend_, MocDetails, $window) {
+            mockBackend = _$httpBackend_;
+            service = MocDetails;
+            window = $window;
+            mockBackend.expectGET('/controllers/registered/mocs.php?eventId=2').respond(mocs);
+        }));
+
+        it('should only call the api once with the cache enabled', function() {
+            var load = service.getCount(2);
+            load.then(function(_data) {
+                data = _data;
+            });
+
+            mockBackend.flush();
+            expect(data).toEqualData(3);
+
+            var load = service.getCount(2);
+            var flushError = false;
+            try {
+                mockBackend.flush();
+            } catch (err) {
+                flushError = true;
+            }
+
+            expect(flushError).toBe(true);
+        });
+
+        it('should only call the api twice with the cache disabled', function() {
+            var load = service.getCount(2);
+            load.then(function(_data) {
+                data = _data;
+            });
+
+            mockBackend.flush();
+            expect(data).toEqualData(3);
+
+            var load = service.getCount(2);
+            var flushError = false;
+            try {
+                mockBackend.flush();
+            } catch (err) {
+                flushError = true;
+            }
+
+            expect(flushError).toBe(true);
+
+            mockBackend.expectGET('/controllers/registered/mocs.php?eventId=2').respond(mocs);
+            service.expireCache(2);
+            mockBackend.flush();
+        });
+    });
+
 });

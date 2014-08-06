@@ -1,25 +1,25 @@
-<?php include_once '../includes/brickSlopesLogo.html'; ?> 
-                <span id="dashboardText">
-                  <h1><?php createBrickSlopesLogo("1.25"); ?> &#8226; <?php stylizePages("Vendor List"); ?></h1>
-                  <p>
-                  <div>
-                    <table class='vendorList'>
-  <?php
-    if ($vendorsObj->result) {
-      $counter=0;
-      while($dbObj = $vendorsObj->result->fetch_object()){
-        echo "
-                      <tr>
-                        <td class='vendorName'>{$dbObj->vendor} &#8226; {$dbObj->product}</td>
-                        <td class='vendorBoothNumber'>Booth Number {$dbObj->booth}</td>
-                      </tr>
-        ";
-      }
-    }
-  ?>
-                    </table>
-                  </div>
-                  <p>
-                </span>
-              </div>
-
+<div id="eventDashboard">
+    <div class="dashboardText">
+        <div>
+            <h1>
+                <bs-logo font-size="1.25"></bs-logo> &#8226; <bs-text text="Vendors" font-color=black></bs-text>
+            </h1>
+        </div>
+        <div class="searchField bold">
+            <input ng-model="searchText" bs-placeholder="Search">
+        </div>
+        <div ng-class="{evenRow: $even}" ng-repeat="vendor in vendorList | filter:searchText:strict | orderBy:'name'">
+            <div class="vendor">
+                <div ng-class="{name: $even, nameRight: !$even}"><bs-text text="{{vendor.name}}" font-size=2></bs-text>
+                </div>
+                <div ng-class="{description: $even, descriptionRight: !$even}" ng-bind="vendor.description">
+                </div>
+                <div ng-show="vendor.hasLogo" ng-class="{logo: $even, logoRight: !$even}"><img class="logoSize" ng-src="{{vendor.logo}}">
+                </div>
+                <div ng-show="vendor.hasUrl" ng-class="{url: $even, urlRight: !$even}"><a class="vendorImage" ng-href="{{vendor.url}}" target="_new"><span ng-bind="vendor.url"></span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="dashboardCloseButton" ng-click="closeDialog()"></div>
+</div>

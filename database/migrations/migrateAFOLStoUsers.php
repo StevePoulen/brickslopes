@@ -21,6 +21,7 @@
             $this->addInitialGames($this->secondYearEventId);
             if ($_SERVER['HTTP_HOST'] == 'mybrickslopes.com') {
                 $this->addDummyMocs();
+                $this->addDummyVendors();
             }
         }
 
@@ -79,6 +80,52 @@
             } else {
                 return 'NO';
             }
+        }
+
+        private function addDummyVendors() {
+            $vendorObj = new vendorModel();
+            $vendorsCount = 0;
+
+            $vendorCollection = array(
+                array(
+                    'name' => 'The best store',
+                    'description' => 'All LEGO -- ALL DAY -- EVERY DAY',
+                    'url' => 'https://www.mysite.com',
+                    'logo' => 'https://www.mylogo.com',
+                    'tables' => 12,
+                    'userId' => 2,
+                    'eventId' => 2
+                ),
+                array(
+                    'name' => 'The Worst store',
+                    'description' => 'All Mega-Blah -- ALL DAY -- EVERY DAY',
+                    'url' => 'https://www.yuck.com',
+                    'logo' => '',
+                    'tables' => 5,
+                    'userId' => 1,
+                    'eventId' => 2
+                ),
+                array(
+                    'name' => 'The Empire',
+                    'description' => 'All Star Wars -- ALL DAY -- EVERY DAY',
+                    'url' => '',
+                    'logo' => 'https://www.mybrickslopes.com/images/brickslopes_official.png',
+                    'tables' => 3,
+                    'userId' => 1,
+                    'eventId' => 2
+                )
+            );
+
+            foreach ($vendorCollection as $vendorMap) {
+                $vendorId = $vendorObj->addVendorInformation($vendorMap);
+                $vendorMap['vendorId'] = $vendorId;
+                $vendorObj->addVendorConnectorInformation($vendorMap);
+                $vendorsCount++;
+            }
+
+            $this->validatetable('vendors', $vendorsCount);
+            $this->validatetable('vendorConnector', $vendorsCount);
+
         }
 
         private function addDummyMocs() {

@@ -43,6 +43,16 @@ describe('service', function() {
                 mockBackend.flush();
                 expect(data).toEqualData(3);
             });
+
+            it('should load individual moc by theme', function() {
+                service.getThemeObject(2, 'Castle').then(function(_data) {
+                    data = _data;
+                });
+
+                mockBackend.flush();
+                expect(data.theme).toEqualData("Castle");
+            });
+
         });
     });
 });

@@ -5,7 +5,6 @@ class GameUserTest extends PHPUnit_Framework_TestCase
     public function setUp() 
     {
         $this->userId = 2;
-        new GameUserMock();
         include_once('controllers/registered/gameUser.php');
     }
 

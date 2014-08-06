@@ -180,6 +180,11 @@ describe('controllers', function() {
                 expect(location.path()).toBe('/afol/eventVenue.html');
             });
 
+            it('should redirect to eventVendors', function() {
+                scope.clickVendors();
+                expect(location.path()).toBe('/afol/2/eventVendors.html');
+            });
+
             it('should redirect to eventFAQ', function() {
                 scope.clickFAQ();
                 expect(location.path()).toBe('/afol/eventFAQ.html');
@@ -209,6 +214,8 @@ describe('controllers', function() {
             mockBackend.expectGET('/controllers/public/eventDates.php').respond(201, eventDates);
             mockBackend.expectGET('/controllers/eventRegistration.php').respond(201, eventRegistration);
             mockBackend.expectGET('/controllers/registered/mocs.php?eventId=2').respond(mocs);
+            mockBackend.expectGET('/controllers/vendors.php?eventId=2').respond(201, vendors);
+
             mockBackend.expectGET('/controllers/registered/themes.php?eventId=2').respond(themes);
             mockBackend.expectGET('/controllers/registered/games.php?eventId=2').respond(games);
             mockBackend.expectGET('/controllers/registeredAfols.php?eventId=2').respond(201, registeredAfols);
@@ -226,6 +233,10 @@ describe('controllers', function() {
 
         it('should set the mocCount variable', function() {
             expect(scope.mocCount).toBe(3);
+        });
+
+        it('should set the vendorCount variable', function() {
+            expect(scope.vendorCount).toBe(3);
         });
 
         it('should set the mocList variable', function() {

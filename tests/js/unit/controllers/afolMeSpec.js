@@ -50,8 +50,8 @@ describe('controllers', function() {
 
         describe('Click Registration', function() {
             it('should redirect to the registration page', function() {
-                scope.clickRegistration(5);
-                expect(location.path()).toBe('/afol/5/eventRegistration.html');
+                scope.clickRegistration();
+                expect(location.path()).toBe('/afol/2/eventRegistration.html');
             });
         });
 
@@ -65,8 +65,26 @@ describe('controllers', function() {
             it('should redirect to the moc registration page', function() {
                 window.sessionStorage.registered = 'YES';
                 window.sessionStorage.paid = 'YES';
-                scope.clickMocRegistration(5);
-                expect(location.path()).toBe('/registered/5/eventMocRegistration.html');
+                scope.clickMocRegistration();
+                expect(location.path()).toBe('/registered/2/eventMocRegistration.html');
+            });
+        });
+
+        describe('Click Update Moc Registration', function() {
+            it('should redirect to the payment page', function() {
+                window.sessionStorage.registered = 'YES';
+                scope.clickUpdateMocRegistration();
+                expect(location.path()).toBe('');
+            });
+
+            it('should redirect to the moc registration page', function() {
+                window.sessionStorage.registered = 'YES';
+                window.sessionStorage.paid = 'YES';
+                scope.moc = {
+                    mocId: 3
+                }
+                scope.clickUpdateMocRegistration();
+                expect(location.path()).toBe('/registered/2/3/eventMocRegistration.html');
             });
 
         });

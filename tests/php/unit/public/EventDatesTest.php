@@ -4,7 +4,6 @@ class EventDatesTest extends PHPUnit_Framework_TestCase
 {
     public function setUp() 
     {
-        $this->eventDatesMock = new EventDatesMock();
         include_once('controllers/public/eventDates.php');
     }
 

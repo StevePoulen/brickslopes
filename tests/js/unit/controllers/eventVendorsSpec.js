@@ -20,13 +20,21 @@ describe('controllers', function() {
     });
 
     describe('eventAfols Controller', function() {
-        var mockBackend;
-        beforeEach(inject(function($controller, $rootScope, $location, _$httpBackend_) {
+        var mockBackend, route;
+        beforeEach(inject(function($controller, $rootScope, $location, _$httpBackend_, $route) {
+            route = $route;
+            route = {
+                current: {
+                    params: {
+                        eventId: 2
+                    }
+                }
+            }
             scope = $rootScope.$new();
-            ctrl = $controller('eventAfols', { $scope: scope});
+            ctrl = $controller('afolEventVendors', { $scope: scope, $route: route});
             location = $location;
             mockBackend = _$httpBackend_;
-            mockBackend.expectGET('/controllers/registeredAfols.php?eventId=2').respond(201, registeredAfols);
+            mockBackend.expectGET('/controllers/vendors.php?eventId=2').respond(201, vendors);
         }));
 
         describe('Close Dialog', function() {
@@ -41,18 +49,13 @@ describe('controllers', function() {
                 expect(scope.eventId).toBe(2);
             });
 
-            it('should have an eventName variable', function() {
-                expect(scope.eventName).toBeUndefined;
+            it('should have an vendorList variable', function() {
+                expect(scope.vendorList).toEqualData([]);
             });
 
-            it('should have an eventName variable', function() {
+            it('should have a vendorListvariable', function() {
                 mockBackend.flush();
-                expect(scope.registeredAfols).toEqualData(registeredAfols['2']['registeredAfols']);
-            });
-
-            it('should have a registeredAfols lisit', function() {
-                mockBackend.flush();
-                expect(scope.eventName).toEqualData('BrickSlopes - Salt Lake City');
+                expect(scope.vendorList[0].name).toBe(vendors[0].name);
             });
         });
 

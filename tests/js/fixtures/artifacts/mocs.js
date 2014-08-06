@@ -1,5 +1,6 @@
 var mocs = [
     {
+        mocId: 1,
         "eventId": "2",
         "userId": "2",
         "themeId": "1",
@@ -11,6 +12,7 @@ var mocs = [
         "description": "asdf"
     },
     {
+        mocId: 2,
         "eventId": "2",
         "userId": "1",
         "themeId": "1",
@@ -22,15 +24,17 @@ var mocs = [
         "description": "This is really coolThis is really coolThis is really coolThis is really coolThis is really coolThis is really coolThis is really coolThis is reall"
     },
     {
+        mocId: 3,
         "eventId": "2",
         "userId": "1",
-        "themeId": "1",
+        "themeId": 3,
         "title": "Corey's Castle",
         "displayName": "Corey Da Man",
         "mocImageUrl": "",
-        "baseplateWidth": "18",
-        "baseplateDepth": "3",
-        "description": "My out-of-this-world castle with peeps!"
+        "baseplateWidth": 18,
+        "baseplateDepth": 3,
+        "description": "My out-of-this-world castle with peeps!",
+        theme: 'Castle'
     }
 ];
 

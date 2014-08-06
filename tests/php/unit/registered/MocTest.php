@@ -5,13 +5,12 @@ class MocTest extends PHPUnit_Framework_TestCase
     public function setUp() 
     {
         $this->userId = 5;
-        new MocsMock();
         include_once('controllers/registered/mocs.php');
     }
 
     public function testAuthenticatedBadMethod() 
     {
-        $_SERVER['REQUEST_METHOD'] = "PATCH";
+        $_SERVER['REQUEST_METHOD'] = "DELETE";
         new Mocs($this->userId);
         $this->assertEquals(http_response_code(), 405);
     }
@@ -24,7 +23,7 @@ class MocTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(http_response_code(), 201);
     }
 
-    public function testAuthenticatedPostFailure() 
+    public function testAuthenticatedPOSTFailure() 
     {
         $_SERVER['REQUEST_METHOD'] = "POST";
         $GLOBALS['db_result'] = false;
@@ -42,6 +41,7 @@ class MocTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(http_response_code(), 200);
         $allMocs = json_decode(get_ob(), true);
         $output = $allMocs[0];
+        $this->assertEquals($output['mocId'], '1');
         $this->assertEquals($output['eventId'], '2');
         $this->assertEquals($output['userId'], '1');
         $this->assertEquals($output['themeId'], '3');
@@ -60,6 +60,23 @@ class MocTest extends PHPUnit_Framework_TestCase
     {
         $_GET = array('eventId' => 2);
         $_SERVER['REQUEST_METHOD'] = "GET";
+        $GLOBALS['db_result'] = false;
+        $GLOBALS['db_query'] = 'Bad Query';
+        $event = new Mocs($this->userId);
+        $this->assertEquals(http_response_code(), 400);
+    }
+
+    public function testAuthenticatedPATCH() 
+    {
+        $_SERVER['REQUEST_METHOD'] = "PATCH";
+        $GLOBALS['db_query'] = '1';
+        $event = new Mocs($this->userId);
+        $this->assertEquals(http_response_code(), 200);
+    }
+
+    public function testAuthenticatedPATCHFailure() 
+    {
+        $_SERVER['REQUEST_METHOD'] = "PATCH";
         $GLOBALS['db_result'] = false;
         $GLOBALS['db_query'] = 'Bad Query';
         $event = new Mocs($this->userId);

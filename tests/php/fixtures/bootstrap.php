@@ -26,6 +26,7 @@ include join('/', array(__DIR__, '..', 'fixtures', 'mocks', 'EventRegistrationsM
 include join('/', array(__DIR__, '..', 'fixtures', 'mocks', 'RegistrationsMock.php'));
 include join('/', array(__DIR__, '..', 'fixtures', 'mocks', 'RegistrationLineItemsMock.php'));
 include join('/', array(__DIR__, '..', 'fixtures', 'mocks', 'UsersMock.php'));
+include join('/', array(__DIR__, '..', 'fixtures', 'mocks', 'VendorsMock.php'));
 include join('/', array(__DIR__, '..', 'fixtures', 'mocks', 'EventsMock.php'));
 include join('/', array(__DIR__, '..', 'fixtures', 'mocks', 'EventLineItemsMock.php'));
 include join('/', array(__DIR__, '..', 'fixtures', 'mocks', 'EventDatesMock.php'));

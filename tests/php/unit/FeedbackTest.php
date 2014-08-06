@@ -5,7 +5,6 @@ class FeedbackTest extends PHPUnit_Framework_TestCase
     public function setUp() 
     {
         $this->userId = 123456789;
-        new FeedbackMock();
         include_once('controllers/public/feedback.php');
     }
 

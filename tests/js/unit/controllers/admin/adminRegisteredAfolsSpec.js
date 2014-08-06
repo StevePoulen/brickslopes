@@ -110,7 +110,7 @@ describe('controllers', function() {
                 scope.afol = {
                     'paid': 'maybe',
                     'registrationId': 32,
-                    'userId': 1234 
+                    'userId': 1234
                 };
 
                 lineItem = {

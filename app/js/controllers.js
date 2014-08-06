@@ -410,6 +410,18 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         }
     });
 }])
+.controller('afolEventVendors', ['$scope', '$location', 'VendorDetails', '$route', function($scope, $location, VendorDetails , $route) {
+    $scope.eventId = $route.current.params.eventId;
+    $scope.vendorList = [];
+
+    $scope.closeDialog = function() {
+        $location.path("/afol/index.html");
+    }
+
+    VendorDetails.getList($scope.eventId).then(function(data) {
+        $scope.vendorList = data;
+    });
+}])
 .controller('afolEventGames', ['$scope', '$location', 'Games', function($scope, $location, Games) {
     $scope.eventId = 2;
     $scope.gameList = [];
@@ -541,17 +553,23 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         });
     }
 
-    $scope.clickEditProfile = function(eventId) {
+    $scope.clickEditProfile = function() {
         $location.path("/afol/editProfile.html");
     }
 
-    $scope.clickRegistration = function(eventId) {
-        $location.path("/afol/" + eventId + "/eventRegistration.html");
+    $scope.clickRegistration = function() {
+        $location.path("/afol/" + $scope.eventId + "/eventRegistration.html");
     }
 
-    $scope.clickMocRegistration = function(eventId) {
+    $scope.clickMocRegistration = function() {
         if (UserDetails.isUserPaid()) {
-            $location.path("/registered/" + eventId + "/eventMocRegistration.html");
+            $location.path("/registered/" + $scope.eventId + "/eventMocRegistration.html");
+        }
+    }
+
+    $scope.clickUpdateMocRegistration = function() {
+        if (UserDetails.isUserPaid()) {
+            $location.path("/registered/" + $scope.eventId + "/" + this.moc.mocId + "/eventMocRegistration.html");
         }
     }
 
@@ -615,11 +633,15 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     $scope.width = buildRange(1,55);
     $scope.depth = buildRange(1,7);
     $scope.eventId = $route.current.params.eventId;
+    $scope.mocId = $route.current.params.mocId;
     $scope.displayErrorMessage = undefined;
     $scope.displayMessage = undefined;
     $scope.showModal = false;
+    $scope.isMocUpdate = false;
+    $scope.buttonText = 'Register My MOC';
 
     function setDefaultScopeVariables() {
+        $scope.mocId = undefined;
         $scope.displayName = $scope.firstName + " " + $scope.lastName;
         $scope.baseplateWidth = 1;
         $scope.baseplateDepth = 1;
@@ -653,6 +675,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
 
     function serializeMocJson() {
         return {
+            mocId: $scope.mocId,
             themeId: $scope.themeId,
             eventId: $scope.eventId,
             title: $scope.title,
@@ -666,24 +689,80 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
 
     $scope.submitRegistration = function() {
         $scope.verifying = true;
+        if ($scope.isMocUpdate) {
+            updateMoc();
+        } else {
+            createMoc();
+        }
+    }
+
+    function createMoc() {
         MocDetails.create(serializeMocJson()).then(function(status) {
             if (status === 201) {
                 $scope.registrationForm.$setPristine();
                 setDefaultScopeVariables();
                 $scope.showModal = true;
+                MocDetails.expireCache($scope.eventId);
             }
             $scope.verifying = false;
         }, function(status) {
-            $scope.verifying = false;
-            if (status === 400) {
-                $scope.displayErrorMessage = "The MOC travails.";
-            }
+            errorMessage(status);
         });
+    }
+
+    function updateMoc() {
+        MocDetails.update(serializeMocJson()).then(function(status) {
+            if (status === 200) {
+                $scope.registrationForm.$setPristine();
+                setDefaultScopeVariables();
+                $scope.showModal = true;
+                MocDetails.expireCache($scope.eventId);
+                $scope.isMocUpdate = false;
+                $scope.buttonText = 'Register My MOC';
+            }
+            $scope.verifying = false;
+        }, function(status) {
+            errorMessage(status);
+        });
+    }
+
+    function errorMessage(status) {
+        $scope.verifying = false;
+        if (status === 400) {
+            $scope.displayErrorMessage = "The MOC travails.";
+        }
     }
 
     $scope.closeDialog = function() {
         $location.path("/afol/index.html");
     }
+
+    function setUpdateModel(moc) {
+        $scope.mocId = moc.mocId;
+        $scope.themeId = moc.themeId;
+        $scope.eventId = moc.eventId;
+        $scope.title = moc.title;
+        $scope.displayName = moc.displayName;
+        $scope.mocImageUrl = moc.mocImageUrl;
+        $scope.baseplateWidth = parseInt(moc.baseplateWidth);
+        $scope.baseplateDepth = parseInt(moc.baseplateDepth);
+        $scope.description = moc.description;
+        Themes.getThemeObject($scope.eventId, moc.theme).then(function(theme) {
+            $scope.theme = theme;
+        });
+    }
+
+    $scope.$watch("mocId", function(mocId) {
+        if (angular.isDefined(mocId)) {
+            MocDetails.getMocById($scope.eventId, mocId).then(function(moc) {
+                if (moc) {
+                    $scope.isMocUpdate = true;
+                    $scope.buttonText = 'Update My MOC';
+                    setUpdateModel(moc);
+                }
+            });
+        }
+    });
 }])
 .controller('afolEditProfile', ['$scope', '$location', 'UserDetails', '$window', function($scope, $location, UserDetails, $window) {
     $scope.userObject = undefined;
@@ -892,13 +971,13 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         $location.path("/admin/index.html");
     }
 }])
-.controller('afolIndex', ['$scope', '$location', 'MocDetails', 'Games', 'RegisteredAfols', '$window', 'EventDates', 'EventRegistration', 'UserDetails', 'Themes', function($scope, $location, MocDetails, Games, RegisteredAfols, $window, EventDates, EventRegistration, UserDetails, Themes) {
+.controller('afolIndex', ['$scope', '$location', 'MocDetails', 'Games', 'RegisteredAfols', '$window', 'EventDates', 'EventRegistration', 'UserDetails', 'Themes', 'VendorDetails', function($scope, $location, MocDetails, Games, RegisteredAfols, $window, EventDates, EventRegistration, UserDetails, Themes, VendorDetails) {
     $scope.mocCount = 0;
     $scope.mocList = [];
+    $scope.vendorCount = 0;
     $scope.themeCount = 0;
     $scope.gameCount = 0;
     $scope.afolCount = 0;
-    $scope.vendorCount = 0;
     $scope.userName = $window.sessionStorage.firstName + "'s Site";
     $scope.isRegistered = false;
     $scope.eventId = 2;
@@ -969,8 +1048,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     }
 
     $scope.clickVendors = function() {
-        //$location.path("/afol/eventVendors.html");
-        $location.path("/afol/comingSoon.html");
+        $location.path("/afol/" + $scope.eventId + "/eventVendors.html");
     }
 
     $scope.clickAfols= function() {
@@ -999,6 +1077,10 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         MocDetails.getCount($scope.eventId).then(function(data) {
             $scope.mocCount = data;
         });
+    });
+
+    VendorDetails.getCount($scope.eventId).then(function(data) {
+        $scope.vendorCount = data;
     });
 
     Themes.getCount($scope.eventId).then(function(data) {

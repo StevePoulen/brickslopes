@@ -54,7 +54,7 @@ class SendEmailTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($emailOutput['creatorId'], 15);
         $this->assertEquals($emailOutput['recipientId'], '123456789');
         $this->assertEquals($emailOutput['type'], 'mail::sendRegistrationPaidMessage');
-        $this->assertEquals($emailOutput['priority'], 10);
+        $this->assertEquals($emailOutput['priority'], 2);
         $this->assertEquals($emailOutput['emailAddress'], 'brianpilati@gmail.com');
         $this->assertContains('Thank you for your payment', $emailOutput['body']);
         $this->assertEquals(sizeOf($emailOutput), 7);
@@ -98,7 +98,7 @@ class SendEmailTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($emailOutput[0]['creatorId'], 1);
         $this->assertEquals($emailOutput[0]['recipientId'], '123456789');
         $this->assertEquals($emailOutput[0]['type'], 'mail::sendSiteNewsMessage');
-        $this->assertEquals($emailOutput[0]['priority'], 10);
+        $this->assertEquals($emailOutput[0]['priority'], 9);
         $this->assertEquals($emailOutput[0]['emailAddress'], 'brianpilati@gmail.com');
         $this->assertContains('Hello World Send', $emailOutput[0]['body']);
 
@@ -106,7 +106,7 @@ class SendEmailTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($emailOutput[1]['creatorId'], 1);
         $this->assertEquals($emailOutput[1]['recipientId'], 2);
         $this->assertEquals($emailOutput[1]['type'], 'mail::sendSiteNewsMessage');
-        $this->assertEquals($emailOutput[1]['priority'], 10);
+        $this->assertEquals($emailOutput[1]['priority'], 9);
         $this->assertEquals($emailOutput[1]['emailAddress'], 'blackdragon5555@yahoo.com');
         $this->assertContains('Hello World Send', $emailOutput[1]['body']);
     }

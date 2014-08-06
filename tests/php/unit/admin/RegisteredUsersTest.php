@@ -4,7 +4,6 @@ class RegisteredUsersTest extends PHPUnit_Framework_TestCase
 {
     public function setUp() 
     {
-        new UsersMock();
         include_once('controllers/admin/registeredUsers.php');
     }
 

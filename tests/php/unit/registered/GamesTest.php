@@ -5,7 +5,6 @@ class gamesTest extends PHPUnit_Framework_TestCase
     public function setUp() 
     {
         $_GET['eventId'] = 2;
-        new GamesMock();
         include_once('controllers/registered/games.php');
     }
 

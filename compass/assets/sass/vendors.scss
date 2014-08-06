@@ -1,0 +1,95 @@
+$bs_blue: #35469A;
+$logo_size: 275px;
+
+.vendor {
+    position: relative;
+    width: 100%;
+    min-height: 325px;
+    height: auto;
+
+    .name {
+        position: absolute;
+        left: 25px;
+        top: 10px;
+    }
+
+    .nameRight {
+        @extend .name;
+        left: 465px;
+    }
+
+    .description {
+        position: relative;
+        left: 25px;
+        top: 50px;
+        width: 690px;
+        height: 200px;
+        border: 1px solid $bs_blue;
+        padding: 10px;
+        font-size: 1.25em;
+    }
+
+    .descriptionRight {
+        @extend .description;
+        left: 465px;
+    }
+
+    .logo {
+        position: absolute;
+        left: 900px;
+        top: 25px;
+
+        .logoSize {
+            width: $logo_size;
+            height: $logo_size;
+        }
+    }
+
+    .logoRight {
+        @extend .logo;
+        left: 25px;
+    }
+
+    .url {
+        position: absolute;
+        left: 25px;
+        bottom: 12px;
+        cursor: pointer;
+        font-size: 1.5em;
+
+        a {
+            color: $bs_blue;
+            text-decoration: none;
+        }
+
+        a:link {
+            color: $bs_blue;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: $bs_blue;
+            text-decoration: none;
+        }
+
+        a:active {
+            color: $bs_blue;
+            text-decoration: none;	
+        }
+
+        a:visited {
+            color: $bs_blue;
+            text-decoration: none;	
+        }
+    }
+
+    .urlRight {
+        @extend .url;
+        left: 465px;
+    }
+
+    .vendorImage {
+        width: $logo_size;
+        height: $logo_size;
+    }
+}

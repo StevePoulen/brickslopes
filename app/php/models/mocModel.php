@@ -13,6 +13,10 @@
        return $this->query($this->insertQuery($data));
     }
 
+    public function updateMocInformation($data) {
+       return $this->query($this->updateQuery($data));
+    }
+
     private function insertQuery($data) {
         return "
             INSERT INTO
@@ -44,9 +48,28 @@
         ";
     }
 
+    private function updateQuery($data) {
+        return "
+            UPDATE 
+                mocs 
+            SET 
+                themeId = '{$this->escapeCharacters($data['themeId'])}',
+                title = '{$this->escapeCharacters($data['title'])}',
+                displayName = '{$this->escapeCharacters($data['displayName'])}',
+                mocImageUrl = '{$this->escapeCharacters($data['mocImageUrl'])}',
+                baseplateWidth = '{$this->escapeCharacters($data['baseplateWidth'])}',
+                baseplateDepth = '{$this->escapeCharacters($data['baseplateDepth'])}',
+                description = '{$this->escapeCharacters($data['description'])}'
+            WHERE
+                mocId = '{$this->escapeCharacters($data['mocId'])}'
+            ;
+        ";
+    }
+
     private function selectQuery($eventId) {
         return "
             SELECT
+                m.mocId,
                 m.eventId,
                 m.userId,
                 m.themeId,

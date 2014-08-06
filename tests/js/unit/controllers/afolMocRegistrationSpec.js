@@ -47,6 +47,14 @@ describe('controllers', function() {
                 expect(scope.displayMessage).toBeUndefined();
             });
 
+            it('should have a isMocUpdate variable ', function() {
+                expect(scope.isMocUpdate).toBe(false);
+            });
+
+            it('should have a buttonText variable ', function() {
+                expect(scope.buttonText).toBe('Register My MOC');
+            });
+
             it('should have a showModal variable ', function() {
                 expect(scope.showModal).toBe(false);
             });
@@ -96,6 +104,10 @@ describe('controllers', function() {
 
             it('should have an eventId variable ', function() {
                 expect(scope.eventId).toBe(2);
+            });
+
+            it('should have an mocId variable ', function() {
+                expect(scope.mocId).toBeUndefined();
             });
 
             it('should have a theme variable ', function() {
@@ -162,6 +174,7 @@ describe('controllers', function() {
                 scope.description = 'I worked really hard on this MOC';
                 scope.submitRegistration();
                 mockBackend.expectPOST('/controllers/registered/mocs.php', mocDto).respond(201);
+                mockBackend.expectGET('/controllers/registered/mocs.php?eventId=2').respond(mocs);
                 mockBackend.flush();
                 expect(scope.displayName).toBe('Cody Ottley');
                 expect(scope.baseplateWidth).toBe(1);
@@ -181,6 +194,144 @@ describe('controllers', function() {
                 mockBackend.expectPOST('/controllers/registered/mocs.php', mocDto).respond(400);
                 mockBackend.flush();
                 expect(scope.displayErrorMessage).toBe('The MOC travails.');
+            });
+        });
+    });
+
+    describe('eventMocRegistration Controller Update With Available Moc', function() {
+        var mockBackend, loader, window, location, response, route, mocDTO;
+
+        beforeEach(inject(function($controller, $rootScope, $location, _$httpBackend_ , _$window_, $route) {
+            route = $route;
+            route = {current: {params:{eventId:2, mocId:3}}};
+            scope = $rootScope.$new();
+            window = _$window_;
+            window.sessionStorage.userId = 1;
+            ctrl = $controller('afolMocRegistration', { $scope: scope, $window: window, $route: route});
+            location = $location;
+            mockBackend = _$httpBackend_;
+            mockBackend.expectGET('/controllers/registered/themes.php?eventId=2').respond(themes);
+            mockBackend.expectGET('/controllers/registered/mocs.php?eventId=2').respond(mocs);
+
+            mocDTO = {
+                mocId: 3,
+                themeId: 3,
+                eventId: '2',
+                title: "Corey's Castle",
+                displayName: 'Corey Da Man',
+                mocImageUrl: '',
+                baseplateWidth: 18,
+                baseplateDepth: 3,
+                description: 'My out-of-this-world castle with peeps!'
+            }
+        }));
+
+        afterEach(function() {
+            delete window.sessionStorage;
+        });
+
+        describe('Update Moc', function() {
+            it('should update a moc', function() {
+                mockBackend.flush();
+                expect(scope.buttonText).toBe('Update My MOC');
+                expect(scope.mocId).toBe(3);
+                expect(scope.themeId).toBe(3);
+                expect(scope.eventId).toBe('2');
+                expect(scope.title).toBe("Corey's Castle");
+                expect(scope.displayName).toBe('Corey Da Man');
+                expect(scope.mocImageUrl).toBe('');
+                expect(scope.baseplateWidth).toBe(18);
+                expect(scope.baseplateDepth).toBe(3);
+                expect(scope.description).toBe('My out-of-this-world castle with peeps!');
+                scope.registrationForm = {'$setPristine': function() {}};
+                expect(scope.isMocUpdate).toBe(true);
+
+                scope.submitRegistration();
+                mockBackend.expectPATCH('/controllers/registered/mocs.php', mocDTO).respond(200);
+                mockBackend.expectGET('/controllers/registered/mocs.php?eventId=2').respond(mocs);
+                mockBackend.flush();
+
+                expect(scope.displayName).toBe('Cody Ottley');
+                expect(scope.baseplateWidth).toBe(1);
+                expect(scope.baseplateDepth).toBe(1);
+                expect(scope.theme).toEqualData(themes[0]);
+                expect(scope.mocId).toBeUndefined();
+                expect(scope.themeId).toBe(12);
+                expect(scope.title).toBeUndefined();
+                expect(scope.mocImageUrl).toBeUndefined();
+                expect(scope.description).toBeUndefined();
+                expect(scope.isMocUpdate).toBe(false);
+                expect(scope.buttonText).toBe('Register My MOC');
+            });
+
+            it('should update a moc with an error', function() {
+                mockBackend.flush();
+                expect(scope.isMocUpdate).toBe(true);
+                scope.submitRegistration();
+                mockBackend.expectPATCH('/controllers/registered/mocs.php', mocDTO).respond(400);
+                mockBackend.flush();
+                expect(scope.displayErrorMessage).toBe('The MOC travails.');
+            });
+        });
+    });
+
+    describe('eventMocRegistration Controller Update With Available Moc', function() {
+        var mockBackend, loader, window, location, response, route, mocDTO;
+
+        beforeEach(inject(function($controller, $rootScope, $location, _$httpBackend_ , _$window_, $route) {
+            route = $route;
+            route = {current: {params:{eventId:2, mocId:4}}};
+            scope = $rootScope.$new();
+            window = _$window_;
+            window.sessionStorage.userId = 1;
+            ctrl = $controller('afolMocRegistration', { $scope: scope, $window: window, $route: route});
+            location = $location;
+            mockBackend = _$httpBackend_;
+            mockBackend.expectGET('/controllers/registered/themes.php?eventId=2').respond(themes);
+            mockBackend.expectGET('/controllers/registered/mocs.php?eventId=2').respond(mocs);
+
+            mocDTO = {
+                mocId: 3,
+                themeId: '1',
+                eventId: '2',
+                title: "Corey's Castle",
+                displayName: 'Corey Da Man',
+                mocImageUrl: '',
+                baseplateWidth: '18',
+                baseplateDepth: '3',
+                description: 'My out-of-this-world castle with peeps!'
+            }
+        }));
+
+        afterEach(function() {
+            delete window.sessionStorage;
+        });
+
+        describe('Update Moc', function() {
+            it('should not update a moc if the moc is not defined', function() {
+                mockBackend.flush();
+                expect(scope.isMocUpdate).toBe(false);
+                expect(scope.buttonText).toBe('Register My MOC');
+                expect(scope.displayName).toBe('Cody Ottley');
+                expect(scope.baseplateWidth).toBe(1);
+                expect(scope.baseplateDepth).toBe(1);
+                expect(scope.theme).toEqualData(themes[0]);
+                expect(scope.themeId).toBe(12);
+                expect(scope.title).toBeUndefined();
+                expect(scope.mocImageUrl).toBeUndefined();
+                expect(scope.description).toBeUndefined();
+                scope.registrationForm = {'$setPristine': function() {}};
+
+                scope.submitRegistration();
+                mockBackend.expectPATCH('/controllers/registered/mocs.php', mocDTO).respond(200);
+                mockBackend.expectGET('/controllers/registered/mocs.php?eventId=2').respond(mocs);
+                try {
+                    mockBackend.flush();
+                    expect(false).toBe(true);
+                } catch (err) {
+                    expect('test passed by error').toBe('test passed by error');
+                }
+
             });
         });
     });

@@ -182,6 +182,15 @@ config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvide
         }
     )
     .when(
+        '/afol/:eventId/eventVendors.html',
+        {
+            templateUrl: function(params) {
+                return '/partials/afol/eventVendors.html?eventId='+params.eventId
+            },
+            controller: 'afolEventVendors'
+        }
+    )
+    .when(
         '/afol/:eventId/eventRegistration.html',
         {
             templateUrl: function(params) {
@@ -209,6 +218,15 @@ config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvide
         {
             templateUrl: function(params) {
                 return '/partials/registered/eventMocRegistration.html?eventId='+params.eventId
+            },
+            controller: 'afolMocRegistration'
+        }
+    )
+    .when(
+        '/registered/:eventId/:mocId/eventMocRegistration.html',
+        {
+            templateUrl: function(params) {
+                return '/partials/registered/eventMocRegistration.html?eventId='+params.eventId+'&mocId='+params.mocId
             },
             controller: 'afolMocRegistration'
         }

@@ -5,7 +5,6 @@ class ThemesTest extends PHPUnit_Framework_TestCase
     public function setUp() 
     {
         $_GET['eventId'] = 2;
-        new ThemesMock();
         include_once('controllers/registered/themes.php');
     }
 

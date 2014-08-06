@@ -196,7 +196,27 @@ angular.module('brickSlopes.services', ['ngResource'])
 .factory('Themes', ['$q', '$http', function($q, $http) {
     var themeList = undefined;
 
+    function filterByTheme(themeName) {
+        var singleTheme  = undefined;
+        _.each(themeList, function(theme, index) {
+            if (theme.theme === themeName) {
+                singleTheme = theme;
+            }
+        });
+        return singleTheme;
+    }
+
     return {
+        getThemeObject: function(eventId, themeName) {
+            if (themeList) {
+                return $q.when(filterByTheme(themeName));
+            } else {
+                return $q.when(this.getList(eventId).then(function(data) {
+                    return filterByTheme(themeName);
+                }));
+            }
+        },
+
         getCount: function(eventId) {
             if (themeList) {
                 return $q.when(themeList.length);
@@ -365,6 +385,45 @@ angular.module('brickSlopes.services', ['ngResource'])
 
             return delay.promise;
         }
+    }
+}])
+.factory('VendorDetails', ['$q', '$http', '$sce', function($q, $http, $sce) {
+    vendorList = undefined;
+
+    return {
+        getCount: function(eventId) {
+            if (vendorList) {
+                return $q.when(vendorList.length);
+            } else {
+                return $q.when(this.getList(eventId).then(function(data) {
+                    return vendorList.length;
+                }));
+            }
+        },
+
+        getList: function(eventId) {
+            if (vendorList) {
+                return $q.when(vendorList);
+            }   else {
+                return $q.when($http (
+                    {
+                        method: 'GET',
+                        url: '/controllers/vendors.php',
+                        params: {
+                            eventId: eventId
+                        }
+                    }
+                ).then(function(data) {
+                    vendorList = data.data;
+                    _.each(vendorList, function(vendor, index) {
+                        vendor.description = $sce.trustAsHtml(vendor.description);
+                        vendor.hasLogo = (vendor.logo === '' ? false : true);
+                        vendor.hasUrl = (vendor.url === '' ? false : true);
+                    })
+                    return vendorList;
+                }));
+            }
+        },
     }
 }])
 .factory('UserDetails', ['$q', '$http', '$window', function($q, $http, $window) {
@@ -932,7 +991,24 @@ angular.module('brickSlopes.services', ['ngResource'])
         return individualMocList;
     }
 
+    function filterMocById(mocId) {
+        var singleMoc = undefined;
+        _.each(individualMocList, function(moc, index) {
+            if (moc.mocId === mocId) {
+                singleMoc = moc;
+            }
+        });
+        return singleMoc;
+    }
+
+
     return {
+        expireCache: function(eventId) {
+            mocList = undefined;
+            individualMocList = undefined;
+            this.getList(eventId);
+        },
+
         getCount: function(eventId) {
             if (mocList) {
                 return $q.when(mocList.length);
@@ -949,6 +1025,16 @@ angular.module('brickSlopes.services', ['ngResource'])
             } else {
                 return $q.when(this.getListByUserId(eventId).then(function(data) {
                     return individualMocList.length;
+                }));
+            }
+        },
+
+        getMocById: function(eventId, mocId) {
+            if (individualMocList) {
+                return $q.when(filterMocById(mocId));
+            } else {
+                return $q.when(this.getListByUserId(eventId).then(function(data) {
+                    return filterMocById(mocId);
                 }));
             }
         },
@@ -985,6 +1071,23 @@ angular.module('brickSlopes.services', ['ngResource'])
             $http (
                 {
                     method: 'POST',
+                    url: '/controllers/registered/mocs.php',
+                    data: mocDTO
+                }
+            ).success(function(data, status, headers, config) {
+                delay.resolve(status);
+            }).error(function(data, status, headers, config) {
+                delay.reject(status);
+            });
+
+            return delay.promise;
+        },
+
+        update: function(mocDTO) {
+            var delay= $q.defer();
+            $http (
+                {
+                    method: 'PATCH',
                     url: '/controllers/registered/mocs.php',
                     data: mocDTO
                 }

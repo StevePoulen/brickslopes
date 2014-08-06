@@ -123,7 +123,7 @@
                                 'creatorId' => $this->creatorId,
                                 'recipientId' => $dbObj->userId,
                                 'type' => __METHOD__,
-                                'priority' => 10,
+                                'priority' => 1,
                                 'emailAddress' => $this->email,
                                 'subject' => $this->subject,
                                 'body' => $this->message
@@ -197,7 +197,7 @@
                                 'creatorId' => $this->creatorId,
                                 'recipientId' => $dbObj->userId,
                                 'type' => __METHOD__,
-                                'priority' => 10,
+                                'priority' => 3,
                                 'emailAddress' => $this->email,
                                 'subject' => $this->subject,
                                 'body' => $this->message
@@ -268,7 +268,7 @@
                             'creatorId' => $this->creatorId,
                             'recipientId' => $dbObj->userId,
                             'type' => __METHOD__,
-                            'priority' => 10,
+                            'priority' => 2,
                             'emailAddress' => $this->email,
                             'subject' => $this->subject,
                             'body' => $this->message
@@ -325,7 +325,7 @@
                                 'creatorId' => $this->creatorId,
                                 'recipientId' => $dbObj->userId,
                                 'type' => __METHOD__,
-                                'priority' => 10,
+                                'priority' => 0,
                                 'emailAddress' => $this->email,
                                 'subject' => $this->subject,
                                 'body' => $this->message
@@ -385,7 +385,7 @@
                             'creatorId' => $this->creatorId,
                             'recipientId' => $dbObj->userId,
                             'type' => __METHOD__,
-                            'priority' => 10,
+                            'priority' => 9,
                             'emailAddress' => $this->email,
                             'subject' => $this->subject,
                             'body' => $this->message

@@ -5,7 +5,6 @@ class RegistrationLineItemsTest extends PHPUnit_Framework_TestCase
     public function setUp() 
     {
         $this->userId = 22;
-        new RegistrationLineItemsMock();
         include_once('controllers/registrationLineItems.php');
     }
 

@@ -21,7 +21,6 @@ class RegistrationLineItemHelperTest extends PHPUnit_Framework_TestCase
         );
         $this->eventId = 2;
         $GLOBALS['db_query'] = '1';
-        new RegistrationLineItemsMock();
         include_once('lib/helpers/registrationLineItemHelper.php');
         $this->helper = new RegistrationLineItemHelper($this->eventId);
     }

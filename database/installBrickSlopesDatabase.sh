@@ -147,6 +147,14 @@ emailHistoryTableCreation() {
     incStep
 }
 
+vendorTableCreation() {
+    printf "\nSTEP $STEP_COUNTER: Create the 'BrickSlopes' vendor table?\n";
+    echo "* WARNING * This is delete the current table";
+    echo -n "Create table? (Y\n) [ENTER]: "; 
+    read CREATE_VENDOR_TABLE;
+    incStep
+}
+
 eventTableCreation() {
     printf "\nSTEP $STEP_COUNTER: Create the 'BrickSlopes' event table?\n";
     echo "* WARNING * This is delete the current table";
@@ -212,6 +220,7 @@ userInput() {
         feedbackTableCreation;
         gameTableCreation;
         emailHistoryTableCreation;
+        vendorTableCreation;
     fi
 }
 
@@ -283,6 +292,13 @@ createEmailHistoryTable() {
     fi
 }
 
+createVendorTable() {
+    if [[ "$CREATE_VENDOR_TABLE" == "Y" || isDropAllTables ]]
+    then
+        executeDBStatement "13_dbCreateVendorTable.txt"
+    fi
+}
+
 createEventTable() {
     if [[ "$CREATE_EVENT_TABLE" == "Y" || isDropAllTables ]]
     then
@@ -342,3 +358,4 @@ createMocTable;
 createFeedbackTable;
 createGamesTable;
 createEmailHistoryTable;
+createVendorTable;

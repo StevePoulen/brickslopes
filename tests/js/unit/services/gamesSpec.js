@@ -35,6 +35,7 @@ describe('service', function() {
                 expect(data[0].registration).toBe('Open');
                 expect(data[0].showCTAButton).toBe(true);
                 expect(data[1].game).toBe('Speed Build');
+                expect(data[1].description.$$unwrapTrustedValue()).toBe('Build a LEGO Set as fast as you can.');
                 expect(data[1].registration).toBe('Closed');
                 expect(data[1].showCTAButton).toBe(false);
                 expect(data[2].isAwards).toBe(false);

@@ -33,9 +33,9 @@
                     <div class="commentsField">
                         <textarea bs-placeholder="Description ..."  ng-model="description" maxlength=146></textarea>
                     </div>
-                    <div class="formButtonPosition">
+                    <div class="formButtonPosition"> 
                         <button class="formButton" type="submit" ng-class="{disabled: verifying}" ng-disabled="verifying">
-                            <bs-text text="Register My MOC" font-color=white font-size=1.75></bs-text>
+                            <bs-text text="{{buttonText}}" font-color=white font-size=1.75></bs-text>
                         </button>
                     </div>
                 </form>

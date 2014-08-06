@@ -8,7 +8,6 @@ class UserTest extends PHPUnit_Framework_TestCase
         $this->isAdmin = true;
         $this->isRegistered = true;
         $this->isPaid = true;
-        new UsersMock();
         include_once('controllers/user.php');
     }
 

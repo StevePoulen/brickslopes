@@ -19,6 +19,8 @@ class Mocs {
             $this->post();
         } else if ($requestMethod == "GET") {
             $this->get();
+        } else if ($requestMethod == "PATCH") {
+            $this->patch();
         } else {
             header("HTTP/1.0 405 Method Not Allowed");
         }
@@ -33,6 +35,7 @@ class Mocs {
                 array_push (
                     $response,
                     array (
+                        'mocId' => $dbObj->mocId,
                         'eventId' => $dbObj->eventId,
                         'userId' => $dbObj->userId,
                         'themeId' => $dbObj->themeId,
@@ -50,6 +53,20 @@ class Mocs {
             echo json_encode (
                 $response
             );
+        } else {
+            header("HTTP/1.0 400 Bad Request");
+        }
+    }
+
+    private function patch() {
+        $payload = json_decode(file_get_contents("php://input"), true);
+        if (sizeof($payload) == 0) {
+            $payload = $_POST;
+        }
+        $payload['userId'] = $this->userId;
+        $response = $this->mocObj->updateMocInformation($payload);
+        if (preg_match ( '/\d+/', $response )) {
+            header("HTTP/1.0 200 Success");
         } else {
             header("HTTP/1.0 400 Bad Request");
         }
