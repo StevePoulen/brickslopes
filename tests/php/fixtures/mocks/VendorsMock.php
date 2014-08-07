@@ -10,6 +10,18 @@ class vendorModel extends db {
     public function getVendorInformation($data) {
         return $this->query();
     }
+
+    public function addVendorInformation($data) {
+        return $this->query();
+    }
+
+    public function getVendorAssociateInformation($data) {
+        return $this->query();
+    }
+
+    public function addVendorConnectorInformation($data) {
+        return $this->query();
+    }
 }
 
 class VendorsMock extends modelObjects {
@@ -25,5 +37,8 @@ class VendorsMock extends modelObjects {
     public function url() { return $this->getData(3); }
     public function logo() { return $this->getData(4); }
     public function tables() { return $this->getData(5); }
+    public function vendorConnectorId() { return $this->getData(6); }
+    public function firstName() { return $this->getData(7); }
+    public function lastName() { return $this->getData(8); }
 }
 ?>

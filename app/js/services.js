@@ -120,7 +120,7 @@ angular.module('brickSlopes.services', ['ngResource'])
                 return $q.when($http (
                     {
                         method: 'get',
-                        url: '/controllers/registered/games.php',
+                        url: '/controllers/paid/games.php',
                         params: {eventId: eventId}
                     }
                 ).then(function(data) {
@@ -141,7 +141,7 @@ angular.module('brickSlopes.services', ['ngResource'])
             $http (
                 {
                     method: 'POST',
-                    url: '/controllers/registered/gameUser.php',
+                    url: '/controllers/paid/gameUser.php',
                     data: gameDTO
                 }
             ).success(function(data, status, headers, config) {
@@ -158,7 +158,7 @@ angular.module('brickSlopes.services', ['ngResource'])
             $http (
                 {
                     method: 'GET',
-                    url: '/controllers/registered/gameUser.php',
+                    url: '/controllers/paid/gameUser.php',
                     params: {
                         eventId: eventId
                     }
@@ -177,7 +177,7 @@ angular.module('brickSlopes.services', ['ngResource'])
             $http (
                 {
                     method: 'DELETE',
-                    url: '/controllers/registered/gameUser.php',
+                    url: '/controllers/paid/gameUser.php',
                     params: {
                         eventId: eventId,
                         gameId: gameId
@@ -234,7 +234,7 @@ angular.module('brickSlopes.services', ['ngResource'])
                 return $q.when($http (
                     {
                         method: 'GET',
-                        url: '/controllers/registered/themes.php',
+                        url: '/controllers/paid/themes.php',
                         params: {eventId: eventId}
                     }
                 ).then(function(data) {
@@ -287,7 +287,7 @@ angular.module('brickSlopes.services', ['ngResource'])
             $http (
                 {
                     method: 'GET',
-                    url: '/controllers/event.php',
+                    url: '/controllers/public/event.php',
                     params: {
                         'eventId': eventId
                     }
@@ -309,7 +309,7 @@ angular.module('brickSlopes.services', ['ngResource'])
             $http (
                 {
                     method: 'POST',
-                    url: '/controllers/emailUs.php',
+                    url: '/controllers/public/emailUs.php',
                     data: emailDTO,
                     headers: {'Content-Type': 'application/x-www-form-urlencoded'}
                 }
@@ -330,7 +330,7 @@ angular.module('brickSlopes.services', ['ngResource'])
             $http (
                 {
                     method: 'GET',
-                    url: '/controllers/registrationLineItems.php',
+                    url: '/controllers/registered/registrationLineItems.php',
                     params: {'eventId': eventId}
                 }
             ).success(function(data, status, headers, config) {
@@ -408,7 +408,7 @@ angular.module('brickSlopes.services', ['ngResource'])
                 return $q.when($http (
                     {
                         method: 'GET',
-                        url: '/controllers/vendors.php',
+                        url: '/controllers/registered/vendors.php',
                         params: {
                             eventId: eventId
                         }
@@ -456,7 +456,7 @@ angular.module('brickSlopes.services', ['ngResource'])
             $http (
                 {
                     method: 'GET',
-                    url: '/controllers/user.php'
+                    url: '/controllers/public/user.php'
                 }
             ).success(function(data, status, headers, config) {
                 delay.resolve(memberSince(data));
@@ -491,7 +491,7 @@ angular.module('brickSlopes.services', ['ngResource'])
             $http (
                 {
                     method: 'POST',
-                    url: '/controllers/user.php',
+                    url: '/controllers/public/user.php',
                     data: userDTO,
                     headers: {'Content-Type': 'application/x-www-form-urlencoded'}
                 }
@@ -509,7 +509,7 @@ angular.module('brickSlopes.services', ['ngResource'])
             $http (
                 {
                     method: 'PATCH',
-                    url: '/controllers/user.php',
+                    url: '/controllers/public/user.php',
                     data: userDTO,
                     headers: {'Content-Type': 'application/x-www-form-urlencoded'}
                 }
@@ -769,7 +769,7 @@ angular.module('brickSlopes.services', ['ngResource'])
                 return $q.when($http (
                     {
                         method: 'GET',
-                        url: '/controllers/registeredAfols.php',
+                        url: '/controllers/registered/registeredAfols.php',
                         params: {'eventId': eventId}
                     }
                 ).then(function(data) {
@@ -872,7 +872,7 @@ angular.module('brickSlopes.services', ['ngResource'])
             $http (
                 {
                     method: 'GET',
-                    url: '/controllers/eventRegistration.php'
+                    url: '/controllers/registered/eventRegistration.php'
                 }
             ).success(function(data, status, headers, config) {
                 delay.resolve(parseEventRegistrationData(data));
@@ -892,7 +892,7 @@ angular.module('brickSlopes.services', ['ngResource'])
             $http (
                 {
                     method: 'PATCH',
-                    url: '/controllers/eventRegistration.php',
+                    url: '/controllers/registered/eventRegistration.php',
                     data: eventRegistrationDTO,
                     headers: {'Content-Type': 'application/x-www-form-urlencoded'}
                 }
@@ -910,7 +910,7 @@ angular.module('brickSlopes.services', ['ngResource'])
             $http (
                 {
                     method: 'POST',
-                    url: '/controllers/eventRegistration.php',
+                    url: '/controllers/registered/eventRegistration.php',
                     data: eventRegistrationDTO,
                     headers: {'Content-Type': 'application/x-www-form-urlencoded'}
                 }
@@ -1056,7 +1056,7 @@ angular.module('brickSlopes.services', ['ngResource'])
                 return $q.when($http (
                     {
                         method: 'GET',
-                        url: '/controllers/registered/mocs.php',
+                        url: '/controllers/paid/mocs.php',
                         params: {eventId: eventId}
                     }
                 ).then(function(data) {
@@ -1071,7 +1071,7 @@ angular.module('brickSlopes.services', ['ngResource'])
             $http (
                 {
                     method: 'POST',
-                    url: '/controllers/registered/mocs.php',
+                    url: '/controllers/paid/mocs.php',
                     data: mocDTO
                 }
             ).success(function(data, status, headers, config) {
@@ -1088,7 +1088,7 @@ angular.module('brickSlopes.services', ['ngResource'])
             $http (
                 {
                     method: 'PATCH',
-                    url: '/controllers/registered/mocs.php',
+                    url: '/controllers/paid/mocs.php',
                     data: mocDTO
                 }
             ).success(function(data, status, headers, config) {

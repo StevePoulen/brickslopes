@@ -52,7 +52,7 @@ class ControllerTest extends PHPUnit_Framework_TestCase
     public function testAuthenticatedSuccess() 
     {
         $GLOBALS['authenticationRequest'] = true;
-        $_SERVER['REQUEST_URI'] = "/partials/afol/index.html";
+        $_SERVER['REQUEST_URI'] = "/partials/registered/index.html";
         $this->controller = new Controller();
         $this->controller->invoke();
         $this->assertEquals(http_response_code(), 200);
@@ -64,7 +64,7 @@ class ControllerTest extends PHPUnit_Framework_TestCase
         $GLOBALS['authenticationRequest'] = false;
         $GLOBALS['db_query'] = false;
         $_SERVER['REQUEST_METHOD'] = 'POST';
-        $_SERVER['REQUEST_URI'] = "/controllers/user.php";
+        $_SERVER['REQUEST_URI'] = "/controllers/public/user.php";
         $this->controller = new Controller();
         $this->controller->invoke();
         $this->assertEquals(http_response_code(), 400);
@@ -206,6 +206,8 @@ class ControllerTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(http_response_code(), 405);
     }
 
+    /* Registered */
+
     public function testAnonymousRegistered() 
     {
         $_SERVER['REQUEST_URI'] = "/partials/registered/index.html";
@@ -214,7 +216,6 @@ class ControllerTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(http_response_code(), 403);
         $this->expectOutputString('');
     }
-
 
     public function testAuthenticatedNoRegistration() 
     {
@@ -229,7 +230,7 @@ class ControllerTest extends PHPUnit_Framework_TestCase
     public function testAuthenticatedNoRegistrationControllers() 
     {
         $GLOBALS['noRegistrationRequest'] = true;
-        $_SERVER['REQUEST_URI'] = "/controllers/registered/mocs.php";
+        $_SERVER['REQUEST_URI'] = "/controllers/registered/vendors.php";
         $this->controller = new Controller();
         $this->controller->invoke();
         $this->assertEquals(http_response_code(), 412);
@@ -239,7 +240,7 @@ class ControllerTest extends PHPUnit_Framework_TestCase
     public function testAuthenticatedNoRegistrationAdminControllers() 
     {
         $GLOBALS['noRegistrationAdminRequest'] = true;
-        $_SERVER['REQUEST_URI'] = "/controllers/registered/mocs.php";
+        $_SERVER['REQUEST_URI'] = "/controllers/registered/vendors.php";
         $this->controller = new Controller();
         $this->controller->invoke();
         $this->assertEquals(http_response_code(), 405);
@@ -249,7 +250,7 @@ class ControllerTest extends PHPUnit_Framework_TestCase
     public function testAuthenticatedNoRegistrationControllersCrazyUrl() 
     {
         $GLOBALS['noRegistrationRequest'] = true;
-        $_SERVER['REQUEST_URI'] = "/controllers/registeredAfols.php?eventId=2";
+        $_SERVER['REQUEST_URI'] = "/controllers/public/emailUs.php?eventId=2";
         $this->controller = new Controller();
         $this->controller->invoke();
         $this->assertEquals(http_response_code(), 405);
@@ -269,17 +270,97 @@ class ControllerTest extends PHPUnit_Framework_TestCase
     public function testRegisteredAndAuthentication() 
     {
         $GLOBALS['authenticationRequest'] = true;
-        $_SERVER['REQUEST_URI'] = "/partials/registered/eventGames.html";
+        $_SERVER['REQUEST_URI'] = "/partials/registered/eventMe.html";
+        $this->controller = new Controller();
+        $this->controller->invoke();
+        $this->assertEquals(http_response_code(), 200);
+        $this->expectOutputRegex('/mePanes/');
+    }
+
+    public function testRegisteredAndAuthenticationControllers() 
+    {
+        $GLOBALS['authenticationRequest'] = true;
+        $_SERVER['REQUEST_URI'] = "/controllers/registered/registrationLineItems.php";
+        $this->controller = new Controller();
+        $this->controller->invoke();
+        $this->assertEquals(http_response_code(), 405);
+    }
+
+    /* Paid */
+
+    public function testAnonymousPaid() 
+    {
+        $_SERVER['REQUEST_URI'] = "/partials/paid/index.html";
+        $this->controller = new Controller();
+        $this->controller->invoke();
+        $this->assertEquals(http_response_code(), 403);
+        $this->expectOutputString('');
+    }
+
+    public function testAuthenticatedNoPaid() 
+    {
+        $GLOBALS['noRegistrationRequest'] = true;
+        $_SERVER['REQUEST_URI'] = "/partials/paid/eventGames.html";
+        $this->controller = new Controller();
+        $this->controller->invoke();
+        $this->assertEquals(http_response_code(), 412);
+        $this->expectOutputString('');
+    }
+
+    public function testAuthenticatedNoPaidControllers() 
+    {
+        $GLOBALS['noRegistrationRequest'] = true;
+        $_SERVER['REQUEST_URI'] = "/controllers/paid/mocs.php";
+        $this->controller = new Controller();
+        $this->controller->invoke();
+        $this->assertEquals(http_response_code(), 412);
+        $this->expectOutputString('');
+    }
+
+    public function testAuthenticatedNoPaidAdminControllers() 
+    {
+        $GLOBALS['noRegistrationAdminRequest'] = true;
+        $_SERVER['REQUEST_URI'] = "/controllers/paid/mocs.php";
+        $this->controller = new Controller();
+        $this->controller->invoke();
+        $this->assertEquals(http_response_code(), 405);
+        $this->expectOutputString('');
+    }
+
+    public function testAuthenticatedNoPaidControllersCrazyUrl() 
+    {
+        $GLOBALS['noRegistrationRequest'] = true;
+        $_SERVER['REQUEST_URI'] = "/controllers/public/user.php?eventId=2";
+        $this->controller = new Controller();
+        $this->controller->invoke();
+        $this->assertEquals(http_response_code(), 200);
+        $this->expectOutputString('');
+    }
+
+    public function testPaidNoAuthentication() 
+    {
+        $GLOBALS['adminRequestNoAuth'] = true;
+        $_SERVER['REQUEST_URI'] = "/partials/paid/index.html";
+        $this->controller = new Controller();
+        $this->controller->invoke();
+        $this->assertEquals(http_response_code(), 403);
+        $this->expectOutputString('');
+    }
+
+    public function testPaidAndAuthentication() 
+    {
+        $GLOBALS['authenticationRequest'] = true;
+        $_SERVER['REQUEST_URI'] = "/partials/paid/eventGames.html";
         $this->controller = new Controller();
         $this->controller->invoke();
         $this->assertEquals(http_response_code(), 200);
         $this->expectOutputRegex('/Games/');
     }
 
-    public function testRegisteredAndAuthenticationControllers() 
+    public function testPaidAndAuthenticationControllers() 
     {
         $GLOBALS['authenticationRequest'] = true;
-        $_SERVER['REQUEST_URI'] = "/controllers/registered/games.php";
+        $_SERVER['REQUEST_URI'] = "/controllers/paid/games.php";
         $this->controller = new Controller();
         $this->controller->invoke();
         $this->assertEquals(http_response_code(), 405);

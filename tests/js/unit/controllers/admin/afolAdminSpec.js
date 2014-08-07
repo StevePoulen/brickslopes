@@ -27,8 +27,8 @@ describe('controllers', function() {
             location = $location;
             mockBackend = _$httpBackend_;
             mockBackend.expectGET('/controllers/admin/registeredUsers.php').respond(201, registeredUsers);
-            mockBackend.expectGET('/controllers/registeredAfols.php?eventId=2').respond(201, registeredAfols);
-            mockBackend.expectGET('/controllers/registered/mocs.php?eventId=2').respond(201, mocs);
+            mockBackend.expectGET('/controllers/registered/registeredAfols.php?eventId=2').respond(201, registeredAfols);
+            mockBackend.expectGET('/controllers/paid/mocs.php?eventId=2').respond(201, mocs);
         }));
 
         describe('Default Variables', function() {
@@ -89,6 +89,41 @@ describe('controllers', function() {
             it('should redirect to the registeredMocs page', function() {
                 scope.clickMocs();
                 expect(location.path()).toBe('/admin/registeredMocs.html');
+            });
+        });
+
+        describe('Click Event Registration Email', function() {
+            it('should redirect to the email page', function() {
+                scope.clickEventRegistrationEmail();
+                expect(location.path()).toBe('/admin/eventRegistration/emails');
+            });
+        });
+
+        describe('Click Vendor Registration Email', function() {
+            it('should redirect to the email page', function() {
+                scope.clickVendorRegistrationEmail();
+                expect(location.path()).toBe('/admin/vendorRegistration/emails');
+            });
+        });
+
+        describe('Click User Registration Email', function() {
+            it('should redirect to the email page', function() {
+                scope.clickUserRegistrationEmail();
+                expect(location.path()).toBe('/admin/userRegistration/emails');
+            });
+        });
+
+        describe('Click Registration Paid Email', function() {
+            it('should redirect to the email page', function() {
+                scope.clickRegistrationPaidEmail();
+                expect(location.path()).toBe('/admin/registrationPaidDisplay/emails');
+            });
+        });
+
+        describe('Click Reset Password Email', function() {
+            it('should redirect to the email page', function() {
+                scope.clickResetPasswordEmail();
+                expect(location.path()).toBe('/admin/resetPassword/emails');
             });
         });
     });

@@ -68,8 +68,8 @@
         private function isWhiteList() {
             if ($this->URI == '../index.html' ||
                 $this->URI == 'controllers/emailUs.php' ||
-                preg_match('/^..\/partials\/public/', $this->URI) ||
-                preg_match('/^..\/partials\/directives/', $this->URI)
+                preg_match('/^..\/partials\/public\/.*/', $this->URI) ||
+                preg_match('/^..\/partials\/directives\/.*/', $this->URI)
             ) {
                 return true;
             } else if (
@@ -101,6 +101,13 @@
             );
         }
 
+        private function isPaidRequest() {
+            return (
+                preg_match('/^controllers\/paid\/.*/', $this->URI) ||
+                preg_match('/^..\/partials\/paid\/.*/', $this->URI)
+            );
+        }
+
         private function isRegisteredRequest() {
             return (
                 preg_match('/^controllers\/registered\/.*/', $this->URI) ||
@@ -110,7 +117,7 @@
 
         private function determineAdminFromJWT($decodedJWT) {
             try {
-                return ($decodedJWT->admin == 'YES') ;
+                return ($decodedJWT->admin === 'YES') ;
             } catch (exception $e) {
                 return false;
             }
@@ -118,7 +125,10 @@
 
         private function determinePaidFromJWT($decodedJWT) {
             try {
-                return ($decodedJWT->paid == 'YES') ;
+                return (
+                    $decodedJWT->paid === 'YES' &&
+                    $this->determineRegisteredFromJWT($decodedJWT)
+                );
             } catch (exception $e) {
                 return false;
             }
@@ -126,7 +136,7 @@
 
         private function determineRegisteredFromJWT($decodedJWT) {
             try {
-                return ($decodedJWT->registered == 'YES') ;
+                return ($decodedJWT->registered === 'YES') ;
             } catch (exception $e) {
                 return false;
             }
@@ -144,6 +154,15 @@
                     $this->isRegistered = $this->determineRegisteredFromJWT($decodedJWT);
                     if ($this->isAdminRequest()) {
                         return $this->isAdmin;
+                    }
+
+                    if ($this->isPaidRequest()) {
+                        if ($this->isAdmin) {
+                            return true;
+                        } else {
+                            $this->error = 412;
+                            return $this->isPaid;
+                        }
                     }
 
                     if ($this->isRegisteredRequest()) {

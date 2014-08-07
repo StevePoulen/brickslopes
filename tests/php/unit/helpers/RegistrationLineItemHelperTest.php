@@ -309,4 +309,79 @@ class RegistrationLineItemHelperTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(sizeOf($lineItemObj), 11);
         $this->assertEquals(sizeOf($GLOBALS['addRegistrationLineItems']), 3);
     }
+
+    public function testAddRegistrationLineItemsVendor() 
+    {
+        $dto = array (
+            'discountDate' => $this->tomorrow,
+            'eventId' => 2,
+            'userId' => 7,
+            'badgeLine1' => 'My Favorite Store',
+            'vendor' => 'YES',
+            'vendorTables' => 12,
+        );
+        $GLOBALS['db_query'] = '1';
+        $this->helper->addRegistrationLineItems($dto);
+        //Event Pass
+        $lineItemObj = $GLOBALS['addRegistrationLineItems'][0];
+        $this->assertEquals($lineItemObj['eventLineItemCodeId'], '1');
+        $this->assertEquals($lineItemObj['eventId'], 2);
+        $this->assertEquals($lineItemObj['userId'], 7);
+        $this->assertEquals($lineItemObj['lineItem'], 'Event Pass');
+        $this->assertEquals($lineItemObj['amount'], '60.00');
+        $this->assertEquals($lineItemObj['paid'], 'NO');
+        $this->assertEquals($lineItemObj['discount'], 'YES');
+        $this->assertEquals($lineItemObj['description'], null);
+        $this->assertEquals($lineItemObj['size'], null);
+        $this->assertEquals($lineItemObj['quantity'], 1);
+        $this->assertEquals($lineItemObj['active'], 'YES');
+        $this->assertEquals(sizeOf($lineItemObj), 11);
+
+        //Tables
+        $lineItemObj = $GLOBALS['addRegistrationLineItems'][1];
+        $this->assertEquals($lineItemObj['eventLineItemCodeId'], '10');
+        $this->assertEquals($lineItemObj['eventId'], 2);
+        $this->assertEquals($lineItemObj['userId'], 7);
+        $this->assertEquals($lineItemObj['lineItem'], 'Vendor Tables');
+        $this->assertEquals($lineItemObj['amount'], '75.00');
+        $this->assertEquals($lineItemObj['paid'], 'NO');
+        $this->assertEquals($lineItemObj['discount'], 'YES');
+        $this->assertEquals($lineItemObj['description'], null);
+        $this->assertEquals($lineItemObj['size'], null);
+        $this->assertEquals($lineItemObj['quantity'], 12);
+        $this->assertEquals($lineItemObj['active'], 'YES');
+        $this->assertEquals(sizeOf($lineItemObj), 11);
+
+        //Total Line Items
+        $this->assertEquals(sizeOf($GLOBALS['addRegistrationLineItems']), 2);
+    }
+
+    public function testAddRegistrationLineItemsVendorAssociate() 
+    {
+        $dto = array (
+            'discountDate' => $this->tomorrow,
+            'eventId' => 2,
+            'userId' => 7,
+            'vendorPass' => 'YES'
+        );
+        $GLOBALS['db_query'] = '1';
+        $this->helper->addRegistrationLineItems($dto);
+        //Event Pass
+        $lineItemObj = $GLOBALS['addRegistrationLineItems'][0];
+        $this->assertEquals($lineItemObj['eventLineItemCodeId'], '11');
+        $this->assertEquals($lineItemObj['eventId'], 2);
+        $this->assertEquals($lineItemObj['userId'], 7);
+        $this->assertEquals($lineItemObj['lineItem'], 'Vendor Pass');
+        $this->assertEquals($lineItemObj['amount'], '0.00');
+        $this->assertEquals($lineItemObj['paid'], 'NO');
+        $this->assertEquals($lineItemObj['discount'], 'YES');
+        $this->assertEquals($lineItemObj['description'], null);
+        $this->assertEquals($lineItemObj['size'], null);
+        $this->assertEquals($lineItemObj['quantity'], 1);
+        $this->assertEquals($lineItemObj['active'], 'YES');
+        $this->assertEquals(sizeOf($lineItemObj), 11);
+
+        //Total Line Items
+        $this->assertEquals(sizeOf($GLOBALS['addRegistrationLineItems']), 1);
+    }
 }

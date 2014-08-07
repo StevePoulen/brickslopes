@@ -27,12 +27,14 @@
 
         public function addRegistrationLineItems($data) {
             $data = $this->determineLineItemAmounts($data);
-            $this->addEventLineItem($data);
+            $this->determineAddEventBrick($data);
+            $this->determineEventLineItem($data);
             $this->addMeetAndGreetLineItem($data);
             $this->addTShirtLineItem($data);
             $this->addDraftOneLineItem($data);
             $this->addDraftTwoLineItem($data);
             $this->addBricks($data);
+            $this->addVendorLineItem($data);
         }
 
         private function determineLineItemAmounts($data) {
@@ -46,6 +48,8 @@
                 $data['eventBadgeBrickAmount'] = $this->eventLineItemCodes['10006']['discount'];
                 $data['draftOneAmount'] = $this->eventLineItemCodes['10007']['discount'];
                 $data['draftTwoAmount'] = $this->eventLineItemCodes['10008']['discount'];
+                $data['vendorTableAmount'] = $this->eventLineItemCodes['10009']['discount'];
+                $data['eventVendorAmount'] = $this->eventLineItemCodes['10010']['discount'];
                 $data['discount'] = 'YES';
             } else {
                 $data['eventAmount'] = $this->eventLineItemCodes['10000']['cost'];
@@ -57,6 +61,8 @@
                 $data['eventBadgeBrickAmount'] = $this->eventLineItemCodes['10006']['cost'];
                 $data['draftOneAmount'] = $this->eventLineItemCodes['10007']['cost'];
                 $data['draftTwoAmount'] = $this->eventLineItemCodes['10008']['cost'];
+                $data['vendorTableAmount'] = $this->eventLineItemCodes['10009']['cost'];
+                $data['eventVendorAmount'] = $this->eventLineItemCodes['10010']['cost'];
                 $data['discount'] = 'NO';
             }
 
@@ -81,37 +87,73 @@
         }
 
         private function addBricks($data) {
-            if ($data['nameBadge'] === 'YES') {
-                $dto = $this->getDTO($data);
-                $dto['amount'] = $this->eventLineItemCodes['10003']['cost'];
-                $dto['eventLineItemCodeId'] = 4;
-                $dto['discount'] = 'YES';
-                $dto['lineItem'] = 'Complete Name Badge';
-                $dto['description'] = $data['badgeLine1'];
-                $this->registrationLineItemObj->addRegistrationLineItems($dto);
+            try {
+                if ($data['nameBadge'] === 'YES') {
+                    $dto = $this->getDTO($data);
+                    $dto['amount'] = $this->eventLineItemCodes['10003']['cost'];
+                    $dto['eventLineItemCodeId'] = 4;
+                    $dto['discount'] = 'YES';
+                    $dto['lineItem'] = 'Complete Name Badge';
+                    $dto['description'] = $data['badgeLine1'];
+                    $this->registrationLineItemObj->addRegistrationLineItems($dto);
 
+                    $this->addBrickLineItem(
+                        $data, 
+                        '1st Badge Brick', 
+                        'badgeLine2', 
+                        5,
+                        $data['badgeBrickOneAmount']
+                    );
+                    $this->addBrickLineItem(
+                        $data, 
+                        '2nd Badge Brick', 
+                        'badgeLine3', 
+                        6,
+                        $data['badgeBrickTwoAmount']
+                    );
+                }
+            } catch (exception $err) { 
+                //Do Nothing
+            }
+            
+            if ($this->addEventBrick) {
                 $this->addBrickLineItem(
                     $data, 
-                    '1st Badge Brick', 
-                    'badgeLine2', 
-                    5,
-                    $data['badgeBrickOneAmount']
-                );
-                $this->addBrickLineItem(
-                    $data, 
-                    '2nd Badge Brick', 
-                    'badgeLine3', 
-                    6,
-                    $data['badgeBrickTwoAmount']
+                    'Event Badge Brick', 
+                    'badgeLine1', 
+                    7,
+                    $data['eventBadgeBrickAmount']
                 );
             }
-            $this->addBrickLineItem(
-                $data, 
-                'Event Badge Brick', 
-                'badgeLine1', 
-                7,
-                $data['eventBadgeBrickAmount']
-            );
+        }
+
+        private function determineAddEventBrick($data) {
+            if (ISSET($data['vendorPass']) || ISSET($data['vendor'])) {
+                $this->addEventBrick = false;
+            } else {
+                $this->addEventBrick = true;
+            }
+        }
+
+        private function determineEventLineItem($data) {
+            try {
+                if ($data['vendorPass'] === 'YES') {
+                    $this->addVendorEventLineItem($data);
+                }
+            } catch (exception $err) {
+                $this->addEventLineItem($data);
+            }
+        }
+
+        private function addVendorEventLineItem($data) {
+            try {
+                $dto = $this->getDTO($data);
+                $dto['eventLineItemCodeId'] = 11;
+                $dto['amount'] = $data['eventVendorAmount'];
+                $dto['discount'] = $data['discount'];
+                $dto['lineItem'] = 'Vendor Pass';
+                $this->registrationLineItemObj->addRegistrationLineItems($dto);
+            } catch (exception $err) { }
         }
 
         private function addEventLineItem($data) {
@@ -147,6 +189,20 @@
                     $dto['discount'] = $data['discount'];
                     $dto['lineItem'] = 'T-Shirt';
                     $dto['size'] = $data['tShirtSize'];
+                    $this->registrationLineItemObj->addRegistrationLineItems($dto);
+                }
+            } catch (exception $err) { }
+        }
+
+        private function addVendorLineItem($data) {
+            try {
+                if ($data['vendor'] === 'YES') {
+                    $dto = $this->getDTO($data);
+                    $dto['eventLineItemCodeId'] = 10;
+                    $dto['amount'] = $data['vendorTableAmount'];
+                    $dto['discount'] = $data['discount'];
+                    $dto['lineItem'] = 'Vendor Tables';
+                    $dto['quantity'] = $data['vendorTables'];
                     $this->registrationLineItemObj->addRegistrationLineItems($dto);
                 }
             } catch (exception $err) { }

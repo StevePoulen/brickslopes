@@ -6,7 +6,12 @@ class vendorModel extends db {
     }
 
     public function addVendorInformation($data) {
-        return $this->query($this->insertQuery($data));
+        $vendorId = $this->query($this->insertQuery($data));
+        if ($vendorId > 0) {
+            $data['vendorId'] = $vendorId;
+            $this->query($this->insertVendorConnectorQuery($data));
+        }
+        return $vendorId;
     }
 
     public function getVendorInformation($eventId) {
@@ -17,6 +22,10 @@ class vendorModel extends db {
         return $this->query($this->insertVendorConnectorQuery($data));
     }
 
+    public function getVendorAssociateInformation($data) {
+        return $this->query($this->selectAssociateQuery($data));
+    }
+
     private function selectQuery($eventId) {
         return "
             SELECT 
@@ -25,7 +34,8 @@ class vendorModel extends db {
                 v.description,
                 v.url,
                 v.logo,
-                vc.tables
+                vc.tables,
+                vc.type
             FROM
                 vendors v,
                 vendorConnector vc
@@ -47,6 +57,7 @@ class vendorModel extends db {
                 userId, 
                 vendorId, 
                 tables,
+                type,
                 registrationDate 
             )
         VALUES
@@ -55,6 +66,7 @@ class vendorModel extends db {
                 '{$this->escapeCharacters($data['userId'])}',
                 '{$this->escapeCharacters($data['vendorId'])}',
                 '{$this->escapeCharacters($data['tables'])}',
+                '{$this->escapeCharacters($data['type'])}',
                 now()
           )
         ;
@@ -80,6 +92,25 @@ class vendorModel extends db {
                 '{$this->escapeCharacters($data['logo'])}',
                 now()
           )
+        ;
+      ";
+    }
+
+    private function selectAssociateQuery($data) {
+        return "
+            SELECT 
+                vc.vendorConnectorId,
+                u.firstName,
+                u.lastName
+            FROM
+                vendorConnector vc,
+                users u
+            WHERE
+                vc.vendorId = '{$this->escapeCharacters($data['vendorId'])}'
+                AND vc.eventId = '{$this->escapeCharacters($data['eventId'])}'
+                AND vc.type = 'ASSOCIATE'
+            ORDER BY
+                u.firstName
         ;
       ";
     }

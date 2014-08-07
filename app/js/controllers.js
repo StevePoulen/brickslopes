@@ -119,9 +119,9 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     }
     $scope.clickBuilder = function() {
         if ($window.sessionStorage.token) {
-            $location.path("/afol/index.html");
+            $location.path("/registered/index.html");
         } else {
-            $location.path("/afol/login.html");
+            $location.path("/registered/login.html");
         }
     }
 
@@ -147,7 +147,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
 
     $scope.logout = function() {
         deleteSession($window);
-        $location.path("/afol/login.html");
+        $location.path("/registered/login.html");
     }
 
     $scope.authenticated = function() {
@@ -193,13 +193,13 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         Auth.login(serializeLoginJson()).then(function(response) {
             storeSession($window, response);
             if($window.sessionStorage.redirectUrl) {
-                if(($window.sessionStorage.redirectUrl).match('\/partials\/afol/*')) {
+                if(($window.sessionStorage.redirectUrl).match('\/partials\/registered/*')) {
                     var newRedirectUrl = $window.sessionStorage.redirectUrl.replace('\/partials', '');
                     $location.path(newRedirectUrl);
                 }
                 delete $window.sessionStorage.redirectUrl;
             } else {
-                $location.path('/afol/index.html');
+                $location.path('/registered/index.html');
             }
 
             $scope.verifying = false;
@@ -217,7 +217,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         $scope.verifying = true;
         UserDetails.register(serializeRegisterJson()).then(function(response) {
             storeSession($window, response);
-            $location.path('/afol/index.html');
+            $location.path('/registered/index.html');
             $scope.verifying = false;
         }, function(data) {
             $scope.verifying = false;
@@ -288,7 +288,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     }
 
     $scope.closeDialog = function() {
-        $location.path("/afol/index.html");
+        $location.path("/registered/index.html");
     }
 }])
 .controller('afolEventRegistration', ['$scope', '$location', 'EventDetails', 'EventRegistration', '$route', 'EventDates', function($scope, $location, EventDetails, EventRegistration, $route, EventDates) {
@@ -368,7 +368,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     $scope.submitRegistration = function() {
         $scope.verifying = true;
         EventRegistration.submitRegistration($scope.isCreate, serializeRegistrationJson()).then(function(response) {
-            $location.path('/afol/eventPayment.html');
+            $location.path('/registered/eventPayment.html');
         }, function() {
             $scope.verifying = false;
             $scope.displayMessage = "There was an error submitting your data. Please try again.";
@@ -399,7 +399,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     });
 
     $scope.closeDialog = function() {
-        $location.path("/afol/index.html");
+        $location.path("/registered/index.html");
     }
 
     EventRegistration.get().then(function(data) {
@@ -415,7 +415,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     $scope.vendorList = [];
 
     $scope.closeDialog = function() {
-        $location.path("/afol/index.html");
+        $location.path("/registered/index.html");
     }
 
     VendorDetails.getList($scope.eventId).then(function(data) {
@@ -430,7 +430,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     $scope.verifying = false;
 
     $scope.closeDialog = function() {
-        $location.path("/afol/index.html");
+        $location.path("/registered/index.html");
     }
 
     Games.getList($scope.eventId).then(function(data) {
@@ -457,7 +457,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
             if (status === 201) {
                 $scope.verifying = false;
                 if (self.game.fee === 'YES') {
-                    $location.path('/afol/eventPayment.html');
+                    $location.path('/registered/eventPayment.html');
                 } else {
                     $scope.showModal = true;
                 }
@@ -493,7 +493,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
 
 
     $scope.closeDialog = function() {
-        $location.path("/afol/index.html");
+        $location.path("/registered/index.html");
     }
 
     Themes.getList($scope.eventId).then(function(data) {
@@ -532,7 +532,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     }
 
     $scope.payNow = function() {
-        $location.path('/afol/eventPayment.html');
+        $location.path('/registered/eventPayment.html');
     }
 
     $scope.changePassword = function() {
@@ -554,33 +554,33 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     }
 
     $scope.clickEditProfile = function() {
-        $location.path("/afol/editProfile.html");
+        $location.path("/registered/editProfile.html");
     }
 
     $scope.clickRegistration = function() {
-        $location.path("/afol/" + $scope.eventId + "/eventRegistration.html");
+        $location.path("/registered/" + $scope.eventId + "/eventRegistration.html");
     }
 
     $scope.clickMocRegistration = function() {
         if (UserDetails.isUserPaid()) {
-            $location.path("/registered/" + $scope.eventId + "/eventMocRegistration.html");
+            $location.path("/paid/" + $scope.eventId + "/eventMocRegistration.html");
         }
     }
 
     $scope.clickUpdateMocRegistration = function() {
         if (UserDetails.isUserPaid()) {
-            $location.path("/registered/" + $scope.eventId + "/" + this.moc.mocId + "/eventMocRegistration.html");
+            $location.path("/paid/" + $scope.eventId + "/" + this.moc.mocId + "/eventMocRegistration.html");
         }
     }
 
     $scope.clickGames = function() {
         if (UserDetails.isUserPaid()) {
-            $location.path("/registered/eventGames.html");
+            $location.path("/paid/eventGames.html");
         }
     }
 
     $scope.closeDialog = function() {
-        $location.path("/afol/index.html");
+        $location.path("/registered/index.html");
     }
 
     function displayRegisterEventButton() {
@@ -734,7 +734,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     }
 
     $scope.closeDialog = function() {
-        $location.path("/afol/index.html");
+        $location.path("/registered/index.html");
     }
 
     function setUpdateModel(moc) {
@@ -770,7 +770,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     $scope.displayErrorMessage = "";
 
     $scope.closeDialog = function() {
-        $location.path("/afol/eventMe.html");
+        $location.path("/registered/eventMe.html");
     }
 
     function serializeProfileJson() {
@@ -791,7 +791,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         $scope.verifying = true;
         UserDetails.update(serializeProfileJson()).then(function(response) {
             storeSession($window, response);
-            $location.path('/afol/eventMe.html');
+            $location.path('/registered/eventMe.html');
             $scope.verifying = false;
         }, function(data) {
             $scope.verifying = false;
@@ -852,6 +852,10 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         $location.path('/admin/eventRegistration/emails');
     }
 
+    $scope.clickVendorRegistrationEmail = function() {
+        $location.path('/admin/vendorRegistration/emails');
+    }
+
     $scope.clickUserRegistrationEmail = function() {
         $location.path('/admin/userRegistration/emails');
     }
@@ -875,7 +879,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     });
 
     $scope.closeDialog = function() {
-        $location.path("/afol/index.html");
+        $location.path("/registered/index.html");
     }
 }])
 .controller('adminRegisteredMocs', ['$scope', 'MocDetails', '$location', function($scope, MocDetails, $location) {
@@ -995,80 +999,80 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     });
 
     $scope.clickMe = function() {
-        $location.path("/afol/eventMe.html");
+        $location.path("/registered/eventMe.html");
     }
 
     function determineClickAction(finalPage) {
         if (! UserDetails.isUserRegistered()) {
             $scope.clickRegistration();
         } else if (! UserDetails.isUserPaid() ) {
-            $location.path("/afol/eventPayment.html");
+            $location.path("/registered/eventPayment.html");
         } else {
             $location.path(finalPage);
         }
     }
 
     $scope.clickThemes = function() {
-        determineClickAction("/registered/eventThemes.html");
+        determineClickAction("/paid/eventThemes.html");
     }
 
     $scope.clickGames = function() {
-        determineClickAction("/registered/eventGames.html");
+        determineClickAction("/paid/eventGames.html");
     }
 
     $scope.clickMocRegistration = function() {
-        determineClickAction("/registered/" + $scope.eventId + "/eventMocRegistration.html");
+        determineClickAction("/paid/" + $scope.eventId + "/eventMocRegistration.html");
     }
 
     $scope.clickMocList = function() {
-        determineClickAction("/registered/eventMocList.html");
+        determineClickAction("/paid/eventMocList.html");
     }
 
     $scope.clickRegistration = function() {
         if ($scope.isRegistered) {
-            $location.path("/afol/eventMe.html");
+            $location.path("/registered/eventMe.html");
         } else {
-            $location.path("/afol/" + $scope.eventId + "/eventRegistration.html");
+            $location.path("/registered/" + $scope.eventId + "/eventRegistration.html");
         }
     }
 
     $scope.clickSchedule = function() {
-        //$location.path("/afol/eventSchedule.html");
-        $location.path("/afol/comingSoon.html");
+        //$location.path("/registered/eventSchedule.html");
+        $location.path("/registered/comingSoon.html");
     }
 
     $scope.clickKeynote = function() {
-        //$location.path("/afol/eventKeynote.html");
-        $location.path("/afol/comingSoon.html");
+        //$location.path("/registered/eventKeynote.html");
+        $location.path("/registered/comingSoon.html");
     }
 
     $scope.clickCollection = function() {
-        //$location.path("/afol/eventCollection.html");
-        $location.path("/afol/comingSoon.html");
+        //$location.path("/registered/eventCollection.html");
+        $location.path("/registered/comingSoon.html");
     }
 
     $scope.clickVendors = function() {
-        $location.path("/afol/" + $scope.eventId + "/eventVendors.html");
+        $location.path("/registered/" + $scope.eventId + "/eventVendors.html");
     }
 
     $scope.clickAfols= function() {
-        $location.path("/afol/eventAfols.html");
+        $location.path("/registered/eventAfols.html");
     }
 
     $scope.clickFAQ = function() {
-        $location.path("/afol/eventFAQ.html");
+        $location.path("/registered/eventFAQ.html");
     }
 
     $scope.clickVenue = function() {
-        $location.path("/afol/eventVenue.html");
+        $location.path("/registered/eventVenue.html");
     }
 
     $scope.clickHotel = function() {
-        $location.path("/afol/eventHotel.html");
+        $location.path("/registered/eventHotel.html");
     }
 
     $scope.closeDialog = function() {
-        $location.path("/afol/index.html");
+        $location.path("/registered/index.html");
     }
 
     MocDetails.getList($scope.eventId).then(function(data) {

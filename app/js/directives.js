@@ -211,7 +211,7 @@ angular.module('brickSlopes.directives', [])
     return {
         restrict: 'E',
         replace: true,
-        templateUrl: 'partials/registered/eventThemesDirective.html',
+        templateUrl: 'partials/paid/eventThemesDirective.html',
         link: function(scope, element, attrs) {
             scope.color = attrs.color;
         }
@@ -250,7 +250,7 @@ angular.module('brickSlopes.directives', [])
     return {
         restrict: 'E',
         replace: true,
-        templateUrl: 'partials/registered/bsGameRegistration.html',
+        templateUrl: 'partials/paid/bsGameRegistration.html',
         link: function(scope, elem, attrs) {
             scope.$watch("userGameList", function() {
                 scope.isRegistered = (scope.userGameList[scope.game.gameId] ? true : false);

@@ -1,14 +1,13 @@
 <?php
     class mail {
-        public function __construct($email, $creatorId) {
+        public function __construct($creatorId) {
             $this->message = "";
             $this->subject = "";
-            $this->email = $email;
             $this->creatorId = $creatorId;
             $this->emailHistoryObj = new emailHistory();
         }
 
-        public function sendEmailTest() {
+        public function sendEmailTest($email) {
             $this->subject = "BrickSlopes Question Time: " . time();
             $this->message = "
                 <!doctype html>
@@ -22,7 +21,7 @@
                         {$this->getFontClosure()}
             ";
 
-            $this->message .= $this->getDisclaimer();
+            $this->message .= $this->getDisclaimer($email);
 
             $this->message .= "
                     </body>
@@ -32,13 +31,12 @@
             return array (
                 'subject' => $this->subject,
                 'body' => $this->message,
-                'email' => $this->email
+                'email' => $email
             );
 
         }
 
         public function sendEmailUsMessage($data) {
-            $this->email = 'TBD';
             $this->subject = "BrickSlopes Question";
             $this->message = "
                 <!doctype html>
@@ -58,7 +56,7 @@
                         {$this->getFontClosure()}
             ";
 
-            $this->message .= $this->getDisclaimer();
+            $this->message .= $this->getDisclaimer('brian@brickslopes.com');
 
             $this->message .= "
                     </body>
@@ -71,7 +69,7 @@
                     'recipientId' => 1,
                     'type' => __METHOD__,
                     'priority' => 10,
-                    'emailAddress' => $this->email,
+                    'emailAddress' => 'undetermined',
                     'subject' => $this->subject,
                     'body' => $this->message
                 )
@@ -108,8 +106,8 @@
                                     </td>
                                 </tr>
                                 {$this->getTableFooter()}
-                                {$this->getDisclaimer()}
-                                {$this->getCopyRight()}
+                                {$this->getDisclaimer($dbObj->email)}
+                                {$this->getCopyRight($dbObj->email)}
                                 {$this->getDivClosure()}
                             </body>
                         </html>
@@ -124,7 +122,7 @@
                                 'recipientId' => $dbObj->userId,
                                 'type' => __METHOD__,
                                 'priority' => 1,
-                                'emailAddress' => $this->email,
+                                'emailAddress' => $dbObj->email,
                                 'subject' => $this->subject,
                                 'body' => $this->message
                             )
@@ -141,8 +139,6 @@
             $lineItems = $registrationLineItemsObj->getRegisteredLineItems($userId, $eventId);
             if($usersObj->result) {
                 while($dbObj = $usersObj->result->fetch_object()) {
-                    $this->email = $dbObj->email;
-
                     $this->subject = "BrickSlopes Registration";
                     $this->message = "
                         <!doctype html>
@@ -182,8 +178,8 @@
                                     </td>
                                 </tr>
                                 {$this->getTableFooter()}
-                                {$this->getDisclaimer()}
-                                {$this->getCopyRight()}
+                                {$this->getDisclaimer($dbObj->email)}
+                                {$this->getCopyRight($dbObj->email)}
                                 {$this->getDivClosure()}
                             </body>
                         </html>
@@ -198,7 +194,80 @@
                                 'recipientId' => $dbObj->userId,
                                 'type' => __METHOD__,
                                 'priority' => 3,
-                                'emailAddress' => $this->email,
+                                'emailAddress' => $dbObj->email,
+                                'subject' => $this->subject,
+                                'body' => $this->message
+                            )
+                        );
+                    }
+                }
+            }
+        }
+
+        public function sendVendorRegistrationMessage($userId, $eventId, $display=false) {
+            $usersObj = new users();
+            $usersObj->getUserInformation($userId);
+            $registrationLineItemsObj = new registrationLineItems($userId, false);
+            $lineItems = $registrationLineItemsObj->getRegisteredLineItems($userId, $eventId);
+            if($usersObj->result) {
+                while($dbObj = $usersObj->result->fetch_object()) {
+
+                    $this->subject = "BrickSlopes Vendor Registration";
+                    $this->message = "
+                        <!doctype html>
+                        <html>
+                            <head>
+                                <title>BrickSlopes Vendor Registration</title>
+                            </head>
+                            <body>
+                                {$this->getEmailBackgroundHeader()}
+                                {$this->getFirstLineSpoiler()}
+                                {$this->getBSLogo()}
+                                {$this->getNavigation()}
+                                {$this->getTableHeader()}
+                                <tr>
+                                    <td align=left>
+                                        {$this->getFontWrapper(16, '#000000')}
+                                            {$dbObj->firstName},
+                                            <p>
+                                            <b>Congratulations!</b> This e-mail confirms you are a registered vendor for BrickSlopes 2015 - Salt Lake City.
+                                            <p>
+                                            You will receive a confirmation e-mail once your payment is received and your registration is complete.
+                                            <p>
+                                            <b>Your Event Experience</b>
+                                            {$this->parseLineItems($lineItems)}
+                                            <p>
+                                            <b>Have You Considered?</b>
+                                            <p>
+                                            We need LEGO presenters and panels speakers. Do you have a topic you are passionate about and are willing to share with the community? 
+                                            <p>
+                                            <b>Let the fun begin ...</b>
+                                            <p>
+                                            Dont' forget to sign-up to bring your MOCs or register for event games.
+                                            <p>
+                                            <p>
+                                            {$this->getPleaseVisit()}
+                                        {$this->getFontClosure()}
+                                    </td>
+                                </tr>
+                                {$this->getTableFooter()}
+                                {$this->getDisclaimer($dbObj->email)}
+                                {$this->getCopyRight($dbObj->email)}
+                                {$this->getDivClosure()}
+                            </body>
+                        </html>
+                    ";
+
+                    if ($display) {
+                        return $this->message;
+                    } else {
+                        $this->emailHistoryObj->addEmailHistoryInformation (
+                            array (
+                                'creatorId' => $this->creatorId,
+                                'recipientId' => $dbObj->userId,
+                                'type' => __METHOD__,
+                                'priority' => 4,
+                                'emailAddress' => $dbObj->email,
                                 'subject' => $this->subject,
                                 'body' => $this->message
                             )
@@ -215,7 +284,6 @@
             $lineItems = $registrationLineItemsObj->getRegisteredLineItems($userId, $eventId);
             if($usersObj->result) {
                 $dbObj = $usersObj->result->fetch_object();
-                $this->email = $dbObj->email;
 
                 $this->subject = "BrickSlopes Registration Complete";
                 $this->message = "
@@ -253,8 +321,8 @@
                                     </td>
                                 </tr>
                             {$this->getTableFooter()}
-                            {$this->getDisclaimer()}
-                            {$this->getCopyRight()}
+                            {$this->getDisclaimer($dbObj->email)}
+                            {$this->getCopyRight($dbObj->email)}
                             {$this->getDivClosure()}
                         </body>
                     </html>
@@ -269,7 +337,7 @@
                             'recipientId' => $dbObj->userId,
                             'type' => __METHOD__,
                             'priority' => 2,
-                            'emailAddress' => $this->email,
+                            'emailAddress' => $dbObj->email,
                             'subject' => $this->subject,
                             'body' => $this->message
                         )
@@ -310,8 +378,8 @@
                                         </td>
                                     </tr>
                                 {$this->getTableFooter()}
-                                {$this->getDisclaimer()}
-                                {$this->getCopyRight()}
+                                {$this->getDisclaimer($dbObj->email)}
+                                {$this->getCopyRight($dbObj->email)}
                                 {$this->getDivClosure()}
                             </body>
                         </html>
@@ -326,7 +394,7 @@
                                 'recipientId' => $dbObj->userId,
                                 'type' => __METHOD__,
                                 'priority' => 0,
-                                'emailAddress' => $this->email,
+                                'emailAddress' => $dbObj->email,
                                 'subject' => $this->subject,
                                 'body' => $this->message
                             )
@@ -344,8 +412,6 @@
                 $usersObj->getAllUserInformation();
             }
             while($dbObj = $usersObj->result->fetch_object()) {
-                $this->email = $dbObj->email;
-
                 $this->subject = "BrickSlopes News Announcement";
                 $this->message = "
                     <!doctype html>
@@ -370,8 +436,8 @@
                                 </td>
                             </tr>
                             {$this->getTableFooter()}
-                            {$this->getDisclaimer()}
-                            {$this->getCopyRight()}
+                            {$this->getDisclaimer($dbObj->email)}
+                            {$this->getCopyRight($dbObj->email)}
                             {$this->getDivClosure()}
                         </body>
                     </html>
@@ -386,7 +452,7 @@
                             'recipientId' => $dbObj->userId,
                             'type' => __METHOD__,
                             'priority' => 9,
-                            'emailAddress' => $this->email,
+                            'emailAddress' => $dbObj->email,
                             'subject' => $this->subject,
                             'body' => $this->message
                         )
@@ -571,7 +637,7 @@
             ";
         }
 
-        private function getCopyRight() {
+        private function getCopyRight($email) {
             return "
                 {$this->getTableHeader()}
                 <tr>
@@ -587,14 +653,14 @@
             ";
         }
 
-        private function getDisclaimer() {
+        private function getDisclaimer($email) {
             return "
                 {$this->getTableHeader()}
                 <tr>
                     <td algin=center>
                         {$this->getFontWrapper()}
                             You are receiving this email because you signed up to receive emails at {$this->getDomain()}. If you no longer wish to receive our email updates, please click here.<br>
-                            The information contained in this communication is confidential. This communication is intended only for the use of the addressee ({$this->email}). If you are not the intended recipient, please notify legal@brickslopes.com promptly and delete the message.<br>Any distribution or copying of this message without the consent of BrickSlopes is prohibited.
+                            The information contained in this communication is confidential. This communication is intended only for the use of the addressee ({$email}). If you are not the intended recipient, please notify legal@brickslopes.com promptly and delete the message.<br>Any distribution or copying of this message without the consent of BrickSlopes is prohibited.
                         {$this->getFontClosure()}
                     </td>
                 </tr>

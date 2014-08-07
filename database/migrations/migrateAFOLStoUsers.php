@@ -85,6 +85,7 @@
         private function addDummyVendors() {
             $vendorObj = new vendorModel();
             $vendorsCount = 0;
+            $vendorConnectionCount = 0;
 
             $vendorCollection = array(
                 array(
@@ -92,6 +93,7 @@
                     'description' => 'All LEGO -- ALL DAY -- EVERY DAY',
                     'url' => 'https://www.mysite.com',
                     'logo' => 'https://www.mylogo.com',
+                    'type' => 'OWNER',
                     'tables' => 12,
                     'userId' => 2,
                     'eventId' => 2
@@ -101,6 +103,7 @@
                     'description' => 'All Mega-Blah -- ALL DAY -- EVERY DAY',
                     'url' => 'https://www.yuck.com',
                     'logo' => '',
+                    'type' => 'OWNER',
                     'tables' => 5,
                     'userId' => 1,
                     'eventId' => 2
@@ -110,8 +113,9 @@
                     'description' => 'All Star Wars -- ALL DAY -- EVERY DAY',
                     'url' => '',
                     'logo' => 'https://www.mybrickslopes.com/images/brickslopes_official.png',
+                    'type' => 'OWNER',
                     'tables' => 3,
-                    'userId' => 1,
+                    'userId' => 3,
                     'eventId' => 2
                 )
             );
@@ -119,12 +123,15 @@
             foreach ($vendorCollection as $vendorMap) {
                 $vendorId = $vendorObj->addVendorInformation($vendorMap);
                 $vendorMap['vendorId'] = $vendorId;
-                $vendorObj->addVendorConnectorInformation($vendorMap);
                 $vendorsCount++;
+                $vendorMap['type'] = 'ASSOCIATE';
+                $vendorMap['userId'] = $vendorMap['userId'] + 5;
+                $vendorObj->addVendorConnectorInformation($vendorMap);
+                $vendorConnectionCount+=2;
             }
 
             $this->validatetable('vendors', $vendorsCount);
-            $this->validatetable('vendorConnector', $vendorsCount);
+            $this->validatetable('vendorConnector', $vendorConnectionCount);
 
         }
 
@@ -724,6 +731,25 @@
             );
             $eventLineItemsObj->addEventLineItem($eventLineItemMap);
 
+            $eventLineItemMap = array (
+                'eventId' => $eventId,
+                'eventLineItemCodeId' => 10,
+                'lineItem' => 'Vendor Tables',
+                'cost' => '75.00',
+                'discount' => '75.00',
+                'active' => 'YES'
+            );
+            $eventLineItemsObj->addEventLineItem($eventLineItemMap);
+
+            $eventLineItemMap = array (
+                'eventId' => $eventId,
+                'eventLineItemCodeId' => 11,
+                'lineItem' => 'Vendor Pass',
+                'cost' => '0.00',
+                'discount' => '0.00',
+                'active' => 'YES'
+            );
+            $eventLineItemsObj->addEventLineItem($eventLineItemMap);
 
             $eventDatesObj = new eventDatesModel();
             $eventDatesMap = array (
@@ -869,6 +895,26 @@
             );
             $eventLineItemsObj->addEventLineItem($eventLineItemMap);
 
+            $eventLineItemMap = array (
+                'eventId' => $eventId,
+                'eventLineItemCodeId' => 10,
+                'lineItem' => 'Vendor Tables',
+                'cost' => '75.00',
+                'discount' => '75.00',
+                'active' => 'YES'
+            );
+            $eventLineItemsObj->addEventLineItem($eventLineItemMap);
+
+            $eventLineItemMap = array (
+                'eventId' => $eventId,
+                'eventLineItemCodeId' => 11,
+                'lineItem' => 'Vendor Pass',
+                'cost' => '0.00',
+                'discount' => '0.00',
+                'active' => 'YES'
+            );
+            $eventLineItemsObj->addEventLineItem($eventLineItemMap);
+
             $eventDatesObj = new eventDatesModel();
             $eventDatesMap = array (
                 'eventId' => $eventId,
@@ -920,7 +966,7 @@
 
             $this->validateTable('eventDates', 10);
 
-            $this->validateTable('eventLineItems', 18);
+            $this->validateTable('eventLineItems', 22);
         }
 
         private function migrateUsers($eventId) {

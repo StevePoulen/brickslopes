@@ -35,10 +35,10 @@ config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvide
         }
     )
     .when(
-        '/afol/comingSoon.html',
+        '/registered/comingSoon.html',
         {
-            templateUrl: 'partials/afol/comingSoon.html',
-            controller: 'afolIndex'
+            templateUrl: 'partials/registered/comingSoon.html',
+            controller: 'registeredIndex'
         }
     )
     .when(
@@ -91,24 +91,24 @@ config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvide
         }
     )
     .when(
-        '/afol/index.html',
+        '/registered/index.html',
         {
-            templateUrl: '/partials/afol/index.html',
-            controller: 'afolIndex'
+            templateUrl: '/partials/registered/index.html',
+            controller: 'registeredIndex'
         }
     )
     .when(
         '/admin/index.html',
         {
             templateUrl: '/partials/admin/index.html',
-            controller: 'afolAdmin'
+            controller: 'registeredAdmin'
         }
     )
     .when(
-        '/afol/editProfile.html',
+        '/registered/editProfile.html',
         {
-            templateUrl: '/partials/afol/editProfile.html',
-            controller: 'afolEditProfile'
+            templateUrl: '/partials/registered/editProfile.html',
+            controller: 'registeredEditProfile'
         }
     )
     .when(
@@ -147,123 +147,123 @@ config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvide
         }
     )
     .when(
-        '/afol/eventAfols.html',
+        '/registered/eventAfols.html',
         {
-            templateUrl: '/partials/afol/eventAfols.html',
+            templateUrl: '/partials/registered/eventAfols.html',
             controller: 'eventAfols'
         }
     )
     .when(
-        '/afol/eventMe.html',
+        '/registered/eventMe.html',
         {
-            templateUrl: '/partials/afol/eventMe.html',
-            controller: 'afolMe'
+            templateUrl: '/partials/registered/eventMe.html',
+            controller: 'registeredMe'
         }
     )
     .when(
-        '/registered/eventGames.html',
+        '/paid/eventGames.html',
         {
-            templateUrl: '/partials/registered/eventGames.html',
-            controller: 'afolEventGames'
+            templateUrl: '/partials/paid/eventGames.html',
+            controller: 'registeredEventGames'
         }
     )
     .when(
-        '/registered/eventThemes.html',
+        '/paid/eventThemes.html',
         {
-            templateUrl: '/partials/registered/eventThemes.html',
-            controller: 'afolEventThemes'
+            templateUrl: '/partials/paid/eventThemes.html',
+            controller: 'registeredEventThemes'
         }
     )
     .when(
-        '/afol/eventPayment.html',
+        '/registered/eventPayment.html',
         {
-            templateUrl: '/partials/afol/eventPayment.html',
-            controller: 'afolEventPayment'
+            templateUrl: '/partials/registered/eventPayment.html',
+            controller: 'registeredEventPayment'
         }
     )
     .when(
-        '/afol/:eventId/eventVendors.html',
-        {
-            templateUrl: function(params) {
-                return '/partials/afol/eventVendors.html?eventId='+params.eventId
-            },
-            controller: 'afolEventVendors'
-        }
-    )
-    .when(
-        '/afol/:eventId/eventRegistration.html',
+        '/registered/:eventId/eventVendors.html',
         {
             templateUrl: function(params) {
-                return '/partials/afol/eventRegistration.html?eventId='+params.eventId
+                return '/partials/registered/eventVendors.html?eventId='+params.eventId
             },
-            controller: 'afolEventRegistration'
+            controller: 'registeredEventVendors'
         }
     )
     .when(
-        '/afol/eventSchedule.html',
-        {
-            templateUrl: '/partials/afol/eventSchedule.html',
-            controller: 'afolIndex'
-        }
-    )
-    .when(
-        '/afol/eventKeynote.html',
-        {
-            templateUrl: '/partials/afol/eventKeynote.html',
-            controller: 'afolIndex'
-        }
-    )
-    .when(
-        '/registered/:eventId/eventMocRegistration.html',
+        '/registered/:eventId/eventRegistration.html',
         {
             templateUrl: function(params) {
-                return '/partials/registered/eventMocRegistration.html?eventId='+params.eventId
+                return '/partials/registered/eventRegistration.html?eventId='+params.eventId
             },
-            controller: 'afolMocRegistration'
+            controller: 'registeredEventRegistration'
         }
     )
     .when(
-        '/registered/:eventId/:mocId/eventMocRegistration.html',
+        '/registered/eventSchedule.html',
+        {
+            templateUrl: '/partials/registered/eventSchedule.html',
+            controller: 'registeredIndex'
+        }
+    )
+    .when(
+        '/registered/eventKeynote.html',
+        {
+            templateUrl: '/partials/registered/eventKeynote.html',
+            controller: 'registeredIndex'
+        }
+    )
+    .when(
+        '/paid/:eventId/eventMocRegistration.html',
         {
             templateUrl: function(params) {
-                return '/partials/registered/eventMocRegistration.html?eventId='+params.eventId+'&mocId='+params.mocId
+                return '/partials/paid/eventMocRegistration.html?eventId='+params.eventId
             },
-            controller: 'afolMocRegistration'
+            controller: 'registeredMocRegistration'
         }
     )
     .when(
-        '/afol/eventHotel.html',
+        '/paid/:eventId/:mocId/eventMocRegistration.html',
         {
-            templateUrl: '/partials/afol/eventHotel.html',
-            controller: 'afolIndex'
+            templateUrl: function(params) {
+                return '/partials/paid/eventMocRegistration.html?eventId='+params.eventId+'&mocId='+params.mocId
+            },
+            controller: 'registeredMocRegistration'
         }
     )
     .when(
-        '/afol/eventVenue.html',
+        '/registered/eventHotel.html',
         {
-            templateUrl: '/partials/afol/eventVenue.html',
-            controller: 'afolIndex'
+            templateUrl: '/partials/registered/eventHotel.html',
+            controller: 'registeredIndex'
         }
     )
     .when(
-        '/registered/eventMocList.html',
+        '/registered/eventVenue.html',
         {
-            templateUrl: '/partials/registered/eventMocList.html',
-            controller: 'afolIndex'
+            templateUrl: '/partials/registered/eventVenue.html',
+            controller: 'registeredIndex'
         }
     )
     .when(
-        '/afol/eventFAQ.html',
+        '/paid/eventMocList.html',
         {
-            templateUrl: '/partials/afol/eventFAQ.html',
-            controller: 'afolIndex'
+            templateUrl: '/partials/paid/eventMocList.html',
+            controller: 'registeredIndex'
         }
     )
     .when(
-        '/afol/login.html',
+        '/registered/eventFAQ.html',
+        {
+            templateUrl: '/partials/registered/eventFAQ.html',
+            controller: 'registeredIndex'
+        }
+    )
+    .when(
+        '/registered/login.html',
         {
             templateUrl: '/partials/public/login/index.html',
-            controller: 'afolLogin'
+            controller: 'registeredLogin'
         }
     )
     .otherwise(

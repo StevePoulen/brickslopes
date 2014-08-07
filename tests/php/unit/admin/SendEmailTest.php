@@ -38,6 +38,22 @@ class SendEmailTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(http_response_code(), 412);
     }
 
+    public function testSendVendorRegistrationMessage() 
+    {
+        $_GET = array(
+            'userId' => 1,
+            'eventId' => 2,
+            'type' => 'vendorRegistration'
+        );
+        $_SERVER['REQUEST_METHOD'] = "GET";
+        $GLOBALS['db_query'] = '1';
+        new SendEmail(15);
+        $this->assertEquals(http_response_code(), 200);
+        $output = get_ob();
+        $this->assertContains('you are a registered vendor', $output);
+        $this->assertContains('Brian', $output);
+    }
+
     public function testSendRegistrationPaidMessage() 
     {
         $_GET = array(

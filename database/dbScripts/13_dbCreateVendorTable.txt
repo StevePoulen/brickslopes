@@ -26,6 +26,7 @@ CREATE TABLE `vendorConnector` (
   `userId` INT(10) UNSIGNED NOT NULL,
   `vendorId` INT(10) UNSIGNED NOT NULL,
   `tables` INT(10),
+  `type` ENUM('OWNER', 'ASSOCIATE'),
   `registrationDate` DATETIME,
   PRIMARY KEY (`vendorConnectorId`),
   INDEX (eventId, userId, vendorId),

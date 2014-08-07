@@ -44,7 +44,9 @@ INSERT INTO eventLineItemCodes (code, lineItem) VALUES
     ('10005', '2nd Badge Brick'),
     ('10006', 'Event Badge Brick'),
     ('10007', 'Draft - $15'),
-    ('10008', 'Draft - $25');
+    ('10008', 'Draft - $25'),
+    ('10009', 'Vendor Tables'),
+    ('10010', 'Vendor Pass');
 
 CREATE TABLE `eventLineItems` (
   `eventLineItemId` INT(10) UNSIGNED UNIQUE NOT NULL auto_increment,

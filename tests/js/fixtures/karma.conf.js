@@ -9,6 +9,7 @@ module.exports = function(config){
       'tests/js/lib/angular-mocks.min.js',
       'app/partials/afol/**/*.html',
       'app/partials/registered/**/*.html',
+      'app/partials/paid/**/*.html',
       'app/partials/directives/**/*.html',
       'app/lib/**/*.js',
       'app/js/**/*.js',
@@ -39,6 +40,7 @@ module.exports = function(config){
     preprocessors : {
         'app/partials/afol/**/*.html': 'html2js',
         'app/partials/registered/**/*.html': 'html2js',
+        'app/partials/paid/**/*.html': 'html2js',
         'app/partials/directives/**/*.html': 'html2js'
     }
 })}

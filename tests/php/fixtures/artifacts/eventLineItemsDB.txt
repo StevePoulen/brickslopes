@@ -7,3 +7,5 @@ Complete Name Badge,10.00,10.00,YES,10003
 Event Badge Brick,0.00,0.00,YES,10006
 Draft - $15,15.00,15.00,YES,10007
 Draft - $25,25.00,25.00,YES,10008
+Vendor Tables,75.00,75.00,YES,10009
+Vendor Pass,0.00,0.00,YES,10010
