@@ -159,14 +159,14 @@ angular.module('brickSlopes.directives', [])
     return {
         restrict: 'E',
         replace: true,
-        templateUrl: 'partials/afol/eventPanes/userInformation.html'
+        templateUrl: 'partials/registered/eventPanes/userInformation.html'
     }
 })
 .directive('bsChangePassword', function() {
     return {
         restrict: 'E',
         replace: true,
-        templateUrl: 'partials/afol/eventPanes/changePassword.html'
+        templateUrl: 'partials/registered/eventPanes/changePassword.html'
     }
 })
 .directive('bsEventGames', function() {
@@ -174,7 +174,7 @@ angular.module('brickSlopes.directives', [])
         restrict: 'E',
         scope: true,
         replace: true,
-        templateUrl: 'partials/afol/eventPanes/eventGames.html'
+        templateUrl: 'partials/registered/eventPanes/eventGames.html'
     }
 })
 .directive('bsEventMocs', function() {
@@ -182,14 +182,14 @@ angular.module('brickSlopes.directives', [])
         restrict: 'E',
         scope: true,
         replace: true,
-        templateUrl: 'partials/afol/eventPanes/eventMocs.html'
+        templateUrl: 'partials/registered/eventPanes/eventMocs.html'
     }
 })
 .directive('bsEventMocsCta', function() {
     return {
         restrict: 'E',
         replace: true,
-        templateUrl: 'partials/afol/eventPanes/eventMocsCTA.html'
+        templateUrl: 'partials/registered/eventPanes/eventMocsCTA.html'
     }
 })
 .directive('bsRegisteredEvents', function() {
@@ -197,14 +197,14 @@ angular.module('brickSlopes.directives', [])
         restrict: 'E',
         scope: true,
         replace: true,
-        templateUrl: 'partials/afol/eventPanes/registeredEvents.html'
+        templateUrl: 'partials/registered/eventPanes/registeredEvents.html'
     }
 })
 .directive('bsEventRegistrationCta', function() {
     return {
         restrict: 'E',
         replace: true,
-        templateUrl: 'partials/afol/eventPanes/registerEventsCTA.html'
+        templateUrl: 'partials/registered/eventPanes/registerEventsCTA.html'
     }
 })
 .directive('bsTheme', function() {
@@ -227,9 +227,9 @@ angular.module('brickSlopes.directives', [])
 
             scope.makeACalculation = function() {
                 if (
-                    $location.path().match('\/afol\/.*') ||
+                    $location.path().match('\/registered\/.*') ||
                     $location.path().match('\/admin\/.*') ||
-                    $location.path().match('\/registered\/.*')
+                    $location.path().match('\/paid\/.*')
                 ) {
                     return false;
                 } else {

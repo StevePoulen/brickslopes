@@ -14,16 +14,21 @@
 
         private function findQueuedEmails() {
             $emailHistoryObj = new emailHistory();
-            $emailHistoryObj->getEmailHistoryInformation();
+            $emailCount = $emailHistoryObj->getEmailHistoryInformation();
 
             $emailHistoryUpdateObj = new emailHistory();
             if($emailHistoryObj->result) {
+                echo "Starting emails with {$emailCount} e-mails\n\n";
                 while($dbObj = $emailHistoryObj->result->fetch_object()) {
+                    echo "Sending an email to '{$dbObj->emailAddress}' with '{$dbObj->subject}' Subject\n";
                     $responseObj = $this->sendEmail($dbObj->emailAddress, $dbObj->subject, $dbObj->body, $dbObj->type);
+                    $emailStatus = ($responseObj['status'] ? 'SUCCESS' : $responseObj['errorMessage']);
                     $emailHistoryUpdateObj->updateEmailHistoryInformation (
                         $dbObj->emailHistoryId,
-                        ($responseObj['status'] ? NULL : $responseObj['errorMessage'])
+                        $emailStatus
                     );
+
+                    echo "\tEmail Status is '{$emailStatus}'\n";
                 }
             }
         }

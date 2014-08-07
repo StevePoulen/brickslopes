@@ -38,7 +38,7 @@ config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvide
         '/registered/comingSoon.html',
         {
             templateUrl: 'partials/registered/comingSoon.html',
-            controller: 'registeredIndex'
+            controller: 'afolIndex'
         }
     )
     .when(
@@ -94,21 +94,21 @@ config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvide
         '/registered/index.html',
         {
             templateUrl: '/partials/registered/index.html',
-            controller: 'registeredIndex'
+            controller: 'afolIndex'
         }
     )
     .when(
         '/admin/index.html',
         {
             templateUrl: '/partials/admin/index.html',
-            controller: 'registeredAdmin'
+            controller: 'afolAdmin'
         }
     )
     .when(
         '/registered/editProfile.html',
         {
             templateUrl: '/partials/registered/editProfile.html',
-            controller: 'registeredEditProfile'
+            controller: 'afolEditProfile'
         }
     )
     .when(
@@ -157,28 +157,28 @@ config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvide
         '/registered/eventMe.html',
         {
             templateUrl: '/partials/registered/eventMe.html',
-            controller: 'registeredMe'
+            controller: 'afolMe'
         }
     )
     .when(
         '/paid/eventGames.html',
         {
             templateUrl: '/partials/paid/eventGames.html',
-            controller: 'registeredEventGames'
+            controller: 'afolEventGames'
         }
     )
     .when(
         '/paid/eventThemes.html',
         {
             templateUrl: '/partials/paid/eventThemes.html',
-            controller: 'registeredEventThemes'
+            controller: 'afolEventThemes'
         }
     )
     .when(
         '/registered/eventPayment.html',
         {
             templateUrl: '/partials/registered/eventPayment.html',
-            controller: 'registeredEventPayment'
+            controller: 'afolEventPayment'
         }
     )
     .when(
@@ -187,7 +187,7 @@ config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvide
             templateUrl: function(params) {
                 return '/partials/registered/eventVendors.html?eventId='+params.eventId
             },
-            controller: 'registeredEventVendors'
+            controller: 'afolEventVendors'
         }
     )
     .when(
@@ -196,21 +196,21 @@ config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvide
             templateUrl: function(params) {
                 return '/partials/registered/eventRegistration.html?eventId='+params.eventId
             },
-            controller: 'registeredEventRegistration'
+            controller: 'afolEventRegistration'
         }
     )
     .when(
         '/registered/eventSchedule.html',
         {
             templateUrl: '/partials/registered/eventSchedule.html',
-            controller: 'registeredIndex'
+            controller: 'afolIndex'
         }
     )
     .when(
         '/registered/eventKeynote.html',
         {
             templateUrl: '/partials/registered/eventKeynote.html',
-            controller: 'registeredIndex'
+            controller: 'afolIndex'
         }
     )
     .when(
@@ -219,7 +219,7 @@ config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvide
             templateUrl: function(params) {
                 return '/partials/paid/eventMocRegistration.html?eventId='+params.eventId
             },
-            controller: 'registeredMocRegistration'
+            controller: 'afolMocRegistration'
         }
     )
     .when(
@@ -228,42 +228,42 @@ config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvide
             templateUrl: function(params) {
                 return '/partials/paid/eventMocRegistration.html?eventId='+params.eventId+'&mocId='+params.mocId
             },
-            controller: 'registeredMocRegistration'
+            controller: 'afolMocRegistration'
         }
     )
     .when(
         '/registered/eventHotel.html',
         {
             templateUrl: '/partials/registered/eventHotel.html',
-            controller: 'registeredIndex'
+            controller: 'afolIndex'
         }
     )
     .when(
         '/registered/eventVenue.html',
         {
             templateUrl: '/partials/registered/eventVenue.html',
-            controller: 'registeredIndex'
+            controller: 'afolIndex'
         }
     )
     .when(
         '/paid/eventMocList.html',
         {
             templateUrl: '/partials/paid/eventMocList.html',
-            controller: 'registeredIndex'
+            controller: 'afolIndex'
         }
     )
     .when(
         '/registered/eventFAQ.html',
         {
             templateUrl: '/partials/registered/eventFAQ.html',
-            controller: 'registeredIndex'
+            controller: 'afolIndex'
         }
     )
     .when(
         '/registered/login.html',
         {
             templateUrl: '/partials/public/login/index.html',
-            controller: 'registeredLogin'
+            controller: 'afolLogin'
         }
     )
     .otherwise(

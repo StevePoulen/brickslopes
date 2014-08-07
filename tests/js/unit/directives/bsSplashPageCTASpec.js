@@ -47,7 +47,7 @@ describe('directives', function() {
         });
 
         it('should not be displayed', function() {
-            location.path('/afol/hello.html');
+            location.path('/paid/hello.html');
             scope.$digest();
             expect(element.hasClass('ng-hide')).toBe(true);
         });
