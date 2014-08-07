@@ -30,6 +30,8 @@
 
                     echo "\tEmail Status is '{$emailStatus}'\n";
                 }
+
+                echo "\n\nEmails Finished\n\n";
             }
         }
 
