@@ -84,6 +84,11 @@ class Vendors {
 
             header("HTTP/1.0 201 Created");
 
+            echo json_encode (
+                array (
+                    'vendorId' => $vendorId
+                )
+            );
         } else {
             header("HTTP/1.0 400 Bad Request");
         }

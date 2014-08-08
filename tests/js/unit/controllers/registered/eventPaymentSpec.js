@@ -8,7 +8,7 @@ describe('controllers', function() {
     beforeEach(
         module(
             'brickSlopes.controllers',
-            'app/partials/afol/eventPayment.html'
+            'app/partials/registered/eventPayment.html'
         )
     );
 

@@ -41,9 +41,10 @@ class VendorTest extends PHPUnit_Framework_TestCase
             'name' => "A Boy's Mission",
         );
         $_SERVER['REQUEST_METHOD'] = "POST";
-        $GLOBALS['db_query'] = '1';
+        $GLOBALS['db_query'] = '1456';
         new Vendors($this->userId);
+        $output = json_decode(get_ob(), true);
         $this->assertEquals(http_response_code(), 201);
-
+        $this->assertEquals($output['vendorId'], '1456');
     }
 }

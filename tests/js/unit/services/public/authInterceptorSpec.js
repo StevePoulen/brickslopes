@@ -19,7 +19,7 @@ describe('service', function() {
             window = _$window_;
             window._ga = { push: function(data) { } };
             location = $location;
-            request = { 'url': 'partials/afol/index.html' };
+            request = { 'url': 'partials/registered/index.html' };
             auth = authInterceptor;
         }));
 
@@ -34,16 +34,16 @@ describe('service', function() {
             });
 
             it('should not have an Authtoken header', function() {
-                request = { 'url': 'partials/afol/index.html' };
+                request = { 'url': 'partials/registered/index.html' };
                 expect(auth.request(request).headers.Authtoken).toBeUndefined();
             });
 
             it('should call google analytics', function() {
                 location.host = function() { return 'www.brickslopes.com';}
                 spyOn(window._gaq, "push");
-                request = { 'url': 'partials/afol/index.html' };
+                request = { 'url': 'partials/registered/index.html' };
                 expect(auth.request(request).headers.Authtoken).toBeUndefined();
-                expect(window._gaq.push).toHaveBeenCalledWith([ '_trackPageview', 'partials/afol/index.html']);
+                expect(window._gaq.push).toHaveBeenCalledWith([ '_trackPageview', 'partials/registered/index.html']);
             });
         });
 
@@ -56,7 +56,7 @@ describe('service', function() {
                     }
                 };
                 auth.responseError(response)
-                expect(location.path()).toBe('/afol/login.html');
+                expect(location.path()).toBe('/registered/login.html');
                 expect(window.sessionStorage.redirectUrl).toBe('hello/world.html');
             });
 
@@ -68,7 +68,7 @@ describe('service', function() {
                     }
                 };
                 auth.responseError(response)
-                expect(location.path()).toBe('/afol/login.html');
+                expect(location.path()).toBe('/registered/login.html');
                 expect(window.sessionStorage.redirectUrl).toBe('hello/world.html');
             });
 

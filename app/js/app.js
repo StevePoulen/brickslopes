@@ -182,6 +182,24 @@ config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvide
         }
     )
     .when(
+        '/registered/:eventId/vendorRegistration.html',
+        {
+            templateUrl: function(params) {
+                return '/partials/registered/vendorRegistration.html?eventId='+params.eventId
+            },
+            controller: 'vendorRegistration'
+        }
+    )
+    .when(
+        '/registered/:eventId/:vendorId/associateRegistration.html',
+        {
+            templateUrl: function(params) {
+                return '/partials/registered/associateRegistration.html?eventId='+ params.eventId + '&vendorId=' + params.vendorId;
+            },
+            controller: 'associateRegistration'
+        }
+    )
+    .when(
         '/registered/:eventId/eventVendors.html',
         {
             templateUrl: function(params) {

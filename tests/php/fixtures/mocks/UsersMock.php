@@ -32,6 +32,10 @@ class users extends db {
         return $this->query();
     }
 
+    public function getUserInformationByEmail($email) {
+        return $this->query();
+    }
+
     public function getAllUserInformation() {
         return $this->query();
     }

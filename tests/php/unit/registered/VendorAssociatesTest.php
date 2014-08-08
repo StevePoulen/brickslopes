@@ -31,7 +31,7 @@ class VendorAssociatesTest extends PHPUnit_Framework_TestCase
 
     }
 
-    public function testAuthenticatedPOSTNoPass() 
+    public function testAuthenticatedPOSTNotAUserNoPass() 
     {
         $_POST = array(
             'eventId' => 2,
@@ -65,7 +65,7 @@ class VendorAssociatesTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(sizeOf($GLOBALS['addRegistrationLineItems']), 1);
     }
 
-    public function testAuthenticatedPOSTWithPass() 
+    public function testAuthenticatedPOSTNotAUserWithPass() 
     {
         $_POST = array(
             'eventId' => 2,
@@ -115,15 +115,17 @@ class VendorAssociatesTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(sizeOf($GLOBALS['addRegistrationLineItems']), 2);
     }
 
-    public function testAuthenticatedPATCHNoPass() 
+    public function testAuthenticatedPOSTWithUserNoPass() 
     {
         $_POST = array(
             'eventId' => 2,
-            'userId' => 15,
-            'addAfolPass' => 'NO' 
+            'addAfolPass' => 'NO',
+            'firstName' => 'Cody',
+            'lastName' => 'Ottley',
+            'email' => 'cody@brickslopes.com'
         );
-        $_SERVER['REQUEST_METHOD'] = "PATCH";
-        $GLOBALS['db_query'] = 1234;
+        $_SERVER['REQUEST_METHOD'] = "POST";
+        $GLOBALS['db_query'] = array(false, true, true, true, true, 1234);
         new VendorAssociates($this->userId);
         $this->assertEquals(http_response_code(), 201);
         $output = json_decode(get_ob(), true);
@@ -132,7 +134,7 @@ class VendorAssociatesTest extends PHPUnit_Framework_TestCase
         $lineItemObj = $GLOBALS['addRegistrationLineItems'][0];
         $this->assertEquals($lineItemObj['eventLineItemCodeId'], '11');
         $this->assertEquals($lineItemObj['eventId'], 2);
-        $this->assertEquals($lineItemObj['userId'], 15);
+        $this->assertEquals($lineItemObj['userId'], 123456789);
         $this->assertEquals($lineItemObj['lineItem'], 'Vendor Pass');
         $this->assertEquals($lineItemObj['amount'], '0.00');
         $this->assertEquals($lineItemObj['paid'], 'NO');
@@ -147,15 +149,17 @@ class VendorAssociatesTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(sizeOf($GLOBALS['addRegistrationLineItems']), 1);
     }
 
-    public function testAuthenticatedPATCHWithPass() 
+    public function testAuthenticatedPOSTWithUserWithPass() 
     {
         $_POST = array(
             'eventId' => 2,
-            'userId' => 15,
+            'firstName' => 'Cody',
+            'lastName' => 'Ottley',
+            'email' => 'cody@brickslopes.com',
             'addAfolPass' => 'YES'
         );
-        $_SERVER['REQUEST_METHOD'] = "PATCH";
-        $GLOBALS['db_query'] = 1234;
+        $_SERVER['REQUEST_METHOD'] = "POST";
+        $GLOBALS['db_query'] = array(false, true, true, true, true, true, 1234);
         new VendorAssociates($this->userId);
         $this->assertEquals(http_response_code(), 201);
         $output = json_decode(get_ob(), true);

@@ -61,5 +61,26 @@ describe('service', function() {
                 expect(data).toEqualData(3);
             });
         });
+
+        describe('Post', function() {
+            var mockBackend, service, data;
+            beforeEach(inject(function(_$httpBackend_, VendorDetails) {
+                mockBackend = _$httpBackend_;
+                mockBackend.expectPOST('/controllers/registered/vendors.php').respond(201, 'Success');
+                service = VendorDetails;
+            }));
+
+            it('should get a list of vendors for an event', function() {
+                var vendorDTO;
+                var load = service.create(vendorDTO);
+
+                load.then(function(_data) {
+                    data = _data;
+                });
+
+                mockBackend.flush();
+                expect(data).toEqualData('Success');
+            });
+        });
     });
 });

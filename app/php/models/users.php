@@ -27,7 +27,11 @@ class users extends \db {
     }
 
     public function getUserInformation($userId) {
-        return $this->query($this->selectQuery($userId));
+        return $this->query($this->selectQuery(array('userId' => $userId)));
+    }
+
+    public function getUserInformationByEmail($email) {
+        return $this->query($this->selectQuery(array('email' => $email)));
     }
 
     public function getAllUserInformation() {
@@ -106,10 +110,14 @@ class users extends \db {
       ";
     }
 
-    private function selectQuery($userId, $isSingleUser=true) {
+    private function selectQuery($data, $isSingleUser=true) {
         $whereStatement = "";
         if ($isSingleUser) {
-            $whereStatement = " WHERE userId = {$userId}";
+            if (ISSET(data['userId']) {
+                $whereStatement = " WHERE userId = {$this->escapeCharacters($data['userId'])}";
+            } else {
+                $whereStatement = " WHERE email = {$this->escapeCharacters($data['email'])}";
+            }
         }
         return "
             SELECT 

@@ -109,26 +109,17 @@ class VendorAssociates {
             $payload['userId'] = $userId;
             $this->addAssociateVendor($payload);
         } else {
-            header("HTTP/1.0 400 Bad Request");
-        }
-    }
-
-    private function patch() {
-        $payload = json_decode(file_get_contents("php://input"), true);
-        if (sizeof($payload) == 0) {
-            $payload = $_POST;
-        }
-
-        $userObj = new users();
-        $userObj->getUserInformation($payload['userId']);
-        if ($userObj->result) {
-            $dbObj = $userObj->result->fetch_object();
-            $payload['firstName'] = $dbObj->firstName;
-            $payload['lastName'] = $dbObj->lastName;
-            $payload['email'] = $dbObj->email;
-            $this->addAssociateVendor($payload);
-        } else {
-            header("HTTP/1.0 400 Bad Request");
+            $userObj->getUserInformationByEmail($payload['email']);
+            if ($userObj->result) {
+                $dbObj = $userObj->result->fetch_object();
+                $payload['userId'] = $dbObj->userId;
+                $payload['firstName'] = $dbObj->firstName;
+                $payload['lastName'] = $dbObj->lastName;
+                $payload['email'] = $dbObj->email;
+                $this->addAssociateVendor($payload);
+            } else {
+                header("HTTP/1.0 400 Bad Request");
+            }
         }
     }
 }

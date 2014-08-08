@@ -424,6 +424,42 @@ angular.module('brickSlopes.services', ['ngResource'])
                 }));
             }
         },
+
+        create: function(vendorDTO) {
+            var delay= $q.defer();
+            $http (
+                {
+                    method: 'POST',
+                    url: '/controllers/registered/vendors.php',
+                    data: vendorDTO,
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+                }
+            ).success(function(data, status, headers, config) {
+                delay.resolve(data);
+            }).error(function(data, status, headers, config) {
+                delay.reject(status);
+            });
+
+            return delay.promise;
+        },
+
+        createAssociate: function(vendorDTO) {
+            var delay= $q.defer();
+            $http (
+                {
+                    method: 'POST',
+                    url: '/controllers/registered/vendorAssociates.php',
+                    data: vendorDTO,
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+                }
+            ).success(function(data, status, headers, config) {
+                delay.resolve(status);
+            }).error(function(data, status, headers, config) {
+                delay.reject(status);
+            });
+
+            return delay.promise;
+        }
     }
 }])
 .factory('UserDetails', ['$q', '$http', '$window', function($q, $http, $window) {
@@ -1178,7 +1214,7 @@ angular.module('brickSlopes.services', ['ngResource'])
         responseError: function(rejection) {
             if (rejection.status === 401 || rejection.status === 403) {
                 $window.sessionStorage.redirectUrl=rejection.config.url;
-                $location.path('/afol/login.html');
+                $location.path('/registered/login.html');
             } else if (rejection.status >= 500) {
                 $location.path('/error.html');
             }

@@ -626,6 +626,117 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         $scope.passDates = passDates;
     });
 }])
+.controller('associateRegistration', ['$scope', '$location', 'VendorDetails', '$route', function($scope, $location, VendorDetails, $route) {
+    $scope.eventId = $route.current.params.eventId;
+    $scope.vendorId = $route.current.params.vendorId;
+    $scope.displayMessage = undefined;
+
+    function serializeAssociateJson() {
+        return {
+            eventId: $scope.eventId,
+            vendorId: $scope.vendorId,
+            firstName: $scope.firstName,
+            lastName: $scope.lastName,
+            email: $scope.email,
+            addAfolPass: $scope.addAfolPass
+        }
+    }
+
+    $scope.clickPayment = function() {
+        $location.path('/registered/eventPayment.html');
+    }
+
+    $scope.submitRegistration = function() {
+        $scope.verifying = true;
+        VendorDetails.createAssociate(serializeAssociateJson()).then(function(data) {
+            $scope.displayMessage = "Add another Associate or Pay?";
+            $scope.verifying = false;
+        }, function(status) {
+            $scope.verifying = false;
+            $scope.displayMessage = "The Vendor Associate travails.";
+        });
+    }
+
+    $scope.closeDialog = function() {
+        $location.path("/registered/eventPayment.html");
+    }
+}])
+.controller('vendorRegistration', ['$scope', '$location', 'VendorDetails', '$route', function($scope, $location, VendorDetails, $route) {
+    $scope.eventId = $route.current.params.eventId;
+    $scope.isVendorUpdate = false;
+    $scope.displayErrorMessage = undefined;
+    setDefaultScopeVariables();
+
+    function setDefaultScopeVariables() {
+        $scope.name = undefined;
+        $scope.description = undefined;
+        $scope.url = 'https://<your_store_url>';
+        $scope.logo = 'https://<your_logo_url>';
+    }
+
+    function serializeVendorJson() {
+        return {
+            eventId: $scope.eventId,
+            name: $scope.name,
+            description: $scope.description,
+            url: $scope.url,
+            logo: $scope.logo
+        }
+    }
+
+    $scope.submitRegistration = function() {
+        $scope.verifying = true;
+        if ($scope.isVendorUpdate) {
+            updateVendor();
+        } else {
+            createVendor();
+        }
+    }
+
+    function createVendor() {
+        VendorDetails.create(serializeVendorJson()).then(function(data) {
+            $scope.registrationForm.$setPristine();
+            setDefaultScopeVariables();
+            $location.path('/registered/' + $scope.eventId + '/' + data.vendorId  + '/associateRegistration.html');
+            $scope.verifying = false;
+        }, function(status) {
+            errorMessage(status);
+        });
+    }
+
+    function updateVendor() {
+        VendorDetails.update(serializeVendorJson()).then(function(status) {
+            if (status === 200) {
+                $scope.registrationForm.$setPristine();
+                setDefaultScopeVariables();
+                location.path('/registered/associateRegistration.html');
+            }
+            $scope.verifying = false;
+        }, function(status) {
+            errorMessage(status);
+        });
+    }
+
+    function errorMessage(status) {
+        $scope.verifying = false;
+        if (status === 400) {
+            $scope.displayErrorMessage = "The Vendor travails.";
+        }
+    }
+
+    $scope.closeDialog = function() {
+        $location.path("/registered/eventMe.html");
+    }
+
+    function setUpdateModel(vendor) {
+        $scope.vendorId = vendor.vendorId;
+        $scope.eventId = vendor.eventId;
+        $scope.name = vendor.name;
+        $scope.description = vendor.description;
+        $scope.url = vendor.url;
+        $scope.logo = vendor.logo;
+    }
+}])
 .controller('afolMocRegistration', ['$scope', '$location', '$window', 'Themes', 'MocDetails', '$route', function($scope, $location, $window, Themes, MocDetails, $route) {
     $scope.firstName = $window.sessionStorage.firstName;
     $scope.lastName = $window.sessionStorage.lastName;
