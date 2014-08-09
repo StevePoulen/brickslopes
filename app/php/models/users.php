@@ -113,7 +113,7 @@ class users extends \db {
     private function selectQuery($data, $isSingleUser=true) {
         $whereStatement = "";
         if ($isSingleUser) {
-            if (ISSET(data['userId']) {
+            if (ISSET($data['userId'])) {
                 $whereStatement = " WHERE userId = {$this->escapeCharacters($data['userId'])}";
             } else {
                 $whereStatement = " WHERE email = {$this->escapeCharacters($data['email'])}";

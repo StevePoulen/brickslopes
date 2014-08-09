@@ -177,6 +177,14 @@ angular.module('brickSlopes.directives', [])
         templateUrl: 'partials/registered/eventPanes/eventGames.html'
     }
 })
+.directive('bsEventVendors', function() {
+    return {
+        restrict: 'E',
+        scope: true,
+        replace: true,
+        templateUrl: 'partials/registered/eventPanes/eventVendors.html'
+    }
+})
 .directive('bsEventMocs', function() {
     return {
         restrict: 'E',
@@ -229,7 +237,8 @@ angular.module('brickSlopes.directives', [])
                 if (
                     $location.path().match('\/registered\/.*') ||
                     $location.path().match('\/admin\/.*') ||
-                    $location.path().match('\/paid\/.*')
+                    $location.path().match('\/paid\/.*') ||
+                    $location.path().match('\/error.html')
                 ) {
                     return false;
                 } else {

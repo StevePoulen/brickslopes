@@ -517,6 +517,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     $scope.displayRegisterEventCTA = true;
     $scope.displayRegisterEventMocsCTA = true;
     $scope.displayRegisterEventGamesCTA = true;
+    $scope.displayRegisterEventVendorsCTA = true;
 
     function serializeChangePasswordJson() {
         return {
@@ -577,6 +578,10 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         if (UserDetails.isUserPaid()) {
             $location.path("/paid/eventGames.html");
         }
+    }
+
+    $scope.clickVendors = function() {
+        $location.path("/registered/" + $scope.eventId + "/vendorRegistration.html");
     }
 
     $scope.closeDialog = function() {

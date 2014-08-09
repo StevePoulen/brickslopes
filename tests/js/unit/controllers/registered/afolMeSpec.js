@@ -110,6 +110,13 @@ describe('controllers', function() {
             });
         });
 
+        describe('Click Vendors Registration', function() {
+            it('should redirect to the vendor registration page', function() {
+                scope.clickVendors();
+                expect(location.path()).toBe('/registered/2/vendorRegistration.html');
+            });
+        });
+
         describe('Default Values', function() {
             it('should have a verifying variable', function() {
                 expect(scope.verifying).toBe(false);
@@ -141,6 +148,10 @@ describe('controllers', function() {
 
             it('should have an displayRegisterEventMocsCTA variable', function() {
                 expect(scope.displayRegisterEventMocsCTA).toBe(true);
+            });
+
+            it('should have an displayRegisterEventVendorsCTA variable', function() {
+                expect(scope.displayRegisterEventVendorsCTA).toBe(true);
             });
 
             it('should have a passType variable', function() {
