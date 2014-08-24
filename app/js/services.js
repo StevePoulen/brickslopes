@@ -467,17 +467,38 @@ angular.module('brickSlopes.services', ['ngResource'])
             return delay.promise;
         },
 
-        createAssociate: function(vendorDTO) {
+        getAssociates: function(eventId, storeId) {
+            var delay= $q.defer();
+            $http (
+                {
+                    method: 'GET',
+                    url: '/controllers/registered/vendors/vendorAssociates.php',
+                    params: {
+                        storeId: storeId,
+                        eventId: eventId
+                    }
+                }
+            ).success(function(data, status, headers, config) {
+                delay.resolve(data);
+            }).error(function(data, status, headers, config) {
+                delay.reject(status);
+            });
+
+            return delay.promise;
+        },
+
+
+        createAssociate: function(associateDTO) {
             var delay= $q.defer();
             $http (
                 {
                     method: 'POST',
                     url: '/controllers/registered/vendors/vendorAssociates.php',
-                    data: vendorDTO,
+                    data: associateDTO,
                     headers: {'Content-Type': 'application/x-www-form-urlencoded'}
                 }
             ).success(function(data, status, headers, config) {
-                delay.resolve(status);
+                delay.resolve(data);
             }).error(function(data, status, headers, config) {
                 delay.reject(status);
             });

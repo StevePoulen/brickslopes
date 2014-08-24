@@ -194,7 +194,7 @@ class vendorModel extends db {
     private function selectAssociateQuery($data) {
         return "
             SELECT 
-                seuc.storeEventUserConnectorId,
+                seuc.storeEventUserConnectorId as associateId,
                 u.firstName,
                 u.lastName
             FROM
@@ -203,6 +203,7 @@ class vendorModel extends db {
             WHERE
                 seuc.storeId = '{$this->escapeCharacters($data['storeId'])}'
                 AND seuc.eventId = '{$this->escapeCharacters($data['eventId'])}'
+                AND seuc.userId = u.userId
                 AND seuc.type = 'ASSOCIATE'
             ORDER BY
                 u.firstName

@@ -127,7 +127,7 @@
                 $storesCount++;
                 $storeMap['type'] = 'ASSOCIATE';
                 $storeMap['userId'] = $storeMap['userId'] + 5;
-                $vendorObj->addStoreEventUserConnectorInformation($storeMap);
+                $vendorObj->addStoreEventUserInformation($storeMap);
                 $storeEventUserCount +=2;
             }
 

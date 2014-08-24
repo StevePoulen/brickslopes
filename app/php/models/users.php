@@ -114,9 +114,9 @@ class users extends \db {
         $whereStatement = "";
         if ($isSingleUser) {
             if (ISSET($data['userId'])) {
-                $whereStatement = " WHERE userId = {$this->escapeCharacters($data['userId'])}";
+                $whereStatement = " WHERE userId = '{$this->escapeCharacters($data['userId'])}'";
             } else {
-                $whereStatement = " WHERE email = {$this->escapeCharacters($data['email'])}";
+                $whereStatement = " WHERE email = '{$this->escapeCharacters($data['email'])}'";
             }
         }
         return "

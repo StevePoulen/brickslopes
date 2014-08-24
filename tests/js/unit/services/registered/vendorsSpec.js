@@ -62,6 +62,51 @@ describe('service', function() {
             });
         });
 
+        describe('Create Associate', function() {
+            var mockBackend, service, data;
+            beforeEach(inject(function(_$httpBackend_, VendorDetails) {
+                mockBackend = _$httpBackend_;
+                mockBackend.expectPOST('/controllers/registered/vendors/vendorAssociates.php').respond(201, 'Success');
+                service = VendorDetails;
+            }));
+
+            it('should create a table order for an event', function() {
+                var tableDTO;
+                var load = service.createAssociate(tableDTO);
+
+                load.then(function(_data) {
+                    data = _data;
+                });
+
+                mockBackend.flush();
+                expect(data).toEqualData('Success');
+            });
+        });
+
+        describe('Get Associate', function() {
+            var mockBackend, service, data, eventId, storeId;
+            beforeEach(inject(function(_$httpBackend_, VendorDetails) {
+                eventId = 2;
+                storeId = 3;
+                mockBackend = _$httpBackend_;
+                mockBackend.expectGET('/controllers/registered/vendors/vendorAssociates.php?eventId='+eventId+'&storeId='+storeId).respond(201, associates);
+                service = VendorDetails;
+            }));
+
+            it('should get all the associates for an event', function() {
+                var load = service.getAssociates(eventId, storeId);
+
+                load.then(function(_data) {
+                    data = _data;
+                });
+
+                mockBackend.flush();
+                expect(data[0].associateId).toEqualData(2);
+                expect(data[0].firstName).toEqualData('Dorthy');
+                expect(data[0].lastName).toEqualData('Ottley');
+            });
+        });
+
         describe('Create Table', function() {
             var mockBackend, service, data;
             beforeEach(inject(function(_$httpBackend_, VendorDetails) {

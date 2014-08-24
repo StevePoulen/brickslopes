@@ -1,6 +1,6 @@
 'use strict';
 
-var showAfolLogin = true;
+var showAfolLogin = false;
 
 /* Controllers */
 angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
@@ -641,11 +641,12 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         $scope.passDates = passDates;
     });
 }])
-.controller('AssociateRegistration', ['$scope', '$location', 'VendorDetails', '$route', function($scope, $location, VendorDetails, $route) {
+.controller('AssociateRegistration', ['$scope', '$location', 'VendorDetails', '$route', '$sce', function($scope, $location, VendorDetails, $route, $sce) {
     $scope.eventId = $route.current.params.eventId;
     $scope.storeId = $route.current.params.storeId;
     $scope.displayMessage = undefined;
     $scope.showModal = false;
+    $scope.associates = [];
     setDefaultScopeVariables();
 
     function setDefaultScopeVariables() {
@@ -670,17 +671,28 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         $location.path('/registered/eventPayment.html');
     }
 
+    function addAssociateToCollection(associate) {
+        $scope.associates.push(
+            {
+                associateId: associate.associateId,
+                firstName: associate.firstName,
+                lastName: associate.lastName
+            }
+        )
+    }
+
     $scope.submitAssociateRegistration = function() {
         $scope.verifying = true;
         VendorDetails.createAssociate(serializeAssociateJson()).then(function(data) {
             $scope.registrationForm.$setPristine();
-            $scope.displayMessage = "Your Associate Registration has been received.<p>Would you like to add another Associate or Continue to Payment?";
+            $scope.displayMessage = $sce.trustAsHtml("Your Associate Registration has been received.<p>Would you like to add another Associate or Continue to Payment?");
             $scope.verifying = false;
             $scope.showModal = true;
+            addAssociateToCollection(data);
             setDefaultScopeVariables();
         }, function(status) {
             $scope.verifying = false;
-            $scope.displayMessage = "The Vendor Associate travails.";
+            $scope.displayMessage = $sce.trustAsHtml("The Vendor Associate travails.");
             $scope.showModal = true;
         });
     }
@@ -688,6 +700,10 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     $scope.closeDialog = function() {
         $location.path("/registered/eventPayment.html");
     }
+
+    VendorDetails.getAssociates($scope.eventId, $scope.storeId).then(function(data) {
+        $scope.associates = data;
+    });
 }])
 .controller('vendorRegistration', ['$scope', '$location', 'VendorDetails', '$route', 'EventDetails', function($scope, $location, VendorDetails, $route, EventDetails) {
     $scope.eventId = $route.current.params.eventId;

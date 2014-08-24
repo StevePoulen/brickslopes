@@ -38,9 +38,24 @@ describe('controllers', function() {
             mockBackend = _$httpBackend_;
         }));
 
+        describe('Digest Values', function() {
+            beforeEach(function() {
+                mockBackend.expectGET('/controllers/registered/vendors/vendorAssociates.php?eventId=2&storeId=4').respond(201, associates);
+                mockBackend.flush();
+            });
+
+            it('should have an associates collection', function() {
+                expect(scope.associates[0].firstName).toEqualData('Dorthy');
+            });
+        });
+
         describe('Default Values', function() {
             it('should have a displayMessage variable', function() {
                 expect(scope.displayMessage).toBeUndefined();
+            });
+
+            it('should have an associates collection', function() {
+                expect(scope.associates).toEqualData([]);
             });
 
             it('should have an addAfolPass variable ', function() {
@@ -68,9 +83,9 @@ describe('controllers', function() {
         });
 
         describe('Create Associate', function() {
-            var vendorDTO;
+            var associateDTO, response;
             beforeEach(function() {
-                vendorDTO = {
+                associateDTO = {
                     eventId: 2,
                     storeId: 4,
                     firstName: 'Steve',
@@ -78,6 +93,14 @@ describe('controllers', function() {
                     email: 'steve@brickslopes.com',
                     addAfolPass: 'YES'
                 }
+
+                response = {
+                    associateId: 1234,
+                    firstName: associateDTO.firstName,
+                    lastName: associateDTO.lastName
+                }
+
+                mockBackend.expectGET('/controllers/registered/vendors/vendorAssociates.php?eventId=2&storeId=4').respond(201, associates);
             });
 
             it('should create an associate', function() {
@@ -87,14 +110,19 @@ describe('controllers', function() {
                 scope.email = 'steve@brickslopes.com';
                 scope.addAfolPass = 'YES';
                 scope.submitAssociateRegistration();
-                mockBackend.expectPOST('/controllers/registered/vendors/vendorAssociates.php', vendorDTO).respond(201);
+                mockBackend.expectPOST('/controllers/registered/vendors/vendorAssociates.php', associateDTO).respond(201, response);
                 mockBackend.flush();
-                expect(scope.displayMessage).toBe('Your Associate Registration has been received.<p>Would you like to add another Associate or Continue to Payment?');
+                expect(scope.displayMessage.$$unwrapTrustedValue()).toBe('Your Associate Registration has been received.<p>Would you like to add another Associate or Continue to Payment?');
                 expect(scope.showModal).toBe(true);
                 expect(scope.firstName).toBeUndefined();
                 expect(scope.lastName).toBeUndefined();
                 expect(scope.email).toBeUndefined();
                 expect(scope.addAfolPass).toBe('YES');
+
+                //valid the associates collection
+                expect(scope.associates[1].associateId).toBe(1234);
+                expect(scope.associates[1].firstName).toBe('Steve');
+                expect(scope.associates[1].lastName).toBe('Poulsen');
             });
 
             it('should display an error', function() {
@@ -103,9 +131,9 @@ describe('controllers', function() {
                 scope.email = 'steve@brickslopes.com';
                 scope.addAfolPass = 'YES';
                 scope.submitAssociateRegistration();
-                mockBackend.expectPOST('/controllers/registered/vendors/vendorAssociates.php', vendorDTO).respond(400);
+                mockBackend.expectPOST('/controllers/registered/vendors/vendorAssociates.php', associateDTO).respond(400);
                 mockBackend.flush();
-                expect(scope.displayMessage).toBe('The Vendor Associate travails.');
+                expect(scope.displayMessage.$$unwrapTrustedValue()).toBe('The Vendor Associate travails.');
                 expect(scope.showModal).toBe(true);
             });
         });

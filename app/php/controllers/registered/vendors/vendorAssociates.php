@@ -65,15 +65,19 @@ class VendorAssociates {
         );
 
         if ($payload['addAfolPass'] === 'YES') {
-            $lineItemPayload['userId'] = $this->userId;
             $lineItemPayload['badgeLine1'] = "{$payload['firstName']} {$payload['lastName']}";
         } else {
-            $lineItemPayload['userId'] = $payload['userId'];
             $lineItemPayload['vendorPass'] = 'YES';
         }
 
-
         $this->registrationLineItemHelper = new registrationLineItemHelper($payload['eventId']);
+        //Add the line item to the vendor (store owner)
+        $lineItemPayload['userId'] = $this->userId;
+        $this->registrationLineItemHelper->addRegistrationLineItems($lineItemPayload);
+
+        //Add the line item to the user (store associate)
+        $lineItemPayload['userId'] = $payload['userId'];
+        $lineItemPayload['nocost'] = true;
         $this->registrationLineItemHelper->addRegistrationLineItems($lineItemPayload);
 
         $associateId = $this->vendorsObj->addStoreEventUserInformation($payload);
@@ -82,7 +86,9 @@ class VendorAssociates {
 
             echo json_encode (
                 array (
-                    'associateId' => $associateId
+                    'associateId' => $associateId,
+                    'firstName' => $payload['firstName'],
+                    'lastName' => $payload['lastName']
                 )
             );
 

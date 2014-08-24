@@ -69,6 +69,10 @@
             $data['draftOneLineItem'] = $this->eventLineItemCodes['10007']['lineItem'];
             $data['draftTwoLineItem'] = $this->eventLineItemCodes['10008']['lineItem'];
 
+            if (ISSET($data['nocost']) && $data['nocost']) {
+                $data['eventAmount'] = '0.00';
+            }
+
             return $data;
         }
 
@@ -139,6 +143,8 @@
             try {
                 if ($data['vendorPass'] === 'YES') {
                     $this->addVendorEventLineItem($data);
+                } else {
+                    $this->addEventLineItem($data);
                 }
             } catch (exception $err) {
                 $this->addEventLineItem($data);
@@ -182,7 +188,7 @@
 
         private function addTShirtLineItem($data) {
             try {
-                if ($data['tShirtSize'] !== 'No Thanks') {
+                if (ISSET($data['tShirtSize']) && $data['tShirtSize'] !== 'No Thanks') {
                     $dto = $this->getDTO($data);
                     $dto['eventLineItemCodeId'] = 2;
                     $dto['amount'] = $data['tShirtAmount'];

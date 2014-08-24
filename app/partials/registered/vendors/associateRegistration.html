@@ -28,7 +28,7 @@
                     </div>
                     <div class="label"><bs-text text="Email Address" font-size=1.25></bs-text></div>
                     <div class="loginField">
-                        <input ng-model="email" type="text" bs-placeholder="Email (required)" ng-maxlength=255 required maxlength=255>
+                        <input ng-model="email" type="email" bs-placeholder="Email (required)" ng-maxlength=255 required maxlength=255>
                     </div>
                     <div class="group">
                         <bs-text text="Event Registration" font-size=1.25></bs-text>
@@ -61,13 +61,14 @@
                 <div class="associateList">
                     <div ng-class="{evenRow: $even}" ng-repeat="associate in associates | orderBy:'firstName'">
                         <div class="associateContainer">
-
+                            <span ng-bind="associate.firstName"></span>
+                            <span ng-bind="associate.lastName"></span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div><bs-modal title="Success"><span ng-bind-html="displayMessage"></span><bs-modal></div>
+    <div><bs-modal title="Success"><span ng-bind-html="displayMessage"></span></bs-modal></div>
     <div id="dashboardCloseButton" ng-click="closeDialog()"></div>
 </div>
