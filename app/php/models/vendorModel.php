@@ -5,26 +5,58 @@ class vendorModel extends db {
         parent::__construct();
     }
 
-    public function addVendorInformation($data) {
-        $vendorId = $this->query($this->insertQuery($data));
-        if ($vendorId > 0) {
-            $data['vendorId'] = $vendorId;
+    public function addStoreInformation($data) {
+        $storeId = $this->query($this->insertQuery($data));
+        if ($storeId > 0) {
+            $data['storeId'] = $storeId;
             $this->query($this->insertVendorConnectorQuery($data));
         }
-        return $vendorId;
+        return $storeId;
+    }
+
+    public function addTableInformation($data) {
+        $tableId = $this->query($this->insertStoreEventConnectorQuery($data));
+        $this->query($this->insertStoreEventUserConnectorQuery($data));
+        return $tableId;
+    }
+
+    public function getTableInformation($data) {
+        $this->query($this->selectStoreEventConnectorQuery($tableId));
     }
 
     public function getVendorInformation($eventId) {
         return $this->query($this->selectQuery($eventId));
     }
 
-    public function addVendorConnectorInformation($data) {
-        return $this->query($this->insertVendorConnectorQuery($data));
+    public function getVendorStoreInformation($data) {
+        return $this->query($this->selectVendorStoreQuery($data));
     }
 
-    public function getVendorAssociateInformation($data) {
+    public function addStoreEventUserInformation($data) {
+        return $this->query($this->insertStoreEventUserConnectorQuery($data));
+    }
+
+    public function getStoreEventUserInformation($data) {
         return $this->query($this->selectAssociateQuery($data));
     }
+
+    private function selectStoreEventConnectorQuery($tableId) {
+        return "
+            SELECT 
+                storeEventConnectorId as tableId,
+                eventId,
+                storeId,
+                tables
+            FROM
+                storeEventConnector sec 
+            WHERE
+                sec.storeEventConnectorId= '{$this->escapeCharacters($tableId)}'
+            ORDER BY
+                v.name
+        ;
+      ";
+    }
+
 
     private function selectQuery($eventId) {
         return "
@@ -48,24 +80,87 @@ class vendorModel extends db {
       ";
     }
 
-    private function insertVendorConnectorQuery($data) {
+    private function selectVendorStoreQuery($data) {
+        return "
+            SELECT 
+                v.vendorId,
+                v.name,
+                v.description,
+                v.url,
+                v.logo,
+                vc.tables,
+                vc.type
+            FROM
+                vendors v,
+                vendorConnector vc
+            WHERE
+                v.vendorId = vc.vendorId
+                AND vc.eventId = '{$this->escapeCharacters($data['eventId'])}'
+                AND vc.userId = '{$this->escapeCharacters($data['userId'])}'
+            ORDER BY
+                v.name
+        ;
+      ";
+    }
+
+    private function insertStoreEventUserConnectorQuery($data) {
         return "
             INSERT INTO
-                vendorConnector
+                storeEventUserConnector
             (
-                eventId,
+                eventId, 
+                storeId, 
                 userId, 
-                vendorId, 
-                tables,
                 type,
                 registrationDate 
             )
         VALUES
           (
                 '{$this->escapeCharacters($data['eventId'])}',
+                '{$this->escapeCharacters($data['storeId'])}',
                 '{$this->escapeCharacters($data['userId'])}',
-                '{$this->escapeCharacters($data['vendorId'])}',
+                '{$this->escapeCharacters($data['type'])}',
+                now()
+          )
+        ;
+      ";
+    }
+
+    private function insertStoreEventConnectorQuery($data) {
+        return "
+            INSERT INTO
+                storeEventConnector
+            (
+                eventId, 
+                storeId, 
+                tables,
+                registrationDate 
+            )
+        VALUES
+          (
+                '{$this->escapeCharacters($data['eventId'])}',
+                '{$this->escapeCharacters($data['storeId'])}',
                 '{$this->escapeCharacters($data['tables'])}',
+                now()
+          )
+        ;
+      ";
+    }
+
+    private function insertVendorConnectorQuery($data) {
+        return "
+            INSERT INTO
+                vendorConnector
+            (
+                userId, 
+                storeId, 
+                type,
+                registrationDate 
+            )
+        VALUES
+          (
+                '{$this->escapeCharacters($data['userId'])}',
+                '{$this->escapeCharacters($data['storeId'])}',
                 '{$this->escapeCharacters($data['type'])}',
                 now()
           )
@@ -76,7 +171,7 @@ class vendorModel extends db {
     private function insertQuery($data) {
         return "
             INSERT INTO
-                vendors
+                stores 
             (
                 name,
                 description, 
@@ -99,16 +194,16 @@ class vendorModel extends db {
     private function selectAssociateQuery($data) {
         return "
             SELECT 
-                vc.vendorConnectorId,
+                seuc.storeEventUserConnectorId,
                 u.firstName,
                 u.lastName
             FROM
-                vendorConnector vc,
+                storeEventUserConnector seuc,
                 users u
             WHERE
-                vc.vendorId = '{$this->escapeCharacters($data['vendorId'])}'
-                AND vc.eventId = '{$this->escapeCharacters($data['eventId'])}'
-                AND vc.type = 'ASSOCIATE'
+                seuc.storeId = '{$this->escapeCharacters($data['storeId'])}'
+                AND seuc.eventId = '{$this->escapeCharacters($data['eventId'])}'
+                AND seuc.type = 'ASSOCIATE'
             ORDER BY
                 u.firstName
         ;

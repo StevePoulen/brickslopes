@@ -1,0 +1,73 @@
+<div id="eventDashboard" class="height800">
+    <div class="dashboardText height800">
+        <div>
+            <h1>
+                <bs-logo font-size="1.25"></bs-logo> &#8226; <bs-text text="Associate Registration" font-color=black></bs-text>
+            </h1>
+        </div>
+        <div id="makePayment">
+            <div class="formButtonPosition">
+                <div class="actionButton" ng-click="clickPayment()">
+                    <bs-text text="Continue To Payment" font-color=white font-size=1.25></bs-text>
+                </div>
+            </div>
+        </div>
+        <div id="associatePosition">
+            <div class="vendorRegistrationForm">
+                <form name="registrationForm" ng-submit="registrationForm.$valid && submitAssociateRegistration()">
+                    <div class="group">
+                        <bs-text text="Associate Information" font-size=1.25></bs-text>
+                    </div>
+                    <div class="label"><bs-text text="First Name" font-size=1.25></bs-text></div>
+                    <div class="loginField">
+                        <input ng-model="firstName" type="text" bs-placeholder="First Name (required)" ng-maxlength=255 required maxlength=255>
+                    </div>
+                    <div class="label"><bs-text text="Last Name" font-size=1.25></bs-text></div>
+                    <div class="loginField">
+                        <input ng-model="lastName" type="text" bs-placeholder="Last Name (required)" ng-maxlength=255 required maxlength=255>
+                    </div>
+                    <div class="label"><bs-text text="Email Address" font-size=1.25></bs-text></div>
+                    <div class="loginField">
+                        <input ng-model="email" type="text" bs-placeholder="Email (required)" ng-maxlength=255 required maxlength=255>
+                    </div>
+                    <div class="group">
+                        <bs-text text="Event Registration" font-size=1.25></bs-text>
+                    </div>
+                    <div class="optionField">
+                        <label><bs-text text="4 Day AFOL Pass:"></bs-text></label> <bs-text text="Yes" font-color=black></bs-text><input type="radio" ng-model="addAfolPass" value="YES" checked> <bs-text text="No" font-color=black></bs-text> <input type="radio" ng-model="addAfolPass" value="NO">
+                    </div>
+                    <div class="formButtonPosition"> 
+                        <button class="formButton" type="submit" ng-class="{disabled: verifying}" ng-disabled="verifying">
+                            <bs-text text="Add Associate" font-color=white font-size=1.75></bs-text>
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div id="help">
+                <div class="text">
+                    <p>
+                        Please register everyone who will be attending <bs-logo></bs-logo> with you as part of your vendor booth. Registration is required in order to enter the event facility. Associate registration is free of cost.
+                    </p>
+                    <p> 
+                        Each associate may purchase a 4-Day Event Pass if they wish to participate in the activities. 
+                    </p>
+                    </div>
+                <div class="bsLogo"><img src="/images/logo/brickSlopes_noword_50px.png"></div>
+            </div>
+            <div id="associates">
+                <div class="title">
+                    <bs-text text="Vendor Associates" font-size=1.25></bs-text>
+                </div>
+                <div class="associateList">
+                    <div ng-class="{evenRow: $even}" ng-repeat="associate in associates | orderBy:'firstName'">
+                        <div class="associateContainer">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div><bs-modal title="Success"><span ng-bind-html="displayMessage"></span><bs-modal></div>
+    <div id="dashboardCloseButton" ng-click="closeDialog()"></div>
+</div>

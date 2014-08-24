@@ -6,32 +6,59 @@
 
 USE `brickslopes`;
 
+DROP TABLE IF EXISTS `storeEventUserConnector`;
+DROP TABLE IF EXISTS `storeEventConnector`;
 DROP TABLE IF EXISTS `vendorConnector`;
-DROP TABLE IF EXISTS `vendors`;
+DROP TABLE IF EXISTS `stores`;
 
-CREATE TABLE `vendors` (
-  `vendorId` INT(10) UNSIGNED UNIQUE NOT NULL auto_increment,
+CREATE TABLE `stores` (
+  `storeId` INT(10) UNSIGNED UNIQUE NOT NULL auto_increment,
   `name` VARCHAR(255),
   `description` VARCHAR(255),
   `logo` VARCHAR(255),
   `url` VARCHAR(255),
   `creationDate` DATETIME,
-  PRIMARY KEY (`vendorId`),
-  UNIQUE KEY `vendorId_UNIQUE` (`vendorId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='The Vendor Table';
+  PRIMARY KEY (`storeId`),
+  UNIQUE KEY `storeId_UNIQUE` (`storeId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='The Store Table';
 
 CREATE TABLE `vendorConnector` (
   `vendorConnectorId` INT(10) UNSIGNED UNIQUE NOT NULL auto_increment,
-  `eventId` INT(10) UNSIGNED NOT NULL,
   `userId` INT(10) UNSIGNED NOT NULL,
-  `vendorId` INT(10) UNSIGNED NOT NULL,
-  `tables` INT(10),
-  `type` ENUM('OWNER', 'ASSOCIATE'),
+  `storeId` INT(10) UNSIGNED NOT NULL,
+  `type` ENUM('OWNER'),
   `registrationDate` DATETIME,
   PRIMARY KEY (`vendorConnectorId`),
-  INDEX (eventId, userId, vendorId),
-  FOREIGN KEY (`eventId`) REFERENCES `events` (`eventId`),
+  INDEX (userId, storeId),
   FOREIGN KEY (`userId`) REFERENCES `users` (`userId`),
-  FOREIGN KEY (`vendorId`) REFERENCES `vendors` (`vendorId`),
+  FOREIGN KEY (`storeId`) REFERENCES `stores` (`storeId`),
   UNIQUE KEY `vendorConnectorId_UNIQUE` (`vendorConnectorId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='The Vendor Connector Table';
+
+CREATE TABLE `storeEventConnector` (
+  `storeEventConnectorId` INT(10) UNSIGNED UNIQUE NOT NULL auto_increment,
+  `eventId` INT(10) UNSIGNED NOT NULL,
+  `storeId` INT(10) UNSIGNED NOT NULL,
+  `tables` INT(10),
+  `registrationDate` DATETIME,
+  PRIMARY KEY (`storeEventConnectorId`),
+  INDEX (eventId, storeId),
+  FOREIGN KEY (`eventId`) REFERENCES `events` (`eventId`),
+  FOREIGN KEY (`storeId`) REFERENCES `stores` (`storeId`),
+  UNIQUE KEY `storeEventConnectorId_UNIQUE` (`storeEventConnectorId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='The Store Event Connector Table';
+
+CREATE TABLE `storeEventUserConnector` (
+  `storeEventUserConnectorId` INT(10) UNSIGNED UNIQUE NOT NULL auto_increment,
+  `eventId` INT(10) UNSIGNED NOT NULL,
+  `userId` INT(10) UNSIGNED NOT NULL,
+  `storeId` INT(10) UNSIGNED NOT NULL,
+  `type` ENUM('OWNER', 'ASSOCIATE'),
+  `registrationDate` DATETIME,
+  PRIMARY KEY (`storeEventUserConnectorId`),
+  INDEX (eventId, userId, storeId),
+  FOREIGN KEY (`eventId`) REFERENCES `events` (`eventId`),
+  FOREIGN KEY (`userId`) REFERENCES `users` (`userId`),
+  FOREIGN KEY (`storeId`) REFERENCES `stores` (`storeId`),
+  UNIQUE KEY `storeEventUserConnectorId_UNIQUE` (`storeEventUserConnectorId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='The Store Event User Connector Table';

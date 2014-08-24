@@ -1,0 +1,211 @@
+@import './brickslopes';
+@import './vendors';
+
+#makePayment {
+    position: absolute;
+    height: 75px;
+    width: 400px;
+    right: 10px;
+    top: 25px;
+}
+
+#tablePosition {
+    position: absolute;
+    height: 690px;
+    width: 1200px;
+    left: 10px;
+    top: 200px;
+}
+
+#storePosition {
+    position: absolute;
+    height: 690px;
+    width: 1200px;
+    left: 10px;
+    top: 200px;
+}
+
+#associatePosition {
+    position: absolute;
+    height: 690px;
+    width: 1200px;
+    left: 10px;
+    top: 125px;
+
+    #associates {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        height: 375px;
+        width: 600px;
+        text-align: center;
+        border: 1px solid #35469A;
+        border-radius: 10px;
+
+        .title {
+            position: relative;
+            width: 100%;
+            height: 25px;
+            text-align: center;
+        }
+
+        .associateList {
+            position: relative;
+            left: 5px;
+            width: 590px;
+            height: 340px;
+            overflow: scroll;
+        }
+
+        .associateContainer {
+            position: relative;
+            float: left;
+            width: 100%;
+            height: 25px;
+            border: 1px solid grey;
+        }
+    }
+}
+
+.vendorRegistrationForm {
+    position: absolute;
+    top: 0px;
+    left: 50px;
+    width: 500px;
+    text-align: center;
+
+    select.small {
+        margin-top: -25px;
+        width: 105px;
+        height: 25px;
+        font-size: 14px;
+        color: #2F3132;
+    }
+
+    .group {
+        position: relative;
+        width: 300px;
+        left: 40px;
+        height: 25px;
+        text-align: left;
+        margin: 10px;
+    }
+
+    .label {
+        border-radius: 5px;
+        width: 360px;
+        height: 25px;
+        text-align: left;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    .loginField {
+        margin-bottom: 20px;
+        border: 1px solid #BCBEBF;
+        border-radius: 5px;
+        width: 355px;
+        height: 42.5px;
+        padding-top: 7.5px;
+        padding-left: 5px;
+        margin-right: auto;
+        margin-left: auto;
+
+        input {
+            width: 350px;
+        }
+    }
+
+    .optionField {
+        margin-bottom: 20px;
+        border: 1px solid #BCBEBF;
+        border-radius: 5px;
+        width: 350px;
+        height: 35px;
+        padding-left: 10px;
+        padding-top: 20px;
+        text-align: left;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    .commentsField {
+        margin-bottom: 20px;
+        margin-right: auto;
+        margin-left: auto;
+
+        textarea {
+            width: 365px;
+            height: 75px;
+            border: 1px solid #BCBEBF;
+            border-radius: 5px;
+            padding-top: 10px;
+        }
+    }
+}
+
+#help {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    height: 275px;
+    width: 600px;
+    text-align: center;
+    border: 1px solid #35469A;
+    border-radius: 10px;
+
+    .bsLogo {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+    }
+
+    .text {
+        position: absolute;
+        top: 5px;
+        left: 20px;
+        width: 560px;
+        height: 255px;
+        font-size: 1.5em;
+        text-align: left;
+    }
+}
+
+#storeLogo {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    height: 325px;
+    width: 500px;
+    text-align: center;
+    border: 1px solid #35469A;
+    border-radius: 10px;
+
+    .sampleFont {
+        position: absolute;
+        font-size: 5em;
+        height: 100px;
+        width: 500px;
+        padding-top: 75px;
+        z-index: 0;
+        color: black;
+        opacity: .1;
+    }
+
+    .sampleBrickSlopesLogo {
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+    }
+
+    .logo {
+        position: absolute;
+        top: 40px;
+        left: 112.5px;
+    }
+
+    .logoImage {
+        width: $vendor_logo_size;
+        height: $vendor_logo_size;
+    }
+}

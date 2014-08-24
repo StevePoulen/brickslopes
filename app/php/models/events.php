@@ -20,7 +20,6 @@ class events extends db {
                 city, 
                 state,
                 year,
-                cost,
                 discountDate
             FROM
                 events

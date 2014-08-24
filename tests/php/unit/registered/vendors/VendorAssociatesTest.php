@@ -5,12 +5,12 @@ class VendorAssociatesTest extends PHPUnit_Framework_TestCase
     public function setUp() 
     {
         $this->userId = 5;
-        include_once('controllers/registered/vendorAssociates.php');
+        include_once('controllers/registered/vendors/vendorAssociates.php');
     }
 
     public function testAuthenticatedBadMethod() 
     {
-        $_SERVER['REQUEST_METHOD'] = "DELETE";
+        $_SERVER['REQUEST_METHOD'] = "PATCH";
         new VendorAssociates($this->userId);
         $this->assertEquals(http_response_code(), 405);
     }
@@ -24,7 +24,7 @@ class VendorAssociatesTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(http_response_code(), 200);
         $allAssociates = json_decode(get_ob(), true);
         $output = $allAssociates[0];
-        $this->assertEquals($output['vendorConnectorId'], '123');
+        $this->assertEquals($output['associateId'], '123');
         $this->assertEquals($output['firstName'], "Ember");
         $this->assertEquals($output['lastName'], 'Pilati');
         $this->assertEquals(sizeOf($allAssociates), 1);
@@ -45,7 +45,7 @@ class VendorAssociatesTest extends PHPUnit_Framework_TestCase
         new VendorAssociates($this->userId);
         $this->assertEquals(http_response_code(), 201);
         $output = json_decode(get_ob(), true);
-        $this->assertEquals($output['vendorConnectorId'], '1234');
+        $this->assertEquals($output['associateId'], '1234');
 
         $lineItemObj = $GLOBALS['addRegistrationLineItems'][0];
         $this->assertEquals($lineItemObj['eventLineItemCodeId'], '11');
@@ -79,7 +79,7 @@ class VendorAssociatesTest extends PHPUnit_Framework_TestCase
         new VendorAssociates($this->userId);
         $this->assertEquals(http_response_code(), 201);
         $output = json_decode(get_ob(), true);
-        $this->assertEquals($output['vendorConnectorId'], '1234');
+        $this->assertEquals($output['associateId'], '1234');
 
         //Event Pass
         $lineItemObj = $GLOBALS['addRegistrationLineItems'][0];
@@ -129,7 +129,7 @@ class VendorAssociatesTest extends PHPUnit_Framework_TestCase
         new VendorAssociates($this->userId);
         $this->assertEquals(http_response_code(), 201);
         $output = json_decode(get_ob(), true);
-        $this->assertEquals($output['vendorConnectorId'], '1234');
+        $this->assertEquals($output['associateId'], '1234');
 
         $lineItemObj = $GLOBALS['addRegistrationLineItems'][0];
         $this->assertEquals($lineItemObj['eventLineItemCodeId'], '11');
@@ -163,7 +163,7 @@ class VendorAssociatesTest extends PHPUnit_Framework_TestCase
         new VendorAssociates($this->userId);
         $this->assertEquals(http_response_code(), 201);
         $output = json_decode(get_ob(), true);
-        $this->assertEquals($output['vendorConnectorId'], '1234');
+        $this->assertEquals($output['associateId'], '1234');
 
         //Event Pass
         $lineItemObj = $GLOBALS['addRegistrationLineItems'][0];

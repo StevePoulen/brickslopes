@@ -230,7 +230,7 @@ class ControllerTest extends PHPUnit_Framework_TestCase
     public function testAuthenticatedNoRegistrationControllers() 
     {
         $GLOBALS['noRegistrationRequest'] = true;
-        $_SERVER['REQUEST_URI'] = "/controllers/registered/vendors.php";
+        $_SERVER['REQUEST_URI'] = "/controllers/registered/vendors/vendors.php";
         $this->controller = new Controller();
         $this->controller->invoke();
         $this->assertEquals(http_response_code(), 412);
@@ -240,7 +240,7 @@ class ControllerTest extends PHPUnit_Framework_TestCase
     public function testAuthenticatedNoRegistrationAdminControllers() 
     {
         $GLOBALS['noRegistrationAdminRequest'] = true;
-        $_SERVER['REQUEST_URI'] = "/controllers/registered/vendors.php";
+        $_SERVER['REQUEST_URI'] = "/controllers/registered/vendors/vendors.php";
         $this->controller = new Controller();
         $this->controller->invoke();
         $this->assertEquals(http_response_code(), 405);

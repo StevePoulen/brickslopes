@@ -1,5 +1,4 @@
-$bs_blue: #35469A;
-$logo_size: 275px;
+@import 'brickslopes';
 
 .vendor {
     position: relative;
@@ -40,8 +39,8 @@ $logo_size: 275px;
         top: 25px;
 
         .logoSize {
-            width: $logo_size;
-            height: $logo_size;
+            width: $vendor_logo_size;
+            height: $vendor_logo_size;
         }
     }
 
@@ -89,7 +88,7 @@ $logo_size: 275px;
     }
 
     .vendorImage {
-        width: $logo_size;
-        height: $logo_size;
+        width: $vendor_logo_size;
+        height: $vendor_logo_size;
     }
 }

@@ -84,8 +84,8 @@
 
         private function addDummyVendors() {
             $vendorObj = new vendorModel();
-            $vendorsCount = 0;
-            $vendorConnectionCount = 0;
+            $storesCount = 0;
+            $storeEventUserCount = 0;
 
             $vendorCollection = array(
                 array(
@@ -105,7 +105,7 @@
                     'logo' => '',
                     'type' => 'OWNER',
                     'tables' => 5,
-                    'userId' => 1,
+                    'userId' => 10,
                     'eventId' => 2
                 ),
                 array(
@@ -120,18 +120,21 @@
                 )
             );
 
-            foreach ($vendorCollection as $vendorMap) {
-                $vendorId = $vendorObj->addVendorInformation($vendorMap);
-                $vendorMap['vendorId'] = $vendorId;
-                $vendorsCount++;
-                $vendorMap['type'] = 'ASSOCIATE';
-                $vendorMap['userId'] = $vendorMap['userId'] + 5;
-                $vendorObj->addVendorConnectorInformation($vendorMap);
-                $vendorConnectionCount+=2;
+            foreach ($vendorCollection as $storeMap) {
+                $storeId = $vendorObj->addStoreInformation($storeMap);
+                $storeMap['storeId'] = $storeId;
+                $storeId = $vendorObj->addTableInformation($storeMap);
+                $storesCount++;
+                $storeMap['type'] = 'ASSOCIATE';
+                $storeMap['userId'] = $storeMap['userId'] + 5;
+                $vendorObj->addStoreEventUserConnectorInformation($storeMap);
+                $storeEventUserCount +=2;
             }
 
-            $this->validatetable('vendors', $vendorsCount);
-            $this->validatetable('vendorConnector', $vendorConnectionCount);
+            $this->validatetable('stores', $storesCount);
+            $this->validatetable('vendorConnector', $storesCount);
+            $this->validatetable('storeEventConnector', $storesCount);
+            $this->validatetable('storeEventUserConnector', $storeEventUserCount);
 
         }
 

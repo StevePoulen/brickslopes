@@ -11,15 +11,27 @@ class vendorModel extends db {
         return $this->query();
     }
 
-    public function addVendorInformation($data) {
+    public function getVendorStoreInformation($data) {
         return $this->query();
     }
 
-    public function getVendorAssociateInformation($data) {
+    public function addStoreInformation($data) {
         return $this->query();
     }
 
-    public function addVendorConnectorInformation($data) {
+    public function addTableInformation($data) {
+        return $this->query();
+    }
+
+    public function getStoreEventInformation($data) {
+        return $this->query();
+    }
+
+    public function getStoreEventUserInformation($data) {
+        return $this->query();
+    }
+
+    public function addStoreEventUserInformation($data) {
         return $this->query();
     }
 }
@@ -31,14 +43,17 @@ class VendorsMock extends modelObjects {
         parent::__construct('vendorsDB.txt');
     }
 
+    public function storeId() { return $this->getData(0); }
     public function vendorId() { return $this->getData(0); }
     public function name() { return $this->getData(1); }
     public function description() { return $this->getData(2); }
     public function url() { return $this->getData(3); }
     public function logo() { return $this->getData(4); }
     public function tables() { return $this->getData(5); }
-    public function vendorConnectorId() { return $this->getData(6); }
+    public function associateId() { return $this->getData(6); }
     public function firstName() { return $this->getData(7); }
     public function lastName() { return $this->getData(8); }
+    public function eventId() { return $this->getData(9); }
+    public function tableId() { return $this->getData(10); }
 }
 ?>

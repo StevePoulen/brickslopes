@@ -1,0 +1,46 @@
+<div id="eventDashboard" class="heightAuto">
+    <div class="dashboardText heightAuto">
+        <div>
+            <h1>
+                <bs-logo font-size="1.25"></bs-logo> &#8226; <bs-text text="Vendor Registration" font-color=black></bs-text>
+            </h1>
+        </div>
+        <div id="storePosition">
+            <div class="vendorRegistrationForm">
+                <form name="registrationForm" ng-submit="registrationForm.$valid && submitRegistration()">
+                    <div class="label"><bs-text text="Store Name" font-size=1.25></bs-text></div>
+                    <div class="loginField">
+                        <input ng-model="name" type="text" bs-placeholder="Store Name (required)" ng-maxlength=255 required maxlength=255>
+                    </div>
+                    <div class="label"><bs-text text="Store Description" font-size=1.25></bs-text></div>
+                    <div class="commentsField">
+                        <textarea bs-placeholder="Store Description ..."  ng-model="description" maxlength=255></textarea>
+                    </div>
+                    <div class="label"><bs-text text="Store Url" font-size=1.25></bs-text></div>
+                    <div class="loginField">
+                        <input ng-model="url" type="text" bs-placeholder="Store Url" ng-maxlength=255 maxlength=255>
+                    </div>
+                    <div class="label"><bs-text text="Logo Url (275x275)" font-size=1.25></bs-text></div>
+                    <div class="loginField">
+                        <input ng-model="logo" type="text" bs-placeholder="Logo Url" ng-maxlength=255 maxlength=255>
+                    </div>
+                    <div class="formButtonPosition"> 
+                        <button class="formButton" type="submit" ng-class="{disabled: verifying}" ng-disabled="verifying">
+                            <bs-text text="{{buttonText}}" font-color=white font-size=1.75></bs-text>
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div id="storeLogo">
+                <div class="sampleFont">Logo Sample</div>
+                <div class="logo"><img class="logoImage" ng-src="{{logo}}"></div>
+                <div class="sampleBrickSlopesLogo"><img src="/images/logo/brickSlopes_noword_50px.png"></div>
+            </div>
+            <div id="help">
+                <div class="logo"></div>
+                <div class="sampleBrickSlopesLogo"><img src="/images/logo/brickSlopes_noword_50px.png"></div>
+            </div>
+        </div>
+    </div>
+    <div id="dashboardCloseButton" ng-click="closeDialog()"></div>
+</div>

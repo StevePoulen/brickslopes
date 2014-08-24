@@ -113,7 +113,7 @@ describe('controllers', function() {
         describe('Click Vendors Registration', function() {
             it('should redirect to the vendor registration page', function() {
                 scope.clickVendors();
-                expect(location.path()).toBe('/registered/2/vendorRegistration.html');
+                expect(location.path()).toBe('/registered/2/undefined/vendorRegistration.html');
             });
         });
 
@@ -178,6 +178,10 @@ describe('controllers', function() {
                 expect(scope.mocCount).toBe(0);
             });
 
+            it('should have an vendorModel variable', function() {
+                expect(scope.vendorModel).toEqualData({});
+            });
+
             it('should have a gameCount variable', function() {
                 expect(scope.gameCount).toBe(0);
             });
@@ -195,6 +199,7 @@ describe('controllers', function() {
                 mockBackend.expectGET('/controllers/public/eventDates.php').respond(eventDates);
                 mockBackend.expectGET('/controllers/registered/eventRegistration.php').respond(eventRegistration);
                 mockBackend.expectGET('/controllers/paid/mocs.php?eventId=2').respond(200, mocs);
+                mockBackend.expectGET('/controllers/registered/vendors/vendorRegistration.php?eventId=2').respond(200, vendors[0]);
                 mockBackend.expectGET('/controllers/paid/gameUser.php?eventId=2').respond(200, userGames);
                 mockBackend.expectGET('/controllers/public/user.php').respond(200, singleUser);
                 mockBackend.flush();
@@ -250,6 +255,7 @@ describe('controllers', function() {
                 mockBackend.expectGET('/controllers/public/eventDates.php').respond(eventDates);
                 mockBackend.expectGET('/controllers/registered/eventRegistration.php').respond(eventRegistration);
                 mockBackend.expectGET('/controllers/paid/mocs.php?eventId=2').respond(200, mocs);
+                mockBackend.expectGET('/controllers/registered/vendors/vendorRegistration.php?eventId=2').respond(200, vendors[0]);
                 mockBackend.expectGET('/controllers/paid/gameUser.php?eventId=2').respond(200, userGames);
                 mockBackend.expectGET('/controllers/public/user.php').respond(200, singleUser);
                 mockBackend.expectPATCH('/controllers/public/authentication.php').respond(201);
@@ -272,6 +278,7 @@ describe('controllers', function() {
                 mockBackend.expectGET('/controllers/public/eventDates.php').respond(eventDates);
                 mockBackend.expectGET('/controllers/registered/eventRegistration.php').respond(eventRegistration);
                 mockBackend.expectGET('/controllers/paid/mocs.php?eventId=2').respond(200, mocs);
+                mockBackend.expectGET('/controllers/registered/vendors/vendorRegistration.php?eventId=2').respond(200, vendors[0]);
                 mockBackend.expectGET('/controllers/paid/gameUser.php?eventId=2').respond(200, userGames);
                 mockBackend.expectGET('/controllers/public/user.php').respond(200, singleUser);
                 mockBackend.expectPATCH('/controllers/public/authentication.php').respond(412);

@@ -11,11 +11,20 @@ incStep() {
 
 #Insert New Tables
 executeDBStatement() {
+    executeDBStatementExtended $1 $BRICKSLOPES_DATABASE
+}
+
+executeMySQLStatement() {
+    executeDBStatementExtended $1 $ROOT_DATABASE
+}
+
+executeDBStatementExtended() {
     DB_FILE="./dbScripts/$1";
-    echo "Executing: $DB_FILE";
+    DB=$2;
+    echo "Executing: $DB_FILE in $DB";
     if [[ "$LOCAL_DB" == "Y" ]]
     then
-        mysql -u root $BRICKSLOPES_DATABASE $PASSWORD$MYSQL_ROOT_PASSWORD < $DB_FILE
+        mysql -u root $DB $PASSWORD$MYSQL_ROOT_PASSWORD < $DB_FILE
     else
         mysql -u 7hiez8ei $BRICKSLOPES_DATABASE -h mysql.brickslopes.com $PASSWORD$MYSQL_ROOT_PASSWORD < $DB_FILE
     fi
@@ -235,18 +244,16 @@ createDatabase() {
     if [[ "$CREATE_DB" == "Y" ]]
     then
         echo "Create Database";
+        executeMySQLStatement "14_dbCreateDatabase.txt"
     fi
-}
-
-setAdminPassword() {
-    echo "Set ADMIN Password";
 }
 
 createAdmin() {
     if [[ "$CREATE_ADMIN" == "Y" ]]
     then
         echo "Create ADMIN";
-        setAdminPassword;
+        executeMySQLStatement "01_dbCreateAdminAndUsers.txt"
+        mysqladmin -u brickslopes password $ADMIN_PASSWORD
     fi
 }
 
@@ -345,8 +352,8 @@ functionTest() {
 #functionTest;
 userInput;
 printf "\n\nWorking\n\n";
-createDatabase;
 createAdmin;
+createDatabase;
 dropAllTables;
 createEventTable;
 createEventDatesTable;

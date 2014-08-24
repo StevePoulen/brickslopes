@@ -7,11 +7,11 @@
 USE `mysql`;
 
 LOCK TABLES `user` WRITE;
-INSERT INTO `user` VALUES ('localhost','brickslopes',password(''),'Y','Y','Y','N','N','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','','','','',0,0,0,0);
+INSERT INTO `user` (HOST, USER, PASSWORD, SELECT_PRIV, UPDATE_PRIV, CREATE_PRIV, DROP_PRIV, DELETE_PRIV) VALUES ('localhost','brickslopes',password(''),'Y','Y','Y','Y','Y');
 UNLOCK TABLES;
 
 LOCK TABLES `db` WRITE;
-INSERT INTO `db` VALUES ('%','brickslopes','brickslopes','Y','Y','N','Y','N','N','N','N','N','N','N','N','N','N','N','N','N','N','Y');
+INSERT INTO `db` (HOST, DB, USER, SELECT_PRIV, INSERT_PRIV, UPDATE_PRIV, DELETE_PRIV, CREATE_PRIV, DROP_PRIV) VALUES ('%','brickslopes','brickslopes','Y','Y','Y','Y','Y','Y');
 UNLOCK TABLES;
 
 FLUSH PRIVILEGES;

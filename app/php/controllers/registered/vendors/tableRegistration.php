@@ -1,6 +1,6 @@
 <?php
 
-class Vendors {
+class TableRegistration {
     private $vendorsObj;
     private $requestMethod;
     private $userId;
@@ -26,26 +26,23 @@ class Vendors {
     }
 
     private function get() {
-        $vendorJson = array();
         $payload = $_GET;
-        $this->vendorsObj->getVendorInformation($payload['eventId']);
+        $this->vendorsObj->getStoreEventInformation($payload['tableId']);
         if ($this->vendorsObj->result) {
-            while($dbObj = $this->vendorsObj->result->fetch_object()) {
-                array_push(
-                    $vendorJson,
-                    array (
-                        'vendorId' => $dbObj->vendorId,
-                        'name' => $dbObj->name,
-                        'description' => $dbObj->description,
-                        'url' => $dbObj->url,
-                        'logo' => $dbObj->logo,
-                        'tables' => $dbObj->tables
-                    )
+            if ($dbObj = $this->vendorsObj->result->fetch_object()) {
+                $tableJson = array (
+                    'storeId' => $dbObj->storeId,
+                    'eventId' => $dbObj->eventId,
+                    'tableId' => $dbObj->tableId,
+                    'tables' => $dbObj->tables
                 );
+                header("HTTP/1.0 200 Success");
+                echo json_encode ($tableJson);
+                return;
             }
         }
-        header("HTTP/1.0 200 Success");
-        echo json_encode ($vendorJson);
+
+        header("HTTP/1.0 412 Precondition Failed");
     }
 
     private function post() {
@@ -54,9 +51,10 @@ class Vendors {
             $payload = $_POST;
         }
         $payload['userId'] = $this->userId;
-        $vendorId = $this->vendorsObj->addVendorInformation($payload);
+        $payload['type'] = 'OWNER';
+        $tableId = $this->vendorsObj->addTableInformation($payload);
 
-        if (preg_match ( '/\d+/', $vendorId)) {
+        if (preg_match ( '/\d+/', $tableId)) {
             $registrationPayload = array (
                 'eventId' => $payload['eventId'],
                 'userId' => $payload['userId'],
@@ -74,7 +72,7 @@ class Vendors {
                 'userId' => $payload['userId'],
                 'badgeLine1' => $payload['name'],
                 'vendor' => 'YES',
-                'vendorTables' => '10',
+                'vendorTables' => $payload['tables']
             );
             $this->registrationLineItemHelper = new registrationLineItemHelper($payload['eventId']);
             $this->registrationLineItemHelper->addRegistrationLineItems($lineItemPayload);
@@ -86,7 +84,7 @@ class Vendors {
 
             echo json_encode (
                 array (
-                    'vendorId' => $vendorId
+                    'storeId' => $payload['storeId']
                 )
             );
         } else {
@@ -95,6 +93,6 @@ class Vendors {
     }
 }
 
-new Vendors($this->userId);
+new TableRegistration($this->userId);
 
 ?>

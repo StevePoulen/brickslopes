@@ -9,7 +9,7 @@
       <directory>./tests/php/unit</directory>
     </testsuite>
     <testsuite name="singleTest">
-      <directory>./tests/php/unit/EventTest.php</directory>
+      <directory>./tests/php/unit/paid/MocTest.php</directory>
     </testsuite>
   </testsuites>
      

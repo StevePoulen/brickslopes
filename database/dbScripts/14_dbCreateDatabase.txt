@@ -1,0 +1,12 @@
+-- MySQL dump 10.11
+--
+-- Host: localhost    Database: mysql
+-- ------------------------------------------------------
+-- Server version	5.1.59
+
+USE `mysql`;
+
+DROP DATABASE IF EXISTS `brickslopes`;
+CREATE DATABASE `brickslopes`;
+
+FLUSH PRIVILEGES;

@@ -6,8 +6,10 @@
 
 USE `brickslopes`;
 
+DROP TABLE IF EXISTS `storeEventUserConnector`;
+DROP TABLE IF EXISTS `storeEventConnector`;
 DROP TABLE IF EXISTS `vendorConnector`;
-DROP TABLE IF EXISTS `vendors`;
+DROP TABLE IF EXISTS `stores`;
 DROP TABLE IF EXISTS `emailHistory`;
 DROP TABLE IF EXISTS `gamesEventsConnector`;
 DROP TABLE IF EXISTS `gamesUsersConnector`;

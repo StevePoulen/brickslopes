@@ -9,14 +9,15 @@
     </div>
     <div class="normalPane events" ng-if="! displayRegisterEventVendorsCTA">
         <div class="meText">
-            <bs-text text="You're Vendor!" font-color=black font-size=1.25></bs-text>
+            <bs-text text="You're A Vendor!" font-color=black font-size=1.25></bs-text>
             <div class="myEventButtonPosition">
-                <div class="actionButtonTiny" ng-click="clickVendor()">
+                <div class="actionButtonTiny" ng-click="clickVendors()">
                     <bs-text text="Add + " font-color=white font-size=.85></bs-text>
                 </div>
             </div>
         </div>
         <div class="myVendors" ng-click="clickVendors()">
+            <div ng-bind="vendorModel.name"></div>
             <div ng-class="{eventRow: $even}"  ng-repeat="game in userGameList | orderBy:'gameTitle'">
                 <div class="myGameRow">
                     <div><bs-text text="{{game.gameTitle}}" max-size=35 font-size=1.25></bs-text></div>

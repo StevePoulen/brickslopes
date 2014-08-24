@@ -7,6 +7,7 @@
 @import url('/css/moc.css');
 @import url('/css/games.css');
 @import url('/css/vendors.css');
+@import url('/css/vendorRegistration.css');
 @import url('/css/collections.css');
 @import url('/css/keynote.css');
 @import url('/css/vendor.css');
@@ -22,6 +23,8 @@ $dashboard_width: 1225px;
 $dashboard_height: 700px;
 $pane_height: 700px;
 $splashPage_height: $dashboard_height - 10;
+
+$vendor_logo_size: 275px;
 
 /* Smartphones (portrait and landscape) ----------- */
 @media only screen 

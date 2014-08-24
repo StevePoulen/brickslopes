@@ -1,0 +1,32 @@
+<div id="eventDashboard" class="heightAuto">
+    <div class="dashboardText heightAuto">
+        <div>
+            <h1>
+                <bs-logo font-size="1.25"></bs-logo> &#8226; <bs-text text="Vendor Table Registration" font-color=black></bs-text>
+            </h1>
+        </div>
+        <div id="tablePosition">
+            <div class="vendorRegistrationForm">
+                <form name="registrationForm" ng-submit="registrationForm.$valid && submitTableRegistration()">
+                    <div class="group">
+                        <bs-text text="{{eventName}}" font-size=1.25></bs-text>
+                    </div>
+                    <div class="label"><bs-text text="Number of Tables" font-size=1.25></bs-text></div>
+                    <div class="optionField">
+                        <select class="small" ng-model="tables" ng-options="table for table in tableRange"></select>
+                    </div>
+                    <div class="formButtonPosition"> 
+                        <button class="formButton" type="submit" ng-class="{disabled: verifying}" ng-disabled="verifying">
+                            <bs-text text="{{buttonText}}" font-color=white font-size=1.75></bs-text>
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div id="help">
+                <div class="logo"></div>
+                <div class="sampleBrickSlopesLogo"><img src="/images/logo/brickSlopes_noword_50px.png"></div>
+            </div>
+        </div>
+    </div>
+    <div id="dashboardCloseButton" ng-click="closeDialog()"></div>
+</div>

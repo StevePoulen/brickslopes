@@ -390,6 +390,14 @@ angular.module('brickSlopes.services', ['ngResource'])
 .factory('VendorDetails', ['$q', '$http', '$sce', function($q, $http, $sce) {
     vendorList = undefined;
 
+    function parseVendorDetails(vendor) {
+        vendor.description = $sce.trustAsHtml(vendor.description);
+        vendor.hasLogo = (vendor.logo === '' ? false : true);
+        vendor.hasUrl = (vendor.url === '' ? false : true);
+
+        return vendor;
+    }
+
     return {
         getCount: function(eventId) {
             if (vendorList) {
@@ -408,7 +416,7 @@ angular.module('brickSlopes.services', ['ngResource'])
                 return $q.when($http (
                     {
                         method: 'GET',
-                        url: '/controllers/registered/vendors.php',
+                        url: '/controllers/registered/vendors/vendors.php',
                         params: {
                             eventId: eventId
                         }
@@ -416,9 +424,7 @@ angular.module('brickSlopes.services', ['ngResource'])
                 ).then(function(data) {
                     vendorList = data.data;
                     _.each(vendorList, function(vendor, index) {
-                        vendor.description = $sce.trustAsHtml(vendor.description);
-                        vendor.hasLogo = (vendor.logo === '' ? false : true);
-                        vendor.hasUrl = (vendor.url === '' ? false : true);
+                        parseVendorDetails(vendor);
                     })
                     return vendorList;
                 }));
@@ -430,8 +436,26 @@ angular.module('brickSlopes.services', ['ngResource'])
             $http (
                 {
                     method: 'POST',
-                    url: '/controllers/registered/vendors.php',
+                    url: '/controllers/registered/vendors/vendorRegistration.php',
                     data: vendorDTO,
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+                }
+            ).success(function(data, status, headers, config) {
+                delay.resolve(data);
+            }).error(function(data, status, headers, config) {
+                delay.reject(status);
+            });
+
+            return delay.promise;
+        },
+
+        createTableOrder: function(tableDTO) {
+            var delay= $q.defer();
+            $http (
+                {
+                    method: 'POST',
+                    url: '/controllers/registered/vendors/tableRegistration.php',
+                    data: tableDTO,
                     headers: {'Content-Type': 'application/x-www-form-urlencoded'}
                 }
             ).success(function(data, status, headers, config) {
@@ -448,7 +472,7 @@ angular.module('brickSlopes.services', ['ngResource'])
             $http (
                 {
                     method: 'POST',
-                    url: '/controllers/registered/vendorAssociates.php',
+                    url: '/controllers/registered/vendors/vendorAssociates.php',
                     data: vendorDTO,
                     headers: {'Content-Type': 'application/x-www-form-urlencoded'}
                 }
@@ -459,7 +483,65 @@ angular.module('brickSlopes.services', ['ngResource'])
             });
 
             return delay.promise;
-        }
+        },
+
+        getEventMeVendorInformation: function(eventId) {
+            var delay= $q.defer();
+            $http (
+                {
+                    method: 'GET',
+                    url: '/controllers/registered/vendors/vendorRegistration.php',
+                    params: {
+                        eventId: eventId
+                    },
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+                }
+            ).success(function(data, status, headers, config) {
+                delay.resolve(parseVendorDetails(data));
+            }).error(function(data, status, headers, config) {
+                delay.reject(status);
+            });
+
+            return delay.promise;
+        },
+
+        getTableById: function(tableId) {
+            var delay= $q.defer();
+            $http (
+                {
+                    method: 'GET',
+                    url: '/controllers/registered/vendors/tableRegistration.php',
+                    params: {
+                        tableId: tableId
+                    }
+                }
+            ).success(function(data, status, headers, config) {
+                delay.resolve(data);
+            }).error(function(data, status, headers, config) {
+                delay.reject(status);
+            });
+
+            return delay.promise;
+        },
+
+        getStore: function(storeId) {
+            var delay= $q.defer();
+            $http (
+                {
+                    method: 'GET',
+                    url: '/controllers/registered/vendors/vendorRegistration.php',
+                    params: {
+                        storeId: storeId
+                    }
+                }
+            ).success(function(data, status, headers, config) {
+                delay.resolve(parseVendorDetails(data));
+            }).error(function(data, status, headers, config) {
+                delay.reject(status);
+            });
+
+            return delay.promise;
+        },
     }
 }])
 .factory('UserDetails', ['$q', '$http', '$window', function($q, $http, $window) {

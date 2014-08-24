@@ -20,23 +20,23 @@ class VendorAssociates {
             $this->get();
         } else if ($requestMethod == "POST") {
             $this->post();
-        } else if ($requestMethod == "PATCH") {
-            $this->patch();
+        } else if ($requestMethod == "DELETE") {
+            $this->delete();
         } else {
             header("HTTP/1.0 405 Method Not Allowed");
         }
     }
 
     private function get() {
-        $vendorJson = array();
+        $associateJson = array();
         $payload = $_GET;
-        $this->vendorsObj->getVendorAssociateInformation($payload);
+        $this->vendorsObj->getStoreEventUserInformation($payload);
         if ($this->vendorsObj->result) {
             while($dbObj = $this->vendorsObj->result->fetch_object()) {
                 array_push(
-                    $vendorJson,
+                    $associateJson,
                     array (
-                        'vendorConnectorId' => $dbObj->vendorConnectorId,
+                        'associateId' => $dbObj->associateId,
                         'firstName' => $dbObj->firstName,
                         'lastName' => $dbObj->lastName
                     )
@@ -44,7 +44,7 @@ class VendorAssociates {
             }
         }
         header("HTTP/1.0 200 Success");
-        echo json_encode ($vendorJson);
+        echo json_encode ($associateJson);
     }
 
     private function addAssociateVendor($payload) {
@@ -76,13 +76,13 @@ class VendorAssociates {
         $this->registrationLineItemHelper = new registrationLineItemHelper($payload['eventId']);
         $this->registrationLineItemHelper->addRegistrationLineItems($lineItemPayload);
 
-        $vendorConnectorId = $this->vendorsObj->addVendorConnectorInformation($payload);
-        if (preg_match ( '/\d+/', $vendorConnectorId)) {
+        $associateId = $this->vendorsObj->addStoreEventUserInformation($payload);
+        if (preg_match ( '/\d+/', $associateId)) {
             header("HTTP/1.0 201 Created");
 
             echo json_encode (
                 array (
-                    'vendorConnectorId' => $vendorConnectorId
+                    'associateId' => $associateId
                 )
             );
 
@@ -97,6 +97,8 @@ class VendorAssociates {
         if (sizeof($payload) == 0) {
             $payload = $_POST;
         }
+
+        $payload['type'] = 'ASSOCIATE';
         //add user
         $userPayload = array (
             'firstName' => $payload['firstName'],

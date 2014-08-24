@@ -214,7 +214,7 @@ describe('controllers', function() {
             mockBackend.expectGET('/controllers/public/eventDates.php').respond(201, eventDates);
             mockBackend.expectGET('/controllers/registered/eventRegistration.php').respond(201, eventRegistration);
             mockBackend.expectGET('/controllers/paid/mocs.php?eventId=2').respond(mocs);
-            mockBackend.expectGET('/controllers/registered/vendors.php?eventId=2').respond(201, vendors);
+            mockBackend.expectGET('/controllers/registered/vendors/vendors.php?eventId=2').respond(201, vendors);
 
             mockBackend.expectGET('/controllers/paid/themes.php?eventId=2').respond(themes);
             mockBackend.expectGET('/controllers/paid/games.php?eventId=2').respond(games);

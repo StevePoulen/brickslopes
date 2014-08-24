@@ -34,7 +34,7 @@ describe('controllers', function() {
             ctrl = $controller('afolEventVendors', { $scope: scope, $route: route});
             location = $location;
             mockBackend = _$httpBackend_;
-            mockBackend.expectGET('/controllers/registered/vendors.php?eventId=2').respond(201, vendors);
+            mockBackend.expectGET('/controllers/registered/vendors/vendors.php?eventId=2').respond(201, vendors);
         }));
 
         describe('Close Dialog', function() {

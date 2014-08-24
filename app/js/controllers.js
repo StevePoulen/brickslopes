@@ -1,6 +1,6 @@
 'use strict';
 
-var showAfolLogin = false;
+var showAfolLogin = true;
 
 /* Controllers */
 angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
@@ -500,7 +500,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         $scope.themeList = data;
     });
 }])
-.controller('afolMe', ['$scope', '$location', 'Auth', 'EventRegistration', 'EventDates', 'UserDetails', 'MocDetails', 'Games', function($scope, $location, Auth, EventRegistration, EventDates, UserDetails, MocDetails, Games) {
+.controller('afolMe', ['$scope', '$location', 'Auth', 'EventRegistration', 'EventDates', 'UserDetails', 'MocDetails', 'Games', 'VendorDetails', function($scope, $location, Auth, EventRegistration, EventDates, UserDetails, MocDetails, Games, VendorDetails) {
     $scope.verifying = false;
     $scope.displayMessage = "";
     $scope.timer = false;
@@ -509,6 +509,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     $scope.passDates = undefined;
     $scope.eventList = {};
     $scope.mocList = {};
+    $scope.vendorModel = {};
     $scope.mocCount = 0;
     $scope.gameCount = 0;
     $scope.userGameList = {};
@@ -581,7 +582,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     }
 
     $scope.clickVendors = function() {
-        $location.path("/registered/" + $scope.eventId + "/vendorRegistration.html");
+        $location.path("/registered/" + $scope.eventId + "/" + $scope.vendorId + "/vendorRegistration.html");
     }
 
     $scope.closeDialog = function() {
@@ -600,6 +601,10 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         return Object.keys($scope.userGameList).length && UserDetails.isUserRegistered() && UserDetails.isUserPaid();
     }
 
+    function displayEventVendorRegisterButton() {
+        return Object.keys($scope.vendorModel).length;
+    }
+
     EventRegistration.get().then(function(data) {
         $scope.eventList = data;
         $scope.displayRegisterEventCTA = ! displayRegisterEventButton();
@@ -611,6 +616,11 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         MocDetails.getCountByUser($scope.eventId).then(function(data) {
             $scope.mocCount = data;
         });
+    });
+
+    VendorDetails.getEventMeVendorInformation($scope.eventId).then(function(data) {
+        $scope.vendorModel = data;
+        $scope.displayRegisterEventVendorsCTA = ! displayEventVendorRegisterButton();
     });
 
     Games.getUserGameList($scope.eventId).then(function(data) {
@@ -631,15 +641,24 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         $scope.passDates = passDates;
     });
 }])
-.controller('associateRegistration', ['$scope', '$location', 'VendorDetails', '$route', function($scope, $location, VendorDetails, $route) {
+.controller('AssociateRegistration', ['$scope', '$location', 'VendorDetails', '$route', function($scope, $location, VendorDetails, $route) {
     $scope.eventId = $route.current.params.eventId;
-    $scope.vendorId = $route.current.params.vendorId;
+    $scope.storeId = $route.current.params.storeId;
     $scope.displayMessage = undefined;
+    $scope.showModal = false;
+    setDefaultScopeVariables();
+
+    function setDefaultScopeVariables() {
+        $scope.firstName = undefined;
+        $scope.lastName = undefined;
+        $scope.email = undefined;
+        $scope.addAfolPass = 'YES';
+    }
 
     function serializeAssociateJson() {
         return {
             eventId: $scope.eventId,
-            vendorId: $scope.vendorId,
+            storeId: $scope.storeId,
             firstName: $scope.firstName,
             lastName: $scope.lastName,
             email: $scope.email,
@@ -651,14 +670,18 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         $location.path('/registered/eventPayment.html');
     }
 
-    $scope.submitRegistration = function() {
+    $scope.submitAssociateRegistration = function() {
         $scope.verifying = true;
         VendorDetails.createAssociate(serializeAssociateJson()).then(function(data) {
-            $scope.displayMessage = "Add another Associate or Pay?";
+            $scope.registrationForm.$setPristine();
+            $scope.displayMessage = "Your Associate Registration has been received.<p>Would you like to add another Associate or Continue to Payment?";
             $scope.verifying = false;
+            $scope.showModal = true;
+            setDefaultScopeVariables();
         }, function(status) {
             $scope.verifying = false;
             $scope.displayMessage = "The Vendor Associate travails.";
+            $scope.showModal = true;
         });
     }
 
@@ -666,11 +689,13 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         $location.path("/registered/eventPayment.html");
     }
 }])
-.controller('vendorRegistration', ['$scope', '$location', 'VendorDetails', '$route', function($scope, $location, VendorDetails, $route) {
+.controller('vendorRegistration', ['$scope', '$location', 'VendorDetails', '$route', 'EventDetails', function($scope, $location, VendorDetails, $route, EventDetails) {
     $scope.eventId = $route.current.params.eventId;
-    $scope.isVendorUpdate = false;
+    $scope.storeId = $route.current.params.storeId;
+    $scope.isStoreUpdate = false;
     $scope.displayErrorMessage = undefined;
     setDefaultScopeVariables();
+    $scope.buttonText = 'Register';
 
     function setDefaultScopeVariables() {
         $scope.name = undefined;
@@ -682,6 +707,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     function serializeVendorJson() {
         return {
             eventId: $scope.eventId,
+            storeId: $scope.storeId,
             name: $scope.name,
             description: $scope.description,
             url: $scope.url,
@@ -691,7 +717,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
 
     $scope.submitRegistration = function() {
         $scope.verifying = true;
-        if ($scope.isVendorUpdate) {
+        if ($scope.isStoreUpdate) {
             updateVendor();
         } else {
             createVendor();
@@ -700,10 +726,8 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
 
     function createVendor() {
         VendorDetails.create(serializeVendorJson()).then(function(data) {
-            $scope.registrationForm.$setPristine();
-            setDefaultScopeVariables();
-            $location.path('/registered/' + $scope.eventId + '/' + data.vendorId  + '/associateRegistration.html');
             $scope.verifying = false;
+            $location.path('/registered/' + $scope.eventId + '/' + data.storeId + '/undefined/tableRegistration.html');
         }, function(status) {
             errorMessage(status);
         });
@@ -712,9 +736,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     function updateVendor() {
         VendorDetails.update(serializeVendorJson()).then(function(status) {
             if (status === 200) {
-                $scope.registrationForm.$setPristine();
-                setDefaultScopeVariables();
-                location.path('/registered/associateRegistration.html');
+                location.path('/registered/eventMe.html');
             }
             $scope.verifying = false;
         }, function(status) {
@@ -734,13 +756,122 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     }
 
     function setUpdateModel(vendor) {
-        $scope.vendorId = vendor.vendorId;
+        $scope.storeId = vendor.storeId;
         $scope.eventId = vendor.eventId;
         $scope.name = vendor.name;
         $scope.description = vendor.description;
         $scope.url = vendor.url;
         $scope.logo = vendor.logo;
     }
+
+    $scope.$watch("storeId", function(storeId) {
+        var storeIdRegex= /^\d+$/;
+        if (
+            angular.isDefined(storeId) &&
+            storeIdRegex.test(storeId)
+        ) {
+            VendorDetails.getStore(storeId).then(function(store) {
+                if (store) {
+                    $scope.isStoreUpdate = true;
+                    $scope.buttonText = 'Update';
+                    setUpdateModel(store);
+                }
+            });
+        }
+    });
+}])
+.controller('TableRegistration', ['$scope', '$location', 'VendorDetails', '$route', 'EventDetails', function($scope, $location, VendorDetails, $route, EventDetails) {
+    $scope.eventId = $route.current.params.eventId;
+    $scope.storeId = $route.current.params.storeId;
+    $scope.tableId = $route.current.params.tableId;
+    $scope.isTableUpdate = false;
+    $scope.displayErrorMessage = undefined;
+    setDefaultScopeVariables();
+    $scope.buttonText = 'Register';
+    $scope.tableRange = [1,2,3,4,5,6,7,8,9,10,11,12];
+    $scope.eventName = undefined;
+
+    EventDetails.get($scope.eventId).then(function(data) {
+        $scope.eventName=data.name;
+    });
+
+    function setDefaultScopeVariables() {
+        $scope.tables = 2;
+    }
+
+    function serializeTableJson() {
+        return {
+            eventId: $scope.eventId,
+            storeId: $scope.storeId,
+            tableId: $scope.tableId,
+            tables: $scope.tables
+        }
+    }
+
+    $scope.submitTableRegistration = function() {
+        $scope.verifying = true;
+        if ($scope.isTableUpdate) {
+            updateTableOrder();
+        } else {
+            createTableOrder();
+        }
+    }
+
+    function createTableOrder() {
+        VendorDetails.createTableOrder(serializeTableJson()).then(function(data) {
+            $scope.verifying = false;
+            $location.path('/registered/' + $scope.eventId + '/' + data.storeId + '/associateRegistration.html');
+        }, function(status) {
+            errorMessage(status);
+        });
+    }
+
+    function updateTableOrder() {
+        VendorDetails.update(serializeVendorJson()).then(function(status) {
+            if (status === 200) {
+                $scope.registrationForm.$setPristine();
+                setDefaultScopeVariables();
+                location.path('/registered/associateRegistration.html');
+            }
+            $scope.verifying = false;
+        }, function(status) {
+            errorMessage(status);
+        });
+    }
+
+    function errorMessage(status) {
+        $scope.verifying = false;
+        if (status === 400) {
+            $scope.displayErrorMessage = "The Table travails.";
+        }
+    }
+
+    $scope.closeDialog = function() {
+        $location.path("/registered/eventMe.html");
+    }
+
+    function setUpdateModel(table) {
+        $scope.storeId = table.storeId;
+        $scope.eventId = table.eventId;
+        $scope.tableId = table.tableId;
+        $scope.tables = table.tables;
+    }
+
+    $scope.$watch("tableId", function(tableId) {
+        var tableIdRegex= /^\d+$/;
+        if (
+            angular.isDefined(tableId) &&
+            tableIdRegex.test(tableId)
+        ) {
+            VendorDetails.getTableById(tableId).then(function(table) {
+                if (table) {
+                    $scope.isTableUpdate = true;
+                    $scope.buttonText = 'Update';
+                    setUpdateModel(table);
+                }
+            });
+        }
+    });
 }])
 .controller('afolMocRegistration', ['$scope', '$location', '$window', 'Themes', 'MocDetails', '$route', function($scope, $location, $window, Themes, MocDetails, $route) {
     $scope.firstName = $window.sessionStorage.firstName;
