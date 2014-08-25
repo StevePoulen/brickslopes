@@ -48,6 +48,8 @@ class registrationLineItemModel extends db {
             WHERE
                 userId = '{$userId}'
                 AND r.eventLineItemCodeId = ec.eventLineItemCodeId
+            ORDER BY
+                r.registrationLineItemId DESC
         ;
       ";
     }

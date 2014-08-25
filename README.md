@@ -41,3 +41,9 @@ Unit Tests
 
 # css Tests
 `$ make css_test`
+
+Configure Local Mail Sending on a Mac for email testing
+=======================================================
+http://blog.anupamsg.me/2012/02/14/enabling-postfix-for-outbound-relay-via-gmail-on-os-x-lion-11/
+
+Simply follow all the instructions and you will be able to send e-mails
