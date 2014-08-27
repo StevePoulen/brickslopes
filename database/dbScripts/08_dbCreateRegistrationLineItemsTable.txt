@@ -21,6 +21,7 @@ CREATE TABLE `registrationLineItems` (
   `size` VARCHAR(255),
   `quantity` INT(10),
   `active` ENUM('YES', 'NO'),
+  `isOwner` ENUM('YES', 'NO'),
   `entryDate` DATETIME,
   PRIMARY KEY (`registrationLineItemId`),
   FOREIGN KEY (`eventId`) REFERENCES `events` (`eventId`),

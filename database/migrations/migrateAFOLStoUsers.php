@@ -65,6 +65,7 @@
             $registrationLineItemMap['size'] = $size;
             $registrationLineItemMap['quantity'] = 1;
             $registrationLineItemMap['active'] = 'YES';
+            $registrationLineItemMap['isOwner'] = 'YES';
 
             $registrationLineItemObj->addRegistrationLineItems($registrationLineItemMap);
         }

@@ -17,10 +17,10 @@ describe('service', function() {
         describe('Get', function() {
             var mockBackend, loader, data, eventId;
             beforeEach(inject(function(_$httpBackend_, RegistrationLineItems) {
-                eventId = 22;
+                eventId = 2;
                 mockBackend = _$httpBackend_;
                 loader = RegistrationLineItems;
-                mockBackend.expectGET('/controllers/registered/registrationLineItems.php?eventId=22').respond('success');
+                mockBackend.expectGET('/controllers/registered/registrationLineItems.php?eventId=2').respond(registrationLineItems);
             }));
 
             it('should get registration line items', function() {
@@ -31,7 +31,7 @@ describe('service', function() {
                 });
 
                 mockBackend.flush();
-                expect(data).toEqualData('success');
+                expect(data[2].lineItems[0].lineItem).toEqualData('Event Pass - Brian Pilati');
             });
         });
 

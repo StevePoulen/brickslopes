@@ -55,6 +55,7 @@ class RegistrationLineItemsMock extends modelObjects {
     public function size() { return $this->getData(9); }
     public function quantity() { return $this->getData(10); }
     public function active() { return $this->getData(11); }
-    public function entryDate() { return $this->getData(12); }
+    public function isOwner() { return $this->getData(12); }
+    public function entryDate() { return $this->getData(13); }
 }
 ?>

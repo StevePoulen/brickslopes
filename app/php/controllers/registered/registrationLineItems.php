@@ -36,6 +36,7 @@ class registrationLineItems {
             'size' => $dbObj->size,
             'quantity' => $dbObj->quantity,
             'active' => $dbObj->active,
+            'isOwner' => $dbObj->isOwner,
             'entryDate' => $dbObj->entryDate
         );
     }

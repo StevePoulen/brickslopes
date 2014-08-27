@@ -334,6 +334,11 @@ angular.module('brickSlopes.services', ['ngResource'])
                     params: {'eventId': eventId}
                 }
             ).success(function(data, status, headers, config) {
+                _.each(data[eventId].lineItems, function(lineItem) {
+                    if (lineItem.lineItemCode === '10000') {
+                        lineItem.lineItem = lineItem.lineItem + ' - ' + lineItem.description;
+                    }
+                });
                 delay.resolve(data);
             }).error(function(data, status, headers, config) {
                 delay.reject(data);

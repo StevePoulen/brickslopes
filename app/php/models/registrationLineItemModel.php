@@ -41,6 +41,7 @@ class registrationLineItemModel extends db {
                 quantity,
                 active,
                 size,
+                isOwner,
                 entryDate
             FROM
                 registrationLineItems r,
@@ -49,7 +50,7 @@ class registrationLineItemModel extends db {
                 userId = '{$userId}'
                 AND r.eventLineItemCodeId = ec.eventLineItemCodeId
             ORDER BY
-                r.registrationLineItemId DESC
+                r.amount DESC
         ;
       ";
     }
@@ -81,6 +82,7 @@ class registrationLineItemModel extends db {
                 size,
                 quantity,
                 active,
+                isOwner,
                 entryDate
             )
         VALUES
@@ -96,6 +98,7 @@ class registrationLineItemModel extends db {
                 '{$this->escapeCharacters($data['size'])}',
                 '{$this->escapeCharacters($data['quantity'])}',
                 '{$this->escapeCharacters($data['active'])}',
+                '{$this->escapeCharacters($data['isOwner'])}',
                 NOW()
           )
         ;

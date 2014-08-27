@@ -39,6 +39,7 @@ class EventRegistrationTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($lineItems['size'] , 'X-Large');
         $this->assertEquals($lineItems['quantity'] , '2');
         $this->assertEquals($lineItems['active'] , 'YES');
+        $this->assertEquals($lineItems['isOwner'] , 'NO');
         $this->assertEquals($lineItems['entryDate'] , '2014-06-29 08:46:00');
     }
 
@@ -73,6 +74,69 @@ class EventRegistrationTest extends PHPUnit_Framework_TestCase
         $GLOBALS['db_query'] = 12345;
         $eventRegistration = new EventRegistration($this->userId);
         $this->assertEquals(http_response_code(), 201);
+
+        $lineItemObj = $GLOBALS['addRegistrationLineItems'][0];
+        $this->assertEquals($lineItemObj['eventLineItemCodeId'], '1');
+        $this->assertEquals($lineItemObj['eventId'], 2);
+        $this->assertEquals($lineItemObj['userId'], 12345);
+        $this->assertEquals($lineItemObj['lineItem'], 'Event Pass');
+        $this->assertEquals($lineItemObj['amount'], '60.00');
+        $this->assertEquals($lineItemObj['paid'], 'NO');
+        $this->assertEquals($lineItemObj['discount'], 'YES');
+        $this->assertEquals($lineItemObj['description'], 'Brian Pilati');
+        $this->assertEquals($lineItemObj['size'], null);
+        $this->assertEquals($lineItemObj['quantity'], 1);
+        $this->assertEquals($lineItemObj['active'], 'YES');
+        $this->assertEquals($lineItemObj['isOwner'], 'YES');
+        $this->assertEquals(sizeOf($lineItemObj), 12);
+
+        $lineItemObj = $GLOBALS['addRegistrationLineItems'][1];
+        $this->assertEquals($lineItemObj['eventLineItemCodeId'], '3');
+        $this->assertEquals($lineItemObj['eventId'], 2);
+        $this->assertEquals($lineItemObj['userId'], 12345);
+        $this->assertEquals($lineItemObj['lineItem'], 'Meet and Greet');
+        $this->assertEquals($lineItemObj['amount'], '10.00');
+        $this->assertEquals($lineItemObj['paid'], 'NO');
+        $this->assertEquals($lineItemObj['discount'], 'YES');
+        $this->assertEquals($lineItemObj['description'], 'Brian Pilati');
+        $this->assertEquals($lineItemObj['size'], null);
+        $this->assertEquals($lineItemObj['quantity'], 1);
+        $this->assertEquals($lineItemObj['active'], 'YES');
+        $this->assertEquals($lineItemObj['isOwner'], 'YES');
+        $this->assertEquals(sizeOf($lineItemObj), 12);
+
+        $lineItemObj = $GLOBALS['addRegistrationLineItems'][2];
+        $this->assertEquals($lineItemObj['eventLineItemCodeId'], '2');
+        $this->assertEquals($lineItemObj['eventId'], 2);
+        $this->assertEquals($lineItemObj['userId'], 12345);
+        $this->assertEquals($lineItemObj['lineItem'], 'T-Shirt');
+        $this->assertEquals($lineItemObj['amount'], '15.00');
+        $this->assertEquals($lineItemObj['paid'], 'NO');
+        $this->assertEquals($lineItemObj['discount'], 'YES');
+        $this->assertEquals($lineItemObj['description'], 'Brian Pilati');
+        $this->assertEquals($lineItemObj['size'], 'X-Large');
+        $this->assertEquals($lineItemObj['quantity'], 1);
+        $this->assertEquals($lineItemObj['active'], 'YES');
+        $this->assertEquals($lineItemObj['isOwner'], 'YES');
+        $this->assertEquals(sizeOf($lineItemObj), 12);
+
+        $lineItemObj = $GLOBALS['addRegistrationLineItems'][3];
+        $this->assertEquals($lineItemObj['eventLineItemCodeId'], '7');
+        $this->assertEquals($lineItemObj['eventId'], 2);
+        $this->assertEquals($lineItemObj['userId'], 12345);
+        $this->assertEquals($lineItemObj['lineItem'], 'Event Badge Brick');
+        $this->assertEquals($lineItemObj['amount'], '0.00');
+        $this->assertEquals($lineItemObj['paid'], 'NO');
+        $this->assertEquals($lineItemObj['discount'], 'YES');
+        $this->assertEquals($lineItemObj['description'], '2015 BrickSlopes');
+        $this->assertEquals($lineItemObj['size'], null);
+        $this->assertEquals($lineItemObj['quantity'], 1);
+        $this->assertEquals($lineItemObj['active'], 'YES');
+        $this->assertEquals($lineItemObj['isOwner'], 'YES');
+        $this->assertEquals(sizeOf($lineItemObj), 12);
+
+        //Total Line Items
+        $this->assertEquals(sizeOf($GLOBALS['addRegistrationLineItems']), 4);
 
         $emailOutput = $GLOBALS['addEmailHistoryInformation'][0];
         $this->assertEquals($emailOutput['subject'], 'BrickSlopes Registration');
@@ -115,6 +179,69 @@ class EventRegistrationTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($queryObj[1]['gameId'], 4);
         $this->assertEquals($queryObj[1]['userId'], 12345);
         $this->assertEquals($queryObj[1]['eventId'], 2);
+
+        $lineItemObj = $GLOBALS['addRegistrationLineItems'][0];
+        $this->assertEquals($lineItemObj['eventLineItemCodeId'], '1');
+        $this->assertEquals($lineItemObj['eventId'], 2);
+        $this->assertEquals($lineItemObj['userId'], 12345);
+        $this->assertEquals($lineItemObj['lineItem'], 'Event Pass');
+        $this->assertEquals($lineItemObj['amount'], '60.00');
+        $this->assertEquals($lineItemObj['paid'], 'NO');
+        $this->assertEquals($lineItemObj['discount'], 'YES');
+        $this->assertEquals($lineItemObj['description'], 'Brian Pilati');
+        $this->assertEquals($lineItemObj['size'], null);
+        $this->assertEquals($lineItemObj['quantity'], 1);
+        $this->assertEquals($lineItemObj['active'], 'YES');
+        $this->assertEquals($lineItemObj['isOwner'], 'YES');
+        $this->assertEquals(sizeOf($lineItemObj), 12);
+
+        $lineItemObj = $GLOBALS['addRegistrationLineItems'][1];
+        $this->assertEquals($lineItemObj['eventLineItemCodeId'], '3');
+        $this->assertEquals($lineItemObj['eventId'], 2);
+        $this->assertEquals($lineItemObj['userId'], 12345);
+        $this->assertEquals($lineItemObj['lineItem'], 'Meet and Greet');
+        $this->assertEquals($lineItemObj['amount'], '10.00');
+        $this->assertEquals($lineItemObj['paid'], 'NO');
+        $this->assertEquals($lineItemObj['discount'], 'YES');
+        $this->assertEquals($lineItemObj['description'], 'Brian Pilati');
+        $this->assertEquals($lineItemObj['size'], null);
+        $this->assertEquals($lineItemObj['quantity'], 1);
+        $this->assertEquals($lineItemObj['active'], 'YES');
+        $this->assertEquals($lineItemObj['isOwner'], 'YES');
+        $this->assertEquals(sizeOf($lineItemObj), 12);
+
+        $lineItemObj = $GLOBALS['addRegistrationLineItems'][2];
+        $this->assertEquals($lineItemObj['eventLineItemCodeId'], '2');
+        $this->assertEquals($lineItemObj['eventId'], 2);
+        $this->assertEquals($lineItemObj['userId'], 12345);
+        $this->assertEquals($lineItemObj['lineItem'], 'T-Shirt');
+        $this->assertEquals($lineItemObj['amount'], '15.00');
+        $this->assertEquals($lineItemObj['paid'], 'NO');
+        $this->assertEquals($lineItemObj['discount'], 'YES');
+        $this->assertEquals($lineItemObj['description'], 'Brian Pilati');
+        $this->assertEquals($lineItemObj['size'], 'X-Large');
+        $this->assertEquals($lineItemObj['quantity'], 1);
+        $this->assertEquals($lineItemObj['active'], 'YES');
+        $this->assertEquals($lineItemObj['isOwner'], 'YES');
+        $this->assertEquals(sizeOf($lineItemObj), 12);
+
+        $lineItemObj = $GLOBALS['addRegistrationLineItems'][3];
+        $this->assertEquals($lineItemObj['eventLineItemCodeId'], '7');
+        $this->assertEquals($lineItemObj['eventId'], 2);
+        $this->assertEquals($lineItemObj['userId'], 12345);
+        $this->assertEquals($lineItemObj['lineItem'], 'Event Badge Brick');
+        $this->assertEquals($lineItemObj['amount'], '0.00');
+        $this->assertEquals($lineItemObj['paid'], 'NO');
+        $this->assertEquals($lineItemObj['discount'], 'YES');
+        $this->assertEquals($lineItemObj['description'], '2015 BrickSlopes');
+        $this->assertEquals($lineItemObj['size'], null);
+        $this->assertEquals($lineItemObj['quantity'], 1);
+        $this->assertEquals($lineItemObj['active'], 'YES');
+        $this->assertEquals($lineItemObj['isOwner'], 'YES');
+        $this->assertEquals(sizeOf($lineItemObj), 12);
+
+        //Total Line Items
+        $this->assertEquals(sizeOf($GLOBALS['addRegistrationLineItems']), 4);
 
         $emailOutput = $GLOBALS['addEmailHistoryInformation'][0];
         $this->assertEquals($emailOutput['subject'], 'BrickSlopes Registration');

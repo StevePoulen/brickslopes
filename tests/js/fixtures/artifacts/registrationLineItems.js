@@ -6,12 +6,13 @@ var registrationLineItems = {
         'lineItems': [
             {
                 "registrationLineItemid": "1",
+                lineItemCode: '10000',
                 "lineItem": "Event Pass",
                 "amount": "60.00",
                 "total": "60.00",
                 "paid": "NO",
                 "discount": "YES",
-                "description": "",
+                "description": "Brian Pilati",
                 "size": "",
                 "quantity": "1",
                 "active": "YES",

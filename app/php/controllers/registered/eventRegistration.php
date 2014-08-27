@@ -2,6 +2,7 @@
 
 class EventRegistration {
     private $registrationsObj;
+    private $userObj;
     private $requestMethod;
     private $userId;
     private $registrationLineItemHelper;
@@ -57,6 +58,20 @@ class EventRegistration {
         $gameUserObj->deleteGameUserInformation($payload);
     }
 
+    private function getUserName() {
+        $userName = "";
+        $this->userObj = new users();
+        $this->userObj->getUserInformation($this->userId);
+        if ($this->userObj->result) {
+            if ($dbObj = $this->userObj->result->fetch_object()) {
+                $userName = "{$dbObj->firstName} {$dbObj->lastName}";
+            }
+        }
+
+        return $userName;
+
+    }
+
     private function patch() {
         $payload = json_decode(file_get_contents("php://input"), true);
         if (sizeof($payload) == 0) {
@@ -74,6 +89,7 @@ class EventRegistration {
         $this->deleteGameUserInformation($payload);
 
         if (preg_match ( '/\d+/', $response )) {
+            $payload['description'] = $this->getUserName();
             $this->registrationLineItemHelper->addRegistrationLineItems($payload);
 
             $emailObj = new mail($this->userId);
@@ -95,6 +111,7 @@ class EventRegistration {
         $response = $this->registrationsObj->addRegistrationInformation($payload);
 
         if (preg_match ( '/\d+/', $response )) {
+            $payload['description'] = $this->getUserName();
             $this->registrationLineItemHelper = new registrationLineItemHelper($payload['eventId']);
             $this->registrationLineItemHelper->addRegistrationLineItems($payload);
 

@@ -58,7 +58,7 @@ describe('controllers', function() {
             });
 
             it('should populate the registrationLineItem variable', function() {
-                expect(scope.registrationLineItems).toEqualData(registrationLineItems[2]['lineItems']);
+                expect(scope.registrationLineItems[0].lineItem).toBe('Event Pass - Brian Pilati');
             });
 
             it('should have an totalAmount variable ', function() {
@@ -100,7 +100,7 @@ describe('controllers', function() {
             it('should have a paypal payload item_name_1 object', function() {
                 expect($('#paypalSubmitForm').find('input')[4].type).toBe('hidden');
                 expect($('#paypalSubmitForm').find('input')[4].name).toBe('item_name_1');
-                expect($('#paypalSubmitForm').find('input')[4].value).toBe('Event Pass');
+                expect($('#paypalSubmitForm').find('input')[4].value).toBe('Event Pass - Brian Pilati');
             });
 
             it('should have a paypal payload amount_1 object', function() {

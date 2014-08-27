@@ -71,7 +71,8 @@ class TableRegistrationTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($lineItemObj['size'], null);
         $this->assertEquals($lineItemObj['quantity'], 1);
         $this->assertEquals($lineItemObj['active'], 'YES');
-        $this->assertEquals(sizeOf($lineItemObj), 11);
+        $this->assertEquals($lineItemObj['isOwner'], 'YES');
+        $this->assertEquals(sizeOf($lineItemObj), 12);
 
         $lineItemObj = $GLOBALS['addRegistrationLineItems'][1];
         $this->assertEquals($lineItemObj['eventLineItemCodeId'], 10);
@@ -85,6 +86,7 @@ class TableRegistrationTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($lineItemObj['size'], null);
         $this->assertEquals($lineItemObj['quantity'], 12);
         $this->assertEquals($lineItemObj['active'], 'YES');
-        $this->assertEquals(sizeOf($lineItemObj), 11);
+        $this->assertEquals($lineItemObj['isOwner'], 'YES');
+        $this->assertEquals(sizeOf($lineItemObj), 12);
     }
 }

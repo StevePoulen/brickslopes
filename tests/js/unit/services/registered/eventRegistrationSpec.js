@@ -57,7 +57,7 @@ describe('service', function() {
                 service = EventRegistration;
                 mockBackend.expectGET('/controllers/registered/eventRegistration.php').respond(201, eventRegistration);
 
-                service.get().then(function(_data) {
+                service.get(2).then(function(_data) {
                     eventList = _data['2'];
                 });
 
@@ -150,7 +150,7 @@ describe('service', function() {
 
             it('should have no tShirtSize attribute in eventList', function() {
                 mockBackend.expectGET('/controllers/registered/eventRegistration.php').respond(eventRegistrationNoTShirt);
-                service.get().then(function(_data) {
+                service.get(2).then(function(_data) {
                     eventList = _data['3'];
                 });
                 mockBackend.flush();
@@ -159,7 +159,7 @@ describe('service', function() {
 
             it('should have no meetAndGreet attribute in eventList', function() {
                 mockBackend.expectGET('/controllers/registered/eventRegistration.php').respond(eventRegistrationNoMeetAndGreet);
-                service.get().then(function(_data) {
+                service.get(2).then(function(_data) {
                     eventList = _data['2'];
                 });
                 mockBackend.flush();
@@ -168,7 +168,7 @@ describe('service', function() {
 
             it('should have no badgeLine1 attribute in eventList', function() {
                 mockBackend.expectGET('/controllers/registered/eventRegistration.php').respond(eventRegistrationNoMeetAndGreet);
-                service.get().then(function(_data) {
+                service.get(2).then(function(_data) {
                     eventList = _data['2'];
                 });
                 mockBackend.flush();
@@ -178,7 +178,7 @@ describe('service', function() {
 
             it('should have no badgeLine2 attribute in eventList', function() {
                 mockBackend.expectGET('/controllers/registered/eventRegistration.php').respond(eventRegistrationNoMeetAndGreet);
-                service.get().then(function(_data) {
+                service.get(2).then(function(_data) {
                     eventList = _data['2'];
                 });
                 mockBackend.flush();
@@ -188,7 +188,7 @@ describe('service', function() {
 
             it('should have a badgeLine1 and no badgeLine2 attribute in eventList', function() {
                 mockBackend.expectGET('/controllers/registered/eventRegistration.php').respond(eventRegistrationBadgeLineOneOnly);
-                service.get().then(function(_data) {
+                service.get(2).then(function(_data) {
                     eventList = _data['4'];
                 });
                 mockBackend.flush();
@@ -202,7 +202,7 @@ describe('service', function() {
 
             it('should have a paidCTA attribute of true', function() {
                 mockBackend.expectGET('/controllers/registered/eventRegistration.php').respond(eventRegistrationPaid);
-                service.get().then(function(_data) {
+                service.get(2).then(function(_data) {
                     eventList = _data['1'];
                 });
                 mockBackend.flush();

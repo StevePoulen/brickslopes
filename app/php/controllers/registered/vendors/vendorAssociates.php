@@ -69,15 +69,18 @@ class VendorAssociates {
         } else {
             $lineItemPayload['vendorPass'] = 'YES';
         }
+        $lineItemPayload['description'] = "{$payload['firstName']} {$payload['lastName']}";
 
         $this->registrationLineItemHelper = new registrationLineItemHelper($payload['eventId']);
         //Add the line item to the vendor (store owner)
         $lineItemPayload['userId'] = $this->userId;
+        $lineItemPayload['isOwner'] = 'NO';
         $this->registrationLineItemHelper->addRegistrationLineItems($lineItemPayload);
 
         //Add the line item to the user (store associate)
         $lineItemPayload['userId'] = $payload['userId'];
         $lineItemPayload['nocost'] = true;
+        $lineItemPayload['isOwner'] = 'YES';
         $this->registrationLineItemHelper->addRegistrationLineItems($lineItemPayload);
 
         $associateId = $this->vendorsObj->addStoreEventUserInformation($payload);

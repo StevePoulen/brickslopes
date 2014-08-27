@@ -57,11 +57,12 @@ class VendorAssociatesTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($lineItemObj['amount'], '0.00');
         $this->assertEquals($lineItemObj['paid'], 'NO');
         $this->assertEquals($lineItemObj['discount'], 'YES');
-        $this->assertEquals($lineItemObj['description'], null);
+        $this->assertEquals($lineItemObj['description'], 'Cody Ottley');
         $this->assertEquals($lineItemObj['size'], null);
         $this->assertEquals($lineItemObj['quantity'], 1);
         $this->assertEquals($lineItemObj['active'], 'YES');
-        $this->assertEquals(sizeOf($lineItemObj), 11);
+        $this->assertEquals($lineItemObj['isOwner'], 'NO');
+        $this->assertEquals(sizeOf($lineItemObj), 12);
 
         $lineItemObj = $GLOBALS['addRegistrationLineItems'][1];
         $this->assertEquals($lineItemObj['eventLineItemCodeId'], '11');
@@ -71,11 +72,12 @@ class VendorAssociatesTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($lineItemObj['amount'], '0.00');
         $this->assertEquals($lineItemObj['paid'], 'NO');
         $this->assertEquals($lineItemObj['discount'], 'YES');
-        $this->assertEquals($lineItemObj['description'], null);
+        $this->assertEquals($lineItemObj['description'], 'Cody Ottley');
         $this->assertEquals($lineItemObj['size'], null);
         $this->assertEquals($lineItemObj['quantity'], 1);
         $this->assertEquals($lineItemObj['active'], 'YES');
-        $this->assertEquals(sizeOf($lineItemObj), 11);
+        $this->assertEquals($lineItemObj['isOwner'], 'YES');
+        $this->assertEquals(sizeOf($lineItemObj), 12);
 
         //Total Line Items
         $this->assertEquals(sizeOf($GLOBALS['addRegistrationLineItems']), 2);
@@ -108,11 +110,12 @@ class VendorAssociatesTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($lineItemObj['amount'], '60.00');
         $this->assertEquals($lineItemObj['paid'], 'NO');
         $this->assertEquals($lineItemObj['discount'], 'YES');
-        $this->assertEquals($lineItemObj['description'], null);
+        $this->assertEquals($lineItemObj['description'], 'Cody Ottley');
         $this->assertEquals($lineItemObj['size'], null);
         $this->assertEquals($lineItemObj['quantity'], 1);
         $this->assertEquals($lineItemObj['active'], 'YES');
-        $this->assertEquals(sizeOf($lineItemObj), 11);
+        $this->assertEquals($lineItemObj['isOwner'], 'NO');
+        $this->assertEquals(sizeOf($lineItemObj), 12);
 
         //Badge Brick - Owner
         $lineItemObj = $GLOBALS['addRegistrationLineItems'][1];
@@ -127,7 +130,8 @@ class VendorAssociatesTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($lineItemObj['size'], null);
         $this->assertEquals($lineItemObj['quantity'], 1);
         $this->assertEquals($lineItemObj['active'], 'YES');
-        $this->assertEquals(sizeOf($lineItemObj), 11);
+        $this->assertEquals($lineItemObj['isOwner'], 'NO');
+        $this->assertEquals(sizeOf($lineItemObj), 12);
 
         //Event Pass - Associate 
         $lineItemObj = $GLOBALS['addRegistrationLineItems'][2];
@@ -138,11 +142,12 @@ class VendorAssociatesTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($lineItemObj['amount'], '0.00');
         $this->assertEquals($lineItemObj['paid'], 'NO');
         $this->assertEquals($lineItemObj['discount'], 'YES');
-        $this->assertEquals($lineItemObj['description'], null);
+        $this->assertEquals($lineItemObj['description'], 'Cody Ottley');
         $this->assertEquals($lineItemObj['size'], null);
         $this->assertEquals($lineItemObj['quantity'], 1);
         $this->assertEquals($lineItemObj['active'], 'YES');
-        $this->assertEquals(sizeOf($lineItemObj), 11);
+        $this->assertEquals($lineItemObj['isOwner'], 'YES');
+        $this->assertEquals(sizeOf($lineItemObj), 12);
 
         //Badge Bric - Associatek
         $lineItemObj = $GLOBALS['addRegistrationLineItems'][3];
@@ -157,7 +162,8 @@ class VendorAssociatesTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($lineItemObj['size'], null);
         $this->assertEquals($lineItemObj['quantity'], 1);
         $this->assertEquals($lineItemObj['active'], 'YES');
-        $this->assertEquals(sizeOf($lineItemObj), 11);
+        $this->assertEquals($lineItemObj['isOwner'], 'YES');
+        $this->assertEquals(sizeOf($lineItemObj), 12);
 
         //Total Line Items
         $this->assertEquals(sizeOf($GLOBALS['addRegistrationLineItems']), 4);
@@ -190,11 +196,12 @@ class VendorAssociatesTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($lineItemObj['amount'], '0.00');
         $this->assertEquals($lineItemObj['paid'], 'NO');
         $this->assertEquals($lineItemObj['discount'], 'YES');
-        $this->assertEquals($lineItemObj['description'], null);
+        $this->assertEquals($lineItemObj['description'], 'Brian Pilati');
         $this->assertEquals($lineItemObj['size'], null);
         $this->assertEquals($lineItemObj['quantity'], 1);
         $this->assertEquals($lineItemObj['active'], 'YES');
-        $this->assertEquals(sizeOf($lineItemObj), 11);
+        $this->assertEquals($lineItemObj['isOwner'], 'NO');
+        $this->assertEquals(sizeOf($lineItemObj), 12);
 
         //Associate
         $lineItemObj = $GLOBALS['addRegistrationLineItems'][1];
@@ -205,11 +212,12 @@ class VendorAssociatesTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($lineItemObj['amount'], '0.00');
         $this->assertEquals($lineItemObj['paid'], 'NO');
         $this->assertEquals($lineItemObj['discount'], 'YES');
-        $this->assertEquals($lineItemObj['description'], null);
+        $this->assertEquals($lineItemObj['description'], 'Brian Pilati');
         $this->assertEquals($lineItemObj['size'], null);
         $this->assertEquals($lineItemObj['quantity'], 1);
         $this->assertEquals($lineItemObj['active'], 'YES');
-        $this->assertEquals(sizeOf($lineItemObj), 11);
+        $this->assertEquals($lineItemObj['isOwner'], 'YES');
+        $this->assertEquals(sizeOf($lineItemObj), 12);
 
         //Total Line Items
         $this->assertEquals(sizeOf($GLOBALS['addRegistrationLineItems']), 2);
@@ -242,11 +250,12 @@ class VendorAssociatesTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($lineItemObj['amount'], '60.00');
         $this->assertEquals($lineItemObj['paid'], 'NO');
         $this->assertEquals($lineItemObj['discount'], 'YES');
-        $this->assertEquals($lineItemObj['description'], null);
+        $this->assertEquals($lineItemObj['description'], 'Brian Pilati');
         $this->assertEquals($lineItemObj['size'], null);
         $this->assertEquals($lineItemObj['quantity'], 1);
         $this->assertEquals($lineItemObj['active'], 'YES');
-        $this->assertEquals(sizeOf($lineItemObj), 11);
+        $this->assertEquals($lineItemObj['isOwner'], 'NO');
+        $this->assertEquals(sizeOf($lineItemObj), 12);
 
         //Badge Brick - owner
         $lineItemObj = $GLOBALS['addRegistrationLineItems'][1];
@@ -261,7 +270,8 @@ class VendorAssociatesTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($lineItemObj['size'], null);
         $this->assertEquals($lineItemObj['quantity'], 1);
         $this->assertEquals($lineItemObj['active'], 'YES');
-        $this->assertEquals(sizeOf($lineItemObj), 11);
+        $this->assertEquals($lineItemObj['isOwner'], 'NO');
+        $this->assertEquals(sizeOf($lineItemObj), 12);
 
         //Event Pass - associate
         $lineItemObj = $GLOBALS['addRegistrationLineItems'][2];
@@ -272,11 +282,12 @@ class VendorAssociatesTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($lineItemObj['amount'], '0.00');
         $this->assertEquals($lineItemObj['paid'], 'NO');
         $this->assertEquals($lineItemObj['discount'], 'YES');
-        $this->assertEquals($lineItemObj['description'], null);
+        $this->assertEquals($lineItemObj['description'], 'Brian Pilati');
         $this->assertEquals($lineItemObj['size'], null);
         $this->assertEquals($lineItemObj['quantity'], 1);
         $this->assertEquals($lineItemObj['active'], 'YES');
-        $this->assertEquals(sizeOf($lineItemObj), 11);
+        $this->assertEquals($lineItemObj['isOwner'], 'YES');
+        $this->assertEquals(sizeOf($lineItemObj), 12);
 
         //Badge Brick - associate
         $lineItemObj = $GLOBALS['addRegistrationLineItems'][3];
@@ -291,7 +302,8 @@ class VendorAssociatesTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($lineItemObj['size'], null);
         $this->assertEquals($lineItemObj['quantity'], 1);
         $this->assertEquals($lineItemObj['active'], 'YES');
-        $this->assertEquals(sizeOf($lineItemObj), 11);
+        $this->assertEquals($lineItemObj['isOwner'], 'YES');
+        $this->assertEquals(sizeOf($lineItemObj), 12);
 
         //Total Line Items
         $this->assertEquals(sizeOf($GLOBALS['addRegistrationLineItems']), 4);

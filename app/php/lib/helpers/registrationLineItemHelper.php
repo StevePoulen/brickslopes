@@ -37,6 +37,14 @@
             $this->addVendorLineItem($data);
         }
 
+        private function determineDescription($data) {
+            return (ISSET($data['description']) ? $data['description'] : NULL);
+        }
+
+        private function determineOwnership($data) {
+            return (ISSET($data['isOwner']) ? $data['isOwner'] : 'YES');
+        }
+
         private function determineLineItemAmounts($data) {
             if ($this->registrarGetsADiscount($data['discountDate'])) {
                 $data['eventAmount'] = $this->eventLineItemCodes['10000']['discount'];
@@ -291,10 +299,11 @@
                 'amount' => null,
                 'paid' => 'NO',
                 'discount' => null,
-                'description' => null,
+                'description' => $this->determineDescription($data),
                 'size' => null,
                 'quantity' => 1,
-                'active' => 'YES'
+                'active' => 'YES',
+                'isOwner' => $this->determineOwnership($data)
             );
         }
 
