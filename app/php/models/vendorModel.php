@@ -81,21 +81,20 @@ class vendorModel extends db {
     private function selectQuery($eventId) {
         return "
             SELECT 
-                v.vendorId,
-                v.name,
-                v.description,
-                v.url,
-                v.logo,
-                vc.tables,
-                vc.type
+                s.storeId,
+                s.name,
+                s.description,
+                s.url,
+                s.logo,
+                sec.tables
             FROM
                 stores s,
-                vendorConnector vc
+                storeEventConnector sec 
             WHERE
-                v.vendorId = vc.vendorId
-                AND vc.eventId = '{$this->escapeCharacters($eventId)}'
+                s.storeId = sec.storeId
+                AND sec.eventId = '{$this->escapeCharacters($eventId)}'
             ORDER BY
-                v.name
+                s.name
         ;
       ";
     }

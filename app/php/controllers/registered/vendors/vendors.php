@@ -26,7 +26,7 @@ class Vendors {
     private function get() {
         $vendorJson = array();
         $payload = $_GET;
-        $this->vendorsObj->getVendorInformation($payload);
+        $this->vendorsObj->getVendorInformation($payload['eventId']);
         if ($this->vendorsObj->result) {
             while($dbObj = $this->vendorsObj->result->fetch_object()) {
                 array_push(
