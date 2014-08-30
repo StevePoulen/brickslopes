@@ -134,7 +134,7 @@ describe('controllers', function() {
 
             it('should deserialize a valid user event registration', function() {
                 expect(scope.registrationId).toEqualData(27);
-                expect(scope.badgeLine2).toBe('Badge Line Two');
+                expect(scope.badgeLine2).toBe('Owner - Badge Line Two');
                 expect(scope.badgeLine3).toBe('Badge Line Three');
                 expect(scope.nameBadge).toBe('YES');
                 expect(scope.meetAndGreet).toBe('YES');
@@ -150,7 +150,7 @@ describe('controllers', function() {
                     registrationId: 27,
                     eventId: 2,
                     badgeLine1: '2015 BrickSlopes',
-                    badgeLine2: 'Badge Line Two',
+                    badgeLine2: 'Owner - Badge Line Two',
                     badgeLine3: 'Badge Line Three',
                     nameBadge: 'YES',
                     meetAndGreet: 'YES',
@@ -160,7 +160,8 @@ describe('controllers', function() {
                     tShirtSize: 'X-Large',
                     comments: "This is my comment",
                     type: 'afol',
-                    discountDate: '2015-03-25 14:23:22'
+                    discountDate: '2015-03-25 14:23:22',
+                    isOwner: 'YES'
                 }
                 scope.submitRegistration();
                 mockBackend.expectPATCH('/controllers/registered/eventRegistration.php', dto).respond(200);
@@ -198,7 +199,8 @@ describe('controllers', function() {
                     tShirtSize: 'X-Large',
                     comments: "Can't Wait!",
                     type: 'afol',
-                    discountDate: '2015-03-25 14:23:22'
+                    discountDate: '2015-03-25 14:23:22',
+                    isOwner: 'YES'
                 }
                 mockBackend.expectGET('/controllers/registered/eventRegistration.php').respond(200, {});
                 mockBackend.flush();

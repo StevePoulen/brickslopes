@@ -335,7 +335,11 @@ angular.module('brickSlopes.services', ['ngResource'])
                 }
             ).success(function(data, status, headers, config) {
                 _.each(data[eventId].lineItems, function(lineItem) {
-                    if (lineItem.lineItemCode === '10000') {
+                    if (
+                        lineItem.lineItemCode === '10000' ||
+                        lineItem.lineItemCode === '10010' ||
+                        lineItem.lineItemCode === '10006'
+                    ) {
                         lineItem.lineItem = lineItem.lineItem + ' - ' + lineItem.description;
                     }
                 });
@@ -516,14 +520,13 @@ angular.module('brickSlopes.services', ['ngResource'])
             $http (
                 {
                     method: 'GET',
-                    url: '/controllers/registered/vendors/vendorRegistration.php',
+                    url: '/controllers/registered/vendors/vendorMeInformation.php',
                     params: {
                         eventId: eventId
                     },
-                    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
                 }
             ).success(function(data, status, headers, config) {
-                delay.resolve(parseVendorDetails(data));
+                delay.resolve(data);
             }).error(function(data, status, headers, config) {
                 delay.reject(status);
             });
@@ -982,7 +985,10 @@ angular.module('brickSlopes.services', ['ngResource'])
             eventObj.showBadgeLine3 = false;
             eventObj.badgeLine3 = undefined;
             _.each(eventObj.lineItems.lineItems, function(lineItemObj) {
-                if (lineItemObj.active === 'YES') {
+                if (
+                    lineItemObj.active === 'YES' &&
+                    lineItemObj.isOwner === 'YES'
+                ) {
                     if (lineItemObj.lineItemCode === '10001') {
                         eventObj.tShirtSize = lineItemObj.size;
                     } else if (lineItemObj.lineItemCode === '10002') {

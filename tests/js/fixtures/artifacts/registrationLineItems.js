@@ -20,6 +20,7 @@ var registrationLineItems = {
             },
             {
                 "registrationLineItemid": "2",
+                lineItemCode: '10002',
                 "lineItem": "Meet and Greet",
                 "amount": "10.00",
                 "total": "10.00",
@@ -33,6 +34,7 @@ var registrationLineItems = {
             },
             {
                 "registrationLineItemid": "3",
+                lineItemCode: '10001',
                 "lineItem": "T-Shirt",
                 "amount": "15.00",
                 "total": "30.00",
@@ -43,6 +45,81 @@ var registrationLineItems = {
                 "active": "YES",
                 "size": "X-Large",
                 "entryDate": "2014-06-29 01:01:11"
+            },
+            {
+                "registrationLineItemId": "11",
+                "lineItemCode": "10009",
+                "lineItem": "Vendor Tables",
+                "amount": "75.00",
+                "total": "150.00",
+                "paid": "NO",
+                "discount": "YES",
+                "description": "",
+                "size": "",
+                "quantity": "2",
+                "active": "YES",
+                "isOwner": "YES",
+                "entryDate": "2014-08-30 14:55:28"
+            },
+            {
+                "registrationLineItemId": "10",
+                "lineItemCode": "10000",
+                "lineItem": "Event Pass",
+                "amount": "60.00",
+                "total": "60.00",
+                "paid": "NO",
+                "discount": "YES",
+                "description": "",
+                "size": "",
+                "quantity": "1",
+                "active": "YES",
+                "isOwner": "YES",
+                "entryDate": "2014-08-30 14:55:28"
+            },
+            {
+                "registrationLineItemId": "12",
+                "lineItemCode": "10000",
+                "lineItem": "Event Pass",
+                "amount": "60.00",
+                "total": "60.00",
+                "paid": "NO",
+                "discount": "YES",
+                "description": "Ember Pilati",
+                "size": "",
+                "quantity": "1",
+                "active": "YES",
+                "isOwner": "NO",
+                "entryDate": "2014-08-30 14:55:38"
+            },
+            {
+                "registrationLineItemId": "13",
+                "lineItemCode": "10006",
+                "lineItem": "Event Badge Brick",
+                "amount": "0.00",
+                "total": "0.00",
+                "paid": "NO",
+                "discount": "YES",
+                "description": "Ember Pilati",
+                "size": "",
+                "quantity": "1",
+                "active": "YES",
+                "isOwner": "NO",
+                "entryDate": "2014-08-30 14:55:38"
+            },
+            {
+                "registrationLineItemId": "16",
+                "lineItemCode": "10010",
+                "lineItem": "Vendor Pass",
+                "amount": "0.00",
+                "total": "0.00",
+                "paid": "NO",
+                "discount": "YES",
+                "description": "T h",
+                "size": "",
+                "quantity": "1",
+                "active": "YES",
+                "isOwner": "NO",
+                "entryDate": "2014-08-30 14:55:50"
             }
         ]
     }

@@ -140,7 +140,7 @@
         }
 
         private function determineAddEventBrick($data) {
-            if (ISSET($data['vendorPass']) || ISSET($data['vendor'])) {
+            if (ISSET($data['vendorPass'])) {
                 $this->addEventBrick = false;
             } else {
                 $this->addEventBrick = true;

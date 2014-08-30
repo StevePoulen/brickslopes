@@ -15,6 +15,10 @@ class vendorModel extends db {
         return $this->query();
     }
 
+    public function getEventTableInformation($data) {
+        return $this->query();
+    }
+
     public function addStoreInformation($data) {
         return $this->query();
     }
@@ -55,5 +59,6 @@ class VendorsMock extends modelObjects {
     public function lastName() { return $this->getData(8); }
     public function eventId() { return $this->getData(9); }
     public function tableId() { return $this->getData(10); }
+    public function creationDate() { return $this->getData(11); }
 }
 ?>

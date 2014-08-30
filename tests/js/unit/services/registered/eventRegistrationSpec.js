@@ -113,7 +113,7 @@ describe('service', function() {
             });
 
             it('should have a badgeLine2 attribute in eventList', function() {
-                expect(eventList.badgeLine2).toBe('Badge Line Two');
+                expect(eventList.badgeLine2).toBe('Owner - Badge Line Two');
             });
 
             it('should have a showBadgeLine3 attribute in eventList', function() {
@@ -192,7 +192,7 @@ describe('service', function() {
                     eventList = _data['4'];
                 });
                 mockBackend.flush();
-                expect(eventList.badgeLine1).toBe('Badge Line One');
+                expect(eventList.badgeLine1).toBe('Owner Badge');
                 expect(eventList.showBadgeLine1).toBe(true);
                 expect(eventList.badgeLine2).toBeUndefined();
                 expect(eventList.showBadgeLine2).toBe(false);

@@ -24,6 +24,10 @@ class vendorModel extends db {
         $this->query($this->selectStoreEventConnectorQuery($tableId));
     }
 
+    public function getEventTableInformation($data) {
+        $this->query($this->selectStoreEventConnectorByIdQuery($data));
+    }
+
     public function getVendorInformation($eventId) {
         return $this->query($this->selectQuery($eventId));
     }
@@ -40,6 +44,22 @@ class vendorModel extends db {
         return $this->query($this->selectAssociateQuery($data));
     }
 
+    private function selectStoreEventConnectorByIdQuery($data) {
+        return "
+            SELECT 
+                storeEventConnectorId as tableId,
+                tables
+            FROM
+                storeEventConnector sec,
+                vendorConnector vc
+            WHERE
+                vc.userId = '{$this->escapeCharacters($data['userId'])}'
+                AND vc.storeId = sec.storeId
+                AND sec.eventId = '{$this->escapeCharacters($data['eventId'])}'
+        ;
+      ";
+    }
+
     private function selectStoreEventConnectorQuery($tableId) {
         return "
             SELECT 
@@ -50,7 +70,7 @@ class vendorModel extends db {
             FROM
                 storeEventConnector sec 
             WHERE
-                sec.storeEventConnectorId= '{$this->escapeCharacters($tableId)}'
+                sec.storeEventConnectorId = '{$this->escapeCharacters($tableId)}'
             ORDER BY
                 v.name
         ;
@@ -69,7 +89,7 @@ class vendorModel extends db {
                 vc.tables,
                 vc.type
             FROM
-                vendors v,
+                stores s,
                 vendorConnector vc
             WHERE
                 v.vendorId = vc.vendorId
@@ -83,22 +103,18 @@ class vendorModel extends db {
     private function selectVendorStoreQuery($data) {
         return "
             SELECT 
-                v.vendorId,
-                v.name,
-                v.description,
-                v.url,
-                v.logo,
-                vc.tables,
-                vc.type
+                s.storeId,
+                s.name,
+                s.description,
+                s.url,
+                s.logo,
+                s.creationDate
             FROM
-                vendors v,
+                stores s,
                 vendorConnector vc
             WHERE
-                v.vendorId = vc.vendorId
-                AND vc.eventId = '{$this->escapeCharacters($data['eventId'])}'
+                s.storeId = vc.storeId
                 AND vc.userId = '{$this->escapeCharacters($data['userId'])}'
-            ORDER BY
-                v.name
         ;
       ";
     }

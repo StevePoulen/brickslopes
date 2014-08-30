@@ -4,9 +4,9 @@
             $this->findQueuedEmails();
         }
 
-        public function sendEmailTest() {
-            $mailObj = new mail('brianpilati@hotmail.com');
-            $emailProperties = $mailObj->sendEmailTest();
+        public function sendEmailTest($email) {
+            $mailObj = new mail($email);
+            $emailProperties = $mailObj->sendEmailTest($email);
 
             $this->sendEmail($emailProperties['email'], $emailProperties['subject'], $emailProperties['body'], 'test');
 
@@ -99,7 +99,7 @@ if ($sendTestEmail) {
     $myMail = new mailCronProcess();
     //$myMail = new mail('brianpilati@gmail.com');
     //$myMail = new mail('brian.pilati@domo.com');
-    $myMail->sendEmailTest();
+    $myMail->sendEmailTest('brianpilati@hotmail.com');
 } else {
     new mailCronProcess();
 }

@@ -358,7 +358,8 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
                 tShirtSize: $scope.tShirtSize,
                 comments: $scope.comments,
                 type: 'afol',
-                discountDate: $scope.eventDetails.discountDate
+                discountDate: $scope.eventDetails.discountDate,
+                isOwner: 'YES'
             }
         } catch (err) {
             return {};

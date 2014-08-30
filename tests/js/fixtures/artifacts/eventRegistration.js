@@ -20,6 +20,7 @@ var eventRegistration = {
                     "size": "X-Large",
                     "quantity": 1,
                     "active": "YES",
+                    isOwner: "YES",
                     "entryDate": "2014-04-04 18:50:00" 
                 },
                 {
@@ -34,6 +35,7 @@ var eventRegistration = {
                     "size": "X-Large",
                     "quantity": 1,
                     "active": "YES",
+                    isOwner: "YES",
                     "entryDate": "2014-04-04 18:50:00" 
                 },
                 {
@@ -48,6 +50,7 @@ var eventRegistration = {
                     "size": "X-Large",
                     "quantity": 1,
                     "active": "YES",
+                    isOwner: "YES",
                     "entryDate": "2014-04-04 18:50:00" 
                 },
                 {
@@ -58,10 +61,26 @@ var eventRegistration = {
                     "total": "25.00",
                     "paid": "NO",
                     "discount": "NO",
-                    "description": "Badge Line Two",
+                    "description": "No Owner  - Badge Line Two",
                     "size": "X-Large",
                     "quantity": 1,
                     "active": "YES",
+                    isOwner: "NO",
+                    "entryDate": "2014-04-04 18:50:00" 
+                },
+                {
+                    "registrationLineItemId": 4,
+                    "lineItemCode": "10004",
+                    "lineItem": "1st Badge Brick",
+                    "amount": "25.00",
+                    "total": "25.00",
+                    "paid": "NO",
+                    "discount": "NO",
+                    "description": "Owner - Badge Line Two",
+                    "size": "X-Large",
+                    "quantity": 1,
+                    "active": "YES",
+                    isOwner: "YES",
                     "entryDate": "2014-04-04 18:50:00" 
                 },
                 {
@@ -76,6 +95,7 @@ var eventRegistration = {
                     "size": "X-Large",
                     "quantity": 1,
                     "active": "YES",
+                    isOwner: "YES",
                     "entryDate": "2014-04-04 18:50:00" 
                 },
                 {
@@ -90,6 +110,7 @@ var eventRegistration = {
                     "size": "",
                     "quantity": 1,
                     "active": "YES",
+                    isOwner: "YES",
                     "entryDate": "2014-04-04 18:50:00" 
                 },
                 {
@@ -104,6 +125,7 @@ var eventRegistration = {
                     "size": "",
                     "quantity": 1,
                     "active": "YES",
+                    isOwner: "YES",
                     "entryDate": "2014-04-04 18:50:00" 
                 },
                 {
@@ -118,6 +140,7 @@ var eventRegistration = {
                     "size": "",
                     "quantity": 1,
                     "active": "YES",
+                    isOwner: "YES",
                     "entryDate": "2014-04-04 18:50:00" 
                 }
             ]
@@ -145,6 +168,7 @@ var eventRegistrationPaid = {
                     "size": "X-Large",
                     "quantity": 1,
                     "active": "YES",
+                    isOwner: "YES",
                     "entryDate": "2014-04-04 18:50:00" 
                 }
             ]
@@ -172,6 +196,7 @@ var eventRegistrationNoMeetAndGreet = {
                     "size": "X-Large",
                     "quantity": 1,
                     "active": "YES",
+                    isOwner: "NO",
                     "entryDate": "2014-04-04 18:50:00" 
                 }
             ]
@@ -199,6 +224,7 @@ var eventRegistrationNoTShirt = {
                     "size": "X-Large",
                     "quantity": 1,
                     "active": "YES",
+                    isOwner: "YES",
                     "entryDate": "2014-04-04 18:50:00" 
                 }
             ]
@@ -222,10 +248,26 @@ var eventRegistrationBadgeLineOneOnly = {
                     "total": "25.00",
                     "paid": "NO",
                     "discount": "NO",
-                    "description": "Badge Line One",
+                    "description": "No Owner",
                     "size": "X-Large",
                     "quantity": 1,
                     "active": "YES",
+                    isOwner: "NO",
+                    "entryDate": "2014-04-04 18:50:00" 
+                },
+                {
+                    "registrationLineItemId": 1,
+                    "lineItemCode": "10006",
+                    "lineItem": "Event Badge Brick",
+                    "amount": "25.00",
+                    "total": "25.00",
+                    "paid": "NO",
+                    "discount": "NO",
+                    "description": "Owner Badge",
+                    "size": "X-Large",
+                    "quantity": 1,
+                    "active": "YES",
+                    isOwner: "YES",
                     "entryDate": "2014-04-04 18:50:00" 
                 },
                 {
@@ -240,6 +282,7 @@ var eventRegistrationBadgeLineOneOnly = {
                     "size": "X-Large",
                     "quantity": 1,
                     "active": "NO",
+                    isOwner: "YES",
                     "entryDate": "2014-04-04 18:50:00" 
                 }
             ]

@@ -2,12 +2,16 @@
 
 class db {
     public function __construct() {
-        $this->result = $this->getResult();
     }
 
-    private function getResult() {
+    private function result() {
         if(ISSET($GLOBALS['db_result'])) {
-            return false;
+            if(is_array($GLOBALS['db_result'])) {
+                $result = array_shift($GLOBALS['db_result']);
+                return ($result ? $this->dbResult : false);
+            } else {
+                return $GLOBALS['db_result'];
+            }
         } else {
             return $this->dbResult;
         }
@@ -20,6 +24,15 @@ class db {
             return array_shift($GLOBALS['db_query']);
         } else {
             return $GLOBALS['db_query'];
+        }
+    }
+
+    public function __get($name) {
+        if (method_exists($this, $name)) {
+            return $this->$name();
+        } else {
+            print "\n\n\n$name\n\n\n";
+            throw "error";
         }
     }
 

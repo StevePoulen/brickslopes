@@ -66,13 +66,22 @@ class TableRegistration {
             $registrationsObj = new registrations();
             $registrationsObj->addRegistrationInformation($registrationPayload);
 
+            $userObj = new users();
+            $userObj->getUserInformation($this->userId);
+            if ($userObj->result) {
+                $dbObj = $userObj->result->fetch_object();
+                $payload['firstName'] = $dbObj->firstName;
+                $payload['lastName'] = $dbObj->lastName;
+            }
+
             $lineItemPayload = array (
                 'discountDate' => '2199-01-01 12:00:00',
                 'eventId' => $payload['eventId'],
                 'userId' => $payload['userId'],
-                'badgeLine1' => $payload['name'],
+                'badgeLine1' => "{$payload['firstName']} {$payload['lastName']}",
                 'vendor' => 'YES',
-                'vendorTables' => $payload['tables']
+                'vendorTables' => $payload['tables'],
+                'description' => "{$payload['firstName']} {$payload['lastName']}"
             );
             $this->registrationLineItemHelper = new registrationLineItemHelper($payload['eventId']);
             $this->registrationLineItemHelper->addRegistrationLineItems($lineItemPayload);
