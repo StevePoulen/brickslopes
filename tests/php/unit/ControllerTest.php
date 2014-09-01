@@ -71,6 +71,18 @@ class ControllerTest extends PHPUnit_Framework_TestCase
         $this->expectOutputString('{"data":"Duplicate E-mail","status":400}');
     }
 
+    public function testNoAuthenticatedResetPasswordSuccessController() 
+    {
+        $GLOBALS['authenticationRequest'] = false;
+        $GLOBALS['db_query'] = false;
+        $_SERVER['REQUEST_METHOD'] = 'PUT';
+        $_SERVER['REQUEST_URI'] = "/controllers/public/authentication.php";
+        $this->controller = new Controller();
+        $this->controller->invoke();
+        $this->assertEquals(http_response_code(), 200);
+        $this->expectOutputString('');
+    }
+
     public function testNoAuthenticatedDirective() 
     {
         $GLOBALS['authenticationRequest'] = false;
