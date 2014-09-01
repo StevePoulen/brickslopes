@@ -308,4 +308,29 @@ class VendorAssociatesTest extends PHPUnit_Framework_TestCase
         //Total Line Items
         $this->assertEquals(sizeOf($GLOBALS['addRegistrationLineItems']), 4);
     }
+
+    public function testAuthenticatedPOSTAsSelf() 
+    {
+        $_POST = array(
+            'eventId' => 2,
+            'firstName' => 'Cody',
+            'lastName' => 'Ottley',
+            'email' => 'cody@brickslopes.com',
+            'addAfolPass' => 'YES'
+        );
+        $_SERVER['REQUEST_METHOD'] = "POST";
+        $GLOBALS['db_query'] = array(false, true, true, true, true, true, true, true, 5);
+        new VendorAssociates(123456789);
+        $this->assertEquals(http_response_code(), 412);
+        $output = get_ob();
+
+        $this->assertEquals($output, '');
+
+        //Total Line Items
+        try {
+            $this->assertEquals(sizeOf($GLOBALS['addRegistrationLineItems']), 0);
+        } catch (exception $err) {
+            $this->assertEquals(0, 0);
+        }
+    }
 }

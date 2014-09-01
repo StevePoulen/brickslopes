@@ -17,23 +17,23 @@ function buildJWT() {
 function apache_request_headers() {
     if ($GLOBALS['authenticationRequest']) {
         return Array(
-            'Authtoken' => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvd3d3LmJyaWNrc2xvcGVzLmNvbSIsImF1ZCI6Imh0dHBzOlwvXC93d3cubXlqd3QuY29tIiwiaWF0IjoxMzU2OTk5NTI0LCJuYmYiOjEzNTcwMDAwMDAsInVzZXJJZCI6MTMsImFkbWluIjoiWUVTIiwicmVnaXN0ZXJlZCI6IllFUyJ9.pTg2RbrtEzb70KBJLMb8hSXkvvDCmvRWEDfwi3SWbKY'
+            'auth_token' => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvd3d3LmJyaWNrc2xvcGVzLmNvbSIsImF1ZCI6Imh0dHBzOlwvXC93d3cubXlqd3QuY29tIiwiaWF0IjoxMzU2OTk5NTI0LCJuYmYiOjEzNTcwMDAwMDAsInVzZXJJZCI6MTMsImFkbWluIjoiWUVTIiwicmVnaXN0ZXJlZCI6IllFUyJ9.pTg2RbrtEzb70KBJLMb8hSXkvvDCmvRWEDfwi3SWbKY'
         );
     } else if (array_key_exists('badAuthenticationRequest', $GLOBALS) && $GLOBALS['badAuthenticationRequest']) {
         return Array(
-            'Authtoken' => '.eyJpc3MiOiJodHRwczpcL1wvd3d3LmJyaWNrc2xvcGVzLmNvbSIsImF1ZCI6Imh0dHBzOlwvXC93d3cubXlqd3QuY29tIiwiaWF0IjoxMzU2OTk5NTI0LCJuYmYiOjEzNTcwMDAwMDAsInVzZXJJZCI6MzM0fQ.9Z2PXQwm_ugnSIzNLyV-HQXbNczehYYY6jkaR_ij1dM'
+            'auth_token' => '.eyJpc3MiOiJodHRwczpcL1wvd3d3LmJyaWNrc2xvcGVzLmNvbSIsImF1ZCI6Imh0dHBzOlwvXC93d3cubXlqd3QuY29tIiwiaWF0IjoxMzU2OTk5NTI0LCJuYmYiOjEzNTcwMDAwMDAsInVzZXJJZCI6MzM0fQ.9Z2PXQwm_ugnSIzNLyV-HQXbNczehYYY6jkaR_ij1dM'
         );
     } else if (array_key_exists('adminRequestNoAuth', $GLOBALS)) {
         return Array(
-            'Authtoken' => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvd3d3LmJyaWNrc2xvcGVzLmNvbSIsImF1ZCI6Imh0dHBzOlwvXC93d3cubXlqd3QuY29tIiwiaWF0IjoxMzU2OTk5NTI0LCJuYmYiOjEzNTcwMDAwMDAsImFkbWluIjoiWUVTIn0.PkUeockWzb5nVBtJecANB9NYNmdyR1Eg6Mjcw9If_1w'
+            'auth_token' => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvd3d3LmJyaWNrc2xvcGVzLmNvbSIsImF1ZCI6Imh0dHBzOlwvXC93d3cubXlqd3QuY29tIiwiaWF0IjoxMzU2OTk5NTI0LCJuYmYiOjEzNTcwMDAwMDAsImFkbWluIjoiWUVTIn0.PkUeockWzb5nVBtJecANB9NYNmdyR1Eg6Mjcw9If_1w'
         );
     } else if (array_key_exists('noRegistrationRequest', $GLOBALS)) {
         return Array(
-            'Authtoken' => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvd3d3LmJyaWNrc2xvcGVzLmNvbSIsImF1ZCI6Imh0dHBzOlwvXC93d3cubXlqd3QuY29tIiwiaWF0IjoxMzU2OTk5NTI0LCJuYmYiOjEzNTcwMDAwMDAsInVzZXJJZCI6MTMsImFkbWluIjoiTk8iLCJyZWdpc3RlcmVkIjoiTk8ifQ.c82hoaC4cPd63v8XTXKE1kM3kmsJ3FO0KisU7wyWtdg'
+            'auth_token' => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvd3d3LmJyaWNrc2xvcGVzLmNvbSIsImF1ZCI6Imh0dHBzOlwvXC93d3cubXlqd3QuY29tIiwiaWF0IjoxMzU2OTk5NTI0LCJuYmYiOjEzNTcwMDAwMDAsInVzZXJJZCI6MTMsImFkbWluIjoiTk8iLCJyZWdpc3RlcmVkIjoiTk8ifQ.c82hoaC4cPd63v8XTXKE1kM3kmsJ3FO0KisU7wyWtdg'
         );
     } else if (array_key_exists('noRegistrationAdminRequest', $GLOBALS)) {
         return Array(
-            'Authtoken' => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvd3d3LmJyaWNrc2xvcGVzLmNvbSIsImF1ZCI6Imh0dHBzOlwvXC93d3cubXlqd3QuY29tIiwiaWF0IjoxMzU2OTk5NTI0LCJuYmYiOjEzNTcwMDAwMDAsInVzZXJJZCI6MTMsImFkbWluIjoiWUVTIiwicmVnaXN0ZXJlZCI6Ik5PIn0.4sdaH7I-3z9ADTG2IWj91an26VkCiWynB7USJpLbAXU'
+            'auth_token' => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvd3d3LmJyaWNrc2xvcGVzLmNvbSIsImF1ZCI6Imh0dHBzOlwvXC93d3cubXlqd3QuY29tIiwiaWF0IjoxMzU2OTk5NTI0LCJuYmYiOjEzNTcwMDAwMDAsInVzZXJJZCI6MTMsImFkbWluIjoiWUVTIiwicmVnaXN0ZXJlZCI6Ik5PIn0.4sdaH7I-3z9ADTG2IWj91an26VkCiWynB7USJpLbAXU'
         );
     } else {
         return Array();

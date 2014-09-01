@@ -114,6 +114,7 @@ describe('controllers', function() {
                 mockBackend.flush();
                 expect(scope.displayMessage.$$unwrapTrustedValue()).toBe('Your Associate Registration has been received.<p>Would you like to add another Associate or Continue to Payment?');
                 expect(scope.showModal).toBe(true);
+                expect(scope.modalTitle).toBe('Success');
                 expect(scope.firstName).toBeUndefined();
                 expect(scope.lastName).toBeUndefined();
                 expect(scope.email).toBeUndefined();
@@ -134,6 +135,20 @@ describe('controllers', function() {
                 mockBackend.expectPOST('/controllers/registered/vendors/vendorAssociates.php', associateDTO).respond(400);
                 mockBackend.flush();
                 expect(scope.displayMessage.$$unwrapTrustedValue()).toBe('The Vendor Associate travails.');
+                expect(scope.modalTitle).toBe('Error');
+                expect(scope.showModal).toBe(true);
+            });
+
+            it('should display an error on a self add', function() {
+                scope.firstName = 'Steve';
+                scope.lastName = 'Poulsen';
+                scope.email = 'steve@brickslopes.com';
+                scope.addAfolPass = 'YES';
+                scope.submitAssociateRegistration();
+                mockBackend.expectPOST('/controllers/registered/vendors/vendorAssociates.php', associateDTO).respond(412);
+                mockBackend.flush();
+                expect(scope.modalTitle).toBe('Error');
+                expect(scope.displayMessage.$$unwrapTrustedValue()).toBe('You may not add yourself as an associate of your own store.');
                 expect(scope.showModal).toBe(true);
             });
         });

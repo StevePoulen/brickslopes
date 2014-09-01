@@ -98,7 +98,6 @@ class VendorAssociates {
         } else {
             header("HTTP/1.0 400 Bad Request");
         }
-
     }
 
     private function post() {
@@ -123,11 +122,15 @@ class VendorAssociates {
             $userObj->getUserInformationByEmail($payload['email']);
             if ($userObj->result) {
                 $dbObj = $userObj->result->fetch_object();
-                $payload['userId'] = $dbObj->userId;
-                $payload['firstName'] = $dbObj->firstName;
-                $payload['lastName'] = $dbObj->lastName;
-                $payload['email'] = $dbObj->email;
-                $this->addAssociateVendor($payload);
+                if ($dbObj->userId == $this->userId) {
+                    header("HTTP/1.0 412 Precondition Failed");
+                } else {
+                    $payload['userId'] = $dbObj->userId;
+                    $payload['firstName'] = $dbObj->firstName;
+                    $payload['lastName'] = $dbObj->lastName;
+                    $payload['email'] = $dbObj->email;
+                    $this->addAssociateVendor($payload);
+                }
             } else {
                 header("HTTP/1.0 400 Bad Request");
             }

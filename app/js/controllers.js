@@ -712,11 +712,17 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
             $scope.displayMessage = $sce.trustAsHtml("Your Associate Registration has been received.<p>Would you like to add another Associate or Continue to Payment?");
             $scope.verifying = false;
             $scope.showModal = true;
+            $scope.modalTitle = 'Success';
             addAssociateToCollection(data);
             setDefaultScopeVariables();
         }, function(status) {
             $scope.verifying = false;
-            $scope.displayMessage = $sce.trustAsHtml("The Vendor Associate travails.");
+            $scope.modalTitle = 'Error';
+            if (status == 412) {
+                $scope.displayMessage = $sce.trustAsHtml("You may not add yourself as an associate of your own store.");
+            } else {
+                $scope.displayMessage = $sce.trustAsHtml("The Vendor Associate travails.");
+            }
             $scope.showModal = true;
         });
     }

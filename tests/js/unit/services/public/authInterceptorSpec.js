@@ -28,21 +28,21 @@ describe('service', function() {
         });
 
         describe('request', function() {
-            it('should add an Authtoken header', function() {
+            it('should add an auth_token header', function() {
                 window.sessionStorage.token = 123456789;
-                expect(auth.request(request).headers.Authtoken).toEqual('123456789');
+                expect(auth.request(request).headers.auth_token).toEqual('123456789');
             });
 
-            it('should not have an Authtoken header', function() {
+            it('should not have an auth_token header', function() {
                 request = { 'url': 'partials/registered/index.html' };
-                expect(auth.request(request).headers.Authtoken).toBeUndefined();
+                expect(auth.request(request).headers.auth_token).toBeUndefined();
             });
 
             it('should call google analytics', function() {
                 location.host = function() { return 'www.brickslopes.com';}
                 spyOn(window._gaq, "push");
                 request = { 'url': 'partials/registered/index.html' };
-                expect(auth.request(request).headers.Authtoken).toBeUndefined();
+                expect(auth.request(request).headers.auth_token).toBeUndefined();
                 expect(window._gaq.push).toHaveBeenCalledWith([ '_trackPageview', 'partials/registered/index.html']);
             });
         });
