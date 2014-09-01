@@ -9,19 +9,24 @@
     </div>
     <div class="normalPane events" ng-if="! displayRegisterEventVendorsCTA">
         <div class="meText">
-            <bs-text text="You're A Vendor!" font-color=black font-size=1.25></bs-text>
-            <div class="myEventButtonPosition">
+            <bs-text text="{{vendorModel.store.name}}" font-color=black font-size=1.25></bs-text>
+        <i ng-click="clickEditStore()" class="icons-edit icons-sprite-bg"></i>
+        </div>
+
+        <div>
+            <div>
+                <bs-text font-size=1.25 text="tables: {{vendorModel.tables.tables}}"></bs-text>
+            </div>
+            <div>
                 <div class="actionButtonTiny" ng-click="clickVendors()">
                     <bs-text text="Add + " font-color=white font-size=.85></bs-text>
                 </div>
             </div>
         </div>
         <div class="myVendors" ng-click="clickVendors()">
-            <div ng-bind="vendorModel.name"></div>
-            <div ng-class="{eventRow: $even}"  ng-repeat="game in userGameList | orderBy:'gameTitle'">
+            <div ng-class="{eventRow: $even}"  ng-repeat="associate in vendorModel.associates | orderBy:'gameTitle'">
                 <div class="myGameRow">
-                    <div><bs-text text="{{game.gameTitle}}" max-size=35 font-size=1.25></bs-text></div>
-                    <div class="gameParticipation"><bs-text text="{{game.type}}" max-size=25 font-size=.85></bs-text></div>
+                    <div><bs-text text="{{associate.fullName}}" max-size=35 font-size=1.25></bs-text></div>
                 <div>
             </div>
         </div>

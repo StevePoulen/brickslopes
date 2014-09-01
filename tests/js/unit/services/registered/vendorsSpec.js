@@ -200,5 +200,98 @@ describe('service', function() {
                 expect(data.hasUrl).toBe(true);
             });
         });
+
+        describe('Get Event Me Vendor Information', function() {
+            var mockBackend, data, eventId;
+            beforeEach(inject(function(_$httpBackend_, VendorDetails) {
+                eventId = 2;
+                mockBackend = _$httpBackend_;
+                mockBackend.expectGET('/controllers/registered/vendors/vendorMeInformation.php?eventId=' + eventId).respond(201, eventMeVendor);
+                var load = VendorDetails.getEventMeVendorInformation(eventId);
+
+                load.then(function(_data) {
+                    data = _data;
+                });
+
+                mockBackend.flush();
+            }));
+
+            describe('Vendor Store', function() {
+                it('should get a single vendor store', function() {
+                    var store = data.store;
+                    expect(store.storeId).toBe('4');
+                    expect(store.name).toBe("My Store");
+                    expect(store.url).toBe('https://www.brickshelf.com/url');
+                    expect(store.logo).toBe('https://www.logo.com/logo');
+                    expect(store.creationDate).toBe('2014-08-30 17:16:49');
+                });
+            });
+
+            describe('Vendor Tables', function() {
+                it('should have a tables object', function() {
+                    expect(data.hasTables).toBe(true);
+                });
+
+                it('should get a count of vendor tables for an event', function() {
+                    var tables = data.tables;
+                    expect(tables.tableId).toBe('8');
+                    expect(tables.tables).toBe('2');
+                });
+            });
+
+            describe('Store Associates', function() {
+                it('should have an associates object', function() {
+                    expect(data.hasAssociates).toBe(true);
+                });
+
+                it('should get a count of associates', function() {
+                    var associates = data.associates;
+                    expect(associates[0].associateId).toBe('8');
+                    expect(associates[0].fullName).toBe('Ember Pilati');
+
+                    expect(associates[2].associateId).toBe('9');
+                    expect(associates[2].fullName).toBe('t h');
+                });
+            });
+        });
+
+        describe('Get Event Me Vendor Information Empty', function() {
+            var mockBackend, data, eventId;
+            beforeEach(inject(function(_$httpBackend_, VendorDetails) {
+                eventId = 2;
+                mockBackend = _$httpBackend_;
+                mockBackend.expectGET('/controllers/registered/vendors/vendorMeInformation.php?eventId=' + eventId).respond(201, eventMeVendorEmpty);
+                var load = VendorDetails.getEventMeVendorInformation(eventId);
+
+                load.then(function(_data) {
+                    data = _data;
+                });
+
+                mockBackend.flush();
+            }));
+
+            describe('Vendor Store', function() {
+                it('should get a single vendor store', function() {
+                    var store = data.store;
+                    expect(store.storeId).toBe('4');
+                    expect(store.name).toBe("My Store");
+                    expect(store.url).toBe('https://www.brickshelf.com/url');
+                    expect(store.logo).toBe('https://www.logo.com/logo');
+                    expect(store.creationDate).toBe('2014-08-30 17:16:49');
+                });
+            });
+
+            describe('Vendor Tables', function() {
+                it('should not have a tables object', function() {
+                    expect(data.hasTables).toBe(false);
+                });
+            });
+
+            describe('Store Associates', function() {
+                it('should have an associates object', function() {
+                    expect(data.hasAssociates).toBe(false);
+                });
+            });
+        });
     });
 });

@@ -199,7 +199,7 @@ describe('controllers', function() {
                 mockBackend.expectGET('/controllers/public/eventDates.php').respond(eventDates);
                 mockBackend.expectGET('/controllers/registered/eventRegistration.php').respond(eventRegistration);
                 mockBackend.expectGET('/controllers/paid/mocs.php?eventId=2').respond(200, mocs);
-                mockBackend.expectGET('/controllers/registered/vendors/vendorRegistration.php?eventId=2').respond(200, vendors[0]);
+                mockBackend.expectGET('/controllers/registered/vendors/vendorMeInformation.php?eventId=2').respond(200, eventMeVendor);
                 mockBackend.expectGET('/controllers/paid/gameUser.php?eventId=2').respond(200, userGames);
                 mockBackend.expectGET('/controllers/public/user.php').respond(200, singleUser);
                 mockBackend.flush();
@@ -234,8 +234,53 @@ describe('controllers', function() {
                 expect(scope.displayRegisterEventGamesCTA).toBe(false);
             });
 
+            it('should have an displayRegisterEventVendorsCTA variable', function() {
+                expect(scope.displayRegisterEventVendorsCTA).toBe(false);
+            });
+
             it('should have a mocCount variable', function() {
                 expect(scope.mocCount).toBe(2);
+            });
+
+            describe('The Vendor Model', function() {
+                describe('Vendor Store', function() {
+                    it('should get a single vendor store', function() {
+                        var store = scope.vendorModel.store;
+                        expect(store.storeId).toBe('4');
+                        expect(store.name).toBe("My Store");
+                        expect(store.url).toBe('https://www.brickshelf.com/url');
+                        expect(store.logo).toBe('https://www.logo.com/logo');
+                        expect(store.creationDate).toBe('2014-08-30 17:16:49');
+                    });
+                });
+
+                describe('Vendor Tables', function() {
+                    it('should have a tables object', function() {
+                        expect(scope.vendorModel.hasTables).toBe(true);
+                    });
+
+                    it('should get a count of vendor tables for an event', function() {
+                        var tables = scope.vendorModel.tables;
+                        expect(tables.tableId).toBe('8');
+                        expect(tables.tables).toBe('2');
+                    });
+                });
+
+                describe('Store Associates', function() {
+                    it('should have an associates object', function() {
+                        expect(scope.vendorModel.hasAssociates).toBe(true);
+                    });
+
+                    it('should get a count of associates', function() {
+                        var associates = scope.vendorModel.associates;
+                        expect(associates[0].associateId).toBe('8');
+                        expect(associates[0].fullName).toBe('Ember Pilati');
+
+                        expect(associates[2].associateId).toBe('9');
+                        expect(associates[2].fullName).toBe('t h');
+                    });
+                });
+
             });
 
             it('should have an mocList variable', function() {
@@ -255,7 +300,7 @@ describe('controllers', function() {
                 mockBackend.expectGET('/controllers/public/eventDates.php').respond(eventDates);
                 mockBackend.expectGET('/controllers/registered/eventRegistration.php').respond(eventRegistration);
                 mockBackend.expectGET('/controllers/paid/mocs.php?eventId=2').respond(200, mocs);
-                mockBackend.expectGET('/controllers/registered/vendors/vendorRegistration.php?eventId=2').respond(200, vendors[0]);
+                mockBackend.expectGET('/controllers/registered/vendors/vendorMeInformation.php?eventId=2').respond(200, eventMeVendor);
                 mockBackend.expectGET('/controllers/paid/gameUser.php?eventId=2').respond(200, userGames);
                 mockBackend.expectGET('/controllers/public/user.php').respond(200, singleUser);
                 mockBackend.expectPATCH('/controllers/public/authentication.php').respond(201);
@@ -278,7 +323,7 @@ describe('controllers', function() {
                 mockBackend.expectGET('/controllers/public/eventDates.php').respond(eventDates);
                 mockBackend.expectGET('/controllers/registered/eventRegistration.php').respond(eventRegistration);
                 mockBackend.expectGET('/controllers/paid/mocs.php?eventId=2').respond(200, mocs);
-                mockBackend.expectGET('/controllers/registered/vendors/vendorRegistration.php?eventId=2').respond(200, vendors[0]);
+                mockBackend.expectGET('/controllers/registered/vendors/vendorMeInformation.php?eventId=2').respond(200, eventMeVendor);
                 mockBackend.expectGET('/controllers/paid/gameUser.php?eventId=2').respond(200, userGames);
                 mockBackend.expectGET('/controllers/public/user.php').respond(200, singleUser);
                 mockBackend.expectPATCH('/controllers/public/authentication.php').respond(412);

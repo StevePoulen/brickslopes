@@ -1,14 +1,14 @@
 var eventMeVendor = {
     "store": {
         "storeId": "4",
-        "name": "My STore",
+        "name": "My Store",
         "description": "Hello",
-        "url": "https://<your_store_url>",
-        "logo": "https://<your_logo_url>",
+        "url": "https://www.brickshelf.com/url",
+        "logo": "https://www.logo.com/logo",
         "creationDate": "2014-08-30 17:16:49"
     },
     "tables": {
-        "tableId": "4",
+        "tableId": "8",
         "tables": "2"
     },
     "associates": [
@@ -28,4 +28,17 @@ var eventMeVendor = {
             "lastName": "h"
         }
     ]
+}
+
+var eventMeVendorEmpty = {
+    "store": {
+        "storeId": "4",
+        "name": "My Store",
+        "description": "Hello",
+        "url": "https://www.brickshelf.com/url",
+        "logo": "https://www.logo.com/logo",
+        "creationDate": "2014-08-30 17:16:49"
+    },
+    "tables": { },
+    "associates": [ ]
 }

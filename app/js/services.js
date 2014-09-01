@@ -407,6 +407,10 @@ angular.module('brickSlopes.services', ['ngResource'])
         return vendor;
     }
 
+    function parseAssociateDetails(associate) {
+        associate.fullName = associate.firstName + ' ' + associate.lastName;
+    }
+
     return {
         getCount: function(eventId) {
             if (vendorList) {
@@ -496,7 +500,6 @@ angular.module('brickSlopes.services', ['ngResource'])
             return delay.promise;
         },
 
-
         createAssociate: function(associateDTO) {
             var delay= $q.defer();
             $http (
@@ -526,6 +529,11 @@ angular.module('brickSlopes.services', ['ngResource'])
                     },
                 }
             ).success(function(data, status, headers, config) {
+                data.hasAssociates = (data.associates.length ? true : false);
+                data.hasTables = (Object.keys(data.tables).length ? true : false);
+                _.each(data.associates, function(associate) {
+                    parseAssociateDetails(associate); 
+                });
                 delay.resolve(data);
             }).error(function(data, status, headers, config) {
                 delay.reject(status);
