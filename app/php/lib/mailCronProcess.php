@@ -15,12 +15,15 @@
         private function findQueuedEmails() {
             $emailHistoryObj = new emailHistory();
             $emailCount = $emailHistoryObj->getEmailHistoryInformation();
+            $sentEmailCount = 0;
+            $output = "";
 
             $emailHistoryUpdateObj = new emailHistory();
             if($emailHistoryObj->result) {
-                echo "Starting emails with {$emailCount} e-mails\n\n";
+                $output .= "Starting emails with {$emailCount} e-mails\n\n";
                 while($dbObj = $emailHistoryObj->result->fetch_object()) {
-                    echo "Sending an email to '{$dbObj->emailAddress}' with '{$dbObj->subject}' Subject\n";
+                    $sentEmailCount++;
+                    $output .= "Sending an email to '{$dbObj->emailAddress}' with '{$dbObj->subject}' Subject\n";
                     $responseObj = $this->sendEmail($dbObj->emailAddress, $dbObj->subject, $dbObj->body, $dbObj->type);
                     $emailStatus = ($responseObj['status'] ? 'SUCCESS' : $responseObj['errorMessage']);
                     $emailHistoryUpdateObj->updateEmailHistoryInformation (
@@ -28,10 +31,14 @@
                         $emailStatus
                     );
 
-                    echo "\tEmail Status is '{$emailStatus}'\n";
+                    $output .= "\tEmail Status is '{$emailStatus}'\n";
                 }
 
-                echo "\n\nEmails Finished\n\n";
+                $output .= "\n\nEmails Finished\n\n";
+
+                if ($sentEmailCount > 0) {
+                    echo $output;
+                }
             }
         }
 
