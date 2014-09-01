@@ -12,7 +12,7 @@
             <div class="game">
                 <div ng-class="{title: $even, titleRight: !$even}"><bs-text text="{{game.game}}" font-size=2></bs-text></div>
                 <div ng-class="{description: $even, descriptionRight: !$even}" ng-bind-html="game.description"></div>
-                <div ng-class="{image: $even, imageRight: !$even}"><img class="imageSize" ng-src="game.image"></div>
+                <div ng-class="{imageRight: $even, image: !$even}"><img class="imageSize" ng-src="{{game.image}}"></div>
                 <div ng-class="{cta: $even, ctaRight: !$even}">
                     <div ng-class="{maxParticipants: $even, maxParticipantsRight: !$even}"> 
                         <bs-text text="Total Seats: {{game.maxParticipants}}"></bs-text>

@@ -399,10 +399,34 @@ angular.module('brickSlopes.services', ['ngResource'])
 .factory('VendorDetails', ['$q', '$http', '$sce', function($q, $http, $sce) {
     vendorList = undefined;
 
+    function hasLogo(vendor) {
+        if (
+            vendor.logo === '' ||
+            vendor.url === undefined ||
+            vendor.logo === 'https://<your_logo_url>'
+        ) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    function hasUrl(vendor) {
+        if (
+            vendor.url === '' ||
+            vendor.url === undefined ||
+            vendor.url === 'https://<your_store_url>'
+        ) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
     function parseVendorDetails(vendor) {
         vendor.description = $sce.trustAsHtml(vendor.description);
-        vendor.hasLogo = (vendor.logo === '' ? false : true);
-        vendor.hasUrl = (vendor.url === '' ? false : true);
+        vendor.hasLogo = hasLogo(vendor);
+        vendor.hasUrl = hasUrl(vendor);
 
         return vendor;
     }

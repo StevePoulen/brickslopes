@@ -236,7 +236,7 @@ describe('controllers', function() {
         });
 
         it('should set the vendorCount variable', function() {
-            expect(scope.vendorCount).toBe(3);
+            expect(scope.vendorCount).toBe(5);
         });
 
         it('should set the mocList variable', function() {

@@ -14,8 +14,10 @@
                 </div>
                 <div ng-class="{description: $even, descriptionRight: !$even}" ng-bind="vendor.description">
                 </div>
+                {{vendor.logo}}
                 <div ng-show="vendor.hasLogo" ng-class="{logo: $even, logoRight: !$even}"><img class="logoSize" ng-src="{{vendor.logo}}">
                 </div>
+                {{vendor.url}}
                 <div ng-show="vendor.hasUrl" ng-class="{url: $even, urlRight: !$even}"><a class="vendorImage" ng-href="{{vendor.url}}" target="_new"><span ng-bind="vendor.url"></span></a>
                 </div>
             </div>

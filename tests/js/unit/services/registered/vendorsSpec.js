@@ -41,6 +41,16 @@ describe('service', function() {
                 expect(data[2].storeId).toBe(3);
                 expect(data[2].hasLogo).toBe(true);
                 expect(data[2].hasUrl).toBe(false);
+
+                //Vendor #4
+                expect(data[3].storeId).toBe(4);
+                expect(data[3].hasLogo).toBe(false);
+                expect(data[3].hasUrl).toBe(false);
+
+                //Vendor #5
+                expect(data[4].storeId).toBe(5);
+                expect(data[4].hasLogo).toBe(false);
+                expect(data[4].hasUrl).toBe(false);
             });
 
             it('should load the game list count', function() {
@@ -50,7 +60,7 @@ describe('service', function() {
                 });
 
                 mockBackend.flush();
-                expect(data).toBe(3);
+                expect(data).toBe(5);
             });
         });
 

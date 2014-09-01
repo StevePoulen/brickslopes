@@ -292,7 +292,7 @@ describe('controllers', function() {
                     it('should redirect to the associates page', function() {
                         scope.associateId = 6;
                         scope.clickEditAssociate();
-                        //expect(location.path()).toBe('');
+                        expect(location.path()).toBe('');
                     });
                 });
 

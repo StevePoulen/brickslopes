@@ -22,5 +22,19 @@ var vendors = [
         url: "",
         logo: "http://www.sw.com",
         tables: 3 
+    },
+    {
+        storeId: 4,
+        name: "The FBest Store",
+        description: "All LEGO Sis",
+        url: "https://<your_store_url>",
+        logo: "https://<your_logo_url>",
+        tables:5 
+    },
+    {
+        storeId: 5,
+        name: "The fEmpire",
+        description: "All Star Wars",
+        tables: 3 
     }
 ];

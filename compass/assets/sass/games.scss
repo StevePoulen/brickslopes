@@ -1,4 +1,6 @@
 $bs_blue: #35469A;
+$image_width: 275px;
+$image_height: 75px;
 
 .game {
     position: relative;
@@ -35,18 +37,17 @@ $bs_blue: #35469A;
 
     .image {
         position: absolute;
-        left: 900px;
-        top: 12px;
+        bottom: 50px;
+        left: 25px;
 
         .imageSize {
-            width: 275px;
-            height: 275px;
+            width: $image_width;
         }
     }
 
     .imageRight {
         @extend .image;
-        left: 25px;
+        left: 900px;
     }
 
     .cta {

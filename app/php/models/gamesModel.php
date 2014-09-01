@@ -12,7 +12,7 @@ class gamesModel extends db {
     public function addGameInformation($data) {
         $gameId = $this->query($this->insertQuery($data));
         if ($gameId > 0) {
-            $this->query($this->insertGameEventQuery($data['eventId'], $gameId));
+            $this->query($this->insertGameEventQuery($data, $gameId));
         }
 
         return $gameId;
@@ -49,18 +49,22 @@ class gamesModel extends db {
       ";
     }
 
-    private function insertGameEventQuery($eventId, $gameId) {
+    private function insertGameEventQuery($data, $gameId) {
+        $display = (ISSET($data['display']) ? $data['display'] : 'YES');
+        
         return "
             INSERT INTO
                 gamesEventsConnector
             (
                 eventId, 
-                gameId
+                gameId,
+                display
             )
         VALUES
           (
-                '{$this->escapeCharacters($eventId)}',
-                '{$this->escapeCharacters($gameId)}'
+                '{$this->escapeCharacters($data['eventId'])}',
+                '{$this->escapeCharacters($gameId)}',
+                '{$this->escapeCharacters($display)}'
           )
         ;
       ";
