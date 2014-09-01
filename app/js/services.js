@@ -1382,7 +1382,7 @@ angular.module('brickSlopes.services', ['ngResource'])
         request: function(config) {
             config.headers = config.headers || {};
             if ($window.sessionStorage.token) {
-                config.headers.auth_token = $window.sessionStorage.token;
+                config.headers['Auth-Token'] = $window.sessionStorage.token;
             }
 
             if ($location.host() === 'www.brickslopes.com') {
