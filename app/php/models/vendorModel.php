@@ -14,13 +14,21 @@ class vendorModel extends db {
         return $storeId;
     }
 
+    public function editStoreInformation($data) {
+        return $this->query($this->updateStoreQuery($data));
+    }
+
+    public function editTableInformation($data) {
+        return $this->query($this->updateStoreEventConnectorQuery($data));
+    }
+
     public function addTableInformation($data) {
         $tableId = $this->query($this->insertStoreEventConnectorQuery($data));
         $this->query($this->insertStoreEventUserConnectorQuery($data));
         return $tableId;
     }
 
-    public function getTableInformation($data) {
+    public function getTableInformation($tableId) {
         $this->query($this->selectStoreEventConnectorQuery($tableId));
     }
 
@@ -71,8 +79,6 @@ class vendorModel extends db {
                 storeEventConnector sec 
             WHERE
                 sec.storeEventConnectorId = '{$this->escapeCharacters($tableId)}'
-            ORDER BY
-                v.name
         ;
       ";
     }
@@ -129,14 +135,26 @@ class vendorModel extends db {
                 type,
                 registrationDate 
             )
-        VALUES
-          (
-                '{$this->escapeCharacters($data['eventId'])}',
-                '{$this->escapeCharacters($data['storeId'])}',
-                '{$this->escapeCharacters($data['userId'])}',
-                '{$this->escapeCharacters($data['type'])}',
-                now()
-          )
+            VALUES
+              (
+                    '{$this->escapeCharacters($data['eventId'])}',
+                    '{$this->escapeCharacters($data['storeId'])}',
+                    '{$this->escapeCharacters($data['userId'])}',
+                    '{$this->escapeCharacters($data['type'])}',
+                    now()
+              )
+            ;
+      ";
+    }
+
+    private function updateStoreEventConnectorQuery($data) {
+        return "
+            UPDATE
+                storeEventConnector
+            SET
+                tables = '{$this->escapeCharacters($data['tables'])}'
+            WHERE
+                storeEventConnectorId = '{$this->escapeCharacters($data['tableId'])}'
         ;
       ";
     }
@@ -187,21 +205,36 @@ class vendorModel extends db {
         return "
             INSERT INTO
                 stores 
-            (
-                name,
-                description, 
-                url, 
-                logo, 
-                creationDate
-            )
-        VALUES
-          (
-                '{$this->escapeCharacters($data['name'])}',
-                '{$this->escapeCharacters($data['description'])}',
-                '{$this->escapeCharacters($data['url'])}',
-                '{$this->escapeCharacters($data['logo'])}',
-                now()
-          )
+                (
+                    name,
+                    description, 
+                    url, 
+                    logo, 
+                    creationDate
+                )
+            VALUES
+              (
+                    '{$this->escapeCharacters($data['name'])}',
+                    '{$this->escapeCharacters($data['description'])}',
+                    '{$this->escapeCharacters($data['url'])}',
+                    '{$this->escapeCharacters($data['logo'])}',
+                    now()
+              )
+        ;
+      ";
+    }
+
+    private function updateStoreQuery($data) {
+        return "
+            UPDATE
+                stores 
+            SET
+                name = '{$this->escapeCharacters($data['name'])}',
+                description = '{$this->escapeCharacters($data['description'])}',
+                url = '{$this->escapeCharacters($data['url'])}',
+                logo = '{$this->escapeCharacters($data['logo'])}'
+            WHERE
+                storeId = '{$this->escapeCharacters($data['storeId'])}'
         ;
       ";
     }

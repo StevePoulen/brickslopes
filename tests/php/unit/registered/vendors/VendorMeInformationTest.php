@@ -75,8 +75,12 @@ class VendorMeInformationTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($output['creationDate'], '2014-08-30 16:29:22');
         $this->assertEquals(sizeOf($output), 6);
 
-        //Validate the Store
+        //Validate the tables
         $output = $allVendors['tables'];
+        $this->assertEquals(sizeOf($output), 0);
+        
+        //Validate the Associates
+        $output = $allVendors['associates'];
         $this->assertEquals(sizeOf($output), 0);
     }
 

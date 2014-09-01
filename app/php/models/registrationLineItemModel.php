@@ -17,6 +17,10 @@ class registrationLineItemModel extends db {
         return $this->query($this->deleteQuery($userId, $eventId));
     }
 
+    public function deleteEventTableLineItems($userId, $eventId) {
+        return $this->query($this->deleteEventTableQuery($userId, $eventId));
+    }
+
     public function updateRegistrationLineItemsPaid($data) {
         return $this->query($this->updateQuery($data, 'YES'));
     }
@@ -51,6 +55,18 @@ class registrationLineItemModel extends db {
                 AND r.eventLineItemCodeId = ec.eventLineItemCodeId
             ORDER BY
                 r.amount DESC
+        ;
+      ";
+    }
+
+    private function deleteEventTableQuery($userId, $eventId) {
+        return "
+            DELETE FROM
+                registrationLineItems
+            WHERE
+                userId = '{$userId}'
+                AND eventId = '{$eventId}'
+                AND eventLineItemCodeId = 10
         ;
       ";
     }

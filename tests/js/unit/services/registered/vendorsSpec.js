@@ -5,14 +5,6 @@
 describe('service', function() {
     beforeEach(module('brickSlopes.services'));
 
-    beforeEach(function() {
-        this.addMatchers({
-            toEqualData: function(expected) {
-                return angular.equals(this.actual, expected);
-            }
-        });
-    });
-
     describe('Vendors', function() {
         describe('Get', function() {
             var mockBackend, service, data, eventId;
@@ -31,7 +23,7 @@ describe('service', function() {
                 });
 
                 mockBackend.flush();
-                expect(data[0].vendorId).toEqualData(2);
+                expect(data[0].storeId).toBe(2);
                 expect(data[0].name).toBe("A Boy's Mission");
                 expect(data[0].description.$$unwrapTrustedValue()).toBe("All LEGO Bro");
                 expect(data[0].url).toBe('http://www.brickshelf.com/abm');
@@ -41,12 +33,12 @@ describe('service', function() {
                 expect(data[0].hasUrl).toBe(true);
 
                 //Vendor #2
-                expect(data[1].vendorId).toEqualData(1);
+                expect(data[1].storeId).toBe(1);
                 expect(data[1].hasLogo).toBe(false);
                 expect(data[1].hasUrl).toBe(true);
 
                 //Vendor #3
-                expect(data[2].vendorId).toEqualData(3);
+                expect(data[2].storeId).toBe(3);
                 expect(data[2].hasLogo).toBe(true);
                 expect(data[2].hasUrl).toBe(false);
             });
@@ -58,7 +50,7 @@ describe('service', function() {
                 });
 
                 mockBackend.flush();
-                expect(data).toEqualData(3);
+                expect(data).toBe(3);
             });
         });
 
@@ -79,7 +71,7 @@ describe('service', function() {
                 });
 
                 mockBackend.flush();
-                expect(data).toEqualData('Success');
+                expect(data).toBe('Success');
             });
         });
 
@@ -101,9 +93,9 @@ describe('service', function() {
                 });
 
                 mockBackend.flush();
-                expect(data[0].associateId).toEqualData(2);
-                expect(data[0].firstName).toEqualData('Dorthy');
-                expect(data[0].lastName).toEqualData('Ottley');
+                expect(data[0].associateId).toBe(2);
+                expect(data[0].firstName).toBe('Dorthy');
+                expect(data[0].lastName).toBe('Ottley');
             });
         });
 
@@ -124,7 +116,28 @@ describe('service', function() {
                 });
 
                 mockBackend.flush();
-                expect(data).toEqualData('Success');
+                expect(data).toBe('Success');
+            });
+        });
+
+        describe('Update Table', function() {
+            var mockBackend, service, data;
+            beforeEach(inject(function(_$httpBackend_, VendorDetails) {
+                mockBackend = _$httpBackend_;
+                mockBackend.expectPATCH('/controllers/registered/vendors/tableRegistration.php').respond(200);
+                service = VendorDetails;
+            }));
+
+            it('should create a table order for an event', function() {
+                var tableDTO;
+                var load = service.updateTableOrder(tableDTO);
+
+                load.then(function(_data) {
+                    data = _data;
+                });
+
+                mockBackend.flush();
+                expect(data).toBe(200);
             });
         });
 
@@ -145,14 +158,14 @@ describe('service', function() {
                 });
 
                 mockBackend.flush();
-                expect(data.eventId).toEqualData(2);
-                expect(data.tableId).toEqualData(3);
-                expect(data.storeId).toEqualData(4);
+                expect(data.eventId).toBe(2);
+                expect(data.tableId).toBe(3);
+                expect(data.storeId).toBe(4);
                 expect(data.tables).toBe(12);
             });
         });
 
-        describe('Post', function() {
+        describe('Create a new store', function() {
             var mockBackend, service, data;
             beforeEach(inject(function(_$httpBackend_, VendorDetails) {
                 mockBackend = _$httpBackend_;
@@ -162,14 +175,14 @@ describe('service', function() {
 
             it('should get a list of vendors for an event', function() {
                 var vendorDTO;
-                var load = service.create(vendorDTO);
+                var load = service.createStore(vendorDTO);
 
                 load.then(function(_data) {
                     data = _data;
                 });
 
                 mockBackend.flush();
-                expect(data).toEqualData('Success');
+                expect(data).toBe('Success');
             });
         });
 
@@ -190,7 +203,7 @@ describe('service', function() {
                 });
 
                 mockBackend.flush();
-                expect(data.vendorId).toEqualData(2);
+                expect(data.storeId).toBe(2);
                 expect(data.name).toBe("A Boy's Mission");
                 expect(data.description.$$unwrapTrustedValue()).toBe("All LEGO Bro");
                 expect(data.url).toBe('http://www.brickshelf.com/abm');
@@ -198,6 +211,27 @@ describe('service', function() {
                 expect(data.logo).toBe('http://www.mylogo.com');
                 expect(data.tables).toBe(12);
                 expect(data.hasUrl).toBe(true);
+            });
+        });
+
+        describe('Update new store', function() {
+            var mockBackend, service, data;
+            beforeEach(inject(function(_$httpBackend_, VendorDetails) {
+                mockBackend = _$httpBackend_;
+                mockBackend.expectPATCH('/controllers/registered/vendors/vendorRegistration.php').respond(200);
+                service = VendorDetails;
+            }));
+
+            it('should get a list of vendors for an event', function() {
+                var vendorDTO;
+                var load = service.updateStore(vendorDTO);
+
+                load.then(function(_data) {
+                    data = _data;
+                });
+
+                mockBackend.flush();
+                expect(data).toBe(200);
             });
         });
 

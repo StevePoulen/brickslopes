@@ -25,6 +25,15 @@ class registrationLineItemModel extends db {
         return $this->query();
     }
 
+    public function deleteEventTableLineItems($userId, $eventId) {
+        if(!ISSET($GLOBALS['deleteEventTableLineItems'])) {
+            $GLOBALS['deleteEventTableLineItems'] = array();
+        }
+        $GLOBALS['deleteEventTableLineItems']['userId'] = $userId;
+        $GLOBALS['deleteEventTableLineItems']['eventId'] = $eventId;
+        return $this->query();
+    }
+
     public function getRegistrationLineItemsByUserId($data) {
         return $this->query();
     }

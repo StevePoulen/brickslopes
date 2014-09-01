@@ -118,6 +118,14 @@ describe('controllers', function() {
         });
 
         describe('Default Values', function() {
+            it('should have a storeId variable', function() {
+                expect(scope.storeId).toBeUndefined();
+            });
+
+            it('should have a tableId variable', function() {
+                expect(scope.tableId).toBeUndefined();
+            });
+
             it('should have a verifying variable', function() {
                 expect(scope.verifying).toBe(false);
             });
@@ -242,7 +250,52 @@ describe('controllers', function() {
                 expect(scope.mocCount).toBe(2);
             });
 
+            it('should have a storeId variable', function() {
+                expect(scope.storeId).toBe('4');
+            });
+
+            it('should have a tableId variable', function() {
+                expect(scope.tableId).toBe('8');
+            });
+
             describe('The Vendor Model', function() {
+                describe('Click Edit Store', function() {
+                    it('should redirect to the edit store page', function() {
+                        scope.clickVendors();
+                        expect(location.path()).toBe('/registered/2/4/vendorRegistration.html');
+                    });
+                });
+
+                describe('Click Add Event Tables', function() {
+                    it('should redirect to the add table page', function() {
+                        scope.tableId = undefined;
+                        scope.clickTables();
+                        expect(location.path()).toBe('/registered/2/4/tableRegistration.html');
+                    });
+                });
+
+                describe('Click Edit Event Tables', function() {
+                    it('should redirect to the edit table page', function() {
+                        scope.clickTables();
+                        expect(location.path()).toBe('/registered/2/8/updateTableRegistration.html');
+                    });
+                });
+
+                describe('Click Add Associates', function() {
+                    it('should redirect to the associates page', function() {
+                        scope.clickAssociates();
+                        expect(location.path()).toBe('/registered/2/4/associateRegistration.html');
+                    });
+                });
+
+                describe('Click Edit an Associate', function() {
+                    it('should redirect to the associates page', function() {
+                        scope.associateId = 6;
+                        scope.clickEditAssociate();
+                        //expect(location.path()).toBe('');
+                    });
+                });
+
                 describe('Vendor Store', function() {
                     it('should get a single vendor store', function() {
                         var store = scope.vendorModel.store;

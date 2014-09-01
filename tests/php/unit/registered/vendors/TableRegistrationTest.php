@@ -104,4 +104,38 @@ class TableRegistrationTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($lineItemObj['isOwner'], 'YES');
         $this->assertEquals(sizeOf($lineItemObj), 12);
     }
+
+    public function testAuthenticatedPATCH() 
+    {
+        $_POST = array(
+            'eventId' => 2,
+            'storeId' => 1567,
+            'name' => "A Boy's Mission",
+            'tables' => 12 
+        );
+        $_SERVER['REQUEST_METHOD'] = "PATCH";
+        $GLOBALS['db_query'] = '1456';
+        new TableRegistration($this->userId);
+        $output = get_ob();
+        $this->assertEquals(http_response_code(), 200);
+        $this->assertEquals($output, 200);
+
+        //Total Line Items
+        $this->assertEquals(sizeOf($GLOBALS['addRegistrationLineItems']), 1);
+
+        $lineItemObj = $GLOBALS['addRegistrationLineItems'][0];
+        $this->assertEquals($lineItemObj['eventLineItemCodeId'], 10);
+        $this->assertEquals($lineItemObj['eventId'], 2);
+        $this->assertEquals($lineItemObj['userId'], 5);
+        $this->assertEquals($lineItemObj['lineItem'], 'Vendor Tables');
+        $this->assertEquals($lineItemObj['amount'], '75.00');
+        $this->assertEquals($lineItemObj['paid'], 'NO');
+        $this->assertEquals($lineItemObj['discount'], 'YES');
+        $this->assertEquals($lineItemObj['description'], null); 
+        $this->assertEquals($lineItemObj['size'], null);
+        $this->assertEquals($lineItemObj['quantity'], 12);
+        $this->assertEquals($lineItemObj['active'], 'YES');
+        $this->assertEquals($lineItemObj['isOwner'], 'YES');
+        $this->assertEquals(sizeOf($lineItemObj), 12);
+    }
 }

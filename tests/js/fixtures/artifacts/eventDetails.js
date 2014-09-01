@@ -59,6 +59,12 @@ var eventDetails = {
             discount: '25.00',
             active: 'YES',
             lineItem: 'Draft - $25',
+        },
+        '10009': {
+            cost: '75.00',
+            discount: '75.00',
+            active: 'YES',
+            lineItem: 'Vendor Tables',
         }
     }
 };

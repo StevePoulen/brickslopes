@@ -444,7 +444,25 @@ angular.module('brickSlopes.services', ['ngResource'])
             }
         },
 
-        create: function(vendorDTO) {
+        updateStore: function(vendorDTO) {
+            var delay= $q.defer();
+            $http (
+                {
+                    method: 'PATCH',
+                    url: '/controllers/registered/vendors/vendorRegistration.php',
+                    data: vendorDTO,
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+                }
+            ).success(function(data, status, headers, config) {
+                delay.resolve(status);
+            }).error(function(data, status, headers, config) {
+                delay.reject(status);
+            });
+
+            return delay.promise;
+        },
+
+        createStore: function(vendorDTO) {
             var delay= $q.defer();
             $http (
                 {
@@ -473,6 +491,24 @@ angular.module('brickSlopes.services', ['ngResource'])
                 }
             ).success(function(data, status, headers, config) {
                 delay.resolve(data);
+            }).error(function(data, status, headers, config) {
+                delay.reject(status);
+            });
+
+            return delay.promise;
+        },
+
+        updateTableOrder: function(tableDTO) {
+            var delay= $q.defer();
+            $http (
+                {
+                    method: 'PATCH',
+                    url: '/controllers/registered/vendors/tableRegistration.php',
+                    data: tableDTO,
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+                }
+            ).success(function(data, status, headers, config) {
+                delay.resolve(status);
             }).error(function(data, status, headers, config) {
                 delay.reject(status);
             });
@@ -532,7 +568,7 @@ angular.module('brickSlopes.services', ['ngResource'])
                 data.hasAssociates = (data.associates.length ? true : false);
                 data.hasTables = (Object.keys(data.tables).length ? true : false);
                 _.each(data.associates, function(associate) {
-                    parseAssociateDetails(associate); 
+                    parseAssociateDetails(associate);
                 });
                 delay.resolve(data);
             }).error(function(data, status, headers, config) {

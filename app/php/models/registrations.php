@@ -22,6 +22,10 @@ class registrations extends db {
         return $this->query($this->updateQuery($data));
     }
 
+    public function updateRegistrationPaidByUserIdAndEventId($userId, $eventId) {
+        return $this->query($this->updatePaidQueryByUserIdAndEventId($userId, $eventId));
+    }
+
     public function updateRegistrationPaid($registrationId, $paidStatus, $amountPaid) {
         return $this->query($this->updatePaidQuery($registrationId, $paidStatus, $amountPaid));
     }
@@ -51,6 +55,19 @@ class registrations extends db {
             ORDER BY
                 u.lastName, 
                 u.firstName
+        ;
+      ";
+    }
+
+    private function updatePaidQueryByUserIdAndEventId($userId, $eventId) {
+        return "
+            UPDATE 
+                registrations
+            SET
+                paid = 'NO'
+            WHERE
+                userId = '{$this->escapeCharacters($userId)}'
+                AND eventId = '{$this->escapeCharacters($eventId)}'
         ;
       ";
     }

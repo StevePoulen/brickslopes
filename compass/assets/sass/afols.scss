@@ -355,7 +355,7 @@ $bs_blue: #35469A;
     left: 4px;
     width: $pane_width - 4;
     height: $dashboard_height;
-
+    
     .genericText {
         position: relative;
         padding: 5px;
@@ -455,11 +455,11 @@ $bs_blue: #35469A;
     }
 
     .meText {
-          position: relative;
-          top:0;
-          left:0;
-          width: 100%;
-          text-align: center;
+        position: relative;
+        top:0;
+        left:0;
+        width: 100%;
+        text-align: center;
     }
 }
 

@@ -20,6 +20,8 @@ class TableRegistration {
             $this->get();
         } else if ($requestMethod == "POST") {
             $this->post();
+        } else if ($requestMethod == "PATCH") {
+            $this->patch();
         } else {
             header("HTTP/1.0 405 Method Not Allowed");
         }
@@ -27,7 +29,7 @@ class TableRegistration {
 
     private function get() {
         $payload = $_GET;
-        $this->vendorsObj->getStoreEventInformation($payload['tableId']);
+        $this->vendorsObj->getTableInformation($payload['tableId']);
         if ($this->vendorsObj->result) {
             if ($dbObj = $this->vendorsObj->result->fetch_object()) {
                 $tableJson = array (
@@ -96,6 +98,51 @@ class TableRegistration {
                     'storeId' => $payload['storeId']
                 )
             );
+        } else {
+            header("HTTP/1.0 400 Bad Request");
+        }
+    }
+
+    private function adjustExistingTableLineItems($payload) {
+
+        $this->deleteExistingTableLineItems($payload);
+        $this->updateTableLineItems($payload);
+    }
+
+    private function deleteExistingTableLineItems($payload) {
+        $this->registrationLineItemHelper->deleteEventTableLineItems(
+            $payload['userId'],
+            $payload['eventId']
+        );
+    }
+
+    private function updateTableLineItems($payload) {
+        $lineItemPayload = array (
+            'discountDate' => '2199-01-01 12:00:00',
+            'eventId' => $payload['eventId'],
+            'userId' => $payload['userId'],
+            'vendor' => 'YES',
+            'vendorTables' => $payload['tables'],
+        );
+        $this->registrationLineItemHelper->addVendorLineItemFromTables($lineItemPayload);
+    }
+
+    private function patch() {
+        $payload = json_decode(file_get_contents("php://input"), true);
+        if (sizeof($payload) == 0) {
+            $payload = $_POST;
+        }
+        $payload['userId'] = $this->userId;
+        $tableId = $this->vendorsObj->editTableInformation($payload);
+
+        if (preg_match ( '/\d+/', $tableId)) {
+            $this->registrationLineItemHelper = new registrationLineItemHelper($payload['eventId']);
+
+            $this->adjustExistingTableLineItems($payload);
+
+            header("HTTP/1.0 200 Success");
+            echo 200;
+
         } else {
             header("HTTP/1.0 400 Bad Request");
         }

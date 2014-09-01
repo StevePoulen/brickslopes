@@ -23,7 +23,17 @@
                 </form>
             </div>
             <div id="help">
-                <div class="logo"></div>
+                <div class="text">
+                    <p>
+                        Please select the number of tables you will require for your booth at <bs-logo></bs-logo>.
+                    </p>
+                    <p>
+                        Per table cost for <bs-text text="{{eventName}}" font-size=1></bs-text> is <span ng-bind="tableCost | currency"></span>.
+                    </p>
+                    <p>
+                        One <bs-text text="{{eventPass}}"></bs-text> will be included with the purchase of tables.
+                    </p>
+                    </div>
                 <div class="bsLogo"><img src="/images/logo/brickSlopes_noword_50px.png"></div>
             </div>
         </div>

@@ -21,6 +21,10 @@
             }
         }
 
+        public function deleteEventTableLineItems($userId, $eventId) {
+            $this->registrationLineItemObj->deleteEventTableLineItems($userId, $eventId);
+        }
+
         public function deleteRegistrationLineItems($userId, $eventId) {
             $this->registrationLineItemObj->deleteRegistrationLineItems($userId, $eventId);
         }
@@ -206,6 +210,16 @@
                     $this->registrationLineItemObj->addRegistrationLineItems($dto);
                 }
             } catch (exception $err) { }
+        }
+
+        public function addVendorLineItemFromTables($data) {
+            $data = $this->determineLineItemAmounts($data);
+            $this->addVendorLineItem($data);
+            $registrationObj = new registrations();
+            $registrationObj->updateRegistrationPaidByUserIdAndEventId (
+                $data['userId'],
+                $data['eventId']
+            );
         }
 
         private function addVendorLineItem($data) {

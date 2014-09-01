@@ -23,11 +23,19 @@ class vendorModel extends db {
         return $this->query();
     }
 
+    public function editStoreInformation($data) {
+        return $this->query();
+    }
+
     public function addTableInformation($data) {
         return $this->query();
     }
 
-    public function getStoreEventInformation($data) {
+    public function editTableInformation($data) {
+        return $this->query();
+    }
+
+    public function getTableInformation($data) {
         return $this->query();
     }
 

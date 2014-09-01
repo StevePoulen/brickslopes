@@ -50,7 +50,7 @@ class Payment {
                     }
                 }
 
-                $this->registrationsObj->updateRegistrationPaid(
+                $this->registrationsObj->updateRegistrationPaid (
                     $payload['registrationId'],
                     ($registrationPaid ? 'YES' : 'NO'),
                     $amountPaid

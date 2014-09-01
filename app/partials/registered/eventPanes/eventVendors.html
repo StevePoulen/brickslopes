@@ -1,4 +1,4 @@
-<div>
+<div id="meVendors">
     <div class="smallPane" ng-if="displayRegisterEventVendorsCTA">
         <div class="meText"><bs-text text="Become a Vendor" font-color=black font-size=1.25></bs-text></div>
         <div class="formButtonPosition">
@@ -10,24 +10,28 @@
     <div class="normalPane events" ng-if="! displayRegisterEventVendorsCTA">
         <div class="meText">
             <bs-text text="{{vendorModel.store.name}}" font-color=black font-size=1.25></bs-text>
-        <i ng-click="clickEditStore()" class="icons-edit icons-sprite-bg"></i>
+            <i ng-click="clickVendors()" class="icons-edit icons-sprite-bg"></i>
         </div>
-
-        <div>
+        <div class="textCenter tables">
             <div>
-                <bs-text font-size=1.25 text="tables: {{vendorModel.tables.tables}}"></bs-text>
+                <bs-text text="BrickSlopes - Salt Lake City"></bs-text>
             </div>
             <div>
-                <div class="actionButtonTiny" ng-click="clickVendors()">
+                <bs-text font-color=black font-size=1.5 text="tables: {{vendorModel.tables.tables}}"></bs-text>
+                <span class="actionButtonTiny" ng-click="clickTables()">
                     <bs-text text="Add + " font-color=white font-size=.85></bs-text>
-                </div>
+                </span>
             </div>
         </div>
-        <div class="myVendors" ng-click="clickVendors()">
-            <div ng-class="{eventRow: $even}"  ng-repeat="associate in vendorModel.associates | orderBy:'gameTitle'">
-                <div class="myGameRow">
-                    <div><bs-text text="{{associate.fullName}}" max-size=35 font-size=1.25></bs-text></div>
-                <div>
+        <div class="associateContainer">
+            <div class="textCenter">
+                <bs-text text="Associates"></bs-text>
+                <i ng-click="clickAssociates()" class="icons-edit icons-sprite-bg"></i>
+            </div>
+            <div>
+                <div class="associates" ng-class="{eventRow: $even}"  ng-repeat="associate in vendorModel.associates">
+                    <span class="pointer" ng-click="clickEditAssociate()"><bs-text text="{{associate.fullName}}" max-size=35 font-size=1.25 font-color=black></bs-text></span>
+                </div>
             </div>
         </div>
     </div>

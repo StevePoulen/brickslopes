@@ -17,6 +17,15 @@ class registrations extends db {
         return $this->query();
     }
 
+    public function updateRegistrationPaidByUserIdAndEventId($userId, $eventId) {
+        $GLOBALS['updateRegistrationPaidByUserIdAndEventId'] = array (
+            'userId' => $userId,
+            'eventId' => $eventId
+        );
+
+        return $this->query();
+    }
+
     public function addRegistrationInformation($data) {
         return $this->query();
     }

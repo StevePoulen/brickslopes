@@ -48,6 +48,14 @@ describe('controllers', function() {
             it('should have an eventName variable', function() {
                 expect(scope.eventName).toBe('BrickSlopes 2015');
             });
+
+            it('should have a tableCost variable', function() {
+                expect(scope.tableCost).toBe('75.00');
+            });
+
+            it('should have a eventPass variable', function() {
+                expect(scope.eventPass).toBe('4 Day Event Pass');
+            });
         });
 
         describe('Default Values', function() {
@@ -96,7 +104,7 @@ describe('controllers', function() {
             });
         });
 
-        describe('Create Vendor', function() {
+        describe('Add Tables', function() {
             var tableDTO;
             beforeEach(function() {
                 tableDTO = {
@@ -115,6 +123,38 @@ describe('controllers', function() {
                 expect(scope.buttonText).toBe('Register');
                 expect(scope.tables).toBe(2);
                 expect(location.path()).toBe('/registered/2/1234/associateRegistration.html');
+            });
+
+            it('should display an error', function() {
+                scope.name = 'My Store';
+                scope.description = 'The sweet life';
+                scope.url = 'https://www.url.com';
+                scope.logo = 'https://www.logo.com';
+                scope.submitTableRegistration();
+                mockBackend.expectPOST('/controllers/registered/vendors/tableRegistration.php', tableDTO).respond(400, 1);
+                mockBackend.flush();
+                expect(location.path()).toBe('');
+                expect(scope.displayErrorMessage).toBe('The Table travails.');
+            });
+        });
+
+        describe('Update Tables', function() {
+            var tableDTO;
+            beforeEach(function() {
+                tableDTO = {
+                    eventId: 2,
+                    storeId: 33,
+                    tableId: 'undefined',
+                    tables: 2
+                }
+            });
+
+            it('should create a table order', function() {
+                scope.isTableUpdate = true;
+                scope.submitTableRegistration();
+                mockBackend.expectPATCH('/controllers/registered/vendors/tableRegistration.php', tableDTO).respond(200);
+                mockBackend.flush();
+                expect(location.path()).toBe('/registered/eventMe.html');
             });
 
             it('should display an error', function() {

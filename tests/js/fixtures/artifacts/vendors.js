@@ -1,6 +1,6 @@
 var vendors = [
     {
-        vendorId: 2,
+        storeId: 2,
         name: "A Boy's Mission",
         description: "All LEGO Bro",
         url: "http://www.brickshelf.com/abm",
@@ -8,7 +8,7 @@ var vendors = [
         tables: 12
     },
     {
-        vendorId: 1,
+        storeId: 1,
         name: "The Best Store",
         description: "All LEGO Sis",
         url: "http://www.tbs.com/lego",
@@ -16,7 +16,7 @@ var vendors = [
         tables:5 
     },
     {
-        vendorId: 3,
+        storeId: 3,
         name: "The Empire",
         description: "All Star Wars",
         url: "",

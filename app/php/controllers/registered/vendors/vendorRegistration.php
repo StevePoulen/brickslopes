@@ -20,6 +20,8 @@ class VendorRegistration {
             $this->get();
         } else if ($requestMethod == "POST") {
             $this->post();
+        } else if ($requestMethod == "PATCH") {
+            $this->patch();
         } else {
             header("HTTP/1.0 405 Method Not Allowed");
         }
@@ -65,6 +67,22 @@ class VendorRegistration {
                     'storeId' => $storeId
                 )
             );
+        } else {
+            header("HTTP/1.0 400 Bad Request");
+        }
+    }
+
+    private function patch() {
+        $payload = json_decode(file_get_contents("php://input"), true);
+        if (sizeof($payload) == 0) {
+            $payload = $_POST;
+        }
+        $payload['userId'] = $this->userId;
+        $storeId = $this->vendorsObj->editStoreInformation($payload);
+
+        if (preg_match ( '/\d+/', $storeId)) {
+            header("HTTP/1.0 200 Success");
+            echo '200';
         } else {
             header("HTTP/1.0 400 Bad Request");
         }

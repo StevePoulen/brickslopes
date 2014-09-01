@@ -34,6 +34,15 @@ class RegistrationLineItemHelperTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($queryObj['eventId'], 256);
     }
 
+    public function testDeleteEventTableLineItems() 
+    {
+        $GLOBALS['db_query'] = '1';
+        $this->helper->deleteEventTableLineItems(20123, 256);
+        $queryObj = $GLOBALS['deleteEventTableLineItems'];
+        $this->assertEquals($queryObj['userId'], 20123);
+        $this->assertEquals($queryObj['eventId'], 256);
+    }
+
     public function testAddRegistrationLineItemsBrickOne() 
     {
         $GLOBALS['db_query'] = '1';
@@ -415,5 +424,42 @@ class RegistrationLineItemHelperTest extends PHPUnit_Framework_TestCase
 
         //Total Line Items
         $this->assertEquals(sizeOf($GLOBALS['addRegistrationLineItems']), 1);
+    }
+
+    public function testAddVendorLineItemFormTables() 
+    {
+        $dto = array (
+            'discountDate' => $this->tomorrow,
+            'eventId' => 2,
+            'userId' => 7,
+            'vendor' => 'YES',
+            'vendorTables' => 2
+        );
+
+        $GLOBALS['db_query'] = '1';
+        $this->helper->addVendorLineItemFromTables($dto);
+        //Event Pass
+        $lineItemObj = $GLOBALS['addRegistrationLineItems'][0];
+        $this->assertEquals($lineItemObj['eventLineItemCodeId'], '10');
+        $this->assertEquals($lineItemObj['eventId'], 2);
+        $this->assertEquals($lineItemObj['userId'], 7);
+        $this->assertEquals($lineItemObj['lineItem'], 'Vendor Tables');
+        $this->assertEquals($lineItemObj['amount'], '75.00');
+        $this->assertEquals($lineItemObj['paid'], 'NO');
+        $this->assertEquals($lineItemObj['discount'], 'YES');
+        $this->assertEquals($lineItemObj['description'], null);
+        $this->assertEquals($lineItemObj['size'], null);
+        $this->assertEquals($lineItemObj['quantity'], 2);
+        $this->assertEquals($lineItemObj['active'], 'YES');
+        $this->assertEquals($lineItemObj['isOwner'], 'YES');
+        $this->assertEquals(sizeOf($lineItemObj), 12);
+
+        //Total Line Items
+        $this->assertEquals(sizeOf($GLOBALS['addRegistrationLineItems']), 1);
+
+        //Registration Paid Update
+        $registrationUpdate = $GLOBALS['updateRegistrationPaidByUserIdAndEventId'];
+        $this->assertEquals($registrationUpdate['userId'], 7);
+        $this->assertEquals($registrationUpdate['eventId'], 2);
     }
 }

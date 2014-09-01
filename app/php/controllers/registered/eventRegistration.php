@@ -80,15 +80,15 @@ class EventRegistration {
         $payload['userId'] = $this->userId;
         $response = $this->registrationsObj->updateRegistrationInformation($payload);
 
-        $this->registrationLineItemHelper = new registrationLineItemHelper($payload['eventId']);
-        $this->registrationLineItemHelper->deleteRegistrationLineItems(
-            $payload['userId'],
-            $payload['eventId']
-        );
-        
-        $this->deleteGameUserInformation($payload);
-
         if (preg_match ( '/\d+/', $response )) {
+            $this->registrationLineItemHelper = new registrationLineItemHelper($payload['eventId']);
+            $this->registrationLineItemHelper->deleteRegistrationLineItems(
+                $payload['userId'],
+                $payload['eventId']
+            );
+            
+            $this->deleteGameUserInformation($payload);
+
             $payload['description'] = $this->getUserName();
             $this->registrationLineItemHelper->addRegistrationLineItems($payload);
 

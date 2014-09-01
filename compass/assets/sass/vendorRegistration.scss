@@ -197,6 +197,7 @@
         position: absolute;
         bottom: 10px;
         left: 10px;
+        z-index: -1;
     }
 
     .logo {
@@ -208,5 +209,27 @@
     .logoImage {
         width: $vendor_logo_size;
         height: $vendor_logo_size;
+    }
+}
+
+#meVendors {
+    .actionButtonTiny {
+        top: -3px;
+        height: 20px;
+    }
+
+    .tables {
+        margin-top: 10px;
+    }
+
+    .associateContainer {
+        margin-top: 10px;
+        margin-left: 10px;
+        overflow: scroll;
+        height: 100px;
+    }
+
+    .associates {
+        margin-top: 2px;
     }
 }

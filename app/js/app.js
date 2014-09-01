@@ -191,19 +191,37 @@ config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvide
         }
     )
     .when(
-        '/registered/:eventId/:storeId/:tableId/tableRegistration.html',
+        '/registered/:eventId/:storeId/tableRegistration.html',
         {
             templateUrl: function(params) {
-                return '/partials/registered/vendors/tableRegistration.html?eventId='+params.eventId+'&storeId='+params.storeId+'&tableId='+params.tableId;
+                return '/partials/registered/vendors/tableRegistration.html';
             },
             controller: 'TableRegistration'
+        }
+    )
+    .when(
+        '/registered/:eventId/:tableId/updateTableRegistration.html',
+        {
+            templateUrl: function(params) {
+                return '/partials/registered/vendors/tableRegistration.html';
+            },
+            controller: 'TableRegistration'
+        }
+    )
+    .when(
+        '/registered/:associateId/associateRegistration.html',
+        {
+            templateUrl: function(params) {
+                return '/partials/registered/vendors/associateRegistration.html';
+            },
+            controller: 'AssociateRegistration'
         }
     )
     .when(
         '/registered/:eventId/:storeId/associateRegistration.html',
         {
             templateUrl: function(params) {
-                return '/partials/registered/vendors/associateRegistration.html?eventId='+params.eventId+'&storeId='+params.storeId;
+                return '/partials/registered/vendors/associateRegistration.html';
             },
             controller: 'AssociateRegistration'
         }

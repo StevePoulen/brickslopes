@@ -57,4 +57,19 @@ class VendorRegistrationTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(http_response_code(), 201);
         $this->assertEquals($output['storeId'], '1456');
     }
+
+    public function testAuthenticatedPATCH() 
+    {
+        $_POST = array(
+            'storeId' => 2,
+            'name' => "A Boy's Mission",
+            'tables' => 12 
+        );
+        $_SERVER['REQUEST_METHOD'] = "PATCH";
+        $GLOBALS['db_query'] = '1456';
+        new VendorRegistration($this->userId);
+        $output = get_ob();
+        $this->assertEquals(http_response_code(), 200);
+        $this->assertEquals($output, 200);
+    }
 }

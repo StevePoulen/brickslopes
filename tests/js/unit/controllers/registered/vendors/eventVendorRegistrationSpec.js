@@ -3,7 +3,7 @@
 /* jasmine specs for controllers go here */
 
 describe('controllers', function() {
-    var scope, ctrl, location;
+    var scope, ctrl, location, mockBackend, route;
 
     beforeEach(
         module(
@@ -20,8 +20,6 @@ describe('controllers', function() {
     });
 
     describe('vendorRegistration Controller', function() {
-        var mockBackend, loader, location, response, route;
-
         beforeEach(inject(function($controller, $rootScope, $location, _$httpBackend_ , $route) {
             route = $route;
             route = {current: {params:{eventId:2, storeId:'undefined'}}};
@@ -98,7 +96,7 @@ describe('controllers', function() {
                 scope.submitRegistration();
                 mockBackend.expectPOST('/controllers/registered/vendors/vendorRegistration.php', vendorDTO).respond(201, {storeId: '1234'});
                 mockBackend.flush();
-                expect(location.path()).toBe('/registered/2/1234/undefined/tableRegistration.html');
+                expect(location.path()).toBe('/registered/2/1234/tableRegistration.html');
                 expect(scope.buttonText).toBe('Register');
                 expect(scope.name).toBe('My Store');
                 expect(scope.description).toBe('The sweet life');
@@ -113,6 +111,49 @@ describe('controllers', function() {
                 scope.logo = 'https://www.logo.com';
                 scope.submitRegistration();
                 mockBackend.expectPOST('/controllers/registered/vendors/vendorRegistration.php', vendorDTO).respond(400, 1);
+                mockBackend.flush();
+                expect(location.path()).toBe('');
+                expect(scope.displayErrorMessage).toBe('The Vendor travails.');
+            });
+        });
+
+        describe('Update Vendor', function() {
+            var vendorDTO;
+            beforeEach(inject(function($controller) {
+                vendorDTO = {
+                    storeId: 2,
+                    name: 'My Store',
+                    description: 'The sweet life',
+                    url: 'https://www.url.com',
+                    logo: 'https://www.logo.com'
+                }
+                route = {current: {params:{storeId:2}}};
+                ctrl = $controller('vendorRegistration', { $scope: scope, $route: route});
+            }));
+
+            it('should update a store', function() {
+                scope.isStoreUpdate = true;
+                scope.called = true;
+                scope.registrationForm = {'$setPristine': function() {}};
+                scope.name = 'My Store';
+                scope.description = 'The sweet life';
+                scope.url = 'https://www.url.com';
+                scope.logo = 'https://www.logo.com';
+                scope.submitRegistration();
+                mockBackend.expectPATCH('/controllers/registered/vendors/vendorRegistration.php', vendorDTO).respond('200');
+                mockBackend.flush();
+                expect(location.path()).toBe('/registered/eventMe.html');
+            });
+
+            it('should display an error', function() {
+                scope.isStoreUpdate = true;
+                scope.called = true;
+                scope.name = 'My Store';
+                scope.description = 'The sweet life';
+                scope.url = 'https://www.url.com';
+                scope.logo = 'https://www.logo.com';
+                scope.submitRegistration();
+                mockBackend.expectPATCH('/controllers/registered/vendors/vendorRegistration.php', vendorDTO).respond(400, 1);
                 mockBackend.flush();
                 expect(location.path()).toBe('');
                 expect(scope.displayErrorMessage).toBe('The Vendor travails.');
