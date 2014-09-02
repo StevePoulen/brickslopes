@@ -57,46 +57,56 @@ class VendorAssociates {
         );
 
         $registrationsObj = new registrations();
-        $registrationsObj->addRegistrationInformation($registrationPayload);
+        $registrationId = $registrationsObj->addRegistrationInformation($registrationPayload);
 
-        $lineItemPayload = array (
-            'discountDate' => '2199-01-01 12:00:00',
-            'eventId' => $payload['eventId']
-        );
-
-        if ($payload['addAfolPass'] === 'YES') {
-            $lineItemPayload['badgeLine1'] = "{$payload['firstName']} {$payload['lastName']}";
-        } else {
-            $lineItemPayload['vendorPass'] = 'YES';
-        }
-        $lineItemPayload['description'] = "{$payload['firstName']} {$payload['lastName']}";
-
-        $this->registrationLineItemHelper = new registrationLineItemHelper($payload['eventId']);
-        //Add the line item to the vendor (store owner)
-        $lineItemPayload['userId'] = $this->userId;
-        $lineItemPayload['isOwner'] = 'NO';
-        $this->registrationLineItemHelper->addRegistrationLineItems($lineItemPayload);
-
-        //Add the line item to the user (store associate)
-        $lineItemPayload['userId'] = $payload['userId'];
-        $lineItemPayload['nocost'] = true;
-        $lineItemPayload['isOwner'] = 'YES';
-        $this->registrationLineItemHelper->addRegistrationLineItems($lineItemPayload);
-
-        $associateId = $this->vendorsObj->addStoreEventUserInformation($payload);
-        if (preg_match ( '/\d+/', $associateId)) {
-            header("HTTP/1.0 201 Created");
-
-            echo json_encode (
-                array (
-                    'associateId' => $associateId,
-                    'firstName' => $payload['firstName'],
-                    'lastName' => $payload['lastName']
-                )
+        if (preg_match ( '/^\d+/', $registrationId)) {
+            $lineItemPayload = array (
+                'discountDate' => '2199-01-01 12:00:00',
+                'eventId' => $payload['eventId']
             );
 
+            if ($payload['addAfolPass'] === 'YES') {
+                $lineItemPayload['badgeLine1'] = "{$payload['firstName']} {$payload['lastName']}";
+            } else {
+                $lineItemPayload['vendorPass'] = 'YES';
+            }
+            $lineItemPayload['description'] = "{$payload['firstName']} {$payload['lastName']}";
+
+            $this->registrationLineItemHelper = new registrationLineItemHelper($payload['eventId']);
+            //Add the line item to the vendor (store owner)
+            $lineItemPayload['userId'] = $this->userId;
+            $lineItemPayload['isOwner'] = 'NO';
+            $this->registrationLineItemHelper->addRegistrationLineItems($lineItemPayload);
+
+            //Add the line item to the user (store associate)
+            $lineItemPayload['userId'] = $payload['userId'];
+            $lineItemPayload['nocost'] = true;
+            $lineItemPayload['isOwner'] = 'YES';
+            $this->registrationLineItemHelper->addRegistrationLineItems($lineItemPayload);
+
+            $associateId = $this->vendorsObj->addStoreEventUserInformation($payload);
+            if (preg_match ( '/\d+/', $associateId)) {
+                header("HTTP/1.0 201 Created");
+
+                echo json_encode (
+                    array (
+                        'associateId' => $associateId,
+                        'firstName' => $payload['firstName'],
+                        'lastName' => $payload['lastName']
+                    )
+                );
+
+            } else {
+                header("HTTP/1.0 400 Bad Request");
+                echo json_encode (array(
+                    'error' => 'Bad Request' 
+                ));
+            }
         } else {
-            header("HTTP/1.0 400 Bad Request");
+            header("HTTP/1.0 412 Precondition Failed");
+            echo json_encode (array(
+                'error' => 'existing registrar' 
+            ));
         }
     }
 
@@ -124,6 +134,9 @@ class VendorAssociates {
                 $dbObj = $userObj->result->fetch_object();
                 if ($dbObj->userId == $this->userId) {
                     header("HTTP/1.0 412 Precondition Failed");
+                    echo json_encode (array(
+                        'error' => 'selfie' 
+                    ));
                 } else {
                     $payload['userId'] = $dbObj->userId;
                     $payload['firstName'] = $dbObj->firstName;
@@ -133,6 +146,9 @@ class VendorAssociates {
                 }
             } else {
                 header("HTTP/1.0 400 Bad Request");
+                echo json_encode (array(
+                    'error' => 'Bad Request' 
+                ));
             }
         }
     }

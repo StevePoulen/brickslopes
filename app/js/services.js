@@ -572,7 +572,7 @@ angular.module('brickSlopes.services', ['ngResource'])
             ).success(function(data, status, headers, config) {
                 delay.resolve(data);
             }).error(function(data, status, headers, config) {
-                delay.reject(status);
+                delay.reject(data);
             });
 
             return delay.promise;

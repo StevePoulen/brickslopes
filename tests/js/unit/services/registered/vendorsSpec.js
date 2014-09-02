@@ -85,6 +85,29 @@ describe('service', function() {
             });
         });
 
+        describe('Create Associate error', function() {
+            var mockBackend, service, data;
+            beforeEach(inject(function(_$httpBackend_, VendorDetails) {
+                mockBackend = _$httpBackend_;
+                mockBackend.expectPOST('/controllers/registered/vendors/vendorAssociates.php').respond(412, {error: 'this is bad'});
+                service = VendorDetails;
+            }));
+
+            it('should create a table order for an event', function() {
+                var tableDTO;
+                var load = service.createAssociate(tableDTO);
+
+                load.then(function(_data) {
+                    data = 'This is wrong';
+                }, function(_data) {
+                    data = _data;
+                });
+
+                mockBackend.flush();
+                expect(data.error).toBe('this is bad');
+            });
+        });
+
         describe('Get Associate', function() {
             var mockBackend, service, data, eventId, storeId;
             beforeEach(inject(function(_$httpBackend_, VendorDetails) {

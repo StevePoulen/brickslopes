@@ -132,7 +132,7 @@ describe('controllers', function() {
                 scope.email = 'steve@brickslopes.com';
                 scope.addAfolPass = 'YES';
                 scope.submitAssociateRegistration();
-                mockBackend.expectPOST('/controllers/registered/vendors/vendorAssociates.php', associateDTO).respond(400);
+                mockBackend.expectPOST('/controllers/registered/vendors/vendorAssociates.php', associateDTO).respond(400, {error: 'nothing'});
                 mockBackend.flush();
                 expect(scope.displayMessage.$$unwrapTrustedValue()).toBe('The Vendor Associate travails.');
                 expect(scope.modalTitle).toBe('Error');
@@ -145,7 +145,7 @@ describe('controllers', function() {
                 scope.email = 'steve@brickslopes.com';
                 scope.addAfolPass = 'YES';
                 scope.submitAssociateRegistration();
-                mockBackend.expectPOST('/controllers/registered/vendors/vendorAssociates.php', associateDTO).respond(412);
+                mockBackend.expectPOST('/controllers/registered/vendors/vendorAssociates.php', associateDTO).respond(412, {error: 'selfie'});
                 mockBackend.flush();
                 expect(scope.modalTitle).toBe('Error');
                 expect(scope.displayMessage.$$unwrapTrustedValue()).toBe('You may not add yourself as an associate of your own store.');

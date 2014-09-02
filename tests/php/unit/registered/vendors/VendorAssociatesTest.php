@@ -322,9 +322,35 @@ class VendorAssociatesTest extends PHPUnit_Framework_TestCase
         $GLOBALS['db_query'] = array(false, true, true, true, true, true, true, true, 5);
         new VendorAssociates(123456789);
         $this->assertEquals(http_response_code(), 412);
-        $output = get_ob();
+        $output = json_decode(get_ob(), true);
 
-        $this->assertEquals($output, '');
+        $this->assertEquals($output['error'], 'selfie');
+
+        //Total Line Items
+        try {
+            $this->assertEquals(sizeOf($GLOBALS['addRegistrationLineItems']), 0);
+        } catch (exception $err) {
+            $this->assertEquals(0, 0);
+        }
+    }
+
+    public function testAuthenticatedPOSTAsExisting() 
+    {
+        $_POST = array(
+            'eventId' => 2,
+            'firstName' => 'Cody',
+            'lastName' => 'Ottley',
+            'email' => 'cody@brickslopes.com',
+            'addAfolPass' => 'YES'
+        );
+        $_SERVER['REQUEST_METHOD'] = "POST";
+        $GLOBALS['db_results'] = array('duplicate', true, 'duplicate');
+        $GLOBALS['db_query'] = array(false, true, 'duplicate');
+        new VendorAssociates(555);
+        $this->assertEquals(http_response_code(), 412);
+        $output = json_decode(get_ob(), true);
+
+        $this->assertEquals($output['error'], 'existing registrar');
 
         //Total Line Items
         try {

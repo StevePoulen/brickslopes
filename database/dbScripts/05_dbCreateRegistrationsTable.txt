@@ -21,5 +21,6 @@ CREATE TABLE `registrations` (
   INDEX (eventId, userId),
   FOREIGN KEY (`eventId`) REFERENCES `events` (`eventId`),
   FOREIGN KEY (`userId`) REFERENCES `users` (`userId`),
+  UNIQUE INDEX (`userId`, `eventId`),
   UNIQUE KEY `registrationId_UNIQUE` (`registrationId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='The Registrations Table';
