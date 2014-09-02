@@ -148,7 +148,7 @@ $bs_blue: #35469A;
 }
 
 #editProfile {
-    height: 850px;
+    height: 1050px;
 
     .editProfileText { 
         position: absolute;
@@ -170,6 +170,7 @@ $bs_blue: #35469A;
         background: white;
 
         .loginField {
+            margin-left: 20px;
             margin-bottom: 20px;
             border: 1px solid #BCBEBF;
             border-radius: 5px;
@@ -178,7 +179,40 @@ $bs_blue: #35469A;
             padding-top: 7.5px;
             text-align: left;
         }
+        
+        .label {
+            text-align: left;
+            margin-bottom: 5px;
+        }
     }
+
+    #help {
+        position: absolute;
+        top: 125px;
+        right: 10px;
+        height: 275px;
+        width: 600px;
+        text-align: center;
+        border: 1px solid #35469A;
+        border-radius: 10px;
+
+        .bsLogo {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+        }
+
+        .text {
+            position: absolute;
+            top: 5px;
+            left: 20px;
+            width: 560px;
+            height: 255px;
+            font-size: 1.5em;
+            text-align: left;
+        }
+    }
+
 }
 
 #eventRegistration {

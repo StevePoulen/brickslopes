@@ -1022,7 +1022,11 @@
                     $userMap['city'] = $this->trimMigration($dbObj->city);
                     $userMap['state'] = $this->trimMigration($dbObj->state);
                     $userMap['zipcode'] = $this->trimMigration($dbObj->zipcode);
-                    $userMap['flickr'] = $this->trimMigration($dbObj->flickr);
+                    if (preg_match('/yes/i', $dbObj->flickr)) {
+                        $userMap['flickr'] = '';
+                    } else {
+                        $userMap['flickr'] = $this->trimMigration($dbObj->flickr);
+                    }
                     $userMap['phoneNumber'] = "";
                     $userId = $usersObj->addUserInformation($userMap);
 
