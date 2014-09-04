@@ -50,7 +50,7 @@ class SendEmailTest extends PHPUnit_Framework_TestCase
         new SendEmail(15);
         $this->assertEquals(http_response_code(), 200);
         $output = get_ob();
-        $this->assertContains('you are a registered vendor', $output);
+        $this->assertContains('request to be a vendor', $output);
         $this->assertContains('Brian', $output);
     }
 

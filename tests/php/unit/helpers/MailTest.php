@@ -19,7 +19,7 @@ class MailTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($emailOutput['type'], 'mail::sendVendorRegistrationMessage');
         $this->assertEquals($emailOutput['priority'], 4);
         $this->assertEquals($emailOutput['emailAddress'], 'brianpilati@gmail.com');
-        $this->assertContains('you are a registered vendor', $emailOutput['body']);
+        $this->assertContains('you have submitted a request to be a vendor', $emailOutput['body']);
         $this->assertEquals(sizeOf($emailOutput), 7);
     }
 }

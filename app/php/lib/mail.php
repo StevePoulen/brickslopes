@@ -230,21 +230,29 @@
                                         {$this->getFontWrapper(16, '#000000')}
                                             {$dbObj->firstName},
                                             <p>
-                                            <b>Congratulations!</b> This e-mail confirms you are a registered vendor for BrickSlopes 2015 - Salt Lake City.
+                                            <b>Congratulations!</b> This e-mail confirms you have submitted a request to be a vendor at BrickSlopes 2015 - Salt Lake City.
+                                            </P
                                             <p>
-                                            You will receive a confirmation e-mail once your payment is received and your registration is complete.
+                                            You will receive a confirmation e-mail when your payment is received and your registration is complete. 
+                                            </p>
+                                            <p>
+                                            BrickSlopes does limit the number of vendors, so sending your payment early will help secure a booth.
+                                            </p>
                                             <p>
                                             <b>Your Event Experience</b>
                                             {$this->parseLineItems($lineItems)}
                                             <p>
+                                            </p>
                                             <b>Have You Considered?</b>
                                             <p>
                                             We need LEGO presenters and panels speakers. Do you have a topic you are passionate about and are willing to share with the community? 
+                                            </p>
                                             <p>
                                             <b>Let the fun begin ...</b>
+                                            </p>
                                             <p>
                                             Dont' forget to sign-up to bring your MOCs or register for event games.
-                                            <p>
+                                            </p>
                                             <p>
                                             {$this->getPleaseVisit()}
                                         {$this->getFontClosure()}
