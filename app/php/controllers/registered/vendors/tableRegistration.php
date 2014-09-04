@@ -66,8 +66,8 @@ class TableRegistration {
             );
 
             $registrationsObj = new registrations();
-            $registrationsObj->addRegistrationInformation($registrationPayload);
-
+            $registrationId = $registrationsObj->addRegistrationInformation($registrationPayload);
+            
             $userObj = new users();
             $userObj->getUserInformation($this->userId);
             if ($userObj->result) {
@@ -86,7 +86,12 @@ class TableRegistration {
                 'description' => "{$payload['firstName']} {$payload['lastName']}"
             );
             $this->registrationLineItemHelper = new registrationLineItemHelper($payload['eventId']);
-            $this->registrationLineItemHelper->addRegistrationLineItems($lineItemPayload);
+
+            if (preg_match ( '/^\d+/', $registrationId)) {
+                $this->registrationLineItemHelper->addRegistrationLineItems($lineItemPayload);
+            } else {
+                $this->registrationLineItemHelper->addVendorLineItemFromTables($lineItemPayload);
+            }
 
             $emailObj = new mail($this->userId);
             $emailObj->sendVendorRegistrationMessage($this->userId, $payload['eventId']);

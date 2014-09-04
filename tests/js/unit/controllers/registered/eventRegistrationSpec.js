@@ -123,6 +123,8 @@ describe('controllers', function() {
                 expect(scope.passDates).toBe('May 14th thru 17th');
                 expect(scope.eventYear).toBe('2015');
                 expect(scope.meetAndGreetDinnerDate).toBe('Thursday, May 14th');
+                expect(scope.draftOneId).toBe(23);
+                expect(scope.draftTwoId).toBe(24);
             });
         });
 
@@ -155,7 +157,9 @@ describe('controllers', function() {
                     nameBadge: 'YES',
                     meetAndGreet: 'YES',
                     draftOne: 'YES',
+                    draftOneId: 23,
                     draftTwo: 'YES',
+                    draftTwoId: 24,
                     ageVerification: 'YES',
                     tShirtSize: 'X-Large',
                     comments: "This is my comment",
@@ -194,7 +198,9 @@ describe('controllers', function() {
                     nameBadge: 'YES',
                     meetAndGreet: 'Yes',
                     draftOne: 'Yes',
+                    draftOneId: 23,
                     draftTwo: 'Yes',
+                    draftTwoId: 24,
                     ageVerification: 'Yes',
                     tShirtSize: 'X-Large',
                     comments: "Can't Wait!",

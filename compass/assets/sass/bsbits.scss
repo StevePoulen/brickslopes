@@ -126,16 +126,13 @@ textarea::-moz-placeholder {
 .actionButtonGames {
     @extend .actionButton;
     height: 30px;
-    width: 75px;
+    width: 150px;
     padding-top: 6px;
 }
 
 .actionButtonDeleteGames {
-    @extend .actionButton;
+    @extend .actionButtonGames;
     background: $bs_red;
-    height: 30px;
-    width: 115px;
-    padding-top: 6px;
 }
 
 .actionButtonTiny {

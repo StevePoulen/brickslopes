@@ -655,6 +655,8 @@
                 'lineItem' => '4 Day Event Pass',
                 'cost' => '65.00',
                 'discount' => '60.00',
+                'linkType' => 'NONE',
+                'linkId' => '0',
                 'active' => 'YES'
             );
             $eventLineItemsObj->addEventLineItem($eventLineItemMap);
@@ -665,6 +667,8 @@
                 'lineItem' => 'T-Shirt',
                 'cost' => '20.00',
                 'discount' => '15.00',
+                'linkType' => 'NONE',
+                'linkId' => '0',
                 'active' => 'YES'
             );
             $eventLineItemsObj->addEventLineItem($eventLineItemMap);
@@ -675,6 +679,8 @@
                 'lineItem' => 'Meet And Greet',
                 'cost' => '15.00',
                 'discount' => '10.00',
+                'linkType' => 'NONE',
+                'linkId' => '0',
                 'active' => 'YES'
             );
             $eventLineItemsObj->addEventLineItem($eventLineItemMap);
@@ -685,6 +691,8 @@
                 'lineItem' => 'Complete Name Badge',
                 'cost' => '10.00',
                 'discount' => '10.00',
+                'linkType' => 'NONE',
+                'linkId' => '0',
                 'active' => 'YES'
             );
             $eventLineItemsObj->addEventLineItem($eventLineItemMap);
@@ -695,6 +703,8 @@
                 'lineItem' => '1st Badge Brick',
                 'cost' => '0.00',
                 'discount' => '0.00',
+                'linkType' => 'NONE',
+                'linkId' => '0',
                 'active' => 'YES'
             );
             $eventLineItemsObj->addEventLineItem($eventLineItemMap);
@@ -705,6 +715,8 @@
                 'lineItem' => '2nd Badge Brick',
                 'cost' => '0.00',
                 'discount' => '0.00',
+                'linkType' => 'NONE',
+                'linkId' => '0',
                 'active' => 'YES'
             );
             $eventLineItemsObj->addEventLineItem($eventLineItemMap);
@@ -715,6 +727,8 @@
                 'lineItem' => 'Event Badge Brick',
                 'cost' => '0.00',
                 'discount' => '0.00',
+                'linkType' => 'NONE',
+                'linkId' => '0',
                 'active' => 'YES'
             );
             $eventLineItemsObj->addEventLineItem($eventLineItemMap);
@@ -725,6 +739,8 @@
                 'lineItem' => 'Draft - $15',
                 'cost' => '15.00',
                 'discount' => '15.00',
+                'linkType' => 'GAME',
+                'linkId' => '3',
                 'active' => 'YES'
             );
             $eventLineItemsObj->addEventLineItem($eventLineItemMap);
@@ -735,6 +751,8 @@
                 'lineItem' => 'Draft - $25',
                 'cost' => '25.00',
                 'discount' => '25.00',
+                'linkType' => 'GAME',
+                'linkId' => '4',
                 'active' => 'YES'
             );
             $eventLineItemsObj->addEventLineItem($eventLineItemMap);
@@ -745,6 +763,8 @@
                 'lineItem' => 'Vendor Tables',
                 'cost' => '75.00',
                 'discount' => '75.00',
+                'linkType' => 'NONE',
+                'linkId' => '0',
                 'active' => 'YES'
             );
             $eventLineItemsObj->addEventLineItem($eventLineItemMap);
@@ -755,6 +775,8 @@
                 'lineItem' => 'Vendor Pass',
                 'cost' => '0.00',
                 'discount' => '0.00',
+                'linkType' => 'NONE',
+                'linkId' => '0',
                 'active' => 'YES'
             );
             $eventLineItemsObj->addEventLineItem($eventLineItemMap);
@@ -819,6 +841,8 @@
                 'lineItem' => '4 Day Event Pass',
                 'cost' => '65.00',
                 'discount' => '60.00',
+                'linkType' => 'NONE',
+                'linkId' => '0',
                 'active' => 'YES'
             );
             $eventLineItemsObj->addEventLineItem($eventLineItemMap);
@@ -829,6 +853,8 @@
                 'lineItem' => 'T-Shirt',
                 'cost' => '20.00',
                 'discount' => '15.00',
+                'linkType' => 'NONE',
+                'linkId' => '0',
                 'active' => 'YES'
             );
             $eventLineItemsObj->addEventLineItem($eventLineItemMap);
@@ -839,6 +865,8 @@
                 'lineItem' => 'Meet And Greet',
                 'cost' => '20.00',
                 'discount' => '15.00',
+                'linkType' => 'NONE',
+                'linkId' => '0',
                 'active' => 'YES'
             );
             $eventLineItemsObj->addEventLineItem($eventLineItemMap);
@@ -849,6 +877,8 @@
                 'lineItem' => 'Complete Name Badge',
                 'cost' => '10.00',
                 'discount' => '10.00',
+                'linkType' => 'NONE',
+                'linkId' => '0',
                 'active' => 'YES'
             );
             $eventLineItemsObj->addEventLineItem($eventLineItemMap);
@@ -859,6 +889,8 @@
                 'lineItem' => '1st Badge Brick',
                 'cost' => '0.00',
                 'discount' => '0.00',
+                'linkType' => 'NONE',
+                'linkId' => '0',
                 'active' => 'YES'
             );
             $eventLineItemsObj->addEventLineItem($eventLineItemMap);
@@ -869,6 +901,8 @@
                 'lineItem' => '2nd Badge Brick',
                 'cost' => '0.00',
                 'discount' => '0.00',
+                'linkType' => 'NONE',
+                'linkId' => '0',
                 'active' => 'YES'
             );
             $eventLineItemsObj->addEventLineItem($eventLineItemMap);
@@ -879,6 +913,8 @@
                 'lineItem' => 'Event Badge Brick',
                 'cost' => '0.00',
                 'discount' => '0.00',
+                'linkType' => 'NONE',
+                'linkId' => '0',
                 'active' => 'YES'
             );
             $eventLineItemsObj->addEventLineItem($eventLineItemMap);
@@ -889,6 +925,8 @@
                 'lineItem' => 'Draft - $15',
                 'cost' => '15.00',
                 'discount' => '15.00',
+                'linkType' => 'GAME',
+                'linkId' => '3',
                 'active' => 'YES'
             );
             $eventLineItemsObj->addEventLineItem($eventLineItemMap);
@@ -899,6 +937,8 @@
                 'lineItem' => 'Draft - $25',
                 'cost' => '25.00',
                 'discount' => '25.00',
+                'linkType' => 'GAME',
+                'linkId' => '4',
                 'active' => 'YES'
             );
             $eventLineItemsObj->addEventLineItem($eventLineItemMap);
@@ -909,6 +949,8 @@
                 'lineItem' => 'Vendor Tables',
                 'cost' => '75.00',
                 'discount' => '75.00',
+                'linkType' => 'NONE',
+                'linkId' => '0',
                 'active' => 'YES'
             );
             $eventLineItemsObj->addEventLineItem($eventLineItemMap);
@@ -919,6 +961,8 @@
                 'lineItem' => 'Vendor Pass',
                 'cost' => '0.00',
                 'discount' => '0.00',
+                'linkType' => 'NONE',
+                'linkId' => '0',
                 'active' => 'YES'
             );
             $eventLineItemsObj->addEventLineItem($eventLineItemMap);

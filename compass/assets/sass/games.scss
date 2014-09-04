@@ -75,12 +75,6 @@ $image_height: 75px;
             top: 120px;
         }
 
-        .registrationButton {
-            position: absolute;
-            left: 170px;
-            top: 101px;
-        }
-
         .awards {
             position: absolute;
             top: 160px;
@@ -99,6 +93,27 @@ $image_height: 75px;
         @extend .cta;
         left: 325px;
     }
+
+    .participation {
+        position: absolute;
+        left: 900px;
+        top: 10px;
+        height: 175px;
+        width: 275px;
+        text-align: center;
+
+        .registrationButton {
+            position: relative;
+            top: 1px;
+        }
+
+    }
+
+    .participationRight {
+        @extend .participation;
+        left: 25px;
+    }
+
 }
 
 .myGames {

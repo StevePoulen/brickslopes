@@ -53,12 +53,14 @@ var eventDetails = {
             discount: '15.00',
             active: 'YES',
             lineItem: 'Draft - $15',
+            gameId: 23
         },
         '10008': {
             cost: '25.00',
             discount: '25.00',
             active: 'YES',
             lineItem: 'Draft - $25',
+            gameId: 24
         },
         '10009': {
             cost: '75.00',

@@ -103,6 +103,51 @@ class TableRegistrationTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($lineItemObj['active'], 'YES');
         $this->assertEquals($lineItemObj['isOwner'], 'YES');
         $this->assertEquals(sizeOf($lineItemObj), 12);
+
+        //Verify Emails
+        $this->assertEquals($GLOBALS['addEmailHistoryInformation'][0]['type'], 'mail::sendVendorRegistrationMessage');
+        $this->assertEquals($GLOBALS['addEmailHistoryInformation'][0]['subject'], 'BrickSlopes Vendor Registration');
+        $this->assertEquals($GLOBALS['addEmailHistoryInformation'][0]['emailAddress'], 'brianpilati@gmail.com');
+    }
+
+    public function testAuthenticatedPOSTAsExisting() 
+    {
+        $_POST = array(
+            'eventId' => 2,
+            'storeId' => 1567,
+            'name' => "A Boy's Mission",
+            'tables' => 7 
+        );
+        $_SERVER['REQUEST_METHOD'] = "POST";
+        $GLOBALS['db_results'] = array('15', 'duplicate');
+        $GLOBALS['db_query'] = array(true, 'duplicate');
+        new TableRegistration($this->userId);
+        $this->assertEquals(http_response_code(), 201);
+        $output = json_decode(get_ob(), true);
+
+        $this->assertEquals($output['storeId'], '1567');
+
+        //Total Line Items
+        $this->assertEquals(sizeOf($GLOBALS['addRegistrationLineItems']), 1);
+
+        $lineItemObj = $GLOBALS['addRegistrationLineItems'][0];
+        $this->assertEquals($lineItemObj['eventLineItemCodeId'], '10');
+        $this->assertEquals($lineItemObj['eventId'], 2);
+        $this->assertEquals($lineItemObj['userId'], 5);
+        $this->assertEquals($lineItemObj['lineItem'], 'Vendor Tables');
+        $this->assertEquals($lineItemObj['amount'], '75.00');
+        $this->assertEquals($lineItemObj['paid'], 'NO');
+        $this->assertEquals($lineItemObj['discount'], 'YES');
+        $this->assertEquals($lineItemObj['description'], 'Brian Pilati');
+        $this->assertEquals($lineItemObj['size'], null);
+        $this->assertEquals($lineItemObj['quantity'], 7);
+        $this->assertEquals($lineItemObj['active'], 'YES');
+        $this->assertEquals($lineItemObj['isOwner'], 'YES');
+        $this->assertEquals(sizeOf($lineItemObj), 12);
+
+        $this->assertEquals($GLOBALS['addEmailHistoryInformation'][1]['type'], 'mail::sendVendorRegistrationMessage');
+        $this->assertEquals($GLOBALS['addEmailHistoryInformation'][1]['subject'], 'BrickSlopes Vendor Registration');
+        $this->assertEquals($GLOBALS['addEmailHistoryInformation'][1]['emailAddress'], 'blackdragon5555@yahoo.com');
     }
 
     public function testAuthenticatedPATCH() 

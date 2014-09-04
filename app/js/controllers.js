@@ -354,6 +354,8 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
                 meetAndGreet: $scope.meetAndGreet,
                 draftOne: $scope.draftOne,
                 draftTwo: $scope.draftTwo,
+                draftOneId: $scope.draftOneId,
+                draftTwoId: $scope.draftTwoId,
                 ageVerification: $scope.ageVerification,
                 tShirtSize: $scope.tShirtSize,
                 comments: $scope.comments,
@@ -381,6 +383,8 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     EventDetails.get($scope.eventId).then(function(data) {
         $scope.eventDetails=data;
         $scope.discountDate = moment($scope.eventDetails.discountDate).format('MMMM Do, YYYY');
+        $scope.draftOneId = data.draftOneId;
+        $scope.draftTwoId = data.draftTwoId;
     });
 
     EventDates.getPassType($scope.eventId).then(function(passType) {

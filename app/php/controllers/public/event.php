@@ -46,6 +46,10 @@ class Event {
                         'discount' => $dbObj->discount,
                         'active' => $dbObj->active
                     );
+
+                    if ($dbObj->linkType === 'GAME') {
+                        $lineItemsMap[$dbObj->code]['gameId'] = $dbObj->linkId;
+                    }
                 }
 
                 $eventResponse['lineItems'] = $lineItemsMap;

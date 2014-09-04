@@ -49,6 +49,8 @@ CREATE TABLE `eventLineItems` (
   `lineItem` VARCHAR(255),
   `cost` NUMERIC(10,2),
   `discount` NUMERIC(10,2),
+  `linkType` VARCHAR(255) DEFAULT 'NONE',
+  `linkId` INT(10),
   `active` ENUM('YES', 'NO'),
   PRIMARY KEY (`eventLineItemId`),
   FOREIGN KEY (`eventId`) REFERENCES `events` (`eventId`),

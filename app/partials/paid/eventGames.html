@@ -26,13 +26,15 @@
                     <div class="registration"> 
                         <bs-text text="Registration is: {{game.registration}}"></bs-text>
                     </div>
-                    <bs-game-registration></bs-game-registration>
                     <div class="awards" ng-show="game.isAwards">
                         <bs-text text="Awards" font-size=1.25></bs-text>
                         <div ng-repeat="award in game.awards | orderBy:'place'">
                             <div class="award"><bs-text text="{{award.award}}" font-color=black><bs-text></div>
                         </div>
                     </div>
+                </div>
+                <div ng-class="{participation: $even, participationRight: !$even}">
+                    <bs-game-registration></bs-game-registration>
                 </div>
             </div>
         </div>

@@ -13,6 +13,23 @@ class gameUserModel extends db {
     }
 
     public function addGameUserInformation($data) {
+        if(!ISSET($GLOBALS['addGameUserInformation'])) {
+            $GLOBALS['addGameUserInformation'] = array();
+        }
+        try {
+            $gameTeamId = (ISSET($data['gameTeamId']) ? $data['gameTeamId'] : null);
+            $type = (ISSET($data['type']) ? $data['type'] : null);
+            array_push(
+                $GLOBALS['addGameUserInformation'],
+                array (
+                    'gameId' => $data['gameId'],
+                    'userId' => $data['userId'],
+                    'eventId' => $data['eventId'],
+                    'gameTeamId' => $gameTeamId,
+                    'type' => $type
+                )
+            );
+        } catch (exception $err) {}
         return $this->query();
     }
 

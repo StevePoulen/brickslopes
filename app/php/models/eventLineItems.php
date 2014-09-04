@@ -22,7 +22,9 @@ class eventLineItems extends db {
                 e.lineItem,
                 e.cost,
                 e.discount,
-                e.active
+                e.active,
+                e.linkId,
+                e.linkType
             FROM
                 eventLineItems e,
                 eventLineItemCodes ec
@@ -43,6 +45,8 @@ class eventLineItems extends db {
                 lineItem,
                 cost,
                 discount,
+                linkId,
+                linkType,
                 active
             )
         VALUES
@@ -52,6 +56,8 @@ class eventLineItems extends db {
                 '{$this->escapeCharacters($data['lineItem'])}',
                 '{$this->escapeCharacters($data['cost'])}',
                 '{$this->escapeCharacters($data['discount'])}',
+                '{$this->escapeCharacters($data['linkId'])}',
+                '{$this->escapeCharacters($data['linkType'])}',
                 '{$this->escapeCharacters($data['active'])}'
           )
         ;

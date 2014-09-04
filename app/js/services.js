@@ -272,10 +272,12 @@ angular.module('brickSlopes.services', ['ngResource'])
                 data.costs.draftOneCost = lineItem.cost;
                 data.costs.draftOneDiscount = lineItem.discount;
                 data.costs.draftOneDescription = lineItem.lineItem;
+                data.draftOneId = lineItem.gameId;
             } else if (key === '10008') {
                 data.costs.draftTwoCost = lineItem.cost;
                 data.costs.draftTwoDiscount = lineItem.discount;
                 data.costs.draftTwoDescription = lineItem.lineItem;
+                data.draftTwoId = lineItem.gameId;
             }
         });
 

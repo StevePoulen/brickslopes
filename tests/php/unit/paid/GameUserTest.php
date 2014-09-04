@@ -4,7 +4,7 @@ class GameUserTest extends PHPUnit_Framework_TestCase
 {
     public function setUp() 
     {
-        $this->userId = 2;
+        $this->userId = 4;
         include_once('controllers/paid/gameUser.php');
     }
 
@@ -36,6 +36,7 @@ class GameUserTest extends PHPUnit_Framework_TestCase
         $_POST = array (
             'gameId' => 2,
             'eventId' => 3,
+            'type' => 'PARTICIPANT'
 
         );
         $GLOBALS['db_query'] = '1';
@@ -43,6 +44,17 @@ class GameUserTest extends PHPUnit_Framework_TestCase
         $GLOBALS['addRegistrationLineItems'] = array();
         $this->assertEquals(sizeOf($GLOBALS['addRegistrationLineItems']), 0);
         $this->assertEquals(http_response_code(), 201);
+
+        //Games
+        $this->assertEquals(sizeOf($GLOBALS['addGameUserInformation']), 1);
+
+        //Games 1
+        $gameOutput = $GLOBALS['addGameUserInformation'][0];
+        $this->assertEquals($gameOutput['gameId'], '2');
+        $this->assertEquals($gameOutput['userId'], '4');
+        $this->assertEquals($gameOutput['eventId'], '3');
+        $this->assertEquals($gameOutput['gameTeamId'], null);
+        $this->assertEquals($gameOutput['type'], 'PARTICIPANT');
     }
 
     public function testAuthenticatedPOSTWithGame3Fee() 
@@ -51,13 +63,13 @@ class GameUserTest extends PHPUnit_Framework_TestCase
         $_POST = array (
             'gameId' => 3,
             'eventId' => 3,
-
+            'type' => 'Ember'
         );
         $GLOBALS['db_query'] = '1';
         new GameUser($this->userId);
         $gameInformation = $GLOBALS['addRegistrationLineItems'][0];
         $this->assertEquals($gameInformation['eventId'], 3);
-        $this->assertEquals($gameInformation['userId'], 2);
+        $this->assertEquals($gameInformation['userId'], 4);
         $this->assertEquals($gameInformation['lineItem'], 'Draft - $15');
         $this->assertEquals($gameInformation['amount'], '15.00');
         $this->assertEquals($gameInformation['paid'], 'NO');
@@ -68,6 +80,17 @@ class GameUserTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($gameInformation['active'], 'YES');
         $this->assertEquals($gameInformation['eventLineItemCodeId'], 8);
         $this->assertEquals(http_response_code(), 201);
+
+        //Games
+        $this->assertEquals(sizeOf($GLOBALS['addGameUserInformation']), 1);
+
+        //Games 1
+        $gameOutput = $GLOBALS['addGameUserInformation'][0];
+        $this->assertEquals($gameOutput['gameId'], '3');
+        $this->assertEquals($gameOutput['userId'], '4');
+        $this->assertEquals($gameOutput['eventId'], '3');
+        $this->assertEquals($gameOutput['gameTeamId'], null);
+        $this->assertEquals($gameOutput['type'], 'Ember');
     }
 
     public function testAuthenticatedPOSTWithGame4Fee() 
@@ -76,13 +99,15 @@ class GameUserTest extends PHPUnit_Framework_TestCase
         $_POST = array (
             'gameId' => 4,
             'eventId' => 3,
+            'gameTeamId' => 13,
+            'type' => 'PARTICIPANT'
 
         );
         $GLOBALS['db_query'] = '1';
         new GameUser($this->userId);
         $gameInformation = $GLOBALS['addRegistrationLineItems'][0];
         $this->assertEquals($gameInformation['eventId'], 3);
-        $this->assertEquals($gameInformation['userId'], 2);
+        $this->assertEquals($gameInformation['userId'], 4);
         $this->assertEquals($gameInformation['lineItem'], 'Draft - $25');
         $this->assertEquals($gameInformation['amount'], '25.00');
         $this->assertEquals($gameInformation['paid'], 'NO');
@@ -93,6 +118,17 @@ class GameUserTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($gameInformation['active'], 'YES');
         $this->assertEquals($gameInformation['eventLineItemCodeId'], 9);
         $this->assertEquals(http_response_code(), 201);
+
+        //Games
+        $this->assertEquals(sizeOf($GLOBALS['addGameUserInformation']), 1);
+
+        //Games 1
+        $gameOutput = $GLOBALS['addGameUserInformation'][0];
+        $this->assertEquals($gameOutput['gameId'], '4');
+        $this->assertEquals($gameOutput['userId'], '4');
+        $this->assertEquals($gameOutput['eventId'], '3');
+        $this->assertEquals($gameOutput['gameTeamId'], 13);
+        $this->assertEquals($gameOutput['type'], 'PARTICIPANT');
     }
 
     public function testAuthenticatedDELETE() 

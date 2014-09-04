@@ -65,28 +65,36 @@ describe('service', function() {
                 expect(data.costs.completeNameBadgeDiscount).toBe('10.00');
             });
 
-            it('should have a draft one brick Cost', function() {
+            it('should have a draft one Cost', function() {
                 expect(data.costs.draftOneCost).toBe('15.00');
             });
 
-            it('should have a draft one brick Discount', function() {
+            it('should have a draft one Discount', function() {
                 expect(data.costs.draftOneDiscount).toBe('15.00');
             });
 
-            it('should have a draft one brick Description', function() {
+            it('should have a draft one Description', function() {
                 expect(data.costs.draftOneDescription).toBe('Draft - $15');
             });
 
-            it('should have a draft two brick Cost', function() {
+            it('should have a draft one draftOneId', function() {
+                expect(data.draftOneId).toBe(23);
+            });
+
+            it('should have a draft two Cost', function() {
                 expect(data.costs.draftTwoCost).toBe('25.00');
             });
 
-            it('should have a draft two brick Discount', function() {
+            it('should have a draft two Discount', function() {
                 expect(data.costs.draftTwoDiscount).toBe('25.00');
             });
 
-            it('should have a draft two brick Description', function() {
+            it('should have a draft two Description', function() {
                 expect(data.costs.draftTwoDescription).toBe('Draft - $25');
+            });
+
+            it('should have a draft two draftTwoId', function() {
+                expect(data.draftTwoId).toBe(24);
             });
         });
     });

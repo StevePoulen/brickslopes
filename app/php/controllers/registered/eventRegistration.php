@@ -88,6 +88,7 @@ class EventRegistration {
             );
             
             $this->deleteGameUserInformation($payload);
+            $this->addGames($payload);
 
             $payload['description'] = $this->getUserName();
             $this->registrationLineItemHelper->addRegistrationLineItems($payload);
@@ -99,6 +100,21 @@ class EventRegistration {
 
         } else {
             header("HTTP/1.0 400 Bad Request");
+        }
+    }
+
+    private function addGames($payload) {
+        $gameUserObj = new gameUserModel();
+        $payload['type'] = 'PARTICIPANT'; 
+
+        if ($payload['draftOne'] == 'YES') {
+            $payload['gameId'] = $payload['draftOneId'];
+            $gameUserObj->addGameUserInformation($payload);
+        }
+
+        if ($payload['draftTwo'] == 'YES') {
+            $payload['gameId'] = $payload['draftTwoId'];
+            $gameUserObj->addGameUserInformation($payload);
         }
     }
 
@@ -114,6 +130,7 @@ class EventRegistration {
             $payload['description'] = $this->getUserName();
             $this->registrationLineItemHelper = new registrationLineItemHelper($payload['eventId']);
             $this->registrationLineItemHelper->addRegistrationLineItems($payload);
+            $this->addGames($payload);
 
             $emailObj = new mail($this->userId);
             $emailObj->sendEventRegistrationMessage($this->userId, $payload['eventId']);
