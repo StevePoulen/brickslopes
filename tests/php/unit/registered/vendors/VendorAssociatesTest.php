@@ -54,7 +54,7 @@ class VendorAssociatesTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($lineItemObj['eventId'], 2);
         $this->assertEquals($lineItemObj['userId'], 5);
         $this->assertEquals($lineItemObj['lineItem'], 'Vendor Pass');
-        $this->assertEquals($lineItemObj['amount'], '0.00');
+        $this->assertEquals($lineItemObj['amount'], '8.00');
         $this->assertEquals($lineItemObj['paid'], 'NO');
         $this->assertEquals($lineItemObj['discount'], 'YES');
         $this->assertEquals($lineItemObj['description'], 'Cody Ottley');
@@ -69,7 +69,7 @@ class VendorAssociatesTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($lineItemObj['eventId'], 2);
         $this->assertEquals($lineItemObj['userId'], 1234);
         $this->assertEquals($lineItemObj['lineItem'], 'Vendor Pass');
-        $this->assertEquals($lineItemObj['amount'], '0.00');
+        $this->assertEquals($lineItemObj['amount'], '8.00');
         $this->assertEquals($lineItemObj['paid'], 'NO');
         $this->assertEquals($lineItemObj['discount'], 'YES');
         $this->assertEquals($lineItemObj['description'], 'Cody Ottley');
@@ -81,6 +81,10 @@ class VendorAssociatesTest extends PHPUnit_Framework_TestCase
 
         //Total Line Items
         $this->assertEquals(sizeOf($GLOBALS['addRegistrationLineItems']), 2);
+        $emailOutput = $GLOBALS['addEmailHistoryInformation'][0];
+        $this->assertEquals($emailOutput['subject'], 'BrickSlopes User Registration');
+        $this->assertContains('registered member of BrickSlopes', $emailOutput['body']);
+        $this->assertEquals(sizeOf($emailOutput), 7);
     }
 
     public function testAuthenticatedPOSTNotAUserWithPass() 
@@ -123,7 +127,7 @@ class VendorAssociatesTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($lineItemObj['eventId'], 2);
         $this->assertEquals($lineItemObj['userId'], 5);
         $this->assertEquals($lineItemObj['lineItem'], 'Event Badge Brick');
-        $this->assertEquals($lineItemObj['amount'], '0.00');
+        $this->assertEquals($lineItemObj['amount'], '6.00');
         $this->assertEquals($lineItemObj['paid'], 'NO');
         $this->assertEquals($lineItemObj['discount'], 'YES');
         $this->assertEquals($lineItemObj['description'], 'Cody Ottley');
@@ -155,7 +159,7 @@ class VendorAssociatesTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($lineItemObj['eventId'], 2);
         $this->assertEquals($lineItemObj['userId'], 1234);
         $this->assertEquals($lineItemObj['lineItem'], 'Event Badge Brick');
-        $this->assertEquals($lineItemObj['amount'], '0.00');
+        $this->assertEquals($lineItemObj['amount'], '6.00');
         $this->assertEquals($lineItemObj['paid'], 'NO');
         $this->assertEquals($lineItemObj['discount'], 'YES');
         $this->assertEquals($lineItemObj['description'], 'Cody Ottley');
@@ -167,6 +171,11 @@ class VendorAssociatesTest extends PHPUnit_Framework_TestCase
 
         //Total Line Items
         $this->assertEquals(sizeOf($GLOBALS['addRegistrationLineItems']), 4);
+
+        $emailOutput = $GLOBALS['addEmailHistoryInformation'][0];
+        $this->assertEquals($emailOutput['subject'], 'BrickSlopes User Registration');
+        $this->assertContains('registered member of BrickSlopes', $emailOutput['body']);
+        $this->assertEquals(sizeOf($emailOutput), 7);
     }
 
     public function testAuthenticatedPOSTWithUserNoPass() 
@@ -193,7 +202,7 @@ class VendorAssociatesTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($lineItemObj['eventId'], 2);
         $this->assertEquals($lineItemObj['userId'], 5);
         $this->assertEquals($lineItemObj['lineItem'], 'Vendor Pass');
-        $this->assertEquals($lineItemObj['amount'], '0.00');
+        $this->assertEquals($lineItemObj['amount'], '8.00');
         $this->assertEquals($lineItemObj['paid'], 'NO');
         $this->assertEquals($lineItemObj['discount'], 'YES');
         $this->assertEquals($lineItemObj['description'], 'Brian Pilati');
@@ -209,7 +218,7 @@ class VendorAssociatesTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($lineItemObj['eventId'], 2);
         $this->assertEquals($lineItemObj['userId'], 123456789);
         $this->assertEquals($lineItemObj['lineItem'], 'Vendor Pass');
-        $this->assertEquals($lineItemObj['amount'], '0.00');
+        $this->assertEquals($lineItemObj['amount'], '8.00');
         $this->assertEquals($lineItemObj['paid'], 'NO');
         $this->assertEquals($lineItemObj['discount'], 'YES');
         $this->assertEquals($lineItemObj['description'], 'Brian Pilati');
@@ -221,6 +230,7 @@ class VendorAssociatesTest extends PHPUnit_Framework_TestCase
 
         //Total Line Items
         $this->assertEquals(sizeOf($GLOBALS['addRegistrationLineItems']), 2);
+        $this->assertEquals(ISSET($GLOBALS['addEmailHistoryInformation']), false);
     }
 
     public function testAuthenticatedPOSTWithUserWithPass() 
@@ -263,7 +273,7 @@ class VendorAssociatesTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($lineItemObj['eventId'], 2);
         $this->assertEquals($lineItemObj['userId'], 5);
         $this->assertEquals($lineItemObj['lineItem'], 'Event Badge Brick');
-        $this->assertEquals($lineItemObj['amount'], '0.00');
+        $this->assertEquals($lineItemObj['amount'], '6.00');
         $this->assertEquals($lineItemObj['paid'], 'NO');
         $this->assertEquals($lineItemObj['discount'], 'YES');
         $this->assertEquals($lineItemObj['description'], 'Brian Pilati');
@@ -295,7 +305,7 @@ class VendorAssociatesTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($lineItemObj['eventId'], 2);
         $this->assertEquals($lineItemObj['userId'], 123456789);
         $this->assertEquals($lineItemObj['lineItem'], 'Event Badge Brick');
-        $this->assertEquals($lineItemObj['amount'], '0.00');
+        $this->assertEquals($lineItemObj['amount'], '6.00');
         $this->assertEquals($lineItemObj['paid'], 'NO');
         $this->assertEquals($lineItemObj['discount'], 'YES');
         $this->assertEquals($lineItemObj['description'], 'Brian Pilati');
@@ -307,6 +317,7 @@ class VendorAssociatesTest extends PHPUnit_Framework_TestCase
 
         //Total Line Items
         $this->assertEquals(sizeOf($GLOBALS['addRegistrationLineItems']), 4);
+        $this->assertEquals(ISSET($GLOBALS['addEmailHistoryInformation']), false);
     }
 
     public function testAuthenticatedPOSTAsSelf() 
@@ -327,11 +338,10 @@ class VendorAssociatesTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($output['error'], 'selfie');
 
         //Total Line Items
-        try {
-            $this->assertEquals(sizeOf($GLOBALS['addRegistrationLineItems']), 0);
-        } catch (exception $err) {
-            $this->assertEquals(0, 0);
-        }
+        $this->assertEquals(ISSET($GLOBALS['addRegistrationLineItems']), false);
+
+        //No Emails
+        $this->assertEquals(ISSET($GLOBALS['addEmailHistoryInformation']), false);
     }
 
     public function testAuthenticatedPOSTAsExisting() 
@@ -353,10 +363,9 @@ class VendorAssociatesTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($output['error'], 'existing registrar');
 
         //Total Line Items
-        try {
-            $this->assertEquals(sizeOf($GLOBALS['addRegistrationLineItems']), 0);
-        } catch (exception $err) {
-            $this->assertEquals(0, 0);
-        }
+        $this->assertEquals(ISSET($GLOBALS['addRegistrationLineItems']), false);
+
+        //No Emails
+        $this->assertEquals(ISSET($GLOBALS['addEmailHistoryInformation']), false);
     }
 }

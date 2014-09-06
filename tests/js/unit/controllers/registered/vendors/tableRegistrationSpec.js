@@ -49,8 +49,12 @@ describe('controllers', function() {
                 expect(scope.eventName).toBe('BrickSlopes 2015');
             });
 
-            it('should have a tableCost variable', function() {
-                expect(scope.tableCost).toBe('75.00');
+            it('should have a 1st tableCost variable', function() {
+                expect(scope.firstTableCost).toBe('100.00');
+            });
+
+            it('should have a Additional tableCost variable', function() {
+                expect(scope.additionalTableCost).toBe('75.00');
             });
 
             it('should have a eventPass variable', function() {

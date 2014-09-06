@@ -128,6 +128,8 @@ class VendorAssociates {
         if (preg_match ( '/\d+/', $userId)) {
             $payload['userId'] = $userId;
             $this->addAssociateVendor($payload);
+            $emailObj = new mail($userId);
+            $emailObj->sendUserRegistrationMessage($userId);
         } else {
             $userObj->getUserInformationByEmail($payload['email']);
             if ($userObj->result) {

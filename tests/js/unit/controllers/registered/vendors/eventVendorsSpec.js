@@ -44,6 +44,13 @@ describe('controllers', function() {
             });
         });
 
+        describe('Click Vendors', function() {
+            it('should redirect to Vendor Registration page', function() {
+                scope.clickVendors();
+                expect(location.path()).toBe('/registered/2/undefined/vendorRegistration.html');
+            });
+        });
+
         describe('Default Variables', function() {
             it('should have an eventId variable', function() {
                 expect(scope.eventId).toBe(2);

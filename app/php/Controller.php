@@ -166,12 +166,15 @@
                     }
 
                     if ($this->isRegisteredRequest()) {
+                        return true;
+                    /*
                         if ($this->isAdmin) {
                             return true;
                         } else {
                             $this->error = 412;
                             return $this->isRegistered;
                         }
+                        */
                     }
 
                     return true;

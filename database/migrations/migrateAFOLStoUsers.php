@@ -548,7 +548,7 @@
                 ),
                 array(
                     'game' => '2 Team Blind Build',
-                    'description' => 'Two teams square-off to correctly build a LEGO Set. <p>Each team is split into two mini-teams. One mini-team can only see the bricks. The other mini-team can only see the instructions. <p>The two mini-teams must communicate with each other using only words to build the set. <p>The first team to correctly build the set wins.',
+                    'description' => 'Ten teams of two participants square-off to correctly build a LEGO Set. <p>One team member can only see the bricks. The other team member can only see the instructions. <p>The two individuals must communicate with each other using only words to build the set. <p>The first team to correctly build the set wins.',
                     'image' => $this->imageUrl . 'Team-Blind-Build-t.png',
                     'maxParticipants' => '20',
                     'currentParticipants' => '0',
@@ -560,7 +560,7 @@
                 ),
                 array(
                     'game' => 'Blind Build',
-                    'description' => 'Ten teams of two participants square-off to correctly build a LEGO Set. <p>One team member can only see the bricks. The other team member can only see the instructions. <p>The two individuals must communicate with each other using only words to build the set. <p>The first team to correctly build the set wins.',
+                    'description' => '20 participants compete to build a set where only the instructions are visible. <p>The builder is separated from the parts and model by a divider. The builder must feel each part to determine correctness and then place it on the model for accurancy. <p>The builder who builds the set the fastest and with the fewest errors wins.',
                     'image' => $this->imageUrl . 'Blind-Build-t.png',
                     'maxParticipants' => '20',
                     'currentParticipants' => '0',
@@ -576,7 +576,7 @@
                     'description' => 'First person to correctly build a LEGO Set wins.',
                     'image' => $this->imageUrl . 'Speed-Build-t.png',
                     'maxParticipants' => '10',
-                    'currentParticipants' => '10',
+                    'currentParticipants' => '0',
                     'openRegistration' => 'NO',
                     'awards' => array (
                         'First Place'
@@ -587,7 +587,7 @@
                     'description' => 'First team to correctly build a LEGO Set wins.',
                     'image' => $this->imageUrl . 'Team-Speed-Build-t.png',
                     'maxParticipants' => '20',
-                    'currentParticipants' => '10',
+                    'currentParticipants' => '0',
                     'openRegistration' => 'NO',
                     'awards' => array (
                         'First Place'
@@ -636,12 +636,6 @@
             $eventMap['city'] = 'Salt Lake City';
             $eventMap['state'] = 'Utah';
             $eventMap['year'] = '2014';
-            $eventMap['cost'] = '65.00';
-            $eventMap['discount'] = '60.00';
-            $eventMap['tShirtDiscount'] = '15.00';
-            $eventMap['tShirtCost'] = '20.00';
-            $eventMap['meetAndGreetDiscount'] = '10.00';
-            $eventMap['meetAndGreetCost'] = '15.00';
             $eventMap['discountDate'] = '2014-03-15 12:00:00';
             $eventId = $eventsObj->addEventInformation($eventMap);
             $this->firstYearEventId = $eventId;
@@ -822,12 +816,6 @@
             $eventMap['city'] = 'Salt Lake City';
             $eventMap['state'] = 'Utah';
             $eventMap['year'] = '2015';
-            $eventMap['tShirtDiscount'] = '15.00';
-            $eventMap['tShirtCost'] = '20.00';
-            $eventMap['cost'] = '65.00';
-            $eventMap['discount'] = '60.00';
-            $eventMap['meetAndGreetDiscount'] = '10.00';
-            $eventMap['meetAndGreetCost'] = '15.00';
             $eventMap['discountDate'] = '2015-03-15 12:00:00';
             $eventId = $eventsObj->addEventInformation($eventMap);
             $this->secondYearEventId = $eventId;
@@ -840,7 +828,7 @@
                 'eventLineItemCodeId' => 1,
                 'lineItem' => '4 Day Event Pass',
                 'cost' => '65.00',
-                'discount' => '60.00',
+                'discount' => '50.00',
                 'linkType' => 'NONE',
                 'linkId' => '0',
                 'active' => 'YES'
@@ -863,8 +851,8 @@
                 'eventId' => $eventId,
                 'eventLineItemCodeId' => 3,
                 'lineItem' => 'Meet And Greet',
-                'cost' => '20.00',
-                'discount' => '15.00',
+                'cost' => '15.00',
+                'discount' => '10.00',
                 'linkType' => 'NONE',
                 'linkId' => '0',
                 'active' => 'YES'
@@ -875,7 +863,7 @@
                 'eventId' => $eventId,
                 'eventLineItemCodeId' => 4,
                 'lineItem' => 'Complete Name Badge',
-                'cost' => '10.00',
+                'cost' => '15.00',
                 'discount' => '10.00',
                 'linkType' => 'NONE',
                 'linkId' => '0',
@@ -946,9 +934,9 @@
             $eventLineItemMap = array (
                 'eventId' => $eventId,
                 'eventLineItemCodeId' => 10,
-                'lineItem' => 'Vendor Tables',
-                'cost' => '75.00',
-                'discount' => '75.00',
+                'lineItem' => '1st Vendor Table',
+                'cost' => '100.00',
+                'discount' => '100.00',
                 'linkType' => 'NONE',
                 'linkId' => '0',
                 'active' => 'YES'
@@ -959,8 +947,20 @@
                 'eventId' => $eventId,
                 'eventLineItemCodeId' => 11,
                 'lineItem' => 'Vendor Pass',
-                'cost' => '0.00',
-                'discount' => '0.00',
+                'cost' => '15.00',
+                'discount' => '10.00',
+                'linkType' => 'NONE',
+                'linkId' => '0',
+                'active' => 'YES'
+            );
+            $eventLineItemsObj->addEventLineItem($eventLineItemMap);
+
+            $eventLineItemMap = array (
+                'eventId' => $eventId,
+                'eventLineItemCodeId' => 12,
+                'lineItem' => 'Additional Vendor Tables',
+                'cost' => '75.00',
+                'discount' => '75.00',
                 'linkType' => 'NONE',
                 'linkId' => '0',
                 'active' => 'YES'
@@ -1018,7 +1018,7 @@
 
             $this->validateTable('eventDates', 10);
 
-            $this->validateTable('eventLineItems', 22);
+            $this->validateTable('eventLineItems', 23);
         }
 
         private function migrateUsers($eventId) {

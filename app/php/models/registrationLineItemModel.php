@@ -66,7 +66,10 @@ class registrationLineItemModel extends db {
             WHERE
                 userId = '{$userId}'
                 AND eventId = '{$eventId}'
-                AND eventLineItemCodeId = 10
+                AND (
+                    eventLineItemCodeId = 10 OR
+                    eventLineItemCodeId = 12
+                )
         ;
       ";
     }

@@ -57,10 +57,10 @@ class GameUser {
     }
 
     private function addGameFees($payload) {
-        if ($payload['gameId'] === 3 or $payload['gameId'] === 4) {
+        if ($payload['gameId'] === '3' or $payload['gameId'] === '4') {
             $payload['discountDate'] = $this->getDiscountDateOfTomorrow();
             $registrationLineItemHelper = new registrationLineItemHelper($payload['eventId']);
-            if ($payload['gameId'] === 3) {
+            if ($payload['gameId'] === '3') {
                 $registrationLineItemHelper->addDraftOneLineItemFromGames($payload);
             } else {
                 $registrationLineItemHelper->addDraftTwoLineItemFromGames($payload);

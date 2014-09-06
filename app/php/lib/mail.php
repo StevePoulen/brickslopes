@@ -99,7 +99,7 @@
                                         {$this->getFontWrapper(16, '#000000')}
                                             {$dbObj->firstName},
                                             <p>
-                                            <b>Congratulations!</b> this e-mail confirms you are a registered member of BrickSlopes - A LEGO Fan Event&trade;.
+                                            <b>Congratulations!</b> This e-mail confirms you are a registered member of BrickSlopes - A LEGO Fan Event&trade;.
                                             <p>
                                             {$this->getPleaseVisit()}
                                         {$this->getFontClosure()}
@@ -618,12 +618,13 @@
         }
 
         private function getFirstLineSpoiler() {
+             //<b> BrickSlopes -- A LEGO Fan Event&trade;. Home of <i>endless</i> Swag&trade;</b>
             return "
                 {$this->getTableHeader()}
                 <tr>
                     <td align=left>
                         {$this->getFontWrapper()}
-                        <b> BrickSlopes -- A LEGO Fan Event&trade;. Home of <i>endless</i> Swag&trade;</b>
+                        <b> BrickSlopes -- A LEGO Fan Event&trade;.<b>
                         {$this->getFontClosure()}
                     </td>
                 </tr>

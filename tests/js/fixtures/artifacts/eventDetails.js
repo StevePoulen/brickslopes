@@ -63,6 +63,18 @@ var eventDetails = {
             gameId: 24
         },
         '10009': {
+            cost: '100.00',
+            discount: '100.00',
+            active: 'YES',
+            lineItem: '1st Vendor Table',
+        },
+        '10010': {
+            cost: '15.00',
+            discount: '10.00',
+            active: 'YES',
+            lineItem: 'Vendor Pass',
+        },
+        '10011': {
             cost: '75.00',
             discount: '75.00',
             active: 'YES',

@@ -72,11 +72,15 @@ $bs_blue: #35469A;
                 padding-top: 7.5px;
             }
         }
+
+        #loginModal {
+            top: 25px;
+        }
     }
 
     #signUpForm {
         position: absolute;
-        top: 125px;
+        top: 75px;
         left: $dashboard_width / 8;
 
         .loginForm {

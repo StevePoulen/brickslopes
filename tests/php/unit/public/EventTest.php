@@ -33,7 +33,7 @@ class EventTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($lineItems['cost'], '65.00');
         $this->assertEquals($lineItems['discount'], '60.00');
         $this->assertEquals($lineItems['active'], 'YES');
-        $this->assertEquals($lineItems['lineItem'], 'Event Cost');
+        $this->assertEquals($lineItems['lineItem'], 'Event Pass');
         $this->assertEquals(array_key_exists('gameId', $lineItems), false);
 
         $lineItems = $output['lineItems']['10001'];
@@ -45,14 +45,14 @@ class EventTest extends PHPUnit_Framework_TestCase
 
         $lineItems = $output['lineItems']['10007'];
         $this->assertEquals($lineItems['cost'], '15.00');
-        $this->assertEquals($lineItems['discount'], '15.00');
+        $this->assertEquals($lineItems['discount'], '16.00');
         $this->assertEquals($lineItems['active'], 'YES');
         $this->assertEquals($lineItems['lineItem'], 'Draft - $15');
         $this->assertEquals($lineItems['gameId'], '45');
 
         $lineItems = $output['lineItems']['10008'];
         $this->assertEquals($lineItems['cost'], '25.00');
-        $this->assertEquals($lineItems['discount'], '25.00');
+        $this->assertEquals($lineItems['discount'], '26.00');
         $this->assertEquals($lineItems['active'], 'YES');
         $this->assertEquals($lineItems['lineItem'], 'Draft - $25');
         $this->assertEquals($lineItems['gameId'], '54');

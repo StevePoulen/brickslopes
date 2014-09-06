@@ -158,7 +158,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         return ($window.sessionStorage.admin == 'YES' ? true : false);
     }
 }])
-.controller('afolLogin', ['$scope', '$location', 'Auth', '$window', 'UserDetails', function($scope, $location, Auth, $window, UserDetails) {
+.controller('afolLogin', ['$scope', '$location', 'Auth', '$window', 'UserDetails', '$sce', function($scope, $location, Auth, $window, UserDetails, $sce) {
     $scope.showLogin = true;
     $scope.verifying = false;
     $scope.showResetPassword = false;
@@ -205,7 +205,8 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
             $scope.verifying = false;
         }, function() {
             $scope.verifying = false;
-            $scope.displayErrorMessage = "The email or password you entered is incorrect.";
+            $scope.displayMessage = $sce.trustAsHtml("The email or password you entered is incorrect.<p>");
+            $scope.showModal = true;
         });
     }
 
@@ -222,7 +223,8 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         }, function(data) {
             $scope.verifying = false;
             if (data.status === 400 && data.data === 'Duplicate E-mail') {
-                $scope.displayErrorMessage = "The email is already in our system. Please login.";
+                $scope.displayMessage = $sce.trustAsHtml("The email is already in our system.<p>Please login using your e-mail and password.<p>If you have forgotten your password, please reset it.");
+                $scope.showModal = true;
                 $scope.showLogin = true;
                 $scope.showResetPassword = true;
             }
@@ -240,7 +242,8 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
             $scope.verifying = false;
             $scope.resetEmail = "";
             $scope.resetPasswordForm.$setPristine();
-            $scope.displayMessage = "An e-mail with reset information has been sent to your account";
+            $scope.showModal = true;
+            $scope.displayMessage = $sce.trustAsHtml("An e-mail with password reset information has been sent to your account.<p>Please check your spam filter too.");
         });
     }
 
@@ -421,6 +424,10 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
 
     $scope.closeDialog = function() {
         $location.path("/registered/index.html");
+    }
+
+    $scope.clickVendors = function() {
+        $location.path("/registered/" + $scope.eventId + "/undefined/vendorRegistration.html");
     }
 
     VendorDetails.getList($scope.eventId).then(function(data) {
@@ -845,7 +852,8 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     $scope.tableRange = [1,2,3,4,5,6,7,8,9,10,11,12];
 
     EventDetails.get($scope.eventId).then(function(data) {
-        $scope.tableCost = data.lineItems['10009'].cost;
+        $scope.firstTableCost = data.lineItems['10009'].cost;
+        $scope.additionalTableCost = data.lineItems['10011'].cost;
         $scope.eventPass = data.lineItems['10000'].lineItem;
         $scope.eventName=data.name;
     });

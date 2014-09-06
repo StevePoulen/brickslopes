@@ -128,7 +128,8 @@ describe('controllers', function() {
                 scope.submitLogin();
                 mockBackend.expectPOST('/controllers/public/authentication.php').respond(401);
                 mockBackend.flush();
-                expect(scope.displayErrorMessage).toBe("The email or password you entered is incorrect.");
+                expect(scope.displayMessage.$$unwrapTrustedValue()).toBe("The email or password you entered is incorrect.<p>");
+                expect(scope.showModal).toBe(true);
             });
         });
 
@@ -206,9 +207,9 @@ describe('controllers', function() {
                 expect(window.sessionStorage.token).toBe('1234567890');
                 expect(scope.verifying).toBe(false);
                 expect(scope.showLogin).toBe(true);
+                expect(scope.showModal).toBe(true);
                 expect(scope.showResetPassword).toBe(true);
-                expect(scope.displayErrorMessage).toBe('The email is already in our system. Please login.');
-                expect(scope.displayMessage).toBe('');
+                expect(scope.displayMessage.$$unwrapTrustedValue()).toBe('The email is already in our system.<p>Please login using your e-mail and password.<p>If you have forgotten your password, please reset it.');
             });
         });
 
@@ -227,9 +228,9 @@ describe('controllers', function() {
                 mockBackend.expectPUT('/controllers/public/authentication.php').respond(201);
                 mockBackend.flush();
                 expect(scope.verifying).toBe(false);
-                expect(scope.displayErrorMessage).toBe('');
+                expect(scope.showModal).toBe(true);
                 expect(scope.resetEmail).toBe('');
-                expect(scope.displayMessage).toBe('An e-mail with reset information has been sent to your account');
+                expect(scope.displayMessage.$$unwrapTrustedValue()).toBe('An e-mail with password reset information has been sent to your account.<p>Please check your spam filter too.');
             });
         });
     });

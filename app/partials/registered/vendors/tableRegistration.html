@@ -24,15 +24,22 @@
             </div>
             <div id="help">
                 <div class="text">
-                    <p>
+                    <div>
                         Please select the number of tables you will require for your booth at <bs-logo></bs-logo>.
-                    </p>
+                    </div>
                     <p>
-                        Per table cost for <bs-text text="{{eventName}}" font-size=1></bs-text> is <span ng-bind="tableCost | currency"></span>.
-                    </p>
+                    <div>
+                        <bs-text text="{{eventName}}" font-size=1></bs-text> table fees are:
+                        <div class="indent">
+                            First Table Fee - <span ng-bind="firstTableCost | currency"></span>
+                        </div>
+                        <div class="indent">
+                            Additional per Table Fee - <span ng-bind="additionalTableCost | currency"></span>
+                        </div>
+                    </div>
                     <p>
+                    <div>
                         One <bs-text text="{{eventPass}}"></bs-text> will be included with the purchase of tables.
-                    </p>
                     </div>
                 <div class="bsLogo"><img src="/images/logo/brickSlopes_noword_50px.png"></div>
             </div>

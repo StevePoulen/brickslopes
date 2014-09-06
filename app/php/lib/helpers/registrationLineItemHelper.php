@@ -60,26 +60,38 @@
                 $data['eventBadgeBrickAmount'] = $this->eventLineItemCodes['10006']['discount'];
                 $data['draftOneAmount'] = $this->eventLineItemCodes['10007']['discount'];
                 $data['draftTwoAmount'] = $this->eventLineItemCodes['10008']['discount'];
-                $data['vendorTableAmount'] = $this->eventLineItemCodes['10009']['discount'];
+                $data['firstVendorTableAmount'] = $this->eventLineItemCodes['10009']['discount'];
                 $data['eventVendorAmount'] = $this->eventLineItemCodes['10010']['discount'];
+                $data['additionalVendorTableAmount'] = $this->eventLineItemCodes['10011']['discount'];
                 $data['discount'] = 'YES';
             } else {
                 $data['eventAmount'] = $this->eventLineItemCodes['10000']['cost'];
                 $data['tShirtAmount'] = $this->eventLineItemCodes['10001']['cost'];
-                $data['meetAndGreetAmount'] = $this->eventLineItemCodes['10001']['cost'];
+                $data['meetAndGreetAmount'] = $this->eventLineItemCodes['10002']['cost'];
                 $data['completeNameBadgeAmount'] = $this->eventLineItemCodes['10003']['cost'];
                 $data['badgeBrickOneAmount'] = $this->eventLineItemCodes['10004']['cost'];
                 $data['badgeBrickTwoAmount'] = $this->eventLineItemCodes['10005']['cost'];
                 $data['eventBadgeBrickAmount'] = $this->eventLineItemCodes['10006']['cost'];
                 $data['draftOneAmount'] = $this->eventLineItemCodes['10007']['cost'];
                 $data['draftTwoAmount'] = $this->eventLineItemCodes['10008']['cost'];
-                $data['vendorTableAmount'] = $this->eventLineItemCodes['10009']['cost'];
+                $data['firstVendorTableAmount'] = $this->eventLineItemCodes['10009']['cost'];
                 $data['eventVendorAmount'] = $this->eventLineItemCodes['10010']['cost'];
+                $data['additionalVendorTableAmount'] = $this->eventLineItemCodes['10011']['cost'];
                 $data['discount'] = 'NO';
             }
 
+            $data['eventLineItem'] = $this->eventLineItemCodes['10000']['lineItem'];
+            $data['tShirtLineItem'] = $this->eventLineItemCodes['10001']['lineItem'];
+            $data['meetAndGreetLineItem'] = $this->eventLineItemCodes['10002']['lineItem'];
+            $data['completeNameBadgeLineItem'] = $this->eventLineItemCodes['10003']['lineItem'];
+            $data['badgeBrickOneLineItem'] = $this->eventLineItemCodes['10004']['lineItem'];
+            $data['badgeBrickTwoLineItem'] = $this->eventLineItemCodes['10005']['lineItem'];
+            $data['eventBadgeBrickLineItem'] = $this->eventLineItemCodes['10006']['lineItem'];
             $data['draftOneLineItem'] = $this->eventLineItemCodes['10007']['lineItem'];
             $data['draftTwoLineItem'] = $this->eventLineItemCodes['10008']['lineItem'];
+            $data['firstVendorTableLineItem'] = $this->eventLineItemCodes['10009']['lineItem'];
+            $data['eventVendorLineItem'] = $this->eventLineItemCodes['10010']['lineItem'];
+            $data['additionalVendorTableLineItem'] = $this->eventLineItemCodes['10011']['lineItem'];
 
             if (ISSET($data['nocost']) && $data['nocost']) {
                 $data['eventAmount'] = '0.00';
@@ -106,23 +118,23 @@
             try {
                 if ($data['nameBadge'] === 'YES') {
                     $dto = $this->getDTO($data);
-                    $dto['amount'] = $this->eventLineItemCodes['10003']['cost'];
+                    $dto['amount'] = $data['completeNameBadgeAmount'];
                     $dto['eventLineItemCodeId'] = 4;
                     $dto['discount'] = 'YES';
-                    $dto['lineItem'] = 'Complete Name Badge';
+                    $dto['lineItem'] = $data['completeNameBadgeLineItem'];
                     $dto['description'] = $data['badgeLine1'];
                     $this->registrationLineItemObj->addRegistrationLineItems($dto);
 
                     $this->addBrickLineItem(
                         $data, 
-                        '1st Badge Brick', 
+                        $data['badgeBrickOneLineItem'],
                         'badgeLine2', 
                         5,
                         $data['badgeBrickOneAmount']
                     );
                     $this->addBrickLineItem(
                         $data, 
-                        '2nd Badge Brick', 
+                        $data['badgeBrickTwoLineItem'],
                         'badgeLine3', 
                         6,
                         $data['badgeBrickTwoAmount']
@@ -135,7 +147,7 @@
             if ($this->addEventBrick) {
                 $this->addBrickLineItem(
                     $data, 
-                    'Event Badge Brick', 
+                    $data['eventBadgeBrickLineItem'],
                     'badgeLine1', 
                     7,
                     $data['eventBadgeBrickAmount']
@@ -169,7 +181,7 @@
                 $dto['eventLineItemCodeId'] = 11;
                 $dto['amount'] = $data['eventVendorAmount'];
                 $dto['discount'] = $data['discount'];
-                $dto['lineItem'] = 'Vendor Pass';
+                $dto['lineItem'] =  $data['eventVendorLineItem'];
                 $this->registrationLineItemObj->addRegistrationLineItems($dto);
             } catch (exception $err) { }
         }
@@ -180,7 +192,7 @@
                 $dto['eventLineItemCodeId'] = 1;
                 $dto['amount'] = $data['eventAmount'];
                 $dto['discount'] = $data['discount'];
-                $dto['lineItem'] = 'Event Pass';
+                $dto['lineItem'] =  $data['eventLineItem'];
                 $this->registrationLineItemObj->addRegistrationLineItems($dto);
             } catch (exception $err) { }
         }
@@ -192,7 +204,7 @@
                     $dto['eventLineItemCodeId'] = 3;
                     $dto['amount'] = $data['meetAndGreetAmount'];
                     $dto['discount'] = $data['discount'];
-                    $dto['lineItem'] = 'Meet and Greet';
+                    $dto['lineItem'] =  $data['meetAndGreetLineItem'];
                     $this->registrationLineItemObj->addRegistrationLineItems($dto);
                 }
             } catch (exception $err) { }
@@ -205,7 +217,7 @@
                     $dto['eventLineItemCodeId'] = 2;
                     $dto['amount'] = $data['tShirtAmount'];
                     $dto['discount'] = $data['discount'];
-                    $dto['lineItem'] = 'T-Shirt';
+                    $dto['lineItem'] =  $data['tShirtLineItem'];
                     $dto['size'] = $data['tShirtSize'];
                     $this->registrationLineItemObj->addRegistrationLineItems($dto);
                 }
@@ -227,11 +239,20 @@
                 if ($data['vendor'] === 'YES') {
                     $dto = $this->getDTO($data);
                     $dto['eventLineItemCodeId'] = 10;
-                    $dto['amount'] = $data['vendorTableAmount'];
+                    $dto['amount'] = $data['firstVendorTableAmount'];
                     $dto['discount'] = $data['discount'];
-                    $dto['lineItem'] = 'Vendor Tables';
-                    $dto['quantity'] = $data['vendorTables'];
+                    $dto['lineItem'] =  $data['firstVendorTableLineItem'];
+                    $dto['quantity'] = 1;
                     $this->registrationLineItemObj->addRegistrationLineItems($dto);
+
+                    if($data['vendorTables'] > 1) {
+                        $dto['eventLineItemCodeId'] = 12;
+                        $dto['amount'] = $data['additionalVendorTableAmount'];
+                        $dto['discount'] = $data['discount'];
+                        $dto['lineItem'] =  $data['additionalVendorTableLineItem'];
+                        $dto['quantity'] = $data['vendorTables'] - 1;
+                        $this->registrationLineItemObj->addRegistrationLineItems($dto);
+                    }
                 }
             } catch (exception $err) { }
         }
@@ -320,6 +341,5 @@
                 'isOwner' => $this->determineOwnership($data)
             );
         }
-
     }
 ?>

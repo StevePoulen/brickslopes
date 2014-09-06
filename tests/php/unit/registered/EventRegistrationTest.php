@@ -101,7 +101,7 @@ class EventRegistrationTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($lineItemObj['eventLineItemCodeId'], '3');
         $this->assertEquals($lineItemObj['eventId'], 2);
         $this->assertEquals($lineItemObj['userId'], 12345);
-        $this->assertEquals($lineItemObj['lineItem'], 'Meet and Greet');
+        $this->assertEquals($lineItemObj['lineItem'], 'Meet And Greet');
         $this->assertEquals($lineItemObj['amount'], '10.00');
         $this->assertEquals($lineItemObj['paid'], 'NO');
         $this->assertEquals($lineItemObj['discount'], 'YES');
@@ -134,7 +134,7 @@ class EventRegistrationTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($lineItemObj['eventId'], 2);
         $this->assertEquals($lineItemObj['userId'], 12345);
         $this->assertEquals($lineItemObj['lineItem'], 'Draft - $15');
-        $this->assertEquals($lineItemObj['amount'], '15.00');
+        $this->assertEquals($lineItemObj['amount'], '16.00');
         $this->assertEquals($lineItemObj['paid'], 'NO');
         $this->assertEquals($lineItemObj['discount'], 'YES');
         $this->assertEquals($lineItemObj['description'], 'Brian Pilati');
@@ -150,7 +150,7 @@ class EventRegistrationTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($lineItemObj['eventId'], 2);
         $this->assertEquals($lineItemObj['userId'], 12345);
         $this->assertEquals($lineItemObj['lineItem'], 'Draft - $25');
-        $this->assertEquals($lineItemObj['amount'], '25.00');
+        $this->assertEquals($lineItemObj['amount'], '26.00');
         $this->assertEquals($lineItemObj['paid'], 'NO');
         $this->assertEquals($lineItemObj['discount'], 'YES');
         $this->assertEquals($lineItemObj['description'], 'Brian Pilati');
@@ -166,7 +166,7 @@ class EventRegistrationTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($lineItemObj['eventId'], 2);
         $this->assertEquals($lineItemObj['userId'], 12345);
         $this->assertEquals($lineItemObj['lineItem'], 'Event Badge Brick');
-        $this->assertEquals($lineItemObj['amount'], '0.00');
+        $this->assertEquals($lineItemObj['amount'], '6.00');
         $this->assertEquals($lineItemObj['paid'], 'NO');
         $this->assertEquals($lineItemObj['discount'], 'YES');
         $this->assertEquals($lineItemObj['description'], '2015 BrickSlopes');
@@ -268,7 +268,7 @@ class EventRegistrationTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($lineItemObj['eventLineItemCodeId'], '3');
         $this->assertEquals($lineItemObj['eventId'], 2);
         $this->assertEquals($lineItemObj['userId'], 12345);
-        $this->assertEquals($lineItemObj['lineItem'], 'Meet and Greet');
+        $this->assertEquals($lineItemObj['lineItem'], 'Meet And Greet');
         $this->assertEquals($lineItemObj['amount'], '10.00');
         $this->assertEquals($lineItemObj['paid'], 'NO');
         $this->assertEquals($lineItemObj['discount'], 'YES');
@@ -301,7 +301,7 @@ class EventRegistrationTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($lineItemObj['eventId'], 2);
         $this->assertEquals($lineItemObj['userId'], 12345);
         $this->assertEquals($lineItemObj['lineItem'], 'Draft - $25');
-        $this->assertEquals($lineItemObj['amount'], '25.00');
+        $this->assertEquals($lineItemObj['amount'], '26.00');
         $this->assertEquals($lineItemObj['paid'], 'NO');
         $this->assertEquals($lineItemObj['discount'], 'YES');
         $this->assertEquals($lineItemObj['description'], 'Brian Pilati');
@@ -317,7 +317,7 @@ class EventRegistrationTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($lineItemObj['eventId'], 2);
         $this->assertEquals($lineItemObj['userId'], 12345);
         $this->assertEquals($lineItemObj['lineItem'], 'Event Badge Brick');
-        $this->assertEquals($lineItemObj['amount'], '0.00');
+        $this->assertEquals($lineItemObj['amount'], '6.00');
         $this->assertEquals($lineItemObj['paid'], 'NO');
         $this->assertEquals($lineItemObj['discount'], 'YES');
         $this->assertEquals($lineItemObj['description'], '2015 BrickSlopes');

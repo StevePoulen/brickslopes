@@ -8,6 +8,11 @@
         <div class="searchField bold">
             <input ng-model="searchText" bs-placeholder="Search">
         </div>
+        <div class="becomeAVendor">
+            <div class="actionButtonSmall" ng-click="clickVendors()">
+                <bs-text text="Become A Vendor" font-color=white font-size=1.25></bs-text>
+            </div>
+        </div>
         <div ng-class="{evenRow: $even}" ng-repeat="vendor in vendorList | filter:searchText:strict | orderBy:'name'">
             <div class="vendor">
                 <div ng-class="{name: $even, nameRight: !$even}"><bs-text text="{{vendor.name}}" font-size=2></bs-text>

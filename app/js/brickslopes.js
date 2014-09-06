@@ -31,14 +31,14 @@ $(document).delegate('#comments', 'blur', function() {
 });
 
 function deleteSession(ngWindow) {
-    delete ngWindow.sessionStorage.token;
-    delete ngWindow.sessionStorage.firstName;
-    delete ngWindow.sessionStorage.lastName;
-    delete ngWindow.sessionStorage.admin;
-    delete ngWindow.sessionStorage.redirectUrl;
-    delete ngWindow.sessionStorage.registered;
-    delete ngWindow.sessionStorage.paid;
-    delete ngWindow.sessionStorage.userId;
+    ngWindow.sessionStorage.removeItem('token');
+    ngWindow.sessionStorage.removeItem('firstName');
+    ngWindow.sessionStorage.removeItem('lastName');
+    ngWindow.sessionStorage.removeItem('admin');
+    ngWindow.sessionStorage.removeItem('redirectUrl');
+    ngWindow.sessionStorage.removeItem('registered');
+    ngWindow.sessionStorage.removeItem('paid');
+    ngWindow.sessionStorage.removeItem('userId');
 }
 
 function storeSession(ngWindow, data) {

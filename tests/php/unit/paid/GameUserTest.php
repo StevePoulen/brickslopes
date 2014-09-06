@@ -34,7 +34,7 @@ class GameUserTest extends PHPUnit_Framework_TestCase
     {
         $_SERVER['REQUEST_METHOD'] = "POST";
         $_POST = array (
-            'gameId' => 2,
+            'gameId' => '2',
             'eventId' => 3,
             'type' => 'PARTICIPANT'
 
@@ -61,7 +61,7 @@ class GameUserTest extends PHPUnit_Framework_TestCase
     {
         $_SERVER['REQUEST_METHOD'] = "POST";
         $_POST = array (
-            'gameId' => 3,
+            'gameId' => '3',
             'eventId' => 3,
             'type' => 'Ember'
         );
@@ -71,7 +71,7 @@ class GameUserTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($gameInformation['eventId'], 3);
         $this->assertEquals($gameInformation['userId'], 4);
         $this->assertEquals($gameInformation['lineItem'], 'Draft - $15');
-        $this->assertEquals($gameInformation['amount'], '15.00');
+        $this->assertEquals($gameInformation['amount'], '16.00');
         $this->assertEquals($gameInformation['paid'], 'NO');
         $this->assertEquals($gameInformation['discount'], 'YES');
         $this->assertEquals($gameInformation['description'], NULL);
@@ -97,7 +97,7 @@ class GameUserTest extends PHPUnit_Framework_TestCase
     {
         $_SERVER['REQUEST_METHOD'] = "POST";
         $_POST = array (
-            'gameId' => 4,
+            'gameId' => '4',
             'eventId' => 3,
             'gameTeamId' => 13,
             'type' => 'PARTICIPANT'
@@ -109,7 +109,7 @@ class GameUserTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($gameInformation['eventId'], 3);
         $this->assertEquals($gameInformation['userId'], 4);
         $this->assertEquals($gameInformation['lineItem'], 'Draft - $25');
-        $this->assertEquals($gameInformation['amount'], '25.00');
+        $this->assertEquals($gameInformation['amount'], '26.00');
         $this->assertEquals($gameInformation['paid'], 'NO');
         $this->assertEquals($gameInformation['discount'], 'YES');
         $this->assertEquals($gameInformation['description'], NULL);
