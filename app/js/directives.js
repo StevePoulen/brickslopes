@@ -402,6 +402,7 @@ angular.module('brickSlopes.directives', [])
 
             function unBindResize() {
                 stepCounter = 1;
+                $scope.buttonText = "Next";
                 setStepDisplay();
                 window.unbind('resize');
                 $('#tourMask').remove();
