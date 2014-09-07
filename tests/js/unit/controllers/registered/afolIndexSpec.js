@@ -203,16 +203,20 @@ describe('controllers', function() {
     });
 
     describe('afolIndex Controller', function() {
-        var mockBackend, service;
-        beforeEach(inject(function($controller, $rootScope, $location, _$httpBackend_, MocDetails) {
-            scope = $rootScope.$new();
-            ctrl = $controller('afolIndex', { $scope: scope});
+        var mockBackend, service, rootScope, userDetails;
+        beforeEach(inject(function($controller, $rootScope, $location, _$httpBackend_, MocDetails, _UserDetails_) {
+            rootScope = $rootScope;
+            userDetails = _UserDetails_;
+            scope = rootScope.$new();
+            spyOn($rootScope, "$emit");
+            ctrl = $controller('afolIndex', { $scope: scope, rootScope: $rootScope, UserDetails: userDetails});
             location = $location;
             mockBackend = _$httpBackend_;
             service = MocDetails;
 
             mockBackend.expectGET('/controllers/public/eventDates.php').respond(201, eventDates);
             mockBackend.expectGET('/controllers/registered/eventRegistration.php').respond(201, eventRegistration);
+            mockBackend.expectGET('/controllers/public/user.php').respond(singleUser);
             mockBackend.expectGET('/controllers/paid/mocs.php?eventId=2').respond(mocs);
             mockBackend.expectGET('/controllers/registered/vendors/vendors.php?eventId=2').respond(201, vendors);
 
@@ -257,6 +261,17 @@ describe('controllers', function() {
 
         it('should set the afolCount variable', function() {
             expect(scope.afolCount).toBe(2);
+        });
+
+        it('should set the UserDetails.tourStarted to false', function() {
+            expect(userDetails.tourStarted()).toBe(false);
+        });
+
+        it('should send a show-tour event', function() {
+            expect(rootScope.$emit).toHaveBeenCalledWith('show-tour', {eventId: 2});
+            rootScope.$emit.reset();
+            scope.$digest();
+            expect(rootScope.$emit).not.toHaveBeenCalled();
         });
     });
 });

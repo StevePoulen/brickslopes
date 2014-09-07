@@ -125,15 +125,38 @@ describe('service', function() {
             });
         });
 
-        describe('Update Tour', function() {
-            var mockBackend, service, data;
+        describe('Tour Started', function() {
+            var mockBackend, service, data, user;
             beforeEach(inject(function(_$httpBackend_, UserDetails) {
                 mockBackend = _$httpBackend_;
                 service = UserDetails;
+                mockBackend.expectGET('/controllers/public/user.php').respond(singleUser);
+            }));
+
+            it('should determine if a tour is started', function() {
+                service.getUser().then(function(_user_) {
+                    user = _user_;
+                });
+                mockBackend.flush();
+
+                expect(service.tourStarted()).toBe(true);
+                expect(service.tourStarted()).toBe(false);
+            });
+        });
+
+        describe('Update Tour', function() {
+            var mockBackend, service, data, user;
+            beforeEach(inject(function(_$httpBackend_, UserDetails) {
+                mockBackend = _$httpBackend_;
+                service = UserDetails;
+                mockBackend.expectGET('/controllers/public/user.php').respond(singleUser);
                 mockBackend.expectPATCH('/controllers/registered/tour.php', {tourOption: 'YES'}).respond(200);
             }));
 
             it('should update a user tour', function() {
+                service.getUser().then(function(_user_) {
+                    user = _user_;
+                });
                 var load = service.updateTour('YES');
 
                 load.then(function(_data) {
@@ -141,6 +164,7 @@ describe('service', function() {
                 });
 
                 mockBackend.flush();
+                expect(userDetails.showTour).toBe('NO');
                 expect(data).toBe(200);
             });
         });

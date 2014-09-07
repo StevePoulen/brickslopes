@@ -1,6 +1,6 @@
 'use strict';
 
-var showAfolLogin = true;
+var showAfolLogin = false;
 
 /* Controllers */
 angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
@@ -512,7 +512,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         $scope.themeList = data;
     });
 }])
-.controller('afolMe', ['$scope', '$location', 'Auth', 'EventRegistration', 'EventDates', 'UserDetails', 'MocDetails', 'Games', 'VendorDetails', function($scope, $location, Auth, EventRegistration, EventDates, UserDetails, MocDetails, Games, VendorDetails) {
+.controller('afolMe', ['$rootScope', '$scope', '$location', 'Auth', 'EventRegistration', 'EventDates', 'UserDetails', 'MocDetails', 'Games', 'VendorDetails', function($rootScope, $scope, $location, Auth, EventRegistration, EventDates, UserDetails, MocDetails, Games, VendorDetails) {
     $scope.verifying = false;
     $scope.displayMessage = "";
     $scope.timer = false;
@@ -545,6 +545,11 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
 
     $scope.payNow = function() {
         $location.path('/registered/eventPayment.html');
+    }
+
+    $scope.clickTour = function() {
+        $scope.closeDialog();
+        $rootScope.$emit('show-tour', {eventId: $scope.eventId});
     }
 
     $scope.changePassword = function() {
@@ -1384,7 +1389,6 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     }
 
     UserDetails.getUser().then(function(user) {
-        console.log('one');
         UserDetails.hideTour().then(function(hideTour) {
             if(! hideTour && UserDetails.tourStarted()) {
                 $rootScope.$emit('show-tour', {eventId: $scope.eventId});

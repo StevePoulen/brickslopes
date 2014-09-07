@@ -3,7 +3,7 @@
 /* jasmine specs for controllers go here */
 
 describe('controllers', function() {
-    var scope, ctrl, location;
+    var scope, ctrl, location, rootScope;
 
     beforeEach (
         module (
@@ -24,8 +24,9 @@ describe('controllers', function() {
         var mockBackend, loader, window, location;
         beforeEach(inject(function($controller, $rootScope, _$httpBackend_, $location, _$window_) {
             window = _$window_;
-            scope = $rootScope.$new();
-            ctrl = $controller('afolMe', { $scope: scope});
+            rootScope = $rootScope;
+            scope = rootScope.$new();
+            ctrl = $controller('afolMe', { $scope: scope, $rootScope: rootScope});
             mockBackend = _$httpBackend_;
             location = $location
         }));
@@ -37,6 +38,15 @@ describe('controllers', function() {
         describe('Close Dialog', function() {
             it('should redirect to the index page', function() {
                 scope.closeDialog();
+                expect(location.path()).toBe('/registered/index.html');
+            });
+        });
+
+        describe('Click Tour', function() {
+            it('should turn on the tour modal', function() {
+                spyOn(rootScope, "$emit");
+                scope.clickTour();
+                expect(rootScope.$emit).toHaveBeenCalledWith('show-tour', {eventId: 2});
                 expect(location.path()).toBe('/registered/index.html');
             });
         });

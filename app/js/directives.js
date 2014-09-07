@@ -279,8 +279,11 @@ angular.module('brickSlopes.directives', [])
 
             $scope.isHideTour = true;
             $scope.buttonText = "Next";
-            console.log(7);
-            $scope.stepDisplay = "Step 1 of " + totalSteps;
+            setStepDisplay(1);
+
+            function setStepDisplay() {
+                $scope.stepDisplay = "Step " + stepCounter + " of " + totalSteps;
+            }
 
             $scope.closeTour = function() {
                 unBindResize();
@@ -295,9 +298,7 @@ angular.module('brickSlopes.directives', [])
 
             $rootScope.$on('show-tour', function(event, args) {
                 event.stopPropagation();
-                console.log('received');
                 $timeout(function() {
-                    console.log('started');
                     $scope.isHideTour = false;
                     UserDetails.getUser().then(function(user) {
                         $scope.tourUserName = user.firstName;
@@ -305,26 +306,12 @@ angular.module('brickSlopes.directives', [])
                     });
 
                     EventDetails.get(args.eventId).then(function(data) {
-                        console.log('six');
                         $scope.eventName = data.name;
                         $scope.eventYear = data.year;
                         $scope.discountDate = moment(data.discountDate).format('MMMM Do, YYYY');
                     });
                 }, 1000);
             });
-
-            console.log('three');
-/*
-            UserDetails.hideTour().then(function(showTour) {
-                $scope.isHideTour = showTour;
-                if (! $scope.isHideTour) {
-                    UserDetails.getUser().then(function(user) {
-                        $scope.tourUserName = user.firstName;
-                        $scope.initializeMask();
-                    });
-                }
-            });
-            */
 
             $scope.buttonClick = function() {
                 if (stepCounter < totalSteps) {
@@ -391,7 +378,7 @@ angular.module('brickSlopes.directives', [])
                 }
 
                 stepCounter++;
-                $scope.stepDisplay = "Step " + stepCounter + " of " + totalSteps;
+                setStepDisplay();
             }
 
             $scope.initializeMask = function() {
@@ -414,6 +401,8 @@ angular.module('brickSlopes.directives', [])
             }
 
             function unBindResize() {
+                stepCounter = 1;
+                setStepDisplay();
                 window.unbind('resize');
                 $('#tourMask').remove();
             }

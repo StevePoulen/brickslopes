@@ -1,6 +1,13 @@
 <div id="eventDashboard">
     <div class="dashboardText height800">
-        <h1><bs-logo font-size="1.25"></bs-logo> &#8226; <bs-text text="Me" font-color=black></bs-text></h1>
+        <div>
+            <h1><bs-logo font-size="1.25"></bs-logo> &#8226; <bs-text text="Me" font-color=black></bs-text></h1>
+        </div>
+        <div id="showOneTimeTour">
+            <div class="actionButtonSmall" ng-click="clickTour()">
+                <bs-text text="See Tour" font-color=white font-size=1.25></bs-text>
+            </div>
+        </div>
         <div id="mePanes">
 
             <bs-registered-events ng-if="! displayRegisterEventCTA"></bs-registered-events>

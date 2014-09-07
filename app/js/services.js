@@ -739,7 +739,6 @@ angular.module('brickSlopes.services', ['ngResource'])
         },
 
         tourStarted: function() {
-            console.log('four');
             if (userDetails.tourStarted) {
                 return false;
             } else {
@@ -760,7 +759,6 @@ angular.module('brickSlopes.services', ['ngResource'])
                     headers: {'Content-Type': 'application/x-www-form-urlencoded'}
                 }
             ).success(function(data, status, headers, config) {
-                console.log('two');
                 userDetails.showTour = 'NO';
                 delay.resolve(status);
             }).error(function(data, status, headers, config) {

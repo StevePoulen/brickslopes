@@ -19,15 +19,14 @@ describe('directives', function() {
             var template = $templateCache.get('app/partials/directives/tour.html');
             $templateCache.put('partials/directives/tour.html', template);
             scope = $rootScope.$new();
-            spyOn(scope, "initializeMask");
             element = angular.element('<div id="tourMask"></div><bs-tour></bs-tour>');
-            element = $compile(element)(scope);
+            $compile(element)(scope);
         }));
 
         describe('Default variables', function() {
             beforeEach(function() {
-                mockBackend.expectGET('/controllers/public/user.php').respond(singleUser);
                 scope.$digest();
+                spyOn(scope, "initializeMask");
             });
 
             it('should have isHideTour to be false', function() {
@@ -37,23 +36,31 @@ describe('directives', function() {
             it('should have isHideTour to be false', function() {
                 expect(scope.buttonText).toBe('Next');
             });
+
+            it('should have stepDisplay variable', function() {
+                expect(scope.stepDisplay).toBe('Step 1 of 8');
+            });
         });
 
         describe('The Tour', function() {
-            it('should show the tour', function() {
+            it('should show the tour', inject(function(_$rootScope_, _$timeout_) {
+                var rootScope = _$rootScope_.$new();
                 mockBackend.expectGET('/controllers/public/user.php').respond(singleUser);
+                mockBackend.expectGET('/controllers/public/event.php?eventId=2').respond(eventDetails);
                 scope.$digest();
+                spyOn(scope, "initializeMask");
+                rootScope.$emit('show-tour', {eventId: 2});
+                _$timeout_.flush();
                 mockBackend.flush();
+                expect(scope.initializeMask).toHaveBeenCalled();
                 expect($(element).hasClass('ng-hide')).toBe(false);
-                expect($(element).find('div.tourText').html()).toBe('Hello World');
-            });
+                expect(scope.isHideTour).toBe(false);
+                expect(scope.tourUserName).toBe('Steve');
+                expect(scope.eventName).toBe('BrickSlopes 2015');
+                expect(scope.eventYear).toBe('2015');
+                expect(scope.discountDate).toBe('March 25th, 2015');
+            }));
 
-            it('should show the tour', function() {
-                mockBackend.expectGET('/controllers/public/user.php').respond(getUser(1));
-                mockBackend.flush();
-                expect($(element).hasClass('ng-hide')).toBe(true);
-                expect($(element).find('div.tourText').html()).toBe('Hello World');
-            });
         });
 
         describe('Close (hide) the tour', function() {
@@ -67,12 +74,22 @@ describe('directives', function() {
         });
 
         describe('Turn off the tour', function() {
-            it('should hide the tour', function() {
-                mockBackend.expectGET('/controllers/public/user.php').respond(getUser(0));
-                scope.$digest();
+            it('should hide the tour', inject(function(_UserDetails_) {
+                mockBackend.expectGET('/controllers/public/user.php').respond(singleUser);
+                _UserDetails_.getUser();
                 mockBackend.expectPATCH('/controllers/registered/tour.php').respond(200);
-                $(element).find('div.actionButtonSmall').click();
+                scope.$digest();
+                $(element).find('input').click();
                 mockBackend.flush();
+            }));
+        });
+
+        describe('Click the button', function() {
+            it('should increment the tour step', function() {
+                scope.$digest();
+                spyOn(scope, "nextStep");
+                scope.buttonClick();
+                expect(scope.nextStep).toHaveBeenCalled();
             });
         });
     });

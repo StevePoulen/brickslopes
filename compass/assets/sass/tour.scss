@@ -100,3 +100,15 @@
     background-color: white;
     opacity: .4
 }
+
+.dashboardText {
+    #showOneTimeTour {
+        position: absolute;
+        right: 35px;
+        top: 15px;
+
+        .actionButtonSmall {
+            width: 100px;
+        }
+    }
+}
