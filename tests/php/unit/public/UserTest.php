@@ -25,6 +25,11 @@ class UserTest extends PHPUnit_Framework_TestCase
         $event = new User($this->userId, true, true, true);
         $this->assertEquals(http_response_code(), 200);
         $output = json_decode(get_ob(), true);
+
+        //Total Items
+        $this->assertEquals(sizeOf($output), 12);
+
+        //Object
         $this->assertEquals($output['userId'], '123456789');
         $this->assertEquals($output['firstName'], 'Brian');
         $this->assertEquals($output['lastName'], 'Pilati');
@@ -35,6 +40,7 @@ class UserTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($output['zipcode'], '88990');
         $this->assertEquals($output['phoneNumber'], '444 555-6666');
         $this->assertEquals($output['flickr'], 'bflickr');
+        $this->assertEquals($output['showTour'], 'YES');
         $this->assertEquals($output['joined'], '2014-05-16 15:00:49');
     }
 

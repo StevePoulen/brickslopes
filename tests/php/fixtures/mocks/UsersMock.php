@@ -16,6 +16,10 @@ class users extends db {
         return $this->query();
     }
 
+    public function updateTour($data) {
+        return $this->query();
+    }
+
     public function authenticateUser($data) {
         return $this->query();
     }
@@ -60,5 +64,6 @@ class UsersMock extends modelObjects {
     public function joined() { return $this->getData(11); }
     public function registered() { return $this->getData(12); }
     public function paid() { return $this->getData(13); }
+    public function showTour() { return $this->getData(14); }
 }
 ?>

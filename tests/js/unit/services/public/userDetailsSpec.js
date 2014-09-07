@@ -23,7 +23,7 @@ describe('service', function() {
             }));
 
             it('should get userdetails', function() {
-                var load = service.get();
+                var load = service.getUser();
 
                 load.then(function(_data) {
                     data = _data;
@@ -50,7 +50,7 @@ describe('service', function() {
                 });
 
                 mockBackend.flush();
-                expect(data).toEqualData(2);
+                expect(data).toBe(2);
             });
 
             it('should get all userdetails', function() {
@@ -89,7 +89,59 @@ describe('service', function() {
                 });
 
                 mockBackend.flush();
-                expect(data).toEqualData('success');
+                expect(data).toBe('success');
+            });
+        });
+
+        describe('Hide Tour', function() {
+            var mockBackend, service, data;
+            beforeEach(inject(function(_$httpBackend_, UserDetails) {
+                mockBackend = _$httpBackend_;
+                service = UserDetails;
+            }));
+
+            it('should NOT hide (show) the user tour', function() {
+                mockBackend.expectGET('/controllers/public/user.php').respond(getUser(0));
+                var load = service.hideTour();
+
+                load.then(function(_data) {
+                    data = _data;
+                });
+
+                mockBackend.flush();
+                expect(data).toBe(false);
+            });
+
+            it('should NOT hide the user tour', function() {
+                mockBackend.expectGET('/controllers/public/user.php').respond(getUser(1));
+                var load = service.hideTour();
+
+                load.then(function(_data) {
+                    data = _data;
+                });
+
+                mockBackend.flush();
+                expect(data).toBe(true);
+            });
+        });
+
+        describe('Update Tour', function() {
+            var mockBackend, service, data;
+            beforeEach(inject(function(_$httpBackend_, UserDetails) {
+                mockBackend = _$httpBackend_;
+                service = UserDetails;
+                mockBackend.expectPATCH('/controllers/registered/tour.php', {tourOption: 'YES'}).respond(200);
+            }));
+
+            it('should update a user tour', function() {
+                var load = service.updateTour('YES');
+
+                load.then(function(_data) {
+                    data = _data;
+                });
+
+                mockBackend.flush();
+                expect(data).toBe(200);
             });
         });
 
@@ -115,7 +167,7 @@ describe('service', function() {
                 });
 
                 mockBackend.flush();
-                expect(data).toEqualData('success');
+                expect(data).toBe('success');
             });
         });
 

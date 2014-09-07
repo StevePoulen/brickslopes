@@ -1,6 +1,6 @@
 <div>
     <div class="smallPane" ng-if="displayRegisterEventGamesCTA">
-        <div class="meText"><bs-text text="Your Games" font-color=black font-size=1.25></bs-text></div>
+        <div class="meText"><bs-text text="Your Activities" font-color=black font-size=1.25></bs-text></div>
         <div class="formButtonPosition">
             <div class="actionButtonSmall" ng-click="clickGames()">
                 <bs-text text="Games Registration" font-color=white font-size=1.25></bs-text>
@@ -10,7 +10,7 @@
     </div>
     <div class="normalPane events" ng-if="! displayRegisterEventGamesCTA">
         <div class="meText">
-            <bs-text text="Your Games ({{gameCount}})" font-color=black font-size=1.25></bs-text>
+            <bs-text text="Your Activities({{gameCount}})" font-color=black font-size=1.25></bs-text>
             <div class="myEventButtonPosition">
                 <div class="actionButtonTiny" ng-click="clickGames()">
                     <bs-text text="Add + " font-color=white font-size=.85></bs-text>

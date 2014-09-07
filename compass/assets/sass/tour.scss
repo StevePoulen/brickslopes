@@ -1,0 +1,102 @@
+@import './bsbits';
+
+#tourContainer {
+    position: absolute;
+    width: 560px;
+    z-index: 1005;
+    top: 0px;
+    left: 0px;
+    min-height: 260px;
+    height: auto;
+    
+    #arrow {
+        position: absolute;
+        left: 460px;
+        top: 0px;
+    }
+
+    .bsTour {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        height: auto;
+        width: 450px;
+        border: 5px solid $bs_blue;
+        background: white;
+        border-radius: 10px;
+        padding: 10px;
+
+        .showTour {
+            position: relative;
+            top: 5px;
+            height: 25px;
+            text-align: left;
+            left: 5px;
+            width: 420px;
+        }
+
+        .tourTitle {
+            position: relative;
+            font-size: 1.5em;
+            left: 5px;
+            width: 440px;
+            height: 30px;
+            text-align: left;
+        }
+
+        input {
+            width: 17px;
+            height: 17px;
+        }
+
+        .label {
+            width: 360px;
+            height: 25px;
+            font-size: .8em;
+            text-align: left;
+        }
+
+        .cta {
+            position: relative;
+            height: 50px;
+        }
+
+        .steps {
+            position: absolute;
+            width: 80px;
+            right: 115px;
+            bottom: 16px;
+            height: 20px;
+        }
+
+        .actionButtonSmall {
+            position: absolute;
+            width: 80px;
+            right: 10px;
+            bottom: 0px;
+            height: 25px;
+        }
+
+        .tourText {
+            position: relative;
+            margin-top: 5px;
+            left: 5px;
+            width: 430px;
+            height: auto;
+            text-align: left;
+            font-size: 1.25em;
+            padding: 5px;
+        }
+    }
+}
+
+#tourMask {
+    position: absolute;
+    z-index: 1004;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    opacity: .4
+}

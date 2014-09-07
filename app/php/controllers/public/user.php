@@ -51,6 +51,7 @@ class User extends jwtToken {
                     'zipcode' => $dbObj->zipcode,
                     'phoneNumber' => $dbObj->phoneNumber,
                     'flickr' => $dbObj->flickr,
+                    'showTour' => $dbObj->showTour,
                     'joined' => $dbObj->joined
                 )
             );

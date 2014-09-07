@@ -1,0 +1,20 @@
+<div ng-hide="isHideTour" id="tourContainer">
+    <div class="bsTour">
+        <div id="modalCloseButton" ng-click="closeTour()"></div>
+        <div class="tourTitle" ng-bind-html="tourTitle"></div>
+        <div class="tourText" ng-bind-html="tourText"></div>
+        <div class="cta">
+            <div class="showTour">
+                <label class="label">Do not show tour again (close tour):</label>
+                <input type="checkbox" ng-click="updateTour()">
+            </div>
+            <div class="steps" ng-bind="stepDisplay"></div>
+            <div class="actionButtonSmall" ng-click="buttonClick()">
+                <bs-text text="{{buttonText}}" font-color=white font-size=1></bs-text>
+            </div>
+        </div>
+    </div>
+    <div id="arrow">
+        <i id="arrowIcon" class="icons-arrow-right icons-sprite-bg"></i>
+    </div>
+</div>

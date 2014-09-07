@@ -645,11 +645,17 @@ angular.module('brickSlopes.services', ['ngResource'])
 }])
 .factory('UserDetails', ['$q', '$http', '$window', function($q, $http, $window) {
     userList = undefined;
+    userDetails = undefined;
 
     function memberSince(data) {
         data.memberSince = moment(data.joined).format('MMMM Do, YYYY');
         return data;
     }
+
+    function determineHideTour(user) {
+        return (user.showTour === 'YES' ? false : true);
+    }
+
     return {
         isUserRegistered: function() {
             return ($window.sessionStorage.registered == 'YES');
@@ -668,20 +674,31 @@ angular.module('brickSlopes.services', ['ngResource'])
                 }));
             }
         },
-        get: function() {
-            var delay= $q.defer();
-            $http (
-                {
-                    method: 'GET',
-                    url: '/controllers/public/user.php'
-                }
-            ).success(function(data, status, headers, config) {
-                delay.resolve(memberSince(data));
-            }).error(function(data, status, headers, config) {
-                delay.reject(data);
-            });
 
-            return delay.promise;
+        hideTour: function() {
+            if (userDetails) {
+                return $q.when(determineHideTour(userDetails));
+            } else {
+                return $q.when(this.getUser().then(function(user) {
+                    return determineHideTour(user);
+                }));
+            }
+        },
+
+        getUser: function() {
+            if (userDetails) {
+                return $q.when(userDetails);
+            }   else {
+                return $q.when($http (
+                    {
+                        method: 'GET',
+                        url: '/controllers/public/user.php'
+                    }
+                ).then(function(data) {
+                    userDetails = memberSince(data.data);
+                    return userDetails;
+                }));
+            }
         },
 
         getAll: function() {
@@ -716,6 +733,38 @@ angular.module('brickSlopes.services', ['ngResource'])
                 delay.resolve(data);
             }).error(function(data, status, headers, config) {
                 delay.reject(data);
+            });
+
+            return delay.promise;
+        },
+
+        tourStarted: function() {
+            console.log('four');
+            if (userDetails.tourStarted) {
+                return false;
+            } else {
+                userDetails.tourStarted = true;
+                return true;
+            }
+        },
+
+        updateTour: function(tourOption) {
+            var delay= $q.defer();
+            $http (
+                {
+                    method: 'PATCH',
+                    url: '/controllers/registered/tour.php',
+                    data: {
+                        'tourOption': tourOption
+                    },
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+                }
+            ).success(function(data, status, headers, config) {
+                console.log('two');
+                userDetails.showTour = 'NO';
+                delay.resolve(status);
+            }).error(function(data, status, headers, config) {
+                delay.reject(status);
             });
 
             return delay.promise;

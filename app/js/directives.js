@@ -267,6 +267,316 @@ angular.module('brickSlopes.directives', [])
         }
     }
 })
+.directive('bsTour', ['$rootScope', 'UserDetails', '$window', '$sce', 'BrickSlopesText', '$timeout', 'EventDetails', function($rootScope, UserDetails, $window, $sce, BrickSlopesText, $timeout, EventDetails) {
+    return {
+        restrict: 'E',
+        replace: true,
+        templateUrl: 'partials/directives/tour.html',
+        link: function($scope, $elem, $attrs) {
+            var stepCounter = 1;
+            var totalSteps = 8;
+            var window = angular.element($window);
+
+            $scope.isHideTour = true;
+            $scope.buttonText = "Next";
+            console.log(7);
+            $scope.stepDisplay = "Step 1 of " + totalSteps;
+
+            $scope.closeTour = function() {
+                unBindResize();
+                $scope.isHideTour = true;
+            };
+
+            $scope.updateTour = function() {
+                unBindResize();
+                UserDetails.updateTour('NO').then(function(response) {});
+                $scope.isHideTour = true;
+            };
+
+            $rootScope.$on('show-tour', function(event, args) {
+                event.stopPropagation();
+                console.log('received');
+                $timeout(function() {
+                    console.log('started');
+                    $scope.isHideTour = false;
+                    UserDetails.getUser().then(function(user) {
+                        $scope.tourUserName = user.firstName;
+                        $scope.initializeMask();
+                    });
+
+                    EventDetails.get(args.eventId).then(function(data) {
+                        console.log('six');
+                        $scope.eventName = data.name;
+                        $scope.eventYear = data.year;
+                        $scope.discountDate = moment(data.discountDate).format('MMMM Do, YYYY');
+                    });
+                }, 1000);
+            });
+
+            console.log('three');
+/*
+            UserDetails.hideTour().then(function(showTour) {
+                $scope.isHideTour = showTour;
+                if (! $scope.isHideTour) {
+                    UserDetails.getUser().then(function(user) {
+                        $scope.tourUserName = user.firstName;
+                        $scope.initializeMask();
+                    });
+                }
+            });
+            */
+
+            $scope.buttonClick = function() {
+                if (stepCounter < totalSteps) {
+                    $scope.nextStep();
+                } else {
+                    $scope.closeTour();
+                }
+            }
+
+            $scope.nextStep = function() {
+                if (stepCounter === 1) {
+                    stepOne();
+                } else if (stepCounter === 2) {
+                    stepTwo();
+                } else if (stepCounter === 3) {
+                    toggleTourWindow();
+                    $timeout(function() {
+                        $('#tourMySite').click();
+                    }, 100);
+                    $timeout(function() {
+                        toggleTourWindow();
+                        stepThree();
+                    }, 1500);
+                } else if (stepCounter === 4) {
+                    toggleTourWindow();
+                    $timeout(function() {
+                        $('#dashboardCloseButton').click();
+                    }, 100);
+                    $timeout(function() {
+                        toggleTourWindow();
+                        stepFour();
+                    }, 1500);
+                } else if (stepCounter === 5) {
+                    toggleTourWindow();
+                    $timeout(function() {
+                        $('#tourRegistration').click();
+                    }, 100);
+                    $timeout(function() {
+                        stepFive();
+                        toggleTourWindow();
+                    }, 1500);
+                } else if (stepCounter === 6) {
+                    toggleTourWindow();
+                    $timeout(function() {
+                        $('#dashboardCloseButton').click();
+                    }, 100);
+                    $timeout(function() {
+                        $('.feedbackTab').click();
+                        $timeout(function() {
+                            toggleTourWindow();
+                            stepSix();
+                        }, 1000);
+                    }, 1000);
+                } else if (stepCounter === 7) {
+                    toggleTourWindow();
+                    $timeout(function() {
+                        $('.feedbackTab').click();
+                    }, 100);
+                    $timeout(function() {
+                        toggleTourWindow();
+                        stepSeven();
+                    }, 1500);
+                    $scope.buttonText = "Close";
+                }
+
+                stepCounter++;
+                $scope.stepDisplay = "Step " + stepCounter + " of " + totalSteps;
+            }
+
+            $scope.initializeMask = function() {
+                $('body').append('<div id="tourMask"></div>');
+                setMaskSize();
+                bindResize();
+                stepStart();
+
+                function setMaskSize() {
+                    $('#tourMask').height(window.height());
+                    $('#tourMask').width(window.width());
+                }
+
+                function bindResize() {
+                    window.bind('resize', function() {
+                        setMaskSize();
+                    });
+                }
+
+            }
+
+            function unBindResize() {
+                window.unbind('resize');
+                $('#tourMask').remove();
+            }
+
+            function setTitle(text) {
+                $scope.tourTitle = $sce.trustAsHtml(text);
+            }
+
+            function setText(text) {
+                $scope.tourText = $sce.trustAsHtml(text);
+            }
+
+            function toggleTourWindow() {
+                $('#tourContainer').toggle();
+            }
+
+            function setTourWindow(conObj) {
+                var tourContainer = $('#tourContainer');
+                var position = $(conObj.element).offset();
+                tourContainer.css(
+                    {
+                        'top': position.top + conObj.topOffset,
+                        'left': position.left + conObj.leftOffset
+                    }
+                );
+                setIcon(conObj);
+            }
+
+            function setIcon(conObj) {
+                if (conObj.iconPlacement === 'left') {
+                    $('#arrow').css({'left': '0px'});
+                    $('.bsTour').css({'left': '100px'});
+                } else {
+                    $('#arrow').css({'left': '480px'});
+                    $('.bsTour').css({'left': '0px'});
+                }
+
+                function removeArrowIcons() {
+                    $('#arrowIcon').removeClass('icons-arrow-right');
+                    $('#arrowIcon').removeClass('icons-arrow-left');
+                    $('#arrowIcon').removeClass('icons-arrow-up');
+                    $('#arrowIcon').removeClass('icons-arrow-down');
+                }
+
+                removeArrowIcons();
+                $('#arrowIcon').addClass('icons-arrow-' + conObj.icon);
+            }
+
+            function getText(text) {
+                return BrickSlopesText.createText(text);
+            }
+
+            function getLogoText(text) {
+                return getText('BrickSlopes');
+            }
+
+            function getWebText() {
+                return getText('BrickSlopes.com');
+            }
+
+            function styleText(text) {
+                return '<span class="bold italic">'+ text +'</span>';
+            }
+
+            function stepStart() {
+                setTourWindow( {
+                    element: '#tourAfols',
+                    topOffset: 0,
+                    leftOffset: 0,
+                    iconPlacement: 'right',
+                    icon: 'left'
+                });
+                setTitle("Welcome to " + getLogoText());
+                setText("We recommend a tour to help you maximize your experience on the " + getWebText() + " website.<p>You may cancel the tour at any time by clicking the <i class='icons-close-button icons-sprite-bg'></i> button.<p>This <i class='icons-close-button icons-sprite-bg'></i> button is on the upper-right corner of every page. Clicking the button will close the page.");
+
+            }
+
+            function stepOne() {
+                setTitle("Login, Your Site & Logout");
+                setTourWindow( {
+                    element: '#afolContainer',
+                    topOffset: 20,
+                    leftOffset: -365,
+                    iconPlacement: 'right',
+                    icon: 'up'
+                });
+                setText("We would like to help you customize your experience at the " + getText("BrickSlopes'") + " Events.<p>To start your fan experience you will need to login to " + getWebText() + ". This link will say " + styleText("'Builder Login'") + " when you need to login.<p>After logging in, clicking on the " + styleText($scope.tourUserName + "'s Site") + " will bring you to this page designed especially for you.<p>Always remember to " + styleText('Logout') + " when you are finished.");
+            }
+
+            function stepTwo() {
+                setTitle($scope.tourUserName + "'s Site");
+                setTourWindow( {
+                    element: '#tourRegistration',
+                    topOffset: 160,
+                    leftOffset: -75,
+                    iconPlacement: 'left',
+                    icon: 'left'
+                });
+                setText("This section is all about you -- after all, this is your site.<p>All the information regarding your " + getText($scope.eventName) + " experience will be displayed here.<p>Click 'Next' and learn more.");
+            }
+
+            function stepThree() {
+                setTitle("Your " + getLogoText() + " Information");
+                setTourWindow( {
+                    element: '.changePassword',
+                    topOffset: 100,
+                    leftOffset: 300,
+                    iconPlacement: 'left',
+                    icon: 'left'
+                });
+                setText("The 'Me' section displays all of your " + getText($scope.eventName) + " 'need-to-know' information.<p>Here you can do the following:<ul><li>Change Your Password</li><li>Change your personal information</li><li>Sign-Up for Events</li><li>Register/See your MOCs</li><li>Register/See your Activities</li><li>Become a Vendor</li></ul>");
+            }
+
+            function stepFour() {
+                setTitle(getLogoText() + " Event Registration");
+                setTourWindow( {
+                    element: '#tourRegistration',
+                    topOffset: 150,
+                    leftOffset: -400,
+                    iconPlacement: 'right',
+                    icon: 'up'
+                });
+                setText("The most important feature -- " + getText($scope.eventName) + " event registration!<p>Registration has many benefits. After registering for " + getText($scope.eventName) + "(and paying), " + styleText('MOC Registration') + ", " + styleText('MOC List') + ", " + styleText('Themes') + ", and " + styleText($scope.eventYear + ' Activities') + " become unlock.");
+            }
+
+            function stepFive() {
+                setTitle(getLogoText() + " Event Registration");
+                setTourWindow( {
+                    element: '#eventSwag',
+                    topOffset: -50,
+                    leftOffset: -50,
+                    iconPlacement: 'left',
+                    icon: 'left'
+                });
+                setText("The " + getText($scope.eventName) + " event is right around the corner.<p>There is a " + styleText('discount') + " to register and pay before " + styleText($scope.discountDate) + ".<p>While registering you can " + styleText('customize engraved bricks') + ", " + styleText('sign-up for the Meet & Greet') + ", " + styleText('order a t-shirt') + ", and " + styleText('particpate in drafts') + ".<p> Don't wait to register and miss out on all the fun!");
+            }
+
+            function stepSix() {
+                setTitle('Feedback');
+                setTourWindow( {
+                    element: '.feedbackPanel',
+                    topOffset: 30,
+                    leftOffset: 475,
+                    iconPlacement: 'left',
+                    icon: 'left'
+                });
+                setText("Our goal is to make " + getWebText() + " the very best.<p>If you find a problem, have a question or concern, or see something you like, please send use a note using the " + styleText('Feedback') + " feature");
+            }
+
+            function stepSeven() {
+                setTitle("Who's attending " + getLogoText() + "?");
+                setTourWindow( {
+                    element: '#tourMocList',
+                    topOffset: 60,
+                    leftOffset: -35,
+                    iconPlacement: 'left',
+                    icon: 'left'
+                });
+                setText("This is the end of the tour! Thanks for looking around with us.<p>Please continue to browse " + getWebText() + " by yourself. There is plenty to see and experience.<p>One last thought -- do you know who is attending " + getText($scope.eventName) + "?<p>Will you please join us in " + $scope.eventYear + "?<p>Thank you -- Brian, Cody and Steve.");
+            }
+        }
+    };
+}])
 .directive("bsPlaceholder", function($timeout) {
     var txt;
     return {

@@ -18,6 +18,11 @@ class users extends \db {
         return $this->query($this->updatePasswordQuery($userId, $data));
     }
 
+    public function updateTour($data) {
+        echo $this->updateTourQuery($data);
+        return $this->query($this->updateTourQuery($data));
+    }
+
     public function addUserInformation($data) {
         return $this->query($this->insertQuery($data));
     }
@@ -36,6 +41,17 @@ class users extends \db {
 
     public function getAllUserInformation() {
         return $this->query($this->selectQuery(null, false));
+    }
+
+    private function updateTourQuery($data) {
+        return "
+            UPDATE 
+                users 
+            SET
+                showTour = '{$this->escapeCharacters($data['tourOption'])}'
+            WHERE
+                userId = '{$this->escapeCharacters($data['userId'])}'
+        ";
     }
 
     private function updatePasswordQuery($userId, $data) {
@@ -140,6 +156,7 @@ class users extends \db {
                 flickr,
                 familyId,
                 admin,
+                showTour,
                 joined
             FROM
                 users 

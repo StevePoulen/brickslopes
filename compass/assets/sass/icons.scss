@@ -12,6 +12,36 @@ $icons-sprite: sprite-map("icons/*.png");
 i {
     display: inline-block;
 }
+
+.icons-close-button {
+    background-position: sprite-position($icons-sprite, close-button);
+    width: image-width("icons/close-button.png");
+    height: image-height("icons/close-button.png");
+}
+
+.icons-arrow-down {
+    background-position: sprite-position($icons-sprite, arrow-down);
+    width: image-width("icons/arrow-down.png");
+    height: image-height("icons/arrow-down.png");
+}
+
+.icons-arrow-up {
+    background-position: sprite-position($icons-sprite, arrow-up);
+    width: image-width("icons/arrow-up.png");
+    height: image-height("icons/arrow-up.png");
+}
+
+.icons-arrow-left {
+    background-position: sprite-position($icons-sprite, arrow-left);
+    width: image-width("icons/arrow-left.png");
+    height: image-height("icons/arrow-left.png");
+}
+
+.icons-arrow-right {
+    background-position: sprite-position($icons-sprite, arrow-right);
+    width: image-width("icons/arrow-right.png");
+    height: image-height("icons/arrow-right.png");
+}
     
 .icons-email {
     background-position: sprite-position($icons-sprite, email);

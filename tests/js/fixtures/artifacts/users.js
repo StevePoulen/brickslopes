@@ -1,3 +1,7 @@
+function getUser(index) {
+    return registeredUsers[index];
+}
+
 var singleUser = {
     userId: 2,
     firstName: 'Steve',
@@ -7,6 +11,7 @@ var singleUser = {
     state: 'Or State',
     zipcode: '88990',
     phoneNumber: '444 555-6666',
+    showTour: 'YES',
     joined: '2014-05-16 15:00:49'
 };
 
@@ -21,6 +26,7 @@ var registeredUsers = [
         state: 'And State',
         zipcode: '09988',
         phoneNumber: '777 888-9999',
+        showTour: 'NO',
         joined: '2013-05-16 15:00:49'
     }
 ];

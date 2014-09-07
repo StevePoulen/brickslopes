@@ -1,6 +1,6 @@
 'use strict';
 
-var showAfolLogin = false;
+var showAfolLogin = true;
 
 /* Controllers */
 angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
@@ -664,7 +664,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         $scope.gameCount = Object.keys(data).length;
     });
 
-    UserDetails.get().then(function(data) {
+    UserDetails.getUser().then(function(data) {
         $scope.userObject = data;
     });
 
@@ -1109,7 +1109,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         });
     }
 
-    UserDetails.get().then(function(data) {
+    UserDetails.getUser().then(function(data) {
         $scope.userObject = data;
     });
 }])
@@ -1283,7 +1283,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         $location.path("/admin/index.html");
     }
 }])
-.controller('afolIndex', ['$scope', '$location', 'MocDetails', 'Games', 'RegisteredAfols', '$window', 'EventDates', 'EventRegistration', 'UserDetails', 'Themes', 'VendorDetails', function($scope, $location, MocDetails, Games, RegisteredAfols, $window, EventDates, EventRegistration, UserDetails, Themes, VendorDetails) {
+.controller('afolIndex', ['$rootScope', '$scope', '$location', 'MocDetails', 'Games', 'RegisteredAfols', '$window', 'EventDates', 'EventRegistration', 'UserDetails', 'Themes', 'VendorDetails', function($rootScope, $scope, $location, MocDetails, Games, RegisteredAfols, $window, EventDates, EventRegistration, UserDetails, Themes, VendorDetails) {
     $scope.mocCount = 0;
     $scope.mocList = [];
     $scope.vendorCount = 0;
@@ -1382,6 +1382,15 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     $scope.closeDialog = function() {
         $location.path("/registered/index.html");
     }
+
+    UserDetails.getUser().then(function(user) {
+        console.log('one');
+        UserDetails.hideTour().then(function(hideTour) {
+            if(! hideTour && UserDetails.tourStarted()) {
+                $rootScope.$emit('show-tour', {eventId: $scope.eventId});
+            }
+        });
+    });
 
     MocDetails.getList($scope.eventId).then(function(data) {
         $scope.mocList = data;

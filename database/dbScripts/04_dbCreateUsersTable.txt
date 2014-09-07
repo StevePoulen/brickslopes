@@ -21,6 +21,7 @@ CREATE TABLE `users` (
   `flickr` VARCHAR(255),
   `admin` ENUM('YES', 'NO') DEFAULT 'NO',
   `familyId` INT(10) UNSIGNED NULL,
+  `showTour` ENUM('YES', 'NO') DEFAULT 'YES',
   `joined` DATETIME,
   PRIMARY KEY (`userId`),
   FOREIGN KEY (`familyId`) REFERENCES `users` (`userId`),
