@@ -44,6 +44,36 @@ describe('service', function() {
             });
         });
 
+        describe('Get - No Afols', function() {
+            var mockBackend, service, data;
+            beforeEach(inject(function(_$httpBackend_, RegisteredAfols) {
+                mockBackend = _$httpBackend_;
+                service = RegisteredAfols;
+                mockBackend.expectGET('/controllers/registered/registeredAfols.php?eventId=2').respond(201, []);
+            }));
+
+            it('should load registered afols count', function() {
+                var load = service.getCount(2);
+                load.then(function(_data) {
+                    data = _data;
+                });
+
+                mockBackend.flush();
+                expect(data).toEqualData(0);
+            });
+
+            it('should get all of the registered afols', function() {
+                var load = service.get(2);
+
+                load.then(function(_data) {
+                    data = _data;
+                });
+
+                mockBackend.flush();
+                expect(data).toEqualData([]);
+            });
+        });
+
         describe('SendEmailPayment', function() {
             var mockBackend, service, data;
             beforeEach(inject(function(_$httpBackend_, RegisteredAfols) {

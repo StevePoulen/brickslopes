@@ -1015,13 +1015,22 @@ angular.module('brickSlopes.services', ['ngResource'])
 .factory('RegisteredAfols', ['$q', '$http', function($q, $http) {
     afolList = undefined;
 
+    //This is for the one time there is an event with no registered AFOLs
+    function getAfolCount(eventId) {
+        if (Object.keys(afolList).length) {
+            return afolList[eventId].registeredAfols.length;
+        } else {
+            return 0;
+        }
+    }
+
     return {
-        getCount: function($eventId) {
+        getCount: function(eventId) {
             if (afolList) {
-                return $q.when(afolList[$eventId].registeredAfols.length);
+                return $q.when(getAfolCount(eventId));
             } else {
-                return $q.when(this.get($eventId).then(function(data) {
-                    return afolList[$eventId].registeredAfols.length;
+                return $q.when(this.get(eventId).then(function(data) {
+                    return getAfolCount(eventId);
                 }));
             }
         },
