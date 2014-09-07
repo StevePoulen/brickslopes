@@ -385,7 +385,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
 
     EventDetails.get($scope.eventId).then(function(data) {
         $scope.eventDetails=data;
-        $scope.discountDate = moment($scope.eventDetails.discountDate).format('MMMM Do, YYYY');
+        $scope.discountDate = data.formattedDiscountDate;
         $scope.draftOneId = data.draftOneId;
         $scope.draftTwoId = data.draftTwoId;
     });
@@ -681,7 +681,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         $scope.passDates = passDates;
     });
 }])
-.controller('AssociateRegistration', ['$scope', '$location', 'VendorDetails', '$route', '$sce', function($scope, $location, VendorDetails, $route, $sce) {
+.controller('AssociateRegistration', ['$scope', '$location', 'VendorDetails', '$route', '$sce', 'EventDetails', function($scope, $location, VendorDetails, $route, $sce, EventDetails) {
     $scope.eventId = $route.current.params.eventId;
     $scope.storeId = $route.current.params.storeId;
     $scope.displayMessage = undefined;
@@ -751,6 +751,12 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
 
     VendorDetails.getAssociates($scope.eventId, $scope.storeId).then(function(data) {
         $scope.associates = data;
+    });
+
+    EventDetails.get($scope.eventId).then(function(data) {
+        $scope.formattedDiscountDate = data.formattedDiscountDate;
+        $scope.vendorEventCost = data.lineItems['10010'].cost;
+        $scope.vendorEventDiscount = data.lineItems['10010'].discount;
     });
 }])
 .controller('vendorRegistration', ['$scope', '$location', 'VendorDetails', '$route', 'EventDetails', function($scope, $location, VendorDetails, $route, EventDetails) {

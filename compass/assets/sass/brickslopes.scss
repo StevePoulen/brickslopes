@@ -27,7 +27,8 @@ $bs_black: #000000;
 
 $dashboard_width: 1225px;
 $dashboard_height: 700px;
-$pane_height: 700px;
+$afol_dashboard_height: 832px;
+$pane_height: 800px;
 $splashPage_height: $dashboard_height - 10;
 
 $vendor_logo_size: 275px;
@@ -36,6 +37,10 @@ $vendor_logo_size: 275px;
 @media only screen 
 and (min-device-width : 320px) 
 and (max-device-width : 480px) {
+    #afolDashboard {
+        height: $afol_dashboard_height;
+    }
+
     #dashboard {
         height: $dashboard_height;
     }
@@ -57,6 +62,10 @@ and (max-device-width : 480px) {
 /* Smartphones (landscape) ----------- */
 @media only screen 
 and (min-width : 321px) {
+    #afolDashboard {
+        height: $afol_dashboard_height;
+    }
+    
     #dashboard {
         height: $dashboard_height;
     }
@@ -78,6 +87,10 @@ and (min-width : 321px) {
 /* Smartphones (portrait) ----------- */
 @media only screen 
 and (max-width : 320px) {
+    #afolDashboard {
+        height: $afol_dashboard_height;
+    }
+    
     #dashboard {
         height: $dashboard_height;
     }
@@ -100,6 +113,10 @@ and (max-width : 320px) {
 @media only screen 
 and (min-device-width : 768px) 
 and (max-device-width : 1024px) {
+    #afolDashboard {
+        height: $afol_dashboard_height;
+    }
+    
     #dashboard {
         height: $dashboard_height;
     }
@@ -123,6 +140,10 @@ and (max-device-width : 1024px) {
 and (min-device-width : 768px) 
 and (max-device-width : 1024px) 
 and (orientation : landscape) {
+    #afolDashboard {
+        height: $afol_dashboard_height;
+    }
+    
     #dashboard {
         height: $dashboard_height;
     }
@@ -146,6 +167,10 @@ and (orientation : landscape) {
 and (min-device-width : 768px) 
 and (max-device-width : 1024px) 
 and (orientation : portrait) {
+    #afolDashboard {
+        height: $afol_dashboard_height;
+    }
+    
     #dashboard {
         height: $dashboard_height;
     }
@@ -168,6 +193,10 @@ and (orientation : portrait) {
 @media
 only screen and (-webkit-min-device-pixel-ratio : 1.5),
 only screen and (min-device-pixel-ratio : 1.5) {
+    #afolDashboard {
+        height: $afol_dashboard_height;
+    }
+    
     #dashboard {
         height: $dashboard_height;
     }
@@ -188,6 +217,10 @@ only screen and (min-device-pixel-ratio : 1.5) {
 
 /* Desktops and laptops ----------- */
 @media only screen and (min-width : 1224px) {
+    #afolDashboard {
+        height: $afol_dashboard_height;
+    }
+    
     #dashboard {
         height: $dashboard_height;
     }
@@ -209,6 +242,10 @@ only screen and (min-device-pixel-ratio : 1.5) {
 
 /* Large screens ----------- */
 @media only screen and (min-width : 1824px) {
+    #afolDashboard {
+        height: $afol_dashboard_height;
+    }
+    
     #dashboard {
         height: $dashboard_height;
     }

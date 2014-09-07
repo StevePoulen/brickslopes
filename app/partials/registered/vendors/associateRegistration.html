@@ -2,7 +2,7 @@
     <div class="dashboardText height800">
         <div>
             <h1>
-                <bs-logo font-size="1.25"></bs-logo> &#8226; <bs-text text="Associate Registration" font-color=black></bs-text>
+                <bs-logo font-size="1.25"></bs-logo> &#8226; <bs-text text="Associate Registration - Step 3 of 3" font-color=black></bs-text>
             </h1>
         </div>
         <div id="makePayment">
@@ -45,11 +45,12 @@
             </div>
             <div id="help">
                 <div class="text">
+                    Please register everyone who will be attending <bs-logo></bs-logo> with you as part of your vendor booth. 
                     <p>
-                        Please register everyone who will be attending <bs-logo></bs-logo> with you as part of your vendor booth. Registration is required in order to enter the event facility. Associate registration is free of cost.
+                    Associate registration is required in order to enter the event facility. Associate registration is <span ng-bind="vendorEventDiscount | currency"></span> before <span ng-bind="formattedDiscountDate"></span> and <span ng-bind="vendorEventCost | currency"></span> after that date.
                     </p>
                     <p> 
-                        Each associate may purchase a 4-Day Event Pass if they wish to participate in the activities. 
+                        Store owners may purchase a 4-Day Event Pass for any associates if they wish to participate in all the activities. 
                     </p>
                     </div>
                 <div class="bsLogo"><img src="/images/logo/brickSlopes_noword_50px.png"></div>

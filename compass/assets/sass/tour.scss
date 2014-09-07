@@ -26,15 +26,6 @@
         border-radius: 10px;
         padding: 10px;
 
-        .showTour {
-            position: relative;
-            top: 5px;
-            height: 25px;
-            text-align: left;
-            left: 5px;
-            width: 420px;
-        }
-
         .tourTitle {
             position: relative;
             font-size: 1.5em;
@@ -53,29 +44,49 @@
             width: 360px;
             height: 25px;
             font-size: .8em;
-            text-align: left;
+            text-align: center;
         }
 
         .cta {
             position: relative;
             height: 50px;
+
+            .logo {
+                position: absolute;
+                bottom: 0px;
+                left: 0px;
+                z-index: 1;
+            }
+
+            .showTour {
+                position: absolute;
+                bottom: 18px;
+                height: 20px;
+                text-align: left;
+                left: 50px;
+                width: 250px;
+                z-index: 2;
+                font-size: 1em;
+            }
+
+            .steps {
+                position: absolute;
+                width: auto;
+                right: 5px;
+                bottom: 15px;
+                height: 20px;
+                font-size: .85em;
+            }
+
+            .actionButtonSmall {
+                position: absolute;
+                width: 80px;
+                right: 75px;
+                bottom: 0px;
+                height: 25px;
+            }
         }
 
-        .steps {
-            position: absolute;
-            width: 80px;
-            right: 115px;
-            bottom: 16px;
-            height: 20px;
-        }
-
-        .actionButtonSmall {
-            position: absolute;
-            width: 80px;
-            right: 10px;
-            bottom: 0px;
-            height: 25px;
-        }
 
         .tourText {
             position: relative;

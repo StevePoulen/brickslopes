@@ -13,6 +13,12 @@ i {
     display: inline-block;
 }
 
+.icons-brickslopes-logo {
+    background-position: sprite-position($icons-sprite, brickslopes-logo);
+    width: image-width("icons/brickslopes-logo.png");
+    height: image-height("icons/brickslopes-logo.png");
+}
+
 .icons-close-button {
     background-position: sprite-position($icons-sprite, close-button);
     width: image-width("icons/close-button.png");

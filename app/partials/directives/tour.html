@@ -4,9 +4,12 @@
         <div class="tourTitle" ng-bind-html="tourTitle"></div>
         <div class="tourText" ng-bind-html="tourText"></div>
         <div class="cta">
+            <div class="logo">
+                <i class="icons-brickslopes-logo icons-sprite-bg"></i>
+            </div>
             <div class="showTour">
-                <label class="label">Do not show tour again (close tour):</label>
                 <input type="checkbox" ng-click="updateTour()">
+                <label class="label">Do not show tour again.</label>
             </div>
             <div class="steps" ng-bind="stepDisplay"></div>
             <div class="actionButtonSmall" ng-click="buttonClick()">

@@ -1093,14 +1093,9 @@
                     $registrationMap = array();
                     $registrationMap['userId'] = $userId;
                     $registrationMap['eventId'] = $eventId;
-                    //$registrationMap['badgeLine1'] = $dbObj->badgeLine1;
-                    //$registrationMap['badgeLine2'] = $dbObj->badgeLine2;
-                    //$registrationMap['meetAndGreet'] = $this->formatEnum($dbObj->meetAndGreet);
                     $registrationMap['ageVerification'] = $this->formatEnum($dbObj->ageVerification);
                     $registrationMap['comments'] = $dbObj->comments;
                     $registrationMap['amountPaid'] = '55.00';
-                    //$registrationMap['tShirtSize'] = 'XL';
-                    //$registrationMap['tShirtPaid'] = '20.00';
                     $registrationMap['type'] = 'AFOL';
 
                     $registrationsObj->addRegistrationInformation($registrationMap);

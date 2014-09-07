@@ -41,11 +41,24 @@ describe('controllers', function() {
         describe('Digest Values', function() {
             beforeEach(function() {
                 mockBackend.expectGET('/controllers/registered/vendors/vendorAssociates.php?eventId=2&storeId=4').respond(201, associates);
+                mockBackend.expectGET('/controllers/public/event.php?eventId=2').respond(201, eventDetails);
                 mockBackend.flush();
             });
 
             it('should have an associates collection', function() {
                 expect(scope.associates[0].firstName).toEqualData('Dorthy');
+            });
+
+            it('should have a formatted discount date', function() {
+                expect(scope.formattedDiscountDate).toEqualData('March 25th, 2015');
+            });
+
+            it('should have a vendorEventCost', function() {
+                expect(scope.vendorEventCost).toEqualData('15.00');
+            });
+
+            it('should have a vendorEventDiscount', function() {
+                expect(scope.vendorEventDiscount).toEqualData('10.00');
             });
         });
 
@@ -101,6 +114,7 @@ describe('controllers', function() {
                 }
 
                 mockBackend.expectGET('/controllers/registered/vendors/vendorAssociates.php?eventId=2&storeId=4').respond(201, associates);
+                mockBackend.expectGET('/controllers/public/event.php?eventId=2').respond(201, eventDetails);
             });
 
             it('should create an associate', function() {

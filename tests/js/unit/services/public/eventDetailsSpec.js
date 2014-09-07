@@ -96,6 +96,10 @@ describe('service', function() {
             it('should have a draft two draftTwoId', function() {
                 expect(data.draftTwoId).toBe(24);
             });
+
+            it('should have a formatted discount date', function() {
+                expect(data.formattedDiscountDate).toBe('March 25th, 2015');
+            });
         });
     });
 });

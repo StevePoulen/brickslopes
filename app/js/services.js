@@ -247,6 +247,7 @@ angular.module('brickSlopes.services', ['ngResource'])
 }])
 .factory('EventDetails', ['$q', '$http', function($q, $http) {
     function parseEventDetailsData(data) {
+        data.formattedDiscountDate = moment(data.discountDate).format('MMMM Do, YYYY');
         data.costs = {
             'eventCost': undefined,
             'eventDiscount': undefined,
