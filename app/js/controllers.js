@@ -671,6 +671,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
 
     UserDetails.getUser().then(function(data) {
         $scope.userObject = data;
+        $scope.hideTour = UserDetails.isUserRegistered();
     });
 
     EventDates.getPassType($scope.eventId).then(function(passType) {

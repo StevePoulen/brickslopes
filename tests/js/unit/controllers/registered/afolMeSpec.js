@@ -228,6 +228,10 @@ describe('controllers', function() {
                 deleteSession(window);
             });
 
+            it('should have a hideTour variable ', function() {
+                expect(scope.hideTour).toBe(true);
+            });
+
             it('should populate the passType variable', function() {
                 expect(scope.passType).toBe('4-Day');
             });
