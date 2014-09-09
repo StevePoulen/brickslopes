@@ -5,7 +5,10 @@
                 <bs-logo font-size="1.25"></bs-logo> &#8226; <bs-text text="AFOLs" font-color=black></bs-text>
             </h1>
         </div>
-        <div ng-class="{evenRow: $even}" ng-repeat="afol in registeredAfols | orderBy:'lastName'">
+        <div class="searchField bold">
+            <input ng-model="searchText" bs-placeholder="Search">
+        </div>
+        <div ng-class="{evenRow: $even}" ng-repeat="afol in registeredAfols | filter:searchText:strict | orderBy:'lastName'">
             <div class="afolRow">
                 <div class="afolName leftPosition">
                     {{afol.firstName}} {{afol.lastName}}
