@@ -27,7 +27,7 @@ describe('controllers', function() {
         }));
 
         it('should have a showAfol variable', function() {
-            expect(scope.showAfolLogin).toBe(false);
+            expect(scope.showAfolLogin).toBe(true);
         });
     });
 
