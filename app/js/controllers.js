@@ -712,6 +712,33 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         $location.path('/registered/eventPayment.html');
     }
 
+    $scope.clickDelete = function() {
+        var associateId = this.associate.associateId;
+        VendorDetails.deleteAssociate(
+            {
+                associateId: associateId,
+                eventId: $scope.eventId
+            }
+        ).then(function(status) {
+            deleteAssociateFromCollection(associateId);
+        }, function(status) {
+
+        });
+    }
+
+    function deleteAssociateFromCollection(associateId) {
+        var deleteIndex = undefined;
+        _.each($scope.associates, function(associate, index) {
+            if (associate.associateId == associateId) {
+                deleteIndex = index;
+            }
+        });
+
+        if (deleteIndex) {
+            delete $scope.associates[deleteIndex];
+        }
+    }
+
     function addAssociateToCollection(associate) {
         $scope.associates.push(
             {

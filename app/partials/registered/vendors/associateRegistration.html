@@ -62,8 +62,12 @@
                 <div class="associateList">
                     <div ng-class="{evenRow: $even}" ng-repeat="associate in associates | orderBy:'firstName'">
                         <div class="associateContainer">
+                            <i class="icons-delete icons-sprite-bg" ng-click="clickDelete()"></i>
                             <span ng-bind="associate.firstName"></span>
-                            <span ng-bind="associate.lastName"></span>
+                            <span ng-bind="associate.lastName"></span> - 
+                            <span class="pass">
+                                (<span ng-bind="associate.lineItem"></span>)
+                            </span>
                         </div>
                     </div>
                 </div>

@@ -64,6 +64,58 @@ describe('service', function() {
             });
         });
 
+        describe('Delete Associate', function() {
+            var mockBackend, service, data, dto;
+            beforeEach(inject(function(_$httpBackend_, VendorDetails) {
+                dto = {
+                    eventId: 2,
+                    associateId: 22,
+                }
+                mockBackend = _$httpBackend_;
+                mockBackend.expectDELETE('/controllers/registered/vendors/vendorAssociates.php?associateId=22&eventId=2').respond(200, 'Success');
+                service = VendorDetails;
+            }));
+
+            it('should delete an associate', function() {
+                var load = service.deleteAssociate(dto);
+
+                load.then(function(_data) {
+                    data = _data;
+                });
+
+                mockBackend.flush();
+                expect(data).toBe(200);
+            });
+        });
+
+        describe('Create Associate error', function() {
+            var mockBackend, service, data, dto;
+            beforeEach(inject(function(_$httpBackend_, VendorDetails) {
+                dto = {
+                    eventId: 2,
+                    associateId: 22,
+                }
+
+                mockBackend = _$httpBackend_;
+                mockBackend.expectDELETE('/controllers/registered/vendors/vendorAssociates.php?associateId=22&eventId=2').respond(412, {error: 'this is bad'});
+                service = VendorDetails;
+            }));
+
+            it('should delete an associate', function() {
+                var tableDTO;
+                var load = service.deleteAssociate(dto);
+
+                load.then(function(_data) {
+                    data = 'This is wrong';
+                }, function(_data) {
+                    data = _data;
+                });
+
+                mockBackend.flush();
+                expect(data).toBe(412);
+            });
+        });
+
         describe('Create Associate', function() {
             var mockBackend, service, data;
             beforeEach(inject(function(_$httpBackend_, VendorDetails) {
@@ -114,7 +166,7 @@ describe('service', function() {
                 eventId = 2;
                 storeId = 3;
                 mockBackend = _$httpBackend_;
-                mockBackend.expectGET('/controllers/registered/vendors/vendorAssociates.php?eventId='+eventId+'&storeId='+storeId).respond(201, associates);
+                mockBackend.expectGET('/controllers/registered/vendors/vendorAssociates.php?eventId='+eventId+'&storeId='+storeId).respond(201, associatesMock);
                 service = VendorDetails;
             }));
 
@@ -129,6 +181,7 @@ describe('service', function() {
                 expect(data[0].associateId).toBe(2);
                 expect(data[0].firstName).toBe('Dorthy');
                 expect(data[0].lastName).toBe('Ottley');
+                expect(data[0].lineItem).toBe('Associate Pass');
             });
         });
 

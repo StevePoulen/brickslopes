@@ -38,6 +38,10 @@ class db extends \logging
       return $this->mysqli->real_escape_string($characters);
     }
 
+    public function getError() {
+        return $this->mysqli->error;
+    }
+
 		public function query($query) {
       $this->logging(__method__, 128);
       $this->logging("The Query is:: " . $query, 2);

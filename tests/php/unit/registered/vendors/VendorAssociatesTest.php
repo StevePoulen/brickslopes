@@ -27,8 +27,33 @@ class VendorAssociatesTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($output['associateId'], '123');
         $this->assertEquals($output['firstName'], "Ember");
         $this->assertEquals($output['lastName'], 'Pilati');
+        $this->assertEquals($output['lineItem'], 'Associate Pass');
         $this->assertEquals(sizeOf($allAssociates), 1);
 
+    }
+
+    public function testAuthenticatedDELETE() 
+    {
+        $_GET = array(
+            'eventId' => 2, 
+            'associateId' => 22
+        );
+        $_SERVER['REQUEST_METHOD'] = "DELETE";
+        $GLOBALS['db_query'] = '1';
+        new VendorAssociates($this->userId);
+        $this->assertEquals(http_response_code(), 200);
+    }
+
+    public function testAuthenticatedDELETEError() 
+    {
+        $_GET = array(
+            'eventId' => 2, 
+            'associateId' => 22
+        );
+        $_SERVER['REQUEST_METHOD'] = "DELETE";
+        $GLOBALS['db_query'] = 0;
+        new VendorAssociates($this->userId);
+        $this->assertEquals(http_response_code(), 400);
     }
 
     public function testAuthenticatedPOSTNotAUserNoPass() 
@@ -50,11 +75,11 @@ class VendorAssociatesTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($output['lastName'], 'Ottley');
 
         $lineItemObj = $GLOBALS['addRegistrationLineItems'][0];
-        $this->assertEquals($lineItemObj['eventLineItemCodeId'], '11');
+        $this->assertEquals($lineItemObj['eventLineItemCodeId'], '13');
         $this->assertEquals($lineItemObj['eventId'], 2);
         $this->assertEquals($lineItemObj['userId'], 5);
-        $this->assertEquals($lineItemObj['lineItem'], 'Vendor Pass');
-        $this->assertEquals($lineItemObj['amount'], '8.00');
+        $this->assertEquals($lineItemObj['lineItem'], 'Associate Pass');
+        $this->assertEquals($lineItemObj['amount'], '6.00');
         $this->assertEquals($lineItemObj['paid'], 'NO');
         $this->assertEquals($lineItemObj['discount'], 'YES');
         $this->assertEquals($lineItemObj['description'], 'Cody Ottley');
@@ -65,11 +90,11 @@ class VendorAssociatesTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(sizeOf($lineItemObj), 12);
 
         $lineItemObj = $GLOBALS['addRegistrationLineItems'][1];
-        $this->assertEquals($lineItemObj['eventLineItemCodeId'], '11');
+        $this->assertEquals($lineItemObj['eventLineItemCodeId'], '13');
         $this->assertEquals($lineItemObj['eventId'], 2);
         $this->assertEquals($lineItemObj['userId'], 1234);
-        $this->assertEquals($lineItemObj['lineItem'], 'Vendor Pass');
-        $this->assertEquals($lineItemObj['amount'], '8.00');
+        $this->assertEquals($lineItemObj['lineItem'], 'Associate Pass');
+        $this->assertEquals($lineItemObj['amount'], '6.00');
         $this->assertEquals($lineItemObj['paid'], 'NO');
         $this->assertEquals($lineItemObj['discount'], 'YES');
         $this->assertEquals($lineItemObj['description'], 'Cody Ottley');
@@ -198,11 +223,11 @@ class VendorAssociatesTest extends PHPUnit_Framework_TestCase
 
         //Owner
         $lineItemObj = $GLOBALS['addRegistrationLineItems'][0];
-        $this->assertEquals($lineItemObj['eventLineItemCodeId'], '11');
+        $this->assertEquals($lineItemObj['eventLineItemCodeId'], '13');
         $this->assertEquals($lineItemObj['eventId'], 2);
         $this->assertEquals($lineItemObj['userId'], 5);
-        $this->assertEquals($lineItemObj['lineItem'], 'Vendor Pass');
-        $this->assertEquals($lineItemObj['amount'], '8.00');
+        $this->assertEquals($lineItemObj['lineItem'], 'Associate Pass');
+        $this->assertEquals($lineItemObj['amount'], '6.00');
         $this->assertEquals($lineItemObj['paid'], 'NO');
         $this->assertEquals($lineItemObj['discount'], 'YES');
         $this->assertEquals($lineItemObj['description'], 'Brian Pilati');
@@ -214,11 +239,11 @@ class VendorAssociatesTest extends PHPUnit_Framework_TestCase
 
         //Associate
         $lineItemObj = $GLOBALS['addRegistrationLineItems'][1];
-        $this->assertEquals($lineItemObj['eventLineItemCodeId'], '11');
+        $this->assertEquals($lineItemObj['eventLineItemCodeId'], '13');
         $this->assertEquals($lineItemObj['eventId'], 2);
         $this->assertEquals($lineItemObj['userId'], 123456789);
-        $this->assertEquals($lineItemObj['lineItem'], 'Vendor Pass');
-        $this->assertEquals($lineItemObj['amount'], '8.00');
+        $this->assertEquals($lineItemObj['lineItem'], 'Associate Pass');
+        $this->assertEquals($lineItemObj['amount'], '6.00');
         $this->assertEquals($lineItemObj['paid'], 'NO');
         $this->assertEquals($lineItemObj['discount'], 'YES');
         $this->assertEquals($lineItemObj['description'], 'Brian Pilati');

@@ -52,6 +52,10 @@ class vendorModel extends db {
         return $this->query($this->selectAssociateQuery($data));
     }
 
+    public function deleteAssociate($associateId) {
+        return $this->query($this->deleteAssociateQuery($associateId));
+    }
+
     private function selectStoreEventConnectorByIdQuery($data) {
         return "
             SELECT 
@@ -244,19 +248,38 @@ class vendorModel extends db {
             SELECT 
                 seuc.storeEventUserConnectorId as associateId,
                 u.firstName,
-                u.lastName
+                u.lastName,
+                r.lineItem
             FROM
                 storeEventUserConnector seuc,
-                users u
+                users u,
+                registrationLineItems r
             WHERE
                 seuc.storeId = '{$this->escapeCharacters($data['storeId'])}'
                 AND seuc.eventId = '{$this->escapeCharacters($data['eventId'])}'
                 AND seuc.userId = u.userId
                 AND seuc.type = 'ASSOCIATE'
+                AND u.userId = r.userId
+                AND r.eventId = '{$this->escapeCharacters($data['eventId'])}'
+                AND (
+                    r.eventLineItemCodeId = '1'
+                    OR
+                    r.eventLineItemCodeId = '13'
+                )
+
             ORDER BY
                 u.firstName
         ;
       ";
+    }
+
+    private function deleteAssociateQuery($associateId) {
+        return "
+            DELETE FROM
+                storeEventUserConnector
+            WHERE
+                storeEventUserConnectorId = '{$this->escapeCharacters($associateId)}';
+        ";
     }
 }
 ?>

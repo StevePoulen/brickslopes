@@ -59,11 +59,17 @@
 
         .associateContainer {
             position: relative;
+            margin-top: 10px;
+            margin-bottom: 10px;
             float: left;
             width: 100%;
-            height: 50px;
+            height: 30px;
             text-align: left;
-            font-size: 2em;
+            font-size: 1.5em;
+
+            .pass {
+                font-size: .75em;
+            }
         }
     }
 }

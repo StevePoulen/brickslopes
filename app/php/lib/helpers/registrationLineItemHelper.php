@@ -63,6 +63,7 @@
                 $data['firstVendorTableAmount'] = $this->eventLineItemCodes['10009']['discount'];
                 $data['eventVendorAmount'] = $this->eventLineItemCodes['10010']['discount'];
                 $data['additionalVendorTableAmount'] = $this->eventLineItemCodes['10011']['discount'];
+                $data['eventAssociateAmount'] = $this->eventLineItemCodes['10012']['discount'];
                 $data['discount'] = 'YES';
             } else {
                 $data['eventAmount'] = $this->eventLineItemCodes['10000']['cost'];
@@ -77,6 +78,7 @@
                 $data['firstVendorTableAmount'] = $this->eventLineItemCodes['10009']['cost'];
                 $data['eventVendorAmount'] = $this->eventLineItemCodes['10010']['cost'];
                 $data['additionalVendorTableAmount'] = $this->eventLineItemCodes['10011']['cost'];
+                $data['eventAssociateAmount'] = $this->eventLineItemCodes['10012']['cost'];
                 $data['discount'] = 'NO';
             }
 
@@ -92,6 +94,7 @@
             $data['firstVendorTableLineItem'] = $this->eventLineItemCodes['10009']['lineItem'];
             $data['eventVendorLineItem'] = $this->eventLineItemCodes['10010']['lineItem'];
             $data['additionalVendorTableLineItem'] = $this->eventLineItemCodes['10011']['lineItem'];
+            $data['eventAssociateLineItem'] = $this->eventLineItemCodes['10012']['lineItem'];
 
             if (ISSET($data['nocost']) && $data['nocost']) {
                 $data['eventAmount'] = '0.00';
@@ -156,7 +159,7 @@
         }
 
         private function determineAddEventBrick($data) {
-            if (ISSET($data['vendorPass'])) {
+            if (ISSET($data['associatePass'])) {
                 $this->addEventBrick = false;
             } else {
                 $this->addEventBrick = true;
@@ -165,14 +168,27 @@
 
         private function determineEventLineItem($data) {
             try {
-                if ($data['vendorPass'] === 'YES') {
+                if (ISSET($data['vendor']) && $data['vendor'] === 'YES') {
                     $this->addVendorEventLineItem($data);
+                } else if (ISSET($data['associatePass']) && $data['associatePass'] === 'YES') {
+                    $this->addAssociateEventLineItem($data);
                 } else {
                     $this->addEventLineItem($data);
                 }
             } catch (exception $err) {
                 $this->addEventLineItem($data);
             }
+        }
+
+        private function addAssociateEventLineItem($data) {
+            try {
+                $dto = $this->getDTO($data);
+                $dto['eventLineItemCodeId'] = 13;
+                $dto['amount'] = $data['eventAssociateAmount'];
+                $dto['discount'] = $data['discount'];
+                $dto['lineItem'] =  $data['eventAssociateLineItem'];
+                $this->registrationLineItemObj->addRegistrationLineItems($dto);
+            } catch (exception $err) { }
         }
 
         private function addVendorEventLineItem($data) {

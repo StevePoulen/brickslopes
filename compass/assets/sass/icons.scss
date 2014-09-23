@@ -68,6 +68,12 @@ i {
     cursor: pointer;
 }
 
+.icons-delete {
+    background-position: sprite-position($icons-sprite, delete);
+    width: image-width("icons/delete.png");
+    height: image-height("icons/delete.png");
+}
+
 .icons-lock {
     background-position: sprite-position($icons-sprite, lock_black);
     width: image-width("icons/lock_black.png");

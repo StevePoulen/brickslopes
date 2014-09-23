@@ -1,1 +1,1 @@
-1,A Boy's Mission,All LEGO Bro,http://www.brickshelf.com/abm,http://www.mylogo.com,12,123,Ember,Pilati,245,56789,2014-08-30 16:29:22
+1,A Boy's Mission,All LEGO Bro,http://www.brickshelf.com/abm,http://www.mylogo.com,12,123,Ember,Pilati,245,56789,2014-08-30 16:29:22,Associate Pass

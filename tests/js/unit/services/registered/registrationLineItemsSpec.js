@@ -34,7 +34,8 @@ describe('service', function() {
                 expect(data[2].lineItems[0].lineItem).toEqualData('Event Pass - Brian Pilati');
                 expect(data[2].lineItems[5].lineItem).toEqualData('Event Pass - Ember Pilati');
                 expect(data[2].lineItems[6].lineItem).toEqualData('Event Badge Brick - Ember Pilati');
-                expect(data[2].lineItems[7].lineItem).toEqualData('Vendor Pass - T h');
+                expect(data[2].lineItems[7].lineItem).toEqualData('Vendor Pass - Ember');
+                expect(data[2].lineItems[8].lineItem).toEqualData('Associate Pass - T h');
             });
         });
 

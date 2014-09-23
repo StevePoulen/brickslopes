@@ -349,11 +349,11 @@ class RegistrationLineItemHelperTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(sizeOf($GLOBALS['addRegistrationLineItems']), 4);
         
         $lineItemObj = $GLOBALS['addRegistrationLineItems'][0];
-        $this->assertEquals($lineItemObj['eventLineItemCodeId'], '1');
+        $this->assertEquals($lineItemObj['eventLineItemCodeId'], '11');
         $this->assertEquals($lineItemObj['eventId'], 2);
         $this->assertEquals($lineItemObj['userId'], 7);
-        $this->assertEquals($lineItemObj['lineItem'], 'Event Pass');
-        $this->assertEquals($lineItemObj['amount'], '60.00');
+        $this->assertEquals($lineItemObj['lineItem'], 'Vendor Pass');
+        $this->assertEquals($lineItemObj['amount'], '8.00');
         $this->assertEquals($lineItemObj['paid'], 'NO');
         $this->assertEquals($lineItemObj['discount'], 'YES');
         $this->assertEquals($lineItemObj['description'], null);
@@ -418,17 +418,17 @@ class RegistrationLineItemHelperTest extends PHPUnit_Framework_TestCase
             'discountDate' => $this->tomorrow,
             'eventId' => 2,
             'userId' => 7,
-            'vendorPass' => 'YES'
+            'associatePass' => 'YES'
         );
         $GLOBALS['db_query'] = '1';
         $this->helper->addRegistrationLineItems($dto);
         //Event Pass
         $lineItemObj = $GLOBALS['addRegistrationLineItems'][0];
-        $this->assertEquals($lineItemObj['eventLineItemCodeId'], '11');
+        $this->assertEquals($lineItemObj['eventLineItemCodeId'], '13');
         $this->assertEquals($lineItemObj['eventId'], 2);
         $this->assertEquals($lineItemObj['userId'], 7);
-        $this->assertEquals($lineItemObj['lineItem'], 'Vendor Pass');
-        $this->assertEquals($lineItemObj['amount'], '8.00');
+        $this->assertEquals($lineItemObj['lineItem'], 'Associate Pass');
+        $this->assertEquals($lineItemObj['amount'], '6.00');
         $this->assertEquals($lineItemObj['paid'], 'NO');
         $this->assertEquals($lineItemObj['discount'], 'YES');
         $this->assertEquals($lineItemObj['description'], null);

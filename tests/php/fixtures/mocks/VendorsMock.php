@@ -11,6 +11,10 @@ class vendorModel extends db {
         return $this->query();
     }
 
+    public function deleteAssociate($data) {
+        return $this->query();
+    }
+
     public function getVendorStoreInformation($data) {
         return $this->query();
     }
@@ -68,5 +72,6 @@ class VendorsMock extends modelObjects {
     public function eventId() { return $this->getData(9); }
     public function tableId() { return $this->getData(10); }
     public function creationDate() { return $this->getData(11); }
+    public function lineItem() { return $this->getData(12); }
 }
 ?>

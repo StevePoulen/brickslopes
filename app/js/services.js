@@ -341,6 +341,7 @@ angular.module('brickSlopes.services', ['ngResource'])
                     if (
                         lineItem.lineItemCode === '10000' ||
                         lineItem.lineItemCode === '10010' ||
+                        lineItem.lineItemCode === '10012' ||
                         lineItem.lineItemCode === '10006'
                     ) {
                         lineItem.lineItem = lineItem.lineItem + ' - ' + lineItem.description;
@@ -576,6 +577,23 @@ angular.module('brickSlopes.services', ['ngResource'])
                 delay.resolve(data);
             }).error(function(data, status, headers, config) {
                 delay.reject(data);
+            });
+
+            return delay.promise;
+        },
+
+        deleteAssociate: function(associateDTO) {
+            var delay= $q.defer();
+            $http (
+                {
+                    method: 'DELETE',
+                    url: '/controllers/registered/vendors/vendorAssociates.php',
+                    params: associateDTO,
+                }
+            ).success(function(data, status, headers, config) {
+                delay.resolve(status);
+            }).error(function(data, status, headers, config) {
+                delay.reject(status);
             });
 
             return delay.promise;

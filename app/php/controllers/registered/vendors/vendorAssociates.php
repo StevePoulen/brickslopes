@@ -38,13 +38,27 @@ class VendorAssociates {
                     array (
                         'associateId' => $dbObj->associateId,
                         'firstName' => $dbObj->firstName,
-                        'lastName' => $dbObj->lastName
+                        'lastName' => $dbObj->lastName,
+                        'lineItem' => $dbObj->lineItem
                     )
                 );
             }
         }
         header("HTTP/1.0 200 Success");
         echo json_encode ($associateJson);
+    }
+
+    private function delete() {
+        $associateJson = array();
+        $payload = $_GET;
+        $result = $this->vendorsObj->deleteAssociate($payload['associateId']);
+        if ($result == 1) {
+            $registrationModel = new registrationLineItemModel();
+            $registrationModel->deleteRegistrationLineItems($payload['associateId'], $payload['eventId']);
+            header("HTTP/1.0 200 Success");
+        } else {
+            header("HTTP/1.0 400 Bad Request");
+        }
     }
 
     private function addAssociateVendor($payload) {
@@ -68,7 +82,7 @@ class VendorAssociates {
             if ($payload['addAfolPass'] === 'YES') {
                 $lineItemPayload['badgeLine1'] = "{$payload['firstName']} {$payload['lastName']}";
             } else {
-                $lineItemPayload['vendorPass'] = 'YES';
+                $lineItemPayload['associatePass'] = 'YES';
             }
             $lineItemPayload['description'] = "{$payload['firstName']} {$payload['lastName']}";
 

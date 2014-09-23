@@ -40,7 +40,7 @@ describe('controllers', function() {
 
         describe('Digest Values', function() {
             beforeEach(function() {
-                mockBackend.expectGET('/controllers/registered/vendors/vendorAssociates.php?eventId=2&storeId=4').respond(201, associates);
+                mockBackend.expectGET('/controllers/registered/vendors/vendorAssociates.php?eventId=2&storeId=4').respond(201, associatesMock);
                 mockBackend.expectGET('/controllers/public/event.php?eventId=2').respond(201, eventDetails);
                 mockBackend.flush();
             });
@@ -113,7 +113,7 @@ describe('controllers', function() {
                     lastName: associateDTO.lastName
                 }
 
-                mockBackend.expectGET('/controllers/registered/vendors/vendorAssociates.php?eventId=2&storeId=4').respond(201, associates);
+                mockBackend.expectGET('/controllers/registered/vendors/vendorAssociates.php?eventId=2&storeId=4').respond(201, associatesMock);
                 mockBackend.expectGET('/controllers/public/event.php?eventId=2').respond(201, eventDetails);
             });
 
@@ -135,9 +135,9 @@ describe('controllers', function() {
                 expect(scope.addAfolPass).toBe('YES');
 
                 //valid the associates collection
-                expect(scope.associates[1].associateId).toBe(1234);
-                expect(scope.associates[1].firstName).toBe('Steve');
-                expect(scope.associates[1].lastName).toBe('Poulsen');
+                expect(scope.associates[3].associateId).toBe(1234);
+                expect(scope.associates[3].firstName).toBe('Steve');
+                expect(scope.associates[3].lastName).toBe('Poulsen');
             });
 
             it('should display an error', function() {
@@ -164,6 +164,40 @@ describe('controllers', function() {
                 expect(scope.modalTitle).toBe('Error');
                 expect(scope.displayMessage.$$unwrapTrustedValue()).toBe('You may not add yourself as an associate of your own store.');
                 expect(scope.showModal).toBe(true);
+            });
+        });
+
+        describe('Delete an Associate', function() {
+            var associateDTO;
+            beforeEach(function() {
+                associateDTO = {
+                    eventId: 2,
+                    associateId: 4
+                }
+
+                mockBackend.expectGET('/controllers/registered/vendors/vendorAssociates.php?eventId=2&storeId=4').respond(201, associatesMock);
+                mockBackend.expectGET('/controllers/public/event.php?eventId=2').respond(201, eventDetails);
+            });
+
+            it('should create an associate', function() {
+                scope.eventId = 2;
+                scope.associate = {associateId: 4};
+                scope.clickDelete();
+                mockBackend.expectDELETE('/controllers/registered/vendors/vendorAssociates.php?associateId=4&eventId=2').respond(201);
+                mockBackend.flush();  
+
+                //valid the associates collection
+                expect(scope.associates[0].associateId).toBe(2);
+                expect(scope.associates[1].associateId).toBe(3);
+                expect(scope.associates[2]).toBeUndefined();
+            });
+
+            it('should display an error', function() {
+                scope.eventId = 2;
+                scope.associate = {associateId: 4};
+                scope.clickDelete();
+                mockBackend.expectDELETE('/controllers/registered/vendors/vendorAssociates.php?associateId=4&eventId=2' ).respond(400, {error: 'nothing'});
+                mockBackend.flush();
             });
         });
 

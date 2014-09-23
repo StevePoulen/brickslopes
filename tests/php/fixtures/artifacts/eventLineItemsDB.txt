@@ -10,3 +10,4 @@ Draft - $25,25.00,26.00,YES,10008,GAME,54
 1st Vendor Table,100.00,101.00,YES,10009,NONE
 Vendor Pass,7.00,8.00,YES,10010,NONE
 Additional Vendor Tables,75.00,76.00,YES,10011,NONE
+Associate Pass,5.00,6.00,YES,10012,NONE
