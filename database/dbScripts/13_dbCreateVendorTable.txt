@@ -6,6 +6,7 @@
 
 USE `brickslopes`;
 
+DROP TABLE IF EXISTS `storeAssociateLineItemConnector`;
 DROP TABLE IF EXISTS `storeEventUserConnector`;
 DROP TABLE IF EXISTS `storeEventConnector`;
 DROP TABLE IF EXISTS `vendorConnector`;
@@ -62,3 +63,14 @@ CREATE TABLE `storeEventUserConnector` (
   FOREIGN KEY (`storeId`) REFERENCES `stores` (`storeId`),
   UNIQUE KEY `storeEventUserConnectorId_UNIQUE` (`storeEventUserConnectorId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='The Store Event User Connector Table';
+
+CREATE TABLE `storeAssociateLineItemConnector` (
+  `storeAssociateLineItemConnectorId` INT(10) UNSIGNED UNIQUE NOT NULL auto_increment,
+  `registrationLineItemId` INT(10) UNSIGNED NOT NULL,
+  `storeEventUserConnectorId` INT(10) UNSIGNED NOT NULL,
+  PRIMARY KEY (`storeAssociateLineItemConnectorId`),
+  INDEX (registrationLineItemId, storeEventUserConnectorId),
+  FOREIGN KEY (`registrationLineItemId`) REFERENCES `registrationLineItems` (`registrationLineItemId`),
+  FOREIGN KEY (`storeEventUserConnectorId`) REFERENCES `storeEventUserConnector` (`storeEventUserConnectorId`),
+  UNIQUE KEY `storeAssociateLineItemConnectorId_UNIQUE` (`storeAssociateLineItemConnectorId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='The Store Associate Line Item Connector Table';

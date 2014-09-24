@@ -1,0 +1,18 @@
+-- MySQL dump 10.11
+--
+-- Host: localhost    Database: mysql
+-- ------------------------------------------------------
+-- Server version	5.0.83
+
+USE `brickslopes`;
+
+CREATE TABLE `storeAssociateLineItemConnector` (
+  `storeAssociateLineItemConnectorId` INT(10) UNSIGNED UNIQUE NOT NULL auto_increment,
+  `registrationLineItemId` INT(10) UNSIGNED NOT NULL,
+  `storeEventUserConnectorId` INT(10) UNSIGNED NOT NULL,
+  PRIMARY KEY (`storeAssociateLineItemConnectorId`),
+  INDEX (registrationLineItemId, storeEventUserConnectorId),
+  FOREIGN KEY (`registrationLineItemId`) REFERENCES `registrationLineItems` (`registrationLineItemId`),
+  FOREIGN KEY (`storeEventUserConnectorId`) REFERENCES `storeEventUserConnector` (`storeEventUserConnectorId`),
+  UNIQUE KEY `storeAssociateLineItemConnectorId_UNIQUE` (`storeAssociateLineItemConnectorId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='The Store Associate Line Item Connector Table';
