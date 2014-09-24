@@ -110,7 +110,8 @@ describe('controllers', function() {
                 response = {
                     associateId: 1234,
                     firstName: associateDTO.firstName,
-                    lastName: associateDTO.lastName
+                    lastName: associateDTO.lastName,
+                    lineItem: '4 Day Event Pass'
                 }
 
                 mockBackend.expectGET('/controllers/registered/vendors/vendorAssociates.php?eventId=2&storeId=4').respond(201, associatesMock);
@@ -138,6 +139,7 @@ describe('controllers', function() {
                 expect(scope.associates[3].associateId).toBe(1234);
                 expect(scope.associates[3].firstName).toBe('Steve');
                 expect(scope.associates[3].lastName).toBe('Poulsen');
+                expect(scope.associates[3].lineItem).toBe('4 Day Event Pass');
             });
 
             it('should display an error', function() {
@@ -184,7 +186,7 @@ describe('controllers', function() {
                 scope.associate = {associateId: 4};
                 scope.clickDelete();
                 mockBackend.expectDELETE('/controllers/registered/vendors/vendorAssociates.php?associateId=4&eventId=2').respond(201);
-                mockBackend.flush();  
+                mockBackend.flush();
 
                 //valid the associates collection
                 expect(scope.associates[0].associateId).toBe(2);

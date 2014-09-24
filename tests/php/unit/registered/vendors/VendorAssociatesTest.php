@@ -73,6 +73,7 @@ class VendorAssociatesTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($output['associateId'], '1234');
         $this->assertEquals($output['firstName'], 'Cody');
         $this->assertEquals($output['lastName'], 'Ottley');
+        $this->assertEquals($output['lineItem'], 'Associate Pass');
 
         $lineItemObj = $GLOBALS['addRegistrationLineItems'][0];
         $this->assertEquals($lineItemObj['eventLineItemCodeId'], '13');
@@ -129,6 +130,7 @@ class VendorAssociatesTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($output['associateId'], '1234');
         $this->assertEquals($output['firstName'], 'Cody');
         $this->assertEquals($output['lastName'], 'Ottley');
+        $this->assertEquals($output['lineItem'], '4 Day Event Pass');
 
         //Event Pass - Owner
         $lineItemObj = $GLOBALS['addRegistrationLineItems'][0];
@@ -220,6 +222,7 @@ class VendorAssociatesTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($output['associateId'], '1234');
         $this->assertEquals($output['firstName'], 'Brian');
         $this->assertEquals($output['lastName'], 'Pilati');
+        $this->assertEquals($output['lineItem'], 'Associate Pass');
 
         //Owner
         $lineItemObj = $GLOBALS['addRegistrationLineItems'][0];
@@ -275,6 +278,7 @@ class VendorAssociatesTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($output['associateId'], '1234');
         $this->assertEquals($output['firstName'], 'Brian');
         $this->assertEquals($output['lastName'], 'Pilati');
+        $this->assertEquals($output['lineItem'], '4 Day Event Pass');
 
         //Event Pass - owner
         $lineItemObj = $GLOBALS['addRegistrationLineItems'][0];

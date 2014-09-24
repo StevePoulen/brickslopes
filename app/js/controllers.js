@@ -744,7 +744,8 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
             {
                 associateId: associate.associateId,
                 firstName: associate.firstName,
-                lastName: associate.lastName
+                lastName: associate.lastName,
+                lineItem: associate.lineItem
             }
         )
     }

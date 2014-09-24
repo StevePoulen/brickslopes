@@ -79,6 +79,12 @@ var eventDetails = {
             discount: '75.00',
             active: 'YES',
             lineItem: 'Vendor Tables',
+        },
+        '10012': {
+            cost: '15.00',
+            discount: '10.00',
+            active: 'YES',
+            lineItem: 'Associate Pass',
         }
     }
 };
