@@ -346,6 +346,7 @@
             return array (
                 'eventId' => $data['eventId'], 
                 'userId' => $data['userId'], 
+                'ownerId' => (ISSET($data['ownerId']) ? $data['ownerId'] : $data['userId']), 
                 'lineItem' => null,
                 'amount' => null,
                 'paid' => 'NO',

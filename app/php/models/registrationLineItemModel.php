@@ -46,6 +46,7 @@ class registrationLineItemModel extends db {
                 active,
                 size,
                 isOwner,
+                ownerId,
                 entryDate
             FROM
                 registrationLineItems r,
@@ -79,13 +80,18 @@ class registrationLineItemModel extends db {
             DELETE FROM
                 registrationLineItems
             WHERE
-                userId = '{$userId}'
-                AND eventId = '{$eventId}'
+                (
+                    userId = '{$this->escapeCharacters($userId)}'
+                    OR
+                    ownerId = '{$this->escapeCharacters($userId)}'
+                )
+                AND eventId = '{$this->escapeCharacters($eventId)}'
         ;
       ";
     }
 
     private function insertQuery($data) {
+        $ownerId = (ISSET($data['ownerId']) ? $data['ownerId'] : $data['userId']);
         return "
             INSERT INTO
                 registrationLineItems 
@@ -102,6 +108,7 @@ class registrationLineItemModel extends db {
                 quantity,
                 active,
                 isOwner,
+                ownerId,
                 entryDate
             )
         VALUES
@@ -118,6 +125,7 @@ class registrationLineItemModel extends db {
                 '{$this->escapeCharacters($data['quantity'])}',
                 '{$this->escapeCharacters($data['active'])}',
                 '{$this->escapeCharacters($data['isOwner'])}',
+                '{$this->escapeCharacters($ownerId)}',
                 NOW()
           )
         ;

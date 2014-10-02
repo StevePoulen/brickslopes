@@ -70,9 +70,10 @@ describe('service', function() {
                 dto = {
                     eventId: 2,
                     associateId: 22,
+                    userId: 23,
                 }
                 mockBackend = _$httpBackend_;
-                mockBackend.expectDELETE('/controllers/registered/vendors/vendorAssociates.php?associateId=22&eventId=2').respond(200, 'Success');
+                mockBackend.expectDELETE('/controllers/registered/vendors/vendorAssociates.php?associateId=22&eventId=2&userId=23').respond(200, 'Success');
                 service = VendorDetails;
             }));
 

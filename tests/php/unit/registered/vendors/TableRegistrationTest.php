@@ -72,7 +72,8 @@ class TableRegistrationTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($lineItemObj['quantity'], 1);
         $this->assertEquals($lineItemObj['active'], 'YES');
         $this->assertEquals($lineItemObj['isOwner'], 'YES');
-        $this->assertEquals(sizeOf($lineItemObj), 12);
+        $this->assertEquals($lineItemObj['ownerId'], '5');
+        $this->assertEquals(sizeOf($lineItemObj), 13);
 
         $lineItemObj = $GLOBALS['addRegistrationLineItems'][1];
         $this->assertEquals($lineItemObj['eventLineItemCodeId'], 7);
@@ -87,7 +88,8 @@ class TableRegistrationTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($lineItemObj['quantity'], 1);
         $this->assertEquals($lineItemObj['active'], 'YES');
         $this->assertEquals($lineItemObj['isOwner'], 'YES');
-        $this->assertEquals(sizeOf($lineItemObj), 12);
+        $this->assertEquals($lineItemObj['ownerId'], '5');
+        $this->assertEquals(sizeOf($lineItemObj), 13);
 
         $lineItemObj = $GLOBALS['addRegistrationLineItems'][2];
         $this->assertEquals($lineItemObj['eventLineItemCodeId'], 10);
@@ -102,7 +104,8 @@ class TableRegistrationTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($lineItemObj['quantity'], 1);
         $this->assertEquals($lineItemObj['active'], 'YES');
         $this->assertEquals($lineItemObj['isOwner'], 'YES');
-        $this->assertEquals(sizeOf($lineItemObj), 12);
+        $this->assertEquals($lineItemObj['ownerId'], '5');
+        $this->assertEquals(sizeOf($lineItemObj), 13);
 
         $lineItemObj = $GLOBALS['addRegistrationLineItems'][3];
         $this->assertEquals($lineItemObj['eventLineItemCodeId'], 12);
@@ -117,7 +120,8 @@ class TableRegistrationTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($lineItemObj['quantity'], 11);
         $this->assertEquals($lineItemObj['active'], 'YES');
         $this->assertEquals($lineItemObj['isOwner'], 'YES');
-        $this->assertEquals(sizeOf($lineItemObj), 12);
+        $this->assertEquals($lineItemObj['ownerId'], '5');
+        $this->assertEquals(sizeOf($lineItemObj), 13);
 
         //Verify Emails
         $this->assertEquals($GLOBALS['addEmailHistoryInformation'][0]['type'], 'mail::sendVendorRegistrationMessage');
@@ -159,7 +163,8 @@ class TableRegistrationTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($lineItemObj['quantity'], 1);
         $this->assertEquals($lineItemObj['active'], 'YES');
         $this->assertEquals($lineItemObj['isOwner'], 'YES');
-        $this->assertEquals(sizeOf($lineItemObj), 12);
+        $this->assertEquals($lineItemObj['ownerId'], '5');
+        $this->assertEquals(sizeOf($lineItemObj), 13);
 
         //Remaining Tables
         $lineItemObj = $GLOBALS['addRegistrationLineItems'][1];
@@ -175,7 +180,8 @@ class TableRegistrationTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($lineItemObj['quantity'], 6);
         $this->assertEquals($lineItemObj['active'], 'YES');
         $this->assertEquals($lineItemObj['isOwner'], 'YES');
-        $this->assertEquals(sizeOf($lineItemObj), 12);
+        $this->assertEquals($lineItemObj['ownerId'], '5');
+        $this->assertEquals(sizeOf($lineItemObj), 13);
 
         $this->assertEquals($GLOBALS['addEmailHistoryInformation'][1]['type'], 'mail::sendVendorRegistrationMessage');
         $this->assertEquals($GLOBALS['addEmailHistoryInformation'][1]['subject'], 'BrickSlopes Vendor Registration');
@@ -214,7 +220,8 @@ class TableRegistrationTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($lineItemObj['quantity'], 1);
         $this->assertEquals($lineItemObj['active'], 'YES');
         $this->assertEquals($lineItemObj['isOwner'], 'YES');
-        $this->assertEquals(sizeOf($lineItemObj), 12);
+        $this->assertEquals($lineItemObj['ownerId'], '5');
+        $this->assertEquals(sizeOf($lineItemObj), 13);
 
         //Remaining Tables
         $lineItemObj = $GLOBALS['addRegistrationLineItems'][1];
@@ -230,6 +237,7 @@ class TableRegistrationTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($lineItemObj['quantity'], 11);
         $this->assertEquals($lineItemObj['active'], 'YES');
         $this->assertEquals($lineItemObj['isOwner'], 'YES');
-        $this->assertEquals(sizeOf($lineItemObj), 12);
+        $this->assertEquals($lineItemObj['ownerId'], '5');
+        $this->assertEquals(sizeOf($lineItemObj), 13);
     }
 }

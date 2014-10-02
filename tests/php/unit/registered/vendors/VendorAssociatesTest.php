@@ -28,6 +28,7 @@ class VendorAssociatesTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($output['firstName'], "Ember");
         $this->assertEquals($output['lastName'], 'Pilati');
         $this->assertEquals($output['lineItem'], 'Associate Pass');
+        $this->assertEquals($output['userId'], '154343');
         $this->assertEquals(sizeOf($allAssociates), 1);
 
     }
@@ -36,7 +37,8 @@ class VendorAssociatesTest extends PHPUnit_Framework_TestCase
     {
         $_GET = array(
             'eventId' => 2, 
-            'associateId' => 22
+            'associateId' => 22,
+            'userId' => 3 
         );
         $_SERVER['REQUEST_METHOD'] = "DELETE";
         $GLOBALS['db_query'] = '1';
@@ -47,8 +49,8 @@ class VendorAssociatesTest extends PHPUnit_Framework_TestCase
     public function testAuthenticatedDELETEError() 
     {
         $_GET = array(
-            'eventId' => 2, 
-            'associateId' => 22
+            'eventId' => 2,
+            'associateId' => 2 
         );
         $_SERVER['REQUEST_METHOD'] = "DELETE";
         $GLOBALS['db_query'] = 0;
@@ -71,6 +73,7 @@ class VendorAssociatesTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(http_response_code(), 201);
         $output = json_decode(get_ob(), true);
         $this->assertEquals($output['associateId'], '1234');
+        $this->assertEquals($output['userId'], '1234');
         $this->assertEquals($output['firstName'], 'Cody');
         $this->assertEquals($output['lastName'], 'Ottley');
         $this->assertEquals($output['lineItem'], 'Associate Pass');
@@ -88,7 +91,8 @@ class VendorAssociatesTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($lineItemObj['quantity'], 1);
         $this->assertEquals($lineItemObj['active'], 'YES');
         $this->assertEquals($lineItemObj['isOwner'], 'NO');
-        $this->assertEquals(sizeOf($lineItemObj), 12);
+        $this->assertEquals($lineItemObj['ownerId'], 1234);
+        $this->assertEquals(sizeOf($lineItemObj), 13);
 
         $lineItemObj = $GLOBALS['addRegistrationLineItems'][1];
         $this->assertEquals($lineItemObj['eventLineItemCodeId'], '13');
@@ -103,7 +107,8 @@ class VendorAssociatesTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($lineItemObj['quantity'], 1);
         $this->assertEquals($lineItemObj['active'], 'YES');
         $this->assertEquals($lineItemObj['isOwner'], 'YES');
-        $this->assertEquals(sizeOf($lineItemObj), 12);
+        $this->assertEquals($lineItemObj['ownerId'], 1234);
+        $this->assertEquals(sizeOf($lineItemObj), 13);
 
         //Total Line Items
         $this->assertEquals(sizeOf($GLOBALS['addRegistrationLineItems']), 2);
@@ -128,6 +133,7 @@ class VendorAssociatesTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(http_response_code(), 201);
         $output = json_decode(get_ob(), true);
         $this->assertEquals($output['associateId'], '1234');
+        $this->assertEquals($output['userId'], '1234');
         $this->assertEquals($output['firstName'], 'Cody');
         $this->assertEquals($output['lastName'], 'Ottley');
         $this->assertEquals($output['lineItem'], '4 Day Event Pass');
@@ -146,7 +152,8 @@ class VendorAssociatesTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($lineItemObj['quantity'], 1);
         $this->assertEquals($lineItemObj['active'], 'YES');
         $this->assertEquals($lineItemObj['isOwner'], 'NO');
-        $this->assertEquals(sizeOf($lineItemObj), 12);
+        $this->assertEquals($lineItemObj['ownerId'], 1234);
+        $this->assertEquals(sizeOf($lineItemObj), 13);
 
         //Badge Brick - Owner
         $lineItemObj = $GLOBALS['addRegistrationLineItems'][1];
@@ -162,7 +169,8 @@ class VendorAssociatesTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($lineItemObj['quantity'], 1);
         $this->assertEquals($lineItemObj['active'], 'YES');
         $this->assertEquals($lineItemObj['isOwner'], 'NO');
-        $this->assertEquals(sizeOf($lineItemObj), 12);
+        $this->assertEquals($lineItemObj['ownerId'], 1234);
+        $this->assertEquals(sizeOf($lineItemObj), 13);
 
         //Event Pass - Associate 
         $lineItemObj = $GLOBALS['addRegistrationLineItems'][2];
@@ -178,7 +186,8 @@ class VendorAssociatesTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($lineItemObj['quantity'], 1);
         $this->assertEquals($lineItemObj['active'], 'YES');
         $this->assertEquals($lineItemObj['isOwner'], 'YES');
-        $this->assertEquals(sizeOf($lineItemObj), 12);
+        $this->assertEquals($lineItemObj['ownerId'], 1234);
+        $this->assertEquals(sizeOf($lineItemObj), 13);
 
         //Badge Bric - Associatek
         $lineItemObj = $GLOBALS['addRegistrationLineItems'][3];
@@ -194,7 +203,8 @@ class VendorAssociatesTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($lineItemObj['quantity'], 1);
         $this->assertEquals($lineItemObj['active'], 'YES');
         $this->assertEquals($lineItemObj['isOwner'], 'YES');
-        $this->assertEquals(sizeOf($lineItemObj), 12);
+        $this->assertEquals($lineItemObj['ownerId'], 1234);
+        $this->assertEquals(sizeOf($lineItemObj), 13);
 
         //Total Line Items
         $this->assertEquals(sizeOf($GLOBALS['addRegistrationLineItems']), 4);
@@ -220,6 +230,7 @@ class VendorAssociatesTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(http_response_code(), 201);
         $output = json_decode(get_ob(), true);
         $this->assertEquals($output['associateId'], '1234');
+        $this->assertEquals($output['userId'], '123456789');
         $this->assertEquals($output['firstName'], 'Brian');
         $this->assertEquals($output['lastName'], 'Pilati');
         $this->assertEquals($output['lineItem'], 'Associate Pass');
@@ -238,7 +249,8 @@ class VendorAssociatesTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($lineItemObj['quantity'], 1);
         $this->assertEquals($lineItemObj['active'], 'YES');
         $this->assertEquals($lineItemObj['isOwner'], 'NO');
-        $this->assertEquals(sizeOf($lineItemObj), 12);
+        $this->assertEquals($lineItemObj['ownerId'], 123456789);
+        $this->assertEquals(sizeOf($lineItemObj), 13);
 
         //Associate
         $lineItemObj = $GLOBALS['addRegistrationLineItems'][1];
@@ -254,7 +266,8 @@ class VendorAssociatesTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($lineItemObj['quantity'], 1);
         $this->assertEquals($lineItemObj['active'], 'YES');
         $this->assertEquals($lineItemObj['isOwner'], 'YES');
-        $this->assertEquals(sizeOf($lineItemObj), 12);
+        $this->assertEquals($lineItemObj['ownerId'], 123456789);
+        $this->assertEquals(sizeOf($lineItemObj), 13);
 
         //Total Line Items
         $this->assertEquals(sizeOf($GLOBALS['addRegistrationLineItems']), 2);
@@ -276,6 +289,7 @@ class VendorAssociatesTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(http_response_code(), 201);
         $output = json_decode(get_ob(), true);
         $this->assertEquals($output['associateId'], '1234');
+        $this->assertEquals($output['userId'], '123456789');
         $this->assertEquals($output['firstName'], 'Brian');
         $this->assertEquals($output['lastName'], 'Pilati');
         $this->assertEquals($output['lineItem'], '4 Day Event Pass');
@@ -294,7 +308,8 @@ class VendorAssociatesTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($lineItemObj['quantity'], 1);
         $this->assertEquals($lineItemObj['active'], 'YES');
         $this->assertEquals($lineItemObj['isOwner'], 'NO');
-        $this->assertEquals(sizeOf($lineItemObj), 12);
+        $this->assertEquals($lineItemObj['ownerId'], 123456789);
+        $this->assertEquals(sizeOf($lineItemObj), 13);
 
         //Badge Brick - owner
         $lineItemObj = $GLOBALS['addRegistrationLineItems'][1];
@@ -310,7 +325,8 @@ class VendorAssociatesTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($lineItemObj['quantity'], 1);
         $this->assertEquals($lineItemObj['active'], 'YES');
         $this->assertEquals($lineItemObj['isOwner'], 'NO');
-        $this->assertEquals(sizeOf($lineItemObj), 12);
+        $this->assertEquals($lineItemObj['ownerId'], 123456789);
+        $this->assertEquals(sizeOf($lineItemObj), 13);
 
         //Event Pass - associate
         $lineItemObj = $GLOBALS['addRegistrationLineItems'][2];
@@ -326,7 +342,8 @@ class VendorAssociatesTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($lineItemObj['quantity'], 1);
         $this->assertEquals($lineItemObj['active'], 'YES');
         $this->assertEquals($lineItemObj['isOwner'], 'YES');
-        $this->assertEquals(sizeOf($lineItemObj), 12);
+        $this->assertEquals($lineItemObj['ownerId'], 123456789);
+        $this->assertEquals(sizeOf($lineItemObj), 13);
 
         //Badge Brick - associate
         $lineItemObj = $GLOBALS['addRegistrationLineItems'][3];
@@ -342,7 +359,8 @@ class VendorAssociatesTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($lineItemObj['quantity'], 1);
         $this->assertEquals($lineItemObj['active'], 'YES');
         $this->assertEquals($lineItemObj['isOwner'], 'YES');
-        $this->assertEquals(sizeOf($lineItemObj), 12);
+        $this->assertEquals($lineItemObj['ownerId'], 123456789);
+        $this->assertEquals(sizeOf($lineItemObj), 13);
 
         //Total Line Items
         $this->assertEquals(sizeOf($GLOBALS['addRegistrationLineItems']), 4);

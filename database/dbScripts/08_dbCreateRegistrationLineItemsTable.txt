@@ -22,10 +22,12 @@ CREATE TABLE `registrationLineItems` (
   `quantity` INT(10),
   `active` ENUM('YES', 'NO'),
   `isOwner` ENUM('YES', 'NO'),
+  `ownerId` INT(10) UNSIGNED NOT NULL,
   `entryDate` DATETIME,
   PRIMARY KEY (`registrationLineItemId`),
   FOREIGN KEY (`eventId`) REFERENCES `events` (`eventId`),
   FOREIGN KEY (`userId`) REFERENCES `users` (`userId`),
+  FOREIGN KEY (`ownerId`) REFERENCES `users` (`userId`),
   FOREIGN KEY (`eventLineItemCodeId`) REFERENCES `eventLineItemCodes` (`eventLineItemCodeId`),
   UNIQUE KEY `registrationLineItemId_UNIQUE` (`registrationLineItemId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='The Registration Line Item Table';

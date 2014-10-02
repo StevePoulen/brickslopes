@@ -29,6 +29,7 @@
             $this->addEventLineItem();
             $this->updateTableCost();
             $this->updateVendorPass();
+            $this->updateRegistrationLineItemOwner();
             echo "\n\nSuccess!\n\n";
         }
 
@@ -97,6 +98,29 @@
                 echo "\n";
                 exit;
             }
+        }
+
+        private function updateRegistrationLineItemOwner() {
+            $updateObj = new db();
+            $this->validObj->query("select * from registrationLineItems;");
+            if ($this->validObj->result) {
+                while($dbObj = $this->validObj->result->fetch_object()) {
+                    $updateQuery = "update registrationLineItems set ownerId = '{$dbObj->userId}' where registrationLineItemId = '{$dbObj->registrationLineItemId}'";
+                    $updateObj->query($updateQuery);
+                }
+            } else {
+                echo "ABORTING!\n";
+                echo $this->validObj->getError();
+                echo "\n";
+                exit;
+            }
+
+            $updateQuery = "update registrationLineItems set ownerId = '74' where registrationLineItemId = '46' or registrationLineItemId = '47'";
+            $updateObj->query($updateQuery);
+
+            $this->validateQuery(53, $updateObj->query('select * from registrationLineItems where userId = ownerId'));
+
+            $this->validateQuery(4, $updateObj->query("select * from registrationLineItems where userId = '74' or ownerId = '74'"));
         }
     
         private function validateQuery($expected, $actual) {

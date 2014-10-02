@@ -73,5 +73,6 @@ class VendorsMock extends modelObjects {
     public function tableId() { return $this->getData(10); }
     public function creationDate() { return $this->getData(11); }
     public function lineItem() { return $this->getData(12); }
+    public function userId() { return $this->getData(13); }
 }
 ?>

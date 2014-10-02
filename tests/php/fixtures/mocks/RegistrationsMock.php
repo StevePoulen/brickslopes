@@ -26,6 +26,10 @@ class registrations extends db {
         return $this->query();
     }
 
+    public function deleteRegistrationInformation($data) {
+        return $this->query();
+    }
+
     public function addRegistrationInformation($data) {
         return $this->query();
     }

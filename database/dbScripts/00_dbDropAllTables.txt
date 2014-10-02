@@ -6,7 +6,6 @@
 
 USE `brickslopes`;
 
-DROP TABLE IF EXISTS `storeAssociateLineItemConnector`;
 DROP TABLE IF EXISTS `storeEventUserConnector`;
 DROP TABLE IF EXISTS `storeEventConnector`;
 DROP TABLE IF EXISTS `vendorConnector`;

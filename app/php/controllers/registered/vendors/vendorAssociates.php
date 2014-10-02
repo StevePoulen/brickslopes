@@ -37,6 +37,7 @@ class VendorAssociates {
                     $associateJson,
                     array (
                         'associateId' => $dbObj->associateId,
+                        'userId' => $dbObj->userId,
                         'firstName' => $dbObj->firstName,
                         'lastName' => $dbObj->lastName,
                         'lineItem' => $dbObj->lineItem
@@ -51,10 +52,15 @@ class VendorAssociates {
     private function delete() {
         $associateJson = array();
         $payload = $_GET;
+
         $result = $this->vendorsObj->deleteAssociate($payload['associateId']);
         if ($result == 1) {
-            $registrationModel = new registrationLineItemModel();
-            $registrationModel->deleteRegistrationLineItems($payload['associateId'], $payload['eventId']);
+            $registrationLineItemModel = new registrationLineItemModel();
+            $registrationLineItemModel->deleteRegistrationLineItems($payload['userId'], $payload['eventId']);
+
+            $registrationModel = new registrations();
+            $registrationModel->deleteRegistrationInformation($payload['userId'], $payload['eventId']);
+
             header("HTTP/1.0 200 Success");
         } else {
             header("HTTP/1.0 400 Bad Request");
@@ -90,6 +96,7 @@ class VendorAssociates {
             //Add the line item to the vendor (store owner)
             $lineItemPayload['userId'] = $this->userId;
             $lineItemPayload['isOwner'] = 'NO';
+            $lineItemPayload['ownerId'] = $payload['userId'];
             $this->registrationLineItemHelper->addRegistrationLineItems($lineItemPayload);
 
             //Add the line item to the user (store associate)
@@ -105,6 +112,7 @@ class VendorAssociates {
                 echo json_encode (
                     array (
                         'associateId' => $associateId,
+                        'userId' => $payload['userId'],
                         'firstName' => $payload['firstName'],
                         'lastName' => $payload['lastName'],
                         'lineItem' => ($payload['addAfolPass'] === 'YES' ? '4 Day Event Pass' : 'Associate Pass')

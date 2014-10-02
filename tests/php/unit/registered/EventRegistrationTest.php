@@ -94,7 +94,8 @@ class EventRegistrationTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($lineItemObj['quantity'], 1);
         $this->assertEquals($lineItemObj['active'], 'YES');
         $this->assertEquals($lineItemObj['isOwner'], 'YES');
-        $this->assertEquals(sizeOf($lineItemObj), 12);
+        $this->assertEquals($lineItemObj['ownerId'], 12345);
+        $this->assertEquals(sizeOf($lineItemObj), 13);
 
         //Meet and Greet
         $lineItemObj = $GLOBALS['addRegistrationLineItems'][1];
@@ -110,7 +111,8 @@ class EventRegistrationTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($lineItemObj['quantity'], 1);
         $this->assertEquals($lineItemObj['active'], 'YES');
         $this->assertEquals($lineItemObj['isOwner'], 'YES');
-        $this->assertEquals(sizeOf($lineItemObj), 12);
+        $this->assertEquals($lineItemObj['ownerId'], 12345);
+        $this->assertEquals(sizeOf($lineItemObj), 13);
 
         //T-Shirt
         $lineItemObj = $GLOBALS['addRegistrationLineItems'][2];
@@ -126,7 +128,8 @@ class EventRegistrationTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($lineItemObj['quantity'], 1);
         $this->assertEquals($lineItemObj['active'], 'YES');
         $this->assertEquals($lineItemObj['isOwner'], 'YES');
-        $this->assertEquals(sizeOf($lineItemObj), 12);
+        $this->assertEquals($lineItemObj['ownerId'], 12345);
+        $this->assertEquals(sizeOf($lineItemObj), 13);
         
         //Game One
         $lineItemObj = $GLOBALS['addRegistrationLineItems'][3];
@@ -142,7 +145,8 @@ class EventRegistrationTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($lineItemObj['quantity'], 1);
         $this->assertEquals($lineItemObj['active'], 'YES');
         $this->assertEquals($lineItemObj['isOwner'], 'YES');
-        $this->assertEquals(sizeOf($lineItemObj), 12);
+        $this->assertEquals($lineItemObj['ownerId'], 12345);
+        $this->assertEquals(sizeOf($lineItemObj), 13);
 
         //Game Two 
         $lineItemObj = $GLOBALS['addRegistrationLineItems'][4];
@@ -158,7 +162,8 @@ class EventRegistrationTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($lineItemObj['quantity'], 1);
         $this->assertEquals($lineItemObj['active'], 'YES');
         $this->assertEquals($lineItemObj['isOwner'], 'YES');
-        $this->assertEquals(sizeOf($lineItemObj), 12);
+        $this->assertEquals($lineItemObj['ownerId'], 12345);
+        $this->assertEquals(sizeOf($lineItemObj), 13);
 
         //Event Badge Brick
         $lineItemObj = $GLOBALS['addRegistrationLineItems'][5];
@@ -174,7 +179,8 @@ class EventRegistrationTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($lineItemObj['quantity'], 1);
         $this->assertEquals($lineItemObj['active'], 'YES');
         $this->assertEquals($lineItemObj['isOwner'], 'YES');
-        $this->assertEquals(sizeOf($lineItemObj), 12);
+        $this->assertEquals($lineItemObj['ownerId'], 12345);
+        $this->assertEquals(sizeOf($lineItemObj), 13);
 
 
         //Emails
@@ -261,7 +267,8 @@ class EventRegistrationTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($lineItemObj['quantity'], 1);
         $this->assertEquals($lineItemObj['active'], 'YES');
         $this->assertEquals($lineItemObj['isOwner'], 'YES');
-        $this->assertEquals(sizeOf($lineItemObj), 12);
+        $this->assertEquals($lineItemObj['ownerId'], 12345);
+        $this->assertEquals(sizeOf($lineItemObj), 13);
 
         //Meet and Greet
         $lineItemObj = $GLOBALS['addRegistrationLineItems'][1];
@@ -277,7 +284,8 @@ class EventRegistrationTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($lineItemObj['quantity'], 1);
         $this->assertEquals($lineItemObj['active'], 'YES');
         $this->assertEquals($lineItemObj['isOwner'], 'YES');
-        $this->assertEquals(sizeOf($lineItemObj), 12);
+        $this->assertEquals($lineItemObj['ownerId'], 12345);
+        $this->assertEquals(sizeOf($lineItemObj), 13);
 
         //T-Shirt
         $lineItemObj = $GLOBALS['addRegistrationLineItems'][2];
@@ -293,7 +301,8 @@ class EventRegistrationTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($lineItemObj['quantity'], 1);
         $this->assertEquals($lineItemObj['active'], 'YES');
         $this->assertEquals($lineItemObj['isOwner'], 'YES');
-        $this->assertEquals(sizeOf($lineItemObj), 12);
+        $this->assertEquals($lineItemObj['ownerId'], 12345);
+        $this->assertEquals(sizeOf($lineItemObj), 13);
 
         //Game Two 
         $lineItemObj = $GLOBALS['addRegistrationLineItems'][3];
@@ -309,7 +318,8 @@ class EventRegistrationTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($lineItemObj['quantity'], 1);
         $this->assertEquals($lineItemObj['active'], 'YES');
         $this->assertEquals($lineItemObj['isOwner'], 'YES');
-        $this->assertEquals(sizeOf($lineItemObj), 12);
+        $this->assertEquals($lineItemObj['ownerId'], 12345);
+        $this->assertEquals(sizeOf($lineItemObj), 13);
 
         //Event Badge Brick
         $lineItemObj = $GLOBALS['addRegistrationLineItems'][4];
@@ -325,7 +335,8 @@ class EventRegistrationTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($lineItemObj['quantity'], 1);
         $this->assertEquals($lineItemObj['active'], 'YES');
         $this->assertEquals($lineItemObj['isOwner'], 'YES');
-        $this->assertEquals(sizeOf($lineItemObj), 12);
+        $this->assertEquals($lineItemObj['ownerId'], 12345);
+        $this->assertEquals(sizeOf($lineItemObj), 13);
 
         //Emails
         $emailOutput = $GLOBALS['addEmailHistoryInformation'][0];

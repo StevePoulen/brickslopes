@@ -109,6 +109,7 @@ describe('controllers', function() {
 
                 response = {
                     associateId: 1234,
+                    userId: 5678,
                     firstName: associateDTO.firstName,
                     lastName: associateDTO.lastName,
                     lineItem: '4 Day Event Pass'
@@ -137,6 +138,7 @@ describe('controllers', function() {
 
                 //valid the associates collection
                 expect(scope.associates[3].associateId).toBe(1234);
+                expect(scope.associates[3].userId).toBe(5678);
                 expect(scope.associates[3].firstName).toBe('Steve');
                 expect(scope.associates[3].lastName).toBe('Poulsen');
                 expect(scope.associates[3].lineItem).toBe('4 Day Event Pass');
@@ -170,22 +172,16 @@ describe('controllers', function() {
         });
 
         describe('Delete an Associate', function() {
-            var associateDTO;
             beforeEach(function() {
-                associateDTO = {
-                    eventId: 2,
-                    associateId: 4
-                }
-
                 mockBackend.expectGET('/controllers/registered/vendors/vendorAssociates.php?eventId=2&storeId=4').respond(201, associatesMock);
                 mockBackend.expectGET('/controllers/public/event.php?eventId=2').respond(201, eventDetails);
             });
 
             it('should create an associate', function() {
                 scope.eventId = 2;
-                scope.associate = {associateId: 4};
+                scope.associate = {associateId: 4, userId:23};
                 scope.clickDelete();
-                mockBackend.expectDELETE('/controllers/registered/vendors/vendorAssociates.php?associateId=4&eventId=2').respond(201);
+                mockBackend.expectDELETE('/controllers/registered/vendors/vendorAssociates.php?associateId=4&eventId=2&userId=23').respond(201);
                 mockBackend.flush();
 
                 //valid the associates collection
@@ -196,9 +192,9 @@ describe('controllers', function() {
 
             it('should display an error', function() {
                 scope.eventId = 2;
-                scope.associate = {associateId: 4};
+                scope.associate = {associateId: 4, userId:3};
                 scope.clickDelete();
-                mockBackend.expectDELETE('/controllers/registered/vendors/vendorAssociates.php?associateId=4&eventId=2' ).respond(400, {error: 'nothing'});
+                mockBackend.expectDELETE('/controllers/registered/vendors/vendorAssociates.php?associateId=4&eventId=2&userId=3').respond(400, {error: 'nothing'});
                 mockBackend.flush();
             });
         });

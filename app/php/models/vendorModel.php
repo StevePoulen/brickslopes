@@ -247,6 +247,7 @@ class vendorModel extends db {
         return "
             SELECT 
                 seuc.storeEventUserConnectorId as associateId,
+                u.userId,
                 u.firstName,
                 u.lastName,
                 r.lineItem

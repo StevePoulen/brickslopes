@@ -714,10 +714,12 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
 
     $scope.clickDelete = function() {
         var associateId = this.associate.associateId;
+        var userId = this.associate.userId;
         VendorDetails.deleteAssociate(
             {
                 associateId: associateId,
-                eventId: $scope.eventId
+                eventId: $scope.eventId,
+                userId: userId
             }
         ).then(function(status) {
             deleteAssociateFromCollection(associateId);
@@ -727,22 +729,16 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     }
 
     function deleteAssociateFromCollection(associateId) {
-        var deleteIndex = undefined;
-        _.each($scope.associates, function(associate, index) {
-            if (associate.associateId == associateId) {
-                deleteIndex = index;
-            }
+        $scope.associates = _.filter($scope.associates, function(associate, index) {
+            return associate.associateId !== associateId;
         });
-
-        if (deleteIndex) {
-            delete $scope.associates[deleteIndex];
-        }
     }
 
     function addAssociateToCollection(associate) {
         $scope.associates.push(
             {
                 associateId: associate.associateId,
+                userId: associate.userId,
                 firstName: associate.firstName,
                 lastName: associate.lastName,
                 lineItem: associate.lineItem

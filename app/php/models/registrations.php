@@ -22,6 +22,10 @@ class registrations extends db {
         return $this->query($this->updateQuery($data));
     }
 
+    public function deleteRegistrationInformation($userId, $eventId) {
+        return $this->query($this->deleteQuery($userId, $eventId));
+    }
+
     public function updateRegistrationPaidByUserIdAndEventId($userId, $eventId) {
         return $this->query($this->updatePaidQueryByUserIdAndEventId($userId, $eventId));
     }
@@ -146,6 +150,17 @@ class registrations extends db {
                 comments = '{$this->escapeCharacters($data['comments'])}'
             WHERE
                 registrationId = '{$this->escapeCharacters($data['registrationId'])}'
+        ;
+      ";
+    }
+
+    private function deleteQuery($userId, $eventId) {
+        return "
+            DELETE FROM
+                registrations 
+            WHERE
+                userId = '{$this->escapeCharacters($userId)}'
+                AND eventId = '{$this->escapeCharacters($eventId)}'
         ;
       ";
     }
