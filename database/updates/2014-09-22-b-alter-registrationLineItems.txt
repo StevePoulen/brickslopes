@@ -1,0 +1,11 @@
+-- MySQL dump 10.11
+--
+-- Host: localhost    Database: mysql
+-- ------------------------------------------------------
+-- Server version	5.0.83
+
+USE `brickslopes`;
+
+ALTER TABLE registrationLineItems add `ownerId` INT(10) UNSIGNED NOT NULL after isOwner;
+
+-- ALTER TABLE registrationLineItems ADD CONSTRAINT fk_owner_id FOREIGN KEY (ownerId) references users(userId);
