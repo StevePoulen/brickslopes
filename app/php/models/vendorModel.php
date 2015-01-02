@@ -103,6 +103,8 @@ class vendorModel extends db {
             WHERE
                 s.storeId = sec.storeId
                 AND sec.eventId = '{$this->escapeCharacters($eventId)}'
+            GROUP BY
+                s.storeId
             ORDER BY
                 s.name
         ;
