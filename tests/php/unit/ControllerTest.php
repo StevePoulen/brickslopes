@@ -368,7 +368,7 @@ class ControllerTest extends PHPUnit_Framework_TestCase
         $this->controller = new Controller();
         $this->controller->invoke();
         $this->assertEquals(http_response_code(), 200);
-        $this->expectOutputRegex('/Games/');
+        $this->expectOutputRegex('/Activities/');
     }
 
     public function testPaidAndAuthenticationControllers() 
