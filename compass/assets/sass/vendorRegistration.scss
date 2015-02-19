@@ -1,5 +1,4 @@
-@import './brickslopes';
-@import './vendors';
+@import './base';
 
 #makePayment {
     position: absolute;
@@ -76,7 +75,7 @@
 
 .vendorRegistrationForm {
     position: absolute;
-    top: 0px;
+    top: 0;
     left: 50px;
     width: 500px;
     text-align: center;

@@ -1,4 +1,4 @@
-@import 'brickslopes';
+@import './base';
 
 $schedule_width: 1000px;
 $schedule_time_width: 60px;
@@ -11,12 +11,12 @@ $event_height: 50px;
 
 table.schedule {
     width: $schedule_width;
-    border-spacing: 0px;
+    border-spacing: 0;
 
     td {
         border: 0.5px solid black;
-        margin: 0px;
-        padding: 0px;
+        margin: 0;
+        padding: 0;
 
     }
 }

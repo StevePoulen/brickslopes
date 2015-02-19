@@ -1,6 +1,5 @@
 @import "compass/utilities/sprites";
-$bs_blue: #35469A;
-
+@import './base';
 
 /* Sprite maps */
 $icons-sprite: sprite-map("icons/*.png");

@@ -25,9 +25,19 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         $location.path("/tickets.html");
     }
 
+    $scope.purchaseSaturdayTickets = function() {
+        openNewWindow("https://www.eventbrite.com/e/brickslopes-slc-2015-saturday-tickets-15610137341");
+    }
+
+    $scope.purchaseFridayTickets = function() {
+        openNewWindow("https://www.eventbrite.com/e/brickslopes-slc-2015-tickets-15387662914");
+    }
+
     $scope.packages = function() {
         $location.path("/packages.html");
     }
+
+    $scope.packageList = ['Adult On-line', 'Child On-line', 'Adult Ticket and Fig', 'Child Ticket and Fig', 'Adult Ticket and Shirt', 'Child Ticket and Shirt', 'Adult Ticket, Fig and Shirt', 'Child Ticket, Fig and Shirt'];
 }])
 .controller('bsFeedback', ['$scope', 'Feedback', function($scope, Feedback) {
     $scope.feedbackOpen = false;

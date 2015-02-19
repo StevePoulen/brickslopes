@@ -11,14 +11,6 @@ describe('controllers', function() {
         )
     );
 
-    beforeEach(function() {
-        this.addMatchers({
-            toEqualData: function(expected) {
-                return angular.equals(this.actual, expected);
-            }
-        });
-    });
-
     describe('bsIndex Default Variables', function() {
         beforeEach(inject(function($controller, $rootScope) {
             scope = $rootScope.$new();
@@ -34,7 +26,11 @@ describe('controllers', function() {
         });
 
         it('should have a publicDateList variable', function() {
-            expect(scope.publicDateList).toEqualData([]);
+            expect(scope.publicDateList).toEqual([]);
+        });
+
+        it('should have a package list variable', function() {
+            expect(scope.packageList).toEqual(['Adult On-line', 'Child On-line', 'Adult Ticket and Fig', 'Child Ticket and Fig', 'Adult Ticket and Shirt', 'Child Ticket and Shirt', 'Adult Ticket, Fig and Shirt', 'Child Ticket, Fig and Shirt']);
         });
     });
 
@@ -48,6 +44,18 @@ describe('controllers', function() {
         it('should redirect to the tickets page', function() {
             scope.tickets();
             expect(location.path()).toBe('/tickets.html');
+        });
+
+        it('should redirect to the Friday tickets page', function() {
+            spyOn(window, "open");
+            scope.purchaseFridayTickets();
+            expect(window.open).toHaveBeenCalledWith('https://www.eventbrite.com/e/brickslopes-slc-2015-tickets-15387662914', '_blank');
+        });
+
+        it('should redirect to the Saturday tickets page', function() {
+            spyOn(window, "open");
+            scope.purchaseSaturdayTickets();
+            expect(window.open).toHaveBeenCalledWith('https://www.eventbrite.com/e/brickslopes-slc-2015-saturday-tickets-15610137341', '_blank');
         });
 
         it('should redirect to the packages page', function() {

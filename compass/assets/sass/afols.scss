@@ -1,12 +1,11 @@
-$dashboard_width: 1220px;
-$dashboard_height: 700px;
+@import './base';
+
 $eventPane_height: 200px;
 $eventPane_width: 297px;
 $meEventPane_width: 350px;
 $eventPane_margin: 5px;
 $eventPane_border: 2px;
 $pane_width: 1238px;
-$bs_blue: #35469A;
 
 #modalCloseButton, #dashboardCloseButton {
       position: absolute;

@@ -1,3 +1,4 @@
+@import './base';
 @import url('/css/bsbits.css');
 @import url('/css/icons.css');
 @import url('/css/animation.css');
@@ -14,25 +15,7 @@
 @import url('/css/lego.css');
 @import url('/css/tour.css');
 @import url('/css/schedule.css');
-
-//BrickSlopes Red -> #FF0500 and CMYK 0, 98, 100, 0 HEX FF0500 RGB 255 5 0
-$bs_red: #FF0500;
-//  BrickSlopes Blue -> #1224FC and 93, 86, 1, 0 / CMYK 85, 62, 3, 0  HEX 35469A RGB 38 97 247
-$bs_blue: #35469A;
-
-$bs_light_blue: #D7DAEB;
-$bs_medium_blue: #8690C2;
-$bs_green: green;
-$bs_grey: #BCBEBF;
-$bs_black: #000000;
-
-$dashboard_width: 1225px;
-$dashboard_height: 700px;
-$afol_dashboard_height: 832px;
-$pane_height: 800px;
-$splashPage_height: $dashboard_height - 10;
-
-$vendor_logo_size: 275px;
+@import url('/css/packages.css');
 
 /* Smartphones (portrait and landscape) ----------- */
 @media only screen 

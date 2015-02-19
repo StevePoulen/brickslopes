@@ -35,7 +35,7 @@ describe('directives', function() {
         }));
 
         it('should have a childPackages div', function() {
-            expect($(element).find('#childPackages').html()).toContain('XPERIENCE');
+            expect($(element).find('#childPackages').html()).toContain('View Event Package');
         });
 
         it('should have a countDown div', function() {

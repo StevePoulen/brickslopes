@@ -90,7 +90,7 @@ class ControllerTest extends PHPUnit_Framework_TestCase
         $this->controller = new Controller();
         $this->controller->invoke();
         $this->assertEquals(http_response_code(), 200);
-        $this->assertContains('Experience added fun', get_ob());
+        $this->assertContains('View Event Packages', get_ob());
     }
 
     public function testAuthenticatedSuccessNotFound() 
