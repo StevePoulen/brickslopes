@@ -17,6 +17,10 @@
 @import url('/css/schedule.css');
 @import url('/css/packages.css');
 
+
+[ng-click] {
+    cursor: pointer;
+}
 /* Smartphones (portrait and landscape) ----------- */
 @media only screen 
 and (min-device-width : 320px) 
@@ -387,6 +391,22 @@ only screen and (min-device-pixel-ratio : 1.5) {
             background: white;
             border-radius: 10px;
 
+            .unleashYourImagination {
+                position: absolute;
+                right: 0px;
+                z-index: 4;
+
+                .unleashYourImaginationImage {
+                    width: 278px;
+                    height: 690px;
+                    border-radius: 0px 5px 5px 0px;
+                }
+            }
+
+            .splashTextWho {
+                font-size: 0.80em;
+            }
+
             #splashText {
               position: absolute;
               border: none;
@@ -420,10 +440,16 @@ only screen and (min-device-pixel-ratio : 1.5) {
                 
                 .bigger2015 {
                     position: absolute;
-                    right: 10px;
-                    bottom: 30px;
-                    width: 300px;
+                    left: 10px;
+                    top: 10px;
+                    width: 430px;
                     border: none;
+
+                    .assembleTheMasterBuilders {
+                        position: absolute;
+                        top: 125px;
+                        left: 10px;
+                    }
                 }
 
                 #splashTextEmailUs {
@@ -540,24 +566,60 @@ only screen and (min-device-pixel-ratio : 1.5) {
                     position: absolute;
                     z-index: -1;
                     height: 50px;
-                    bottom: 325px;
-                    right: 15px;
+                    top: 115px;
+                    left: -95px;
                 }
 
-                .splashCrowd {
+                .sponsorText {
+                    position: absolute;
+                    width: 430px;
+                    bottom: 165px;
+                    text-align: center;
+                    left: 0px;
+                    font-size: 0.75em;
+                }
+
+                .sponsorOne {
                     position: absolute;
                     z-index: -1;
                     height: 50px;
-                    bottom: 265px;
-                    left: -15px;
+                    bottom: 110px;
+                    left: 25px;
                     border-radius: 10px;
+                    font-size: .5em;
+                }
+
+                .sponsorTwo {
+                    font-size: .5em;
+                    position: absolute;
+                    z-index: -1;
+                    height: 50px;
+                    bottom: 65px;
+                    left: 260px;
+                    border-radius: 10px;
+                }
+            }
+
+            .banner {
+                position: absolute;
+                top: 25px;
+                left: 40px;
+                height: 104px;
+                width: 400px;
+                border: 1px solid black;
+                border-radius: 5px;
+                overflow: hidden;
+
+                .bannerImage {
+                    height: 104px;
+                    width: 400px;
                 }
             }
 
             .imageLeft {
                 position: absolute;
-                top: 125px;
-                left: 50px;
+                top: 175px;
+                left: 25px;
                 height: 250px;
                 width: 250px;
                 border: 1px solid black;
@@ -567,8 +629,8 @@ only screen and (min-device-pixel-ratio : 1.5) {
 
             .imageRight {
                 position: absolute;
-                top: 325px;
-                left: 225px;
+                top: 375px;
+                left: 205px;
                 height: 250px;
                 width: 250px;
                 border: 1px solid black;
@@ -579,7 +641,6 @@ only screen and (min-device-pixel-ratio : 1.5) {
             .publicImage {
                 height: 250px;
             }
-
 
             #splashDDCouch {
                 position: absolute;
@@ -635,6 +696,10 @@ only screen and (min-device-pixel-ratio : 1.5) {
 
 .figXLarge {
   height: 250px;
+}
+
+.sponsor {
+  width: 150px;
 }
 
 img#miniAFOLRegistrationImage {

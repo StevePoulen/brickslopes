@@ -41,6 +41,18 @@ describe('controllers', function() {
             ctrl = $controller('bsIndex', { $scope: scope});
         }));
 
+        it('should redirect to the Chowren Toys page', function() {
+            spyOn(window, "open");
+            scope.chowrenToys();
+            expect(window.open).toHaveBeenCalledWith('http://www.chowrentoys.com/', '_blank');
+        });
+
+        it('should redirect to the Modern Brick Warfare page', function() {
+            spyOn(window, "open");
+            scope.modernBrickWarfare();
+            expect(window.open).toHaveBeenCalledWith('http://modernbrickwarfare.com/', '_blank');
+        });
+
         it('should redirect to the tickets page', function() {
             scope.tickets();
             expect(location.path()).toBe('/tickets.html');

@@ -25,6 +25,14 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         $location.path("/tickets.html");
     }
 
+    $scope.modernBrickWarfare = function() {
+        openNewWindow("http://modernbrickwarfare.com/");
+    }
+
+    $scope.chowrenToys = function() {
+        openNewWindow("http://www.chowrentoys.com/");
+    }
+
     $scope.purchaseSaturdayTickets = function() {
         openNewWindow("https://www.eventbrite.com/e/brickslopes-slc-2015-saturday-tickets-15610137341");
     }
