@@ -1257,6 +1257,10 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     $scope.closeDialog = function() {
         $location.path("/admin/index.html");
     }
+
+    $scope.printMocs = function() {
+        $location.path("/admin/printRegisteredMocs");
+    }
 }])
 .controller('adminFeedback', ['$scope', 'Feedback', '$location', function($scope, Feedback, $location) {
     $scope.allFeedback = undefined;

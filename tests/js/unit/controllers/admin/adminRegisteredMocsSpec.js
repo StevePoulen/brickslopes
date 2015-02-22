@@ -5,19 +5,7 @@
 describe('controllers', function() {
     var scope, ctrl, location;
 
-    beforeEach (
-        module (
-            'brickSlopes.controllers'
-        )
-    );
-
-    beforeEach(function() {
-        this.addMatchers({
-            toEqualData: function(expected) {
-                return angular.equals(this.actual, expected);
-            }
-        });
-    });
+    beforeEach (module ('brickSlopes.controllers'));
 
     describe('adminRegisteredMocs Controller', function() {
         var mockBackend;
@@ -28,6 +16,13 @@ describe('controllers', function() {
             mockBackend = _$httpBackend_;
             mockBackend.expectGET('/controllers/paid/mocs.php?eventId=2').respond(201, mocs);
         }));
+
+        describe('Print Dialog', function() {
+            it('should open a page to print cards', function() {
+                scope.printMocs();
+                expect(location.path()).toBe('/admin/printRegisteredMocs');
+            });
+        });
 
         describe('Close Dialog', function() {
             it('should redirect to index page', function() {
@@ -47,7 +42,7 @@ describe('controllers', function() {
 
             it('should have a registeredUsers list', function() {
                 mockBackend.flush();
-                expect(scope.registeredMocs[0].displayName).toEqualData('Brian Pilati');
+                expect(scope.registeredMocs[0].displayName).toBe('Brian Pilati');
             });
         });
     });

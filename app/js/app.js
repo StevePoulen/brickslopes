@@ -7,7 +7,8 @@ angular.module('brickSlopes', [
     'ngResource',
     'brickSlopes.directives',
     'brickSlopes.services',
-    'brickSlopes.controllers'
+    'brickSlopes.controllers',
+    'Admin'
 ]).
 config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvider) {
     $httpProvider.interceptors.push('authInterceptor');
@@ -137,6 +138,13 @@ config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvide
         {
             templateUrl: '/partials/admin/registeredMocs.html',
             controller: 'adminRegisteredMocs'
+        }
+    )
+    .when(
+        '/admin/printRegisteredMocs',
+        {
+            templateUrl: '/partials/admin/printRegisteredMocs.html',
+            controller: 'PrintMocs'
         }
     )
     .when(
@@ -317,3 +325,5 @@ config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvide
         }
     );
 }]);
+
+angular.module('Admin', ['brickSlopes.services']);

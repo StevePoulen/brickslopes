@@ -32,6 +32,14 @@
     }
 }
 
+.print {
+    position: absolute;
+    right: 0px;
+    top: 30px;
+    width: 200px;
+    height: 55px;
+}
+
 $email_link_color: $bs_blue;
 .orderTitles {
     a {
@@ -59,3 +67,108 @@ $email_link_color: $bs_blue;
         text-decoration: none;	
     }
 }
+
+
+.printMocsDashboard {
+    position: absolute;
+    width: 650px;
+    height: 981px;
+    background: white;
+    z-index: 1000;
+    left: 50px;
+}
+
+$card_border: 5px;
+$card_width: 304px - ($card_border * 2);
+$card_inner_width: $card_width - 22;
+
+@media print, screen {
+    .printMocContainer {
+        position: relative;
+        float: left;
+        width: 315px;
+        height: 750px;
+        background-color: #fff;
+        color: #000;
+        border: 1px dotted #000;
+        margin-bottom: 225px;
+        padding-left: 5.5px;
+        padding-bottom: 5.5px;
+
+        .back {
+            position: relative;
+            height: 370px;
+            width: 300px;
+        }
+
+        .front {
+            position: relative;
+            margin: 2px;
+            height: 360px;
+            width: $card_width;
+            border: $card_border solid #000;
+            border-radius: 10px;
+
+            %info {
+                position: relative;
+                padding-left: 10px;
+                padding-right: 10px;
+                margin-top: 5px;
+                width: $card_inner_width;
+                text-align: center;
+                font-size: 1em;
+                white-space: wrap;
+                word-wrap: break-word;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            .title {
+                @extend %info;
+                height: 60px;
+
+                .bold {
+                    font-weight: bold;
+                }
+            }
+
+            .description {
+                @extend %info;
+                margin-top: 15px;
+                height: 180px;
+            }
+
+            .mocTheme {
+                @extend %info;
+                margin-top: 0;
+                height: 25px;
+            }
+
+            .banner {
+                position: relative;
+                width: $card_inner_width;
+                left: -1px;
+
+                .bannerImage {
+                    height: 75px;
+                    width: 295px;
+                    border-radius: 0 0 5px 5px;
+                }
+            }
+        }
+    }
+}
+
+@media print and (min-resolution: 300dpi) {
+   body {
+        color: #000;
+        background-color: #000;
+        margin: 0;
+    }
+
+    @page { 
+        size:8.5in 11in;
+        margin: 200cm;
+    }
+}
+

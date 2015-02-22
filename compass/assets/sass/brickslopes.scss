@@ -710,17 +710,21 @@ img#miniStarWars {
   height: 125px;
 }
 
-#eventDashboard {
+%eventDashboard {
     border-radius: 25px;
     min-height: 700px;
     background: white;
     width: 100%;
 }
 
+#eventDashboard {
+    @extend %eventDashboard;
+}
+
 $email_height: 1210px;
 $email_link_color: $bs_blue;
 #emailDashboard {
-    @extend #eventDashboard;
+    @extend %eventDashboard;
     height: $email_height;
 
     .emailText { 
