@@ -13,7 +13,7 @@ lint:
 
 # Performs code governance (lint + style) test for css
 csslint:
-	@$(CSSLINT_PATH) --quiet --ignore=overqualified-elements,import,ids,box-model,adjoining-classes,box-sizing,outline-none ./app/css/*
+	@$(CSSLINT_PATH) --quiet --ignore=overqualified-elements,import,ids,box-model,adjoining-classes,box-sizing,outline-none,font-sizes,unqualified-attributes ./app/css/*
 
 # Performs JavaScript unit tests
 unit_js:

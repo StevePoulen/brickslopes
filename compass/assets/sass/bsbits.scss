@@ -9,6 +9,11 @@ body {
     margin-left: 15px;
 }
 
+h2 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
 /* CSS Reset for Anchor tags - Becasue IE is stupid*/
 img { 
 	border:0;
@@ -50,7 +55,6 @@ input[type="text"], input[type="email"], input[type="password"], textarea {
     border-radius: 3px;
     box-sizing: border-box;
     //color: #2F3132;
-    font-size: 14px;
     height: 35px;
     width: 220px;
     padding: 0 10px;
@@ -59,6 +63,8 @@ input[type="text"], input[type="email"], input[type="password"], textarea {
     transition-property: box-shadow, border;
     transition-timing-function: linear;
     vertical-align: middle;
+
+    @extend %oneEMFont;
 }
 
 .registrationForm input[type="text"] {
@@ -175,8 +181,16 @@ textarea::-moz-placeholder {
     background: grey;
 }
 
-.twoEMFont {
+%twoEMFont {
   font-size: 2.0em;
+}
+
+%oneEMFont {
+  font-size: 1.0em;
+}
+
+.twoEMFont {
+    @extend %twoEMFont;
 }
 
 .largeFont {
@@ -188,7 +202,7 @@ textarea::-moz-placeholder {
 }
 
 .eventsFont {
-  font-size: 1.0em;
+    @extend %oneEMFont;
 }
 
 .mediumFont {
@@ -329,7 +343,7 @@ input.ng-dirty {
     font-size: 1.5em;
 
     .title {
-        font-size: 2em;
+        @extend %twoEMFont;
         color: $bs_green;
         margin: 10px;
         margin-bottom: 20px;

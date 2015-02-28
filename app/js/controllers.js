@@ -45,7 +45,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
         $location.path("/packages.html");
     }
 
-    $scope.packageList = ['Adult On-line', 'Child On-line', 'Adult Ticket and Fig', 'Child Ticket and Fig', 'Adult Ticket and Shirt', 'Child Ticket and Shirt', 'Adult Ticket, Fig and Shirt', 'Child Ticket, Fig and Shirt'];
+    $scope.packageList = ['Adult On-line ($7.00*)', 'Child On-line ($1.00*)', 'Adult Ticket and Fig ($12.00*)', 'Child Ticket and Fig ($6.00*)', 'Adult Ticket and Shirt ($22.00*)', 'Child Ticket and Shirt ($16.00*)', 'Adult Ticket, Fig and Shirt ($25.00*)', 'Child Ticket, Fig and Shirt ($21.00*)'];
 }])
 .controller('bsFeedback', ['$scope', 'Feedback', function($scope, Feedback) {
     $scope.feedbackOpen = false;

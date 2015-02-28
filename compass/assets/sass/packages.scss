@@ -31,16 +31,22 @@ table.packages {
     z-index: 3;
     border: 5px solid $bs_blue;
 
-    h2 {
-        margin-top: 5px;
-        margin-bottom: 5px;
-    }
-
     .splashFigJackSparrow {
         position: absolute;
         z-index: 5;
         height: 50px;
         bottom: 50px;
         right: -85px;
+    }
+
+    .fees {
+        margin-top: 5px;
+        text-align: left;
+        font-size: 0.5em;
+    }
+
+    .description {
+        padding-left: 10px;
+        text-align: left;
     }
 }

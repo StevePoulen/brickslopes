@@ -22,3 +22,7 @@ $pane_height: 800px;
 $splashPage_height: $dashboard_height - 10;
 
 $vendor_logo_size: 275px;
+
+[ng-click] {
+    cursor: pointer;
+}

@@ -322,11 +322,11 @@ $pane_width: 1238px;
                 .legoBrick {
                     height: 3.2 * 3 * 5 - 5 + px;
                     padding-top: 5px;
-                    margin-left: 0px;
+                    margin-left: 0;
 
                     input {
                         border: 1px solid black;
-                        margin-left: 0px;
+                        margin-left: 0;
                         width: 315px;
                         height: 40px;
                         text-align: center;
@@ -404,7 +404,7 @@ $pane_width: 1238px;
         float: left;
         width: $eventPane_width;
         height: $eventPane_height / 2;
-        margin: 0px $eventPane_margin $eventPane_margin 0px;
+        margin: 0 $eventPane_margin $eventPane_margin 0;
         border-radius: 12px;
         border: $eventPane_border solid $bs_blue;
     }
@@ -414,7 +414,7 @@ $pane_width: 1238px;
         float: left;
         width: $eventPane_width;
         height: $eventPane_height;
-        margin: 0px $eventPane_margin $eventPane_margin 0px;
+        margin: 0 $eventPane_margin $eventPane_margin 0;
         border-radius: 12px;
         border: $eventPane_border solid $bs_blue;
     }
@@ -424,7 +424,7 @@ $pane_width: 1238px;
         float: left;
         width: $meEventPane_width;
         height: $eventPane_height * 2 + $eventPane_border * 2 + $eventPane_margin;
-        margin: 0px $eventPane_margin $eventPane_margin 0px;
+        margin: 0 $eventPane_margin $eventPane_margin 0;
         border-radius: 12px;
         border: $eventPane_border solid $bs_blue;
     }
@@ -520,7 +520,7 @@ $pane_width: 1238px;
     float: left;
     width: $eventPane_width;
     height: $eventPane_height * 2 + $eventPane_margin * 1;
-    margin: 0px $eventPane_margin $eventPane_margin 0px;
+    margin: 0 $eventPane_margin $eventPane_margin 0;
     cursor: pointer;
     border: 2px solid white;
     border-radius: 12px;
@@ -551,7 +551,7 @@ $pane_width: 1238px;
     float: left;
     width: $eventPane_width;
     height: $eventPane_height;
-    margin: 0px $eventPane_margin $eventPane_margin 0px;
+    margin: 0 $eventPane_margin $eventPane_margin 0;
     cursor: pointer;
     border: 2px solid white;
     border-radius: 12px;
@@ -623,7 +623,7 @@ $pane_width: 1238px;
 
 #themes {
     position: relative;
-    top: 0px;
+    top: 0;
     left: 10px;
 }
 

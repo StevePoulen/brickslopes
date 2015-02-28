@@ -17,10 +17,6 @@
 @import url('/css/schedule.css');
 @import url('/css/packages.css');
 
-
-[ng-click] {
-    cursor: pointer;
-}
 /* Smartphones (portrait and landscape) ----------- */
 @media only screen 
 and (min-device-width : 320px) 
@@ -393,18 +389,24 @@ only screen and (min-device-pixel-ratio : 1.5) {
 
             .unleashYourImagination {
                 position: absolute;
-                right: 0px;
+                right: 0;
                 z-index: 4;
 
                 .unleashYourImaginationImage {
                     width: 278px;
                     height: 690px;
-                    border-radius: 0px 5px 5px 0px;
+                    border-radius: 0 5px 5px 0;
                 }
             }
 
             .splashTextWho {
-                font-size: 0.80em;
+                font-size: 0.8em;
+            }
+
+            #splashTextWhen {
+                .whenExplanation {
+                    font-size: 0.75em;
+                }
             }
 
             #splashText {
@@ -575,7 +577,7 @@ only screen and (min-device-pixel-ratio : 1.5) {
                     width: 430px;
                     bottom: 165px;
                     text-align: center;
-                    left: 0px;
+                    left: 0;
                     font-size: 0.75em;
                 }
 
@@ -594,9 +596,18 @@ only screen and (min-device-pixel-ratio : 1.5) {
                     position: absolute;
                     z-index: -1;
                     height: 50px;
-                    bottom: 65px;
+                    bottom: 107px;
                     left: 260px;
                     border-radius: 10px;
+                }
+
+                .sponsorThree {
+                    font-size: .5em;
+                    position: absolute;
+                    z-index: -1;
+                    height: 75px;
+                    bottom: 35px;
+                    left: 300px;
                 }
             }
 
@@ -702,6 +713,10 @@ only screen and (min-device-pixel-ratio : 1.5) {
   width: 150px;
 }
 
+.sponsorSmall {
+  width: 75px;
+}
+
 img#miniAFOLRegistrationImage {
   height: 75px;
 }
@@ -777,7 +792,7 @@ $email_link_color: $bs_blue;
     top: 200px;
     border: 3px solid $bs_blue;
     background: white;
-    border-radius: 0px 5px 5px 0px;
+    border-radius: 0 5px 5px 0;
     z-index: 1002;
     padding: 10px;
     
@@ -789,7 +804,7 @@ $email_link_color: $bs_blue;
         right: -43px;
         background: white;
         border: 3px solid $bs_blue;
-        border-radius: 0px 5px 5px 0px;
+        border-radius: 0 5px 5px 0;
         border-left: 0;
     }
     
@@ -801,7 +816,7 @@ $email_link_color: $bs_blue;
 
     .feedbackForm {
         position: relative;
-        top: 0px;
+        top: 0;
         margin-left: auto;
         margin-right: auto;
         width: 365px;
@@ -858,8 +873,8 @@ $email_link_color: $bs_blue;
 
 .mask {
     position: absolute;
-    top: 0px;
-    left: 0px;
+    top: 0;
+    left: 0;
     z-index: 998;
     background: black;
     opacity: .7;
