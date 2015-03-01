@@ -5,19 +5,7 @@
 describe('controllers', function() {
     var scope, ctrl, location;
 
-    beforeEach (
-        module (
-            'brickSlopes.controllers'
-        )
-    );
-
-    beforeEach(function() {
-        this.addMatchers({
-            toEqualData: function(expected) {
-                return angular.equals(this.actual, expected);
-            }
-        });
-    });
+    beforeEach (module('Admin'));
 
     describe('afolAdmin Controller', function() {
         var mockBackend;
@@ -103,6 +91,13 @@ describe('controllers', function() {
             it('should redirect to the email page', function() {
                 scope.clickVendorRegistrationEmail();
                 expect(location.path()).toBe('/admin/vendorRegistration/emails');
+            });
+        });
+
+        describe('Click Site News Email', function() {
+            it('should redirect to the email page', function() {
+                scope.clickSiteNewsEmail();
+                expect(location.path()).toBe('/admin/previewSiteNews/emails');
             });
         });
 

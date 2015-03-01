@@ -412,66 +412,125 @@
             }
         }
 
-        public function sendSiteNewsMessage($body, $display=false) {
+        private function parseSiteNewsBody($body) {
+            return $body;
+            /*
+            if (preg_match("|fontwrapper|", $body)) {
+                //preg_match_all("|<[^>]+>(.*)</[^>]+>|U", $body, $out, PREG_SET_ORDER);
+                preg_match_all("|<fontwrapper\s(.*)?>(.*)</fontwrapper>|U", $body, $out, PREG_SET_ORDER);
+
+                preg_match_all("|fontsize=(.*)|", $out[0][1], $fontSize, PREG_SET_ORDER);
+
+                $output = $this->fontFormat(array_pop($out[0]), array_pop($fontSize[0]));
+
+                $body = preg_replace('|<fontwrapper.*>.*</fontwrapper>|', $output, $body, 1);
+            }
+            */
+        }
+
+        private function getSiteNewsData($siteEmailsObj) {
+            $emailData = array(
+                'subject' => null,
+                'body' => null 
+            );
+
+            if ($siteEmailsObj->result) {
+                if ($dbObj = $siteEmailsObj->result->fetch_object()) {
+                    $emailData['subject'] = $dbObj->subject;
+                    $emailData['body'] = $this->parseSiteNewsBody($dbObj->body);
+                }
+            }
+
+            return $emailData;
+        }
+        
+        private function displaySiteNewsSubject($display, $emailData) {
+            return ($display ? "<div>Email Subject: {$emailData['subject']}</div>" : "");
+        }
+
+        private function isEmailDataValid($emailData) {
+            return 
+            ( 
+                $emailData['subject'] !== null &&
+                $emailData['subject'] !== ''
+            )
+            && 
+            (
+                $emailData['body'] !== null &&
+                $emailData['body'] !== '' 
+            );
+        }
+
+        public function sendSiteNewsMessage($display=false) {
             $usersObj = new users();
+            $siteEmailsObj = new siteEmails();
             if ($display) {
                 $usersObj->getUserInformation(1); //This is my user
+                $siteEmailsObj->getSiteEmailsPreview();
             } else {
                 $usersObj->getAllUserInformation();
+                $siteEmailsObj->getSiteEmailsReady();
             }
-            while($dbObj = $usersObj->result->fetch_object()) {
-                $this->subject = "BrickSlopes News Announcement";
-                $this->message = "
-                    <!doctype html>
-                    <html>
-                        <head>
-                            <title>BrickSlopes News Announcement</title>
-                        </head>
-                        <body>
-                            {$this->getEmailBackgroundHeader()}
-                            {$this->getFirstLineSpoiler()}
-                            {$this->getBSLogo()}
-                            {$this->getNavigation()}
-                            {$this->getTableHeader()}
-                            <tr>
-                                <td align=left>
-                                    {$this->getFontWrapper(16, '#000000')}
-                                        {$dbObj->firstName},
-                                        <p>
-                                        {$body}
-                                        {$this->getPleaseVisit()}
-                                    {$this->getFontClosure()}
-                                </td>
-                            </tr>
-                            {$this->getTableFooter()}
-                            {$this->getDisclaimer($dbObj->email)}
-                            {$this->getCopyRight($dbObj->email)}
-                            {$this->getDivClosure()}
-                        </body>
-                    </html>
-                ";
 
-                if ($display) {
-                    return $this->message;
-                } else {
-                    $this->emailHistoryObj->addEmailHistoryInformation (
-                        array (
-                            'creatorId' => $this->creatorId,
-                            'recipientId' => $dbObj->userId,
-                            'type' => __METHOD__,
-                            'priority' => 9,
-                            'emailAddress' => $dbObj->email,
-                            'subject' => $this->subject,
-                            'body' => $this->message
-                        )
-                    );
+            $emailData = $this->getSiteNewsData($siteEmailsObj);
+
+            if ($this->isEmailDataValid($emailData)) {
+                while($dbObj = $usersObj->result->fetch_object()) {
+                    $this->subject = $emailData['subject'];
+                    $this->message = "
+                        <!doctype html>
+                        <html>
+                            <head>
+                                <title>BrickSlopes News Announcement</title>
+                            </head>
+                            <body>
+                                {$this->displaySiteNewsSubject($display, $emailData)}
+                                {$this->getEmailBackgroundHeader()}
+                                {$this->getFirstLineSpoiler()}
+                                {$this->getBSLogo()}
+                                {$this->getNavigation()}
+                                {$this->getTableHeader()}
+                                <tr>
+                                    <td align=left>
+                                        {$this->fontFormat(
+                                            $dbObj->firstName . ',
+                                            <p>' .
+                                            $emailData['body'] . '
+                                            <p>' .
+                                            $this->getPleaseVisit()
+                                            , 16, '#000000')
+                                        }
+                                    </td>
+                                </tr>
+                                {$this->getTableFooter()}
+                                {$this->getDisclaimer($dbObj->email)}
+                                {$this->getCopyRight($dbObj->email)}
+                                {$this->getDivClosure()}
+                            </body>
+                        </html>
+                    ";
+
+                    if ($display) {
+                        return $this->message;
+                    } else {
+                        $this->emailHistoryObj->addEmailHistoryInformation (
+                            array (
+                                'creatorId' => $this->creatorId,
+                                'recipientId' => $dbObj->userId,
+                                'type' => __METHOD__,
+                                'priority' => 9,
+                                'emailAddress' => $dbObj->email,
+                                'subject' => $this->subject,
+                                'body' => $this->message
+                            )
+                        );
+                    }
                 }
             }
         }
 
         private function getFontFamily() {
             return "FONT-FAMILY:Arial,Helvetica,Verdana,sans-serif;";
-
         }
 
         private function getEmailBackgroundHeader() {
@@ -559,6 +618,12 @@
             ";
         }
 
+        private function fontFormat($text, $fontSize=12, $fontColor='#000000') {
+            return $this->getFontWrapper($fontSize, $fontColor) .
+                $text .
+                $this->getFontClosure();
+        }
+
         private function getFontWrapper($fontSize=12, $fontColor='#999999') {
             $lineHeight = $fontSize + 1;
             return "
@@ -624,7 +689,7 @@
                 <tr>
                     <td align=left>
                         {$this->getFontWrapper()}
-                        <b> BrickSlopes -- A LEGO Fan Event&trade;.<b>
+                        <b> BrickSlopes -- A LEGO Fan Event&trade;.</b>
                         {$this->getFontClosure()}
                     </td>
                 </tr>
@@ -652,9 +717,7 @@
                 <tr>
                     <td algin=center>
                         {$this->getFontWrapper()}
-                            Copyright © BRICKSLOPES • SBC Corporation 2013-2014<br>
-                            BrickSlopes, BrickSlopes -- A LEGO Fan Event&trade; and Home of <i>endless</i> Swag are registered trademarks of SBC Corporation.<br>
-                            LEGO® is a trademark of the LEGO Group of companies which does not sponsor, authorize, or endorse this event or site. LEGOLAND® is a Merlin Entertainments Group Attraction which does not sponsor, authorize or endorse this event or site. 
+                            Copyright © BRICKSLOPES • SBC Corporation 2013-2015. BrickSlopes, BrickSlopes -- A LEGO Fan Event&trade; and Home of <i>endless</i> Swag are registered trademarks of SBC Corporation. LEGO® is a trademark of the LEGO Group of companies which does not sponsor, authorize, or endorse this event or site. LEGOLAND® is a Merlin Entertainments Group Attraction which does not sponsor, authorize or endorse this event or site. 
                         {$this->getFontClosure()}
                     </td>
                 </tr>
@@ -668,8 +731,7 @@
                 <tr>
                     <td algin=center>
                         {$this->getFontWrapper()}
-                            You are receiving this email because you signed up to receive emails at {$this->getDomain()}. If you no longer wish to receive our email updates, please click here.<br>
-                            The information contained in this communication is confidential. This communication is intended only for the use of the addressee ({$email}). If you are not the intended recipient, please notify legal@brickslopes.com promptly and delete the message.<br>Any distribution or copying of this message without the consent of BrickSlopes is prohibited.
+                            You are receiving this email because you signed up to receive emails at {$this->getDomain()}. If you no longer wish to receive our email updates, please click here. The information contained in this communication is confidential. This communication is intended only for the use of the addressee ({$email}). If you are not the intended recipient, please notify legal@brickslopes.com promptly and delete the message.<br>Any distribution or copying of this message without the consent of BrickSlopes is prohibited.
                         {$this->getFontClosure()}
                     </td>
                 </tr>

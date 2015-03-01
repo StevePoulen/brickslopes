@@ -1,6 +1,5 @@
 'use strict';
 
-/* Controllers */
 angular.module('Admin').controller('PrintMocs', ['$scope', '$location', 'MocDetails', function($scope, $location, MocDetails) {
     $scope.registeredMocs = undefined;
     $scope.eventId = 2;

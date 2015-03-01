@@ -17,8 +17,8 @@ class db {
         }
     }
 
-    public function query($query=NULL) {
-        $this->dbResult->currentLineNumber = -1;
+    public function query($query=NULL, $currentLineNumber=-1) {
+        $this->dbResult->currentLineNumber = $currentLineNumber;
 
         if(is_array($GLOBALS['db_query'])) {
             return array_shift($GLOBALS['db_query']);

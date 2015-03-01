@@ -1,0 +1,21 @@
+-- MySQL dump 10.11
+--
+-- Host: localhost    Database: mysql
+-- ------------------------------------------------------
+-- Server version	5.0.83
+
+USE `brickslopes`;
+
+CREATE TABLE `siteEmails` (
+  `siteEmailsId` INT(10) UNSIGNED UNIQUE NOT NULL auto_increment,
+  `eventId` INT(10) UNSIGNED NOT NULL,
+  `subject` VARCHAR(255),
+  `body` TEXT,
+  `created` DATETIME DEFAULT NOW(),
+  `sent` DATETIME,
+  `status` ENUM('draft', 'preview', 'ready', 'sent'),
+  PRIMARY KEY (`siteEmailsId`),
+  INDEX (eventId),
+  UNIQUE KEY `siteEmailsId_UNIQUE` (`siteEmailsId`),
+  FOREIGN KEY (`eventId`) REFERENCES `events` (`eventId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='The Site Emails Table';

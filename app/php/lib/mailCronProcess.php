@@ -1,7 +1,9 @@
 <?php
     class mailCronProcess {
-        public function __construct() {
-            $this->findQueuedEmails();
+        public function __construct($isLive=true) {
+            if ($isLive) {
+                $this->findQueuedEmails();
+            }
         }
 
         public function sendEmailTest($email) {
@@ -9,7 +11,11 @@
             $emailProperties = $mailObj->sendEmailTest($email);
 
             $this->sendEmail($emailProperties['email'], $emailProperties['subject'], $emailProperties['body'], 'test');
+        }
 
+        public function sendSiteNewsEmail() {
+            $mailObj = new mail(1);
+            $mailObj->sendSiteNewsMessage();
         }
 
         private function findQueuedEmails() {
@@ -100,13 +106,21 @@ try {
 }
 
 $sendTestEmail = false;
+$sendSiteNewsEmail = false;
 if ($sendTestEmail) {
     $_SERVER['HTTP_HOST'] = 'mybrickslopes.com';
     include_once(__DIR__ . '/../../../config/config.php');
-    $myMail = new mailCronProcess();
+    $myMail = new mailCronProcess(false);
     //$myMail = new mail('brianpilati@gmail.com');
     //$myMail = new mail('brian.pilati@domo.com');
     $myMail->sendEmailTest('brianpilati@hotmail.com');
+} else if ($sendSiteNewsEmail) {
+    $_SERVER['HTTP_HOST'] = 'mybrickslopes.com';
+    include_once(__DIR__ . '/../../../config/config.php');
+    require_once (__DIR__ . '/../models/users.php');
+    require_once (__DIR__ . '/../models/siteEmails.php');
+    $myMail = new mailCronProcess(false);
+    $myMail->sendSiteNewsEmail();
 } else {
     new mailCronProcess();
 }

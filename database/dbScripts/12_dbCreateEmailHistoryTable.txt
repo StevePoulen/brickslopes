@@ -25,3 +25,19 @@ CREATE TABLE `emailHistory` (
   FOREIGN KEY (`recipientId`) REFERENCES `users` (`userId`),
   UNIQUE KEY `emailHistoryId_UNIQUE` (`emailHistoryId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='The Email History Table';
+
+DROP TABLE IF EXISTS `siteEmails`;
+
+CREATE TABLE `siteEmails` (
+  `siteEmailsId` INT(10) UNSIGNED UNIQUE NOT NULL auto_increment,
+  `eventId` INT(10) UNSIGNED NOT NULL,
+  `subject` VARCHAR(255),
+  `body` TEXT,
+  `created` DATETIME DEFAULT NOW(),
+  `sent` DATETIME,
+  `status` ENUM('draft', 'preview', 'ready', 'sent'),
+  PRIMARY KEY (`siteEmailsId`),
+  INDEX (eventId),
+  UNIQUE KEY `siteEmailsId_UNIQUE` (`siteEmailsId`),
+  FOREIGN KEY (`eventId`) REFERENCES `events` (`eventId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='The Site Emails Table';

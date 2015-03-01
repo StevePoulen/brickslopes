@@ -79,9 +79,9 @@ class SendEmail {
             } else if ($this->isResetPasswordMessage($payload)) {
                 $this->displayResetPasswordMessage();
             } else if ($this->isPreviewSiteNewsMessage($payload)) {
-                $this->sendSiteNewsMessage($payload, true);
+                $this->sendSiteNewsMessage(true);
             } else if ($this->isSendSiteNewsMessage($payload)) {
-                $this->sendSiteNewsMessage($payload );
+                $this->sendSiteNewsMessage();
             } else {
                 header("HTTP/1.0 412 Precondition Failed");
             }
@@ -94,10 +94,10 @@ class SendEmail {
         header("HTTP/1.0 200 Success");
     }
 
-    private function sendSiteNewsMessage($payload, $isPreview=false) {
+    private function sendSiteNewsMessage($isPreview=false) {
         if ($this->userId == '1') {
             $emailObj = new mail($this->userId);
-            $previewBody = $emailObj->sendSiteNewsMessage($payload['emailBody'], $isPreview);
+            $previewBody = $emailObj->sendSiteNewsMessage($isPreview);
             if ($isPreview) {
                 echo $previewBody;
             } 

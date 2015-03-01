@@ -1,0 +1,22 @@
+** Sync'ing **
+There are two components - Live Site and Development. Please keep both dbs in sync by updating the "dbScripts" with the same changes as the "updates" folder.
+
+
+
+** Updating the PRODUCTION SITE **
+Build a script in the updates folder to run. These scripts should be one time use only.
+
+
+
+
+
+** NEVER DO THIS ON THE PRODUCTION SITE **
+Install everything for scratch
+
+This preserves the information from the first database
+and creates all the new tables
+$ ./installBrickslopesDatabase.sh
+
+This script migrates all the users from the first db to the new db
+$ ./migrations/migrationAFOLStoUsers.php
+

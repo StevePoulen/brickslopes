@@ -79,8 +79,7 @@ class SendEmailTest extends PHPUnit_Framework_TestCase
     public function testPreviewSiteNewsMessage() 
     {
         $_GET = array(
-            'userId' => '1',
-            'emailBody' => 'Hello World Preview',
+            'userId' => 1,
             'type' => 'previewSiteNews'
         );
         $_SERVER['REQUEST_METHOD'] = "GET";
@@ -88,43 +87,114 @@ class SendEmailTest extends PHPUnit_Framework_TestCase
         new SendEmail(1);
         $this->assertEquals(http_response_code(), 200);
         $output = get_ob();
-        $this->assertContains('Hello World Preview', $output);
+        $this->assertContains('Subject: This is my subject', $output);
+        $this->assertContains('This is my body', $output);
         $this->assertContains('Brian', $output);
         $this->assertNotContains('Cody', $output);
+        #$this->assertNotContains('<fontWrapper>', $output);
+        #$this->assertNotContains('</fontWrapper>', $output);
     }
 
-    public function testSendSiteNewsMessage() 
+    public function testSendSiteNewsMessageNoSubject() 
     {
+
         $_GET = array(
-            'userId' => '1',
-            'emailBody' => 'Hello World Send',
+            'userId' => 1,
             'type' => 'siteNews'
         );
         $_SERVER['REQUEST_METHOD'] = "GET";
         $GLOBALS['db_query'] = '1';
+        $GLOBALS['currentLineNumber'] = '0';
+        new SendEmail(1);
+        $this->assertEquals(http_response_code(), 200);
+        $this->assertEquals(ISSET($GLOBALS['addEmailHistoryInformation']), false);
+    }
+
+    public function testSendSiteNewsMessageNoBody() 
+    {
+
+        $_GET = array(
+            'userId' => 1,
+            'type' => 'siteNews'
+        );
+        $_SERVER['REQUEST_METHOD'] = "GET";
+        $GLOBALS['db_query'] = '1';
+        $GLOBALS['currentLineNumber'] = '1';
+        new SendEmail(1);
+        $this->assertEquals(http_response_code(), 200);
+        $this->assertEquals(ISSET($GLOBALS['addEmailHistoryInformation']), false);
+    }
+
+    public function testSendSiteNewsMessageNoSubjectOrBody() 
+    {
+
+        $_GET = array(
+            'userId' => 1,
+            'type' => 'siteNews'
+        );
+        $_SERVER['REQUEST_METHOD'] = "GET";
+        $GLOBALS['db_query'] = '1';
+        $GLOBALS['currentLineNumber'] = '2';
+        new SendEmail(1);
+        $this->assertEquals(http_response_code(), 200);
+        $this->assertEquals(ISSET($GLOBALS['addEmailHistoryInformation']), false);
+    }
+
+    public function testSendSiteNewsMessageNoQuery() 
+    {
+
+        $_GET = array(
+            'userId' => 1,
+            'type' => 'siteNews'
+        );
+        $_SERVER['REQUEST_METHOD'] = "GET";
+        $GLOBALS['db_query'] = '1';
+        $GLOBALS['db_result'] = false;
+        new SendEmail(1);
+        $this->assertEquals(http_response_code(), 200);
+        $this->assertEquals(ISSET($GLOBALS['addEmailHistoryInformation']), false);
+    }
+
+    public function testSendSiteNewsMessage() 
+    {
+
+        $_GET = array(
+            'userId' => 1,
+            'type' => 'siteNews'
+        );
+        $_SERVER['REQUEST_METHOD'] = "GET";
+        $GLOBALS['db_query'] = '1';
+        $GLOBALS['currentLineNumber'] = '-1';
         new SendEmail(1);
         $this->assertEquals(http_response_code(), 200);
         $emailOutput = $GLOBALS['addEmailHistoryInformation'];
         $this->assertEquals(sizeOf($emailOutput), 2);
-        $this->assertContains('Hello World Send', $emailOutput[0]['body']);
-        $this->assertContains('Brian', $emailOutput[0]['body']);
-        $this->assertContains('Cody', $emailOutput[1]['body']);
 
-        $this->assertEquals($emailOutput[0]['subject'], 'BrickSlopes News Announcement');
+        /*First Email*/
+        $this->assertContains('This is my body', $emailOutput[0]['body']);
+        $this->assertContains('Brian', $emailOutput[0]['body']);
+        $this->assertNotContains('Cody', $emailOutput[0]['body']);
+        $this->assertNotContains('Subject: This is my subject', $emailOutput[0]['body']);
+
+        $this->assertEquals($emailOutput[0]['subject'], 'This is my subject');
         $this->assertEquals($emailOutput[0]['creatorId'], 1);
         $this->assertEquals($emailOutput[0]['recipientId'], '123456789');
         $this->assertEquals($emailOutput[0]['type'], 'mail::sendSiteNewsMessage');
         $this->assertEquals($emailOutput[0]['priority'], 9);
         $this->assertEquals($emailOutput[0]['emailAddress'], 'brianpilati@gmail.com');
-        $this->assertContains('Hello World Send', $emailOutput[0]['body']);
 
-        $this->assertEquals($emailOutput[1]['subject'], 'BrickSlopes News Announcement');
+        /*Second Email*/
+        $this->assertNotContains('Brian', $emailOutput[1]['body']);
+        $this->assertContains('Cody', $emailOutput[1]['body']);
+        $this->assertContains('This is my body', $emailOutput[1]['body']);
+        $this->assertNotContains('Subject: This is my subject', $emailOutput[0]['body']);
+
+        $this->assertEquals($emailOutput[1]['subject'], 'This is my subject');
         $this->assertEquals($emailOutput[1]['creatorId'], 1);
         $this->assertEquals($emailOutput[1]['recipientId'], 2);
         $this->assertEquals($emailOutput[1]['type'], 'mail::sendSiteNewsMessage');
         $this->assertEquals($emailOutput[1]['priority'], 9);
         $this->assertEquals($emailOutput[1]['emailAddress'], 'blackdragon5555@yahoo.com');
-        $this->assertContains('Hello World Send', $emailOutput[1]['body']);
     }
 
     public function testSendSiteNewsMessageNotAdmin() 
