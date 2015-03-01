@@ -11,7 +11,7 @@ CREATE TABLE `siteEmails` (
   `eventId` INT(10) UNSIGNED NOT NULL,
   `subject` VARCHAR(255),
   `body` TEXT,
-  `created` DATETIME DEFAULT NOW(),
+  `created` DATETIME,
   `sent` DATETIME,
   `status` ENUM('draft', 'preview', 'ready', 'sent'),
   PRIMARY KEY (`siteEmailsId`),
