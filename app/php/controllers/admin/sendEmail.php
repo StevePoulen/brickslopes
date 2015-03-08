@@ -96,12 +96,12 @@ class SendEmail {
 
     private function sendSiteNewsMessage($isPreview=false) {
         if ($this->userId == '1') {
+            header("HTTP/1.0 200 Success");
             $emailObj = new mail($this->userId);
             $previewBody = $emailObj->sendSiteNewsMessage($isPreview);
             if ($isPreview) {
                 echo $previewBody;
             } 
-            header("HTTP/1.0 200 Success");
         } else {
             header("HTTP/1.0 412 Precondition Failed");
         }
