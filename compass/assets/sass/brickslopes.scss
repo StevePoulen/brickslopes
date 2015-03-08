@@ -387,15 +387,27 @@ only screen and (min-device-pixel-ratio : 1.5) {
             background: white;
             border-radius: 10px;
 
-            .unleashYourImagination {
+            .tShirtContainer {
                 position: absolute;
-                right: 0;
+                right: 140px;
+                top: 25px;
                 z-index: 4;
 
-                .unleashYourImaginationImage {
-                    width: 278px;
-                    height: 690px;
-                    border-radius: 0 5px 5px 0;
+                .tShirtImgae {
+                    width: 500px;
+                    height: 490px;
+                }
+            }
+
+            .tShirtTextContainer {
+                position: absolute;
+                right: 70px;
+                bottom: 200px;
+                z-index: 5;
+
+                .tShirtTextImgae {
+                    width: 250px;
+                    height: 210px;
                 }
             }
 
@@ -440,20 +452,6 @@ only screen and (min-device-pixel-ratio : 1.5) {
                 z-index: 3;
                 border: 5px solid $bs_blue;
                 
-                .bigger2015 {
-                    position: absolute;
-                    left: 10px;
-                    top: 10px;
-                    width: 430px;
-                    border: none;
-
-                    .assembleTheMasterBuilders {
-                        position: absolute;
-                        top: 125px;
-                        left: 10px;
-                    }
-                }
-
                 #splashTextEmailUs {
                     position: relative;
                     left: $dashboard_width / 4 - 180;
@@ -572,20 +570,11 @@ only screen and (min-device-pixel-ratio : 1.5) {
                     left: -95px;
                 }
 
-                .sponsorText {
-                    position: absolute;
-                    width: 430px;
-                    bottom: 165px;
-                    text-align: center;
-                    left: 0;
-                    font-size: 0.75em;
-                }
-
                 .sponsorOne {
                     position: absolute;
                     z-index: -1;
-                    height: 50px;
-                    bottom: 110px;
+                    height: 100px;
+                    bottom: 10px;
                     left: 25px;
                     border-radius: 10px;
                     font-size: .5em;
@@ -595,9 +584,9 @@ only screen and (min-device-pixel-ratio : 1.5) {
                     font-size: .5em;
                     position: absolute;
                     z-index: -1;
-                    height: 50px;
-                    bottom: 107px;
-                    left: 260px;
+                    height: 55px;
+                    bottom: 10px;
+                    right: 240px;
                     border-radius: 10px;
                 }
 
@@ -607,7 +596,7 @@ only screen and (min-device-pixel-ratio : 1.5) {
                     z-index: -1;
                     height: 75px;
                     bottom: 10px;
-                    left: 300px;
+                    right: 25px;
                 }
             }
 
@@ -711,6 +700,10 @@ only screen and (min-device-pixel-ratio : 1.5) {
 
 .sponsor {
   width: 150px;
+}
+
+.sponsorMedium {
+  width: 100px;
 }
 
 .sponsorSmall {
