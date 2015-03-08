@@ -95,7 +95,7 @@ textarea::-moz-placeholder {
 
 .actionButton {
     position: relative;
-    background: orange;
+    background: $bs_orange;
     height: 38px;
     border: 1px solid #BCBEBF;
     border-radius: 5px;
@@ -162,7 +162,7 @@ textarea::-moz-placeholder {
 
 .formButton {
     position: relative;
-    background: orange;
+    background: $bs_orange;
     height: 50px;
     border: 1px solid #BCBEBF;
     border-radius: 5px;

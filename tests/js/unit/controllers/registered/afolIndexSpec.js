@@ -180,6 +180,11 @@ describe('controllers', function() {
                 expect(location.path()).toBe('/registered/eventVenue.html');
             });
 
+            it('should redirect to eventKeynote', function() {
+                scope.clickKeynote();
+                expect(location.path()).toBe('/registered/eventKeynote.html');
+            });
+
             it('should redirect to eventVendors', function() {
                 scope.clickVendors();
                 expect(location.path()).toBe('/registered/2/eventVendors.html');

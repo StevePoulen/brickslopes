@@ -1,0 +1,31 @@
+-- MySQL dump 10.11
+--
+-- Host: localhost    Database: mysql
+-- ------------------------------------------------------
+-- Server version	5.0.83
+
+USE `brickslopes`;
+
+CREATE TABLE `siteEmails` (
+  `siteEmailsId` INT(10) UNSIGNED UNIQUE NOT NULL auto_increment,
+  `eventId` INT(10) UNSIGNED NOT NULL,
+  `subject` VARCHAR(255),
+  `body` TEXT,
+  `created` DATETIME DEFAULT NOW(),
+  `sent` DATETIME,
+  `status` ENUM('draft', 'preview', 'ready', 'sent'),
+  PRIMARY KEY (`siteEmailsId`),
+  INDEX (eventId),
+  UNIQUE KEY `siteEmailsId_UNIQUE` (`siteEmailsId`),
+  FOREIGN KEY (`eventId`) REFERENCES `events` (`eventId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='The Site Emails Table';
+
+INSERT INTO `siteEmails` (`eventId`, `subject`, `body`, `status`) values ('2', 'BrickSlopes Keynote Speaker Announcement', '
+<div>
+<p>We are pleased to announce Guy Himber as the 2015 BrickSlopes Keynote speaker!</p>
+<p>Don\'t miss out on the early-bird registration discount that ends on March 15th.</p>
+</div>
+<div>
+<img src="https://www.brickslopes.com/images/keynote/Guy-Himber_keynote_page.png">
+</div>
+', 'preview');

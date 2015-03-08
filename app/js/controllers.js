@@ -1354,8 +1354,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
     }
 
     $scope.clickKeynote = function() {
-        //$location.path("/registered/eventKeynote.html");
-        $location.path("/registered/comingSoon.html");
+        $location.path("/registered/eventKeynote.html");
     }
 
     $scope.clickCollection = function() {
