@@ -1,0 +1,21 @@
+-- MySQL dump 10.11
+--
+-- Host: localhost    Database: mysql
+-- ------------------------------------------------------
+-- Server version	5.0.83
+
+USE `brickslopes`;
+
+update `games` set maxParticipants = '40', openRegistration = 'YES' where gameId = 3;
+update `games` set maxParticipants = '40', openRegistration = 'YES' where gameId = 4;
+update `games` set maxParticipants = '50', openRegistration = 'YES' where gameId = 13;
+update `games` set maxParticipants = '50', openRegistration = 'YES' where gameId = 12;
+update `games` set maxParticipants = '40', openRegistration = 'YES' where gameId = 6;
+update `games` set maxParticipants = '40', openRegistration = 'YES' where gameId = 14;
+update `games` set maxParticipants = '36', openRegistration = 'YES' where gameId = 15;
+
+
+update `games` set maxParticipants = '200', openRegistration = 'YES' where gameId = 11;
+update `games` set maxParticipants = '200', openRegistration = 'YES' where gameId = 7;
+update `games` set maxParticipants = '200', openRegistration = 'YES' where gameId = 9;
+update `games` set maxParticipants = '200', openRegistration = 'YES' where gameId = 2;
