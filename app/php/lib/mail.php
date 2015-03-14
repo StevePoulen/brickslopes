@@ -430,12 +430,14 @@
 
         private function getSiteNewsData($siteEmailsObj) {
             $emailData = array(
+                'siteEmailsId' => null,
                 'subject' => null,
                 'body' => null 
             );
 
             if ($siteEmailsObj->result) {
                 if ($dbObj = $siteEmailsObj->result->fetch_object()) {
+                    $emailData['siteEmailsId'] = $dbObj->siteEmailsId;
                     $emailData['subject'] = $dbObj->subject;
                     $emailData['body'] = $this->parseSiteNewsBody($dbObj->body);
                 }
@@ -525,6 +527,10 @@
                             )
                         );
                     }
+                }
+
+                if (! $display) {
+                    $siteEmailsObj->updateSiteEmailsToSent($emailData['siteEmailsId']);
                 }
             }
         }

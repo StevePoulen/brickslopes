@@ -16,6 +16,10 @@ class SiteEmails extends db {
         $currentRow = (ISSET($GLOBALS['currentLineNumber']) ? $GLOBALS['currentLineNumber'] : -1);
         return $this->query(NULL, $currentRow);
     }
+
+    public function updateSiteEmailsToSent() {
+        return $this->query();
+    }
 }
 
 class SiteEmailsMock extends modelObjects {
@@ -23,7 +27,8 @@ class SiteEmailsMock extends modelObjects {
         parent::__construct('siteEmailsDB.txt');
     }
 
-    public function subject() { return $this->getData(0); }
-    public function body() { return $this->getData(1); }
+    public function siteEmailsId() { return $this->getData(0); }
+    public function subject() { return $this->getData(1); }
+    public function body() { return $this->getData(2); }
 }
 ?>

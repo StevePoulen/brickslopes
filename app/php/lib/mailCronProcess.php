@@ -105,8 +105,14 @@ try {
     loadDependencies();
 }
 
+
 $sendTestEmail = false;
 $sendSiteNewsEmail = false;
+
+if(ISSET($argv[1]) && $argv[1] === '--siteEmail') {
+    $sendSiteNewsEmail = true;
+};
+
 if ($sendTestEmail) {
     $_SERVER['HTTP_HOST'] = 'mybrickslopes.com';
     include_once(__DIR__ . '/../../../config/config.php');
