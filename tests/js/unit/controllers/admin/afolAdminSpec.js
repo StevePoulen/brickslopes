@@ -17,6 +17,7 @@ describe('controllers', function() {
             mockBackend.expectGET('/controllers/admin/registeredUsers.php').respond(201, registeredUsers);
             mockBackend.expectGET('/controllers/registered/registeredAfols.php?eventId=2').respond(201, registeredAfols);
             mockBackend.expectGET('/controllers/paid/mocs.php?eventId=2').respond(201, mocs);
+            mockBackend.expectGET('/controllers/admin/registeredGames.php?eventId=2').respond(201, registeredGames);
         }));
 
         describe('Default Variables', function() {
@@ -30,6 +31,10 @@ describe('controllers', function() {
 
             it('should have a mocCount variable', function() {
                 expect(scope.mocCount).toBe(0);
+            });
+
+            it('should have a gamesCount variable', function() {
+                expect(scope.gamesCount).toBe(0);
             });
 
             it('should have an eventId variable', function() {
@@ -49,6 +54,11 @@ describe('controllers', function() {
             it('should have a mocCount variable', function() {
                 mockBackend.flush();
                 expect(scope.mocCount).toBe(3);
+            });
+
+            it('should have a gamesCount variable', function() {
+                mockBackend.flush();
+                expect(scope.gamesCount).toBe(3);
             });
         });
 

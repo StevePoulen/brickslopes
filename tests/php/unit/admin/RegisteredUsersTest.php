@@ -18,7 +18,7 @@ class RegisteredUsersTest extends PHPUnit_Framework_TestCase
     {
         $_SERVER['REQUEST_METHOD'] = "GET";
         $GLOBALS['db_query'] = '1';
-        $event = new RegisteredUsers();
+        new RegisteredUsers();
         $this->assertEquals(http_response_code(), 200);
         $buffer = json_decode(get_ob(), true);
         $output = $buffer[0];

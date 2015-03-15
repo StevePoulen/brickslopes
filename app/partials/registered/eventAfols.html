@@ -10,11 +10,20 @@
         </div>
         <div ng-class="{evenRow: $even}" ng-repeat="afol in registeredAfols | filter:searchText:strict | orderBy:'lastName'">
             <div class="afolRow">
-                <div class="afolName leftPosition">
+                <div class="afolName">
                     {{afol.firstName}} {{afol.lastName}}
                 </div>
-                <div class="afolCity rightPosition">
+                <div class="afolCity">
                     {{afol.city}}, {{afol.state}}
+                </div>
+                <div class="afolMocCount">
+                    Registered MOCs: <span ng-bind="afol.mocCount"></span>
+                    <span ng-if="afol.themeCount"> 
+                        in <span ng-bind="afol.themeCount"></span> theme<span ng-if="afol.themeCount>1">s</span>
+                    </span>
+                </div>
+                <div class="afolGameCount">
+                    Registered Games: <span ng-bind="afol.gameCount"></span>
                 </div>
             </div>
         </div>

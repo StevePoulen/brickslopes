@@ -1,2 +1,2 @@
-1,YES,NO,This is a comment,BrickSlopes - SLC,1,1,Brian,Pilati,Spanish Fork,Utah,brian@brickslopes.com
-2,YES,NO,This is a comment,BrickSlopes - Salt Lake City,2,2,Ember,Pilati,Salem,Colorado,ember@brickslopes.com
+1,YES,NO,This is a comment,BrickSlopes - SLC,1,1,Brian,Pilati,Spanish Fork,Utah,brian@brickslopes.com,20,12,6
+2,YES,NO,This is a comment,BrickSlopes - Salt Lake City,2,2,Ember,Pilati,Salem,Colorado,ember@brickslopes.com,30,22,5

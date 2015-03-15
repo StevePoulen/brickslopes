@@ -1,9 +1,10 @@
 'use strict';
 
-angular.module('Admin').controller('afolAdmin', ['$scope', '$location', 'UserDetails', 'RegisteredAfols', 'MocDetails', function($scope, $location, UserDetails, RegisteredAfols, MocDetails) {
+angular.module('Admin').controller('afolAdmin', ['$scope', '$location', 'UserDetails', 'RegisteredAfols', 'MocDetails', 'RegisteredGames', function($scope, $location, UserDetails, RegisteredAfols, MocDetails, RegisteredGames) {
     $scope.userCount = 0;
     $scope.registeredCount = 0;
     $scope.mocCount = 0;
+    $scope.gamesCount = 0;
     $scope.eventId = 2;
 
     UserDetails.getCount().then(function(data) {
@@ -18,12 +19,20 @@ angular.module('Admin').controller('afolAdmin', ['$scope', '$location', 'UserDet
         $scope.mocCount = data;
     });
 
+    RegisteredGames.getCount($scope.eventId).then(function(data) {
+        $scope.gamesCount = data;
+    });
+
     $scope.clickFeedback = function() {
         $location.path('/admin/feedback.html');
     }
 
     $scope.clickRegistrations = function() {
         $location.path('/admin/registeredAfols.html');
+    }
+
+    $scope.clickGames= function() {
+        $location.path('/admin/registeredGames.html');
     }
 
     $scope.clickUsers = function() {

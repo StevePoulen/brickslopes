@@ -1,0 +1,44 @@
+<div id="eventDashboard">
+    <div class="dashboardText dashboardTextAuto">
+        <div>
+            <h1><bs-logo font-size="1.25"></bs-logo> &#8226; <bs-text text="Registered Games" font-color=black></bs-text></h1>
+        </div>
+        <div class="searchField bold">
+            <input ng-model="searchText" bs-placeholder="Search">
+        </div>
+        <div class='registeredGames orderTitles'>
+            <table>
+                <tr>
+                    <th>#</th>
+                    <th class="textCenter"><a href="" ng-click="predicate='gameName'; reverse=!reverse">Game Name</a></th>
+                    <th class="textCenter">Registered AFOLs</th>
+                </tr>
+                <tr ng-class="{evenRow: $even}" ng-repeat="game in registeredGames | filter:searchText:strict | orderBy:predicate:reverse">
+                    <td class="textCenter">{{$index + 1}}</td>
+                    <td class="textCenter">
+                        <div ng-bind="game.gameName"></div> 
+                        <div>
+                            Current Registered AFOLs - <span ng-bind="{{game.registeredAfols.length}}"></span>
+                        </div> 
+                        <div>
+                            Max Participants - <span ng-bind="{{game.maxParticipants}}"></span>
+                        </div> 
+                    </td>
+                    <td>
+                        <table class="oddRow">
+                            <tr>
+                                <th class="textCenter">First Name</th>
+                                <th class="textCenter">Last Name</th>
+                            </tr>       
+                            <tr ng-class="{evenRow: $even}" ng-repeat="afol in game.registeredAfols">
+                                <td class="textCenter" ng-bind="afol.firstName"></td>
+                                <td class="textCenter" ng-bind="afol.lastName"></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div id="dashboardCloseButton" ng-click="closeDialog()"></div>
+</div>

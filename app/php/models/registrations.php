@@ -47,11 +47,49 @@ class registrations extends db {
                 u.city as city,
                 u.state as state,
                 IFNULL(r.paid,'NO') as paid,
-                IFNULL(r.comments,'No Comments') as comments
+                IFNULL(r.comments,'No Comments') as comments,
+                (
+                    SELECT
+                        count(gameId)
+                    FROM
+                        gamesUsersConnector
+                    WHERE
+                        userId = u.userId
+                        AND eventId = $eventId
+                ) as gameCount,
+                (
+                    SELECT
+                        count(mocId)
+                    FROM
+                        mocs
+                    WHERE
+                        userId = u.userId
+                        AND eventId = $eventId
+                ) as mocCount,
+                IFNULL(themeTable.themeCount, 0) as themeCount
             FROM
                 registrations r,
                 events e,
                 users u
+                LEFT JOIN 
+                    ( 
+                        SELECT 
+                            COUNT(userId) as themeCount, 
+                            userId 
+                        FROM 
+                            ( 
+                                SELECT 
+                                    userId 
+                                FROM 
+                                    mocs 
+                                WHERE 
+                                    eventId = '$eventId' 
+                                GROUP BY 
+                                    themeId
+                            ) newTable 
+                        GROUP BY 
+                            userId
+                    ) themeTable ON themeTable.userId = u.userId 
             WHERE
                 r.eventId = '$eventId'
                 AND r.eventId = e.eventId
@@ -62,6 +100,8 @@ class registrations extends db {
         ;
       ";
     }
+
+    
 
     private function updatePaidQueryByUserIdAndEventId($userId, $eventId) {
         return "

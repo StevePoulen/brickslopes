@@ -134,6 +134,13 @@ config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvide
         }
     )
     .when(
+        '/admin/registeredGames.html',
+        {
+            templateUrl: '/partials/admin/registeredGames.html',
+            controller: 'adminRegisteredGames'
+        }
+    )
+    .when(
         '/admin/registeredMocs.html',
         {
             templateUrl: '/partials/admin/registeredMocs.html',

@@ -35,6 +35,7 @@ include join('/', array(__DIR__, '..', 'fixtures', 'mocks', 'ThemesMock.php'));
 include join('/', array(__DIR__, '..', 'fixtures', 'mocks', 'GamesMock.php'));
 include join('/', array(__DIR__, '..', 'fixtures', 'mocks', 'GameUserMock.php'));
 include join('/', array(__DIR__, '..', 'fixtures', 'mocks', 'FeedbackMock.php'));
+include join('/', array(__DIR__, '..', 'fixtures', 'mocks', 'AdminGamesMock.php'));
 
 /**
 * http://www.kammerl.de/ascii/AsciiSignature.php

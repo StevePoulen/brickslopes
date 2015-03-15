@@ -64,6 +64,9 @@ class RegistrationsMock extends modelObjects {
     public function city() { return $this->getData(9); }
     public function state() { return $this->getData(10); }
     public function email() { return $this->getData(11); }
+    public function mocCount() { return $this->getData(12); }
+    public function gameCount() { return $this->getData(13); }
+    public function themeCount() { return $this->getData(14); }
 }
 
 ?>

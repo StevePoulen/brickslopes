@@ -43,7 +43,10 @@ class RegisteredAfols {
                     'firstName' => $dbObj->firstName,
                     'lastName' => $dbObj->lastName,
                     'city' => $dbObj->city,
-                    'state' => $dbObj->state
+                    'state' => $dbObj->state,
+                    'mocCount' => $dbObj->mocCount,
+                    'gameCount' => $dbObj->gameCount,
+                    'themeCount' => $dbObj->themeCount
                 );
 
                 if ($this->isAdmin) {

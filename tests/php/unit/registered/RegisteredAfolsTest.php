@@ -36,8 +36,11 @@ class RegisteredAfolsTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($afol['email'] , 'ember@brickslopes.com');
         $this->assertEquals($afol['city'] , 'Salem');
         $this->assertEquals($afol['state'] , 'Colorado');
+        $this->assertEquals($afol['mocCount'] , '30');
+        $this->assertEquals($afol['gameCount'] , '22');
+        $this->assertEquals($afol['themeCount'] , '5');
         $this->assertEquals($afol['paid'] , 'NO');
-        $this->assertEquals(sizeOf($afol), 10);
+        $this->assertEquals(sizeOf($afol), 13);
 
         $total = $afol['lineItems']['total'];
         $this->assertEquals($total, 110.00);
@@ -62,6 +65,9 @@ class RegisteredAfolsTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($afol['lastName'] , 'Pilati');
         $this->assertEquals($afol['city'] , 'Salem');
         $this->assertEquals($afol['state'] , 'Colorado');
-        $this->assertEquals(sizeOf($afol), 6);
+        $this->assertEquals($afol['mocCount'] , '30');
+        $this->assertEquals($afol['gameCount'] , '22');
+        $this->assertEquals($afol['themeCount'] , '5');
+        $this->assertEquals(sizeOf($afol), 9);
     }
 }

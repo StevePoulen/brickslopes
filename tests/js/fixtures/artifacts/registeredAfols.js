@@ -11,6 +11,9 @@ var registeredAfols = {
                 email: 'blackdragon5555@hotmail.com',
                 city: 'Spanish Fork',
                 state: 'Utah',
+                gameCount: 2,
+                themeCount: 4,
+                mocCount: 3,
                 paid: 'NO',
                 lineItems: {
                     "total": '25.00',
@@ -39,6 +42,9 @@ var registeredAfols = {
                 email: 'brianpilati@gmail.com',
                 city: 'LEGOVille',
                 state: 'LEGOState',
+                gameCount: 4,
+                themeCount: 3,
+                mocCount: 5,
                 paid: 'NO',
                 lineItems: {
                     "total": '25.00',
