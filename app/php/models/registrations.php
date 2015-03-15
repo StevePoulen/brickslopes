@@ -85,6 +85,7 @@ class registrations extends db {
                                 WHERE 
                                     eventId = '$eventId' 
                                 GROUP BY 
+                                    userId,
                                     themeId
                             ) newTable 
                         GROUP BY 
