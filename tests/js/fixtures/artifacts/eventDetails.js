@@ -69,8 +69,8 @@ var eventDetails = {
             lineItem: '1st Vendor Table',
         },
         '10010': {
-            cost: '15.00',
-            discount: '10.00',
+            cost: '25.00',
+            discount: '20.00',
             active: 'YES',
             lineItem: 'Vendor Pass',
         },
