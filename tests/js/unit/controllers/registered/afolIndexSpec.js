@@ -185,6 +185,11 @@ describe('controllers', function() {
                 expect(location.path()).toBe('/registered/eventKeynote.html');
             });
 
+            it('should redirect to eventSchedule', function() {
+                scope.clickSchedule();
+                expect(location.path()).toBe('/registered/eventSchedule.html');
+            });
+
             it('should redirect to eventVendors', function() {
                 scope.clickVendors();
                 expect(location.path()).toBe('/registered/2/eventVendors.html');
