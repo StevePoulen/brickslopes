@@ -111,7 +111,7 @@
             $dto = $this->getDTO($data);
             $dto['eventLineItemCodeId'] = $code;
             $dto['amount'] = $amount;
-            $dto['discount'] = 'YES';
+            $dto['discount'] = $data['discount'];
             $dto['lineItem'] = $lineItem;
             $dto['description'] = $data[$brickType];
             $this->registrationLineItemObj->addRegistrationLineItems($dto);
@@ -123,7 +123,7 @@
                     $dto = $this->getDTO($data);
                     $dto['amount'] = $data['completeNameBadgeAmount'];
                     $dto['eventLineItemCodeId'] = 4;
-                    $dto['discount'] = 'YES';
+                    $dto['discount'] = $data['discount'];
                     $dto['lineItem'] = $data['completeNameBadgeLineItem'];
                     $dto['description'] = $data['badgeLine1'];
                     $this->registrationLineItemObj->addRegistrationLineItems($dto);
