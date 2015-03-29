@@ -56,7 +56,7 @@ describe('About Us controllers', function() {
 
             expect(scope.imageUrl).toBe('/images/emails/images/rules_of_the_sea_dress.png');
             scope.next();
-            expect(location.path()).toBe('/aboutus/1/index.html');
+            expect(location.path()).toBe('/aboutus/1');
         });
 
         it('should have an imageUrl variable for out of bounds eventIds', function() {
@@ -68,7 +68,7 @@ describe('About Us controllers', function() {
 
             expect(scope.imageUrl).toBe('/images/emails/images/rules_of_the_sea_dress.png');
             scope.next();
-            expect(location.path()).toBe('/aboutus/1/index.html');
+            expect(location.path()).toBe('/aboutus/1');
         });
 
         it('should have an imageUrl variable for last eventIds', function() {
@@ -80,7 +80,7 @@ describe('About Us controllers', function() {
 
             expect(scope.imageUrl).toBe('/images/emails/images/groot_vs_batman.png');
             scope.next();
-            expect(location.path()).toBe('/aboutus/0/index.html');
+            expect(location.path()).toBe('/aboutus/0');
         });
     });
 
@@ -101,7 +101,7 @@ describe('About Us controllers', function() {
 
             expect(scope.imageUrl).toBe('/images/emails/images/groot_vs_batman.png');
             scope.previous();
-            expect(location.path()).toBe('/aboutus/5/index.html');
+            expect(location.path()).toBe('/aboutus/5');
         });
 
         it('should have an imageUrl variable for out of bounds eventIds', function() {
@@ -113,7 +113,7 @@ describe('About Us controllers', function() {
 
             expect(scope.imageUrl).toBe('/images/emails/images/rules_of_the_sea_dress.png');
             scope.previous();
-            expect(location.path()).toBe('/aboutus/6/index.html');
+            expect(location.path()).toBe('/aboutus/6');
         });
 
         it('should have an imageUrl variable for last eventIds', function() {
@@ -125,7 +125,7 @@ describe('About Us controllers', function() {
 
             expect(scope.imageUrl).toBe('/images/emails/images/rules_of_the_sea_dress.png');
             scope.previous();
-            expect(location.path()).toBe('/aboutus/6/index.html');
+            expect(location.path()).toBe('/aboutus/6');
         });
     });
 

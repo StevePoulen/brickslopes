@@ -11,15 +11,16 @@
     RewriteCond %{SERVER_PORT} 80 
     RewriteRule ^(.*)$ https://www.mybrickslopes.com/$1 [R=301,L] 
 
-    ErrorDocument 404 /error.html
-
     RewriteEngine on
     RewriteRule ^.*\.(gi|png|jpg|css|wav|avi|mpg|js|ico)$ - [NC,L]
     RewriteCond %{REQUEST_FILENAME} !php/Controller.php$
     RewriteRule ^(.*\.php)$ /php/Controller.php [NC,NE,L]
 
-    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteEngine on
     RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_URI} !index
     RewriteRule (.*) index.html [L] 
+
+    ErrorDocument 404 /error.html
 </IfModule>
