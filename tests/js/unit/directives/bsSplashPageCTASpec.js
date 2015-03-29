@@ -59,6 +59,12 @@ describe('directives', function() {
         });
 
         it('should not be displayed', function() {
+            location.path('/aboutus/22.html');
+            scope.$digest();
+            expect(element.hasClass('ng-hide')).toBe(true);
+        });
+
+        it('should not be displayed', function() {
             location.path('/error.html');
             scope.$digest();
             expect(element.hasClass('ng-hide')).toBe(true);

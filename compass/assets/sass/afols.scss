@@ -27,6 +27,10 @@ $pane_width: 1238px;
     height: 1125px;
 }
 
+.height1300  {
+    height: 1300px;
+}
+
 .height1375  {
     height: 1375px;
 }
@@ -147,6 +151,13 @@ $pane_width: 1238px;
         position: absolute;
         left: 110px;
         top: 175px;
+    }
+
+    .aboutUsText {
+        position: relative;
+        width: 900px;
+        margin-left: auto;
+        margin-right: auto;
     }
 }
 

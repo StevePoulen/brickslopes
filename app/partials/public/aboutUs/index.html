@@ -1,22 +1,42 @@
-<div id="eventDashboard">
-   <div id="dashboardText">
-        <div>
-            <h1><bs-logo font-size="1.50"></bs-logo> - About Us</h1>
-        <div>
+<div id="eventDashboard" class="height1300">
+   <div class="dashboardText">
+        &nbsp;
+        <div class="aboutUsText">
+            <div>
+                <h1><bs-logo font-size="1.50"></bs-logo> - About Us</h1>
+            </div>
+            <p>
+            <div>
+                <div class="oneEMFont textLeft">
+                    <bs-logo></bs-logo> is a two-day event featuring hundreds of LEGO displays created by more than 60 adults and teens from around the United States.
+                    <p>
+                    Unleash your imagination at <bs-logo font-size="1.0" font-color="blue"></bs-logo> with fun for the entire family!
+                </div>
+            </div>
+        </div>
         <p>
-        <img ng-src="{{imageUrl}}">
+        <div class="textCenter" ng-click="tickets()">
+            <img ng-src="{{imageUrl}}">
+        </div>
         <p>
-        <div>
+        <div class="textCenter">
             <span>
-                <button class="actionButtonSquare" ng-click="Previous()">
+                <button class="actionButtonBlue" ng-click="previous()">
                     <bs-text text="Previous" font-color=white font-size=1.75></bs-text>
                 </button>
             </span>
             <span>
-                <button class="actionButtonSquare" ng-click="Next()">
+                <button class="actionButtonBlue" ng-click="next()">
                     <bs-text text="Next" font-color=white font-size=1.75></bs-text>
                 </button>
             </span>
         </div>
+        <p>
+        <div class="textCenter">
+            <button class="actionButtonTickets" ng-click="tickets()">
+                <bs-text text="Buy Tickets On-Line" font-color=white font-size=1.75></bs-text>
+            </button>
+        </div>
+        &nbsp;
     </div>
 </div>

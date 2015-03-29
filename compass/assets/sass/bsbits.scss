@@ -119,6 +119,20 @@ textarea::-moz-placeholder {
     padding-top: 3px;
 }
 
+.actionButtonBlue {
+    @extend .actionButton;
+    width: 150px;
+    padding-top: 3px;
+    background: $bs_blue;
+}
+
+.actionButtonTickets {
+    @extend .actionButton;
+    width: 250px;
+    height: 50px;
+    padding-top: 3px;
+}
+
 .actionButtonSquareSmall {
     @extend .actionButton;
     width: 150px;

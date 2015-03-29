@@ -328,7 +328,7 @@ config(['$routeProvider', '$httpProvider', '$locationProvider', function($routeP
         }
     )
     .when(
-        '/aboutUs/:eventId',
+        '/aboutus/:eventId',
         {
             templateUrl: '/partials/public/aboutUs/index.html',
             controller: 'aboutUs'
