@@ -46,12 +46,12 @@ angular.module('Public').controller('aboutUs', ['$scope', '$route', '$location',
 
     $scope.next = function() {
         incrementEventId();
-        $location.path('/aboutus/' + $scope.eventId);
+        $location.path('/aboutus/' + $scope.eventId + '/index.html');
     };
 
     $scope.previous = function() {
         decrementEventId();
-        $location.path('/aboutus/' + $scope.eventId);
+        $location.path('/aboutus/' + $scope.eventId + '/index.html');
     };
 
     $scope.tickets = function() {
