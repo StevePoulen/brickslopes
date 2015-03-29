@@ -381,7 +381,7 @@
                                                 <p>
                                                 Your new temporary password is: <b>{$newPassword}</b>
                                                 <p>
-                                                <a href='{$this->getDomain()}/#/afol/login.html' target='_blank'>{$this->getDomain()}</a> to reset your password.
+                                                <a href='{$this->getDomain()}/afol/login.html' target='_blank'>{$this->getDomain()}</a> to reset your password.
                                             {$this->getFontClosure()}
                                         </td>
                                     </tr>
@@ -675,13 +675,13 @@
                         <a target='_blank' href='{$this->getDomain()}'><img src='{$this->getDomain()}/images/emails/navigation/email_header_01.gif'></a>
                     </td>
                     <td align=center width=$width>
-                        <a target='_blank' href='{$this->getDomain()}/#/afol/eventMe.html'><img src='{$this->getDomain()}/images/emails/navigation/email_header_02.gif'></a>
+                        <a target='_blank' href='{$this->getDomain()}/afol/eventMe.html'><img src='{$this->getDomain()}/images/emails/navigation/email_header_02.gif'></a>
                     </td>
                     <td align=center width=$width>
-                        <a target='_blank' href='{$this->getDomain()}/#/afol/eventTheme.html'><img src='{$this->getDomain()}/images/emails/navigation/email_header_03.gif'></a>
+                        <a target='_blank' href='{$this->getDomain()}/afol/eventTheme.html'><img src='{$this->getDomain()}/images/emails/navigation/email_header_03.gif'></a>
                     </td>
                     <td align=center width=$width>
-                        <a target='_blank' href='{$this->getDomain()}/#/afol/eventGames.html'><img src='{$this->getDomain()}/images/emails/navigation/email_header_04.gif'></a>
+                        <a target='_blank' href='{$this->getDomain()}/afol/eventGames.html'><img src='{$this->getDomain()}/images/emails/navigation/email_header_04.gif'></a>
                     </td>
                 </tr>
                 {$this->getTableFooter()}

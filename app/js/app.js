@@ -8,9 +8,10 @@ angular.module('brickSlopes', [
     'brickSlopes.directives',
     'brickSlopes.services',
     'brickSlopes.controllers',
-    'Admin'
+    'Admin',
+    'Public'
 ]).
-config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvider) {
+config(['$routeProvider', '$httpProvider', '$locationProvider', function($routeProvider, $httpProvider, $locationProvider) {
     $httpProvider.interceptors.push('authInterceptor');
 
     $routeProvider
@@ -326,11 +327,22 @@ config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvide
             controller: 'afolLogin'
         }
     )
+    .when(
+        '/aboutUs/:eventId',
+        {
+            templateUrl: '/partials/public/aboutUs/index.html',
+            controller: 'aboutUs'
+        }
+    )
     .otherwise(
         {
-            redirectTo: '/'
+            redirectTo: '/error.html'
         }
     );
+
+    $locationProvider.html5Mode(true);
+
 }]);
 
 angular.module('Admin', ['brickSlopes.services']);
+angular.module('Public', []);
