@@ -1,0 +1,20 @@
+@import './base';
+$image_width: 500px;
+
+.imageLeft {
+    position: absolute;
+    left: 50px;
+
+    .imageSize {
+        width: $image_width;
+    }
+}
+
+.imageRight {
+    position: absolute;
+    right: 50px;
+
+    .imageSize {
+        width: $image_width;
+    }
+}
