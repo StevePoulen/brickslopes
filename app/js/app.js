@@ -336,7 +336,7 @@ config(['$routeProvider', '$httpProvider', '$locationProvider', function($routeP
     )
     .otherwise(
         {
-            redirectTo: '/error.html'
+            redirectTo: '/'
         }
     );
 
