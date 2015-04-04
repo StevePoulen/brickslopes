@@ -18,14 +18,23 @@ angular.module('Public').controller('aboutUs', ['$scope', '$route', '$location',
         'groot_vs_batman.png'
     ];
 
+    $scope.pageHeight = "heightAboutUs";
+    $scope.showTitle = false;
+    $scope.showSteps = true;
+    $scope.totalSteps = images.length;
+
     function getImage() {
-        if (images[$scope.eventId]) {
-            return images[$scope.eventId];
-        } else {
+        if (! images[$scope.eventId]) {
             $scope.eventId = 0;
-            return images[0];
         }
+
+        calculateStep();
+        return images[$scope.eventId];
     };
+
+    function calculateStep() {
+        $scope.step = parseInt($scope.eventId, 10) + 1;
+    }
 
     function setImageUrl() {
         $scope.imageUrl = "/images/emails/images/" + getImage();
@@ -36,6 +45,7 @@ angular.module('Public').controller('aboutUs', ['$scope', '$route', '$location',
         if ($scope.eventId >= images.length) {
             $scope.eventId = 0;
         }
+        calculateStep();
     }
 
     function decrementEventId() {
@@ -43,6 +53,7 @@ angular.module('Public').controller('aboutUs', ['$scope', '$route', '$location',
         if ($scope.eventId < 0 ) {
             $scope.eventId = images.length - 1;
         }
+        calculateStep();
     }
 
     $scope.next = function() {

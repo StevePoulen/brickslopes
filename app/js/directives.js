@@ -238,6 +238,7 @@ angular.module('brickSlopes.directives', [])
                     $location.path().match('\/registered\/.*') ||
                     $location.path().match('\/admin\/.*') ||
                     $location.path().match('\/aboutus\/.*') ||
+                    $location.path().match('\/topten\/.*') ||
                     $location.path().match('\/paid\/.*') ||
                     $location.path().match('\/error.html')
                 ) {

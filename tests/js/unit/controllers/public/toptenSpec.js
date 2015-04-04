@@ -3,13 +3,17 @@
 /* jasmine specs for controllers go here */
 
 describe('About Us controllers', function() {
-    var scope, ctrl, location, mockBackend, firstImage;
+    var scope, ctrl, location, mockBackend, firstImage, firstTitle, lastImage, lastTitle, lastIndex;
 
     beforeEach (module('Public'));
 
     describe('Default Functionality', function() {
         beforeEach(inject(function(_$controller_, _$rootScope_, _$location_) {
-            firstImage = 'did_you_know.png';
+            firstImage = 'white_house.jpg';
+            firstTitle = 'An inauguration at the White House';
+            lastImage = 'apples.jpg';
+            lastTitle = 'An apple a day ...';
+            lastIndex = 9;
             scope = _$rootScope_.$new();
             location = _$location_;
             var route = {
@@ -19,14 +23,14 @@ describe('About Us controllers', function() {
                     }
                 }
             };
-            ctrl = _$controller_('aboutUs', {
+            ctrl = _$controller_('topten', {
                 $scope: scope,
                 $route: route
             });
         }));
 
         it('should have an showTitle variable', function() {
-            expect(scope.showTitle).toBe(false);
+            expect(scope.showTitle).toBe(true);
         });
 
         it('should have an showSteps variable', function() {
@@ -34,7 +38,7 @@ describe('About Us controllers', function() {
         });
 
         it('should have an stepTotal variable', function() {
-            expect(scope.totalSteps).toBe(8);
+            expect(scope.totalSteps).toBe(10);
         });
 
         it('should have an eventID variable', function() {
@@ -42,7 +46,7 @@ describe('About Us controllers', function() {
         });
 
         it('should have an pageHeight variable', function() {
-            expect(scope.pageHeight).toBe('heightAboutUs');
+            expect(scope.pageHeight).toBe('heightTopTen');
         });
 
         it('should have an imageUrl variable', function() {
@@ -65,7 +69,7 @@ describe('About Us controllers', function() {
 
         it('should have an imageUrl variable for inbounds eventIds', function() {
             var route = { current: { params: { eventId: 0 } } };
-            ctrl('aboutUs', {
+            ctrl('topten', {
                 $scope: scope,
                 $route: route
             });
@@ -73,13 +77,14 @@ describe('About Us controllers', function() {
             expect(scope.imageUrl).toBe('/images/emails/images/' + firstImage);
             expect(scope.step).toBe(1);
             scope.next();
+            expect(scope.title).toBe(firstTitle);
             expect(scope.step).toBe(2);
-            expect(location.path()).toBe('/aboutus/1');
+            expect(location.path()).toBe('/topten/1');
         });
 
         it('should have an imageUrl variable for out of bounds eventIds', function() {
             var route = { current: { params: { eventId: 22 } } };
-            ctrl('aboutUs', {
+            ctrl('topten', {
                 $scope: scope,
                 $route: route
             });
@@ -87,22 +92,24 @@ describe('About Us controllers', function() {
             expect(scope.imageUrl).toBe('/images/emails/images/' + firstImage);
             expect(scope.step).toBe(1);
             scope.next();
+            expect(scope.title).toBe(firstTitle);
             expect(scope.step).toBe(2);
-            expect(location.path()).toBe('/aboutus/1');
+            expect(location.path()).toBe('/topten/1');
         });
 
         it('should have an imageUrl variable for last eventIds', function() {
-            var route = { current: { params: { eventId: 7 } } };
-            ctrl('aboutUs', {
+            var route = { current: { params: { eventId: lastIndex } } };
+            ctrl('topten', {
                 $scope: scope,
                 $route: route
             });
 
-            expect(scope.imageUrl).toBe('/images/emails/images/groot_vs_batman.png');
-            expect(scope.step).toBe(8);
+            expect(scope.imageUrl).toBe('/images/emails/images/' + lastImage);
+            expect(scope.step).toBe(10);
             scope.next();
+            expect(scope.title).toBe(lastTitle);
             expect(scope.step).toBe(1);
-            expect(location.path()).toBe('/aboutus/0');
+            expect(location.path()).toBe('/topten/0');
         });
     });
 
@@ -115,22 +122,23 @@ describe('About Us controllers', function() {
         }));
 
         it('should have an imageUrl variable for inbounds eventIds', function() {
-            var route = { current: { params: { eventId: 6 } } };
-            ctrl('aboutUs', {
+            var route = { current: { params: { eventId: 9 } } };
+            ctrl('topten', {
                 $scope: scope,
                 $route: route
             });
 
-            expect(scope.imageUrl).toBe('/images/emails/images/rules_of_the_sea_jolly_rogers.png');
-            expect(scope.step).toBe(7);
+            expect(scope.imageUrl).toBe('/images/emails/images/' + lastImage);
+            expect(scope.step).toBe(10);
             scope.previous();
-            expect(scope.step).toBe(6);
-            expect(location.path()).toBe('/aboutus/5');
+            expect(scope.step).toBe(9);
+            expect(scope.title).toBe(lastTitle);
+            expect(location.path()).toBe('/topten/' + (lastIndex-1));
         });
 
         it('should have an imageUrl variable for out of bounds eventIds', function() {
             var route = { current: { params: { eventId: 22 } } };
-            ctrl('aboutUs', {
+            ctrl('topten', {
                 $scope: scope,
                 $route: route
             });
@@ -138,13 +146,14 @@ describe('About Us controllers', function() {
             expect(scope.imageUrl).toBe('/images/emails/images/' + firstImage);
             expect(scope.step).toBe(1);
             scope.previous();
-            expect(scope.step).toBe(8);
-            expect(location.path()).toBe('/aboutus/7');
+            expect(scope.title).toBe(firstTitle);
+            expect(scope.step).toBe(10);
+            expect(location.path()).toBe('/topten/' + lastIndex);
         });
 
         it('should have an imageUrl variable for last eventIds', function() {
             var route = { current: { params: { eventId: 0 } } };
-            ctrl('aboutUs', {
+            ctrl('topten', {
                 $scope: scope,
                 $route: route
             });
@@ -152,8 +161,9 @@ describe('About Us controllers', function() {
             expect(scope.imageUrl).toBe('/images/emails/images/' + firstImage);
             expect(scope.step).toBe(1);
             scope.previous();
-            expect(scope.step).toBe(8);
-            expect(location.path()).toBe('/aboutus/7');
+            expect(scope.title).toBe(firstTitle);
+            expect(scope.step).toBe(10);
+            expect(location.path()).toBe('/topten/' + lastIndex);
         });
     });
 
@@ -166,7 +176,7 @@ describe('About Us controllers', function() {
 
         it('should have an eventID variable', function() {
             var route = { };
-            ctrl('aboutUs', {
+            ctrl('topten', {
                 $scope: scope,
                 $route: route
             });
@@ -175,7 +185,7 @@ describe('About Us controllers', function() {
 
         it('should have an eventID variable', function() {
             var route = { current: { } };
-            ctrl('aboutUs', {
+            ctrl('topten', {
                 $scope: scope,
                 $route: route
             });
@@ -184,7 +194,7 @@ describe('About Us controllers', function() {
 
         it('should have an eventID variable', function() {
             var route = { current: { params: { } } };
-            ctrl('aboutUs', {
+            ctrl('topten', {
                 $scope: scope,
                 $route: route
             });

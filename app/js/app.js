@@ -334,6 +334,13 @@ config(['$routeProvider', '$httpProvider', '$locationProvider', function($routeP
             controller: 'aboutUs'
         }
     )
+    .when(
+        '/topten/:eventId',
+        {
+            templateUrl: '/partials/public/aboutUs/index.html',
+            controller: 'topten'
+        }
+    )
     .otherwise(
         {
             redirectTo: '/'

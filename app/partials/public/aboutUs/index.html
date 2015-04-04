@@ -1,9 +1,9 @@
-<div id="eventDashboard" class="heightAboutUs">
+<div id="eventDashboard" ng-class="pageHeight">
    <div class="dashboardText">
         &nbsp;
         <div class="aboutUsText">
             <div>
-                <h1><bs-logo font-size="1.50"></bs-logo> - About Us</h1>
+                <h1><bs-logo font-size="1.50"></bs-logo> - A LEGO Fan Event</h1>
             </div>
             <p>
             <div>
@@ -15,8 +15,16 @@
             </div>
         </div>
         <p>
+        <div class="textCenter" ng-if="showTitle">
+            "<span ng-bind="title"></span>"
+        </div>
+        <p>
         <div class="textCenter" ng-click="tickets()">
             <img src="{{imageUrl}}">
+        </div>
+        <p>
+        <div class="textCenter" ng-if="showSteps">
+            <span ng-bind="step"></span> of <span ng-bind="totalSteps"></span>
         </div>
         <p>
         <div class="textCenter">
@@ -39,6 +47,11 @@
         </div>
         <p> 
         <div class="textCenter">
+            <div>
+                <p>
+                <bs-logo font-size="1.50"></bs-logo> - <bs-text text="2014" font-size="1.50"></bs-text>
+                </p>
+            </div>
             <div class="imageLeft">
                 <img class="imageSize" src="/images/publicPics/2014/star_wars_public.jpg" />
             </div>
