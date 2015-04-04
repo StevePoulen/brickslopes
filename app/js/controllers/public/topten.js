@@ -34,11 +34,11 @@ angular.module('Public').controller('topten', ['$scope', '$route', '$location', 
         },
         {
             picture: 'camper.jpg',
-            title: 'A weekend camping'
+            title: 'Breaking Bad'
         },
         {
             picture: 'butterfly.jpg',
-            title: 'Buttlerfly'
+            title: 'Butterfly'
         },
         {
             picture: 'robot_vs_godzilla.jpg',
