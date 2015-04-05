@@ -1462,10 +1462,18 @@ angular.module('brickSlopes.services', ['ngResource'])
                 config.headers['Auth-Token'] = $window.sessionStorage.token;
             }
 
-            if ($location.host() === 'www.brickslopes.com') {
+            if (! $location.host().match(/mybrickslopes.com/)) {
                 //https://developers.google.com/analytics/devguides/collection/gajs/
                 //This should only run on the live server
-                $window._gaq.push(['_trackPageview', config.url]);
+                if ( ! (
+                    config.url.match(/^\/controllers/) ||
+                    config.url.match(/footer.html$/) ||
+                    config.url.match(/header.html$/) ||
+                    config.url.match(/feedback.html$/) ||
+                    config.url.match(/directives/)
+                )) {
+                    $window._gaq.push(['_trackPageview', config.url]);
+                }
             }
 
             return config;

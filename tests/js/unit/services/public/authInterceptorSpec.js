@@ -38,13 +38,76 @@ describe('service', function() {
                 expect(auth.request(request).headers['Auth-Token']).toBeUndefined();
             });
 
-            it('should call google analytics', function() {
-                location.host = function() { return 'www.brickslopes.com';}
-                spyOn(window._gaq, "push");
-                request = { 'url': 'partials/registered/index.html' };
-                expect(auth.request(request).headers['Auth_Token']).toBeUndefined();
-                expect(window._gaq.push).toHaveBeenCalledWith([ '_trackPageview', 'partials/registered/index.html']);
-            });
+            describe ('Google Analytics', function() {
+                describe ('Positive', function() {
+                    it('should call google analytics', function() {
+                        location.host = function() { return 'www.brickslopes.com';}
+                        spyOn(window._gaq, "push");
+                        request = { 'url': 'partials/registered/index.html' };
+                        expect(auth.request(request).headers['Auth_Token']).toBeUndefined();
+                        expect(window._gaq.push).toHaveBeenCalledWith([ '_trackPageview', 'partials/registered/index.html']);
+                    });
+
+                    it('should call google analytics', function() {
+                        location.host = function() { return 'brickslopes.com';}
+                        spyOn(window._gaq, "push");
+                        request = { 'url': 'partials/registered/index.html' };
+                        expect(auth.request(request).headers['Auth_Token']).toBeUndefined();
+                        expect(window._gaq.push).toHaveBeenCalledWith([ '_trackPageview', 'partials/registered/index.html']);
+                    });
+                });
+
+                describe ('Negative', function() {
+                    it('should call google analytics', function() {
+                        location.host = function() { return 'www.mybrickslopes.com';}
+                        spyOn(window._gaq, "push");
+                        request = { 'url': 'partials/registered/index.html' };
+                        expect(auth.request(request).headers['Auth_Token']).toBeUndefined();
+                        expect(window._gaq.push).not.toHaveBeenCalled();
+                    });
+
+                    it('should call google analytics', function() {
+                        location.host = function() { return 'www.brickslopes.com';}
+                        spyOn(window._gaq, "push");
+                        request = { 'url': '/controllers/registered/index.html' };
+                        expect(auth.request(request).headers['Auth_Token']).toBeUndefined();
+                        expect(window._gaq.push).not.toHaveBeenCalled();
+                    });
+
+                    it('should call google analytics', function() {
+                        location.host = function() { return 'www.brickslopes.com';}
+                        spyOn(window._gaq, "push");
+                        request = { 'url': '/partials/public/feedback.html' };
+                        expect(auth.request(request).headers['Auth_Token']).toBeUndefined();
+                        expect(window._gaq.push).not.toHaveBeenCalled();
+                    });
+
+                    it('should call google analytics', function() {
+                        location.host = function() { return 'www.brickslopes.com';}
+                        spyOn(window._gaq, "push");
+                        request = { 'url': '/partials/public/header.html' };
+                        expect(auth.request(request).headers['Auth_Token']).toBeUndefined();
+                        expect(window._gaq.push).not.toHaveBeenCalled();
+                    });
+
+                    it('should call google analytics', function() {
+                        location.host = function() { return 'www.brickslopes.com';}
+                        spyOn(window._gaq, "push");
+                        request = { 'url': '/partials/public/footer.html' };
+                        expect(auth.request(request).headers['Auth_Token']).toBeUndefined();
+                        expect(window._gaq.push).not.toHaveBeenCalled();
+                    });
+
+                    it('should call google analytics', function() {
+                        location.host = function() { return 'www.brickslopes.com';}
+                        spyOn(window._gaq, "push");
+                        request = { 'url': '/partials/directives/index.html' };
+                        expect(auth.request(request).headers['Auth_Token']).toBeUndefined();
+                        expect(window._gaq.push).not.toHaveBeenCalled();
+                    });
+                });
+            })
+
         });
 
         describe('responseError', function() {
