@@ -1,6 +1,10 @@
 @import './base';
 $image_width: 500px;
 
+.imageContainerHeight {
+    height: 425px;
+}
+
 .imageLeft {
     position: absolute;
     left: 50px;
