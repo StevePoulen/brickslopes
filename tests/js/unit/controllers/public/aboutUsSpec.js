@@ -3,13 +3,16 @@
 /* jasmine specs for controllers go here */
 
 describe('About Us controllers', function() {
-    var scope, ctrl, location, mockBackend, firstImage;
+    var scope, ctrl, location, mockBackend, firstImage, lastImage, lastIndex, totalImages;
 
     beforeEach (module('Public'));
 
     describe('Default Functionality', function() {
         beforeEach(inject(function(_$controller_, _$rootScope_, _$location_) {
-            firstImage = 'did_you_know.png';
+            firstImage = 'april_giveaways.jpg';
+            lastImage = 'groot_vs_batman.png';
+            lastIndex = 8;
+            totalImages = 9;
             scope = _$rootScope_.$new();
             location = _$location_;
             var route = {
@@ -34,7 +37,7 @@ describe('About Us controllers', function() {
         });
 
         it('should have an stepTotal variable', function() {
-            expect(scope.totalSteps).toBe(8);
+            expect(scope.totalSteps).toBe(totalImages);
         });
 
         it('should have an eventID variable', function() {
@@ -92,14 +95,14 @@ describe('About Us controllers', function() {
         });
 
         it('should have an imageUrl variable for last eventIds', function() {
-            var route = { current: { params: { eventId: 7 } } };
+            var route = { current: { params: { eventId: lastIndex } } };
             ctrl('aboutUs', {
                 $scope: scope,
                 $route: route
             });
 
-            expect(scope.imageUrl).toBe('/images/emails/images/groot_vs_batman.png');
-            expect(scope.step).toBe(8);
+            expect(scope.imageUrl).toBe('/images/emails/images/' + lastImage);
+            expect(scope.step).toBe(totalImages);
             scope.next();
             expect(scope.step).toBe(1);
             expect(location.path()).toBe('/aboutus/0');
@@ -121,7 +124,7 @@ describe('About Us controllers', function() {
                 $route: route
             });
 
-            expect(scope.imageUrl).toBe('/images/emails/images/rules_of_the_sea_jolly_rogers.png');
+            expect(scope.imageUrl).toBe('/images/emails/images/expressions_of_good_cop.png');
             expect(scope.step).toBe(7);
             scope.previous();
             expect(scope.step).toBe(6);
@@ -138,8 +141,8 @@ describe('About Us controllers', function() {
             expect(scope.imageUrl).toBe('/images/emails/images/' + firstImage);
             expect(scope.step).toBe(1);
             scope.previous();
-            expect(scope.step).toBe(8);
-            expect(location.path()).toBe('/aboutus/7');
+            expect(scope.step).toBe(totalImages);
+            expect(location.path()).toBe('/aboutus/' + lastIndex);
         });
 
         it('should have an imageUrl variable for last eventIds', function() {
@@ -152,8 +155,8 @@ describe('About Us controllers', function() {
             expect(scope.imageUrl).toBe('/images/emails/images/' + firstImage);
             expect(scope.step).toBe(1);
             scope.previous();
-            expect(scope.step).toBe(8);
-            expect(location.path()).toBe('/aboutus/7');
+            expect(scope.step).toBe(totalImages);
+            expect(location.path()).toBe('/aboutus/' + lastIndex);
         });
     });
 

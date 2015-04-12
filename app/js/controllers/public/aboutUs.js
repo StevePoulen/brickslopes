@@ -8,6 +8,7 @@ angular.module('Public').controller('aboutUs', ['$scope', '$route', '$location',
     }
 
     var images = [
+        'april_giveaways.jpg',
         'did_you_know.png',
         'rules_of_the_sea_dress.png',
         'believe.png',
