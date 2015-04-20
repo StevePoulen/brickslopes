@@ -786,7 +786,7 @@
 
             $eventDatesMap = array (
                 'eventId' => $eventId,
-                'startDate' => '2014-05-02 10:00:00',
+                'startDate' => '2014-05-02 9:00:00',
                 'endDate' => '2014-05-02 23:59:00',
                 'type' => 'AFOL'
             );
@@ -794,7 +794,7 @@
 
             $eventDatesMap = array (
                 'eventId' => $eventId,
-                'startDate' => '2014-05-03 10:00:00',
+                'startDate' => '2014-05-03 9:00:00',
                 'endDate' => '2014-05-03 20:00:00',
                 'type' => 'AFOL'
             );
@@ -978,7 +978,7 @@
 
             $eventDatesMap = array (
                 'eventId' => $eventId,
-                'startDate' => '2015-05-15 10:00:00',
+                'startDate' => '2015-05-15 9:00:00',
                 'endDate' => '2015-05-15 23:59:00',
                 'type' => 'AFOL'
             );
@@ -986,7 +986,7 @@
 
             $eventDatesMap = array (
                 'eventId' => $eventId,
-                'startDate' => '2015-05-16 10:00:00',
+                'startDate' => '2015-05-16 9:00:00',
                 'endDate' => '2015-05-16 20:00:00',
                 'type' => 'AFOL'
             );
@@ -1110,7 +1110,6 @@
                             $this->addRegistrationBrick(2,$userId);
                         }
                     }
-
                 }
             }
 

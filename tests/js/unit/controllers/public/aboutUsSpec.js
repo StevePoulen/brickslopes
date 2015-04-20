@@ -9,10 +9,10 @@ describe('About Us controllers', function() {
 
     describe('Default Functionality', function() {
         beforeEach(inject(function(_$controller_, _$rootScope_, _$location_) {
-            firstImage = 'april_giveaways.jpg';
+            firstImage = 't-shirt-2015-public.png';
             lastImage = 'groot_vs_batman.png';
-            lastIndex = 8;
-            totalImages = 9;
+            lastIndex = 9;
+            totalImages = 10;
             scope = _$rootScope_.$new();
             location = _$location_;
             var route = {
@@ -54,7 +54,7 @@ describe('About Us controllers', function() {
 
         it('should handle a tickets click', function() {
             scope.tickets();
-            expect(location.path()).toBe('/tickets.html');
+            expect(location.path()).toBe('/packages.html');
         });
     });
 
@@ -124,7 +124,7 @@ describe('About Us controllers', function() {
                 $route: route
             });
 
-            expect(scope.imageUrl).toBe('/images/emails/images/expressions_of_good_cop.png');
+            expect(scope.imageUrl).toBe('/images/emails/images/rules_of_the_sea_abandon.png');
             expect(scope.step).toBe(7);
             scope.previous();
             expect(scope.step).toBe(6);
