@@ -52,3 +52,5 @@ node_modules
 
 #configuration files
 config.php
+
+testing_first_email.txt
