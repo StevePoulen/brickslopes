@@ -16,7 +16,8 @@ class adminGamesModel extends db {
                 g.maxParticipants as maxParticipants,
                 g.game as gameName, 
                 IFNULL(u.firstName, 'no_current_afol') as firstName, 
-                IFNULL(u.lastName, 'no_current_afol') as lastName 
+                IFNULL(u.lastName, 'no_current_afol') as lastName,
+                r.paid as paid
             FROM 
                 games g 
                     LEFT JOIN gamesEventsConnector gec 
@@ -25,6 +26,9 @@ class adminGamesModel extends db {
                         ON g.gameId = guc.gameId 
                     LEFT JOIN users u 
                         ON guc.userId = u.userId 
+                    LEFT JOIN registrations r
+                        ON u.userId = r.userId
+                        AND r.eventId = $eventId
             WHERE 
                 gec.eventId = '$eventId'
             ORDER BY

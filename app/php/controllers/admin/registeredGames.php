@@ -41,6 +41,7 @@ class RegisteredGames {
                     array (
                         'firstName' => $dbObj->firstName, 
                         'lastName' => $dbObj->lastName,
+                        'paid' => $dbObj->paid
                     )
                 );
             }

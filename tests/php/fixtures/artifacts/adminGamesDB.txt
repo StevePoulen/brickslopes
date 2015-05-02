@@ -1,4 +1,4 @@
-1,First Game,22,Steve,Poulsen
-1,First Game,22,no_current_afol,no_current_afol
-1,First Game,22,Brian,Pilati
-2,Second Game,33,Cody,Ottley
+1,First Game,22,Steve,Poulsen,YES
+1,First Game,22,no_current_afol,no_current_afol,YES
+1,First Game,22,Brian,Pilati,NO
+2,Second Game,33,Cody,Ottley,YES

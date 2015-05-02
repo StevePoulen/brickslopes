@@ -25,5 +25,6 @@ class AdminGamesMock extends modelObjects {
     public function maxParticipants() { return $this->getData(2); }
     public function firstName() { return $this->getData(3); }
     public function lastName() { return $this->getData(4); }
+    public function paid() { return $this->getData(5); }
 }
 ?>
