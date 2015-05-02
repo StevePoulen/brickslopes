@@ -1,0 +1,10 @@
+-- MySQL dump 10.11
+--
+-- Host: localhost    Database: mysql
+-- ------------------------------------------------------
+-- Server version	5.0.83
+
+USE `brickslopes`;
+
+-- Blind Build
+update `games` set maxParticipants = '25', openRegistration = 'YES' where gameId = 13;

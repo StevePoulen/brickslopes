@@ -562,7 +562,7 @@
                     'game' => 'Blind Build',
                     'description' => '20 participants compete to build a set where only the instructions are visible. <p>The builder is separated from the parts and model by a divider. The builder must feel each part to determine correctness and then place it on the model for accurancy. <p>The builder who builds the set the fastest and with the fewest errors wins.',
                     'image' => $this->imageUrl . 'Blind-Build-t.png',
-                    'maxParticipants' => '20',
+                    'maxParticipants' => '25',
                     'currentParticipants' => '0',
                     'openRegistration' => 'YES',
                     'awards' => array (
