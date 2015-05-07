@@ -30,6 +30,12 @@ config(['$routeProvider', '$httpProvider', '$locationProvider', function($routeP
         }
     )
     .when(
+        '/volunteers',
+        {
+            templateUrl: 'partials/public/volunteers.html'
+        }
+    )
+    .when(
         '/packages.html',
         {
             templateUrl: 'partials/public/packages.html',

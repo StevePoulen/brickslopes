@@ -1,4 +1,4 @@
-<filesMatch "\.(html|htm|js|css|php|png)$">
+<filesMatch "\.(html|htm|js|css|php|png|pdf)$">
     FileETag None
     Header unset ETag
     Header set Cache-Control "no-store, no-cache, must-revalidate, max-age=0"
@@ -12,7 +12,7 @@
     RewriteRule ^(.*)$ https://www.mybrickslopes.com/$1 [R=301,L] 
 
     RewriteEngine on
-    RewriteRule ^.*\.(gi|png|jpg|css|wav|avi|mpg|js|ico)$ - [NC,L]
+    RewriteRule ^.*\.(gi|png|jpg|css|wav|avi|pdf|mpg|js|ico)$ - [NC,L]
     RewriteCond %{REQUEST_FILENAME} !php/Controller.php$
     RewriteRule ^(.*\.php)$ /php/Controller.php [NC,NE,L]
 
