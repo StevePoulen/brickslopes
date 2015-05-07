@@ -467,9 +467,7 @@
                     'currentParticipants' => '0',
                     'openRegistration' => 'YES',
                     'awards' => array (
-                        'First Place',
-                        'Second Place',
-                        'Third Place'
+                        'First Place'
                     )
                 ),
                 array(
@@ -480,9 +478,7 @@
                     'currentParticipants' => '0',
                     'openRegistration' => 'YES',
                     'awards' => array (
-                        'First Place',
-                        'Second Place',
-                        'Third Place'
+                        'First Place'
                     )
                 ),
                 array(
@@ -493,9 +489,7 @@
                     'currentParticipants' => '0',
                     'openRegistration' => 'YES',
                     'awards' => array (
-                        'First Place',
-                        'Second Place',
-                        'Third Place'
+                        'First Place'
                     )
                 ),
                 array(
@@ -507,9 +501,7 @@
                     'currentParticipants' => '0',
                     'openRegistration' => 'YES',
                     'awards' => array (
-                        'First Place',
-                        'Second Place',
-                        'Third Place'
+                        'First Place'
                     )
                 ),
                 array(
@@ -520,9 +512,7 @@
                     'currentParticipants' => '0',
                     'openRegistration' => 'YES',
                     'awards' => array (
-                        'First Place',
-                        'Second Place',
-                        'Third Place'
+                        'First Place'
                     )
                 ),
                 array(
@@ -541,9 +531,7 @@
                     'currentParticipants' => '0',
                     'openRegistration' => 'YES',
                     'awards' => array (
-                        'First Place',
-                        'Second Place',
-                        'Third Place'
+                        'First Place'
                     )
                 ),
                 array(
@@ -554,8 +542,7 @@
                     'currentParticipants' => '0',
                     'openRegistration' => 'YES',
                     'awards' => array (
-                        'First Place',
-                        'Second Place'
+                        'First Place'
                     )
                 ),
                 array(
@@ -566,9 +553,7 @@
                     'currentParticipants' => '0',
                     'openRegistration' => 'YES',
                     'awards' => array (
-                        'First Place',
-                        'Second Place',
-                        'Third Place'
+                        'First Place'
                     )
                 ),
                 array(
