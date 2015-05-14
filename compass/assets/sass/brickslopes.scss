@@ -29,6 +29,7 @@ and (max-device-width : 480px) {
     }
 
     #dashboard {
+        width: $mobile_dashboard_width;
         height: $dashboard_height;
     }
 
@@ -42,6 +43,7 @@ and (max-device-width : 480px) {
     }
 
     #splashPage {
+        width: $mobile_dashboard_width - 20;
         height: $splashPage_height;
     }
 
@@ -74,6 +76,7 @@ and (min-width : 481px) {
     }
 
     #dashboard {
+        width: $mobile_dashboard_width;
         height: $dashboard_height;
     }
 
@@ -87,6 +90,7 @@ and (min-width : 481px) {
     }
 
     #splashPage {
+        width: $mobile_dashboard_width - 20;
         height: $splashPage_height;
     }
 
@@ -119,6 +123,7 @@ and (max-width : 320px) {
     }
 
     #dashboard {
+        width: $mobile_dashboard_width;
         height: $dashboard_height;
     }
 
@@ -132,6 +137,7 @@ and (max-width : 320px) {
     }
 
     #splashPage {
+        width: $mobile_dashboard_width - 20;
         height: $splashPage_height;
     }
 
@@ -164,6 +170,7 @@ and (min-device-width : 468px) {
     }
 
     #dashboard {
+        width: $dashboard_width;
         height: $dashboard_height;
     }
 
@@ -177,6 +184,7 @@ and (min-device-width : 468px) {
     }
 
     #splashPage {
+        width: $dashboard_width - 20;
         height: $splashPage_height;
     }
 
@@ -211,6 +219,7 @@ and (orientation : landscape) {
     }
 
     #dashboard {
+        width: $dashboard_width;
         height: $dashboard_height;
     }
 
@@ -224,6 +233,7 @@ and (orientation : landscape) {
     }
 
     #splashPage {
+        width: $dashboard_width - 20;
         height: $splashPage_height;
     }
 
@@ -258,6 +268,7 @@ and (orientation : portrait) {
     }
 
     #dashboard {
+        width: $dashboard_width;
         height: $dashboard_height;
     }
 
@@ -271,6 +282,7 @@ and (orientation : portrait) {
     }
 
     #splashPage {
+        width: $dashboard_width - 20;
         height: $splashPage_height;
     }
 
@@ -304,6 +316,7 @@ only screen and (min-device-pixel-ratio : 1.5) {
     }
 
     #dashboard {
+        width: $dashboard_width;
         height: $dashboard_height;
     }
 
@@ -317,6 +330,7 @@ only screen and (min-device-pixel-ratio : 1.5) {
     }
 
     #splashPage {
+        width: $dashboard_width - 20;
         height: $splashPage_height;
     }
 
@@ -348,6 +362,7 @@ only screen and (min-device-pixel-ratio : 1.5) {
     }
 
     #dashboard {
+        width: $dashboard_width;
         height: $dashboard_height;
     }
 
@@ -361,6 +376,7 @@ only screen and (min-device-pixel-ratio : 1.5) {
     }
 
     #splashPage {
+        width: $dashboard_width - 20;
         height: $splashPage_height;
     }
 
@@ -393,6 +409,7 @@ only screen and (min-device-pixel-ratio : 1.5) {
     }
 
     #dashboard {
+        width: $dashboard_width;
         height: $dashboard_height;
     }
 
@@ -406,6 +423,7 @@ only screen and (min-device-pixel-ratio : 1.5) {
     }
 
     #splashPage {
+        width: $dashboard_width - 20;
         height: $splashPage_height;
     }
 
@@ -450,6 +468,7 @@ only screen and (min-device-pixel-ratio : 1.5) {
     }
 
     #splashPageCTA {
+        width: $dashboard_width - 20;
         position: relative;
         top: 5px;
         left: 0;
@@ -550,7 +569,6 @@ only screen and (min-device-pixel-ratio : 1.5) {
 
     #dashboard {
         position: relative;
-        width: $dashboard_width;
         margin-left: auto;
         margin-right: auto;
         border: none;
@@ -558,7 +576,6 @@ only screen and (min-device-pixel-ratio : 1.5) {
         #splashPage {
             position: absolute;
             left: 5px;
-            width: $dashboard_width - 20;
             text-align: center;
             border: 5px solid $bs_blue;
             background: white;
