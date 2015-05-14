@@ -274,6 +274,12 @@ config(['$routeProvider', '$httpProvider', '$locationProvider', function($routeP
         }
     )
     .when(
+        '/schedule',
+        {
+            templateUrl: '/partials/registered/mobileSchedule.html'
+        }
+    )
+    .when(
         '/registered/eventKeynote.html',
         {
             templateUrl: '/partials/registered/eventKeynote.html',

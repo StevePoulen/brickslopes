@@ -29,6 +29,10 @@ describe('controllers', function() {
         it('should have a showAfol variable', function() {
             expect(scope.showAfolLogin).toBe(true);
         });
+
+        it('should have a showHeader variable', function() {
+            expect(scope.showHeader).toBe(true);
+        });
     });
 
     describe('bsHeaderController Login, Builder site and Admin', function() {
@@ -39,6 +43,13 @@ describe('controllers', function() {
             controller = $controller;
             location = $location;
         }));
+
+        it('should not show the header on /schedule', function() {
+            location.path("/schedule");
+            ctrl = controller('bsHeader', { $scope: scope, $window: window, $location: location});
+            scope.$digest();
+            expect(scope.showHeader).toBe(false);
+        });
 
         it('should redirect to afol login page without a session token', function() {
             ctrl = controller('bsHeader', { $scope: scope, $window: window});

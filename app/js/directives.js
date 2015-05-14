@@ -240,6 +240,7 @@ angular.module('brickSlopes.directives', [])
                     $location.path().match('\/aboutus\/.*') ||
                     $location.path().match('\/topten\/.*') ||
                     $location.path().match('\/paid\/.*') ||
+                    $location.path().match('\/schedule') ||
                     $location.path().match('\/error.html')
                 ) {
                     return false;

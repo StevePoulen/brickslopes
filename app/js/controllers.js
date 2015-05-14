@@ -132,6 +132,7 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
 }])
 .controller('bsHeader', ['$scope', '$window', '$location', function($scope, $window, $location) {
     $scope.showAfolLogin = showAfolLogin;
+    $scope.showHeader = true;
     if ($window.sessionStorage.admin === 'YES') {
         $scope.showAfolLogin = true;
     }
@@ -174,6 +175,10 @@ angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute'])
 
     $scope.admin = function() {
         return ($window.sessionStorage.admin == 'YES' ? true : false);
+    }
+
+    if ($location.path() === '/schedule') {
+        $scope.showHeader = false;
     }
 }])
 .controller('afolLogin', ['$scope', '$location', 'Auth', '$window', 'UserDetails', '$sce', function($scope, $location, Auth, $window, UserDetails, $sce) {

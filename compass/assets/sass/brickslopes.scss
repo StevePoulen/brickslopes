@@ -42,11 +42,15 @@ and (max-device-width : 480px) {
     #splashPage {
         height: $splashPage_height;
     }
+
+    #brickslopes {
+        width: $mobile_dashboard_width;
+    }
 }
 
 /* Smartphones (landscape) ----------- */
 @media only screen 
-and (min-width : 321px) {
+and (min-width : 481px) {
     #afolDashboard {
         height: $afol_dashboard_height;
     }
@@ -67,9 +71,14 @@ and (min-width : 321px) {
     #splashPage {
         height: $splashPage_height;
     }
+
+    #brickslopes {
+        width: $dashboard_width;
+    }
 }
 
 /* Smartphones (portrait) ----------- */
+/*
 @media only screen 
 and (max-width : 320px) {
     #afolDashboard {
@@ -93,8 +102,10 @@ and (max-width : 320px) {
         height: $splashPage_height;
     }
 }
+*/
 
 /* iPads (portrait and landscape) ----------- */
+/*
 @media only screen 
 and (min-device-width : 768px) 
 and (max-device-width : 1024px) {
@@ -119,8 +130,10 @@ and (max-device-width : 1024px) {
         height: $splashPage_height;
     }
 }
+*/
 
 /* iPads (landscape) ----------- */
+/*
 @media only screen 
 and (min-device-width : 768px) 
 and (max-device-width : 1024px) 
@@ -146,8 +159,10 @@ and (orientation : landscape) {
         height: $splashPage_height;
     }
 }
+*/
 
 /* iPads (portrait) ----------- */
+/*
 @media only screen 
 and (min-device-width : 768px) 
 and (max-device-width : 1024px) 
@@ -173,8 +188,10 @@ and (orientation : portrait) {
         height: $splashPage_height;
     }
 }
+*/
 
 /* iPhone 4 ----------- */
+/*
 @media
 only screen and (-webkit-min-device-pixel-ratio : 1.5),
 only screen and (min-device-pixel-ratio : 1.5) {
@@ -199,8 +216,10 @@ only screen and (min-device-pixel-ratio : 1.5) {
         height: $splashPage_height;
     }
 }
+*/
 
 /* Desktops and laptops ----------- */
+/*
 @media only screen and (min-width : 1224px) {
     #afolDashboard {
         height: $afol_dashboard_height;
@@ -223,9 +242,11 @@ only screen and (min-device-pixel-ratio : 1.5) {
         height: $splashPage_height;
     }
 }
+*/
 
 
 /* Large screens ----------- */
+/*
 @media only screen and (min-width : 1824px) {
     #afolDashboard {
         height: $afol_dashboard_height;
@@ -248,13 +269,13 @@ only screen and (min-device-pixel-ratio : 1.5) {
         height: $splashPage_height;
     }
 }
+*/
 
 #brickslopes {
     position: relative;
     top: 0;
     bottom: 0;
     left: 0;
-    width: $dashboard_width;
     height: 100%;
     margin-left: auto;
     margin-right: auto;
@@ -318,7 +339,7 @@ only screen and (min-device-pixel-ratio : 1.5) {
         position: relative;
         top: 0;
         left: 0;
-        width: 1230px;
+        width: $dashboard_width;
         height: 125px;
         margin-left: auto;
         margin-right: auto;
