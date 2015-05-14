@@ -46,6 +46,22 @@ and (max-device-width : 480px) {
     #brickslopes {
         width: $mobile_dashboard_width;
     }
+
+    #header {
+        width: $mobile_dashboard_width;
+    }
+
+    #animationContainer {
+        width: $mobile_dashboard_width;
+    }
+
+    #copyright {
+        width: $mobile_dashboard_width;
+    }
+
+    #splashPageCTA {
+        width: $mobile_dashboard_width;
+    }
 }
 
 /* Smartphones (landscape) ----------- */
@@ -73,6 +89,22 @@ and (min-width : 481px) {
     }
 
     #brickslopes {
+        width: $dashboard_width;
+    }
+
+    #header {
+        width: $dashboard_width;
+    }
+
+    #animationContainer {
+        width: $dashboard_width;
+    }
+
+    #copyright {
+        width: $dashboard_width;
+    }
+
+    #splashPageCTA {
         width: $dashboard_width;
     }
 }
