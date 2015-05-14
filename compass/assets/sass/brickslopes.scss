@@ -55,7 +55,7 @@ and (max-device-width : 480px) {
         width: $mobile_dashboard_width;
     }
 
-    #animationContainer {
+    .animationContainer {
         width: $mobile_dashboard_width;
     }
 
@@ -102,7 +102,7 @@ and (min-width : 481px) {
         width: $mobile_dashboard_width;
     }
 
-    #animationContainer {
+    .animationContainer {
         width: $mobile_dashboard_width;
     }
 
@@ -149,7 +149,7 @@ and (max-width : 320px) {
         width: $mobile_dashboard_width;
     }
 
-    #animationContainer {
+    .animationContainer {
         width: $mobile_dashboard_width;
     }
 
@@ -196,7 +196,7 @@ and (min-device-width : 468px) {
         width: $dashboard_width;
     }
 
-    #animationContainer {
+    .animationContainer {
         width: $dashboard_width;
     }
 
@@ -245,7 +245,7 @@ and (orientation : landscape) {
         width: $dashboard_width;
     }
 
-    #animationContainer {
+    .animationContainer {
         width: $dashboard_width;
     }
 
@@ -294,7 +294,7 @@ and (orientation : portrait) {
         width: $dashboard_width;
     }
 
-    #animationContainer {
+    .animationContainer {
         width: $dashboard_width;
     }
 
@@ -342,7 +342,7 @@ only screen and (min-device-pixel-ratio : 1.5) {
         width: $dashboard_width;
     }
 
-    #animationContainer {
+    .animationContainer {
         width: $dashboard_width;
     }
 
@@ -388,7 +388,7 @@ only screen and (min-device-pixel-ratio : 1.5) {
         width: $dashboard_width;
     }
 
-    #animationContainer {
+    .animationContainer {
         width: $dashboard_width;
     }
 
@@ -435,7 +435,7 @@ only screen and (min-device-pixel-ratio : 1.5) {
         width: $dashboard_width;
     }
 
-    #animationContainer {
+    .animationContainer {
         width: $dashboard_width;
     }
 
@@ -468,7 +468,6 @@ only screen and (min-device-pixel-ratio : 1.5) {
     }
 
     #splashPageCTA {
-        width: $dashboard_width - 20;
         position: relative;
         top: 5px;
         left: 0;
