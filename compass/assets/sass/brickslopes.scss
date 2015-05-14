@@ -158,8 +158,7 @@ and (max-width : 320px) {
 
 /* iPads (portrait and landscape) ----------- */
 @media only screen 
-and (min-device-width : 768px) 
-and (max-device-width : 1024px) {
+and (min-device-width : 468px) {
     #afolDashboard {
         height: $afol_dashboard_height;
     }
@@ -204,8 +203,8 @@ and (max-device-width : 1024px) {
 
 /* iPads (landscape) ----------- */
 @media only screen 
-and (min-device-width : 768px) 
-and (max-device-width : 1024px) 
+and (min-device-width : 468px) 
+and (max-device-width : 4096px) 
 and (orientation : landscape) {
     #afolDashboard {
         height: $afol_dashboard_height;
@@ -251,8 +250,8 @@ and (orientation : landscape) {
 
 /* iPads (portrait) ----------- */
 @media only screen 
-and (min-device-width : 768px) 
-and (max-device-width : 1024px) 
+and (min-device-width : 468px) 
+and (max-device-width : 4096px) 
 and (orientation : portrait) {
     #afolDashboard {
         height: $afol_dashboard_height;
@@ -322,23 +321,23 @@ only screen and (min-device-pixel-ratio : 1.5) {
     }
 
     #brickslopes {
-        width: $mobile_dashboard_width;
+        width: $dashboard_width;
     }
 
     #header {
-        width: $mobile_dashboard_width;
+        width: $dashboard_width;
     }
 
     #animationContainer {
-        width: $mobile_dashboard_width;
+        width: $dashboard_width;
     }
 
     #copyright {
-        width: $mobile_dashboard_width;
+        width: $dashboard_width;
     }
 
     #splashPageCTA {
-        width: $mobile_dashboard_width;
+        width: $dashboard_width;
     }
 }
 
