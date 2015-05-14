@@ -316,7 +316,7 @@ only screen and (min-device-pixel-ratio : 1.5) {
     }
 
     #dashboard {
-        width: $dashboard_width;
+        width: $mobile_dashboard_width;
         height: $dashboard_height;
     }
 
@@ -330,28 +330,28 @@ only screen and (min-device-pixel-ratio : 1.5) {
     }
 
     #splashPage {
-        width: $dashboard_width - 20;
+        width: $mobile_dashboard_width - 20;
         height: $splashPage_height;
     }
 
     #brickslopes {
-        width: $dashboard_width;
+        width: $mobile_dashboard_width;
     }
 
     #header {
-        width: $dashboard_width;
+        width: $mobile_dashboard_width;
     }
 
     .animationContainer {
-        width: $dashboard_width;
+        width: $mobile_dashboard_width;
     }
 
     #copyright {
-        width: $dashboard_width;
+        width: $mobile_dashboard_width;
     }
 
     #splashPageCTA {
-        width: $dashboard_width;
+        width: $mobile_dashboard_width;
     }
 }
 
