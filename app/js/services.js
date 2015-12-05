@@ -1472,7 +1472,9 @@ angular.module('brickSlopes.services', ['ngResource'])
                     config.url.match(/feedback.html$/) ||
                     config.url.match(/directives/)
                 )) {
-                    $window._gaq.push(['_trackPageview', config.url]);
+                    if (typeof $window._gaq !== 'undefined') {
+                        $window._gaq.push(['_trackPageview', config.url]);
+                    }
                 }
             }
 
