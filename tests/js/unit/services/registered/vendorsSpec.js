@@ -1,15 +1,15 @@
-'use strict';
-
-/* jasmine specs for services go here */
-
 describe('service', function() {
+    'use strict';
     beforeEach(module('brickSlopes.services'));
+
+    beforeEach(inject(function(_EventSelectionFactory_) {
+        spyOn(_EventSelectionFactory_, 'getSelectedEvent').andReturn(2);
+    }));
 
     describe('Vendors', function() {
         describe('Get', function() {
-            var mockBackend, service, data, eventId;
+            var mockBackend, service, data;
             beforeEach(inject(function(_$httpBackend_, VendorDetails) {
-                eventId = 2;
                 mockBackend = _$httpBackend_;
                 mockBackend.expectGET('/controllers/registered/vendors/vendors.php?eventId=2').respond(201, vendors);
                 service = VendorDetails;
@@ -68,7 +68,6 @@ describe('service', function() {
             var mockBackend, service, data, dto;
             beforeEach(inject(function(_$httpBackend_, VendorDetails) {
                 dto = {
-                    eventId: 2,
                     associateId: 22,
                     userId: 23,
                 }
@@ -93,7 +92,6 @@ describe('service', function() {
             var mockBackend, service, data, dto;
             beforeEach(inject(function(_$httpBackend_, VendorDetails) {
                 dto = {
-                    eventId: 2,
                     associateId: 22,
                 }
 
@@ -162,17 +160,16 @@ describe('service', function() {
         });
 
         describe('Get Associate', function() {
-            var mockBackend, service, data, eventId, storeId;
+            var mockBackend, service, data, storeId;
             beforeEach(inject(function(_$httpBackend_, VendorDetails) {
-                eventId = 2;
                 storeId = 3;
                 mockBackend = _$httpBackend_;
-                mockBackend.expectGET('/controllers/registered/vendors/vendorAssociates.php?eventId='+eventId+'&storeId='+storeId).respond(201, associatesMock);
+                mockBackend.expectGET('/controllers/registered/vendors/vendorAssociates.php?eventId=2&storeId='+storeId).respond(201, associatesMock);
                 service = VendorDetails;
             }));
 
             it('should get all the associates for an event', function() {
-                var load = service.getAssociates(eventId, storeId);
+                var load = service.getAssociates(storeId);
 
                 load.then(function(_data) {
                     data = _data;
@@ -229,9 +226,8 @@ describe('service', function() {
         });
 
         describe('Get Table', function() {
-            var mockBackend, service, data, eventId;
+            var mockBackend, service, data;
             beforeEach(inject(function(_$httpBackend_, VendorDetails) {
-                eventId = 2;
                 mockBackend = _$httpBackend_;
                 mockBackend.expectGET('/controllers/registered/vendors/tableRegistration.php?tableId=2').respond(201, tables);
                 service = VendorDetails;
@@ -274,9 +270,8 @@ describe('service', function() {
         });
 
         describe('Get Store', function() {
-            var mockBackend, service, data, eventId;
+            var mockBackend, service, data;
             beforeEach(inject(function(_$httpBackend_, VendorDetails) {
-                eventId = 2;
                 mockBackend = _$httpBackend_;
                 mockBackend.expectGET('/controllers/registered/vendors/vendorRegistration.php?storeId=2').respond(201, vendors[0]);
                 service = VendorDetails;
@@ -323,12 +318,11 @@ describe('service', function() {
         });
 
         describe('Get Event Me Vendor Information', function() {
-            var mockBackend, data, eventId;
+            var mockBackend, data;
             beforeEach(inject(function(_$httpBackend_, VendorDetails) {
-                eventId = 2;
                 mockBackend = _$httpBackend_;
-                mockBackend.expectGET('/controllers/registered/vendors/vendorMeInformation.php?eventId=' + eventId).respond(201, eventMeVendor);
-                var load = VendorDetails.getEventMeVendorInformation(eventId);
+                mockBackend.expectGET('/controllers/registered/vendors/vendorMeInformation.php?eventId=2').respond(201, eventMeVendor);
+                var load = VendorDetails.getEventMeVendorInformation();
 
                 load.then(function(_data) {
                     data = _data;
@@ -377,12 +371,11 @@ describe('service', function() {
         });
 
         describe('Get Event Me Vendor Information Empty', function() {
-            var mockBackend, data, eventId;
+            var mockBackend, data;
             beforeEach(inject(function(_$httpBackend_, VendorDetails) {
-                eventId = 2;
                 mockBackend = _$httpBackend_;
-                mockBackend.expectGET('/controllers/registered/vendors/vendorMeInformation.php?eventId=' + eventId).respond(201, eventMeVendorEmpty);
-                var load = VendorDetails.getEventMeVendorInformation(eventId);
+                mockBackend.expectGET('/controllers/registered/vendors/vendorMeInformation.php?eventId=2').respond(201, eventMeVendorEmpty);
+                var load = VendorDetails.getEventMeVendorInformation();
 
                 load.then(function(_data) {
                     data = _data;

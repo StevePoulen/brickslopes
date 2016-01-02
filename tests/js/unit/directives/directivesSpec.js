@@ -1,24 +1,8 @@
-'use strict';
-
-/* jasmine specs for directives go here */
-
 describe('directives', function() {
-    beforeEach(
-        module(
-            'brickSlopes.directives',
-            'brickSlopes.services'
-        )
-    );
-
+    'use strict';
     var scope, element;
 
-    beforeEach(function() {
-        this.addMatchers({
-            toEqualData: function(expected) {
-                return angular.equals(this.actual, expected);
-            }
-        });
-    });
+    beforeEach(module('brickSlopes.directives'));
 
     describe('bsLogo', function() {
         var expectedOutput;

@@ -1,32 +1,19 @@
-'use strict';
-
-/* jasmine specs for controllers go here */
-
 describe('controllers', function() {
-    var scope, ctrl, location;
+    'use strict';
+    var scope, location, window;
 
-    beforeEach (
-        module (
-            'brickSlopes.controllers',
-            'brickSlopes.services'
-        )
-    );
+    beforeEach(module ('brickSlopes.controllers', 'brickSlopes.services'));
 
-    beforeEach(function() {
-        this.addMatchers({
-            toEqualData: function(expected) {
-                return angular.equals(this.actual, expected);
-            }
-        });
-    });
+    beforeEach(inject(function(_EventSelectionFactory_) {
+        spyOn(_EventSelectionFactory_, 'getSelectedEvent').andReturn(2);
+    }));
 
     describe('afolIndex Controller', function() {
-        var window;
-        beforeEach(inject(function($controller, $rootScope, $location, $window) {
-            window = $window;
+        beforeEach(inject(function(_$controller_, _$rootScope_, $location, _$window_) {
+            window = _$window_;
             storeSession(window, sessionData);
-            scope = $rootScope.$new();
-            ctrl = $controller('afolIndex', { $scope: scope});
+            scope = _$rootScope_.$new();
+            _$controller_('afolIndex', { $scope: scope});
             location = $location;
         }));
 
@@ -56,7 +43,7 @@ describe('controllers', function() {
             });
 
             it('should have a userName variable', function() {
-                expect(scope.userName).toEqualData("Ember's Site");
+                expect(scope.userName).toEqual("Ember's Site");
             });
 
             it('should have a isRegistered variable', function() {
@@ -214,12 +201,12 @@ describe('controllers', function() {
 
     describe('afolIndex Controller', function() {
         var mockBackend, service, rootScope, userDetails;
-        beforeEach(inject(function($controller, $rootScope, $location, _$httpBackend_, MocDetails, _UserDetails_) {
-            rootScope = $rootScope;
+        beforeEach(inject(function(_$controller_, _$rootScope_, $location, _$httpBackend_, MocDetails, _UserDetails_) {
+            rootScope = _$rootScope_;
             userDetails = _UserDetails_;
             scope = rootScope.$new();
-            spyOn($rootScope, "$emit");
-            ctrl = $controller('afolIndex', { $scope: scope, rootScope: $rootScope, UserDetails: userDetails});
+            spyOn(_$rootScope_, "$emit");
+            _$controller_('afolIndex', { $scope: scope, rootScope: _$rootScope_, UserDetails: userDetails});
             location = $location;
             mockBackend = _$httpBackend_;
             service = MocDetails;
@@ -278,7 +265,7 @@ describe('controllers', function() {
         });
 
         it('should send a show-tour event', function() {
-            expect(rootScope.$emit).toHaveBeenCalledWith('show-tour', {eventId: 2});
+            expect(rootScope.$emit).toHaveBeenCalledWith('show-tour');
             rootScope.$emit.reset();
             scope.$digest();
             expect(rootScope.$emit).not.toHaveBeenCalled();

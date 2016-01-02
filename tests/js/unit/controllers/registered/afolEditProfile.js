@@ -1,23 +1,8 @@
-'use strict';
-
-/* jasmine specs for controllers go here */
-
 describe('controllers', function() {
+    'use strict';
     var scope, ctrl, location;
 
-    beforeEach (
-        module (
-            'brickSlopes.controllers'
-        )
-    );
-
-    beforeEach(function() {
-        this.addMatchers({
-            toEqualData: function(expected) {
-                return angular.equals(this.actual, expected);
-            }
-        });
-    });
+    beforeEach(module('brickSlopes.controllers'));
 
     describe('afolEditProfile Controller', function() {
         var mockBackend, loader;
@@ -52,7 +37,7 @@ describe('controllers', function() {
                 mockBackend.expectGET('/controllers/public/user.php').respond(200, singleUser);
                 mockBackend.flush();
                 singleUser.memberSince = 'May 16th, 2014';
-                expect(scope.userObject).toEqualData(singleUser);
+                expect(scope.userObject).toEqual(singleUser);
             });
         });
 

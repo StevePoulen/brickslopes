@@ -1,26 +1,18 @@
-'use strict';
-
-/* jasmine specs for services go here */
-
 describe('service', function() {
+    'use strict';
     beforeEach(module('brickSlopes.services'));
 
-    beforeEach(function() {
-        this.addMatchers({
-            toEqualData: function(expected) {
-                return angular.equals(this.actual, expected);
-            }
-        });
-    });
+    beforeEach(inject(function(_EventSelectionFactory_) {
+        spyOn(_EventSelectionFactory_, 'getSelectedEvent').andReturn(2);
+    }));
 
     describe('Event Details', function() {
         describe('Get', function() {
             var mockBackend, service, data, eventId;
             beforeEach(inject(function(_$httpBackend_, EventDetails) {
-                eventId = 22;
                 mockBackend = _$httpBackend_;
                 service = EventDetails;
-                mockBackend.expectGET('/controllers/public/event.php?eventId=22').respond(eventDetails);
+                mockBackend.expectGET('/controllers/public/event.php?eventId=2').respond(eventDetails);
                 var load = service.get(eventId)
                 load.then(function(_data) {
                     data = _data;
@@ -30,7 +22,7 @@ describe('service', function() {
             }));
 
             it('should get event details name', function() {
-                expect(data.name).toEqualData('BrickSlopes 2015');
+                expect(data.name).toBe('BrickSlopes 2015');
             });
 
             it('should have Event Cost', function() {

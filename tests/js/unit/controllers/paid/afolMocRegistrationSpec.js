@@ -1,42 +1,32 @@
-'use strict';
-
-/* jasmine specs for controllers go here */
-
 describe('controllers', function() {
-    var scope, ctrl, location;
+    'use strict';
+    var scope, ctrl, location, mockBackend, window, originalSessionStorage;
 
-    beforeEach(
-        module(
-            'brickSlopes.controllers'
-        )
-    );
+    beforeEach(module('brickSlopes.controllers'));
 
-    beforeEach(function() {
-        this.addMatchers({
-            toEqualData: function(expected) {
-                return angular.equals(this.actual, expected);
-            }
-        });
+    beforeEach(inject(function(_EventSelectionFactory_, _$httpBackend_, _$window_) {
+        window = _$window_;
+        originalSessionStorage = window.sessionStorage;
+        spyOn(_EventSelectionFactory_, 'getSelectedEvent').andReturn(2);
+        mockBackend = _$httpBackend_;
+    }));
+
+    afterEach(function() {
+        window.sessionStorage = originalSessionStorage;
     });
 
     describe('eventMocRegistration Controller', function() {
-        var mockBackend, loader, window, location, response, route;
+        var loader, location, response, route;
 
-        beforeEach(inject(function($controller, $rootScope, $location, _$httpBackend_ , _$window_, $route) {
+        beforeEach(inject(function($controller, $rootScope, $location, $route) {
             route = $route;
             route = {current: {params:{eventId:2}}};
             scope = $rootScope.$new();
-            window = _$window_;
             window.sessionStorage.firstName = 'Cody';
             window.sessionStorage.lastName = 'Ottley';
             ctrl = $controller('afolMocRegistration', { $scope: scope, $window: window, $route: route});
             location = $location;
-            mockBackend = _$httpBackend_;
         }));
-
-        afterEach(function() {
-            delete window.sessionStorage;
-        });
 
         describe('Default Values', function() {
             it('should have a displayErrorMessage variable ', function() {
@@ -138,11 +128,11 @@ describe('controllers', function() {
             });
 
             it('should populate the themeList variable', function() {
-                expect(scope.themeList).toEqualData(themes);
+                expect(scope.themeList).toEqual(themes);
             });
 
             it('should have a theme variable ', function() {
-                expect(scope.theme).toEqualData(themes[0]);
+                expect(scope.theme).toEqual(themes[0]);
             });
 
             it('should have an themeId variable ', function() {
@@ -179,7 +169,7 @@ describe('controllers', function() {
                 expect(scope.displayName).toBe('Cody Ottley');
                 expect(scope.baseplateWidth).toBe(1);
                 expect(scope.baseplateDepth).toBe(1);
-                expect(scope.theme).toEqualData(themes[0]);
+                expect(scope.theme).toEqual(themes[0]);
                 expect(scope.themeId).toBeUndefined();
                 expect(scope.title).toBeUndefined();
                 expect(scope.mocImageUrl).toBeUndefined();
@@ -199,17 +189,15 @@ describe('controllers', function() {
     });
 
     describe('eventMocRegistration Controller Update With Available Moc', function() {
-        var mockBackend, loader, window, location, response, route, mocDTO;
+        var loader, location, response, route, mocDTO;
 
-        beforeEach(inject(function($controller, $rootScope, $location, _$httpBackend_ , _$window_, $route) {
+        beforeEach(inject(function($controller, $rootScope, $location, $route) {
             route = $route;
             route = {current: {params:{eventId:2, mocId:3}}};
             scope = $rootScope.$new();
-            window = _$window_;
             window.sessionStorage.userId = 1;
             ctrl = $controller('afolMocRegistration', { $scope: scope, $window: window, $route: route});
             location = $location;
-            mockBackend = _$httpBackend_;
             mockBackend.expectGET('/controllers/paid/themes.php?eventId=2').respond(themes);
             mockBackend.expectGET('/controllers/paid/mocs.php?eventId=2').respond(mocs);
 
@@ -225,10 +213,6 @@ describe('controllers', function() {
                 description: 'My out-of-this-world castle with peeps!'
             }
         }));
-
-        afterEach(function() {
-            delete window.sessionStorage;
-        });
 
         describe('Update Moc', function() {
             it('should update a moc', function() {
@@ -254,7 +238,7 @@ describe('controllers', function() {
                 expect(scope.displayName).toBe('Cody Ottley');
                 expect(scope.baseplateWidth).toBe(1);
                 expect(scope.baseplateDepth).toBe(1);
-                expect(scope.theme).toEqualData(themes[0]);
+                expect(scope.theme).toEqual(themes[0]);
                 expect(scope.mocId).toBeUndefined();
                 expect(scope.themeId).toBe(12);
                 expect(scope.title).toBeUndefined();
@@ -276,17 +260,15 @@ describe('controllers', function() {
     });
 
     describe('eventMocRegistration Controller Update With Available Moc', function() {
-        var mockBackend, loader, window, location, response, route, mocDTO;
+        var loader, location, response, route, mocDTO;
 
-        beforeEach(inject(function($controller, $rootScope, $location, _$httpBackend_ , _$window_, $route) {
+        beforeEach(inject(function($controller, $rootScope, $location, $route) {
             route = $route;
             route = {current: {params:{eventId:2, mocId:4}}};
             scope = $rootScope.$new();
-            window = _$window_;
             window.sessionStorage.userId = 1;
             ctrl = $controller('afolMocRegistration', { $scope: scope, $window: window, $route: route});
             location = $location;
-            mockBackend = _$httpBackend_;
             mockBackend.expectGET('/controllers/paid/themes.php?eventId=2').respond(themes);
             mockBackend.expectGET('/controllers/paid/mocs.php?eventId=2').respond(mocs);
 
@@ -303,10 +285,6 @@ describe('controllers', function() {
             }
         }));
 
-        afterEach(function() {
-            delete window.sessionStorage;
-        });
-
         describe('Update Moc', function() {
             it('should not update a moc if the moc is not defined', function() {
                 mockBackend.flush();
@@ -315,7 +293,7 @@ describe('controllers', function() {
                 expect(scope.displayName).toBe('Cody Ottley');
                 expect(scope.baseplateWidth).toBe(1);
                 expect(scope.baseplateDepth).toBe(1);
-                expect(scope.theme).toEqualData(themes[0]);
+                expect(scope.theme).toEqual(themes[0]);
                 expect(scope.themeId).toBe(12);
                 expect(scope.title).toBeUndefined();
                 expect(scope.mocImageUrl).toBeUndefined();

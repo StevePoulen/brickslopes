@@ -1,11 +1,12 @@
-'use strict';
-
-/* jasmine specs for controllers go here */
-
 describe('controllers', function() {
+    'use strict';
     var scope, ctrl, location;
 
     beforeEach (module ('brickSlopes.controllers'));
+
+    beforeEach(inject(function(_EventSelectionFactory_) {
+        spyOn(_EventSelectionFactory_, 'getSelectedEvent').andReturn(2);
+    }));
 
     describe('adminRegisteredMocs Controller', function() {
         var mockBackend;

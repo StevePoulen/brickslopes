@@ -1,23 +1,12 @@
-'use strict';
-
-/* jasmine specs for controllers go here */
-
 describe('controllers', function() {
+    'use strict';
     var scope, ctrl;
 
-    beforeEach(
-        module(
-            'brickSlopes.controllers'
-        )
-    );
+    beforeEach(module('brickSlopes.controllers'));
 
-    beforeEach(function() {
-        this.addMatchers({
-            toEqualData: function(expected) {
-                return angular.equals(this.actual, expected);
-            }
-        });
-    });
+    beforeEach(inject(function(_EventSelectionFactory_) {
+        spyOn(_EventSelectionFactory_, 'getSelectedEvent').andReturn(2);
+    }));
 
     describe('afolEventGames Controller', function() {
         var mockBackend, location;
@@ -51,11 +40,11 @@ describe('controllers', function() {
             });
 
             it('should have an eventId variable', function() {
-                expect(scope.gameList).toEqualData([]);
+                expect(scope.gameList).toEqual([]);
             });
 
             it('should have an userGameList variable', function() {
-                expect(scope.userGameList).toEqualData([]);
+                expect(scope.userGameList).toEqual([]);
             });
 
             it('should get game details', function() {

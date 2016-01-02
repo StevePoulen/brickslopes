@@ -1,23 +1,21 @@
 @import './base';
-@import url('/css/bsbits.css');
-@import url('/css/icons.css');
-@import url('/css/animation.css');
-@import url('/css/admin.css');
-@import url('/css/afols.css');
-@import url('/css/payment.css');
-@import url('/css/moc.css');
-@import url('/css/games.css');
-@import url('/css/vendors.css');
-@import url('/css/vendorRegistration.css');
-@import url('/css/collections.css');
-@import url('/css/keynote.css');
-@import url('/css/guest.css');
-@import url('/css/lego.css');
-@import url('/css/tour.css');
-@import url('/css/schedule.css');
-@import url('/css/packages.css');
-@import url('/css/aboutus.css');
-
+@import './aboutus';
+@import './admin';
+@import './afols';
+@import './animation';
+@import './bsbits';
+@import './collections';
+@import './games';
+@import './guest';
+@import './keynote';
+@import './lego';
+@import './moc';
+@import './packages';
+@import './payment';
+@import './schedule';
+@import './tour';
+@import './vendorRegistration';
+@import './vendors';
 
 /* Smartphones (portrait and landscape) ----------- */
 @media only screen 

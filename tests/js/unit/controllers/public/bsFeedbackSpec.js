@@ -1,22 +1,11 @@
-'use strict';
-
-/* jasmine specs for controllers go here */
-
 describe('controllers', function() {
+    'use strict';
     var scope, ctrl, location;
 
-    beforeEach (
-        module (
-            'brickSlopes.controllers'
-        )
-    );
+    beforeEach(module('brickSlopes.controllers'));
 
-    beforeEach(function() {
-        this.addMatchers({
-            toEqualData: function(expected) {
-                return angular.equals(this.actual, expected);
-            }
-        });
+    afterEach(function() {
+        $('body').html();
     });
 
     describe('bsFeedback Default Variables', function() {
@@ -49,7 +38,7 @@ describe('controllers', function() {
 
         it('should open the feedback form', function() {
             scope.feedbackOpen = false;
-            setFixtures('<div class="feedbackPanel"></div>');
+            $('body').append('<div class="feedbackPanel"></div>');
             $($('.feedbackPanel')).css('left', '-426px');
             scope.clickFeedbackTab();
             expect(location.path()).toBe('');
@@ -59,7 +48,7 @@ describe('controllers', function() {
 
         it('should close the feedback form', function() {
             scope.feedbackOpen = true;
-            setFixtures('<div class="feedbackPanel"></div>');
+            $('body').append('<div class="feedbackPanel"></div>');
             $($('.feedbackPanel')).css('left', '426px');
             scope.clickFeedbackTab();
             expect(location.path()).toBe('');
@@ -69,7 +58,7 @@ describe('controllers', function() {
 
         it('should close the feedback form with the mask', function() {
             scope.feedbackOpen = true;
-            setFixtures('<div class="feedbackPanel"></div>');
+            $('body').append('<div class="feedbackPanel"></div>');
             $($('.feedbackPanel')).css('left', '426px');
             scope.clickMask();
             expect(location.path()).toBe('');

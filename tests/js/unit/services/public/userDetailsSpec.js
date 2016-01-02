@@ -164,7 +164,6 @@ describe('service', function() {
                 });
 
                 mockBackend.flush();
-                expect(userDetails.showTour).toBe('NO');
                 expect(data).toBe(200);
             });
         });

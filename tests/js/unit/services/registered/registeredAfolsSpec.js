@@ -1,17 +1,11 @@
-'use strict';
-
-/* jasmine specs for services go here */
-
 describe('service', function() {
+    'use strict';
+
     beforeEach(module('brickSlopes.services'));
 
-    beforeEach(function() {
-        this.addMatchers({
-            toEqualData: function(expected) {
-                return angular.equals(this.actual, expected);
-            }
-        });
-    });
+    beforeEach(inject(function(_EventSelectionFactory_) {
+        spyOn(_EventSelectionFactory_, 'getSelectedEvent').andReturn(2);
+    }));
 
     describe('Registered Afols', function() {
         describe('Get', function() {
@@ -29,7 +23,7 @@ describe('service', function() {
                 });
 
                 mockBackend.flush();
-                expect(data).toEqualData(2);
+                expect(data).toBe(2);
             });
 
             it('should get all of the registered afols', function() {
@@ -40,7 +34,7 @@ describe('service', function() {
                 });
 
                 mockBackend.flush();
-                expect(data).toEqualData(registeredAfols);
+                expect(data).toEqual(registeredAfols);
             });
         });
 
@@ -59,7 +53,7 @@ describe('service', function() {
                 });
 
                 mockBackend.flush();
-                expect(data).toEqualData(0);
+                expect(data).toBe(0);
             });
 
             it('should get all of the registered afols', function() {
@@ -70,7 +64,7 @@ describe('service', function() {
                 });
 
                 mockBackend.flush();
-                expect(data).toEqualData([]);
+                expect(data).toEqual([]);
             });
         });
 
@@ -79,7 +73,7 @@ describe('service', function() {
             beforeEach(inject(function(_$httpBackend_, RegisteredAfols) {
                 mockBackend = _$httpBackend_;
                 service = RegisteredAfols;
-                mockBackend.expectGET('/controllers/admin/sendEmail.php?type=registrationPaid&userId=2').respond(201);
+                mockBackend.expectGET('/controllers/admin/sendEmail.php?eventId=2&type=registrationPaid&userId=2').respond(201);
             }));
 
             it('should send a request for an email', function() {

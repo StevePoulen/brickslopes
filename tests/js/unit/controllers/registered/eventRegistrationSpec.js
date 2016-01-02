@@ -1,23 +1,12 @@
-'use strict';
-
-/* jasmine specs for controllers go here */
-
 describe('controllers', function() {
+    'use strict';
     var scope, ctrl, location;
 
-    beforeEach(
-        module(
-            'brickSlopes.controllers'
-        )
-    );
+    beforeEach(module('brickSlopes.controllers'));
 
-    beforeEach(function() {
-        this.addMatchers({
-            toEqualData: function(expected) {
-                return angular.equals(this.actual, expected);
-            }
-        });
-    });
+    beforeEach(inject(function(_EventSelectionFactory_) {
+        spyOn(_EventSelectionFactory_, 'getSelectedEvent').andReturn(2);
+    }));
 
     describe('afolEventRegistration Controller', function() {
         var mockBackend, loader, window, location, route;
@@ -41,7 +30,7 @@ describe('controllers', function() {
 
         describe('Default Values', function() {
             it('should have a shirt sizes variable', function() {
-                expect(scope.shirtSizes).toEqualData(
+                expect(scope.shirtSizes).toEqual(
                     ['No Thanks', 'Small', 'Medium', 'Large', 'X-Large', 'XX-Large', 'XXX-Large']
                 );
             });
@@ -117,8 +106,8 @@ describe('controllers', function() {
             it('should get event details', function() {
                 mockBackend.expectGET('/controllers/registered/eventRegistration.php').respond(200, eventRegistration);
                 mockBackend.flush();
-                expect(scope.eventDetails.costs.eventCost).toEqualData('65.00');
-                expect(scope.discountDate).toEqualData('March 25th, 2015');
+                expect(scope.eventDetails.costs.eventCost).toBe('65.00');
+                expect(scope.discountDate).toBe('March 25th, 2015');
                 expect(scope.passType).toBe('4-Day');
                 expect(scope.passDates).toBe('May 14th thru 17th');
                 expect(scope.eventYear).toBe('2015');
@@ -135,7 +124,7 @@ describe('controllers', function() {
             });
 
             it('should deserialize a valid user event registration', function() {
-                expect(scope.registrationId).toEqualData(27);
+                expect(scope.registrationId).toBe(27);
                 expect(scope.badgeLine2).toBe('Owner - Badge Line Two');
                 expect(scope.badgeLine3).toBe('Badge Line Three');
                 expect(scope.nameBadge).toBe('YES');

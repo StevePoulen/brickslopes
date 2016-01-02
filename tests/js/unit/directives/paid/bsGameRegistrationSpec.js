@@ -1,23 +1,6 @@
-'use strict';
-
-/* jasmine specs for directives go here */
-
 describe('directives', function() {
-    beforeEach(
-        module(
-            'brickSlopes.directives',
-            'brickSlopes.services',
-            'app/partials/paid/bsGameRegistration.html'
-        )
-    );
-
-    beforeEach(function() {
-        this.addMatchers({
-            toEqualData: function(expected) {
-                return angular.equals(this.actual, expected);
-            }
-        });
-    });
+    'use strict';
+    beforeEach(module('brickSlopes.directives'));
 
     describe('bsModal', function() {
         var scope, element, compile;

@@ -1,17 +1,10 @@
-'use strict';
-
-/* jasmine specs for services go here */
-
 describe('service', function() {
+    'use strict';
     beforeEach(module('brickSlopes.services'));
 
-    beforeEach(function() {
-        this.addMatchers({
-            toEqualData: function(expected) {
-                return angular.equals(this.actual, expected);
-            }
-        });
-    });
+    beforeEach(inject(function(_EventSelectionFactory_) {
+        spyOn(_EventSelectionFactory_, 'getSelectedEvent').andReturn(2);
+    }));
 
     describe('MocDetails', function() {
         var mockBackend, service, data, window;
@@ -29,7 +22,7 @@ describe('service', function() {
             });
 
             mockBackend.flush();
-            expect(data).toEqualData(3);
+            expect(data).toBe(3);
         });
 
         it('should load registered afol moc list count', function() {
@@ -39,7 +32,7 @@ describe('service', function() {
             });
 
             mockBackend.flush();
-            expect(data).toEqualData(mocs);
+            expect(data).toEqual(mocs);
         });
 
         it('should load an individuals afol moc list', function() {
@@ -50,7 +43,7 @@ describe('service', function() {
             });
 
             mockBackend.flush();
-            expect(data).toEqualData(userTwoMoc);
+            expect(data).toEqual(userTwoMoc);
         });
 
         it('should load individual afol moc list count', function() {
@@ -61,22 +54,22 @@ describe('service', function() {
             });
 
             mockBackend.flush();
-            expect(data).toEqualData(1);
+            expect(data).toBe(1);
         });
 
         it('should load individual moc', function() {
             window.sessionStorage.userId = 1;
-            service.getMocById(2, 3).then(function(_data) {
+            service.getMocById(3).then(function(_data) {
                 data = _data;
             });
 
             mockBackend.flush();
-            expect(data.title).toEqualData("Corey's Castle");
+            expect(data.title).toBe("Corey's Castle");
         });
 
         it('should return undefined if the moc is not found', function() {
             window.sessionStorage.userId = 2;
-            service.getMocById(2, 3).then(function(_data) {
+            service.getMocById(3).then(function(_data) {
                 data = _data;
             });
 
@@ -86,7 +79,7 @@ describe('service', function() {
 
         it('should return undefined if the moc is not found', function() {
             window.sessionStorage.userId = 2;
-            service.getMocById(2, 3).then(function(_data) {
+            service.getMocById(3).then(function(_data) {
                 data = _data;
             });
 
@@ -111,7 +104,7 @@ describe('service', function() {
             });
 
             mockBackend.flush();
-            expect(data).toEqualData(201);
+            expect(data).toBe(201);
         });
     });
 
@@ -131,7 +124,7 @@ describe('service', function() {
             });
 
             mockBackend.flush();
-            expect(data).toEqualData(200);
+            expect(data).toBe(200);
         });
     });
 
@@ -151,7 +144,7 @@ describe('service', function() {
             });
 
             mockBackend.flush();
-            expect(data).toEqualData(3);
+            expect(data).toBe(3);
 
             var load = service.getCount(2);
             var flushError = false;
@@ -171,7 +164,7 @@ describe('service', function() {
             });
 
             mockBackend.flush();
-            expect(data).toEqualData(3);
+            expect(data).toBe(3);
 
             var load = service.getCount(2);
             var flushError = false;

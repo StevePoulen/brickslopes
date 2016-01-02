@@ -1,15 +1,8 @@
-'use strict';
-
-/* jasmine specs for controllers go here */
-
 describe('controllers', function() {
+    'use strict';
     var scope, ctrl, location;
 
-    beforeEach (
-        module (
-            'brickSlopes.controllers'
-        )
-    );
+    beforeEach (module ('brickSlopes.controllers'));
 
     describe('bsIndex Default Variables', function() {
         beforeEach(inject(function($controller, $rootScope) {
@@ -78,7 +71,8 @@ describe('controllers', function() {
 
     describe('bsIndex Flush', function() {
         var mockBackend;
-        beforeEach(inject(function($controller, $rootScope, _$httpBackend_) {
+        beforeEach(inject(function($controller, $rootScope, _$httpBackend_, _EventSelectionFactory_) {
+            spyOn(_EventSelectionFactory_, 'getSelectedEvent').andReturn(2);
             scope = $rootScope.$new();
             ctrl = $controller('bsIndex', { $scope: scope});
             mockBackend = _$httpBackend_;

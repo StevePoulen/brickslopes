@@ -1,7 +1,7 @@
 'use strict';
 
 /* Directives */
-angular.module('brickSlopes.directives', [])
+angular.module('brickSlopes.directives')
 .directive('bsHeader', function() {
     return {
         restrict: 'E',
@@ -299,7 +299,7 @@ angular.module('brickSlopes.directives', [])
                 $scope.isHideTour = true;
             };
 
-            $rootScope.$on('show-tour', function(event, args) {
+            $rootScope.$on('show-tour', function(event) {
                 event.stopPropagation();
                 $timeout(function() {
                     $scope.isHideTour = false;
@@ -308,7 +308,7 @@ angular.module('brickSlopes.directives', [])
                         $scope.initializeMask();
                     });
 
-                    EventDetails.get(args.eventId).then(function(data) {
+                    EventDetails.get().then(function(data) {
                         $scope.eventName = data.name;
                         $scope.eventYear = data.year;
                         $scope.discountDate = moment(data.discountDate).format('MMMM Do, YYYY');

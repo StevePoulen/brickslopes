@@ -1,23 +1,12 @@
-'use strict';
-
-/* jasmine specs for controllers go here */
-
 describe('controllers', function() {
+    'use strict';
     var scope, ctrl, location;
 
-    beforeEach(
-        module(
-            'brickSlopes.controllers'
-        )
-    );
+    beforeEach(module('brickSlopes.controllers'));
 
-    beforeEach(function() {
-        this.addMatchers({
-            toEqualData: function(expected) {
-                return angular.equals(this.actual, expected);
-            }
-        });
-    });
+    beforeEach(inject(function(_EventSelectionFactory_) {
+        spyOn(_EventSelectionFactory_, 'getSelectedEvent').andReturn(2);
+    }));
 
     describe('afolEventThemes Controller', function() {
         var mockBackend, loader, location, response;
@@ -39,16 +28,12 @@ describe('controllers', function() {
 
         describe('Defult Values', function() {
             it('should have an eventId variable', function() {
-                expect(scope.eventId).toBe(2);
-            });
-
-            it('should have an eventId variable', function() {
-                expect(scope.themeList).toEqualData([]);
+                expect(scope.themeList).toEqual([]);
             });
 
             it('should get event details', function() {
                 mockBackend.flush();
-                expect(scope.themeList).toEqualData(response);
+                expect(scope.themeList).toEqual(response);
             });
         });
     });

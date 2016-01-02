@@ -9,7 +9,9 @@ angular.module('brickSlopes', [
     'brickSlopes.services',
     'brickSlopes.controllers',
     'Admin',
-    'Public'
+    'Public',
+    'BrickSlopesShared',
+    'TemplateModule'
 ]).
 config(['$routeProvider', '$httpProvider', '$locationProvider', function($routeProvider, $httpProvider, $locationProvider) {
     $httpProvider.interceptors.push('authInterceptor');
@@ -363,5 +365,11 @@ config(['$routeProvider', '$httpProvider', '$locationProvider', function($routeP
 
 }]);
 
+angular.module('BrickSlopesShared', []);
+
+angular.module('TemplateModule', []);
+angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute']);
+angular.module('brickSlopes.directives', ['TemplateModule', 'brickSlopes.services']);
+angular.module('brickSlopes.services', ['ngResource', 'BrickSlopesShared'])
 angular.module('Admin', ['brickSlopes.services']);
 angular.module('Public', []);

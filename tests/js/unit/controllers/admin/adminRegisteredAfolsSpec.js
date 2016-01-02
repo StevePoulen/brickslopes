@@ -1,23 +1,12 @@
-'use strict';
-
-/* jasmine specs for controllers go here */
-
 describe('controllers', function() {
+    'use strict';
     var scope, ctrl, location;
 
-    beforeEach (
-        module (
-            'brickSlopes.controllers'
-        )
-    );
+    beforeEach(module('brickSlopes.controllers'));
 
-    beforeEach(function() {
-        this.addMatchers({
-            toEqualData: function(expected) {
-                return angular.equals(this.actual, expected);
-            }
-        });
-    });
+    beforeEach(inject(function(_EventSelectionFactory_) {
+        spyOn(_EventSelectionFactory_, 'getSelectedEvent').andReturn(2);
+    }));
 
     describe('adminRegisteredAfols Controller', function() {
         var mockBackend;
@@ -59,17 +48,17 @@ describe('controllers', function() {
 
             it('should have an eventName variable', function() {
                 mockBackend.flush();
-                expect(scope.registeredAfols).toEqualData(registeredAfols['2']['registeredAfols']);
+                expect(scope.registeredAfols).toEqual(registeredAfols['2']['registeredAfols']);
             });
 
             it('should have a registeredAfols lisit', function() {
                 mockBackend.flush();
-                expect(scope.eventName).toEqualData('BrickSlopes - Salt Lake City');
+                expect(scope.eventName).toBe('BrickSlopes - Salt Lake City');
             });
 
             it('should have a comments variable', function() {
                 mockBackend.flush();
-                expect(scope.registeredAfols.comments).toEqualData(registeredAfols['2']['registeredAfols'].comments);
+                expect(scope.registeredAfols.comments).toEqual(registeredAfols['2']['registeredAfols'].comments);
             });
         });
 

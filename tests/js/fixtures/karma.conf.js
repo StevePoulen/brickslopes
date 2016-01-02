@@ -3,18 +3,19 @@ module.exports = function(config){
     basePath : '../../../',
 
     files : [
-      'app/lib/**/angular.min.js',
-      'app/lib/**/angular-resource.min.js',
-      'app/lib/**/angular-route.min.js',
-      'tests/js/lib/angular-mocks.min.js',
-      'app/partials/registered/**/*.html',
-      'app/partials/paid/**/*.html',
-      'app/partials/directives/**/*.html',
-      'app/lib/**/*.js',
-      'app/js/**/*.js',
-      'tests/js/fixtures/artifacts/**/*.js',
-      'tests/js/unit/**/*.js',
-      'node_modules/jasmine-jquery/lib/jasmine-jquery.js'
+        'app/lib/**/angular.min.js',
+        'app/lib/**/angular-resource.min.js',
+        'app/lib/**/angular-route.min.js',
+        'tests/js/lib/angular-mocks.min.js',
+        'app/src/brickslopes/brickslopes.js',
+        'app/partials/registered/**/*.html',
+        'app/partials/paid/**/*.html',
+        'app/partials/directives/**/*.html',
+        'app/lib/**/*.js',
+        'app/js/**/*.js',
+        'app/src/**/*.js',
+        'tests/js/fixtures/artifacts/**/*.js',
+        'tests/js/unit/**/*.js'
     ],
 
     exclude : [

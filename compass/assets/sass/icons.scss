@@ -1,5 +1,5 @@
 @import "compass/utilities/sprites";
-@import './base';
+@import '../../../app/src/css/base';
 
 /* Sprite maps */
 $icons-sprite: sprite-map("icons/*.png");

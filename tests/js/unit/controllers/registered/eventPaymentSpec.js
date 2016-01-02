@@ -1,23 +1,15 @@
-'use strict';
-
-/* jasmine specs for controllers go here */
-
 describe('controllers', function() {
+    'use strict';
     var scope, ctrl, location;
 
-    beforeEach(
-        module(
-            'brickSlopes.controllers',
-            'app/partials/registered/eventPayment.html'
-        )
-    );
+    beforeEach(module('brickSlopes.controllers', 'TemplateModule'));
 
-    beforeEach(function() {
-        this.addMatchers({
-            toEqualData: function(expected) {
-                return angular.equals(this.actual, expected);
-            }
-        });
+    beforeEach(inject(function(_EventSelectionFactory_) {
+        spyOn(_EventSelectionFactory_, 'getSelectedEvent').andReturn(2);
+    }));
+
+    afterEach(function() {
+        $('body').html('');
     });
 
     describe('afolEventPayment Controller', function() {
@@ -68,7 +60,7 @@ describe('controllers', function() {
 
         describe('PaypalPayload', function() {
             beforeEach(function() {
-                setFixtures('<form id="paypalSubmitForm"></form>');
+                $('body').append('<form id="paypalSubmitForm"></form>');
                 mockBackend.expectGET('/controllers/registered/registrationLineItems.php?eventId=2').respond(registrationLineItems);
                 mockBackend.flush();
             });

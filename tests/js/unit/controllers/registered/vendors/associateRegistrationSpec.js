@@ -1,23 +1,12 @@
-'use strict';
-
-/* jasmine specs for controllers go here */
-
 describe('controllers', function() {
+    'use strict';
     var scope, ctrl, location;
 
-    beforeEach(
-        module(
-            'brickSlopes.controllers'
-        )
-    );
+    beforeEach(module('brickSlopes.controllers'));
 
-    beforeEach(function() {
-        this.addMatchers({
-            toEqualData: function(expected) {
-                return angular.equals(this.actual, expected);
-            }
-        });
-    });
+    beforeEach(inject(function(_EventSelectionFactory_) {
+        spyOn(_EventSelectionFactory_, 'getSelectedEvent').andReturn(2);
+    }));
 
     describe('associateRegistration Controller', function() {
         var mockBackend, loader, location, response, route;
@@ -46,19 +35,19 @@ describe('controllers', function() {
             });
 
             it('should have an associates collection', function() {
-                expect(scope.associates[0].firstName).toEqualData('Dorthy');
+                expect(scope.associates[0].firstName).toBe('Dorthy');
             });
 
             it('should have a formatted discount date', function() {
-                expect(scope.formattedDiscountDate).toEqualData('March 25th, 2015');
+                expect(scope.formattedDiscountDate).toBe('March 25th, 2015');
             });
 
             it('should have a vendorEventCost', function() {
-                expect(scope.vendorEventCost).toEqualData('15.00');
+                expect(scope.vendorEventCost).toBe('15.00');
             });
 
             it('should have a vendorEventDiscount', function() {
-                expect(scope.vendorEventDiscount).toEqualData('10.00');
+                expect(scope.vendorEventDiscount).toBe('10.00');
             });
         });
 
@@ -68,7 +57,7 @@ describe('controllers', function() {
             });
 
             it('should have an associates collection', function() {
-                expect(scope.associates).toEqualData([]);
+                expect(scope.associates).toEqual([]);
             });
 
             it('should have an addAfolPass variable ', function() {
@@ -191,7 +180,6 @@ describe('controllers', function() {
             });
 
             it('should display an error', function() {
-                scope.eventId = 2;
                 scope.associate = {associateId: 4, userId:3};
                 scope.clickDelete();
                 mockBackend.expectDELETE('/controllers/registered/vendors/vendorAssociates.php?associateId=4&eventId=2&userId=3').respond(400, {error: 'nothing'});

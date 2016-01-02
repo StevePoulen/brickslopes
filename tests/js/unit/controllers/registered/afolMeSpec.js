@@ -1,24 +1,12 @@
-'use strict';
-
-/* jasmine specs for controllers go here */
-
 describe('controllers', function() {
+    'use strict';
     var scope, ctrl, location, rootScope;
 
-    beforeEach (
-        module (
-            'brickSlopes.controllers',
-            'brickSlopes.services'
-        )
-    );
+    beforeEach(module('brickSlopes.controllers', 'brickSlopes.services'));
 
-    beforeEach(function() {
-        this.addMatchers({
-            toEqualData: function(expected) {
-                return angular.equals(this.actual, expected);
-            }
-        });
-    });
+    beforeEach(inject(function(_EventSelectionFactory_) {
+        spyOn(_EventSelectionFactory_, 'getSelectedEvent').andReturn(2);
+    }));
 
     describe('afolMe Controller', function() {
         var mockBackend, loader, window, location;
@@ -46,7 +34,7 @@ describe('controllers', function() {
             it('should turn on the tour modal', function() {
                 spyOn(rootScope, "$emit");
                 scope.clickTour();
-                expect(rootScope.$emit).toHaveBeenCalledWith('show-tour', {eventId: 2});
+                expect(rootScope.$emit).toHaveBeenCalledWith('show-tour');
                 expect(location.path()).toBe('/registered/index.html');
             });
         });
@@ -181,15 +169,15 @@ describe('controllers', function() {
             });
 
             it('should have an eventList variable', function() {
-                expect(scope.eventList).toEqualData({});
+                expect(scope.eventList).toEqual({});
             });
 
             it('should have an userGameList variable', function() {
-                expect(scope.userGameList).toEqualData({});
+                expect(scope.userGameList).toEqual({});
             });
 
             it('should have an mocList variable', function() {
-                expect(scope.mocList).toEqualData({});
+                expect(scope.mocList).toEqual({});
             });
 
             it('should have an mocCount variable', function() {
@@ -197,7 +185,7 @@ describe('controllers', function() {
             });
 
             it('should have an vendorModel variable', function() {
-                expect(scope.vendorModel).toEqualData({});
+                expect(scope.vendorModel).toEqual({});
             });
 
             it('should have a gameCount variable', function() {
@@ -205,7 +193,7 @@ describe('controllers', function() {
             });
 
             it('should have an userObject variable', function() {
-                expect(scope.userObject).toEqualData({});
+                expect(scope.userObject).toEqual({});
             });
         });
 
@@ -241,7 +229,7 @@ describe('controllers', function() {
             });
 
             it('should populate the userObject variable', function() {
-                expect(scope.userObject.memberSince).toEqualData('May 16th, 2014');
+                expect(scope.userObject.memberSince).toBe('May 16th, 2014');
             });
 
             it('should have an displayRegisteredEventCTA variable', function() {
@@ -351,7 +339,7 @@ describe('controllers', function() {
             });
 
             it('should have an mocList variable', function() {
-                expect(scope.mocList).toEqualData(userOneMoc);
+                expect(scope.mocList).toEqual(userOneMoc);
             });
 
             it('should have a gameCount variable', function() {

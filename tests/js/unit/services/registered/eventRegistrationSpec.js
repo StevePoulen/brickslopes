@@ -1,17 +1,7 @@
-'use strict';
-
-/* jasmine specs for services go here */
-
 describe('service', function() {
-    beforeEach(module('brickSlopes.services'));
+    'use strict';
 
-    beforeEach(function() {
-        this.addMatchers({
-            toEqualData: function(expected) {
-                return angular.equals(this.actual, expected);
-            }
-        });
-    });
+    beforeEach(module('brickSlopes.services'));
 
     describe('Event Registration', function() {
         describe('Create', function() {

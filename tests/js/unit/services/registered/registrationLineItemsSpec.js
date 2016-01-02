@@ -1,41 +1,34 @@
-'use strict';
-
-/* jasmine specs for services go here */
-
 describe('service', function() {
+    'use strict';
+
     beforeEach(module('brickSlopes.services'));
 
-    beforeEach(function() {
-        this.addMatchers({
-            toEqualData: function(expected) {
-                return angular.equals(this.actual, expected);
-            }
-        });
-    });
+    beforeEach(inject(function(_EventSelectionFactory_) {
+        spyOn(_EventSelectionFactory_, 'getSelectedEvent').andReturn(2);
+    }));
 
     describe('Registration Line Items', function() {
         describe('Get', function() {
-            var mockBackend, loader, data, eventId;
+            var mockBackend, loader, data;
             beforeEach(inject(function(_$httpBackend_, RegistrationLineItems) {
-                eventId = 2;
                 mockBackend = _$httpBackend_;
                 loader = RegistrationLineItems;
                 mockBackend.expectGET('/controllers/registered/registrationLineItems.php?eventId=2').respond(registrationLineItems);
             }));
 
             it('should get registration line items', function() {
-                var load = loader.get(eventId);
+                var load = loader.get();
 
                 load.then(function(_data) {
                     data = _data;
                 });
 
                 mockBackend.flush();
-                expect(data[2].lineItems[0].lineItem).toEqualData('Event Pass - Brian Pilati');
-                expect(data[2].lineItems[5].lineItem).toEqualData('Event Pass - Ember Pilati');
-                expect(data[2].lineItems[6].lineItem).toEqualData('Event Badge Brick - Ember Pilati');
-                expect(data[2].lineItems[7].lineItem).toEqualData('Vendor Pass - Ember');
-                expect(data[2].lineItems[8].lineItem).toEqualData('Associate Pass - T h');
+                expect(data[2].lineItems[0].lineItem).toBe('Event Pass - Brian Pilati');
+                expect(data[2].lineItems[5].lineItem).toBe('Event Pass - Ember Pilati');
+                expect(data[2].lineItems[6].lineItem).toBe('Event Badge Brick - Ember Pilati');
+                expect(data[2].lineItems[7].lineItem).toBe('Vendor Pass - Ember');
+                expect(data[2].lineItems[8].lineItem).toBe('Associate Pass - T h');
             });
         });
 
@@ -62,7 +55,7 @@ describe('service', function() {
                 });
 
                 mockBackend.flush();
-                expect(data).toEqualData('success');
+                expect(data).toBe('success');
             });
         });
 
@@ -89,7 +82,7 @@ describe('service', function() {
                 });
 
                 mockBackend.flush();
-                expect(data).toEqualData('success');
+                expect(data).toBe('success');
             });
         });
     });

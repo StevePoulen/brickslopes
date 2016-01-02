@@ -1,25 +1,7 @@
-'use strict';
-
-/* jasmine specs for directives go here */
-
 describe('directives', function() {
-    beforeEach(
-        module(
-            'brickSlopes.directives',
-            'brickSlopes.services',
-            'brickSlopes.controllers',
-            'app/partials/directives/splashPageCTA.html'
-        )
-    );
+    'use strict';
 
-    beforeEach(function() {
-        this.addMatchers({
-            toEqualData: function(expected) {
-                return angular.equals(this.actual, expected);
-            }
-        });
-    });
-
+    beforeEach(module('brickSlopes.directives', 'brickSlopes.controllers'));
     describe('bsSplashPageCTA', function() {
         var scope, element, mockBackend, location;
         beforeEach(inject(function($compile, $rootScope, $templateCache, _$httpBackend_, $location) {

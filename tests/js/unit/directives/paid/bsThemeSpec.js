@@ -1,25 +1,8 @@
-'use strict';
-
-/* jasmine specs for directives go here */
-
 describe('directives', function() {
-    beforeEach(
-        module(
-            'brickSlopes.directives',
-            'brickSlopes.services',
-            'app/partials/paid/eventThemesDirective.html'
-        )
-    );
-
+    'use strict';
     var scope, element;
 
-    beforeEach(function() {
-        this.addMatchers({
-            toEqualData: function(expected) {
-                return angular.equals(this.actual, expected);
-            }
-        });
-    });
+    beforeEach(module('brickSlopes.directives'));
 
     describe('bsTheme', function() {
         beforeEach(inject(function($compile, $rootScope, $templateCache) {

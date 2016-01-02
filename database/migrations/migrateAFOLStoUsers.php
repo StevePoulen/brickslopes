@@ -952,6 +952,18 @@
             );
             $eventLineItemsObj->addEventLineItem($eventLineItemMap);
 
+            $eventLineItemMap = array (
+                'eventId' => $eventId,
+                'eventLineItemCodeId' => 13,
+                'lineItem' => 'Associate Pass',
+                'cost' => '15.00',
+                'discount' => '15.00',
+                'linkType' => 'NONE',
+                'linkId' => '0',
+                'active' => 'YES'
+            );
+            $eventLineItemsObj->addEventLineItem($eventLineItemMap);
+
             $eventDatesObj = new eventDatesModel();
             $eventDatesMap = array (
                 'eventId' => $eventId,
@@ -1001,9 +1013,219 @@
             );
             $eventDatesObj->addEventDates($eventDatesMap);
 
-            $this->validateTable('eventDates', 10);
+            $eventsObj = new events();
+            $eventMap = Array();
+            $eventMap['name'] = 'BrickSlopes - Salt Lake City';
+            $eventMap['city'] = 'Salt Lake City';
+            $eventMap['state'] = 'Utah';
+            $eventMap['year'] = '2016';
+            $eventMap['discountDate'] = '2016-04-15 12:00:00';
+            $eventId = $eventsObj->addEventInformation($eventMap);
+            $this->secondYearEventId = $eventId;
 
-            $this->validateTable('eventLineItems', 23);
+            $this->validateTable('events', 3);
+
+            $eventLineItemsObj = new eventLineItems();
+            $eventLineItemMap = array (
+                'eventId' => $eventId,
+                'eventLineItemCodeId' => 1,
+                'lineItem' => '3 Day Event Pass',
+                'cost' => '65.00',
+                'discount' => '50.00',
+                'linkType' => 'NONE',
+                'linkId' => '0',
+                'active' => 'YES'
+            );
+            $eventLineItemsObj->addEventLineItem($eventLineItemMap);
+
+            $eventLineItemMap = array (
+                'eventId' => $eventId,
+                'eventLineItemCodeId' => 2,
+                'lineItem' => 'T-Shirt',
+                'cost' => '20.00',
+                'discount' => '15.00',
+                'linkType' => 'NONE',
+                'linkId' => '0',
+                'active' => 'YES'
+            );
+            $eventLineItemsObj->addEventLineItem($eventLineItemMap);
+
+            $eventLineItemMap = array (
+                'eventId' => $eventId,
+                'eventLineItemCodeId' => 3,
+                'lineItem' => 'Meet And Greet',
+                'cost' => '15.00',
+                'discount' => '10.00',
+                'linkType' => 'NONE',
+                'linkId' => '0',
+                'active' => 'YES'
+            );
+            $eventLineItemsObj->addEventLineItem($eventLineItemMap);
+
+            $eventLineItemMap = array (
+                'eventId' => $eventId,
+                'eventLineItemCodeId' => 4,
+                'lineItem' => 'Complete Name Badge',
+                'cost' => '15.00',
+                'discount' => '10.00',
+                'linkType' => 'NONE',
+                'linkId' => '0',
+                'active' => 'YES'
+            );
+            $eventLineItemsObj->addEventLineItem($eventLineItemMap);
+
+            $eventLineItemMap = array (
+                'eventId' => $eventId,
+                'eventLineItemCodeId' => 5,
+                'lineItem' => '1st Badge Brick',
+                'cost' => '0.00',
+                'discount' => '0.00',
+                'linkType' => 'NONE',
+                'linkId' => '0',
+                'active' => 'YES'
+            );
+            $eventLineItemsObj->addEventLineItem($eventLineItemMap);
+
+            $eventLineItemMap = array (
+                'eventId' => $eventId,
+                'eventLineItemCodeId' => 6,
+                'lineItem' => '2nd Badge Brick',
+                'cost' => '0.00',
+                'discount' => '0.00',
+                'linkType' => 'NONE',
+                'linkId' => '0',
+                'active' => 'YES'
+            );
+            $eventLineItemsObj->addEventLineItem($eventLineItemMap);
+
+            $eventLineItemMap = array (
+                'eventId' => $eventId,
+                'eventLineItemCodeId' => 7,
+                'lineItem' => 'Event Badge Brick',
+                'cost' => '0.00',
+                'discount' => '0.00',
+                'linkType' => 'NONE',
+                'linkId' => '0',
+                'active' => 'YES'
+            );
+            $eventLineItemsObj->addEventLineItem($eventLineItemMap);
+
+            $eventLineItemMap = array (
+                'eventId' => $eventId,
+                'eventLineItemCodeId' => 8,
+                'lineItem' => 'Draft - $15',
+                'cost' => '15.00',
+                'discount' => '15.00',
+                'linkType' => 'GAME',
+                'linkId' => '3',
+                'active' => 'YES'
+            );
+            $eventLineItemsObj->addEventLineItem($eventLineItemMap);
+
+            $eventLineItemMap = array (
+                'eventId' => $eventId,
+                'eventLineItemCodeId' => 9,
+                'lineItem' => 'Draft - $25',
+                'cost' => '25.00',
+                'discount' => '25.00',
+                'linkType' => 'GAME',
+                'linkId' => '4',
+                'active' => 'YES'
+            );
+            $eventLineItemsObj->addEventLineItem($eventLineItemMap);
+
+            $eventLineItemMap = array (
+                'eventId' => $eventId,
+                'eventLineItemCodeId' => 10,
+                'lineItem' => '1st Vendor Table',
+                'cost' => '100.00',
+                'discount' => '100.00',
+                'linkType' => 'NONE',
+                'linkId' => '0',
+                'active' => 'YES'
+            );
+            $eventLineItemsObj->addEventLineItem($eventLineItemMap);
+
+            $eventLineItemMap = array (
+                'eventId' => $eventId,
+                'eventLineItemCodeId' => 11,
+                'lineItem' => 'Vendor Pass',
+                'cost' => '15.00',
+                'discount' => '10.00',
+                'linkType' => 'NONE',
+                'linkId' => '0',
+                'active' => 'YES'
+            );
+            $eventLineItemsObj->addEventLineItem($eventLineItemMap);
+
+            $eventLineItemMap = array (
+                'eventId' => $eventId,
+                'eventLineItemCodeId' => 12,
+                'lineItem' => 'Additional Vendor Tables',
+                'cost' => '75.00',
+                'discount' => '75.00',
+                'linkType' => 'NONE',
+                'linkId' => '0',
+                'active' => 'YES'
+            );
+            $eventLineItemsObj->addEventLineItem($eventLineItemMap);
+
+            $eventLineItemMap = array (
+                'eventId' => $eventId,
+                'eventLineItemCodeId' => 13,
+                'lineItem' => 'Associate Pass',
+                'cost' => '15.00',
+                'discount' => '15.00',
+                'linkType' => 'NONE',
+                'linkId' => '0',
+                'active' => 'YES'
+            );
+            $eventLineItemsObj->addEventLineItem($eventLineItemMap);
+
+            $eventDatesObj = new eventDatesModel();
+            $eventDatesMap = array (
+                'eventId' => $eventId,
+                'startDate' => '2016-06-23 13:00:00',
+                'endDate' => '2016-06-23 20:00:00',
+                'type' => 'AFOL'
+            );
+            $eventDatesObj->addEventDates($eventDatesMap);
+
+            $eventDatesMap = array (
+                'eventId' => $eventId,
+                'startDate' => '2016-06-24 10:00:00',
+                'endDate' => '2016-06-24 23:59:59',
+                'type' => 'AFOL'
+            );
+            $eventDatesObj->addEventDates($eventDatesMap);
+
+            $eventDatesMap = array (
+                'eventId' => $eventId,
+                'startDate' => '2016-06-25 10:00:00',
+                'endDate' => '2016-06-25 23:59:59',
+                'type' => 'AFOL'
+            );
+            $eventDatesObj->addEventDates($eventDatesMap);
+
+            $eventDatesMap = array (
+                'eventId' => $eventId,
+                'startDate' => '2016-06-24 12:00:00',
+                'endDate' => '2016-06-24 20:00:00',
+                'type' => 'PUBLIC'
+            );
+            $eventDatesObj->addEventDates($eventDatesMap);
+
+            $eventDatesMap = array (
+                'eventId' => $eventId,
+                'startDate' => '2016-06-25 10:00:00',
+                'endDate' => '2016-06-25 20:00:00',
+                'type' => 'PUBLIC'
+            );
+            $eventDatesObj->addEventDates($eventDatesMap);
+
+            $this->validateTable('eventDates', 15);
+
+            $this->validateTable('eventLineItems', 37);
         }
 
         private function migrateUsers($eventId) {

@@ -1,23 +1,12 @@
-'use strict';
-
-/* jasmine specs for controllers go here */
-
 describe('controllers', function() {
+    'use strict';
     var scope, ctrl, location, mockBackend, route;
 
-    beforeEach(
-        module(
-            'brickSlopes.controllers'
-        )
-    );
+    beforeEach(module('brickSlopes.controllers'));
 
-    beforeEach(function() {
-        this.addMatchers({
-            toEqualData: function(expected) {
-                return angular.equals(this.actual, expected);
-            }
-        });
-    });
+    beforeEach(inject(function(_EventSelectionFactory_) {
+        spyOn(_EventSelectionFactory_, 'getSelectedEvent').andReturn(2);
+    }));
 
     describe('vendorRegistration Controller', function() {
         beforeEach(inject(function($controller, $rootScope, $location, _$httpBackend_ , $route) {
@@ -121,6 +110,7 @@ describe('controllers', function() {
             var vendorDTO;
             beforeEach(inject(function($controller) {
                 vendorDTO = {
+                    eventId: 2,
                     storeId: 2,
                     name: 'My Store',
                     description: 'The sweet life',

@@ -1,17 +1,10 @@
-'use strict';
-
-/* jasmine specs for services go here */
-
 describe('service', function() {
+    'use strict';
     beforeEach(module('brickSlopes.services'));
 
-    beforeEach(function() {
-        this.addMatchers({
-            toEqualData: function(expected) {
-                return angular.equals(this.actual, expected);
-            }
-        });
-    });
+    beforeEach(inject(function(_EventSelectionFactory_) {
+        spyOn(_EventSelectionFactory_, 'getSelectedEvent').andReturn(2);
+    }));
 
     describe('Games', function() {
         describe('Get', function() {
@@ -31,7 +24,7 @@ describe('service', function() {
                 });
 
                 mockBackend.flush();
-                expect(data[0].game).toEqualData('Blind Man Build');
+                expect(data[0].game).toBe('Blind Man Build');
                 expect(data[0].registration).toBe('Open');
                 expect(data[0].showCTAButton).toBe(true);
                 expect(data[1].game).toBe('Speed Build');
@@ -49,7 +42,7 @@ describe('service', function() {
                 });
 
                 mockBackend.flush();
-                expect(data).toEqualData(4);
+                expect(data).toBe(4);
             });
         });
 
@@ -75,7 +68,7 @@ describe('service', function() {
                 });
 
                 mockBackend.flush();
-                expect(data).toEqualData(201);
+                expect(data).toBe(201);
             });
         });
 
@@ -95,7 +88,7 @@ describe('service', function() {
                 });
 
                 mockBackend.flush();
-                expect(data[1].userId).toEqualData(3);
+                expect(data[1].userId).toBe(3);
             });
         });
     });

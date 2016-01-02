@@ -1,17 +1,12 @@
-'use strict';
-
-/* jasmine specs for directives go here */
-
 describe('directives', function() {
-    beforeEach(
-        module(
-            'brickSlopes.directives',
-            'brickSlopes.services',
-            'app/partials/directives/tour.html'
-        )
-    );
-
+    'use strict';
     var scope, element, mockBackend;
+
+    beforeEach(module('brickSlopes.directives'));
+
+    beforeEach(inject(function(_EventSelectionFactory_) {
+        spyOn(_EventSelectionFactory_, 'getSelectedEvent').andReturn(2);
+    }));
 
     describe('bsTour', function() {
         beforeEach(inject(function($compile, $rootScope, $templateCache, _$httpBackend_) {
@@ -49,7 +44,7 @@ describe('directives', function() {
                 mockBackend.expectGET('/controllers/public/event.php?eventId=2').respond(eventDetails);
                 scope.$digest();
                 spyOn(scope, "initializeMask");
-                rootScope.$emit('show-tour', {eventId: 2});
+                rootScope.$emit('show-tour');
                 _$timeout_.flush();
                 mockBackend.flush();
                 expect(scope.initializeMask).toHaveBeenCalled();
