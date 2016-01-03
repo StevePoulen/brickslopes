@@ -1,1 +1,1 @@
-2,BrickSlopes 2015,Salt Lake City,Utah,2015,2015-03-25 14:23:22
+2,BrickSlopes,Salt Lake City,Utah,2015,2015-03-25 14:23:22,BrickSlopes 2015 - Salt Lake City

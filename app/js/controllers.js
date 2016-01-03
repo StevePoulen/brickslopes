@@ -1270,15 +1270,29 @@ var showAfolLogin = true;
             $scope.userObject = data;
         });
     }])
-    .controller('adminEmail', ['$scope', '$location', '$route', 'GetEmailHtml', function($scope, $location, $route, GetEmailHtml) {
-        $scope.type = "/controllers/admin/sendEmail.php?";
-        $scope.type += "type=" + $route.current.params.emailType;
-        $scope.type += "&userId=not_needed";
+    .controller('adminEmail', [
+        '$scope',
+        '$location',
+        '$route',
+        'GetEmailHtml',
+        'EventSelectionFactory',
+        function(
+            $scope,
+            $location,
+            $route,
+            GetEmailHtml,
+            EventSelectionFactory
+        ) {
+            $scope.type = "/controllers/admin/sendEmail.php?";
+            $scope.type += "type=" + $route.current.params.emailType;
+            $scope.type += "&userId=not_needed";
+            $scope.type += "&eventId=" + EventSelectionFactory.getSelectedEvent();
 
-        $scope.closeDialog = function() {
-            $location.path("/admin/index.html");
+            $scope.closeDialog = function() {
+                $location.path("/admin/index.html");
+            }
         }
-    }])
+    ])
     .controller('eventAfols', [
         '$scope',
         'RegisteredAfols',

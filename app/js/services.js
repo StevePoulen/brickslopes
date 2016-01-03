@@ -1265,29 +1265,39 @@
             }
         };
     }])
-    .factory('GetEmailHtml', ['$q', '$http', function($q, $http) {
-        return {
-            getEventRegistration: function() {
-                var delay= $q.defer();
-                $http (
-                    {
-                        method: 'GET',
-                        url: '/controllers/admin/sendEmail.php',
-                        params: {
-                            type: 'eventRegistrationMessage',
-                            userId: 'not_needed'
+    .factory('GetEmailHtml', [
+        '$q',
+        '$http',
+        'EventSelectionFactory',
+        function(
+            $q,
+            $http,
+            EventSelectionFactory
+        ) {
+            return {
+                getEventRegistration: function() {
+                    var delay= $q.defer();
+                    $http (
+                        {
+                            method: 'GET',
+                            url: '/controllers/admin/sendEmail.php',
+                            params: {
+                                type: 'eventRegistrationMessage',
+                                userId: 'not_needed',
+                                eventId: EventSelectionFactory.getSelectedEvent()
+                            }
                         }
-                    }
-                ).success(function(data, status, headers, config) {
-                    delay.resolve(data);
-                }).error(function(data, status, headers, config) {
-                    delay.reject(data);
-                });
+                    ).success(function(data, status, headers, config) {
+                        delay.resolve(data);
+                    }).error(function(data, status, headers, config) {
+                        delay.reject(data);
+                    });
 
-                return delay.promise;
-            }
-        };
-    }])
+                    return delay.promise;
+                }
+            };
+        }
+    ])
     .factory('authInterceptor', ['$rootScope', '$q', '$window', '$location', function($rootScope, $q, $window, $location) {
         return {
             request: function(config) {

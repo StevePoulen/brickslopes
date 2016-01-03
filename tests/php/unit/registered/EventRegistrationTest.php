@@ -58,7 +58,7 @@ class EventRegistrationTest extends PHPUnit_Framework_TestCase
     {
         $_POST = array (
             'eventId' => '2',
-            'discountDate' => '2015-05-16 08:00:00',
+            'discountDate' => '2016-05-16 08:00:00',
             'eventDiscount' => '60.00',
             'meetAndGreetDiscount' => '10.00',
             'meetAndGreet' => 'YES',
@@ -219,7 +219,7 @@ class EventRegistrationTest extends PHPUnit_Framework_TestCase
         $_POST = array (
             'registrationId' => '27',
             'eventId' => '2',
-            'discountDate' => '2015-05-16 08:00:00',
+            'discountDate' => '2016-05-16 08:00:00',
             'eventDiscount' => '60.00',
             'meetAndGreetDiscount' => '10.00',
             'meetAndGreet' => 'YES',

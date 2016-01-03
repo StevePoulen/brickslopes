@@ -20,7 +20,8 @@ class events extends db {
                 city, 
                 state,
                 year,
-                discountDate
+                discountDate,
+                concat(name, ' ', year, ' - ', city) as displayName
             FROM
                 events
             WHERE

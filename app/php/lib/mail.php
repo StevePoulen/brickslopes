@@ -5,6 +5,7 @@
             $this->subject = "";
             $this->creatorId = $creatorId;
             $this->emailHistoryObj = new emailHistory();
+            $this->eventsObj = new events();
         }
 
         public function sendEmailTest($email) {
@@ -137,6 +138,7 @@
             $usersObj->getUserInformation($userId);
             $registrationLineItemsObj = new registrationLineItems($userId, false);
             $lineItems = $registrationLineItemsObj->getRegisteredLineItems($userId, $eventId);
+            $eventName = $this->getEventName($eventId);
             if($usersObj->result) {
                 while($dbObj = $usersObj->result->fetch_object()) {
                     $this->subject = "BrickSlopes Registration";
@@ -157,7 +159,7 @@
                                         {$this->getFontWrapper(16, '#000000')}
                                             {$dbObj->firstName},
                                             <p>
-                                            <b>Congratulations!</b> This e-mail confirms you are registered for BrickSlopes 2015 - Salt Lake City.
+                                            <b>Congratulations!</b> This e-mail confirms you are registered for $eventName.
                                             <p>
                                             You will receive a confirmation e-mail once your payment is received and your registration is complete.
                                             <p>
@@ -209,6 +211,7 @@
             $usersObj->getUserInformation($userId);
             $registrationLineItemsObj = new registrationLineItems($userId, false);
             $lineItems = $registrationLineItemsObj->getRegisteredLineItems($userId, $eventId);
+            $eventName = $this->getEventName($eventId);
             if($usersObj->result) {
                 while($dbObj = $usersObj->result->fetch_object()) {
 
@@ -230,7 +233,7 @@
                                         {$this->getFontWrapper(16, '#000000')}
                                             {$dbObj->firstName},
                                             <p>
-                                            <b>Congratulations!</b> This e-mail confirms you have submitted a request to be a vendor at BrickSlopes 2015 - Salt Lake City.
+                                            <b>Congratulations!</b> This e-mail confirms you have submitted a request to be a vendor at $eventName.
                                             </P
                                             <p>
                                             You will receive a confirmation e-mail when your payment is received and your registration is complete. 
@@ -290,6 +293,7 @@
             $usersObj->getUserInformation($userId);
             $registrationLineItemsObj = new registrationLineItems($userId, false);
             $lineItems = $registrationLineItemsObj->getRegisteredLineItems($userId, $eventId);
+            $eventName = $this->getEventName($eventId);
             if($usersObj->result) {
                 $dbObj = $usersObj->result->fetch_object();
 
@@ -311,7 +315,7 @@
                                         {$this->getFontWrapper(16, '#000000')}
                                             {$dbObj->firstName},
                                             <p>
-                                            Thank you for your payment. Your BrickSlopes 2015 - Salt Lake City registration is now complete.
+                                            Thank you for your payment. Your $eventName registration is now complete.
                                             <p>
                                             <b>Your Event Experience</b>
                                             {$this->parseLineItems($lineItems)}
@@ -614,7 +618,7 @@
                 <p>
                 Then get over to <a href='{$this->getDomain()}' target='_blank'>{$this->getDomain()}</a> for more information about
                 <ul>
-                    <li>BrickSlopes 2015</li>
+                    <li>BrickSlopes</li>
                     <li>Games</li>
                     <li>Themes</li>
                     <li>Attending AFOLs and TFOLs</li>
@@ -723,7 +727,7 @@
                 <tr>
                     <td algin=center>
                         {$this->getFontWrapper()}
-                            Copyright © BRICKSLOPES • SBC Corporation 2013-2015. BrickSlopes, BrickSlopes -- A LEGO Fan Event&trade; and Home of <i>endless</i> Swag are registered trademarks of SBC Corporation. LEGO® is a trademark of the LEGO Group of companies which does not sponsor, authorize, or endorse this event or site. LEGOLAND® is a Merlin Entertainments Group Attraction which does not sponsor, authorize or endorse this event or site. 
+                            Copyright © BRICKSLOPES • SBC Corporation 2013-2016. BrickSlopes, BrickSlopes -- A LEGO Fan Event&trade; and Home of <i>endless</i> Swag are registered trademarks of SBC Corporation. LEGO® is a trademark of the LEGO Group of companies which does not sponsor, authorize, or endorse this event or site. LEGOLAND® is a Merlin Entertainments Group Attraction which does not sponsor, authorize or endorse this event or site. 
                         {$this->getFontClosure()}
                     </td>
                 </tr>
@@ -747,6 +751,21 @@
 
         private function getDomain() {
             return "https://www." . WEBSITE;
+        }
+
+        private function getEventName($eventId) {
+            $eventName = '';
+            $this->eventsObj->getEventInformation(array(
+                'eventId' => $eventId
+            ));
+
+            if($this->eventsObj->result) {
+                while($dbObj = $this->eventsObj->result->fetch_object()) {
+                    $eventName = $dbObj->displayName;
+                }
+            }
+
+            return $eventName;
         }
     }
 ?>

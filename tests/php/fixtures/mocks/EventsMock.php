@@ -23,5 +23,6 @@ class EventsMock extends modelObjects {
     public function state() { return $this->getData(3); }
     public function year() { return $this->getData(4); }
     public function discountDate() { return $this->getData(5); }
+    public function displayName() { return $this->getData(6); }
 }
 ?>

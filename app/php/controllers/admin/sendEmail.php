@@ -69,13 +69,13 @@ class SendEmail {
             if ($this->isRegistrationPaidMessage($payload)) {
                 $this->sendRegistrationPaidMessage($payload);
             } else if ($this->isEventRegistrationMessage($payload)) {
-                $this->displayEventRegistrationMessage();
+                $this->displayEventRegistrationMessage($payload);
             } else if ($this->isVendorRegistrationMessage($payload)) {
-                $this->displayVendorRegistrationMessage();
+                $this->displayVendorRegistrationMessage($payload);
             } else if ($this->isUserRegistrationMessage($payload)) {
                 $this->displayUserRegistrationMessage();
             } else if ($this->isRegistrationPaidDisplayMessage($payload)) {
-                $this->displayRegistrationPaidMessage();
+                $this->displayRegistrationPaidMessage($payload);
             } else if ($this->isResetPasswordMessage($payload)) {
                 $this->displayResetPasswordMessage();
             } else if ($this->isPreviewSiteNewsMessage($payload)) {
@@ -107,16 +107,16 @@ class SendEmail {
         }
     }
 
-    private function displayEventRegistrationMessage() {
+    private function displayEventRegistrationMessage($payload) {
         header("HTTP/1.0 200 Success");
         $emailObj = new mail($this->userId);
-        echo $emailObj->sendEventRegistrationMessage(21, 2, true);
+        echo $emailObj->sendEventRegistrationMessage(21, $payload['eventId'], true);
     }
 
-    private function displayVendorRegistrationMessage() {
+    private function displayVendorRegistrationMessage($payload) {
         header("HTTP/1.0 200 Success");
         $emailObj = new mail($this->userId);
-        echo $emailObj->sendVendorRegistrationMessage(21, 2, true);
+        echo $emailObj->sendVendorRegistrationMessage(21, $payload['eventId'], true);
     }
 
     private function displayUserRegistrationMessage() {
@@ -125,10 +125,10 @@ class SendEmail {
         echo $emailObj->sendUserRegistrationMessage(1, true);
     }
 
-    private function displayRegistrationPaidMessage() {
+    private function displayRegistrationPaidMessage($payload) {
         header("HTTP/1.0 200 Success");
         $emailObj = new mail($this->userId);
-        echo $emailObj->sendRegistrationPaidMessage(21, 2, true);
+        echo $emailObj->sendRegistrationPaidMessage(21, $payload['eventId'], true);
     }
 
     private function displayResetPasswordMessage() {

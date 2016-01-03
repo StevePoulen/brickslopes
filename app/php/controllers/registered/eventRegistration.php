@@ -136,7 +136,6 @@ class EventRegistration {
             $emailObj->sendEventRegistrationMessage($this->userId, $payload['eventId']);
 
             header("HTTP/1.0 201 Created");
-
         } else {
             header("HTTP/1.0 400 Bad Request");
         }

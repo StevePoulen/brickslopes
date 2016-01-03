@@ -23,7 +23,7 @@ class EventTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(http_response_code(), 200);
         $output = json_decode(get_ob(), true);
         $this->assertEquals($output['eventId'], 2);
-        $this->assertEquals($output['name'], 'BrickSlopes 2015');
+        $this->assertEquals($output['name'], 'BrickSlopes');
         $this->assertEquals($output['city'], 'Salt Lake City');
         $this->assertEquals($output['state'], 'Utah');
         $this->assertEquals($output['year'], '2015');
