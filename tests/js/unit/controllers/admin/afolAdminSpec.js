@@ -38,10 +38,6 @@ describe('controllers', function() {
                 expect(scope.gamesCount).toBe(0);
             });
 
-            it('should have an eventId variable', function() {
-                expect(scope.eventId).toBe(2);
-            });
-
             it('should have a userCount variable', function() {
                 mockBackend.flush();
                 expect(scope.userCount).toBe(2);

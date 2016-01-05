@@ -6,7 +6,7 @@
 
 USE `brickslopes`;
 
-insert into `events` (name, city, state, year, discountDate) VALUES ('BrickSlopes - Salt Lake City', 'Salt Lake City', 'Utah', 2016, '2016-04-15 23:59:59');
+insert into `events` (name, city, state, year, discountDate) VALUES ('BrickSlopes', 'Salt Lake City', 'Utah', 2016, '2016-04-15 23:59:59');
 
 insert into `eventDates` (eventId, startDate, endDate, type) VALUES 
 (3, '2016-06-23 13:00:00', '2016-06-23 20:00:00', 'AFOL'),
@@ -30,3 +30,20 @@ INSERT INTO `eventLineItems` (eventId, eventLineItemCodeId, lineItem, cost, disc
 (3,11,'Vendor Pass',0.00,0.00,'NONE',0,'YES'),
 (3,12,'Additional Vendor Tables',75.00,75.00,'NONE',0,'YES'),
 (3,13,'Associate Pass',15.00,10.00,'NONE',0,'YES');
+
+INSERT INTO `gamesEventsConnector` (gameId, eventId, display) VALUES
+(1, 3, 'YES'),
+(2, 3, 'YES'),
+(3, 3, 'YES'),
+(4, 3, 'YES'),
+(5, 3, 'YES'),
+(6, 3, 'YES'),
+(7, 3, 'YES'),
+(8, 3, 'YES'),
+(9, 3, 'YES'),
+(10, 3, 'YES'),
+(11, 3, 'YES'),
+(12, 3, 'YES'),
+(13, 3, 'YES'),
+(14, 3, 'YES'),
+(15, 3, 'YES');

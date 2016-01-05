@@ -1,11 +1,11 @@
-'use strict';
-
-/* jasmine specs for controllers go here */
-
 describe('controllers', function() {
+    'use strict';
     var scope, ctrl, location;
 
     beforeEach(module('Admin'));
+    beforeEach(inject(function(_EventSelectionFactory_) {
+        spyOn(_EventSelectionFactory_, 'getSelectedEvent').andReturn(2);
+    }));
 
     describe('adminRegisteredGames Controller', function() {
         var mockBackend;
@@ -37,12 +37,8 @@ describe('controllers', function() {
                 expect(scope.showModal).toBe(false);
             });
 
-            it('should have an eventId variable', function() {
-                expect(scope.eventId).toBe(2);
-            });
-
             it('should have an eventName variable', function() {
-                expect(scope.eventId).toBeUndefined;
+                expect(scope.eventName).toBeUndefined;
             });
 
             it('should have an eventName variable', function() {

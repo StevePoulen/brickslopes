@@ -46,7 +46,8 @@
             }
 
             $scope.packages = function() {
-                $location.path("/packages.html");
+                //$location.path("/packages.html");
+                $location.path("/when/index.html");
             }
 
             $scope.packageList = ['Adult On-line ($7.00*)', 'Child On-line ($1.00*)', 'Adult Ticket and Fig ($12.00*)', 'Child Ticket and Fig ($6.00*)', 'Adult Ticket and Shirt ($22.00*)', 'Child Ticket and Shirt ($16.00*)', 'Adult Ticket, Fig and Shirt ($25.00*)', 'Child Ticket, Fig and Shirt ($21.00*)'];

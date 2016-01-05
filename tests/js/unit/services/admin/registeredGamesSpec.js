@@ -1,9 +1,10 @@
-'use strict';
-
-/* jasmine specs for services go here */
-
 describe('Factory', function() {
+    'use strict';
+
     beforeEach(module('Admin'));
+    beforeEach(inject(function(_EventSelectionFactory_) {
+        spyOn(_EventSelectionFactory_, 'getSelectedEvent').andReturn(2);
+    }));
 
     describe('Registered Games', function() {
         describe('Get', function() {

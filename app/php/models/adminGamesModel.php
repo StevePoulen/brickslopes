@@ -22,15 +22,17 @@ class adminGamesModel extends db {
                 games g 
                     LEFT JOIN gamesEventsConnector gec 
                         ON g.gameId = gec.gameId 
+                        AND gec.eventId = $eventId
                     LEFT JOIN gamesUsersConnector guc 
                         ON g.gameId = guc.gameId 
+                        AND guc.eventId = $eventId
                     LEFT JOIN users u 
                         ON guc.userId = u.userId 
                     LEFT JOIN registrations r
                         ON u.userId = r.userId
                         AND r.eventId = $eventId
             WHERE 
-                gec.eventId = '$eventId'
+                gec.eventId = $eventId
             ORDER BY
                 gameName, firstName, lastName
         ;
