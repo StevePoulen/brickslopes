@@ -47,3 +47,12 @@ INSERT INTO `gamesEventsConnector` (gameId, eventId, display) VALUES
 (13, 3, 'YES'),
 (14, 3, 'YES'),
 (15, 3, 'YES');
+
+INSERT INTO `themes` (eventId, theme, type, selectable) VALUES
+(3, 'Adventure', 'AFOL', 'YES');
+
+INSERT INTO `themeAwards` (themeId, award, place) VALUES
+(14, 'Best Pirate', 1),
+(14, 'Best Steam Punk', 2),
+(14, 'Best Non-Motorized Vehicle', 3);
+

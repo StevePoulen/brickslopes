@@ -1,5 +1,3 @@
-@import './base';
-
 $eventPane_height: 200px;
 $eventPane_width: 297px;
 $meEventPane_width: 350px;
@@ -234,6 +232,8 @@ $pane_width: 1238px;
 }
 
 #eventRegistration {
+    @extend %eventDashboard;
+
     #discountPriceInformation {
         position: absolute;
         left: 25px;

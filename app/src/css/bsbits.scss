@@ -1,5 +1,3 @@
-@import './base';
-
 body {
     background-color: black;
     font-family: "arial";
@@ -383,4 +381,35 @@ input.ng-dirty {
     width: 950px;
     margin-left: auto;
     margin-right: auto;
+}
+
+.eventLocked {
+    position: absolute;
+    width: 100%;
+    border: 1px solid white;
+    background: $bs_blue;
+    z-index: 100;
+    height: 35px;
+    cursor: pointer;
+
+    .lock {
+        position: absolute;
+        top: 0;
+        left: 25px;
+    }
+    
+    .cta {
+        position: absolute;
+        top: 7px;
+        left: 70px;
+        color: yellow;
+    }
+}
+
+.eventLockedMe {
+    bottom: 29px;
+}
+
+.eventLockedIndex {
+    bottom: 40px;
 }
