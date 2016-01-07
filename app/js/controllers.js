@@ -753,6 +753,7 @@ var showAfolLogin = true;
         '$route',
         '$sce',
         'EventDetails',
+        'EventDates',
         'EventSelectionFactory',
         function(
             $scope,
@@ -761,6 +762,7 @@ var showAfolLogin = true;
             $route,
             $sce,
             EventDetails,
+            EventDates,
             EventSelectionFactory
         ) {
             $scope.eventId = EventSelectionFactory.getSelectedEvent();
@@ -769,6 +771,10 @@ var showAfolLogin = true;
             $scope.showModal = false;
             $scope.associates = [];
             setDefaultScopeVariables();
+
+            EventDates.getPassType().then(function(passType) {
+                $scope.passType = passType;
+            });
 
             function setDefaultScopeVariables() {
                 $scope.firstName = undefined;
@@ -817,7 +823,7 @@ var showAfolLogin = true;
                     userId: associate.userId,
                     firstName: associate.firstName,
                     lastName: associate.lastName,
-                    lineItem: associate.lineItem
+                    lineItem: associate.lineItem === 'Event Pass' ? $scope.passType + ' Event Pass' : associate.lineItem
                 })
             }
 

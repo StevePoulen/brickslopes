@@ -136,7 +136,7 @@ class VendorAssociatesTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($output['userId'], '1234');
         $this->assertEquals($output['firstName'], 'Cody');
         $this->assertEquals($output['lastName'], 'Ottley');
-        $this->assertEquals($output['lineItem'], '4 Day Event Pass');
+        $this->assertEquals($output['lineItem'], 'Event Pass');
 
         //Event Pass - Owner
         $lineItemObj = $GLOBALS['addRegistrationLineItems'][0];
@@ -292,7 +292,7 @@ class VendorAssociatesTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($output['userId'], '123456789');
         $this->assertEquals($output['firstName'], 'Brian');
         $this->assertEquals($output['lastName'], 'Pilati');
-        $this->assertEquals($output['lineItem'], '4 Day Event Pass');
+        $this->assertEquals($output['lineItem'], 'Event Pass');
 
         //Event Pass - owner
         $lineItemObj = $GLOBALS['addRegistrationLineItems'][0];

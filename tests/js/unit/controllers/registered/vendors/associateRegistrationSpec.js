@@ -29,9 +29,14 @@ describe('controllers', function() {
 
         describe('Digest Values', function() {
             beforeEach(function() {
+                mockBackend.expectGET('/controllers/public/eventDates.php').respond(eventDates);
                 mockBackend.expectGET('/controllers/registered/vendors/vendorAssociates.php?eventId=2&storeId=4').respond(201, associatesMock);
                 mockBackend.expectGET('/controllers/public/event.php?eventId=2').respond(201, eventDetails);
                 mockBackend.flush();
+            });
+
+            it('should have an passType', function() {
+                expect(scope.passType).toBe('4-Day');
             });
 
             it('should have an associates collection', function() {
@@ -101,8 +106,10 @@ describe('controllers', function() {
                     userId: 5678,
                     firstName: associateDTO.firstName,
                     lastName: associateDTO.lastName,
-                    lineItem: '4 Day Event Pass'
+                    lineItem: 'Event Pass'
                 }
+
+                mockBackend.expectGET('/controllers/public/eventDates.php').respond(eventDates);
 
                 mockBackend.expectGET('/controllers/registered/vendors/vendorAssociates.php?eventId=2&storeId=4').respond(201, associatesMock);
                 mockBackend.expectGET('/controllers/public/event.php?eventId=2').respond(201, eventDetails);
@@ -130,7 +137,7 @@ describe('controllers', function() {
                 expect(scope.associates[3].userId).toBe(5678);
                 expect(scope.associates[3].firstName).toBe('Steve');
                 expect(scope.associates[3].lastName).toBe('Poulsen');
-                expect(scope.associates[3].lineItem).toBe('4 Day Event Pass');
+                expect(scope.associates[3].lineItem).toBe('4-Day Event Pass');
             });
 
             it('should display an error', function() {
@@ -162,6 +169,7 @@ describe('controllers', function() {
 
         describe('Delete an Associate', function() {
             beforeEach(function() {
+                mockBackend.expectGET('/controllers/public/eventDates.php').respond(eventDates);
                 mockBackend.expectGET('/controllers/registered/vendors/vendorAssociates.php?eventId=2&storeId=4').respond(201, associatesMock);
                 mockBackend.expectGET('/controllers/public/event.php?eventId=2').respond(201, eventDetails);
             });

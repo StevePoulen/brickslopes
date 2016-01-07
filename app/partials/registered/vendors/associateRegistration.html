@@ -34,7 +34,7 @@
                         <bs-text text="Event Registration" font-size=1.25></bs-text>
                     </div>
                     <div class="optionField">
-                        <label><bs-text text="4 Day AFOL Pass:"></bs-text></label> <bs-text text="Yes" font-color=black></bs-text><input type="radio" ng-model="addAfolPass" value="YES" checked> <bs-text text="No" font-color=black></bs-text> <input type="radio" ng-model="addAfolPass" value="NO">
+                        <label><bs-text text="{{passType}} Event Pass:"></bs-text></label> <bs-text text="Yes" font-color=black></bs-text><input type="radio" ng-model="addAfolPass" value="YES" checked> <bs-text text="No" font-color=black></bs-text> <input type="radio" ng-model="addAfolPass" value="NO">
                     </div>
                     <div class="formButtonPosition"> 
                         <button class="formButton" type="submit" ng-class="{disabled: verifying}" ng-disabled="verifying">
@@ -50,7 +50,7 @@
                     Associate registration is required in order to enter the event facility. Associate registration is <span ng-bind="vendorEventDiscount | currency"></span> before <span ng-bind="formattedDiscountDate"></span> and <span ng-bind="vendorEventCost | currency"></span> after that date.
                     </p>
                     <p> 
-                        Store owners may purchase a 4-Day Event Pass for any associates if they wish to participate in all the activities. 
+                        Store owners may purchase a {{passType}} Event Pass for any associates if they wish to participate in all the activities. 
                     </p>
                     </div>
                 <div class="bsLogo"><img src="/images/logo/brickSlopes_noword_50px.png"></div>

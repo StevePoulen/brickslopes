@@ -115,7 +115,7 @@ class VendorAssociates {
                         'userId' => $payload['userId'],
                         'firstName' => $payload['firstName'],
                         'lastName' => $payload['lastName'],
-                        'lineItem' => ($payload['addAfolPass'] === 'YES' ? '4 Day Event Pass' : 'Associate Pass')
+                        'lineItem' => ($payload['addAfolPass'] === 'YES' ? 'Event Pass' : 'Associate Pass')
                     )
                 );
 
