@@ -1139,7 +1139,7 @@ var showAfolLogin = true;
 
             Themes.getList().then(function(data) {
                 $scope.themeList = data;
-                $scope.theme = $scope.themeList[0];
+                $scope.theme = $scope.themeList[1];
                 $scope.themeId = $scope.theme.themeId;
             });
 
