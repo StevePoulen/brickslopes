@@ -18,11 +18,11 @@ module.exports = function (grunt) {
     grunt.initConfig({
         watch: {
             sass: {
-                files: 'src/**/*.scss',
+                files: 'app/src/**/*.scss',
                 tasks: ['sass']
             },
             scsslint: {
-                files: 'src/**/*.scss',
+                files: 'app/src/**/*.scss',
                 tasks: ['scsslint']
             },
             jshint: {
