@@ -132,11 +132,11 @@ describe('controllers', function() {
             });
 
             it('should have a theme variable ', function() {
-                expect(scope.theme).toEqual(themes[0]);
+                expect(scope.theme).toEqual(themes[1]);
             });
 
             it('should have an themeId variable ', function() {
-                expect(scope.themeId).toBe(12);
+                expect(scope.themeId).toBe(2);
             });
         });
 
@@ -144,7 +144,7 @@ describe('controllers', function() {
             var mocDto;
             beforeEach(function() {
                 mocDto = {
-                    themeId: 12,
+                    themeId: 2,
                     eventId: 2,
                     title: 'My Fine Title',
                     displayName: 'Cody Ottley',
@@ -170,7 +170,7 @@ describe('controllers', function() {
                 expect(scope.baseplateWidth).toBe(1);
                 expect(scope.baseplateDepth).toBe(1);
                 expect(scope.theme).toEqual(themes[0]);
-                expect(scope.themeId).toBeUndefined();
+                expect(scope.themeId).toBe(12);
                 expect(scope.title).toBeUndefined();
                 expect(scope.mocImageUrl).toBeUndefined();
                 expect(scope.description).toBeUndefined();
@@ -293,8 +293,8 @@ describe('controllers', function() {
                 expect(scope.displayName).toBe('Cody Ottley');
                 expect(scope.baseplateWidth).toBe(1);
                 expect(scope.baseplateDepth).toBe(1);
-                expect(scope.theme).toEqual(themes[0]);
-                expect(scope.themeId).toBe(12);
+                expect(scope.theme).toEqual(themes[1]);
+                expect(scope.themeId).toBe(2);
                 expect(scope.title).toBeUndefined();
                 expect(scope.mocImageUrl).toBeUndefined();
                 expect(scope.description).toBeUndefined();
