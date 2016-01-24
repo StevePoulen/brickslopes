@@ -33,7 +33,7 @@ describe('service', function() {
                 });
 
                 mockBackend.flush();
-                expect(data).toBe(3);
+                expect(data).toBe(5);
             });
 
             it('should load individual moc by theme', function() {

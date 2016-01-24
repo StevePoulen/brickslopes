@@ -2,11 +2,14 @@
     <div class="dashboardText">
         <h1><bs-logo font-size="1.25"></bs-logo> &#8226; <bs-text text="Themes" font-color=black></bs-text></h1>
         <div id="themes">
-            <div ng-repeat="theme in themeList | filter:'PUBLIC' | orderBy:'theme'">
-                <bs-theme color=red></bs-theme>
-            </div>
-            <div ng-repeat="theme in themeList | filter:'AFOL' | orderBy:'theme'">
+            <div ng-repeat="theme in bcsList | orderBy:'theme'">
                 <bs-theme color=blue></bs-theme>
+            </div>
+            <div ng-repeat="theme in publicList | orderBy:'theme'">
+                <bs-theme color=blue></bs-theme>
+            </div>
+            <div ng-repeat="theme in afolList | orderBy:'theme'">
+                <bs-theme color=red></bs-theme>
             </div>
         </div>
     </div>

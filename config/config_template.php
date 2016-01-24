@@ -8,8 +8,8 @@
     define('DB_NAME', 'brickslopes');
     define('JWT_KEY', 'mykey');
     define('WEBSITE', 'mybrickslopes.com');
-    define('EMAIL_ACCOUNT', '<your_smtp_user>@<your_host>');
-    define('EMAIL_PASSWORD', '<your_smtp_password>');
+    define('EMAIL_CLIENT_ID', '<your_gmail_client_id>');
+    define('EMAIL_CLIENT_SECRET', '<your_gmail_client_secret>');
     define('LOGGING_DEBUG', '/tmp/debug_log.txt');
     define('LOGGING_AUDIT', '/tmp/audit_log.txt');
 ?>

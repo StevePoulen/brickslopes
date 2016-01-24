@@ -540,14 +540,24 @@ var showAfolLogin = true;
             $location,
             Themes
         ) {
-            $scope.themeList = [];
+            $scope.publicList = [];
+            $scope.afolList = [];
+            $scope.bcsList = [];
 
             $scope.closeDialog = function() {
                 $location.path("/registered/index.html");
             }
 
             Themes.getList().then(function(data) {
-                $scope.themeList = data;
+                _.forEach(data, function(theme) {
+                    if (theme.type === 'BCS') {
+                        $scope.bcsList.push(theme);
+                    } else if (theme.type === 'PUBLIC') {
+                        $scope.publicList.push(theme);
+                    } else {
+                        $scope.afolList.push(theme);
+                    }
+                });
             });
         }
     ])

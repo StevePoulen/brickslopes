@@ -1,4 +1,4 @@
-var themes = [
+window.themes = [
     {
         "theme": "Adventure",
         "themeId": 12,
@@ -42,6 +42,48 @@ var themes = [
         "themeId": 3,
         "eventId": 2,
         "type": "AFOL",
+        "selectable": "NO",
+        "awards": [
+            {
+                "award": "Best of Castle",
+                "place": "1"
+            },
+            {
+                "award": "Best Historical",
+                "place": "2"
+            },
+            {
+                "award": "Best War Machine",
+                "place": "3"
+            }
+        ]
+    },
+    {
+        "theme": "BCS",
+        "themeId": 3,
+        "eventId": 2,
+        "type": "BCS",
+        "selectable": "NO",
+        "awards": [
+            {
+                "award": "Best of Castle",
+                "place": "1"
+            },
+            {
+                "award": "Best Historical",
+                "place": "2"
+            },
+            {
+                "award": "Best War Machine",
+                "place": "3"
+            }
+        ]
+    },
+    {
+        "theme": "PUBLIC",
+        "themeId": 3,
+        "eventId": 2,
+        "type": "PUBLIC",
         "selectable": "NO",
         "awards": [
             {

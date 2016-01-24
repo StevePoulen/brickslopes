@@ -4,13 +4,9 @@
     </div>
     &nbsp;
     <p>
-        <div class="twoEMFont">
-            <ul>
-                <div ng-repeat="award in theme.awards | orderBy:'place'">
-                    <li><bs-text font-color="black" text="{{award.award}}"></bs-text></li>
-                </div>
-                <div class="eventBrickSlopesLogo mediumLogo logoRight"></div>
-            <ul>
+        <div ng-repeat="award in theme.awards | orderBy:'place'">
+            <div><bs-text font-size=2.0 font-color="black" text="{{award.award}}"></bs-text></div>
         </div>
+        <div class="eventBrickSlopesLogo mediumLogo logoRight"></div>
     </p>
 </div>

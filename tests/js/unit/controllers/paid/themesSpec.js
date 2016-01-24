@@ -9,13 +9,12 @@ describe('controllers', function() {
     }));
 
     describe('afolEventThemes Controller', function() {
-        var mockBackend, loader, location, response;
+        var mockBackend, loader, location;
         beforeEach(inject(function($controller, $rootScope, _$httpBackend_, $location) {
             scope = $rootScope.$new();
             ctrl = $controller('afolEventThemes', { $scope: scope});
             mockBackend = _$httpBackend_;
-            response = [{'eventId': 234, 'theme': 'Pirates'}];
-            mockBackend.expectGET('/controllers/paid/themes.php?eventId=2').respond(201, response);
+            mockBackend.expectGET('/controllers/paid/themes.php?eventId=2').respond(201, window.themes);
             location = $location;
         }));
 
@@ -26,14 +25,22 @@ describe('controllers', function() {
             });
         });
 
-        describe('Defult Values', function() {
-            it('should have an eventId variable', function() {
-                expect(scope.themeList).toEqual([]);
+        describe('Default Values', function() {
+            it('should have an 3 themes variable', function() {
+                expect(scope.publicList).toEqual([]);
+                expect(scope.afolList).toEqual([]);
+                expect(scope.bcsList).toEqual([]);
             });
 
-            it('should get event details', function() {
+            it('should have a three lists after digest', function() {
                 mockBackend.flush();
-                expect(scope.themeList).toEqual(response);
+                expect(scope.afolList).toEqual([
+                    window.themes[0],
+                    window.themes[1],
+                    window.themes[2]
+                ]);
+                expect(scope.bcsList).toEqual([window.themes[3]]);
+                expect(scope.publicList).toEqual([window.themes[4]]);
             });
         });
     });

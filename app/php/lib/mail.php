@@ -34,7 +34,6 @@
                 'body' => $this->message,
                 'email' => $email
             );
-
         }
 
         public function sendEmailUsMessage($data) {

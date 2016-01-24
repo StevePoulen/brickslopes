@@ -648,7 +648,7 @@ $pane_width: 1238px;
     border: 1px solid black;
     width: $dashboard_width / 2 - 40;
     padding: 5px;
-    height: 250px;
+    min-height: 300px;
     border-radius: 5px;
     margin-right: 10px;
     margin-bottom: 5px;
@@ -657,12 +657,12 @@ $pane_width: 1238px;
         width: 100%;
         text-align: center;
     }
-}
 
-.theme ul {
-    padding: 0;
-    margin-left: 45px;
-    margin-top: 5px;
+    ul {
+        padding: 0;
+        margin-left: 45px;
+        margin-top: 5px;
+    }
 }
 
 .afolRow {
