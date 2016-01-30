@@ -1125,7 +1125,8 @@ var showAfolLogin = true;
                 $scope.displayName = $scope.firstName + " " + $scope.lastName;
                 $scope.baseplateWidth = 1;
                 $scope.baseplateDepth = 1;
-                $scope.theme = ($scope.themeList ? $scope.themeList[0] : undefined);
+                $scope.themeList = [];
+                $scope.theme = ($scope.themeList[0] ? $scope.themeList[0] : undefined);
                 $scope.themeId = undefined;
                 $scope.title = undefined;
                 $scope.mocImageUrl = undefined;
@@ -1147,9 +1148,13 @@ var showAfolLogin = true;
                 return range;
             }
 
-            Themes.getList().then(function(data) {
-                $scope.themeList = data;
-                $scope.theme = $scope.themeList[1];
+            Themes.getList().then(function(themes) {
+                _.forEach(themes, function(theme) {
+                    if (theme.selectable === 'YES') {
+                        $scope.themeList.push(theme);
+                    }
+                });
+                $scope.theme = $scope.themeList[0];
                 $scope.themeId = $scope.theme.themeId;
             });
 
