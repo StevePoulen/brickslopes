@@ -1,0 +1,53 @@
+-- MySQL dump 10.11
+--
+-- Host: localhost    Database: mysql
+-- ------------------------------------------------------
+-- Server version	5.0.83
+
+USE `brickslopes`;
+
+-- Jessi
+UPDATE registrations SET userId = 283 WHERE registrationId = 219;
+
+UPDATE registrationLineItems SET userId = 283 WHERE userId = 118 AND eventId = 3;
+
+UPDATE registrationLineItems SET ownerId = 283 WHERE ownerId = 118 AND eventId = 3;
+
+
+-- Brianna 
+UPDATE registrationLineItems SET eventLineItemCodeId = 13, lineItem = 'Associate Pass', amount = '10.00', description = '' WHERE registrationLineItemId = 963;
+
+DELETE from registrationLineItems where registrationLineItemId = 964;
+
+UPDATE registrationLineItems SET eventLineItemCodeId = 13, lineItem = 'Associate Pass', amount = '10.00', description = '' WHERE registrationLineItemId = 961;
+
+UPDATE registrationLineItems SET eventLineItemCodeId = 11, lineItem = 'Vendor Pass', amount = '0.00', description = '' WHERE registrationLineItemId = 959;
+
+DELETE from registrationLineItems where registrationLineItemId = 962;
+
+-- Allen Jiang
+
+UPDATE registrations SET userId = 116 WHERE registrationId = 223;
+
+UPDATE registrationLineItems SET userId = 116, ownerId = 116 WHERE userId = 41 AND eventId = 3;
+
+UPDATE registrationLineItems SET eventLineItemCodeId = 13, lineItem = 'Associate Pass', amount = '10.00', description = '' WHERE registrationLineItemId = 974;
+
+DELETE from registrationLineItems where registrationLineItemId = 975;
+DELETE from registrationLineItems where registrationLineItemId = 976;
+
+INSERT INTO registrationLineItems (eventId, userId, eventLineItemCodeId, lineItem, amount, paid, discount,  quantity, active, isOwner, ownerId, entryDate, description, size) values (3, 283, 13, 'Associate Pass', '10.00', 'No', 'YES', 1, 'YES', 'NO', 116, now(), '', '');
+
+-- store
+
+UPDATE storeEventUserConnector set userId = 116, type = 'ASSOCIATE' where storeEventUserConnectorId = 48;
+
+UPDATE storeEventUserConnector set userId = 283, storeId = 6 where storeEventUserConnectorId = 49;
+
+DELETE from storeEventConnector where storeEventConnectorId = 24;
+
+DELETE from vendorConnector where vendorConnectorId = 25;
+
+DELETE from stores where storeId = 25;
+
+UPDATE stores set logo = 'http://www.play-well.org/img/pw_logo_new.png' where storeId = 6;
