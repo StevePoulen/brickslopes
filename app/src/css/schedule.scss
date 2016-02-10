@@ -1,44 +1,9 @@
-$schedule_width: 1000px;
-$schedule_time_width: 60px;
-$schedule_days: 4;
-$schedule_header_width: ($schedule_width - $schedule_time_width) / $schedule_days;
-$schedule_event_width: $schedule_header_width;
-$header_height: 25px;
-$event_height: 50px;
-
-
-table.schedule {
-    width: $schedule_width;
-    border-spacing: 0;
-
-    td {
-        border: 0.5px solid black;
-        margin: 0;
-        padding: 0;
-
-    }
-}
-
-.header {
-    width: $schedule_header_width;
+.schedule {
+    margin-left: auto;
+    margin-right: auto;
     text-align: center;
-    height: $header_height;
 }
 
-.headerTime {
-    width: $schedule_time_width;
-}
-
-.eventTime {
-    width: $schedule_time_width;
-    height: $event_height;
-    text-align: right;
-    vertical-align: bottom;
-    padding-right: 5px;
-}
-
-.event {
-    width: $schedule_event_width;
-    text-align: center;
-    height: $event_height;
+.eventSchedule {
+    margin-left: 20px;
 }
