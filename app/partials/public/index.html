@@ -26,9 +26,10 @@
         <div class="tShirtTextContainer" ng-click="packages()">
             New to
             <br>
-            <bs-logo font-size="1.50"></bs-logo>
-            <br>for 2016
-            <br><span class="italic">The Star Trek Enterprise</span>
+            <bs-logo font-size="1.50" text="2016"></bs-logo>
+            <p>
+                <span class="italic">The Star Trek Enterprise</span>
+            </p>
         </div>
         <div class="splashTextHome">
             <div class="sponsorOne" ng-click="modernBrickWarfare()" ng-if="false">
@@ -42,11 +43,22 @@
             </div>
         </div>
         <div id="publicTickets">
-            <div id="publicTicketsText" class="twoEMFont"> 
-                <bs-text text="On-line" font-color="black"></bs-text>
+            <div ng-if="showOnlineTickets()">
+                <div id="publicTicketsText" class="twoEMFont"> 
+                    <bs-text text="Buy tickets" font-color="black"></bs-text>
+                    <bs-text text="online and" font-color="black"></bs-text>
+                    <bs-text text="save time!" font-color="black"></bs-text>
+                </div>
+                <div class="buyTicketsButton">
+                    <button class="actionButtonSquare" ng-click="tickets()">
+                        <bs-text text="Buy Tickets" font-color=white font-size=1.75></bs-text>
+                    </button>
+                </div>
+            </div>
+            <div ng-if="!showOnlineTickets()">
                 <bs-text text="Tickets" font-color="black"></bs-text>
                 <bs-text text="available" font-color="black"></bs-text>
-                <bs-text text="soon!" font-color="black"></bs-text>
+                <bs-text text="at the door!" font-color="black"></bs-text>
             </div>
             <div id="splashDDCouch"><img class="fig" src="/images/publicPics/doubleDeckerCouch.jpg"></div>
         </div>

@@ -1,15 +1,15 @@
 var mocs = [
     {
         mocId: 1,
-        "eventId": "2",
-        "userId": "2",
-        "themeId": "1",
-        "title": "asdfasfd",
-        "displayName": "Brian Pilati",
-        "mocImageUrl": "asdf",
-        "baseplateWidth": "1",
-        "baseplateDepth": "1",
-        "description": "asdf"
+        eventId: "2",
+        userId: "2",
+        themeId: "1",
+        title: "asdfasfd",
+        displayName: "Brian Pilati",
+        mocImageUrl: "asdf",
+        baseplateWidth: "1",
+        baseplateDepth: "1",
+        description: "asdf"
     },
     {
         mocId: 2,

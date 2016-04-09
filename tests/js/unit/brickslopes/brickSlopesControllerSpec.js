@@ -23,7 +23,7 @@ describe('controllers', function() {
         });
 
         it('should have a package list variable', function() {
-            expect(scope.packageList).toEqual(['Adult On-line ($7.00*)', 'Child On-line ($1.00*)', 'Adult Ticket and Fig ($12.00*)', 'Child Ticket and Fig ($6.00*)', 'Adult Ticket and Shirt ($22.00*)', 'Child Ticket and Shirt ($16.00*)', 'Adult Ticket, Fig and Shirt ($25.00*)', 'Child Ticket, Fig and Shirt ($21.00*)']);
+            expect(scope.packageList).toEqual(['Adult On-line ($7.00*)', 'Child (8 and under) (Free)', 'Adult Ticket and Fig ($13.00*)', 'Child Ticket and Fig ($6.00*)', 'Adult Ticket and Shirt ($23.00*)', 'Child Ticket and Shirt ($16.00*)', 'Adult Ticket, Fig and Shirt ($29.00*)', 'Child Ticket, Fig and Shirt ($22.00*)']);
         });
     });
 
@@ -51,21 +51,19 @@ describe('controllers', function() {
             expect(location.path()).toBe('/tickets.html');
         });
 
-        it('should redirect to the Friday tickets page', function() {
+        it('should redirect to the tickets page', function() {
             spyOn(window, "open");
-            scope.purchaseFridayTickets();
-            expect(window.open).toHaveBeenCalledWith('https://www.eventbrite.com/e/brickslopes-slc-2015-tickets-15387662914', '_blank');
-        });
-
-        it('should redirect to the Saturday tickets page', function() {
-            spyOn(window, "open");
-            scope.purchaseSaturdayTickets();
-            expect(window.open).toHaveBeenCalledWith('https://www.eventbrite.com/e/brickslopes-slc-2015-saturday-tickets-15610137341', '_blank');
+            scope.purchaseTickets();
+            expect(window.open).toHaveBeenCalledWith('https://www.eventbrite.com/e/brickslopes-2016-tickets-24371506833', '_blank');
         });
 
         it('should redirect to the packages page', function() {
             scope.packages();
-            expect(location.path()).toBe('/when/index.html');
+            expect(location.path()).toBe('/packages.html');
+        });
+
+        it('should determine to show online tickets', function() {
+            expect(scope.showOnlineTickets()).toBe(true);
         });
     });
 

@@ -109,7 +109,7 @@ describe('controllers', function() {
             });
 
             it('should have a themeList collection', function() {
-                expect(scope.themeList).toBeUndefined();
+                expect(scope.themeList).toEqual([]);
             });
 
         });
@@ -128,15 +128,19 @@ describe('controllers', function() {
             });
 
             it('should populate the themeList variable', function() {
-                expect(scope.themeList).toEqual(themes);
+                var expectedThemes = [
+                    themes[0],
+                    themes[1]
+                ];
+                expect(scope.themeList).toEqual(expectedThemes);
             });
 
             it('should have a theme variable ', function() {
-                expect(scope.theme).toEqual(themes[1]);
+                expect(scope.theme).toEqual(themes[0]);
             });
 
             it('should have an themeId variable ', function() {
-                expect(scope.themeId).toBe(2);
+                expect(scope.themeId).toBe(12);
             });
         });
 
@@ -144,7 +148,7 @@ describe('controllers', function() {
             var mocDto;
             beforeEach(function() {
                 mocDto = {
-                    themeId: 2,
+                    themeId: 12,
                     eventId: 2,
                     title: 'My Fine Title',
                     displayName: 'Cody Ottley',
@@ -170,7 +174,7 @@ describe('controllers', function() {
                 expect(scope.baseplateWidth).toBe(1);
                 expect(scope.baseplateDepth).toBe(1);
                 expect(scope.theme).toEqual(themes[0]);
-                expect(scope.themeId).toBe(12);
+                expect(scope.themeId).toBeUndefined();
                 expect(scope.title).toBeUndefined();
                 expect(scope.mocImageUrl).toBeUndefined();
                 expect(scope.description).toBeUndefined();
@@ -264,7 +268,7 @@ describe('controllers', function() {
 
         beforeEach(inject(function($controller, $rootScope, $location, $route) {
             route = $route;
-            route = {current: {params:{eventId:2, mocId:4}}};
+            route = {current: {params:{eventId:2, mocId:1}}};
             scope = $rootScope.$new();
             window.sessionStorage.userId = 1;
             ctrl = $controller('afolMocRegistration', { $scope: scope, $window: window, $route: route});
@@ -293,8 +297,8 @@ describe('controllers', function() {
                 expect(scope.displayName).toBe('Cody Ottley');
                 expect(scope.baseplateWidth).toBe(1);
                 expect(scope.baseplateDepth).toBe(1);
-                expect(scope.theme).toEqual(themes[1]);
-                expect(scope.themeId).toBe(2);
+                expect(scope.theme).toEqual(themes[0]);
+                expect(scope.themeId).toBe(12);
                 expect(scope.title).toBeUndefined();
                 expect(scope.mocImageUrl).toBeUndefined();
                 expect(scope.description).toBeUndefined();

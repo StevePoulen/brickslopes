@@ -24,7 +24,7 @@ executeDBStatementExtended() {
     echo "Executing: $DB_FILE in $DB";
     if [[ "$LOCAL_DB" == "Y" ]]
     then
-        mysql -u root $DB $PASSWORD$MYSQL_ROOT_PASSWORD < $DB_FILE
+        /opt/local/lib/mysql56/bin/mysql -u root $DB $PASSWORD$MYSQL_ROOT_PASSWORD < $DB_FILE
     else
         mysql -u 7hiez8ei $BRICKSLOPES_DATABASE -h mysql.brickslopes.com $PASSWORD$MYSQL_ROOT_PASSWORD < $DB_FILE
     fi

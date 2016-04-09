@@ -1,0 +1,19 @@
+-- MySQL dump 10.11
+--
+-- Host: localhost    Database: mysql
+-- ------------------------------------------------------
+-- Server version	5.0.83
+
+USE `brickslopes`;
+
+INSERT INTO `siteEmails` (`eventId`, `subject`, `body`, `status`) values ('3', 'BrickSlopes 2016 Early-Bird Registration Deadline','<div><p>The BrickSlopes 2016 early-bird registration deadline is here!</p>
+<p><font size="+1"><b>Friday April 15th, 2016</b></font> is the last day to register <b>AND</b> receive the early-bird pricing.</p>
+
+<p>The 2016 BrickSlopes early-bird discount includes:
+<ul>
+<li>3-Day AFOL pass (includes a SWAG bag)</li>
+<li>Meet & Greet Event</li>
+<li>Official BrickSlopes T-shirt</li>
+<li>Official Brickslopes Event Name Badge</li>
+</ul>
+</p><p>As part of registration you can also sign-up for both event drafts.</p><p>Register today at <a href="https://www.brickslopes.com/registered/login.html">BrickSlopes.com</a></p></div>', 'preview');

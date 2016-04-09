@@ -229,7 +229,7 @@ describe('controllers', function() {
         });
 
         it('should have a themeCount variable', function() {
-            expect(scope.themeCount).toBe(3);
+            expect(scope.themeCount).toBe(5);
         });
 
         it('should set the mocCount variable', function() {

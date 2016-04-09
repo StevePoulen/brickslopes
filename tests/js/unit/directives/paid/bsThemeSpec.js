@@ -10,15 +10,16 @@ describe('directives', function() {
             $templateCache.put('partials/paid/eventThemesDirective.html', template);
             scope = $rootScope.$new();
             scope.theme = {
-                'theme': 'Brian',
-                'awards': [
+                theme: 'Brian',
+                selectable: 'YES',
+                awards: [
                     {
-                        'award': 'Pilati',
-                        'place': 2
+                        award: 'Pilati',
+                        place: 2
                     },
                     {
-                        'award': 'Ogel',
-                        'place': 1
+                        award: 'Ogel',
+                        place: 1
                     }
                 ]
             };
@@ -36,11 +37,11 @@ describe('directives', function() {
         });
 
         it('should have Award text', function() {
-            expect($(element.find('li')[0]).html()).toContain('Ogel');
+            expect($(element.find('div')[1]).html()).toContain('Ogel');
         });
 
         it('should have Award text', function() {
-            expect($(element.find('li')[1]).html()).toContain('Pilati');
+            expect($(element.find('div')[3]).html()).toContain('Pilati');
         });
     });
 });

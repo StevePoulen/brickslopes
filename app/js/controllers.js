@@ -1109,6 +1109,7 @@ var showAfolLogin = true;
         ) {
             $scope.firstName = $window.sessionStorage.firstName;
             $scope.lastName = $window.sessionStorage.lastName;
+            $scope.themeList = [];
             setDefaultScopeVariables();
             $scope.width = buildRange(1,55);
             $scope.depth = buildRange(1,7);
@@ -1125,7 +1126,6 @@ var showAfolLogin = true;
                 $scope.displayName = $scope.firstName + " " + $scope.lastName;
                 $scope.baseplateWidth = 1;
                 $scope.baseplateDepth = 1;
-                $scope.themeList = [];
                 $scope.theme = ($scope.themeList[0] ? $scope.themeList[0] : undefined);
                 $scope.themeId = undefined;
                 $scope.title = undefined;

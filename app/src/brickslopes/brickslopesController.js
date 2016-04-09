@@ -37,20 +37,19 @@
                 openNewWindow("http://www.chowrentoys.com/");
             }
 
-            $scope.purchaseSaturdayTickets = function() {
-                openNewWindow("https://www.eventbrite.com/e/brickslopes-slc-2015-saturday-tickets-15610137341");
-            }
-
-            $scope.purchaseFridayTickets = function() {
-                openNewWindow("https://www.eventbrite.com/e/brickslopes-slc-2015-tickets-15387662914");
+            $scope.purchaseTickets = function() {
+                openNewWindow("https://www.eventbrite.com/e/brickslopes-2016-tickets-24371506833");
             }
 
             $scope.packages = function() {
-                //$location.path("/packages.html");
-                $location.path("/when/index.html");
-            }
+                $location.path("/packages.html");
+            };
 
-            $scope.packageList = ['Adult On-line ($7.00*)', 'Child On-line ($1.00*)', 'Adult Ticket and Fig ($12.00*)', 'Child Ticket and Fig ($6.00*)', 'Adult Ticket and Shirt ($22.00*)', 'Child Ticket and Shirt ($16.00*)', 'Adult Ticket, Fig and Shirt ($25.00*)', 'Child Ticket, Fig and Shirt ($21.00*)'];
+            $scope.showOnlineTickets = function() {
+                return true;
+            };
+
+            $scope.packageList = ['Adult On-line ($7.00*)', 'Child (8 and under) (Free)', 'Adult Ticket and Fig ($13.00*)', 'Child Ticket and Fig ($6.00*)', 'Adult Ticket and Shirt ($23.00*)', 'Child Ticket and Shirt ($16.00*)', 'Adult Ticket, Fig and Shirt ($29.00*)', 'Child Ticket, Fig and Shirt ($22.00*)'];
         }
     ]);
 })(angular);
