@@ -20,7 +20,8 @@ class PaymentTest extends PHPUnit_Framework_TestCase
         $_POST = array (
             'revoke' => 'no',
             'registrationId' => '22',
-            'userId' => '123445'
+            'userId' => '123445',
+            'eventId' => 3
         );
         $GLOBALS['db_query'] = '1';
         $payment = new Payment();
@@ -40,6 +41,7 @@ class PaymentTest extends PHPUnit_Framework_TestCase
             'revoke' => 'yes',
             'registrationId' => '22',
             'userId' => '123445',
+            'eventId' => 3
         );
         $GLOBALS['db_query'] = '1';
         $payment = new Payment();
@@ -59,6 +61,7 @@ class PaymentTest extends PHPUnit_Framework_TestCase
             'revoke' => 'yes',
             'registrationId' => '22',
             'userId' => '123445',
+            'eventId' => 3
         );
         $GLOBALS['db_query'] = 0;
         $payment = new Payment();

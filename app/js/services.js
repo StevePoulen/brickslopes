@@ -403,10 +403,11 @@
                             method: 'PATCH',
                             url: '/controllers/admin/payment.php',
                             data: {
-                                'registrationLineItemId': dto.registrationLineItemId,
-                                'registrationId': dto.registrationId,
-                                'userId': dto.userId,
-                                'revoke': 'yes'
+                                registrationLineItemId: dto.registrationLineItemId,
+                                registrationId: dto.registrationId,
+                                userId: dto.userId,
+                                revoke: 'yes',
+                                eventId: EventSelectionFactory.getSelectedEvent()
                             }
                         }
                     ).success(function(data, status, headers, config) {
@@ -425,10 +426,11 @@
                             method: 'PATCH',
                             url: '/controllers/admin/payment.php',
                             data: {
-                                'registrationLineItemId': dto.registrationLineItemId,
-                                'registrationId': dto.registrationId,
-                                'userId': dto.userId,
-                                'revoke': 'no'
+                                registrationLineItemId: dto.registrationLineItemId,
+                                registrationId: dto.registrationId,
+                                userId: dto.userId,
+                                revoke: 'no',
+                                eventId: EventSelectionFactory.getSelectedEvent()
                             }
                         }
                     ).success(function(data, status, headers, config) {

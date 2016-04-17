@@ -1,5 +1,7 @@
 <?php
 
+use \Firebase\JWT\JWT;
+
 class AuthenticationTest extends PHPUnit_Framework_TestCase 
 {
     public function setUp() 
@@ -70,7 +72,7 @@ class AuthenticationTest extends PHPUnit_Framework_TestCase
     }
 
     public function validateJwt($token, $admin='YES', $registered='YES') {
-        $jwt = JWT::decode($token, JWT_KEY);
+        $jwt = JWT::decode($token, JWT_KEY, array('HS256'));
         $this->assertEquals($jwt->iss, 'https://www.brickslopes.com');
         $this->assertEquals($jwt->aud, 'www.mybrickslopes.com');
         $this->assertEquals($jwt->iat, '1356999524');

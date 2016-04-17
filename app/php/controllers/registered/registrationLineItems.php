@@ -88,7 +88,7 @@ class registrationLineItems {
     }
 
     public function getRegisteredLineItems($userId, $eventId) {
-        $this->registrationLineItemObj->getRegistrationLineItemsByUserId($userId);
+        $this->registrationLineItemObj->getRegistrationLineItemsByUserId($userId, $eventId);
         if ($this->registrationLineItemObj->result) {
             $lineItemMap = $this->buildLineItemObject();
             try {
@@ -102,7 +102,11 @@ class registrationLineItems {
     }
 
     private function get() {
-        $this->registrationLineItemObj->getRegistrationLineItemsByUserId($this->userId);
+        $payload = $_GET;
+        $this->registrationLineItemObj->getRegistrationLineItemsByUserId(
+            $this->userId,
+            $payload['eventId']
+        );
         if ($this->registrationLineItemObj->result) {
             $lineItemMap = $this->buildLineItemObject();
             header("HTTP/1.0 200 Success");

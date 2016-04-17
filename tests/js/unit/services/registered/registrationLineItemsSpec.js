@@ -38,7 +38,8 @@ describe('service', function() {
                 dto = {
                     registrationLineItemId: 22,
                     userId: 1234,
-                    registrationId: 11
+                    registrationId: 11,
+                    eventId: 2
                 }
                 var payload = dto;
                 payload.revoke = 'no';
@@ -65,7 +66,8 @@ describe('service', function() {
                 dto = {
                     registrationLineItemId: 22,
                     userId: 1234,
-                    registrationId: 11
+                    registrationId: 11,
+                    eventId: 2
                 }
                 var payload = dto;
                 payload.revoke = 'yes';

@@ -5,6 +5,7 @@
     "php": ">=5.3.0",
     "firebase/php-jwt": "dev-master",
     "phpmailer/phpmailer": "5.2.8",
-    "google/apiclient": "1.*"
+    "google/apiclient": "1.*",
+    "phpunit/phpunit": "3.7.*"
   }
 }

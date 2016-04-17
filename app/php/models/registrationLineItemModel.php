@@ -5,8 +5,8 @@ class registrationLineItemModel extends db {
         parent::__construct();
     }
 
-    public function getRegistrationLineItemsByUserId($userId) {
-        return $this->query($this->selectQuery($userId));
+    public function getRegistrationLineItemsByUserId($userId, $eventId) {
+        return $this->query($this->selectQuery($userId, $eventId));
     }
 
     public function addRegistrationLineItems($data) {
@@ -29,30 +29,31 @@ class registrationLineItemModel extends db {
         return $this->query($this->updateQuery($data, 'NO'));
     }
 
-    private function selectQuery($userId) {
+    private function selectQuery($userId, $eventId) {
         return "
             SELECT 
-                registrationLineItemId,
-                eventId, 
-                userId, 
+                r.registrationLineItemId,
+                r.eventId, 
+                r.userId, 
                 ec.code as lineItemCode,
                 r.lineItem as lineItem,
-                amount,
-                paid,
-                discount,
-                description,
-                size,
-                quantity,
-                active,
-                size,
-                isOwner,
-                ownerId,
-                entryDate
+                r.amount,
+                r.paid,
+                r.discount,
+                r.description,
+                r.size,
+                r.quantity,
+                r.active,
+                r.size,
+                r.isOwner,
+                r.ownerId,
+                r.entryDate
             FROM
                 registrationLineItems r,
                 eventLineItemCodes ec
             WHERE
-                userId = '{$userId}'
+                r.userId = '{$userId}'
+                AND r.eventId = '{$eventId}'
                 AND r.eventLineItemCodeId = ec.eventLineItemCodeId
             ORDER BY
                 r.amount DESC

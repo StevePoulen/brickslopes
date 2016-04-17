@@ -97,9 +97,9 @@ describe('controllers', function() {
             var lineItem, payload;
             beforeEach(function() {
                 scope.afol = {
-                    'paid': 'maybe',
-                    'registrationId': 32,
-                    'userId': 1234
+                    paid: 'maybe',
+                    registrationId: 32,
+                    userId: 1234
                 };
 
                 lineItem = {
@@ -111,7 +111,8 @@ describe('controllers', function() {
                     registrationLineItemId: 22,
                     registrationId: 32,
                     userId: 1234,
-                    revoke: 'no'
+                    revoke: 'no',
+                    eventId: 2
                 }
             });
 
@@ -144,9 +145,9 @@ describe('controllers', function() {
             var lineItem, payload;
             beforeEach(function() {
                 scope.afol = {
-                    'paid': 'maybe',
-                    'registrationId': 32,
-                    'userId': 1324
+                    paid: 'maybe',
+                    registrationId: 32,
+                    userId: 1324
                 };
 
                 lineItem = {
@@ -158,7 +159,8 @@ describe('controllers', function() {
                     registrationLineItemId: 22,
                     registrationId: 32,
                     userId: 1324,
-                    revoke: 'yes'
+                    revoke: 'yes',
+                    eventId: 2
                 }
             });
 

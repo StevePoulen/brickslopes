@@ -1,5 +1,7 @@
 <?php 
 
+use \Firebase\JWT\JWT;
+
 class jwtToken {
 
     function __construct() {

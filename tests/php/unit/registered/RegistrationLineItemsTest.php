@@ -19,6 +19,7 @@ class RegistrationLineItemsTest extends PHPUnit_Framework_TestCase
     {
         $_SERVER['REQUEST_METHOD'] = "GET";
         $GLOBALS['db_query'] = 12345;
+        $_GET['eventId'] = 3;
         $this->userId = 12345;
         new RegistrationLineItems($this->userId, true);
         $this->assertEquals(http_response_code(), 200);

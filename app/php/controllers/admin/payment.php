@@ -36,7 +36,10 @@ class Payment {
         }
 
         if ($response != 0) {
-            $this->registrationLineItemObj->getRegistrationLineItemsByUserId($payload['userId']);
+            $this->registrationLineItemObj->getRegistrationLineItemsByUserId(
+                $payload['userId'],
+                $payload['eventId']
+            );
             if ($this->registrationLineItemObj->result) {
                 $registrationPaid = true;
                 $amountPaid = 0;

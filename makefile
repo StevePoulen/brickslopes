@@ -32,7 +32,7 @@ e2e_js_suite:
 
 # Performs PHP unit tests
 unit_php:
-	phpunit --stderr
+	vendor/bin/phpunit --stderr
 
 # Performs compass builds
 compass_compile:

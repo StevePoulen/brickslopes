@@ -1,4 +1,6 @@
 <?php
+
+    use \Firebase\JWT\JWT;
     include_once join('/', array(__DIR__, 'AutoLoader.php'));
     include_once join('/', array(__DIR__, '/', '..', '..', 'config', 'config.php'));
 
@@ -146,7 +148,7 @@
             try {
                 $headers = apache_request_headers();
                 $jwt = $headers['Auth-Token'];
-                $decodedJWT = JWT::decode($jwt, JWT_KEY);
+                $decodedJWT = JWT::decode($jwt, JWT_KEY, array('HS256'));
                 if (preg_match('/\d+/', $decodedJWT->userId)) {
                     $this->userId = $decodedJWT->userId;
                     $this->isAdmin = $this->determineAdminFromJWT($decodedJWT);

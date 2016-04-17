@@ -1,0 +1,15 @@
+linters:
+    Indentation:
+        width: 4
+
+    PropertySortOrder:
+        enabled: false
+
+    SelectorDepth:
+        enabled: false
+
+    CapitalizationInSelector:
+        enabled: false
+
+    NameFormat:
+        enabled: false
