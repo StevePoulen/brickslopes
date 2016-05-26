@@ -578,6 +578,10 @@ only screen and (min-device-pixel-ratio : 1.5) {
             background: white;
             border-radius: 10px;
 
+            .flyerImage {
+                width: 800px;
+            }
+
             .tShirtContainer {
                 position: absolute;
                 right: 645px;

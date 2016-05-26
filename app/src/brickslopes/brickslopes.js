@@ -73,6 +73,12 @@ config(['$routeProvider', '$httpProvider', '$locationProvider', function($routeP
         }
     )
     .when(
+        '/coupon',
+        {
+            templateUrl: '/partials/public/discountFlier.html'
+        }
+    )
+    .when(
         '/who/index.html',
         {
             templateUrl: '/partials/public/who.html',

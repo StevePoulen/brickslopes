@@ -55,3 +55,5 @@ config.php
 credentials_token.json
 
 testing_first_email.txt
+
+.idea
