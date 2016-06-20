@@ -25,7 +25,8 @@ describe('directives', function() {
                     }
                 }
                 element = compile(element)(scope);
-                scope.canRegister = true;
+                scope.$digest();
+                spyOn(scope, 'canRegister').andReturn(true);
                 scope.$digest();
             });
 

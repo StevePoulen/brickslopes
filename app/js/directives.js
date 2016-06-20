@@ -267,6 +267,10 @@ angular.module('brickSlopes.directives')
             scope.$watch("userGameList", function() {
                 scope.isRegistered = (scope.userGameList[scope.game.gameId] ? true : false);
             });
+            
+            scope.canRegister = function() {
+                return true;
+            }
         }
     }
 })

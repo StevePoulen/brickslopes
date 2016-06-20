@@ -1,18 +1,21 @@
 describe('controllers', function() {
     'use strict';
-    var scope, ctrl, location, mockBackend, window, originalSessionStorage;
+    var scope, ctrl, location, mockBackend, window;
 
     beforeEach(module('brickSlopes.controllers'));
 
     beforeEach(inject(function(_EventSelectionFactory_, _$httpBackend_, _$window_) {
         window = _$window_;
-        originalSessionStorage = window.sessionStorage;
+        window.sessionStorage.firstName = 'Cody';
+        window.sessionStorage.lastName = 'Ottley';
         spyOn(_EventSelectionFactory_, 'getSelectedEvent').andReturn(2);
         mockBackend = _$httpBackend_;
     }));
 
     afterEach(function() {
-        window.sessionStorage = originalSessionStorage;
+        delete window.sessionStorage.firstName;
+        delete window.sessionStorage.lastName;
+        delete window.sessionStorage.userId;
     });
 
     describe('eventMocRegistration Controller', function() {
@@ -25,6 +28,7 @@ describe('controllers', function() {
             window.sessionStorage.firstName = 'Cody';
             window.sessionStorage.lastName = 'Ottley';
             ctrl = $controller('afolMocRegistration', { $scope: scope, $window: window, $route: route});
+            
             location = $location;
         }));
 
