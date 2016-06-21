@@ -1401,6 +1401,15 @@ var showAfolLogin = true;
             $scope.predicate = 'firstName';
             $scope.reverse = false;
             $scope.showModal = false;
+            
+            $scope.isTShirt = function(lineItem) {
+                return lineItem.lineItemCode === '10001';
+            }
+            
+            $scope.isBadge = function(lineItem) {
+                return lineItem.lineItemCode === '10004' ||
+                    lineItem.lineItemCode === '10005'
+            }
 
             RegisteredAfols.get().then(function(data) {
                 $scope.registeredAfols = data[$scope.eventId]['registeredAfols'];

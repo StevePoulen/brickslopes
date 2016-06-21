@@ -10,7 +10,7 @@
             <table>
                 <tr>
                     <th>#</th>
-                    <th class="textCenter"><a href="" ng-click="predicate='firstName'; reverse=!reverse">Name</a></th>
+                    <th class="textCenter columnWidth"><a href="" ng-click="predicate='firstName'; reverse=!reverse">Name</a></th>
                     <th class="textCenter">Cost</th>
                     <th class="textCenter">Paid</th>
                     <th class="textCenter">Email</th>
@@ -38,7 +38,14 @@
                                 <th class="textCenter">Active</th>
                             </tr>       
                             <tr ng-class="{evenRow: $even}" ng-repeat="lineItem in afol.lineItems.lineItems">
-                                <td class="textCenter">{{lineItem.lineItem}}</td>
+                                <td class="textCenter">{{lineItem.lineItem}}
+                                    <span ng-if="isTShirt(lineItem)">
+                                        - {{lineItem.size}}
+                                    </span>
+                                    <span ng-if="isBadge(lineItem)">
+                                        - {{lineItem.description}}
+                                    </span>
+                                </td>
                                 <td class="textCenter">{{lineItem.discount}}</td>
                                 <td class="textRight">{{lineItem.amount | currency}}</td>
                                 <td class="textCenter">{{lineItem.quantity}}</td>
