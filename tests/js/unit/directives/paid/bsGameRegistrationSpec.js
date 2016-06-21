@@ -12,7 +12,40 @@ describe('directives', function() {
             compile = $compile;
         }));
 
-        describe('Contents', function() {
+        describe('Contents - actual', function() {
+            beforeEach(function() {
+                scope.game = {
+                    showCTAButton: true,
+                    gameId: 2
+                };
+                scope.userGameList = {
+                    1: {
+                        gameId: 1,
+                        userId: 3
+                    }
+                }
+                element = compile(element)(scope);
+                scope.$digest();
+            });
+
+            it('should have a visible play button', function() {
+                expect($(element).find('.actionButtonGames').text()).toContain('');
+            });
+
+            it('should have a visible play button', function() {
+                expect($(element).find('.actionButtonGames').hasClass('ng-hide')).toBe(false);
+            });
+
+            it('should have a hidden Remove button', function() {
+                expect($(element).find('.actionButtonDeleteGames').text()).toContain('');
+            });
+
+            it('should have a hidden Remove button', function() {
+                expect($(element).find('.actionButtonDeleteGames').hasClass('ng-hide')).toBe(false);
+            });
+        });
+        
+        describe('Contents - always true', function() {
             beforeEach(function() {
                 scope.game = {
                     showCTAButton: true,

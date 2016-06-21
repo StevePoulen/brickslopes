@@ -269,7 +269,7 @@ angular.module('brickSlopes.directives')
             });
             
             scope.canRegister = function() {
-                return true;
+                return false;
             }
         }
     }
