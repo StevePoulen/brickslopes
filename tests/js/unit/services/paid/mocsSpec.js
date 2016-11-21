@@ -1,6 +1,6 @@
 describe('service', function() {
     'use strict';
-    beforeEach(module('brickSlopes.services'));
+    beforeEach(module('brickSlopes'));
 
     beforeEach(inject(function(_EventSelectionFactory_) {
         spyOn(_EventSelectionFactory_, 'getSelectedEvent').andReturn(2);

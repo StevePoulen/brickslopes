@@ -18,8 +18,7 @@ module.exports = function(config){
         'tests/js/unit/**/*.js'
     ],
 
-    exclude : [
-    ],
+    exclude : [ ],
 
     autoWatch : false,
 

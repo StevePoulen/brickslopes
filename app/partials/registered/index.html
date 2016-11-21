@@ -10,13 +10,13 @@
             <div class="eventImageText" style="display: show"><bs-text text='Registration' font-size=1.85 font-color=white></bs-text></div>
             <div class="eventBrickSlopesLogo smallLogo logoLeft" style="display: none"></div>
         </div> 
-        <div class="eventPane" ng-click="clickMocRegistration()">
+        <div class="eventPane" ng-click="clickMocRegistration()" ng-if="false">
             <div class="eventText" style="display: none"><bs-text font-color=black text="Bring your MOCs"></bs-text><p><bs-text font-color=black text="Display & Share"></bs-text></div>
             <div class="eventImageText" style="display: show"><bs-text text='MOC Registration' font-size=1.85 font-color=white></bs-text></div>
             <div class="eventBrickSlopesLogo smallLogo logoLeft" style="display: none"></div>
             <div><bs-event-locked><bs-event-locked></div>
         </div> 
-        <div class="eventPane" ng-click="clickThemes()">
+        <div class="eventPane" ng-click="clickThemes()" ng-if="false">
             <div class="eventText" style="display: none"><bs-text font-color=black text="Are you ready ..."></bs-text><p><bs-text font-color=black text="To Build?"></bs-text></div>
             <div class="eventImageText" style="display: show">
                 <bs-text text="{{eventYear}} Themes" font-size=1.85 font-color=white></bs-text>
@@ -55,12 +55,12 @@
             </div>
             <div><bs-event-locked><bs-event-locked></div>
         </div> 
-        <div class="eventPane" ng-click="clickSchedule()">
+        <div class="eventPane" ng-click="clickSchedule()" ng-if="false">
             <div class="eventText" style="display: none"><bs-text font-color=black text="Jammed Pack"></bs-text><p><bs-text font-color=black text="Every Day"></bs-text></div>
             <div class="eventImageText" style="display: show"><bs-text text='Schedule of Events' font-size=1.85 font-color=white></bs-text></div>
             <div class="eventBrickSlopesLogo smallLogo logoLeft" style="display: none"></div>
         </div> 
-        <div class="eventPane" ng-click="clickKeynote()">
+        <div class="eventPane" ng-click="clickKeynote()" ng-if="false">
             <div class="eventText" style="display: none"><bs-text font-color=black text="Tommy"></bs-text><p><bs-text font-color=black text="Williamson"></bs-text></div>
             <div class="eventImageText" style="display: show"><bs-text text='Keynote Speaker' font-size=1.85 font-color=white></bs-text></div>
             <div class="eventBrickSlopesLogo smallLogo logoLeft" style="display: none"></div>
@@ -85,11 +85,17 @@
             <div class="eventBrickSlopesLogo smallLogo logoLeft" style="display: none"></div>
         </div> 
         <div class="eventPane" ng-click="clickVenue()">
-            <div class="eventText" style="display: none"><bs-text font-color=black text="South Towne Expo"></bs-text><p><bs-text font-color=black text="Sandy, Utah"></bs-text></div>
+            <div class="eventText" style="display: none">
+              <bs-text font-color=black text="UCCU Events"></bs-text>
+              <br>
+              <bs-text font-color=black text="Center"></bs-text>
+              <br>
+              <bs-text font-color=black text="Sandy, Utah"></bs-text>
+            </div>
             <div class="eventImageText" style="display: show"><bs-text text='Map of Ammenities' font-size=1.85 font-color=white></bs-text></div>
             <div class="eventBrickSlopesLogo smallLogo logoLeft" style="display: none"></div>
         </div> 
-        <div class="eventPane" ng-click="clickHotel()">
+        <div class="eventPane" ng-click="clickHotel()" ng-if="false">
             <div class="eventText" style="display: none"><bs-text font-color=black text="Hotel"></bs-text><p><bs-text font-color=black text="Options"></bs-text></div>
             <div class="eventImageText" style="display: show"><bs-text text='Hotel' font-size=1.85 font-color=white></bs-text></div>
             <div class="eventBrickSlopesLogo smallLogo logoLeft" style="display: none"></div>

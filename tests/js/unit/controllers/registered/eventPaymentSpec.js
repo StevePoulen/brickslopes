@@ -2,7 +2,7 @@ describe('controllers', function() {
     'use strict';
     var scope, ctrl, location;
 
-    beforeEach(module('brickSlopes.controllers', 'TemplateModule'));
+    beforeEach(module('brickSlopes'));
 
     beforeEach(inject(function(_EventSelectionFactory_) {
         spyOn(_EventSelectionFactory_, 'getSelectedEvent').andReturn(2);

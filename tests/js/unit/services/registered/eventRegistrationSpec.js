@@ -1,7 +1,7 @@
 describe('service', function() {
     'use strict';
 
-    beforeEach(module('brickSlopes.services'));
+    beforeEach(module('brickSlopes'));
 
     describe('Event Registration', function() {
         describe('Create', function() {

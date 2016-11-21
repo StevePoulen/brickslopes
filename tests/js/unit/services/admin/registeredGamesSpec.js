@@ -1,7 +1,7 @@
 describe('Factory', function() {
     'use strict';
 
-    beforeEach(module('Admin'));
+    beforeEach(module('brickSlopes'));
     beforeEach(inject(function(_EventSelectionFactory_) {
         spyOn(_EventSelectionFactory_, 'getSelectedEvent').andReturn(2);
     }));

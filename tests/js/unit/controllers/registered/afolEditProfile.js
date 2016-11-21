@@ -2,7 +2,7 @@ describe('controllers', function() {
     'use strict';
     var scope, ctrl, location;
 
-    beforeEach(module('brickSlopes.controllers'));
+    beforeEach(module('brickSlopes'));
 
     describe('afolEditProfile Controller', function() {
         var mockBackend, loader;

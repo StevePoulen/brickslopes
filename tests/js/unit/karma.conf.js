@@ -11,6 +11,7 @@ module.exports = function(config) {
             'app/lib/**/angular-resource.min.js',
             'app/lib/**/angular-route.min.js',
             'tests/js/lib/angular-mocks.min.js',
+            'tests/js/fixtures/artifacts/constants.js',
             'app/src/brickslopes/brickslopes.js',
             'app/partials/registered/**/*.html',
             'app/partials/paid/**/*.html',

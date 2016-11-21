@@ -2,7 +2,7 @@ describe('controllers', function() {
     'use strict';
     var scope, ctrl, location, rootScope;
 
-    beforeEach(module('brickSlopes.controllers', 'brickSlopes.services'));
+    beforeEach(module('brickSlopes'));
 
     beforeEach(inject(function(_EventSelectionFactory_) {
         spyOn(_EventSelectionFactory_, 'getSelectedEvent').andReturn(2);
@@ -57,7 +57,7 @@ describe('controllers', function() {
             it('should redirect to the payment page', function() {
                 window.sessionStorage.registered = 'YES';
                 scope.clickMocRegistration();
-                expect(location.path()).toBe('');
+                expect(location.path()).toBe('/');
             });
 
             it('should redirect to the moc registration page', function() {
@@ -72,7 +72,7 @@ describe('controllers', function() {
             it('should redirect to the payment page', function() {
                 window.sessionStorage.registered = 'YES';
                 scope.clickUpdateMocRegistration();
-                expect(location.path()).toBe('');
+                expect(location.path()).toBe('/');
             });
 
             it('should redirect to the moc registration page', function() {
@@ -104,7 +104,7 @@ describe('controllers', function() {
 
             it('should not redirect to the registration page', function() {
                 scope.clickGames();
-                expect(location.path()).toBe('');
+                expect(location.path()).toBe('/');
             });
         });
 
@@ -294,7 +294,7 @@ describe('controllers', function() {
                     it('should redirect to the associates page', function() {
                         scope.associateId = 6;
                         scope.clickEditAssociate();
-                        expect(location.path()).toBe('');
+                        expect(location.path()).toBe('/');
                     });
                 });
 

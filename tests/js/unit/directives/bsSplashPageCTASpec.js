@@ -1,10 +1,17 @@
 describe('directives', function() {
     'use strict';
 
-    beforeEach(module('brickSlopes.directives', 'brickSlopes.controllers'));
+    beforeEach(module('brickSlopes'));
+
     describe('bsSplashPageCTA', function() {
         var scope, element, mockBackend, location;
-        beforeEach(inject(function($compile, $rootScope, $templateCache, _$httpBackend_, $location) {
+        beforeEach(inject(function(
+            $compile,
+            $rootScope,
+            $templateCache,
+            _$httpBackend_,
+            $location
+        ) {
             location = $location;
             var template = $templateCache.get('app/partials/directives/splashPageCTA.html');
             $templateCache.put('partials/directives/splashPageCTA.html', template);
@@ -15,6 +22,10 @@ describe('directives', function() {
             mockBackend.expectGET('/controllers/public/eventDates.php').respond(200);
             scope.$digest();
         }));
+
+        it('should handle a displayTickets event', function() {
+            expect(scope.displayTickets()).toBe(true);
+        });
 
         it('should have a childPackages div', function() {
             expect($(element).find('#childPackages').html()).toContain('View Event Package');

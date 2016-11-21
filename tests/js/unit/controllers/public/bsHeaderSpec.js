@@ -1,16 +1,8 @@
-'use strict';
-
-/* jasmine specs for controllers go here */
-
 describe('controllers', function() {
+    'use strict';
     var scope, ctrl, location;
 
-    beforeEach (
-        module (
-            'brickSlopes.controllers',
-            'brickSlopes.services'
-        )
-    );
+    beforeEach(module('brickSlopes'));
 
     beforeEach(function() {
         this.addMatchers({

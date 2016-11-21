@@ -1,6 +1,3 @@
-'use strict';
-
-/* jasmine specs for services go here */
 
 function buildPreFontWrapper() {
     return '<span class="blueFont bold">';
@@ -20,7 +17,8 @@ function buildPostCapWrapper(text) {
 }
 
 describe('service', function() {
-    beforeEach(module('brickSlopes.services'));
+    'use strict';
+    beforeEach(module('brickSlopes'));
 
     beforeEach(function() {
         this.addMatchers({

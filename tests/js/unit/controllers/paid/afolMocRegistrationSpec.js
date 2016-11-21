@@ -2,7 +2,7 @@ describe('controllers', function() {
     'use strict';
     var scope, ctrl, location, mockBackend, window;
 
-    beforeEach(module('brickSlopes.controllers'));
+    beforeEach(module('brickSlopes'));
 
     beforeEach(inject(function(_EventSelectionFactory_, _$httpBackend_, _$window_) {
         window = _$window_;

@@ -1,7 +1,7 @@
 describe('directives', function() {
     'use strict';
 
-    beforeEach(module('brickSlopes.directives'));
+    beforeEach(module('brickSlopes'));
 
     describe('bsModal', function() {
         var scope, element, window, compile;

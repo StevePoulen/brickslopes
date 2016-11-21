@@ -2,10 +2,16 @@ describe('controllers', function() {
     'use strict';
     var scope, ctrl, location;
 
-    beforeEach(module('brickSlopes.controllers'));
+    beforeEach(module('brickSlopes'));
 
-    beforeEach(inject(function(_EventSelectionFactory_) {
+    beforeEach(inject(function(
+        _EventSelectionFactory_,
+        _$templateCache_
+    ) {
         spyOn(_EventSelectionFactory_, 'getSelectedEvent').andReturn(2);
+
+        var template = _$templateCache_.get('partials/registered/eventPayment.html');
+        _$templateCache_.put('/partials/registered/eventPayment.html', template);
     }));
 
     describe('afolEventRegistration Controller', function() {
@@ -213,7 +219,7 @@ describe('controllers', function() {
                 mockBackend.expectGET('/controllers/registered/eventRegistration.php').respond(200, {});
                 mockBackend.expectPOST('/controllers/registered/eventRegistration.php').respond(400);
                 mockBackend.flush();
-                expect(location.path()).toBe('');
+                expect(location.path()).toBe('/');
                 expect(scope.verifying).toBe(false);
                 expect(scope.displayMessage).toBe('There was an error submitting your data. Please try again.');
                 expect(scope.success).toBe(false);

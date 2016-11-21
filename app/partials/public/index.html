@@ -24,9 +24,9 @@
             <img class="tShirtTextImage" src="/images/publicPics/enterpriseScale.jpg"/>
         </div>
         <div class="tShirtTextContainer" ng-click="packages()">
-            New to
+            Returning for
             <br>
-            <bs-logo font-size="1.50" text="2016"></bs-logo>
+            <bs-logo font-size="1.50" text="2017"></bs-logo>
             <p>
                 <span class="italic">The Star Trek Enterprise</span>
             </p>
@@ -44,7 +44,7 @@
         </div>
         <div id="publicTickets">
             <div ng-if="showOnlineTickets()">
-                <div id="publicTicketsText" class="twoEMFont"> 
+                <div class=" publicTicketsText twoEMFont">
                     <bs-text text="Buy tickets" font-color="black"></bs-text>
                     <bs-text text="online and" font-color="black"></bs-text>
                     <bs-text text="save time!" font-color="black"></bs-text>
@@ -55,7 +55,7 @@
                     </button>
                 </div>
             </div>
-            <div ng-if="!showOnlineTickets()">
+            <div class="publicTicketsText twoEMFont" ng-if="!showOnlineTickets()">
                 <bs-text text="Tickets" font-color="black"></bs-text>
                 <bs-text text="available" font-color="black"></bs-text>
                 <bs-text text="at the door!" font-color="black"></bs-text>

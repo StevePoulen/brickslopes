@@ -2,10 +2,19 @@ describe('controllers', function() {
     'use strict';
     var scope, ctrl, location, mockBackend, route;
 
-    beforeEach(module('brickSlopes.controllers'));
+    beforeEach(module('brickSlopes'));
 
-    beforeEach(inject(function(_EventSelectionFactory_) {
+    beforeEach(inject(function(
+        _EventSelectionFactory_,
+        _$templateCache_
+    ) {
         spyOn(_EventSelectionFactory_, 'getSelectedEvent').andReturn(2);
+
+        var template = _$templateCache_.get('partials/registered/eventMe.html');
+        _$templateCache_.put('/partials/registered/eventMe.html', template);
+
+        template = _$templateCache_.get('partials/registered/vendors/tableRegistration.html');
+        _$templateCache_.put('/partials/registered/vendors/tableRegistration.html', template);
     }));
 
     describe('vendorRegistration Controller', function() {
@@ -101,7 +110,7 @@ describe('controllers', function() {
                 scope.submitRegistration();
                 mockBackend.expectPOST('/controllers/registered/vendors/vendorRegistration.php', vendorDTO).respond(400, 1);
                 mockBackend.flush();
-                expect(location.path()).toBe('');
+                expect(location.path()).toBe('/');
                 expect(scope.displayErrorMessage).toBe('The Vendor travails.');
             });
         });
@@ -145,7 +154,7 @@ describe('controllers', function() {
                 scope.submitRegistration();
                 mockBackend.expectPATCH('/controllers/registered/vendors/vendorRegistration.php', vendorDTO).respond(400, 1);
                 mockBackend.flush();
-                expect(location.path()).toBe('');
+                expect(location.path()).toBe('/');
                 expect(scope.displayErrorMessage).toBe('The Vendor travails.');
             });
         });

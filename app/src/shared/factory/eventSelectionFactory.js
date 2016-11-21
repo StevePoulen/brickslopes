@@ -1,12 +1,13 @@
 (function(angular) {
     'use strict';
-    angular.module('BrickSlopesShared').factory('EventSelectionFactory', [ 
-        function() {
-            var eventSelectionFactory = {};
-            var selectedEvent = 3;
+    angular.module('brickSlopes').factory('EventSelectionFactory', [
+        'Environment',
+        function(
+            Environment
+        ) {
             return {
                 getSelectedEvent: function(){
-                    return selectedEvent;
+                    return Environment.currentEvent;
                 }
             };
         }

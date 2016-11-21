@@ -1,13 +1,15 @@
 (function(angular) {
     'use strict';
-    angular.module('brickSlopes.controllers').controller('bsIndex', [
-        '$scope',
-        '$location',
+    angular.module('brickSlopes').controller('bsIndex', [
+        'Environment',
         'EventDates',
+        '$location',
+        '$scope',
         function(
-            $scope,
+            Environment,
+            EventDates,
             $location,
-            EventDates
+            $scope
         ) {
             $scope.eventYear = '2014';
             $scope.publicEventDates = undefined;
@@ -46,7 +48,7 @@
             };
 
             $scope.showOnlineTickets = function() {
-                return true;
+                return Environment.displayTickets;
             };
 
             $scope.packageList = ['Adult On-line ($7.00*)', 'Child (8 and under) (Free)', 'Adult Ticket and Fig ($13.00*)', 'Child Ticket and Fig ($6.00*)', 'Adult Ticket and Shirt ($23.00*)', 'Child Ticket and Shirt ($16.00*)', 'Adult Ticket, Fig and Shirt ($29.00*)', 'Child Ticket, Fig and Shirt ($22.00*)'];

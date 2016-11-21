@@ -2,7 +2,7 @@ describe('controllers', function() {
     'use strict';
     var scope, ctrl, location;
 
-    beforeEach(module('brickSlopes.controllers'));
+    beforeEach(module('brickSlopes'));
 
     afterEach(function() {
         $('body').html();
@@ -41,7 +41,7 @@ describe('controllers', function() {
             $('body').append('<div class="feedbackPanel"></div>');
             $($('.feedbackPanel')).css('left', '-426px');
             scope.clickFeedbackTab();
-            expect(location.path()).toBe('');
+            expect(location.path()).toBe('/');
             expect($($('.feedbackPanel')).css('left')).toBe('0px');
             expect(scope.feedbackOpen).toBe(true);
         });
@@ -51,7 +51,7 @@ describe('controllers', function() {
             $('body').append('<div class="feedbackPanel"></div>');
             $($('.feedbackPanel')).css('left', '426px');
             scope.clickFeedbackTab();
-            expect(location.path()).toBe('');
+            expect(location.path()).toBe('/');
             expect($($('.feedbackPanel')).css('left')).toBe('0px');
             expect(scope.feedbackOpen).toBe(false);
         });
@@ -61,7 +61,7 @@ describe('controllers', function() {
             $('body').append('<div class="feedbackPanel"></div>');
             $($('.feedbackPanel')).css('left', '426px');
             scope.clickMask();
-            expect(location.path()).toBe('');
+            expect(location.path()).toBe('/');
             expect($($('.feedbackPanel')).css('left')).toBe('0px');
             expect(scope.feedbackOpen).toBe(false);
         });

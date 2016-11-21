@@ -1,6 +1,6 @@
 (function(angular) {
     'use strict';
-    angular.module('brickSlopes.services')
+    angular.module('brickSlopes')
     .factory('BrickSlopesText', [ function() {
         var __fontSize = undefined;
         var __fontColor = undefined;

@@ -1,6 +1,7 @@
-'use strict';
 describe('EventSelectionFactory', function() {
-    beforeEach(module('BrickSlopesShared'));
+    'use strict';
+
+    beforeEach(module('brickSlopes'));
     var eventSelectionFactory;
 
     beforeEach(inject(function(_EventSelectionFactory_) {
@@ -8,6 +9,6 @@ describe('EventSelectionFactory', function() {
     }));
 
     it('should return the current selected event', function() {
-        expect(eventSelectionFactory.getSelectedEvent()).toBe(3);
+        expect(eventSelectionFactory.getSelectedEvent()).toBe(4);
     });
 });

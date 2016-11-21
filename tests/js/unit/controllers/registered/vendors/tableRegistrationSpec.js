@@ -2,9 +2,17 @@ describe('controllers', function() {
     'use strict';
     var scope, ctrl, location;
 
-    beforeEach(module('brickSlopes.controllers'));
+    beforeEach(module('brickSlopes'));
 
-    beforeEach(inject(function(_EventSelectionFactory_) {
+    beforeEach(inject(function(
+        _EventSelectionFactory_,
+        _$templateCache_
+    ) {
+        var template = _$templateCache_.get('partials/registered/eventMe.html');
+        _$templateCache_.put('/partials/registered/eventMe.html', template);
+
+        template = _$templateCache_.get('partials/registered/vendors/associateRegistration.html');
+        _$templateCache_.put('/partials/registered/vendors/associateRegistration.html', template);
         spyOn(_EventSelectionFactory_, 'getSelectedEvent').andReturn(2);
     }));
 
@@ -126,7 +134,7 @@ describe('controllers', function() {
                 scope.submitTableRegistration();
                 mockBackend.expectPOST('/controllers/registered/vendors/tableRegistration.php', tableDTO).respond(400, 1);
                 mockBackend.flush();
-                expect(location.path()).toBe('');
+                expect(location.path()).toBe('/');
                 expect(scope.displayErrorMessage).toBe('The Table travails.');
             });
         });
@@ -158,7 +166,7 @@ describe('controllers', function() {
                 scope.submitTableRegistration();
                 mockBackend.expectPOST('/controllers/registered/vendors/tableRegistration.php', tableDTO).respond(400, 1);
                 mockBackend.flush();
-                expect(location.path()).toBe('');
+                expect(location.path()).toBe('/');
                 expect(scope.displayErrorMessage).toBe('The Table travails.');
             });
         });

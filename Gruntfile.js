@@ -30,7 +30,7 @@ module.exports = function (grunt) {
                 tasks: ['jshint']
             },
             karma: {
-                files: ['app/js/**/*.js', 'app/src/**/*.js', 'tests/js/unit/**/*.js'],
+                files: getActiveFiles(),
                 tasks: ['karma:auto:run'] //NOTE the :run flag
             },
             jsbeautify: {
@@ -226,5 +226,13 @@ module.exports = function (grunt) {
         }
 
         return files;
+    }
+
+    function getActiveFiles() {
+        return [
+            'app/js/**/*.js',
+            'app/src/**/*.js',
+            'tests/js/unit/**/*.js'
+        ];
     }
 };

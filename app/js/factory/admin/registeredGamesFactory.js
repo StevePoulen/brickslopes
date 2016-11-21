@@ -1,6 +1,6 @@
 (function(angular) {
     'use strict';
-    angular.module('Admin').factory('RegisteredGames', [
+    angular.module('brickSlopes').factory('RegisteredGames', [
         '$q',
         '$http',
         'EventSelectionFactory',

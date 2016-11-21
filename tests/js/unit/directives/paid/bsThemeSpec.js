@@ -2,7 +2,7 @@ describe('directives', function() {
     'use strict';
     var scope, element;
 
-    beforeEach(module('brickSlopes.directives'));
+    beforeEach(module('brickSlopes'));
 
     describe('bsTheme', function() {
         beforeEach(inject(function($compile, $rootScope, $templateCache) {

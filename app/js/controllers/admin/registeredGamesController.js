@@ -1,6 +1,6 @@
 (function(angular) {    
     'use strict';
-    angular.module('Admin').controller('adminRegisteredGames', [
+    angular.module('brickSlopes').controller('adminRegisteredGames', [
         '$scope',
         'RegisteredGames',
         '$location',

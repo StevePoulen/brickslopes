@@ -96,7 +96,7 @@ class users extends \db {
                 registrations r
                     ON
                     u.userId = r.userId
-                    AND r.eventId = 3
+                    AND r.eventId = CURRENT_EVENT
             WHERE
                 email = '{$this->escapeCharacters($data['email'])}'
                 AND password = password('{$this->escapeCharacters($data['password'])}')

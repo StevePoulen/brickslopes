@@ -1,6 +1,6 @@
 (function(angular) {
     'use strict';
-    angular.module('brickSlopes.services').factory('EventDates', [
+    angular.module('brickSlopes').factory('EventDates', [
         '$q',
         '$http',
         'EventSelectionFactory',

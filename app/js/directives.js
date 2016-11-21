@@ -1,7 +1,7 @@
 'use strict';
 
 /* Directives */
-angular.module('brickSlopes.directives')
+angular.module('brickSlopes')
 .directive('bsHeader', function() {
     return {
         restrict: 'E',
@@ -207,15 +207,13 @@ angular.module('brickSlopes.directives')
         replace: true,
         templateUrl: 'partials/registered/eventPanes/registeredEvents.html'
     }
-})
-.directive('bsEventRegistrationCta', function() {
+}).directive('bsEventRegistrationCta', function() {
     return {
         restrict: 'E',
         replace: true,
         templateUrl: 'partials/registered/eventPanes/registerEventsCTA.html'
     }
-})
-.directive('bsTheme', function() {
+}).directive('bsTheme', function() {
     return {
         restrict: 'E',
         replace: true,
@@ -224,16 +222,25 @@ angular.module('brickSlopes.directives')
             scope.color = attrs.color;
         }
     }
-})
-.directive('bsSplashPageCta', ['$location', function($location) {
+}).directive('bsSplashPageCta', [
+    'Environment',
+    '$location',
+    function(
+        Environment,
+        $location
+    ) {
     return {
         restrict: 'E',
         replace: true,
         templateUrl: 'partials/directives/splashPageCTA.html',
-        link: function(scope, elem, attrs) {
+        link: function($scope) {
             ringer.init();
 
-            scope.makeACalculation = function() {
+            $scope.displayTickets = function() {
+                return Environment.displayTickets;
+            };
+
+            $scope.makeACalculation = function() {
                 if (
                     $location.path().match('\/registered\/.*') ||
                     $location.path().match('\/admin\/.*') ||

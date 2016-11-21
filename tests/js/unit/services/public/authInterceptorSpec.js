@@ -1,9 +1,6 @@
-'use strict';
-
-/* jasmine specs for services go here */
-
 describe('service', function() {
-    beforeEach(module('brickSlopes.services', 'brickSlopes'));
+    'use strict';
+    beforeEach(module('brickSlopes'));
 
     beforeEach(function() {
         this.addMatchers({

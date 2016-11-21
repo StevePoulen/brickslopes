@@ -2,7 +2,7 @@ var showAfolLogin = true;
 
 (function(angular) {
     'use strict';
-    angular.module('brickSlopes.controllers').controller('bsFeedback', ['$scope', 'Feedback', function($scope, Feedback) {
+    angular.module('brickSlopes').controller('bsFeedback', ['$scope', 'Feedback', function($scope, Feedback) {
         $scope.feedbackOpen = false;
         setDefaultFeedbackVariables('D@rKGr3y');
         $scope.timer = false;

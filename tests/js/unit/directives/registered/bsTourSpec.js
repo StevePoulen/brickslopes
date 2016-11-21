@@ -2,7 +2,7 @@ describe('directives', function() {
     'use strict';
     var scope, element, mockBackend;
 
-    beforeEach(module('brickSlopes.directives'));
+    beforeEach(module('brickSlopes'));
 
     beforeEach(inject(function(_EventSelectionFactory_) {
         spyOn(_EventSelectionFactory_, 'getSelectedEvent').andReturn(2);

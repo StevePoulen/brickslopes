@@ -5,12 +5,13 @@ angular.module('brickSlopes', [
     'ngRoute',
     'ngAnimate',
     'ngResource',
-    'brickSlopes.directives',
-    'brickSlopes.services',
-    'brickSlopes.controllers',
-    'Admin',
+    //'brickSlopes.directives',
+    //'brickSlopes.services',
+    //'brickSlopes.controllers',
+    'constants',
+    //'Admin',
     'Public',
-    'BrickSlopesShared',
+    //'BrickSlopesShared',
     'TemplateModule'
 ]).
 config(['$routeProvider', '$httpProvider', '$locationProvider', function($routeProvider, $httpProvider, $locationProvider) {
@@ -374,8 +375,8 @@ config(['$routeProvider', '$httpProvider', '$locationProvider', function($routeP
 angular.module('BrickSlopesShared', []);
 
 angular.module('TemplateModule', []);
-angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute']);
-angular.module('brickSlopes.directives', ['TemplateModule', 'brickSlopes.services']);
-angular.module('brickSlopes.services', ['ngResource', 'BrickSlopesShared'])
-angular.module('Admin', ['brickSlopes.services']);
+//angular.module('brickSlopes.controllers', ['brickSlopes.services', 'ngRoute']);
+//angular.module('brickSlopes.directives', ['TemplateModule', 'brickSlopes.services']);
+//angular.module('brickSlopes.services', ['ngResource', 'BrickSlopesShared'])
+//angular.module('Admin', ['brickSlopes.services']);
 angular.module('Public', []);

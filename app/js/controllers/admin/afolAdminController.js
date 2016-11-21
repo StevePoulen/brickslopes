@@ -1,6 +1,6 @@
 (function(angular) {    
     'use strict';
-    angular.module('Admin').controller('afolAdmin', [
+    angular.module('brickSlopes').controller('afolAdmin', [
         '$scope',
         '$location',
         'UserDetails',

@@ -3,7 +3,7 @@ describe('Event Dates Factory', function() {
     var service, scope;
     var mockBackend, data;
 
-    beforeEach(module('brickSlopes.services'));
+    beforeEach(module('brickSlopes'));
 
     beforeEach(inject(function(_$rootScope_, _EventDates_, _EventSelectionFactory_, _$httpBackend_) {
         data = null;

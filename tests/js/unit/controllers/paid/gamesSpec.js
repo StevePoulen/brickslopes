@@ -2,7 +2,7 @@ describe('controllers', function() {
     'use strict';
     var scope, ctrl;
 
-    beforeEach(module('brickSlopes.controllers'));
+    beforeEach(module('brickSlopes'));
 
     beforeEach(inject(function(_EventSelectionFactory_) {
         spyOn(_EventSelectionFactory_, 'getSelectedEvent').andReturn(2);
@@ -82,7 +82,7 @@ describe('controllers', function() {
             mockBackend.flush();
             expect(scope.showModal).toBe(true);
             expect(scope.verifying).toBe(false);
-            expect(location.path()).toBe('');
+            expect(location.path()).toBe('/');
         });
 
         it('should register for a game and redirect to payments', function() {

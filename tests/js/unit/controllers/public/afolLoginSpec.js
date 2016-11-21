@@ -1,16 +1,8 @@
-'use strict';
-
-/* jasmine specs for controllers go here */
-
 describe('controllers', function() {
+    'use strict';
     var scope, ctrl, location;
 
-    beforeEach (
-        module (
-            'brickSlopes.controllers',
-            'brickSlopes.services'
-        )
-    );
+    beforeEach(module('brickSlopes'));
 
     beforeEach(function() {
         this.addMatchers({
@@ -203,7 +195,7 @@ describe('controllers', function() {
 
                 mockBackend.expectPOST('/controllers/public/user.php').respond(400, response);
                 mockBackend.flush();
-                expect(location.path()).toBe('');
+                expect(location.path()).toBe('/');
                 expect(window.sessionStorage.token).toBe('1234567890');
                 expect(scope.verifying).toBe(false);
                 expect(scope.showLogin).toBe(true);

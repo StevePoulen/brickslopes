@@ -2,7 +2,7 @@ describe('directives', function() {
     'use strict';
     var scope, element;
 
-    beforeEach(module('brickSlopes.directives'));
+    beforeEach(module('brickSlopes'));
 
     describe('bsLogo', function() {
         var expectedOutput;
