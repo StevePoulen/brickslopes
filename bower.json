@@ -1,0 +1,30 @@
+{
+  "name": "BrickSlopes",
+  "repository": {
+   "type": "git",
+   "url": "git@github.com/brianpilati/brickslopes"
+  },
+  "ignore": [
+   "dependencies"
+  ],
+  "dependencies": {
+    "angular": "1.4.14",
+    "angular-animate": "1.4.14",
+    "angular-resource": "1.4.14",
+    "angular-route": "1.4.14",
+    "angular-mocks": "1.4.14",
+    "jquery": "2.1.4",
+    "lodash": "3.10.1",
+    "bootstrap": "3.3.5",
+    "angular-bootstrap": "1.2.4",
+    "moment": "2.8.1"
+  },
+  "devDependencies": {},
+  "resolutions": {
+    "angular": "1.4.14"
+  },
+  "authors": [
+    "Brian Pilati", "Brian Pilati <brian@brickslopes.com>"
+  ],
+  "private": true
+}

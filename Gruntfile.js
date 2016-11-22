@@ -5,13 +5,12 @@ module.exports = function (grunt) {
     var karmaFiles = grunt.file.readJSON('.grunt/karmaFiles.json');
     karmaFiles.push(getWatchFiles());
 
-    var jsBeautifyFiles = ['test/**/*.js'];
+    var jsBeautifyFiles = ['tests/js/unit/**/*.js'];
 
     var options = {};
     if (grunt.file.exists('./GruntOptions.json')) {
         options = grunt.file.readJSON('./GruntOptions.json');
     }
-    //var karmaBrowser = grunt.option('browser') || options.browser || 'PhantomJS';
     var karmaBrowser = grunt.option('browser') || options.browser || 'Chrome';
 
     /** @namespace grunt.initConfig */
@@ -73,11 +72,12 @@ module.exports = function (grunt) {
         exec: {
             npm: 'npm install --no-bin-links',
             bowerInstall: 'bower install --allow-root',
-            bowerUpdate: 'bower update --allow-root',
-            tsdInstall: 'npm run tsdInstall; chmod +x .'
+            bowerUpdate: 'bower update --allow-root'//,
+            //tsdInstall: 'npm run tsdInstall; chmod +x .'
         },
 
         clean: {
+            dependencies: ['dependencies'],
             build: ['app/build'],
             test: ['build/test'],
         },
@@ -145,6 +145,54 @@ module.exports = function (grunt) {
                 src: 'app/src/index-production.html',
                 dest: 'app/index.html'
             },
+            dependencies: {
+                files: [{
+                    src: 'dependencies/angular/angular.min.js',
+                    dest: 'app/lib/angular.min.js'
+                }, {
+                    src: 'dependencies/angular-animate/angular-animate.min.js',
+                    dest: 'app/lib/angular-animate.min.js'
+                }, {
+                    src: 'dependencies/angular-resource/angular-resource.min.js',
+                    dest: 'app/lib/angular-resource.min.js'
+                }, {
+                    src: 'dependencies/angular-route/angular-route.min.js',
+                    dest: 'app/lib/angular-route.min.js'
+                }, {
+                    src: 'dependencies/angular-route/angular-mocks.min.js',
+                    dest: 'tests/js/lib/angular-mocks.min.js'
+                }, {
+                    src: 'dependencies/bootstrap/dist/js/bootstrap.min.js',
+                    dest: 'app/lib/bootstrap.min.js'
+                }, {
+                    src: 'dependencies/bootstrap/dist/css/bootstrap.min.css',
+                    dest: 'app/lib/bootstrap.min.css'
+                }, {
+                    src: 'dependencies/bootstrap/dist/css/bootstrap-theme.min.css',
+                    dest: 'app/lib/bootstrap-theme.min.css'
+                }, {
+                    src: 'dependencies/jquery/dist/jquery.min.js',
+                    dest: 'app/lib/jquery.min.js'
+                }, {
+                    src: 'dependencies/moment/min/moment.min.js',
+                    dest: 'app/lib/moment.min.js'
+                }, {
+                    src: 'dependencies/angular-bootstrap/ui-bootstrap.min.js',
+                    dest: 'app/lib/ui-bootstrap.min.js'
+                }, {
+                    src: 'dependencies/angular-bootstrap/ui-bootstrap-tpls.min.js',
+                    dest: 'app/lib/ui-bootstrap-tpls.min.js'
+                }, {
+                    src: 'dependencies/lodash/lodash.min.js',
+                    dest: 'app/lib/lodash.min.js'
+                }, {
+                    expand: true,
+                    src: 'dependencies/bootstrap/fonts/glyphicons*',
+                    dest: 'app/fonts',
+                    filter: 'isFile',
+                    flatten: true
+                }]
+            },
         },
 
         uglify: {
@@ -156,7 +204,7 @@ module.exports = function (grunt) {
             },
             deployed: {
                 files: {
-                    'app/build/brickslopes.min.js': ['./app/.copyright.txt', 'app/src/brickslopes/brickslopes.js', 'app/src/**/*.js', 'app/build/brickSlopesTemplates.js']
+                    'app/build/brickslopes.min.js': getMinifiedFiles()
                 }
             }
         },
@@ -185,7 +233,7 @@ module.exports = function (grunt) {
     });
 
     grunt.registerTask('default', ['build']);
-    grunt.registerTask('install', ['exec:npm']);
+    grunt.registerTask('install', ['clean:dependencies', 'exec:npm', 'exec:bowerInstall', 'exec:bowerUpdate', 'copy:dependencies']);
     grunt.registerTask('buildTemplates', ['ngtemplates']);
     grunt.registerTask('jsbeautify-auto', ['watch:jsbeautify']);
 
@@ -235,4 +283,15 @@ module.exports = function (grunt) {
             'tests/js/unit/**/*.js'
         ];
     }
+
+    function getMinifiedFiles() {
+        return [
+            './app/.copyright.txt',
+            'app/src/shared/constants.js',
+            'app/src/brickslopes/brickslopes.js',
+            'app/src/**/*.js',
+            'app/build/brickSlopesTemplates.js'
+        ];
+    }
+
 };

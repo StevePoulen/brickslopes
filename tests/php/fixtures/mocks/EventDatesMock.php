@@ -10,6 +10,10 @@ class eventDatesModel extends db {
     public function getEventDates() {
         return $this->query();
     }
+
+    public function getEventDate() {
+        return $this->query();
+    }
 }
 
 class EventDatesMock extends modelObjects {

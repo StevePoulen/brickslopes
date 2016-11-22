@@ -17,6 +17,9 @@
         private $error;
 
         public function __construct() {
+
+            date_default_timezone_set('America/Denver');
+
             $this->userId = null;
             $this->isAdmin = false;
             $this->isPaid= false;

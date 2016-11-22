@@ -5,14 +5,10 @@ angular.module('brickSlopes', [
     'ngRoute',
     'ngAnimate',
     'ngResource',
-    //'brickSlopes.directives',
-    //'brickSlopes.services',
-    //'brickSlopes.controllers',
     'constants',
-    //'Admin',
     'Public',
-    //'BrickSlopesShared',
-    'TemplateModule'
+    'TemplateModule',
+    'ui.bootstrap'
 ]).
 config(['$routeProvider', '$httpProvider', '$locationProvider', function($routeProvider, $httpProvider, $locationProvider) {
     $httpProvider.interceptors.push('authInterceptor');
@@ -175,6 +171,13 @@ config(['$routeProvider', '$httpProvider', '$locationProvider', function($routeP
         {
             templateUrl: '/partials/admin/registeredUsers.html',
             controller: 'adminRegisteredUsers'
+        }
+    )
+    .when(
+        '/admin/registeredEventDates',
+        {
+            templateUrl: '/partials/admin/registeredEventDates.html',
+            controller: 'adminRegisteredEventDates'
         }
     )
     .when(

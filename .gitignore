@@ -19,7 +19,14 @@ composer.phar
 test-reports/
 vendor/
 tests/js/lib/
-app/lib/underscore.min.js
+dependencies/
+app/fonts/
+app/lib/lodash.min.js
+app/lib/bootstrap.min.js
+app/lib/ui-bootstrap.min.js
+app/lib/ui-bootstrap-tpls.min.js
+app/lib/bootstrap-theme.min.css
+app/lib/bootstrap.min.css
 app/lib/angular-route.min.js
 app/lib/angular.min.js
 app/lib/jquery.min.js

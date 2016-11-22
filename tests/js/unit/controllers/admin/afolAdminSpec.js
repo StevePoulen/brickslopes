@@ -101,6 +101,13 @@ describe('controllers', function() {
             });
         });
 
+        describe('Click Event Dates', function() {
+            it('should redirect to the event dates page', function() {
+                scope.clickEventDates();
+                expect(location.path()).toBe('/admin/registeredEventDates');
+            });
+        });
+
         describe('Click Site News Email', function() {
             it('should redirect to the email page', function() {
                 scope.clickSiteNewsEmail();

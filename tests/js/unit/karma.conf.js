@@ -7,6 +7,7 @@ module.exports = function(config) {
 
         // list of files / patterns to load in the browser
         files: [
+            'app/lib/**/jquery.min.js',
             'app/lib/**/angular.min.js',
             'app/lib/**/angular-resource.min.js',
             'app/lib/**/angular-route.min.js',

@@ -35,8 +35,8 @@ class eventDates {
                     $eventDates[$dbObj->eventId],
                     array (
                         'eventId' => $dbObj->eventId,
-                        'startDate' => $dbObj->startDate,
-                        'endDate' => $dbObj->endDate,
+                        'startDate' => $dbObj->startDate . 'Z',
+                        'endDate' => $dbObj->endDate . 'Z',
                         'type' => $dbObj->type
                     )
                 );

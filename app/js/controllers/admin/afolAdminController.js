@@ -68,6 +68,10 @@
                 $location.path('/admin/previewSiteNews/emails');
             }
 
+            $scope.clickEventDates = function() {
+                $location.path('/admin/registeredEventDates');
+            }
+
             $scope.clickUserRegistrationEmail = function() {
                 $location.path('/admin/userRegistration/emails');
             }
