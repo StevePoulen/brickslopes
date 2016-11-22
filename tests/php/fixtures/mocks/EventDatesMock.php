@@ -23,9 +23,10 @@ class EventDatesMock extends modelObjects {
         parent::__construct('eventDatesDB.txt');
     }
 
-    public function eventId() { return $this->getData(0); }
-    public function startDate() { return $this->getData(1); }
-    public function endDate() { return $this->getData(2); }
-    public function type() { return $this->getData(3); }
+    public function eventDatesId() { return $this->getData(0); }
+    public function eventId() { return $this->getData(1); }
+    public function startDate() { return $this->getData(2); }
+    public function endDate() { return $this->getData(3); }
+    public function type() { return $this->getData(4); }
 }
 ?>
