@@ -72,7 +72,8 @@ module.exports = function (grunt) {
         exec: {
             npm: 'npm install --no-bin-links',
             bowerInstall: 'bower install --allow-root',
-            bowerUpdate: 'bower update --allow-root'//,
+            bowerUpdate: 'bower update --allow-root',
+            buildBootstrap: 'cd dependencies/bootstrap; grunt dist;'//,
             //tsdInstall: 'npm run tsdInstall; chmod +x .'
         },
 
@@ -145,6 +146,12 @@ module.exports = function (grunt) {
                 src: 'app/src/index-production.html',
                 dest: 'app/index.html'
             },
+            bootstrap: {
+                files: [{
+                    src: 'app/src/css/variables.less',
+                    dest: 'dependencies/bootstrap/less/variables.less'
+                }]
+            },
             dependencies: {
                 files: [{
                     src: 'dependencies/angular/angular.min.js',
@@ -162,15 +169,6 @@ module.exports = function (grunt) {
                     src: 'dependencies/angular-route/angular-mocks.min.js',
                     dest: 'tests/js/lib/angular-mocks.min.js'
                 }, {
-                    src: 'dependencies/bootstrap/dist/js/bootstrap.min.js',
-                    dest: 'app/lib/bootstrap.min.js'
-                }, {
-                    src: 'dependencies/bootstrap/dist/css/bootstrap.min.css',
-                    dest: 'app/lib/bootstrap.min.css'
-                }, {
-                    src: 'dependencies/bootstrap/dist/css/bootstrap-theme.min.css',
-                    dest: 'app/lib/bootstrap-theme.min.css'
-                }, {
                     src: 'dependencies/jquery/dist/jquery.min.js',
                     dest: 'app/lib/jquery.min.js'
                 }, {
@@ -185,6 +183,15 @@ module.exports = function (grunt) {
                 }, {
                     src: 'dependencies/lodash/lodash.min.js',
                     dest: 'app/lib/lodash.min.js'
+                }]
+            },
+            bootStrapDependencies: {
+                files: [{
+                    src: 'dependencies/bootstrap/dist/js/bootstrap.min.js',
+                    dest: 'app/lib/bootstrap.min.js'
+                }, {
+                    src: 'dependencies/bootstrap/dist/css/bootstrap.min.css',
+                    dest: 'app/lib/bootstrap.min.css'
                 }, {
                     expand: true,
                     src: 'dependencies/bootstrap/fonts/glyphicons*',
@@ -192,7 +199,7 @@ module.exports = function (grunt) {
                     filter: 'isFile',
                     flatten: true
                 }]
-            },
+            }
         },
 
         uglify: {
@@ -233,14 +240,15 @@ module.exports = function (grunt) {
     });
 
     grunt.registerTask('default', ['build']);
-    grunt.registerTask('install', ['clean:dependencies', 'exec:npm', 'exec:bowerInstall', 'exec:bowerUpdate', 'copy:dependencies']);
+    grunt.registerTask('install', ['clean:dependencies', 'exec:npm', 'exec:bowerInstall', 'exec:bowerUpdate', 'bootstrap', 'copy:dependencies']);
     grunt.registerTask('buildTemplates', ['ngtemplates']);
     grunt.registerTask('jsbeautify-auto', ['watch:jsbeautify']);
 
     grunt.registerTask('test', ['ngtemplates', 'clean:test', 'karma:src']);
     grunt.registerTask('test-auto', ['ngtemplates', 'karma:auto', 'watch:karma']);
 
-    grunt.registerTask('css', ['sass', 'compass']);
+    grunt.registerTask('css', ['sass', 'compass', 'bootstrap']);
+    grunt.registerTask('bootstrap', ['copy:bootstrap', 'exec:buildBootstrap', 'copy:bootStrapDependencies']);
     grunt.registerTask('css-auto', ['watch:sass']);
     grunt.registerTask('lint', ['ddescribe-iit', 'jshint:all', 'scsslint', 'jsbeautifier:verify']);
     grunt.registerTask('lint-auto', ['watch:scsslint']);

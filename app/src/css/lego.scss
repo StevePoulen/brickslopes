@@ -29,6 +29,8 @@ $lego_stud_distance: (1.8 * $multiplier) - ($lego_border * 2);
         text-align: center;
         padding-top: $top_padding;
         display: inline-block;
+        -webkit-box-sizing: content-box;
+        box-sizing: content-box;
 
         .studs {
             position: absolute;

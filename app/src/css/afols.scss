@@ -228,102 +228,60 @@ $pane_width: 1238px;
             text-align: left;
         }
     }
-
 }
 
 #eventRegistration {
     @extend %eventDashboard;
 
-    #discountPriceInformation {
-        position: absolute;
+    .group {
         left: 25px;
-        height: 215px;
-        top: 100px;
-        width: 550px;
+        text-align: left;
+        margin-top: 10px;
+    }
+
+    .registrationContainer {
         border: 1px solid black;
         padding-left: 4px;
         background: lightgreen;
         border-radius: 4px;
         text-align: center;
-    }
+        width: 550px;
+        padding-bottom: 25px;
+        margin-left: 45px;
 
-    #fullPriceInformation {
-        @extend #discountPriceInformation;
-        left: 600px;
-        background: lightgrey;
-    }
+        ol {
+            margin-top: 10px;
+            margin-bottom: 5px;
+        }
 
-    #eventDivider {
-        position: absolute;
-        left: 25px;
-        height: 5px;
-        top: 312px;
-        width: 1130px;
-
-    }
-
-    #eventSwag {
-        position: absolute;
-        height: $dashboard_height;
-        width: 544px;
-        left: 600px;
-        top: 325px;
-
-        .packages {
-            position: relative;
-            border-radius: 5px;
-            border: 1px solid black;
-            z-index: 1;
-            padding-left: 10px;
-            background: lightgreen;
-            width: 544px;
-            margin-bottom: 10px;
-
-            ol {
-                margin-top: 10px;
-                margin-bottom: 5px;
-            }
-
-            li {
-                list-style-type: disc;
-                text-align: left;
-                font-size: 1.05em;
-                padding-bottom: 5px;
-            }
+        li {
+            list-style-type: disc;
+            text-align: left;
+            font-size: 1.05em;
+            padding-bottom: 5px;
         }
     }
 
     .registrationForm {
-        position: absolute;
-        left: 25px;
         width: 550px;
         height: 1050px;
-        top: 325px;
         padding-left: 4px;
         background: white;
         border: 1px solid black;
         border-radius: 5px;
+        margin-left: 45px;
 
         .optionField {
             position: relative;
-            margin-bottom: 20px;
             margin-top: 10px;
             border: 1px solid #BCBEBF;
             border-radius: 5px;
-            width: 352px;
-            height: 35px;
+            width: 415px;
+            height: 60px;
             padding-left: 10px;
             padding-top: 20px;
-            left: 93px;
-            text-align: left;
-        }
-
-        .group {
-            position: relative;
-            width: 300px;
-            left: 50px;
-            height: 25px;
-            text-align: left;
+            left: 72px;
+            text-align: center;
         }
 
         .fullBadgeOptionField {
@@ -332,7 +290,6 @@ $pane_width: 1238px;
 
             .brickCenter {
                 margin-bottom: 5px;
-                margin-top: 10px;
 
                 .legoBrick {
                     height: 3.2 * 3 * 5 - 5 + px;
@@ -359,27 +316,12 @@ $pane_width: 1238px;
             }
         }
 
-        .loginField {
-            margin-bottom: 20px;
-            border: 1px solid #BCBEBF;
-            border-radius: 5px;
-            width: 400px;
-            height: 42.5px;
-            padding-top: 7.5px;
-            text-align: left;
-        }
-
-
-        .asterickField {
-            @extend .optionField;
-            width: 425px;
-            padding-top: 15px;
-            left: 0;
-            border: none;
-        }
-
         .commentsField {
             margin-bottom: 20px;
+            padding-left: 10px;
+            padding-top: 10px;
+            left: 84px;
+            text-align: left;
 
             textarea {
                 width: 365px;
@@ -391,7 +333,7 @@ $pane_width: 1238px;
             }
         }
 
-        select {
+        .select {
             margin-top: -25px;
             width: 105px;
             height: 25px;
@@ -542,7 +484,7 @@ $pane_width: 1238px;
 
     .eventText {
         position: relative;
-        width: 280px;
+        width: $eventPane_width;
         padding: 10px;
         z-index: 2;
         background-color: white;
@@ -550,7 +492,7 @@ $pane_width: 1238px;
         font-size: 2em;
         border-radius: 10px;
         padding-top: 155px;
-        height: $eventPane_height * 2 + $eventPane_margin * 1 - 165;
+        height: $eventPane_height * 2 + $eventPane_margin * 1 - 2;
     }
     
     .eventImageText {
@@ -573,8 +515,8 @@ $pane_width: 1238px;
 
     .eventText {
         position: relative;
-        width: 280px;
-        height: 140px;
+        width: $eventPane_width;
+        height: $eventPane_height;
         padding: 10px;
         padding-top: 50px;
         z-index: 2;
