@@ -87,7 +87,7 @@
                 m.themeId = t.themeId
                 AND m.eventId = '{$this->escapeCharacters($eventId)}'
             ORDER BY
-                m.mocId 
+                m.displayName
             ;
         ";
     }

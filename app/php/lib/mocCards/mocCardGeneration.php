@@ -152,9 +152,11 @@
             // Replace path by your own font path
             $font = './fonts/fontawesome-webfont.ttf';
 
+            //$fontInt = imageloadfont($font);
+
             // Add some shadow to the text
-            //imagettftext($this->image, 20, 0, 11, 21, $this->getBlackColor(), $font, $text);
-            imagestring($this->image, 100000, 10, 10, 'Hello', $this->getBlackColor());
+            imagettftext($this->image, 20, 0, 11, 21, $this->getBlackColor(), $font, $text);
+            //imagestring($this->image, $fontInt, 10, 10, 'Hello', $this->getBlackColor());
         }
 
         public function buildImage($fileName) {
@@ -174,5 +176,7 @@
     }
 
     $mocCard = new mocCardGeneration();
-    $mocCard->buildImage('myfile');
+    //$mocCard->buildImage('myfile');
+    //exec('phantomjs ../../lib/rasterize.js ../../lib/index.html ../../lib/index.pdf A4');
+    exec('phantomjs ../../lib/rasterize.js http://mybrickslopes.com/index.html ../../lib/index.pdf A4');
 ?>

@@ -1,0 +1,221 @@
+<?php
+      function getPageMargin() {
+                return 50;
+            }
+
+            $page_margin = getPageMargin();
+            $page_margin_display = $page_margin . 'px';
+
+            //$page_width = 3508 - $page_margin * 2;
+            $page_width = 842 - $page_margin * 2;
+            $page_width_display = $page_width . 'px';
+
+                function getPageHeight() {
+                    //return 2480 - getPageMargin() * 2;
+                    return 595 - getPageMargin();
+                }
+
+                $page_height = getPageHeight();
+                $page_height_display = $page_height . 'px';
+
+                $card_margin = 0;
+                $card_margin_display = $card_margin . 'px';
+
+                $card_height = $page_height;
+                $card_height_display = $card_height . 'px';
+
+                $card_border = 1;
+                $card_border_display = $card_border . 'px';
+
+                $card_front_border = 1;
+                $card_front_border_display = $card_front_border . 'px';
+
+                $card_width = $page_width / 3 - ($card_front_border * 2);
+                $card_width_display = $card_width . 'px';
+
+                $card_inner_width = $card_width - 22;
+                $card_inner_width_display = $card_inner_width . 'px';
+
+                $card_back_height = $card_height / 2;
+                $card_back_height_display = $card_back_height . 'px';
+
+                $card_front_height = $card_height / 2;
+                $card_front_height_display = $card_front_height . 'px';
+
+                function getBannerHeight() {
+                    return getPageHeight() * .13;
+                }
+
+                $banner_height = getBannerHeight();
+                $banner_height_display = $banner_height . 'px';
+
+                $banner_width = $card_width - ($card_front_border * 2);
+                $banner_width_display = $banner_width . 'px';
+
+                function getFrontMargin() {
+                    return 5;
+                }
+
+                $front_margin = getFrontMargin();
+                $front_margin_display = $front_margin . 'px';
+
+                function calculateFrontHeight($percentage, $height) {
+                    return ($height - getBannerHeight() - getFrontMargin() * 3) * $percentage;
+                }
+
+                $description_height = calculateFrontHeight(.5, $card_front_height);
+                $description_height_display = $description_height . 'px';
+
+                $title_height = calculateFrontHeight(.3, $card_front_height);
+                $title_height_display = $title_height . 'px';
+
+                $theme_height = calculateFrontHeight(.2, $card_front_height);
+                $theme_height_display = $theme_height . 'px';
+
+    $demo = array();
+    array_push(
+        $demo,
+        array(
+            title => 'brian',
+            displayName => 'displayName',
+            description => 'description',
+            theme => 'theme'
+        )
+    );
+
+    array_push(
+        $demo,
+        array(
+            title => 'brian',
+            displayName => 'displayName',
+            description => 'description',
+            theme => 'theme'
+        )
+    );
+
+    array_push(
+        $demo,
+        array(
+            title => 'brian',
+            displayName => 'displayName',
+            description => 'description',
+            theme => 'theme'
+        )
+    );
+
+    $html = "
+        <html>
+            <head>
+                <style>
+                    .printMocsDashboard {
+                        width: $page_width_display;
+                        height: $page_height_display;
+                        border: 1px solid #000;
+                    }
+
+                    .printMocContainer {
+                        position: relative;
+                        float: left;
+                        width: $card_width_displlay;
+                      border: $card_front_border_display solid #000;
+                      border-radius: 10px;
+
+                      text-align: center;
+                    }
+
+                    .title {
+                      position: relative;
+                      padding-left: 10px;
+                      padding-right: 10px;
+                      margin-top: $front_margin_display;
+
+                      width: $card_inner_width_display;
+                      height: $title_height_display;
+
+                      text-align: center;
+                      font-size: 1em;
+                      white-space: normal;
+                      word-wrap: break-word;
+                      overflow: hidden;
+                      text-overflow: ellipsis;
+                    }
+
+                    .bold {
+                      font-weight: bold;
+                    }
+
+                    .description {
+                      position: relative;
+                      padding-left: 10px;
+                      padding-right: 10px;
+                      width: $card_inner_width_display;
+                      text-align: center;
+                      font-size: 1em;
+                      white-space: normal;
+                      word-wrap: break-word;
+                      overflow: hidden;
+                      text-overflow: ellipsis;
+                      height: $description_height_display;
+                      margin-top: $front_margin_display;
+                    }
+
+                    .mocTheme {
+                      position: relative;
+                      padding-left: 10px;
+                      padding-right: 10px;
+                      margin-top: $front_margin_display;
+                      width: $card_inner_width_display;
+                      text-align: center;
+                      font-size: 1em;
+                      white-space: normal;
+                      word-wrap: break-word;
+                      overflow: hidden;
+                      text-overflow: ellipsis;
+                      height: $theme_height_display;
+                    }
+
+                    .banner {
+                      position: relative;
+                      width: $banner_width_display;
+                      left: -10px;
+                    }
+
+                    .bannerImage {
+                      width: $banner_width_display;
+                      border-radius: 0 0 5px 5px;
+                    }
+                </style>
+            </head>
+            <body>
+                <div class='printMocsDashboard'>
+        ";
+    echo $html;
+
+    foreach($demo as $moc) {
+        $txt = "
+            <div class='printMocContainer'>
+                <div class='back'></div>
+                <div class='front'>
+                    <div class='title'>
+                        '<span class='bold'>{$moc['title']}</span>'
+                        <div>by <span>{$moc['displayName']}</span></div>
+                    </div>
+                    <div class='description'>{$moc['description']}</div>
+                    <div class='mocTheme'>{$moc['theme']}</div>
+                    <div class='banner'>
+                        <img class='bannerImage' src='/banner.png'></img>
+                    </div>
+                </div>
+            </div>
+        ";
+        echo $txt;
+    }
+
+    $html = "
+                </div>
+            </body>
+        </html>
+    ";
+
+    echo $html;
+?>
