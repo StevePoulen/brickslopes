@@ -10,9 +10,9 @@ var showAfolLogin = true;
 
         function feedbackAction() {
             if ($scope.feedbackOpen) {
-                $( ".feedbackPanel" ).animate({ "left": "-=426px" }, "slow" );
+                $( ".feedbackPanel" ).animate({ "left": "-=400px" }, "slow" );
             } else {
-                $( ".feedbackPanel" ).animate({ "left": "+=426px" }, "slow" );
+                $( ".feedbackPanel" ).animate({ "left": "+=400px" }, "slow" );
             }
             $('.mask').toggle();
             $scope.feedbackOpen = ! $scope.feedbackOpen;

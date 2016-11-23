@@ -39,7 +39,7 @@ describe('controllers', function() {
         it('should open the feedback form', function() {
             scope.feedbackOpen = false;
             $('body').append('<div class="feedbackPanel"></div>');
-            $($('.feedbackPanel')).css('left', '-426px');
+            $($('.feedbackPanel')).css('left', '-400px');
             scope.clickFeedbackTab();
             expect(location.path()).toBe('/');
             expect($($('.feedbackPanel')).css('left')).toBe('0px');
@@ -49,7 +49,7 @@ describe('controllers', function() {
         it('should close the feedback form', function() {
             scope.feedbackOpen = true;
             $('body').append('<div class="feedbackPanel"></div>');
-            $($('.feedbackPanel')).css('left', '426px');
+            $($('.feedbackPanel')).css('left', '400px');
             scope.clickFeedbackTab();
             expect(location.path()).toBe('/');
             expect($($('.feedbackPanel')).css('left')).toBe('0px');
@@ -59,7 +59,7 @@ describe('controllers', function() {
         it('should close the feedback form with the mask', function() {
             scope.feedbackOpen = true;
             $('body').append('<div class="feedbackPanel"></div>');
-            $($('.feedbackPanel')).css('left', '426px');
+            $($('.feedbackPanel')).css('left', '400px');
             scope.clickMask();
             expect(location.path()).toBe('/');
             expect($($('.feedbackPanel')).css('left')).toBe('0px');
