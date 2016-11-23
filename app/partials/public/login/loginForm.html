@@ -1,32 +1,31 @@
 <div>
-    <div id="login" ng-class="{fadeOutNoAnimation : ! showLogin}">
+  <div id="login" ng-class="{fadeOutNoAnimation : ! showLogin}">
+    <div>
+      <bs-logo font-size=1.75></bs-logo>
+    </div>
+    <div class="loginForm">
+      <form name="signIn" ng-submit="signIn.$valid && submitLogin()">
+        <div class="loginField">
+          <i class="icons-email icons-sprite-bg"></i>
+          <input type="email" bs-placeholder="Email" ng-model="email" required>
+        </div>
+        <div class="loginField">
+          <i class="icons-key icons-sprite-bg"></i>
+          <input bs-placeholder="Password" type="password" ng-model="password" required>
+        </div>
         <div>
-            <bs-logo font-size=1.75></bs-logo>
-            <p>
+          <button class="btn btn-success" type="submit" ng-class="{disabled: verifying}" ng-disabled="verifying">
+            <bs-text text="Sign In" font-color=white font-size=1></bs-text>
+          </button>
         </div>
-        <div class="loginForm">
-            <form name="signIn" ng-submit="signIn.$valid && submitLogin()">
-                <div class="loginField">
-                    <i class="icons-email icons-sprite-bg"></i>
-                    <input type="email" bs-placeholder="Email" ng-model="email" required>
-                </div>
-                <div class="loginField">
-                    <i class="icons-key icons-sprite-bg"></i>
-                    <input bs-placeholder="Password" type="password" ng-model="password" required>
-                </div>
-                <div>
-                    <button class="formButton" type="submit" ng-class="{disabled: verifying}" ng-disabled="verifying">
-                        <bs-text text="Sign In" font-color=white font-size=1.75></bs-text>
-                    </button>
-                </div>
-            </form>
-        </div>
-        <p>
-        <div ng-click="seeResetPassword()" class="pointer">
-            Forgot your password?
-        </div>
+      </form>
     </div>
-    <div id="loginModal">
-        <bs-modal title="{{modalTitle}}"><span ng-bind-html="displayMessage"></span></bs-modal>
-    </div>
+      <p>
+      <div ng-click="seeResetPassword()" class="pointer">
+          Forgot your password?
+      </div>
+  </div>
+  <div id="loginModal">
+      <bs-modal title="{{modalTitle}}"><span ng-bind-html="displayMessage"></span></bs-modal>
+  </div>
 </div>

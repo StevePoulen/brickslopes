@@ -74,7 +74,7 @@ $pane_width: 1238px;
                 border-radius: 5px;
                 width: 250px;
                 height: 42.5px;
-                padding-top: 7.5px;
+                padding-top: 2px;
             }
         }
 
@@ -85,7 +85,7 @@ $pane_width: 1238px;
 
     #signUpForm {
         position: absolute;
-        top: 75px;
+        top: 110px;
         left: $dashboard_width / 8;
 
         .loginForm {
@@ -98,7 +98,7 @@ $pane_width: 1238px;
                 border-radius: 5px;
                 width: 250px;
                 height: 42.5px;
-                padding-top: 7.5px;
+                padding-top: 2px;
                 text-align: center;
             }
         }
@@ -124,7 +124,7 @@ $pane_width: 1238px;
     #signUpText {
         position: absolute;
         left: $dashboard_width * 4 / 8;
-        top: 175px;
+        top: 215px;
         height: 300px; 
         width: $dashboard_width / 2 - 20;
         
@@ -144,7 +144,7 @@ $pane_width: 1238px;
                 border-radius: 5px;
                 width: 250px;
                 height: 42.5px;
-                padding-top: 7.5px;
+                padding-top: 2px;
             }
         }
     }
@@ -192,7 +192,7 @@ $pane_width: 1238px;
             border-radius: 5px;
             width: 420px;
             height: 42.5px;
-            padding-top: 7.5px;
+            padding-top: 2px;
             text-align: left;
         }
         
@@ -399,7 +399,7 @@ $pane_width: 1238px;
                 border-radius: 5px;
                 width: 250px;
                 height: 30px;
-                padding-top: 5px;
+                padding-top: 2px;
 
                 input {
                     height: 25px;

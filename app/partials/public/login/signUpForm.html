@@ -1,31 +1,31 @@
 <div id="signUpForm" ng-hide="showLogin">
-    <div class="loginForm">
-        <form name="registration" ng-submit="registration.$valid && register()">
-            <div class="label"><bs-text text="First Name" font-size=1.25></bs-text></div>
-            <div class="loginField">
-                <input type="text" bs-placeholder="First Name" ng-model="firstName" required ng-pattern="/\w+/">
-            </div>
-            <div class="label"><bs-text text="Last Name" font-size=1.25></bs-text></div>
-            <div class="loginField">
-                <input type="text" bs-placeholder="Last Name" ng-model="lastName" required>
-            </div>
-            <div class="label"><bs-text text="Email" font-size=1.25></bs-text></div>
-            <div class="loginField">
-                <input type="email" bs-placeholder="Email" ng-model="registerEmail" required>
-            </div>
-            <div class="label"><bs-text text="Password" font-size=1.25></bs-text></div>
-            <div class="loginField">
-                <input bs-placeholder="Password - Must be 8 characters" type="password" ng-model="registerPassword" required equals="{{registerPasswordVerification}}" ng-minlength="8">
-            </div>
-            <div class="label"><bs-text text="Verify Password" font-size=1.25></bs-text></div>
-            <div class="loginField">
-                <input bs-placeholder="Verify Password - 8 characters" type="password" ng-model="registerPasswordVerification" equals="{{registerPassword}}" required ng-minlength="8">
-            </div>
-            <div>
-                <button class="formButton" type="submit" ng-class="{disabled: verifying}" ng-disabled="verifying">
-                    <bs-text text="Sign up" font-color=white font-size=1.75></bs-text>
-                </button>
-            </div>
-        </form>
-    </div>
+  <div class="loginForm">
+    <form name="registration" ng-submit="registration.$valid && register()">
+      <div class="label"><bs-text text="First Name" font-size=1.25></bs-text></div>
+      <div class="loginField">
+        <input type="text" bs-placeholder="First Name" ng-model="firstName" required ng-pattern="/\w+/">
+      </div>
+      <div class="label"><bs-text text="Last Name" font-size=1.25></bs-text></div>
+      <div class="loginField">
+        <input type="text" bs-placeholder="Last Name" ng-model="lastName" required>
+      </div>
+      <div class="label"><bs-text text="Email" font-size=1.25></bs-text></div>
+      <div class="loginField">
+        <input type="email" bs-placeholder="Email" ng-model="registerEmail" required>
+      </div>
+      <div class="label"><bs-text text="Password" font-size=1.25></bs-text></div>
+      <div class="loginField">
+        <input bs-placeholder="Password - Must be 8 characters" type="password" ng-model="registerPassword" required equals="{{registerPasswordVerification}}" ng-minlength="8">
+      </div>
+      <div class="label"><bs-text text="Verify Password" font-size=1.25></bs-text></div>
+      <div class="loginField">
+        <input bs-placeholder="Verify Password - 8 characters" type="password" ng-model="registerPasswordVerification" equals="{{registerPassword}}" required ng-minlength="8">
+      </div>
+      <div class="text-center">
+        <button class="btn btn-success" type="submit" ng-class="{disabled: verifying}" ng-disabled="verifying">
+          <bs-text text="Sign up" font-color=white font-size=1></bs-text>
+        </button>
+      </div>
+    </form>
+  </div>
 </div>
