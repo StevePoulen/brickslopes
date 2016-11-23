@@ -64,6 +64,12 @@ mysqlRootPassword() {
     printf "\n";
 }
 
+mysqlRootPasswordConfirm() {
+    printf "\nSTEP $STEP_COUNTER: Please confirm your 'MYSQL' root user password?\n";
+    read -p "Password:" -s MYSQL_ROOT_PASSWORD_CONFIRM;
+    printf "\n";
+}
+
 setCronProcess() {
     printf "\nUpdating the cronprocess ...\n\n";
     `perl -i -pe s/mysql_password/${MYSQL_ROOT_PASSWORD}/g ./config/cronfile`
@@ -108,13 +114,26 @@ upgrade() {
     fi
 }
 
+promptDBPassword() {
+    mysqlRootPassword;
+    mysqlRootPasswordConfirm;
+    if [ "$MYSQL_ROOT_PASSWORD" != "$MYSQL_ROOT_PASSWORD_CONFIRM" ]; then
+        printf "\n***********************************************";
+        printf "\n* The Passwords Did Not Match. Try Again!     *";
+        printf "\n***********************************************";
+        printf "\n\n";
+        promptDBPassword;
+    fi
+}
+
+
 userInput() { 
     scriptOutput;
     executionPrompt;
     if [ "$INSTALL_UPGRADE" == "Y" ]; then
         deletePrompt;
         repositoryBranch;
-        mysqlRootPassword;
+        promptDBPassword
         upgrade;
     else
         printf "\n\nGood-bye\n\n";
