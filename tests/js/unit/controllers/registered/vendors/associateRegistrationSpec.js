@@ -11,7 +11,7 @@ describe('controllers', function() {
     describe('associateRegistration Controller', function() {
         var mockBackend, loader, location, response, route;
 
-        beforeEach(inject(function($controller, $rootScope, $location, _$httpBackend_ , $route) {
+        beforeEach(inject(function($controller, $rootScope, $location, _$httpBackend_, $route) {
             route = $route;
             route = {
                 current: {
@@ -22,7 +22,10 @@ describe('controllers', function() {
                 }
             };
             scope = $rootScope.$new();
-            ctrl = $controller('AssociateRegistration', { $scope: scope, $route: route});
+            ctrl = $controller('AssociateRegistration', {
+                $scope: scope,
+                $route: route
+            });
             location = $location;
             mockBackend = _$httpBackend_;
         }));
@@ -116,7 +119,9 @@ describe('controllers', function() {
             });
 
             it('should create an associate', function() {
-                scope.registrationForm = {'$setPristine': function() {}};
+                scope.registrationForm = {
+                    '$setPristine': function() {}
+                };
                 scope.firstName = 'Steve';
                 scope.lastName = 'Poulsen';
                 scope.email = 'steve@brickslopes.com';
@@ -146,7 +151,9 @@ describe('controllers', function() {
                 scope.email = 'steve@brickslopes.com';
                 scope.addAfolPass = 'YES';
                 scope.submitAssociateRegistration();
-                mockBackend.expectPOST('/controllers/registered/vendors/vendorAssociates.php', associateDTO).respond(400, {error: 'nothing'});
+                mockBackend.expectPOST('/controllers/registered/vendors/vendorAssociates.php', associateDTO).respond(400, {
+                    error: 'nothing'
+                });
                 mockBackend.flush();
                 expect(scope.displayMessage.$$unwrapTrustedValue()).toBe('The Vendor Associate travails.');
                 expect(scope.modalTitle).toBe('Error');
@@ -159,7 +166,9 @@ describe('controllers', function() {
                 scope.email = 'steve@brickslopes.com';
                 scope.addAfolPass = 'YES';
                 scope.submitAssociateRegistration();
-                mockBackend.expectPOST('/controllers/registered/vendors/vendorAssociates.php', associateDTO).respond(412, {error: 'selfie'});
+                mockBackend.expectPOST('/controllers/registered/vendors/vendorAssociates.php', associateDTO).respond(412, {
+                    error: 'selfie'
+                });
                 mockBackend.flush();
                 expect(scope.modalTitle).toBe('Error');
                 expect(scope.displayMessage.$$unwrapTrustedValue()).toBe('You may not add yourself as an associate of your own store.');
@@ -176,7 +185,10 @@ describe('controllers', function() {
 
             it('should create an associate', function() {
                 scope.eventId = 2;
-                scope.associate = {associateId: 4, userId:23};
+                scope.associate = {
+                    associateId: 4,
+                    userId: 23
+                };
                 scope.clickDelete();
                 mockBackend.expectDELETE('/controllers/registered/vendors/vendorAssociates.php?associateId=4&eventId=2&userId=23').respond(201);
                 mockBackend.flush();
@@ -188,9 +200,14 @@ describe('controllers', function() {
             });
 
             it('should display an error', function() {
-                scope.associate = {associateId: 4, userId:3};
+                scope.associate = {
+                    associateId: 4,
+                    userId: 3
+                };
                 scope.clickDelete();
-                mockBackend.expectDELETE('/controllers/registered/vendors/vendorAssociates.php?associateId=4&eventId=2&userId=3').respond(400, {error: 'nothing'});
+                mockBackend.expectDELETE('/controllers/registered/vendors/vendorAssociates.php?associateId=4&eventId=2&userId=3').respond(400, {
+                    error: 'nothing'
+                });
                 mockBackend.flush();
             });
         });

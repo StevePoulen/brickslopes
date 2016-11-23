@@ -39,7 +39,7 @@ describe('directives', function() {
 
         describe('shown', function() {
             beforeEach(function() {
-                scope.showModal=true;
+                scope.showModal = true;
                 scope.$digest();
             });
 
@@ -50,7 +50,7 @@ describe('directives', function() {
 
         describe('Close the Modal', function() {
             beforeEach(function() {
-                scope.showModal=true;
+                scope.showModal = true;
                 scope.$digest();
             });
 

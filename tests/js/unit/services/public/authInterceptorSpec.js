@@ -14,9 +14,13 @@ describe('service', function() {
         var auth, window, location, request;
         beforeEach(inject(function(authInterceptor, _$window_, $location) {
             window = _$window_;
-            window._ga = { push: function(data) { } };
+            window._ga = {
+                push: function(data) {}
+            };
             location = $location;
-            request = { 'url': 'partials/registered/index.html' };
+            request = {
+                'url': 'partials/registered/index.html'
+            };
             auth = authInterceptor;
         }));
 
@@ -31,74 +35,108 @@ describe('service', function() {
             });
 
             it('should not have an Auth-Token header', function() {
-                request = { 'url': 'partials/registered/index.html' };
+                request = {
+                    'url': 'partials/registered/index.html'
+                };
                 expect(auth.request(request).headers['Auth-Token']).toBeUndefined();
             });
 
-            describe ('Google Analytics', function() {
-                describe ('Positive', function() {
+            describe('Google Analytics', function() {
+                describe('Positive', function() {
                     it('should call google analytics', function() {
-                        location.host = function() { return 'www.brickslopes.com';}
+                        location.host = function() {
+                            return 'www.brickslopes.com';
+                        }
                         spyOn(window._gaq, "push");
-                        request = { 'url': 'partials/registered/index.html' };
+                        request = {
+                            'url': 'partials/registered/index.html'
+                        };
                         expect(auth.request(request).headers['Auth_Token']).toBeUndefined();
-                        expect(window._gaq.push).toHaveBeenCalledWith([ '_trackPageview', 'partials/registered/index.html']);
+                        expect(window._gaq.push).toHaveBeenCalledWith(['_trackPageview', 'partials/registered/index.html']);
                     });
 
                     it('should call google analytics', function() {
-                        location.host = function() { return 'brickslopes.com';}
+                        location.host = function() {
+                            return 'brickslopes.com';
+                        }
                         spyOn(window._gaq, "push");
-                        request = { 'url': 'partials/registered/index.html' };
+                        request = {
+                            'url': 'partials/registered/index.html'
+                        };
                         expect(auth.request(request).headers['Auth_Token']).toBeUndefined();
-                        expect(window._gaq.push).toHaveBeenCalledWith([ '_trackPageview', 'partials/registered/index.html']);
+                        expect(window._gaq.push).toHaveBeenCalledWith(['_trackPageview', 'partials/registered/index.html']);
                     });
                 });
 
-                describe ('Negative', function() {
+                describe('Negative', function() {
                     it('should call google analytics', function() {
-                        location.host = function() { return 'www.mybrickslopes.com';}
+                        location.host = function() {
+                            return 'www.mybrickslopes.com';
+                        }
                         spyOn(window._gaq, "push");
-                        request = { 'url': 'partials/registered/index.html' };
+                        request = {
+                            'url': 'partials/registered/index.html'
+                        };
                         expect(auth.request(request).headers['Auth_Token']).toBeUndefined();
                         expect(window._gaq.push).not.toHaveBeenCalled();
                     });
 
                     it('should call google analytics', function() {
-                        location.host = function() { return 'www.brickslopes.com';}
+                        location.host = function() {
+                            return 'www.brickslopes.com';
+                        }
                         spyOn(window._gaq, "push");
-                        request = { 'url': '/controllers/registered/index.html' };
+                        request = {
+                            'url': '/controllers/registered/index.html'
+                        };
                         expect(auth.request(request).headers['Auth_Token']).toBeUndefined();
                         expect(window._gaq.push).not.toHaveBeenCalled();
                     });
 
                     it('should call google analytics', function() {
-                        location.host = function() { return 'www.brickslopes.com';}
+                        location.host = function() {
+                            return 'www.brickslopes.com';
+                        }
                         spyOn(window._gaq, "push");
-                        request = { 'url': '/partials/public/feedback.html' };
+                        request = {
+                            'url': '/partials/public/feedback.html'
+                        };
                         expect(auth.request(request).headers['Auth_Token']).toBeUndefined();
                         expect(window._gaq.push).not.toHaveBeenCalled();
                     });
 
                     it('should call google analytics', function() {
-                        location.host = function() { return 'www.brickslopes.com';}
+                        location.host = function() {
+                            return 'www.brickslopes.com';
+                        }
                         spyOn(window._gaq, "push");
-                        request = { 'url': '/partials/public/header.html' };
+                        request = {
+                            'url': '/partials/public/header.html'
+                        };
                         expect(auth.request(request).headers['Auth_Token']).toBeUndefined();
                         expect(window._gaq.push).not.toHaveBeenCalled();
                     });
 
                     it('should call google analytics', function() {
-                        location.host = function() { return 'www.brickslopes.com';}
+                        location.host = function() {
+                            return 'www.brickslopes.com';
+                        }
                         spyOn(window._gaq, "push");
-                        request = { 'url': '/partials/public/footer.html' };
+                        request = {
+                            'url': '/partials/public/footer.html'
+                        };
                         expect(auth.request(request).headers['Auth_Token']).toBeUndefined();
                         expect(window._gaq.push).not.toHaveBeenCalled();
                     });
 
                     it('should call google analytics', function() {
-                        location.host = function() { return 'www.brickslopes.com';}
+                        location.host = function() {
+                            return 'www.brickslopes.com';
+                        }
                         spyOn(window._gaq, "push");
-                        request = { 'url': '/partials/directives/index.html' };
+                        request = {
+                            'url': '/partials/directives/index.html'
+                        };
                         expect(auth.request(request).headers['Auth_Token']).toBeUndefined();
                         expect(window._gaq.push).not.toHaveBeenCalled();
                     });
@@ -133,7 +171,9 @@ describe('service', function() {
             });
 
             it('should redirect for a 500', function() {
-                var response = {status: 500};
+                var response = {
+                    status: 500
+                };
                 auth.responseError(response)
                 expect(location.path()).toBe('/error.html');
             });
@@ -141,12 +181,16 @@ describe('service', function() {
 
         describe('response', function() {
             it('should return a response for non 401 responses', function() {
-                var response = {status: 200};
+                var response = {
+                    status: 200
+                };
                 expect(auth.response(response).status).toBe(200);
             });
 
             it('should redirect for a 401', function() {
-                var response = {status: 401};
+                var response = {
+                    status: 401
+                };
                 auth.response(response)
                 expect(location.path()).toBe('/error.html');
             });

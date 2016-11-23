@@ -14,7 +14,10 @@ describe('controllers', function() {
             window = _$window_;
             rootScope = $rootScope;
             scope = rootScope.$new();
-            ctrl = $controller('afolMe', { $scope: scope, $rootScope: rootScope});
+            ctrl = $controller('afolMe', {
+                $scope: scope,
+                $rootScope: rootScope
+            });
             mockBackend = _$httpBackend_;
             location = $location
         }));
@@ -350,7 +353,9 @@ describe('controllers', function() {
         describe('Change Password', function() {
             it('should change a user\'s password', function() {
                 scope.changePassword();
-                scope.changePasswordForm = {'$setPristine': function() {}};
+                scope.changePasswordForm = {
+                    '$setPristine': function() {}
+                };
                 expect(scope.verifying).toBe(true);
                 mockBackend.expectGET('/controllers/public/eventDates.php').respond(eventDates);
                 mockBackend.expectGET('/controllers/registered/eventRegistration.php').respond(eventRegistration);
@@ -373,7 +378,9 @@ describe('controllers', function() {
         describe('Change Password Error', function() {
             it('should change a user\'s password', function() {
                 scope.changePassword();
-                scope.changePasswordForm = {'$setPristine': function() {}};
+                scope.changePasswordForm = {
+                    '$setPristine': function() {}
+                };
                 expect(scope.verifying).toBe(true);
                 mockBackend.expectGET('/controllers/public/eventDates.php').respond(eventDates);
                 mockBackend.expectGET('/controllers/registered/eventRegistration.php').respond(eventRegistration);

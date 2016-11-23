@@ -96,7 +96,9 @@ describe('service', function() {
                 }
 
                 mockBackend = _$httpBackend_;
-                mockBackend.expectDELETE('/controllers/registered/vendors/vendorAssociates.php?associateId=22&eventId=2').respond(412, {error: 'this is bad'});
+                mockBackend.expectDELETE('/controllers/registered/vendors/vendorAssociates.php?associateId=22&eventId=2').respond(412, {
+                    error: 'this is bad'
+                });
                 service = VendorDetails;
             }));
 
@@ -140,7 +142,9 @@ describe('service', function() {
             var mockBackend, service, data;
             beforeEach(inject(function(_$httpBackend_, VendorDetails) {
                 mockBackend = _$httpBackend_;
-                mockBackend.expectPOST('/controllers/registered/vendors/vendorAssociates.php').respond(412, {error: 'this is bad'});
+                mockBackend.expectPOST('/controllers/registered/vendors/vendorAssociates.php').respond(412, {
+                    error: 'this is bad'
+                });
                 service = VendorDetails;
             }));
 
@@ -164,7 +168,7 @@ describe('service', function() {
             beforeEach(inject(function(_$httpBackend_, VendorDetails) {
                 storeId = 3;
                 mockBackend = _$httpBackend_;
-                mockBackend.expectGET('/controllers/registered/vendors/vendorAssociates.php?eventId=2&storeId='+storeId).respond(201, associatesMock);
+                mockBackend.expectGET('/controllers/registered/vendors/vendorAssociates.php?eventId=2&storeId=' + storeId).respond(201, associatesMock);
                 service = VendorDetails;
             }));
 

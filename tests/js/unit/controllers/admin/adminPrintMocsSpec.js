@@ -2,7 +2,7 @@ describe('controllers', function() {
     'use strict';
     var scope, ctrl, location;
 
-    beforeEach (module('brickSlopes'));
+    beforeEach(module('brickSlopes'));
 
     beforeEach(inject(function(_EventSelectionFactory_) {
         spyOn(_EventSelectionFactory_, 'getSelectedEvent').andReturn(2);
@@ -12,7 +12,9 @@ describe('controllers', function() {
         var mockBackend;
         beforeEach(inject(function($controller, $rootScope, $location, _$httpBackend_) {
             scope = $rootScope.$new();
-            ctrl = $controller('PrintMocs', { $scope: scope});
+            ctrl = $controller('PrintMocs', {
+                $scope: scope
+            });
             location = $location;
             mockBackend = _$httpBackend_;
             mockBackend.expectGET('/controllers/paid/mocs.php?eventId=2').respond(201, mocs);
@@ -30,16 +32,22 @@ describe('controllers', function() {
                 var open = false;
                 var write = false;
                 var close = false;
-                spyOn(window, "open").andReturn(
-                    {
-                        document: {
-                            open: function() { open = true;},
-                            write: function() { write = true;},
-                            close: function() { close = true;}
+                spyOn(window, "open").andReturn({
+                    document: {
+                        open: function() {
+                            open = true;
+                        },
+                        write: function() {
+                            write = true;
+                        },
+                        close: function() {
+                            close = true;
                         }
                     }
-                );
-                spyOn(document, "getElementById").andReturn({innerHTML: 'hello'});
+                });
+                spyOn(document, "getElementById").andReturn({
+                    innerHTML: 'hello'
+                });
                 scope.printMocs();
                 expect(window.open).toHaveBeenCalledWith('', '_blank', 'width=300,height=300');
                 expect(document.getElementById).toHaveBeenCalledWith('printMocs');

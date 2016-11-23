@@ -11,7 +11,9 @@ describe('controllers', function() {
     describe('bsFeedback Default Variables', function() {
         beforeEach(inject(function($controller, $rootScope) {
             scope = $rootScope.$new();
-            ctrl = $controller('bsFeedback', { $scope: scope});
+            ctrl = $controller('bsFeedback', {
+                $scope: scope
+            });
         }));
 
         it('should have a feedbackOpen variable', function() {
@@ -28,10 +30,12 @@ describe('controllers', function() {
     });
 
     describe('bsFeedback Click Handlers', function() {
-        beforeEach(inject(function($controller, $rootScope, $location)  {
+        beforeEach(inject(function($controller, $rootScope, $location) {
             scope = $rootScope.$new();
             location = $location;
-            ctrl = $controller('bsFeedback', { $scope: scope});
+            ctrl = $controller('bsFeedback', {
+                $scope: scope
+            });
             jasmine.Clock.useMock();
             jQuery.fx.off = true;
         }));
@@ -71,7 +75,9 @@ describe('controllers', function() {
         var mockBackend;
         beforeEach(inject(function($controller, $rootScope) {
             scope = $rootScope.$new();
-            ctrl = $controller('bsFeedback', { $scope: scope});
+            ctrl = $controller('bsFeedback', {
+                $scope: scope
+            });
             scope.$digest();
         }));
 
@@ -96,7 +102,9 @@ describe('controllers', function() {
         var mockBackend;
         beforeEach(inject(function($controller, $rootScope, _$httpBackend_) {
             scope = $rootScope.$new();
-            ctrl = $controller('bsFeedback', { $scope: scope});
+            ctrl = $controller('bsFeedback', {
+                $scope: scope
+            });
             mockBackend = _$httpBackend_;
             var dto = {
                 'email': 'steve@brickslopes.com',
@@ -107,7 +115,9 @@ describe('controllers', function() {
         }));
 
         it('should submit a user feedback form', function() {
-            scope.feedbackForm = {'$setPristine': function() {}};
+            scope.feedbackForm = {
+                '$setPristine': function() {}
+            };
             scope.email = 'steve@brickslopes.com';
             scope.feedback = 'This sight rox!';
             scope.submitFeedback();

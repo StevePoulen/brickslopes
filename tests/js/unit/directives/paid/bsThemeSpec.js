@@ -12,16 +12,13 @@ describe('directives', function() {
             scope.theme = {
                 theme: 'Brian',
                 selectable: 'YES',
-                awards: [
-                    {
-                        award: 'Pilati',
-                        place: 2
-                    },
-                    {
-                        award: 'Ogel',
-                        place: 1
-                    }
-                ]
+                awards: [{
+                    award: 'Pilati',
+                    place: 2
+                }, {
+                    award: 'Ogel',
+                    place: 1
+                }]
             };
             element = angular.element('<bs-theme color="red"></bs-theme>');
             $compile(element)(scope);

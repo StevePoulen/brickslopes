@@ -15,7 +15,9 @@ describe('controllers', function() {
     describe('bsHeaderController Default Variables', function() {
         beforeEach(inject(function($controller, $rootScope) {
             scope = $rootScope.$new();
-            ctrl = $controller('bsHeader', { $scope: scope});
+            ctrl = $controller('bsHeader', {
+                $scope: scope
+            });
         }));
 
         it('should have a showAfol variable', function() {
@@ -38,20 +40,30 @@ describe('controllers', function() {
 
         it('should not show the header on /schedule', function() {
             location.path("/schedule");
-            ctrl = controller('bsHeader', { $scope: scope, $window: window, $location: location});
+            ctrl = controller('bsHeader', {
+                $scope: scope,
+                $window: window,
+                $location: location
+            });
             scope.$digest();
             expect(scope.showHeader).toBe(false);
         });
 
         it('should redirect to afol login page without a session token', function() {
-            ctrl = controller('bsHeader', { $scope: scope, $window: window});
+            ctrl = controller('bsHeader', {
+                $scope: scope,
+                $window: window
+            });
             scope.clickBuilder();
             expect(location.path()).toBe('/registered/login.html');
         });
 
         it('should redirect to afol index page with a session token', function() {
             window.sessionStorage.token = '1234567890';
-            ctrl = controller('bsHeader', { $scope: scope, $window: window});
+            ctrl = controller('bsHeader', {
+                $scope: scope,
+                $window: window
+            });
             scope.clickBuilder();
             expect(location.path()).toBe('/registered/index.html');
         });
@@ -59,7 +71,10 @@ describe('controllers', function() {
         it('should redirect to afol admin page with an admin variable', function() {
             window.sessionStorage.token = '1234567890';
             window.sessionStorage.admin = 'YES';
-            ctrl = controller('bsHeader', { $scope: scope, $window: window});
+            ctrl = controller('bsHeader', {
+                $scope: scope,
+                $window: window
+            });
             scope.clickAdmin();
             expect(location.path()).toBe('/admin/index.html');
         });
@@ -80,7 +95,10 @@ describe('controllers', function() {
                 userId: '051675'
             };
             storeSession(window, data);
-            ctrl = $controller('bsHeader', { $scope: scope, $window: window});
+            ctrl = $controller('bsHeader', {
+                $scope: scope,
+                $window: window
+            });
             location = $location;
         }));
 
@@ -141,7 +159,10 @@ describe('controllers', function() {
         beforeEach(inject(function($controller, $rootScope, $location, _$window_) {
             scope = $rootScope.$new();
             window = _$window_;
-            ctrl = $controller('bsHeader', { $scope: scope, $window: window});
+            ctrl = $controller('bsHeader', {
+                $scope: scope,
+                $window: window
+            });
             location = $location;
         }));
 
@@ -188,25 +209,37 @@ describe('controllers', function() {
 
         it('should have the user name builder login', function() {
             window.sessionStorage.firstName = 'Brian';
-            ctrl = controller('bsHeader', { $scope: scope, $window: window});
+            ctrl = controller('bsHeader', {
+                $scope: scope,
+                $window: window
+            });
             expect(scope.authenticationText()).toBe("Brian's Site");
         });
 
         it('should have the generic builder login', function() {
-            ctrl = controller('bsHeader', { $scope: scope, $window: window});
+            ctrl = controller('bsHeader', {
+                $scope: scope,
+                $window: window
+            });
             expect(scope.authenticationText()).toBe('Builder Login');
         });
 
         it('should have the admin text', function() {
             window.sessionStorage.token = '12345678';
             window.sessionStorage.admin = 'YES';
-            ctrl = controller('bsHeader', { $scope: scope, $window: window});
+            ctrl = controller('bsHeader', {
+                $scope: scope,
+                $window: window
+            });
             expect(scope.adminText()).toBe("| Admin");
         });
 
         it('should have no admin text', function() {
             window.sessionStorage.admin = 'NO';
-            ctrl = controller('bsHeader', { $scope: scope, $window: window});
+            ctrl = controller('bsHeader', {
+                $scope: scope,
+                $window: window
+            });
             expect(scope.adminText()).toBe("");
         });
     });

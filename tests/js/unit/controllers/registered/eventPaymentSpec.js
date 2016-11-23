@@ -15,9 +15,11 @@ describe('controllers', function() {
     describe('afolEventPayment Controller', function() {
         var mockBackend, loader, window, location, response;
 
-        beforeEach(inject(function($controller, $rootScope, $location, _$httpBackend_ ) {
+        beforeEach(inject(function($controller, $rootScope, $location, _$httpBackend_) {
             scope = $rootScope.$new();
-            ctrl = $controller('afolEventPayment', { $scope: scope});
+            ctrl = $controller('afolEventPayment', {
+                $scope: scope
+            });
             location = $location;
             mockBackend = _$httpBackend_;
         }));

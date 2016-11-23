@@ -148,7 +148,9 @@ describe('service', function() {
                 mockBackend = _$httpBackend_;
                 service = UserDetails;
                 mockBackend.expectGET('/controllers/public/user.php').respond(singleUser);
-                mockBackend.expectPATCH('/controllers/registered/tour.php', {tourOption: 'YES'}).respond(200);
+                mockBackend.expectPATCH('/controllers/registered/tour.php', {
+                    tourOption: 'YES'
+                }).respond(200);
             }));
 
             it('should update a user tour', function() {

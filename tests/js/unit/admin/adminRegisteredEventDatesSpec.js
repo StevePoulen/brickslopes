@@ -23,12 +23,22 @@ describe('Admin Registered Event Dates', function() {
     });
 
     it('should have default variables', function() {
-        expect(scope.eventDates[0]).toEqual({ eventDatesId : 1, eventId : 2, startDate : '2015-05-14 18:00:00Z', endDate : '2015-05-15 02:00:00Z', type : 'AFOL', startDay : 'Thursday, May 14th', startTime : '12:00 PM', endDay : 'Thursday, May 14th', endTime : '8:00 PM' });
+        expect(scope.eventDates[0]).toEqual({
+            eventDatesId: 1,
+            eventId: 2,
+            startDate: '2015-05-14 18:00:00Z',
+            endDate: '2015-05-15 02:00:00Z',
+            type: 'AFOL',
+            startDay: 'Thursday, May 14th',
+            startTime: '12:00 PM',
+            endDay: 'Thursday, May 14th',
+            endTime: '8:00 PM'
+        });
 
         expect(scope.data).toEqual(Object({
-            startDate : '2015-05-14 18:00:00Z',
-            endDate : '2015-05-15 02:00:00Z',
-            eventDatesId : 1
+            startDate: '2015-05-14 18:00:00Z',
+            endDate: '2015-05-15 02:00:00Z',
+            eventDatesId: 1
         }));
 
         expect(scope.options).toEqual(Object({
@@ -41,20 +51,30 @@ describe('Admin Registered Event Dates', function() {
 
     it('should handle a submitDate event', function() {
         scope.data = Object({
-            startDate : '2015-05-16 17:00:00Z',
-            endDate : '2015-05-17 01:00:00Z',
-            eventDatesId : 1
+            startDate: '2015-05-16 17:00:00Z',
+            endDate: '2015-05-17 01:00:00Z',
+            eventDatesId: 1
         })
 
         var expectedPatch = Object({
-            startDate : '2015-05-16 17:00:00Z',
-            endDate : '2015-05-17 01:00:00Z',
-            eventDatesId : 1
+            startDate: '2015-05-16 17:00:00Z',
+            endDate: '2015-05-17 01:00:00Z',
+            eventDatesId: 1
         });
         mockBackend.expectPATCH('/controllers/admin/eventDates.php', expectedPatch).respond();
         scope.submitDate();
         mockBackend.flush();
 
-        expect(scope.eventDates[0]).toEqual({ eventDatesId : 1, eventId : 2, startDate : '2015-05-16 17:00:00Z', endDate : '2015-05-17 01:00:00Z', type : 'AFOL', startDay : 'Saturday, May 16th', startTime : '11:00 AM', endDay : 'Saturday, May 16th', endTime : '7:00 PM' });
+        expect(scope.eventDates[0]).toEqual({
+            eventDatesId: 1,
+            eventId: 2,
+            startDate: '2015-05-16 17:00:00Z',
+            endDate: '2015-05-17 01:00:00Z',
+            type: 'AFOL',
+            startDay: 'Saturday, May 16th',
+            startTime: '11:00 AM',
+            endDay: 'Saturday, May 16th',
+            endTime: '7:00 PM'
+        });
     });
 });

@@ -16,7 +16,9 @@ describe('controllers', function() {
         var mockBackend;
         beforeEach(inject(function($controller, $rootScope, _$httpBackend_) {
             scope = $rootScope.$new();
-            ctrl = $controller('emailUs', { $scope: scope });
+            ctrl = $controller('emailUs', {
+                $scope: scope
+            });
             mockBackend = _$httpBackend_;
         }));
 
@@ -53,7 +55,9 @@ describe('controllers', function() {
                     email: 'cody.ottley@bs.com',
                     comments: 'Everything is Awesome!'
                 };
-                scope.emailUsForm = {'$setPristine': function() {}};
+                scope.emailUsForm = {
+                    '$setPristine': function() {}
+                };
                 scope.submitEmail();
                 mockBackend.expectPOST('/controllers/public/emailUs.php', dto).respond(201);
                 mockBackend.flush();

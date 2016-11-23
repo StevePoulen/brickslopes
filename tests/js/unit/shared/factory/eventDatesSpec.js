@@ -88,7 +88,7 @@ describe('Event Dates Factory', function() {
                         return {
                             start: [
                                 '2015-05-14 08:00:00'
-                            ], 
+                            ],
                             end: [
                                 '2015-05-15 08:00:00'
                             ],
@@ -171,7 +171,7 @@ describe('Event Dates Factory', function() {
                         return {
                             start: [
                                 '2015-05-16 08:00:00'
-                            ], 
+                            ],
                             end: [
                                 '2015-05-17 08:00:00'
                             ],

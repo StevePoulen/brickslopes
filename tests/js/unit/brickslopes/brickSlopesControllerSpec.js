@@ -2,12 +2,14 @@ describe('controllers', function() {
     'use strict';
     var scope, ctrl, location;
 
-    beforeEach (module ('brickSlopes'));
+    beforeEach(module('brickSlopes'));
 
     describe('bsIndex Default Variables', function() {
         beforeEach(inject(function($controller, $rootScope) {
             scope = $rootScope.$new();
-            ctrl = $controller('bsIndex', { $scope: scope});
+            ctrl = $controller('bsIndex', {
+                $scope: scope
+            });
         }));
 
         it('should have a eventYear variable', function() {
@@ -28,10 +30,12 @@ describe('controllers', function() {
     });
 
     describe('bsIndex Click Handlers', function() {
-        beforeEach(inject(function($controller, $rootScope, $location)  {
+        beforeEach(inject(function($controller, $rootScope, $location) {
             scope = $rootScope.$new();
             location = $location;
-            ctrl = $controller('bsIndex', { $scope: scope});
+            ctrl = $controller('bsIndex', {
+                $scope: scope
+            });
         }));
 
         it('should redirect to the Chowren Toys page', function() {
@@ -72,7 +76,9 @@ describe('controllers', function() {
         beforeEach(inject(function($controller, $rootScope, _$httpBackend_, _EventSelectionFactory_) {
             spyOn(_EventSelectionFactory_, 'getSelectedEvent').andReturn(2);
             scope = $rootScope.$new();
-            ctrl = $controller('bsIndex', { $scope: scope});
+            ctrl = $controller('bsIndex', {
+                $scope: scope
+            });
             mockBackend = _$httpBackend_;
 
             mockBackend.expectGET('/controllers/public/eventDates.php').respond(201, eventDates);

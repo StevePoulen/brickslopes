@@ -8,7 +8,9 @@ describe('controllers', function() {
         var mockBackend, loader;
         beforeEach(inject(function($controller, $rootScope, $location, _$httpBackend_) {
             scope = $rootScope.$new();
-            ctrl = $controller('afolEditProfile', { $scope: scope});
+            ctrl = $controller('afolEditProfile', {
+                $scope: scope
+            });
             location = $location;
             mockBackend = _$httpBackend_;
         }));
@@ -112,4 +114,3 @@ describe('controllers', function() {
 
     });
 });
-

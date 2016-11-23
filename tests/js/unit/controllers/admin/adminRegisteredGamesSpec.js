@@ -11,7 +11,9 @@ describe('controllers', function() {
         var mockBackend;
         beforeEach(inject(function($controller, $rootScope, $location, _$httpBackend_) {
             scope = $rootScope.$new();
-            ctrl = $controller('adminRegisteredGames', { $scope: scope});
+            ctrl = $controller('adminRegisteredGames', {
+                $scope: scope
+            });
             location = $location;
             mockBackend = _$httpBackend_;
             mockBackend.expectGET('/controllers/admin/registeredGames.php?eventId=2').respond(201, registeredGames);

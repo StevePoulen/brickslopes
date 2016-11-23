@@ -12,7 +12,9 @@ describe('controllers', function() {
         var mockBackend;
         beforeEach(inject(function($controller, $rootScope, $location, _$httpBackend_) {
             scope = $rootScope.$new();
-            ctrl = $controller('eventAfols', { $scope: scope});
+            ctrl = $controller('eventAfols', {
+                $scope: scope
+            });
             location = $location;
             mockBackend = _$httpBackend_;
             mockBackend.expectGET('/controllers/registered/registeredAfols.php?eventId=2').respond(201, registeredAfols);

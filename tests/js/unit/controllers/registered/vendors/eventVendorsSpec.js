@@ -20,7 +20,10 @@ describe('controllers', function() {
                 }
             }
             scope = $rootScope.$new();
-            ctrl = $controller('afolEventVendors', { $scope: scope, $route: route});
+            ctrl = $controller('afolEventVendors', {
+                $scope: scope,
+                $route: route
+            });
             location = $location;
             mockBackend = _$httpBackend_;
             mockBackend.expectGET('/controllers/registered/vendors/vendors.php?eventId=2').respond(201, vendors);

@@ -23,12 +23,22 @@ describe('controllers', function() {
 
         beforeEach(inject(function($controller, $rootScope, $location, $route) {
             route = $route;
-            route = {current: {params:{eventId:2}}};
+            route = {
+                current: {
+                    params: {
+                        eventId: 2
+                    }
+                }
+            };
             scope = $rootScope.$new();
             window.sessionStorage.firstName = 'Cody';
             window.sessionStorage.lastName = 'Ottley';
-            ctrl = $controller('afolMocRegistration', { $scope: scope, $window: window, $route: route});
-            
+            ctrl = $controller('afolMocRegistration', {
+                $scope: scope,
+                $window: window,
+                $route: route
+            });
+
             location = $location;
         }));
 
@@ -166,7 +176,9 @@ describe('controllers', function() {
             });
 
             it('should create a moc', function() {
-                scope.registrationForm = {'$setPristine': function() {}};
+                scope.registrationForm = {
+                    '$setPristine': function() {}
+                };
                 scope.title = 'My Fine Title';
                 scope.mocImageUrl = 'https://www.smile.com';
                 scope.description = 'I worked really hard on this MOC';
@@ -201,10 +213,21 @@ describe('controllers', function() {
 
         beforeEach(inject(function($controller, $rootScope, $location, $route) {
             route = $route;
-            route = {current: {params:{eventId:2, mocId:3}}};
+            route = {
+                current: {
+                    params: {
+                        eventId: 2,
+                        mocId: 3
+                    }
+                }
+            };
             scope = $rootScope.$new();
             window.sessionStorage.userId = 1;
-            ctrl = $controller('afolMocRegistration', { $scope: scope, $window: window, $route: route});
+            ctrl = $controller('afolMocRegistration', {
+                $scope: scope,
+                $window: window,
+                $route: route
+            });
             location = $location;
             mockBackend.expectGET('/controllers/paid/themes.php?eventId=2').respond(themes);
             mockBackend.expectGET('/controllers/paid/mocs.php?eventId=2').respond(mocs);
@@ -235,7 +258,9 @@ describe('controllers', function() {
                 expect(scope.baseplateWidth).toBe(18);
                 expect(scope.baseplateDepth).toBe(3);
                 expect(scope.description).toBe('My out-of-this-world castle with peeps!');
-                scope.registrationForm = {'$setPristine': function() {}};
+                scope.registrationForm = {
+                    '$setPristine': function() {}
+                };
                 expect(scope.isMocUpdate).toBe(true);
 
                 scope.submitRegistration();
@@ -272,10 +297,21 @@ describe('controllers', function() {
 
         beforeEach(inject(function($controller, $rootScope, $location, $route) {
             route = $route;
-            route = {current: {params:{eventId:2, mocId:1}}};
+            route = {
+                current: {
+                    params: {
+                        eventId: 2,
+                        mocId: 1
+                    }
+                }
+            };
             scope = $rootScope.$new();
             window.sessionStorage.userId = 1;
-            ctrl = $controller('afolMocRegistration', { $scope: scope, $window: window, $route: route});
+            ctrl = $controller('afolMocRegistration', {
+                $scope: scope,
+                $window: window,
+                $route: route
+            });
             location = $location;
             mockBackend.expectGET('/controllers/paid/themes.php?eventId=2').respond(themes);
             mockBackend.expectGET('/controllers/paid/mocs.php?eventId=2').respond(mocs);
@@ -306,7 +342,9 @@ describe('controllers', function() {
                 expect(scope.title).toBeUndefined();
                 expect(scope.mocImageUrl).toBeUndefined();
                 expect(scope.description).toBeUndefined();
-                scope.registrationForm = {'$setPristine': function() {}};
+                scope.registrationForm = {
+                    '$setPristine': function() {}
+                };
 
                 scope.submitRegistration();
                 mockBackend.expectPATCH('/controllers/paid/mocs.php', mocDTO).respond(200);

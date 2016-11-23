@@ -13,7 +13,9 @@ describe('controllers', function() {
             window = _$window_;
             storeSession(window, sessionData);
             scope = _$rootScope_.$new();
-            _$controller_('afolIndex', { $scope: scope});
+            _$controller_('afolIndex', {
+                $scope: scope
+            });
             location = $location;
         }));
 
@@ -206,7 +208,11 @@ describe('controllers', function() {
             userDetails = _UserDetails_;
             scope = rootScope.$new();
             spyOn(_$rootScope_, "$emit");
-            _$controller_('afolIndex', { $scope: scope, rootScope: _$rootScope_, UserDetails: userDetails});
+            _$controller_('afolIndex', {
+                $scope: scope,
+                rootScope: _$rootScope_,
+                UserDetails: userDetails
+            });
             location = $location;
             mockBackend = _$httpBackend_;
             service = MocDetails;

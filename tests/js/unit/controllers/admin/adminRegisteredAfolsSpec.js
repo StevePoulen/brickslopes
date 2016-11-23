@@ -12,7 +12,9 @@ describe('controllers', function() {
         var mockBackend;
         beforeEach(inject(function($controller, $rootScope, $location, _$httpBackend_) {
             scope = $rootScope.$new();
-            ctrl = $controller('adminRegisteredAfols', { $scope: scope});
+            ctrl = $controller('adminRegisteredAfols', {
+                $scope: scope
+            });
             location = $location;
             mockBackend = _$httpBackend_;
             mockBackend.expectGET('/controllers/registered/registeredAfols.php?eventId=2').respond(201, registeredAfols);
@@ -64,17 +66,23 @@ describe('controllers', function() {
 
         describe('Show Email Option', function() {
             it('should show the feature', function() {
-                scope.afol = {'paid': 'YES'};
+                scope.afol = {
+                    'paid': 'YES'
+                };
                 expect(scope.showEmailOption()).toBe(true);
             });
 
             it('should hide the feature', function() {
-                scope.afol = {'paid': 'yes'};
+                scope.afol = {
+                    'paid': 'yes'
+                };
                 expect(scope.showEmailOption()).toBe(false);
             });
 
             it('should hide the feature', function() {
-                scope.afol = {'paid': 'NO'};
+                scope.afol = {
+                    'paid': 'NO'
+                };
                 expect(scope.showEmailOption()).toBe(false);
             });
         });

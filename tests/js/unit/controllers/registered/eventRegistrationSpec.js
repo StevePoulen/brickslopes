@@ -19,8 +19,17 @@ describe('controllers', function() {
         beforeEach(inject(function($controller, $rootScope, _$httpBackend_, $location, $route) {
             scope = $rootScope.$new();
             route = $route;
-            route = {current: {params: {eventId: 2}}};
-            ctrl = $controller('afolEventRegistration', { $scope: scope, $route: route});
+            route = {
+                current: {
+                    params: {
+                        eventId: 2
+                    }
+                }
+            };
+            ctrl = $controller('afolEventRegistration', {
+                $scope: scope,
+                $route: route
+            });
             mockBackend = _$httpBackend_;
             mockBackend.expectGET('/controllers/public/eventDates.php').respond(201, eventDates);
             mockBackend.expectGET('/controllers/public/event.php?eventId=2').respond(201, eventDetails);

@@ -5,7 +5,7 @@
 describe('About Us controllers', function() {
     var scope, ctrl, location, mockBackend, firstImage, lastImage, lastIndex, totalImages;
 
-    beforeEach (module('Public'));
+    beforeEach(module('Public'));
 
     describe('Default Functionality', function() {
         beforeEach(inject(function(_$controller_, _$rootScope_, _$location_) {
@@ -67,7 +67,13 @@ describe('About Us controllers', function() {
         }));
 
         it('should have an imageUrl variable for inbounds eventIds', function() {
-            var route = { current: { params: { eventId: 0 } } };
+            var route = {
+                current: {
+                    params: {
+                        eventId: 0
+                    }
+                }
+            };
             ctrl('aboutUs', {
                 $scope: scope,
                 $route: route
@@ -81,7 +87,13 @@ describe('About Us controllers', function() {
         });
 
         it('should have an imageUrl variable for out of bounds eventIds', function() {
-            var route = { current: { params: { eventId: 22 } } };
+            var route = {
+                current: {
+                    params: {
+                        eventId: 22
+                    }
+                }
+            };
             ctrl('aboutUs', {
                 $scope: scope,
                 $route: route
@@ -95,7 +107,13 @@ describe('About Us controllers', function() {
         });
 
         it('should have an imageUrl variable for last eventIds', function() {
-            var route = { current: { params: { eventId: lastIndex } } };
+            var route = {
+                current: {
+                    params: {
+                        eventId: lastIndex
+                    }
+                }
+            };
             ctrl('aboutUs', {
                 $scope: scope,
                 $route: route
@@ -118,7 +136,13 @@ describe('About Us controllers', function() {
         }));
 
         it('should have an imageUrl variable for inbounds eventIds', function() {
-            var route = { current: { params: { eventId: 6 } } };
+            var route = {
+                current: {
+                    params: {
+                        eventId: 6
+                    }
+                }
+            };
             ctrl('aboutUs', {
                 $scope: scope,
                 $route: route
@@ -132,7 +156,13 @@ describe('About Us controllers', function() {
         });
 
         it('should have an imageUrl variable for out of bounds eventIds', function() {
-            var route = { current: { params: { eventId: 22 } } };
+            var route = {
+                current: {
+                    params: {
+                        eventId: 22
+                    }
+                }
+            };
             ctrl('aboutUs', {
                 $scope: scope,
                 $route: route
@@ -146,7 +176,13 @@ describe('About Us controllers', function() {
         });
 
         it('should have an imageUrl variable for last eventIds', function() {
-            var route = { current: { params: { eventId: 0 } } };
+            var route = {
+                current: {
+                    params: {
+                        eventId: 0
+                    }
+                }
+            };
             ctrl('aboutUs', {
                 $scope: scope,
                 $route: route
@@ -168,7 +204,7 @@ describe('About Us controllers', function() {
         }));
 
         it('should have an eventID variable', function() {
-            var route = { };
+            var route = {};
             ctrl('aboutUs', {
                 $scope: scope,
                 $route: route
@@ -177,7 +213,9 @@ describe('About Us controllers', function() {
         });
 
         it('should have an eventID variable', function() {
-            var route = { current: { } };
+            var route = {
+                current: {}
+            };
             ctrl('aboutUs', {
                 $scope: scope,
                 $route: route
@@ -186,7 +224,11 @@ describe('About Us controllers', function() {
         });
 
         it('should have an eventID variable', function() {
-            var route = { current: { params: { } } };
+            var route = {
+                current: {
+                    params: {}
+                }
+            };
             ctrl('aboutUs', {
                 $scope: scope,
                 $route: route

@@ -19,7 +19,7 @@ describe('controllers', function() {
     describe('TableRegistration Controller', function() {
         var mockBackend, loader, location, response, route;
 
-        beforeEach(inject(function($controller, $rootScope, $location, _$httpBackend_ , $route) {
+        beforeEach(inject(function($controller, $rootScope, $location, _$httpBackend_, $route) {
             route = $route;
             route = {
                 current: {
@@ -31,7 +31,10 @@ describe('controllers', function() {
                 }
             };
             scope = $rootScope.$new();
-            ctrl = $controller('TableRegistration', { $scope: scope, $route: route});
+            ctrl = $controller('TableRegistration', {
+                $scope: scope,
+                $route: route
+            });
             location = $location;
             mockBackend = _$httpBackend_;
             mockBackend.expectGET('/controllers/public/event.php?eventId=2').respond(201, eventDetails);
@@ -118,7 +121,9 @@ describe('controllers', function() {
 
             it('should create a table order', function() {
                 scope.submitTableRegistration();
-                mockBackend.expectPOST('/controllers/registered/vendors/tableRegistration.php', tableDTO).respond(201, {storeId: '1234'});
+                mockBackend.expectPOST('/controllers/registered/vendors/tableRegistration.php', tableDTO).respond(201, {
+                    storeId: '1234'
+                });
                 mockBackend.flush();
                 expect(scope.isTableUpdate).toBe(false);
                 expect(scope.buttonText).toBe('Register');

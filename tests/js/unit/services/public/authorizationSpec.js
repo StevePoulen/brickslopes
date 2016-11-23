@@ -15,7 +15,10 @@ describe('service', function() {
         describe('Login', function() {
             var mockBackend, loader, data, credentials;
             beforeEach(inject(function(_$httpBackend_, Auth) {
-                credentials = {'email': 'brian@bs.com', 'password': 'LEGO'};
+                credentials = {
+                    'email': 'brian@bs.com',
+                    'password': 'LEGO'
+                };
                 mockBackend = _$httpBackend_;
                 loader = Auth;
                 var payload = {
@@ -64,7 +67,10 @@ describe('service', function() {
         describe('Update', function() {
             var mockBackend, loader, data, credentials;
             beforeEach(inject(function(_$httpBackend_, Auth) {
-                credentials = {'oldPassword': 'oldSecure', 'newPassword': 'newSecure'};
+                credentials = {
+                    'oldPassword': 'oldSecure',
+                    'newPassword': 'newSecure'
+                };
                 mockBackend = _$httpBackend_;
                 loader = Auth;
                 mockBackend.expectPATCH('/controllers/public/authentication.php', credentials).respond('success');

@@ -44,7 +44,7 @@ describe('directives', function() {
                 expect($(element).find('.actionButtonDeleteGames').hasClass('ng-hide')).toBe(false);
             });
         });
-        
+
         describe('Contents - always true', function() {
             beforeEach(function() {
                 scope.game = {

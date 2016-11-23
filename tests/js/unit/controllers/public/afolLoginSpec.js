@@ -16,7 +16,9 @@ describe('controllers', function() {
         var mockBackend, loader, window;
         beforeEach(inject(function($controller, $rootScope, $location, _$httpBackend_, $window) {
             scope = $rootScope.$new();
-            ctrl = $controller('afolLogin', { $scope: scope});
+            ctrl = $controller('afolLogin', {
+                $scope: scope
+            });
             location = $location;
             mockBackend = _$httpBackend_;
             window = $window;
@@ -215,7 +217,9 @@ describe('controllers', function() {
         describe('Reset Password', function() {
             it('should reset a user password', function() {
                 scope.resetPassword();
-                scope.resetPasswordForm = {'$setPristine': function() {}};
+                scope.resetPasswordForm = {
+                    '$setPristine': function() {}
+                };
                 expect(scope.verifying).toBe(true);
                 mockBackend.expectPUT('/controllers/public/authentication.php').respond(201);
                 mockBackend.flush();

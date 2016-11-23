@@ -12,7 +12,9 @@ describe('controllers', function() {
         var mockBackend, loader, location;
         beforeEach(inject(function($controller, $rootScope, _$httpBackend_, $location) {
             scope = $rootScope.$new();
-            ctrl = $controller('afolEventThemes', { $scope: scope});
+            ctrl = $controller('afolEventThemes', {
+                $scope: scope
+            });
             mockBackend = _$httpBackend_;
             mockBackend.expectGET('/controllers/paid/themes.php?eventId=2').respond(201, window.themes);
             location = $location;

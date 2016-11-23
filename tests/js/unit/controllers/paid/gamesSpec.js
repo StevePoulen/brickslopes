@@ -12,7 +12,9 @@ describe('controllers', function() {
         var mockBackend, location;
         beforeEach(inject(function($controller, $rootScope, _$httpBackend_, $location) {
             scope = $rootScope.$new();
-            ctrl = $controller('afolEventGames', { $scope: scope});
+            ctrl = $controller('afolEventGames', {
+                $scope: scope
+            });
             mockBackend = _$httpBackend_;
             mockBackend.expectGET('/controllers/paid/games.php?eventId=2').respond(201, games);
             mockBackend.expectGET('/controllers/paid/gameUser.php?eventId=2').respond(userGames);
@@ -60,7 +62,9 @@ describe('controllers', function() {
         beforeEach(inject(function($controller, $rootScope, _$httpBackend_, $location) {
             location = $location;
             scope = $rootScope.$new();
-            ctrl = $controller('afolEventGames', { $scope: scope});
+            ctrl = $controller('afolEventGames', {
+                $scope: scope
+            });
             mockBackend = _$httpBackend_;
             var expectedPayload = {
                 eventId: 2,
@@ -103,7 +107,9 @@ describe('controllers', function() {
         var mockBackend;
         beforeEach(inject(function($controller, $rootScope, _$httpBackend_) {
             scope = $rootScope.$new();
-            ctrl = $controller('afolEventGames', { $scope: scope});
+            ctrl = $controller('afolEventGames', {
+                $scope: scope
+            });
             mockBackend = _$httpBackend_;
             mockBackend.expectGET('/controllers/paid/games.php?eventId=2').respond(201, games);
             mockBackend.expectGET('/controllers/paid/gameUser.php?eventId=2').respond(userGames);

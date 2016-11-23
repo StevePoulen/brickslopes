@@ -18,11 +18,21 @@ describe('controllers', function() {
     }));
 
     describe('vendorRegistration Controller', function() {
-        beforeEach(inject(function($controller, $rootScope, $location, _$httpBackend_ , $route) {
+        beforeEach(inject(function($controller, $rootScope, $location, _$httpBackend_, $route) {
             route = $route;
-            route = {current: {params:{eventId:2, storeId:'undefined'}}};
+            route = {
+                current: {
+                    params: {
+                        eventId: 2,
+                        storeId: 'undefined'
+                    }
+                }
+            };
             scope = $rootScope.$new();
-            ctrl = $controller('vendorRegistration', { $scope: scope, $route: route});
+            ctrl = $controller('vendorRegistration', {
+                $scope: scope,
+                $route: route
+            });
             location = $location;
             mockBackend = _$httpBackend_;
         }));
@@ -86,13 +96,17 @@ describe('controllers', function() {
             });
 
             it('should create a store', function() {
-                scope.registrationForm = {'$setPristine': function() {}};
+                scope.registrationForm = {
+                    '$setPristine': function() {}
+                };
                 scope.name = 'My Store';
                 scope.description = 'The sweet life';
                 scope.url = 'https://www.url.com';
                 scope.logo = 'https://www.logo.com';
                 scope.submitRegistration();
-                mockBackend.expectPOST('/controllers/registered/vendors/vendorRegistration.php', vendorDTO).respond(201, {storeId: '1234'});
+                mockBackend.expectPOST('/controllers/registered/vendors/vendorRegistration.php', vendorDTO).respond(201, {
+                    storeId: '1234'
+                });
                 mockBackend.flush();
                 expect(location.path()).toBe('/registered/2/1234/tableRegistration.html');
                 expect(scope.buttonText).toBe('Register');
@@ -126,14 +140,25 @@ describe('controllers', function() {
                     url: 'https://www.url.com',
                     logo: 'https://www.logo.com'
                 }
-                route = {current: {params:{storeId:2}}};
-                ctrl = $controller('vendorRegistration', { $scope: scope, $route: route});
+                route = {
+                    current: {
+                        params: {
+                            storeId: 2
+                        }
+                    }
+                };
+                ctrl = $controller('vendorRegistration', {
+                    $scope: scope,
+                    $route: route
+                });
             }));
 
             it('should update a store', function() {
                 scope.isStoreUpdate = true;
                 scope.called = true;
-                scope.registrationForm = {'$setPristine': function() {}};
+                scope.registrationForm = {
+                    '$setPristine': function() {}
+                };
                 scope.name = 'My Store';
                 scope.description = 'The sweet life';
                 scope.url = 'https://www.url.com';

@@ -3,7 +3,7 @@ describe('controllers', function() {
 
     var scope, ctrl, location;
 
-    beforeEach (module ('brickSlopes'));
+    beforeEach(module('brickSlopes'));
 
     beforeEach(function() {
         this.addMatchers({
@@ -17,7 +17,9 @@ describe('controllers', function() {
         var mockBackend;
         beforeEach(inject(function($controller, $rootScope, $location, _$httpBackend_) {
             scope = $rootScope.$new();
-            ctrl = $controller('adminFeedback', { $scope: scope});
+            ctrl = $controller('adminFeedback', {
+                $scope: scope
+            });
             location = $location;
             mockBackend = _$httpBackend_;
             mockBackend.expectGET('/controllers/public/feedback.php').respond(201, feedback);

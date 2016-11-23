@@ -1,13 +1,15 @@
 describe('controllers', function() {
     'use strict';
     var window, scope, ctrl;
-    beforeEach (module ('brickSlopes'));
+    beforeEach(module('brickSlopes'));
 
     describe('RouteProvider', function() {
         var rootScope, route, location, mockBackend, window;
         beforeEach(inject(function(_$rootScope_, _$route_, _$location_, _$httpBackend_, _$window_) {
             window = _$window_;
-            window._ga = { push: function(data) { } };
+            window._ga = {
+                push: function(data) {}
+            };
             mockBackend = _$httpBackend_;
             route = _$route_;
             rootScope = _$rootScope_;
@@ -119,43 +121,57 @@ describe('controllers', function() {
         describe('BrickSlopes deleteSession if jwt data is missing', function() {
             it('should have an undefined token', function() {
                 expect(window.sessionStorage.token).toBe('1234567890');
-                storeSession(window, {token: '1234567890'});
+                storeSession(window, {
+                    token: '1234567890'
+                });
                 expect(window.sessionStorage.token).toBeUndefined();
             });
 
             it('should have an undefined firstName', function() {
                 expect(window.sessionStorage.firstName).toBe('Ember');
-                storeSession(window, {firstName: 'Ember'});
+                storeSession(window, {
+                    firstName: 'Ember'
+                });
                 expect(window.sessionStorage.firstName).toBeUndefined();
             });
 
             it('should have an undefined lastName', function() {
                 expect(window.sessionStorage.lastName).toBe('Pilati');
-                storeSession(window, {lastName: 'Ember'});
+                storeSession(window, {
+                    lastName: 'Ember'
+                });
                 expect(window.sessionStorage.lastName).toBeUndefined();
             });
 
             it('should have an undefined Admin', function() {
                 expect(window.sessionStorage.admin).toBe('NO');
-                storeSession(window, {admin: 'NO'});
+                storeSession(window, {
+                    admin: 'NO'
+                });
                 expect(window.sessionStorage.admin).toBeUndefined();
             });
 
             it('should have an undefined Registered', function() {
                 expect(window.sessionStorage.registered).toBe('YES');
-                storeSession(window, {registered: 'YES'});
+                storeSession(window, {
+                    registered: 'YES'
+                });
                 expect(window.sessionStorage.registered).toBeUndefined();
             });
 
             it('should have an undefined paid', function() {
                 expect(window.sessionStorage.paid).toBe('YES');
-                storeSession(window, {paid: 'YES'});
+                storeSession(window, {
+                    paid: 'YES'
+                });
                 expect(window.sessionStorage.paid).toBeUndefined();
             });
 
             it('should have an undefined userId', function() {
                 expect(window.sessionStorage.userId).toBe('080898');
-                storeSession(window, {userId: '051675'});
+                storeSession(window, {
+                    userId: '051675'
+                });
                 expect(window.sessionStorage.userId).toBeUndefined();
             });
         });
