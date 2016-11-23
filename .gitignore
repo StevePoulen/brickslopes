@@ -21,6 +21,7 @@ vendor/
 tests/js/lib/
 dependencies/
 app/fonts/
+app/php/lib/mocCards/mocPrintOffs/
 app/lib/lodash.min.js
 app/lib/bootstrap.min.js
 app/lib/ui-bootstrap.min.js

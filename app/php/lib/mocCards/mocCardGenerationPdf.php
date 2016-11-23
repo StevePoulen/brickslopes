@@ -128,13 +128,13 @@
                 $this->mocs[2]
             );
             $counter = 1;
+            $total_counter = 0;
             $file_suffix = 1;
             $total_mocs = sizeof($this->mocs);
-            $total_files = $total_mocs / 3;
+            $total_files = ceil($total_mocs / 3);
             echo "Total number of mocs: $total_mocs\n\n";
             echo "Total expected files: $total_files\n\n";
             foreach($this->mocs as $moc) {
-            //foreach($demo as $moc) {
                 $html = "
                     <html>
                         <head>
@@ -260,8 +260,9 @@
                     </div>
                 ";
                 fwrite($myFile, $txt);
+                $total_counter++;
 
-                if ($counter === 3 || $file_suffix === $total_mocs) {
+                if ($counter === 3 || $total_counter === $total_mocs) {
                     $html = "
                                 </div>
                             </body>
@@ -272,7 +273,7 @@
 
                 $counter++;
 
-                if ($counter === 4) {
+                if ($counter === 4 || $total_counter === $total_mocs) {
                     $counter = 1;
                     fclose($myFile);
                     $pdfFileName = "mocPrintOffs/index_" . $file_suffix . ".pdf";
