@@ -1,0 +1,95 @@
+-- MySQL dump 10.11
+--
+-- Host: localhost    Database: mysql
+-- ------------------------------------------------------
+-- Server version	5.0.83
+
+USE `brickslopes`;
+
+INSERT INTO `themes` (eventId, theme, type, selectable) VALUES
+(4, 'Castle and Adventure', 'AFOL', 'YES'),
+(4, 'City and Train', 'AFOL', 'YES'),
+(4, 'Technic', 'AFOL', 'YES'),
+(4, 'Space', 'AFOL', 'YES'),
+(4, 'Sculpture and Mosaic', 'AFOL', 'YES'),
+(4, 'BrickSlopes Awards', 'AFOL', 'NO'),
+(4, 'Public Awards', 'PUBLIC', 'NO'),
+(4, 'TFOL Awards', 'TFOL', 'NO'),
+(4, 'BCS Awards', 'BCS', 'NO');
+
+INSERT INTO `themeAwards` (themeId, award, place) VALUES
+(23, 'Overall Best Castle and Adventure', 1),
+(23, 'Best Castle', 2),
+(23, 'Best Pirate', 3),
+(23, 'Best Historical', 4),
+(23, 'Best Steam Punk', 5),
+
+(24, 'Overall Best City and Train', 1),
+(24, 'Best Building', 2),
+(24, 'Best Train', 3),
+(24, 'Best Vehicle (Non Train)', 4),
+(24, 'Best Modern Military', 5),
+
+(25, 'Overall Best Technic', 1),
+(25, 'Best Technic', 2),
+(25, 'Best GBC Module (aka Steve\'s Award)', 3),
+
+(26, 'Overall Best of Space', 1),
+(26, 'Best Space Ship', 2),
+(26, 'Best Space Base', 3),
+(26, 'Best Space Vehicle', 4),
+
+(27, 'Best Sculpture', 1),
+(27, 'Best Mosiac (1 Baseplate or smaller)', 2),
+
+(28, 'AFOL Choice', 1),
+(28, 'Best Part Usage', 2),
+(28, 'Best Collaboration', 3),
+(28, 'Best Custom Fig', 4),
+(28, 'Best Scene', 5),
+(28, 'Pop Culture 1st', 6),
+(28, 'Best Video Game Related', 7),
+(28, 'Best Small', 8),
+
+(29, 'Public Choice - 1st Place', 1),
+(29, 'Public Choice - 2nd Place', 2),
+(29, 'Public Choice - 3rd Place', 3),
+
+(30, 'Best TFOL', 1),
+
+(31, 'The Steve Award', 1),
+(31, 'The Cody Award', 2),
+(31, 'The Brian Award', 3);
+
+-- Games
+
+
+INSERT INTO `games` (gameId, game, description, image, maxParticipants, currentParticipants, openRegistration, fee) VALUES
+(
+'16',
+'Master Build (Seed Part)',
+'BrickSlopes provides a mystery part in large quantities and 2 hours for builders to create a MOC from the seed part, any bricks from home or the BrickPit.<p>Each builder presents and explains their creation to the judges who select a winner.<p>The winner gets a prize and keeps all the bricks in their creation. All other builders return Bricks used form the BrickPit, however all participants are allowed to keep the mystery bricks used.',
+'https://www.brickslopes.com/images/games/Master-Build-t.png',
+'50',
+'0',
+'YES',
+'NO'),
+
+(
+'17',
+'Truck Trials',
+'Each Builder, or team of builders brings a completed truck to the event. The trucks must be remotely controlled using LEGO elements. At the event, a course will be plotted, and the teams will race to complete the course in the shortest amount of time.<p>Trucks may be as big or small as desired, but must use only LEGO elements.<p>The participant, or team with the fastest time wins, and will receive an award at the closing ceremonies.',
+'https://www.brickslopes.com/images/games/Truck-Trials-t.png',
+'50',
+'0',
+'YES',
+'NO');
+
+
+INSERT INTO `gamesEventsConnector` (gameId, eventId, display) VALUES
+(16, 4, 'YES'),
+(17, 4, 'YES');
+
+
+UPDATE `gamesEventsConnector` SET display = 'NO' where gameEventConnectorId in (32, 38);
+
