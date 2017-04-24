@@ -1,6 +1,6 @@
-<div id="dashboard">
-    <div id="splashPage">
-        <div class="packageSplashText">
+<div id="dashboard" style="height: 800px">
+    <div id="splashPage" style="height: 775px">
+        <div class="packageSplashText" style="height: 700px">
             <div>
                 <h2><bs-text text="{{eventYear}} Packages"></bs-text></h2>
             </div>
@@ -14,18 +14,14 @@
                     <tr ng-repeat="package in packageList">
                         <td class="description" ng-bind="package"></td>
                         <td>
-                            <div class="buyTicketsButton">
-                                <button class="actionButtonSquare" ng-click="purchaseTickets()">
-                                    <bs-text text="Order" font-color=white font-size=1.75></bs-text>
-                                </button>
-                            </div>
+                            <button class="actionButtonSquare" ng-click="purchaseTickets()">
+                                <bs-text text="Order" font-color=white font-size=.75></bs-text>
+                            </button>
                         </td>
                         <td>
-                            <div class="buyTicketsButton">
-                                <button class="actionButtonSquare" ng-click="purchaseTickets()">
-                                    <bs-text text="Order" font-color=white font-size=1.75></bs-text>
-                                </button>
-                            </div>
+                            <button class="actionButtonSquare" ng-click="purchaseTickets()">
+                                <bs-text text="Order" font-color=white font-size=.75></bs-text>
+                            </button>
                         </td>
                     </tr>
                 </table>

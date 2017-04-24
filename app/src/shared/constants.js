@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('constants', []).constant('Environment', {
-        displayTickets: false,
+        displayTickets: true,
         currentEvent: 4
     });
 })(angular);

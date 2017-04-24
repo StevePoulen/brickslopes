@@ -40,7 +40,7 @@
             }
 
             $scope.purchaseTickets = function() {
-                openNewWindow("https://www.eventbrite.com/e/brickslopes-2016-tickets-24371506833");
+                openNewWindow("https://www.eventbrite.com/e/brickslopes-2017-tickets-31429702085");
             }
 
             $scope.packages = function() {
