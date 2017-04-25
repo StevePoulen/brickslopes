@@ -265,22 +265,26 @@ angular.module('brickSlopes')
         templateUrl: 'partials/public/feedback.html',
     }
 })
-.directive('bsGameRegistration', function() {
+.directive('bsGameRegistration', [
+    'Environment',
+    function(
+        Environment
+    ) {
     return {
         restrict: 'E',
         replace: true,
         templateUrl: 'partials/paid/bsGameRegistration.html',
-        link: function(scope, elem, attrs) {
+        link: function(scope) {
             scope.$watch("userGameList", function() {
                 scope.isRegistered = (scope.userGameList[scope.game.gameId] ? true : false);
             });
             
             scope.canRegister = function() {
-                return false;
+                return Environment.registerGames;
             }
         }
     }
-})
+}])
 .directive('bsTour', ['$rootScope', 'UserDetails', '$window', '$sce', 'BrickSlopesText', '$timeout', 'EventDetails', function($rootScope, UserDetails, $window, $sce, BrickSlopesText, $timeout, EventDetails) {
     return {
         restrict: 'E',

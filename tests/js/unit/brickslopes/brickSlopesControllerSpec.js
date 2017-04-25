@@ -58,7 +58,7 @@ describe('controllers', function() {
         it('should redirect to the tickets page', function() {
             spyOn(window, "open");
             scope.purchaseTickets();
-            expect(window.open).toHaveBeenCalledWith('https://www.eventbrite.com/e/brickslopes-2016-tickets-24371506833', '_blank');
+            expect(window.open).toHaveBeenCalledWith('https://www.eventbrite.com/e/brickslopes-2017-tickets-31429702085', '_blank');
         });
 
         it('should redirect to the packages page', function() {

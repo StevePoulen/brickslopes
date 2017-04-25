@@ -41,7 +41,7 @@ describe('directives', function() {
             });
 
             it('should have a hidden Remove button', function() {
-                expect($(element).find('.actionButtonDeleteGames').hasClass('ng-hide')).toBe(false);
+                expect($(element).find('.actionButtonDeleteGames').hasClass('ng-hide')).toBe(true);
             });
         });
 
