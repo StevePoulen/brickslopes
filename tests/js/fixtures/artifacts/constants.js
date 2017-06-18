@@ -2,7 +2,7 @@
 
     angular.module('constants', []).constant('Environment', {
         displayTickets: true,
-        registerGames: true,
+        registerGames: false,
         currentEvent: 4
     });
 })(angular);
