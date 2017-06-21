@@ -12,7 +12,7 @@
         }
 
         private function buildMocs() {
-            $this->mocObj->getMocInformation(3);
+            $this->mocObj->getMocInformation(4);
             if ($this->mocObj->result) {
                 while($dbObj = $this->mocObj->result->fetch_object()) {
                     array_push (
@@ -69,6 +69,8 @@
 
             $card_width = $page_width / 3 - ($card_border * 2);
             $card_width_display = $card_width . 'px';
+            $card_width_half = ($card_width - 4) / 2;
+            $card_width_half_display = $card_width_half . 'px';
 
             $indent_margin = 10;
             $indent_margin_display = $indent_margin . 'px';
@@ -93,7 +95,6 @@
             $banner_height = getBannerHeight($banner_width);
             $banner_height_display = $banner_height . 'px';
 
-
             function getFrontMargin() {
                 return 5;
             }
@@ -108,10 +109,13 @@
             $description_height = calculateFrontHeight(.5, $card_front_height, $banner_width);
             $description_height_display = $description_height . 'px';
 
+            $minor_details_height = calculateFrontHeight(.1, $card_front_height, $banner_width);
+            $minor_details_height_display = $minor_details_height . 'px';
+
             $title_height = calculateFrontHeight(.3, $card_front_height, $banner_width);
             $title_height_display = $title_height . 'px';
 
-            $theme_height = calculateFrontHeight(.2, $card_front_height, $banner_width);
+            $theme_height = calculateFrontHeight(.1, $card_front_height, $banner_width);
             $theme_height_display = $theme_height . 'px';
 
             $demo = array();
@@ -210,6 +214,34 @@
                                    margin-top: $front_margin_display;
                                }
 
+                               .minorDetails {
+                                   position: relative;
+                                   width: $card_inner_width_display;
+                                   text-align: center;
+                                   font-size: 1em;
+                                   white-space: normal;
+                                   word-wrap: break-word;
+                                   overflow: hidden;
+                                   text-overflow: ellipsis;
+                                   height: $minor_details_height_display;
+                                   margin-top: $front_margin_display;
+                               }
+
+                               .minorDetails .minorDetailYear {
+                                   position: absolute;
+                                   left: 0px;
+                                   width: $card_width_half_display;
+                                   font-style: italic;
+                                   text-align: left;
+                               }
+
+                               .minorDetails .minorDetailNumber {
+                                   position: absolute;
+                                   right: 0px;
+                                   width: $card_width_half_display;
+                                   text-align: right;
+                               }
+
                                .mocTheme {
                                    position: relative;
                                    margin-top: $front_margin_display;
@@ -221,6 +253,7 @@
                                    overflow: hidden;
                                    text-overflow: ellipsis;
                                    height: $theme_height_display;
+                                   font-style: italic;
                                }
 
                                .banner {
@@ -243,6 +276,8 @@
                     fwrite($myFile, $html);
                 }
 
+                $moc_number = $total_counter + 1;
+
                 $txt = "
                     <div class='printMocContainer'>
                         <div class='back'></div>
@@ -253,8 +288,16 @@
                             </div>
                             <div class='description'>{$moc['description']}</div>
                             <div class='mocTheme'>{$moc['theme']}</div>
+                            <div class='minorDetails'>
+                                <div class='minorDetailYear'>
+                                    2017
+                                </div>
+                                <div class='minorDetailNumber'>
+                                    #{$moc_number}
+                                </div>
+                            </div>
                             <div class='banner'>
-                                <img class='bannerImage' src='../../../../images/publicPics/banners/bs-2016-horizontal-banner.png'></img>
+                                <img class='bannerImage' src='../../../../images/publicPics/banners/bs-2017-horizontal-banner.png'></img>
                             </div>
                         </div>
                     </div>
@@ -279,7 +322,7 @@
                     $pdfFileName = "mocPrintOffs/index_" . $file_suffix . ".pdf";
                     exec('phantomjs rasterize.js ' . $fileName . ' ' . $pdfFileName);
                     $file_suffix++;
-                    echo "$pdfFileName\n";
+                    echo "$pdfFileName => ($total_counter/$total_mocs)\n";
                 }
             }
         }
