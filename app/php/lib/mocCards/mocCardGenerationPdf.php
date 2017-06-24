@@ -11,6 +11,22 @@
             $this->buildMocs();
         }
 
+        private function addBlanks() {
+            $mod = sizeof($this->mocs) % 3;
+            $blanks = 33 - $mod;
+            for ($i = 0; $i<$blanks; $i++) {
+                array_push (
+                    $this->mocs,
+                    array (
+                        'title' => "",
+                        'displayName' => "",
+                        'description' => "",
+                        'theme' => ""
+                    )
+                );
+            }
+        }
+
         private function buildMocs() {
             $this->mocObj->getMocInformation(4);
             if ($this->mocObj->result) {
@@ -33,6 +49,8 @@
                     );
                 }
             }
+
+            $this->addBlanks();
         }
 
         public function buildImage($fileName) {
@@ -85,7 +103,7 @@
             $card_front_height_display = $card_front_height . 'px';
 
             function getBannerHeight($bannerWidth) {
-                return $bannerWidth / 3.86;
+                return $bannerWidth / 3.6;
                 //return getPageHeight() * .13;
             }
 
@@ -118,19 +136,6 @@
             $theme_height = calculateFrontHeight(.1, $card_front_height, $banner_width);
             $theme_height_display = $theme_height . 'px';
 
-            $demo = array();
-            array_push(
-                $demo,
-                $this->mocs[0]
-            );
-            array_push(
-                $demo,
-                $this->mocs[1]
-            );
-            array_push(
-                $demo,
-                $this->mocs[2]
-            );
             $counter = 1;
             $total_counter = 0;
             $file_suffix = 1;
@@ -278,13 +283,16 @@
 
                 $moc_number = $total_counter + 1;
 
+                $title = $moc['title'] == "" ? '' : "\"{$moc['title']}\"";
+                $builder = $moc['displayName'] == "" ? '' : "by {$moc['displayName']}";
+
                 $txt = "
                     <div class='printMocContainer'>
                         <div class='back'></div>
                         <div class='front'>
                             <div class='title'>
-                                \"<span class='bold'>{$moc['title']}</span>\"
-                                <div>by <span>{$moc['displayName']}</span></div>
+                                <span class='bold'>$title</span>
+                                <div>$builder</div>
                             </div>
                             <div class='description'>{$moc['description']}</div>
                             <div class='mocTheme'>{$moc['theme']}</div>
