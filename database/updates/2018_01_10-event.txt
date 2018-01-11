@@ -1,0 +1,103 @@
+-- MySQL dump 10.11
+--
+-- Host: localhost    Database: mysql
+-- ------------------------------------------------------
+-- Server version	5.0.83
+
+USE `brickslopes`;
+
+insert into `events` (name, city, state, year, discountDate) VALUES ('BrickSlopes', 'Salt Lake City', 'Utah', 2018, '2018-04-15 23:59:59');
+
+insert into `eventDates` (eventId, startDate, endDate, type) VALUES 
+(5, '2018-06-28 19:00:00', '2017-06-29 02:00:00', 'AFOL'),
+(5, '2018-06-29 16:00:00', '2017-06-30 06:59:59', 'AFOL'),
+(5, '2018-06-30 16:00:00', '2017-07-01 06:59:59', 'AFOL'),
+(5, '2018-06-29 18:00:00', '2017-06-30 02:00:00', 'PUBLIC'),
+(5, '2018-06-30 16:00:00', '2017-07-01 23:00:00', 'PUBLIC');
+
+INSERT INTO `eventLineItems` (eventId, eventLineItemCodeId, lineItem, cost, discount, linkType, linkId, active) VALUES 
+(5,1,'3 Day Event Pass',70.00,55.00,'NONE',0,'YES'),
+(5,2,'T-Shirt',20.00,15.00,'NONE',0,'YES'),
+(5,3,'Meet And Greet',15.00,10.00,'NONE',0,'YES'),
+(5,4,'Complete Name Badge',15.00,10.00,'NONE',0,'YES'),
+(5,5,'1st Badge Brick',0.00,0.00,'NONE',0,'YES'),
+(5,6,'2nd Badge Brick',0.00,0.00,'NONE',0,'YES'),
+(5,7,'Event Badge Brick',0.00,0.00,'NONE',0,'YES'),
+(5,8,'Draft - $15',15.00,15.00,'GAME',3,'YES'),
+(5,9,'Draft - $25',25.00,25.00,'GAME',4,'YES'),
+(5,10,'1st Vendor Table',200.00,200.00,'NONE',0,'YES'),
+(5,11,'Vendor Pass',0.00,0.00,'NONE',0,'YES'),
+(5,12,'Additional Vendor Tables',100.00,100.00,'NONE',0,'YES'),
+(5,13,'Associate Pass',15.00,10.00,'NONE',0,'YES');
+
+INSERT INTO `gamesEventsConnector` (gameId, eventId, display) VALUES
+(2, 5, 'YES'),
+(3, 5, 'YES'),
+(4, 5, 'YES'),
+(5, 5, 'YES'),
+(6, 5, 'YES'),
+(7, 5, 'YES'),
+(9, 5, 'YES'),
+(10, 5, 'YES'),
+(11, 5, 'YES'),
+(12, 5, 'YES'),
+(13, 5, 'YES'),
+(14, 5, 'YES'),
+(15, 5, 'YES'),
+(16, 5, 'YES'),
+(17, 5, 'YES');
+
+INSERT INTO `themes` (eventId, theme, type, selectable) VALUES
+(5, 'Castle and Adventure', 'AFOL', 'YES'),
+(5, 'City and Train', 'AFOL', 'YES'),
+(5, 'Technic', 'AFOL', 'YES'),
+(5, 'Space', 'AFOL', 'YES'),
+(5, 'Sculpture and Mosaic', 'AFOL', 'YES'),
+(5, 'BrickSlopes Awards', 'AFOL', 'NO'),
+(5, 'Public Awards', 'PUBLIC', 'NO'),
+(5, 'TFOL Awards', 'TFOL', 'NO'),
+(5, 'BCS Awards', 'BCS', 'NO');
+
+INSERT INTO `themeAwards` (themeId, award, place) VALUES
+(32, 'Overall Best Castle and Adventure', 1),
+(32, 'Best Castle', 2),
+(32, 'Best Pirate', 3),
+(32, 'Best Historical', 4),
+(32, 'Best Steam Punk', 5),
+
+(33, 'Overall Best City and Train', 1),
+(33, 'Best Building', 2),
+(33, 'Best Train', 3),
+(33, 'Best Vehicle (Non Train)', 4),
+(33, 'Best Modern Military', 5),
+
+(34, 'Overall Best Technic', 1),
+(34, 'Best Technic', 2),
+(34, 'Best GBC Module (aka Steve\'s Award)', 3),
+
+(35, 'Overall Best of Space', 1),
+(35, 'Best Space Ship', 2),
+(35, 'Best Space Base', 3),
+(35, 'Best Space Vehicle', 4),
+
+(36, 'Best Sculpture', 1),
+(36, 'Best Mosiac (1 Baseplate or smaller)', 2),
+
+(37, 'AFOL Choice', 1),
+(37, 'Best Part Usage', 2),
+(37, 'Best Collaboration', 3),
+(37, 'Best Custom Fig', 4),
+(37, 'Best Scene', 5),
+(37, 'Pop Culture 1st', 6),
+(37, 'Best Video Game Related', 7),
+(37, 'Best Small', 8),
+
+(38, 'Public Choice - 1st Place', 1),
+(38, 'Public Choice - 2nd Place', 2),
+(38, 'Public Choice - 3rd Place', 3),
+
+(39, 'Best TFOL', 1),
+
+(40, 'The Steve Award', 1),
+(40, 'The Cody Award', 2),
+(40, 'The Brian Award', 3);
