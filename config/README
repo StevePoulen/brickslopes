@@ -1,0 +1,17 @@
+HOW TO CONFIGURATION THE GMAIL CLIENT
+
+The gmail oauth will expire every 6 months which is ironic because we typically have a
+bunch of activity until June and then nothing until February and the token expires
+
+The same token can be used locally and on the server.
+
+Step 1- rename the config/credentials_token.json
+Step 2- php /app/php/lib/gmailOAuth.php
+Step 3- copy the url
+Step 4- login as brickslopes@gmail.com
+Step 5- Take the token and get the access_token and refresh_token
+Step 6- Put the two parameters in the credentials_token.json file and rename it back
+Step 7- Rerun Step #2
+
+done
+

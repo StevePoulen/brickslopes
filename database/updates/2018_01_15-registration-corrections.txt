@@ -1,0 +1,12 @@
+-- MySQL dump 10.11
+--
+-- Host: localhost    Database: mysql
+-- ------------------------------------------------------
+-- Server version	5.0.83
+
+USE `brickslopes`;
+
+update `registrations` set eventId = 5 where registrationDate > '2017-07-01';
+
+update `registrationLineItems` set eventId = 5 where entryDate > '2017-07-01';
+
