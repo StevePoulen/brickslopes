@@ -1,0 +1,13 @@
+-- MySQL dump 10.11
+--
+-- Host: localhost    Database: mysql
+-- ------------------------------------------------------
+-- Server version	5.0.83
+
+USE `brickslopes`;
+
+update `eventDates` set endDate = '2018-06-29 02:00:00' where endDate = '2017-06-29 02:00:00';
+update `eventDates` set endDate = '2018-06-30 05:59:59' where endDate = '2017-06-30 06:59:59';
+update `eventDates` set endDate = '2018-07-01 05:59:59' where endDate = '2017-07-01 06:59:59';
+update `eventDates` set endDate = '2018-06-30 02:00:00' where endDate = '2017-06-30 02:00:00';
+update `eventDates` set endDate = '2018-06-30 23:00:00' where endDate = '2017-07-01 23:00:00';

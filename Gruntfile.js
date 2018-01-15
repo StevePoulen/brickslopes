@@ -256,7 +256,7 @@ module.exports = function (grunt) {
     grunt.registerTask('jshint-auto', ['watch:jshint']);
 
     grunt.registerTask('build', ['build-setup']);
-    grunt.registerTask('build-setup', ['clean:build', 'install', 'lint', 'css', 'ngtemplates', 'uglify:deployed', 'copy:index', 'karma:src']);
+    grunt.registerTask('build-setup', ['clean:build', 'lint', 'css', 'ngtemplates', 'uglify:deployed', 'copy:index', 'karma:src']);
     grunt.registerTask('build-deploy', ['build-setup', 'copy:index']);
 
     grunt.loadNpmTasks('grunt-contrib-clean');

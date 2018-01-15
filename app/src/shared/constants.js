@@ -2,8 +2,8 @@
     'use strict';
 
     angular.module('constants', []).constant('Environment', {
-        displayTickets: true,
+        displayTickets: false,
         registerGames: true,
-        currentEvent: 4
+        currentEvent: 5
     });
 })(angular);
