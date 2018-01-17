@@ -70,6 +70,13 @@ config(['$routeProvider', '$httpProvider', '$locationProvider', function($routeP
         }
     )
     .when(
+        '/activity/index.html',
+        {
+            templateUrl: '/partials/public/activityGuide.html',
+            controller: 'bsIndex'
+        }
+    )
+    .when(
         '/coupon',
         {
             templateUrl: '/partials/public/discountFlier.html'

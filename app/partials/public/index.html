@@ -1,68 +1,74 @@
 <div id="dashboard">
-    <div id="splashPage">
-       <div id="splashText">
-            <bs-logo font-size="1.50"></bs-logo>
-            <br>
-            A LEGO Fan Event
-            <p>
-            Public Showing
-            <br>
-            <span ng-bind="publicEventDates"></span>
-            <p>
-            UCCU Events Center 
-            <br>
-            Orem, Utah
-            <p>
-            <span> 
-                <a href="/when/index.html">
-                    <bs-text text="More Information ..." font-size=0.75></bs-text>
-                </a>
-            </span>
-        </div>
-        <div class="tShirtContainer" ng-click="packages()">
-            <img class="tShirtImage" src="/images/publicPics/missouri.jpeg"/>
-            <!-- <img class="tShirtTextImage" src="/images/publicPics/enterprise.jpg"/> -->
-        </div>
-        <div class="tShirtTextContainer" ng-click="packages()">
-            <!--
-            Returning for
-            <br>
-            -->
-            <bs-logo font-size="1.50" text="2018"></bs-logo>
-            <p>
-                <span class="italic">The USS Missouri</span>
-            </p>
-        </div>
-        <div class="splashTextHome">
-            <div class="sponsorOne" ng-click="modernBrickWarfare()" ng-if="false">
-                <img title="Modern Brick Warfare" alt="Modern Brick Warfare" class="sponsorMedium borderRadius10" src="/images/publicPics/sponsors/ModernBrickWarfare-png-site.png" />
-            </div>
-            <div class="sponsorTwo" ng-click="chowrenToys()" ng-if="false">
-                <img title="Chowren Toys" alt="Chowren Toys" class="sponsor borderRadius10" src="/images/publicPics/sponsors/ChowrenToysLogo-png-site.png" />
-            </div>
-            <div class="sponsorThree" ng-if="false">
-                <img title="LEGO" alt="LEGO" class="sponsorSmall" src="/images/publicPics/sponsors/lego.png">
-            </div>
-        </div>
-        <div id="publicTickets">
-            <div ng-if="showOnlineTickets()">
-                <div class="publicTicketsText oneEMFont">
-                    <bs-text text="Buy tickets" font-color="black"></bs-text>
-                    <bs-text text="online and" font-color="black"></bs-text>
-                    <bs-text text="save time!" font-color="black"></bs-text>
-                </div>
-                <div class="buyTicketsButton">
-                    <button class="actionButtonSquare" ng-click="tickets()">
-                        <bs-text text="Buy Tickets" font-color=white font-size=1.5></bs-text>
-                    </button>
-                </div>
-            </div>
-            <div class="publicTicketsText twoEMFont" ng-if="!showOnlineTickets()">
-                <bs-text text="Tickets" font-color="black"></bs-text>
-                <bs-text text="available" font-color="black"></bs-text>
-                <bs-text text="at the door!" font-color="black"></bs-text>
-            </div>
-            <div id="splashDDCouch"><img class="fig" src="/images/publicPics/doubleDeckerCouch.jpg"></div>
-        </div>
+  <div id="splashPage">
+    <div id="splashText">
+      <bs-logo font-size="1.50"></bs-logo>
+      <br>
+      A LEGO Fan Event
+      <br>
+      <span ng-bind="publicEventDates"></span>
+      <p>
+        UCCU Events Center
+        <br>
+        Orem, Utah
+      </p>
+      <p>
+        <span>
+          <a href="/when/index.html">
+            <bs-text text="More Information ..." font-size=0.75></bs-text>
+          </a>
+        </span>
+        <br>
+        <span>
+          <a href="/activity/index.html">
+            <bs-text text="Activity Guide" font-size=0.75></bs-text>
+          </a>
+        </span>
+      </p>
     </div>
+      <div class="tShirtContainer" ng-click="packages()">
+          <img class="tShirtImage" src="/images/publicPics/missouri.jpeg"/>
+          <!-- <img class="tShirtTextImage" src="/images/publicPics/enterprise.jpg"/> -->
+      </div>
+      <div class="tShirtTextContainer" ng-click="packages()">
+          <!--
+          Returning for
+          <br>
+          -->
+          <bs-logo font-size="1.50" text="2018"></bs-logo>
+          <p>
+              <span class="italic">The USS Missouri</span>
+          </p>
+      </div>
+      <div class="splashTextHome">
+          <div class="sponsorOne" ng-click="modernBrickWarfare()" ng-if="false">
+              <img title="Modern Brick Warfare" alt="Modern Brick Warfare" class="sponsorMedium borderRadius10" src="/images/publicPics/sponsors/ModernBrickWarfare-png-site.png" />
+          </div>
+          <div class="sponsorTwo" ng-click="chowrenToys()" ng-if="false">
+              <img title="Chowren Toys" alt="Chowren Toys" class="sponsor borderRadius10" src="/images/publicPics/sponsors/ChowrenToysLogo-png-site.png" />
+          </div>
+          <div class="sponsorThree" ng-if="false">
+              <img title="LEGO" alt="LEGO" class="sponsorSmall" src="/images/publicPics/sponsors/lego.png">
+          </div>
+      </div>
+      <div id="publicTickets">
+          <div ng-if="showOnlineTickets()">
+              <div class="publicTicketsText oneEMFont">
+                  <bs-text text="Buy tickets" font-color="black"></bs-text>
+                  <bs-text text="online and" font-color="black"></bs-text>
+                  <bs-text text="save time!" font-color="black"></bs-text>
+              </div>
+              <div class="buyTicketsButton">
+                  <button class="actionButtonSquare" ng-click="tickets()">
+                      <bs-text text="Buy Tickets" font-color=white font-size=1.5></bs-text>
+                  </button>
+              </div>
+          </div>
+          <div class="publicTicketsText twoEMFont" ng-if="!showOnlineTickets()">
+              <bs-text text="Tickets" font-color="black"></bs-text>
+              <bs-text text="available" font-color="black"></bs-text>
+              <bs-text text="at the door!" font-color="black"></bs-text>
+          </div>
+          <div id="splashDDCouch"><img class="fig" src="/images/publicPics/doubleDeckerCouch.jpg"></div>
+      </div>
+  </div>
 </div>

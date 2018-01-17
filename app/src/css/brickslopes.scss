@@ -17,6 +17,7 @@
 @import './tour';
 @import './vendorRegistration';
 @import './vendors';
+@import './brickslopesV2';
 
 /* Smartphones (portrait and landscape) ----------- */
 @media only screen 
@@ -527,7 +528,7 @@ only screen and (min-device-pixel-ratio : 1.5) {
             position: absolute;
             top: 30px;
             right: 0;
-            width: 700px;
+            width: 800px;
             height: 70px;
             border: none;
 
