@@ -6,11 +6,23 @@
     }
 }
 
-
 .margin-bottom-small {
     margin-bottom: 10px;
 }
 
 .margin-bottom-medium {
     margin-bottom: 20px;
+}
+
+.margin-top-medium {
+    margin-top: 20px;
+}
+
+.borderedSquare {
+    border-radius: 10px;
+    padding: 10px;
+    background: white;
+    border: 5px solid $bs_blue;
+    margin-right: 25px;
+    margin-top: 45px;
 }

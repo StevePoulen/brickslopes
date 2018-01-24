@@ -29,6 +29,13 @@ config(['$routeProvider', '$httpProvider', '$locationProvider', function($routeP
         }
     )
     .when(
+        '/vendors',
+        {
+            templateUrl: 'partials/public/vendors.html',
+            controller: 'bsIndex'
+        }
+    )
+    .when(
         '/volunteers',
         {
             templateUrl: 'partials/public/volunteers.html'

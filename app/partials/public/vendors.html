@@ -1,5 +1,5 @@
-<div id="dashboard">
-  <div id="splashPage">
+<div id="dashboard" class="height1375">
+  <div id="splashPage" class="height1375">
     <div class="row">
       <div class="col-md-5">
         <div class="banner">
@@ -16,16 +16,16 @@
         <div class="borderedSquare">
           <div class="row">
             <div class="col-md-12">
-              <h2><bs-text text="Email Us"></bs-text></h2>
-              <form name="emailUsForm" ng-submit="emailUsForm.$valid && submitEmail()">
+              <h2><bs-text text="Vendors"></bs-text></h2>
+              <form name="vendorForm" ng-submit="vendorForm.$valid && submitVendorInformation()">
                 <div class="row">
                   <div class="form-group col-md-offset-2 col-md-8">
-                    <input type="text" class="form-control" bs-placeholder="First Name (required)" ng-model="firstName" required>
+                    <input type="text" class="form-control" bs-placeholder="Business Name (required)" ng-model="businessName" required>
                   </div>
                 </div>
                 <div class="row">
                   <div class="form-group col-md-offset-2 col-md-8">
-                    <input type="text" class="form-control" bs-placeholder="Last Name (required)" ng-model="lastName" required>
+                    <input type="text" class="form-control" bs-placeholder="Contact Name (required)" ng-model="contactName" required>
                   </div>
                 </div>
                 <div class="row">
@@ -35,7 +35,25 @@
                 </div>
                 <div class="row">
                   <div class="form-group col-md-offset-2 col-md-8">
-                    <textarea class="form-control" ng-model="comments" required></textarea>
+                    <input type="text" class="form-control" bs-placeholder="Phone Number (required)" ng-model="phoneNumber" required>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-md-offset-2 col-md-8">
+                    <textarea class="form-control" ng-model="typeOfProducts" required></textarea>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-md-offset-2 col-md-4">
+                    <input type="text" class="form-control" bs-placeholder="Amount of Space" ng-model="space" required>
+                  </div>
+                  <div class="form-group col-md-4">
+                    <input type="text" class="form-control" bs-placeholder="Number of Associates" ng-model="associates" required>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-md-offset-2 col-md-8">
+                    <input type="text" class="form-control" bs-placeholder="Company Website" ng-model="webSite">
                   </div>
                 </div>
                 <div class="row margin-bottom-small">
@@ -50,7 +68,7 @@
                 <div class="row margin-top-medium">
                   <div class="col-sm-12">
                     <button class="formButton" type="submit" ng-class="{disabled: verifying}" ng-disabled="verifying">
-                      <bs-text text="E-mail Us" font-color=white font-size=1.25></bs-text>
+                      <bs-text text="Submit" font-color=white font-size=1.25></bs-text>
                     </button>
                   </div>
                 </div>
@@ -60,9 +78,6 @@
           <div class="row">
             <div class="col-md-offset-2 col-md-6 margin-top-medium">
               <span ng-show="timer" ng-class="{fadeOut5: timer, greenFont: true}">{{displayMessage}}</span>
-            </div>
-            <div class="col-md-2">
-              <div><img class="fig" src="/images/publicPics/wyldstyle.jpg"></div>
             </div>
           </div>
         </div>

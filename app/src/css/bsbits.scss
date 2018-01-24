@@ -43,12 +43,11 @@ button, input, textarea, select {
 }
 
 input[type="text"], input[type="email"], input[type="password"], textarea {
-    border: none;
     border-radius: 3px;
     box-sizing: border-box;
     //color: #2F3132;
-    height: 35px;
-    width: 220px;
+    //height: 35px;
+    //width: 220px;
     padding: 0 10px;
     text-rendering: optimizelegibility;
     transition-duration: 100ms;
@@ -207,7 +206,7 @@ textarea::-moz-placeholder {
 }
 
 .oneEMFont {
-  font-size: 1.25em;
+  font-size: 1em;
 }
 
 .eventsFont {
@@ -224,10 +223,6 @@ textarea::-moz-placeholder {
 
 .tinyFont {
   font-size: .25em;
-}
-
-input.ng-pristine {
-    border: none;
 }
 
 input:required {
