@@ -4,14 +4,6 @@ describe('controllers', function() {
 
     beforeEach(module('brickSlopes'));
 
-    beforeEach(function() {
-        this.addMatchers({
-            toEqualData: function(expected) {
-                return angular.equals(this.actual, expected);
-            }
-        });
-    });
-
     describe('afolLogin Controller', function() {
         var mockBackend, loader, window;
         beforeEach(inject(function($controller, $rootScope, $location, _$httpBackend_, $window) {

@@ -8,7 +8,6 @@ describe('controllers', function() {
         window = _$window_;
         window.sessionStorage.firstName = 'Cody';
         window.sessionStorage.lastName = 'Ottley';
-        spyOn(_EventSelectionFactory_, 'getSelectedEvent').andReturn(2);
         mockBackend = _$httpBackend_;
     }));
 

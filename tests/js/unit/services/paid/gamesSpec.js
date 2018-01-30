@@ -2,10 +2,6 @@ describe('service', function() {
     'use strict';
     beforeEach(module('brickSlopes'));
 
-    beforeEach(inject(function(_EventSelectionFactory_) {
-        spyOn(_EventSelectionFactory_, 'getSelectedEvent').andReturn(2);
-    }));
-
     describe('Games', function() {
         describe('Get', function() {
             var mockBackend, service, data, gameDetails, eventId;

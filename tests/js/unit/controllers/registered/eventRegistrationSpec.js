@@ -1,15 +1,12 @@
 describe('controllers', function() {
     'use strict';
-    var scope, ctrl, location;
+    var scope, ctrl;
 
     beforeEach(module('brickSlopes'));
 
     beforeEach(inject(function(
-        _EventSelectionFactory_,
         _$templateCache_
     ) {
-        spyOn(_EventSelectionFactory_, 'getSelectedEvent').andReturn(2);
-
         var template = _$templateCache_.get('partials/registered/eventPayment.html');
         _$templateCache_.put('/partials/registered/eventPayment.html', template);
     }));

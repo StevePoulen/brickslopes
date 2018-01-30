@@ -1,20 +1,16 @@
 describe('controllers', function() {
     'use strict';
-    var scope, ctrl, location, rootScope;
+    var scope, rootScope;
+    var mockBackend, window, location;
 
     beforeEach(module('brickSlopes'));
 
-    beforeEach(inject(function(_EventSelectionFactory_) {
-        spyOn(_EventSelectionFactory_, 'getSelectedEvent').andReturn(2);
-    }));
-
     describe('afolMe Controller', function() {
-        var mockBackend, loader, window, location;
         beforeEach(inject(function($controller, $rootScope, _$httpBackend_, $location, _$window_) {
             window = _$window_;
             rootScope = $rootScope;
             scope = rootScope.$new();
-            ctrl = $controller('afolMe', {
+            $controller('afolMe', {
                 $scope: scope,
                 $rootScope: rootScope
             });

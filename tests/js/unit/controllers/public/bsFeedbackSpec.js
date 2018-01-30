@@ -1,6 +1,6 @@
 describe('controllers', function() {
     'use strict';
-    var scope, ctrl, location;
+    var scope, location;
 
     beforeEach(module('brickSlopes'));
 
@@ -8,14 +8,20 @@ describe('controllers', function() {
         $('body').html();
     });
 
-    describe('bsFeedback Default Variables', function() {
-        beforeEach(inject(function($controller, $rootScope) {
-            scope = $rootScope.$new();
-            ctrl = $controller('bsFeedback', {
-                $scope: scope
-            });
-        }));
+    beforeEach(inject(function(
+        _$controller_,
+        _$location_,
+        _$rootScope_
+    ) {
+        location = _$location_;
+        scope = _$rootScope_.$new();
+        _$controller_('bsFeedback', {
+            $scope: scope
+        });
+        jQuery.fx.off = true;
+    }));
 
+    describe('bsFeedback Default Variables', function() {
         it('should have a feedbackOpen variable', function() {
             expect(scope.feedbackOpen).toBe(false);
         });
@@ -30,16 +36,6 @@ describe('controllers', function() {
     });
 
     describe('bsFeedback Click Handlers', function() {
-        beforeEach(inject(function($controller, $rootScope, $location) {
-            scope = $rootScope.$new();
-            location = $location;
-            ctrl = $controller('bsFeedback', {
-                $scope: scope
-            });
-            jasmine.Clock.useMock();
-            jQuery.fx.off = true;
-        }));
-
         it('should open the feedback form', function() {
             scope.feedbackOpen = false;
             $('body').append('<div class="feedbackPanel"></div>');
@@ -75,7 +71,7 @@ describe('controllers', function() {
         var mockBackend;
         beforeEach(inject(function($controller, $rootScope) {
             scope = $rootScope.$new();
-            ctrl = $controller('bsFeedback', {
+            $controller('bsFeedback', {
                 $scope: scope
             });
             scope.$digest();
@@ -102,7 +98,7 @@ describe('controllers', function() {
         var mockBackend;
         beforeEach(inject(function($controller, $rootScope, _$httpBackend_) {
             scope = $rootScope.$new();
-            ctrl = $controller('bsFeedback', {
+            $controller('bsFeedback', {
                 $scope: scope
             });
             mockBackend = _$httpBackend_;

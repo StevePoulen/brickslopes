@@ -4,10 +4,6 @@ describe('controllers', function() {
 
     beforeEach(module('brickSlopes'));
 
-    beforeEach(inject(function(_EventSelectionFactory_) {
-        spyOn(_EventSelectionFactory_, 'getSelectedEvent').andReturn(2);
-    }));
-
     describe('afolEventGames Controller', function() {
         var mockBackend, location;
         beforeEach(inject(function($controller, $rootScope, _$httpBackend_, $location) {

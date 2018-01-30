@@ -1,0 +1,16 @@
+{
+  "globals": {
+    "describe": true,
+    "beforeEach": true,
+    "it": true,
+    "spyOn": true,
+    "expect": true,
+    "angular": true,
+    "jasmine": true,
+    "afterEach": true,
+    "$": true,
+    "inject": true,
+    "module": true,
+    "_": true
+  }
+}

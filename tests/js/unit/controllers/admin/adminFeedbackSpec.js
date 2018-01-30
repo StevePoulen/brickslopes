@@ -5,14 +5,6 @@ describe('controllers', function() {
 
     beforeEach(module('brickSlopes'));
 
-    beforeEach(function() {
-        this.addMatchers({
-            toEqualData: function(expected) {
-                return angular.equals(this.actual, expected);
-            }
-        });
-    });
-
     describe('adminFeedback Controller', function() {
         var mockBackend;
         beforeEach(inject(function($controller, $rootScope, $location, _$httpBackend_) {
@@ -43,7 +35,7 @@ describe('controllers', function() {
 
             it('should have a registeredUsers list', function() {
                 mockBackend.flush();
-                expect(scope.allFeedback[0].email).toEqualData('brian@brickslopes.com');
+                expect(scope.allFeedback[0].email).toEqual('brian@brickslopes.com');
             });
         });
     });

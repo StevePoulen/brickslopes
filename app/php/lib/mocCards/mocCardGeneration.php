@@ -50,7 +50,7 @@
         }
 
         private function setLogo() {
-            $logoName = '../../images/publicPics/banners/bs-2016-horizontal-banner.png';
+            $logoName = '../../images/publicPics/banners/bs-2018-horizontal-banner.png';
             $logo = imagecreatefrompng($logoName);
             list($new_width, $new_height, $original_width, $original_height) = $this->resizeImage($logoName);
 

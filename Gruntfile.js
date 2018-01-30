@@ -1,6 +1,7 @@
 module.exports = function (grunt) {
     'use strict';
-    var fs = require('fs');
+
+    require('load-grunt-tasks')(grunt);
 
     var karmaFiles = grunt.file.readJSON('.grunt/karmaFiles.json');
     karmaFiles.push(getWatchFiles());
@@ -15,10 +16,17 @@ module.exports = function (grunt) {
 
     /** @namespace grunt.initConfig */
     grunt.initConfig({
+        eslint: {
+            target: getESLintFiles()
+        },
         watch: {
             sass: {
                 files: 'app/src/**/*.scss',
                 tasks: ['sass']
+            },
+            eslint: {
+                files: getESLintFiles(),
+                tasks: ['eslint']
             },
             scsslint: {
                 files: 'app/src/**/*.scss',
@@ -250,28 +258,15 @@ module.exports = function (grunt) {
     grunt.registerTask('css', ['sass', 'compass', 'bootstrap']);
     grunt.registerTask('bootstrap', ['copy:bootstrap', 'exec:buildBootstrap', 'copy:bootStrapDependencies']);
     grunt.registerTask('css-auto', ['watch:sass']);
-    grunt.registerTask('lint', ['ddescribe-iit', 'jshint:all', 'scsslint', 'jsbeautifier:verify']);
+    grunt.registerTask('lint', ['ddescribe-iit', 'eslint', 'jshint:all', 'scsslint', 'jsbeautifier:verify']);
     grunt.registerTask('lint-auto', ['watch:scsslint']);
+    grunt.registerTask('eslint-auto', ['watch:eslint']);
 
     grunt.registerTask('jshint-auto', ['watch:jshint']);
 
     grunt.registerTask('build', ['build-setup']);
     grunt.registerTask('build-setup', ['clean:build', 'lint', 'css', 'ngtemplates', 'uglify:deployed', 'copy:index', 'karma:src']);
     grunt.registerTask('build-deploy', ['build-setup', 'copy:index']);
-
-    grunt.loadNpmTasks('grunt-contrib-clean');
-    grunt.loadNpmTasks('grunt-contrib-compass');
-    grunt.loadNpmTasks('grunt-contrib-copy');
-    grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.loadNpmTasks('grunt-contrib-jshint');
-    grunt.loadNpmTasks('grunt-contrib-sass');
-    grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-ddescribe-iit');
-    grunt.loadNpmTasks('grunt-scss-lint');
-    grunt.loadNpmTasks('grunt-karma');
-    grunt.loadNpmTasks('grunt-exec');
-    grunt.loadNpmTasks('grunt-angular-templates');
-    grunt.loadNpmTasks('grunt-jsbeautifier');
 
     function getWatchFiles() {
         var files = 'tests/js/unit/**/';
@@ -302,4 +297,16 @@ module.exports = function (grunt) {
         ];
     }
 
+    function getESLintFiles() {
+        var activeFiles = getActiveFiles();
+        if (grunt.option('grep')) {
+            var returnFiles = [];
+            activeFiles.forEach(function(file) {
+                returnFiles.push((file.replace(/\*\.js/, '')) + ('*' + grunt.option('grep') + '*.js'));
+            });
+            return returnFiles;
+        } else {
+            return activeFiles;
+        }
+    }
 };

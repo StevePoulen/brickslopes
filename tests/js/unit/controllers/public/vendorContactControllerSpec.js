@@ -1,18 +1,18 @@
-describe('controllers', function() {
+describe('Vendor Contact', function() {
     'use strict';
-    var scope, ctrl;
+
+    var scope, mockBackend;
 
     beforeEach(module('brickSlopes'));
 
-    describe('emailUs Controller', function() {
-        var mockBackend;
+    describe('vendorContact Controller', function() {
         beforeEach(inject(function(
-            $controller,
-            $rootScope,
+            _$controller_,
+            _$rootScope_,
             _$httpBackend_
         ) {
-            scope = $rootScope.$new();
-            ctrl = $controller('emailUsController', {
+            scope = _$rootScope_.$new();
+            _$controller_('vendorContactController', {
                 $scope: scope
             });
             mockBackend = _$httpBackend_;
@@ -51,7 +51,7 @@ describe('controllers', function() {
                     email: 'cody.ottley@bs.com',
                     comments: 'Everything is Awesome!'
                 };
-                scope.emailUsForm = {
+                scope.vendorContactForm = {
                     '$setPristine': function() {}
                 };
                 scope.submitEmail();

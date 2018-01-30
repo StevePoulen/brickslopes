@@ -1,0 +1,7 @@
+{
+  "globals": {
+    "angular": true,
+    "_": true,
+    "$": true
+  }
+}

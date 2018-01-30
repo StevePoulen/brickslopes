@@ -13,7 +13,7 @@ describe('Admin Registered Event Dates', function() {
 
         location = $location;
         mockBackend = _$httpBackend_;
-        mockBackend.expectGET('/controllers/admin/eventDates.php?eventId=4').respond(201, window.eventDates['2']);
+        mockBackend.expectGET('/controllers/admin/eventDates.php?eventId=2').respond(201, window.eventDates['2']);
         mockBackend.flush();
     }));
 

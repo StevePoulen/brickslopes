@@ -305,7 +305,7 @@
                                 </div>
                             </div>
                             <div class='banner'>
-                                <img class='bannerImage' src='../../../../images/publicPics/banners/bs-2017-horizontal-banner.png'></img>
+                                <img class='bannerImage' src='../../../../images/publicPics/banners/bs-2018-horizontal-banner.png'></img>
                             </div>
                         </div>
                     </div>

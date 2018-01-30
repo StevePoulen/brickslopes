@@ -1,11 +1,11 @@
 describe('controllers', function() {
     'use strict';
-    var scope, ctrl, location;
+    var scope, ctrl;
+    var mockBackend, location, route;
 
     beforeEach(module('brickSlopes'));
 
     beforeEach(inject(function(
-        _EventSelectionFactory_,
         _$templateCache_
     ) {
         var template = _$templateCache_.get('partials/registered/eventMe.html');
@@ -13,11 +13,9 @@ describe('controllers', function() {
 
         template = _$templateCache_.get('partials/registered/vendors/associateRegistration.html');
         _$templateCache_.put('/partials/registered/vendors/associateRegistration.html', template);
-        spyOn(_EventSelectionFactory_, 'getSelectedEvent').andReturn(2);
     }));
 
     describe('TableRegistration Controller', function() {
-        var mockBackend, loader, location, response, route;
 
         beforeEach(inject(function($controller, $rootScope, $location, _$httpBackend_, $route) {
             route = $route;

@@ -19,14 +19,6 @@ describe('service', function() {
     'use strict';
     beforeEach(module('brickSlopes'));
 
-    beforeEach(function() {
-        this.addMatchers({
-            toEqualData: function(expected) {
-                return angular.equals(this.actual, expected);
-            }
-        });
-    });
-
     describe('brickSlopesText', function() {
         var bsTextFactory;
         beforeEach(inject(function(BrickSlopesText) {

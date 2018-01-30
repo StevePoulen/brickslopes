@@ -4,10 +4,6 @@ describe('controllers', function() {
 
     beforeEach(module('brickSlopes'));
 
-    beforeEach(inject(function(_EventSelectionFactory_) {
-        spyOn(_EventSelectionFactory_, 'getSelectedEvent').andReturn(2);
-    }));
-
     describe('afolIndex Controller', function() {
         beforeEach(inject(function(_$controller_, _$rootScope_, $location, _$window_) {
             window = _$window_;
@@ -272,7 +268,8 @@ describe('controllers', function() {
 
         it('should send a show-tour event', function() {
             expect(rootScope.$emit).toHaveBeenCalledWith('show-tour');
-            rootScope.$emit.reset();
+            rootScope.$emit = function() {};
+            spyOn(rootScope, "$emit");
             scope.$digest();
             expect(rootScope.$emit).not.toHaveBeenCalled();
         });

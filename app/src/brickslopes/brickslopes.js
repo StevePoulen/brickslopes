@@ -32,7 +32,7 @@ config(['$routeProvider', '$httpProvider', '$locationProvider', function($routeP
         '/vendors',
         {
             templateUrl: 'partials/public/vendors.html',
-            controller: 'bsIndex'
+            controller: 'vendorContactController'
         }
     )
     .when(
@@ -73,7 +73,7 @@ config(['$routeProvider', '$httpProvider', '$locationProvider', function($routeP
         '/emailUs/index.html',
         {
             templateUrl: '/partials/public/emailUs.html',
-            controller: 'emailUs'
+            controller: 'emailUsController'
         }
     )
     .when(

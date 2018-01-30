@@ -1,44 +1,49 @@
 describe('Event Dates Factory', function() {
     'use strict';
-    var service, scope;
+
+    var service, fakeWindow;
     var mockBackend, data;
 
     beforeEach(module('brickSlopes'));
 
-    beforeEach(inject(function(_$rootScope_, _EventDates_, _EventSelectionFactory_, _$httpBackend_) {
+    beforeEach(inject(function(
+        _EventDates_,
+        _EventSelectionFactory_,
+        _$httpBackend_,
+        _$window_
+    ) {
+        fakeWindow = _$window_;
         data = null;
-        scope = _$rootScope_.$new();
         service = _EventDates_;
-        spyOn(_EventSelectionFactory_, 'getSelectedEvent').andReturn(2);
         mockBackend = _$httpBackend_;
     }));
 
     describe('Event Dates Success', function() {
         beforeEach(function() {
-            mockBackend.expectGET('/controllers/public/eventDates.php').respond(201, eventDates);
+            mockBackend.expectGET('/controllers/public/eventDates.php').respond(201, fakeWindow.eventDates);
         });
 
         it('should get all the events', function() {
-            service.getAllEvents().then(function(_data) {
-                data = _data;
+            service.getAllEvents().then(function(_data_) {
+                data = _data_;
             });
             mockBackend.flush();
-            expect(data).toEqual(eventDates);
+            expect(data).toEqual(fakeWindow.eventDates);
         });
 
         describe('getEventYear', function() {
             it('should get the year for an event', function() {
-                service.getEventYear().then(function(_data) {
-                    data = _data;
+                service.getEventYear().then(function(_data_) {
+                    data = _data_;
                 });
                 mockBackend.flush();
                 expect(data).toEqual('2015');
             });
 
             it('should get the year for an event - cached', function() {
-                spyOn(service, 'getCache').andReturn('cached');
-                service.getEventYear().then(function(_data) {
-                    data = _data;
+                spyOn(service, 'getCache').and.returnValue('cached');
+                service.getEventYear().then(function(_data_) {
+                    data = _data_;
                 });
                 mockBackend.flush();
                 expect(data).toEqual('cached');
@@ -47,17 +52,17 @@ describe('Event Dates Factory', function() {
 
         describe('getPassType', function() {
             it('should get the pass type for an event', function() {
-                service.getPassType().then(function(_data) {
-                    data = _data;
+                service.getPassType().then(function(_data_) {
+                    data = _data_;
                 });
                 mockBackend.flush();
                 expect(data).toEqual('4-Day');
             });
 
             it('should get the pass type for an event - cached', function() {
-                spyOn(service, 'getCache').andReturn('cached');
-                service.getPassType().then(function(_data) {
-                    data = _data;
+                spyOn(service, 'getCache').and.returnValue('cached');
+                service.getPassType().then(function(_data_) {
+                    data = _data_;
                 });
                 mockBackend.flush();
                 expect(data).toEqual('cached');
@@ -66,17 +71,17 @@ describe('Event Dates Factory', function() {
 
         describe('getPassDates', function() {
             it('should get the pass dates for an event', function() {
-                service.getPassDates().then(function(_data) {
-                    data = _data;
+                service.getPassDates().then(function(_data_) {
+                    data = _data_;
                 });
                 mockBackend.flush();
                 expect(data).toBe('May 14th thru 17th');
             });
 
             it('should get the pass dates for an event - cached', function() {
-                spyOn(service, 'getCache').andReturn('cached');
-                service.getPassDates().then(function(_data) {
-                    data = _data;
+                spyOn(service, 'getCache').and.returnValue('cached');
+                service.getPassDates().then(function(_data_) {
+                    data = _data_;
                 });
                 mockBackend.flush();
                 expect(data).toBe('cached');
@@ -97,9 +102,9 @@ describe('Event Dates Factory', function() {
                         };
                     }
                 };
-                spyOn(service, 'getCache').andCallThrough();
-                service.getPassDates().then(function(_data) {
-                    data = _data;
+                spyOn(service, 'getCache').and.callThrough();
+                service.getPassDates().then(function(_data_) {
+                    data = _data_;
                 });
                 mockBackend.flush();
                 expect(data).toBe('May 14th thru 15th');
@@ -108,17 +113,17 @@ describe('Event Dates Factory', function() {
 
         describe('meetAndGreetDinnerDate', function() {
             it('should get the meetAndGreetDinnerDate for an event', function() {
-                service.getMeetAndGreetDinnerDate().then(function(_data) {
-                    data = _data;
+                service.getMeetAndGreetDinnerDate().then(function(_data_) {
+                    data = _data_;
                 });
                 mockBackend.flush();
                 expect(data).toBe('Thursday, May 14th');
             });
 
             it('should get the meetAndGreetDinnerDate for an event - cached', function() {
-                spyOn(service, 'getCache').andReturn('cached');
-                service.getMeetAndGreetDinnerDate().then(function(_data) {
-                    data = _data;
+                spyOn(service, 'getCache').and.returnValue('cached');
+                service.getMeetAndGreetDinnerDate().then(function(_data_) {
+                    data = _data_;
                 });
                 mockBackend.flush();
                 expect(data).toBe('cached');
@@ -127,17 +132,17 @@ describe('Event Dates Factory', function() {
 
         describe('getPublicDatesTogether', function() {
             it('should get the public dates for an event', function() {
-                service.getPublicDatesTogether().then(function(_data) {
-                    data = _data;
+                service.getPublicDatesTogether().then(function(_data_) {
+                    data = _data_;
                 });
                 mockBackend.flush();
                 expect(data).toEqual('May 15 & 16, 2015');
             });
 
             it('should get the public dates for an event - cached', function() {
-                spyOn(service, 'getCache').andReturn('cached');
-                service.getPublicDatesTogether().then(function(_data) {
-                    data = _data;
+                spyOn(service, 'getCache').and.returnValue('cached');
+                service.getPublicDatesTogether().then(function(_data_) {
+                    data = _data_;
                 });
                 mockBackend.flush();
                 expect(data).toEqual('cached');
@@ -146,8 +151,8 @@ describe('Event Dates Factory', function() {
 
         describe('getPublicDates', function() {
             it('should get the public dates and times for an event', function() {
-                service.getPublicDates().then(function(_data) {
-                    data = _data;
+                service.getPublicDates().then(function(_data_) {
+                    data = _data_;
                 });
                 mockBackend.flush();
                 expect(data[0].date).toEqual('Friday, May 15th');
@@ -157,9 +162,9 @@ describe('Event Dates Factory', function() {
             });
 
             it('should get the public dates and times for an event - cached', function() {
-                spyOn(service, 'getCache').andReturn('cached');
-                service.getPublicDates().then(function(_data) {
-                    data = _data;
+                spyOn(service, 'getCache').and.returnValue('cached');
+                service.getPublicDates().then(function(_data_) {
+                    data = _data_;
                 });
                 mockBackend.flush();
                 expect(data).toEqual('cached');
@@ -180,9 +185,9 @@ describe('Event Dates Factory', function() {
                         };
                     }
                 };
-                spyOn(service, 'getCache').andCallThrough();
-                service.getPublicDates().then(function(_data) {
-                    data = _data;
+                spyOn(service, 'getCache').and.callThrough();
+                service.getPublicDates().then(function(_data_) {
+                    data = _data_;
                 });
                 mockBackend.flush();
                 expect(data[0].date).toBe('Saturday, May 16th');
@@ -191,17 +196,17 @@ describe('Event Dates Factory', function() {
 
         describe('getEventMonthYear', function() {
             it('should get the month and year for an event', function() {
-                service.getEventMonthYear().then(function(_data) {
-                    data = _data;
+                service.getEventMonthYear().then(function(_data_) {
+                    data = _data_;
                 });
                 mockBackend.flush();
                 expect(data).toEqual('May, 2015');
             });
 
             it('should get the month and year for an event - cached', function() {
-                spyOn(service, 'getCache').andReturn('cached');
-                service.getEventMonthYear().then(function(_data) {
-                    data = _data;
+                spyOn(service, 'getCache').and.returnValue('cached');
+                service.getEventMonthYear().then(function(_data_) {
+                    data = _data_;
                 });
                 mockBackend.flush();
                 expect(data).toEqual('cached');

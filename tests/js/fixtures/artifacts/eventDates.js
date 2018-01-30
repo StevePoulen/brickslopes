@@ -1,4 +1,4 @@
-var eventDates = {
+window.eventDates = {
     '2': [
         {
             eventDatesId: 1,

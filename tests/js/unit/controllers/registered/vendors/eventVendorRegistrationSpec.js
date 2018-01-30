@@ -5,11 +5,8 @@ describe('controllers', function() {
     beforeEach(module('brickSlopes'));
 
     beforeEach(inject(function(
-        _EventSelectionFactory_,
         _$templateCache_
     ) {
-        spyOn(_EventSelectionFactory_, 'getSelectedEvent').andReturn(2);
-
         var template = _$templateCache_.get('partials/registered/eventMe.html');
         _$templateCache_.put('/partials/registered/eventMe.html', template);
 

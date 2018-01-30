@@ -3,14 +3,6 @@ describe('service', function() {
 
     beforeEach(module('brickSlopes'));
 
-    beforeEach(function() {
-        this.addMatchers({
-            toEqualData: function(expected) {
-                return angular.equals(this.actual, expected);
-            }
-        });
-    });
-
     describe('Get All Feedback', function() {
         var mockBackend, service, data;
         beforeEach(inject(function(_$httpBackend_, Feedback) {
@@ -26,7 +18,7 @@ describe('service', function() {
             });
 
             mockBackend.flush();
-            expect(data).toEqualData(feedback);
+            expect(data).toEqual(feedback);
         });
     });
 
@@ -46,7 +38,7 @@ describe('service', function() {
             });
 
             mockBackend.flush();
-            expect(data).toEqualData(201);
+            expect(data).toEqual(201);
         });
     });
 });

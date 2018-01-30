@@ -4,10 +4,6 @@ describe('directives', function() {
 
     beforeEach(module('brickSlopes'));
 
-    beforeEach(inject(function(_EventSelectionFactory_) {
-        spyOn(_EventSelectionFactory_, 'getSelectedEvent').andReturn(2);
-    }));
-
     describe('bsTour', function() {
         beforeEach(inject(function($compile, $rootScope, $templateCache, _$httpBackend_) {
             mockBackend = _$httpBackend_;

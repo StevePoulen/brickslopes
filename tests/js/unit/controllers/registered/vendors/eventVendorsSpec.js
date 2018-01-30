@@ -1,15 +1,11 @@
 describe('controllers', function() {
     'use strict';
     var scope, ctrl, location;
+    var mockBackend, route;
 
     beforeEach(module('brickSlopes'));
 
-    beforeEach(inject(function(_EventSelectionFactory_) {
-        spyOn(_EventSelectionFactory_, 'getSelectedEvent').andReturn(2);
-    }));
-
     describe('eventAfols Controller', function() {
-        var mockBackend, route;
         beforeEach(inject(function($controller, $rootScope, $location, _$httpBackend_, $route) {
             route = $route;
             route = {

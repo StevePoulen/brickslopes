@@ -51,40 +51,6 @@ var showAfolLogin = true;
             });
         }
     }])
-    .controller('emailUs', ['$scope', 'EmailUs', function($scope, EmailUs) {
-        setDefaultScopeVariables("LeGo1");
-        $scope.timer = false;
-        $scope.verifying = false;
-
-        function setDefaultScopeVariables(captchaInit) {
-            $scope.firstName = "";
-            $scope.lastName = "";
-            $scope.email = "";
-            $scope.comments = "Comments ...";
-            $scope.captchaInit = captchaInit;
-            $scope.captcha= "";
-        }
-
-        function serializeEmailUsJson() {
-            return {
-                firstName: $scope.firstName,
-                lastName: $scope.lastName,
-                email: $scope.email,
-                comments: $scope.comments
-            }
-        }
-
-        $scope.submitEmail = function() {
-            $scope.verifying = true;
-            EmailUs.create(serializeEmailUsJson()).then(function(response) {
-                $scope.emailUsForm.$setPristine();
-                setDefaultScopeVariables("WylDstYl3");
-                $scope.displayMessage = "Your e-mail has been sent.";
-                $scope.timer = true;
-                $scope.verifying = false;
-            });
-        }
-    }])
     .controller('bsHeader', ['$scope', '$window', '$location', function($scope, $window, $location) {
         $scope.showAfolLogin = showAfolLogin;
         $scope.showHeader = true;

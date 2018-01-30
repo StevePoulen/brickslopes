@@ -1,19 +1,15 @@
 describe('controllers', function() {
     'use strict';
-    var scope, ctrl, location;
+    var scope, ctrl;
+    var mockBackend, location;
 
     beforeEach(module('brickSlopes'));
-
-    beforeEach(inject(function(_EventSelectionFactory_) {
-        spyOn(_EventSelectionFactory_, 'getSelectedEvent').andReturn(2);
-    }));
 
     afterEach(function() {
         $('body').html('');
     });
 
     describe('afolEventPayment Controller', function() {
-        var mockBackend, loader, window, location, response;
 
         beforeEach(inject(function($controller, $rootScope, $location, _$httpBackend_) {
             scope = $rootScope.$new();

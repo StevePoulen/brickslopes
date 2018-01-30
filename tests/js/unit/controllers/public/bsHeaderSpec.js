@@ -4,14 +4,6 @@ describe('controllers', function() {
 
     beforeEach(module('brickSlopes'));
 
-    beforeEach(function() {
-        this.addMatchers({
-            toEqualData: function(expected) {
-                return angular.equals(this.actual, expected);
-            }
-        });
-    });
-
     describe('bsHeaderController Default Variables', function() {
         beforeEach(inject(function($controller, $rootScope) {
             scope = $rootScope.$new();

@@ -1,13 +1,11 @@
 describe('service', function() {
     'use strict';
+
+    var mockBackend, service, data, window;
+
     beforeEach(module('brickSlopes'));
 
-    beforeEach(inject(function(_EventSelectionFactory_) {
-        spyOn(_EventSelectionFactory_, 'getSelectedEvent').andReturn(2);
-    }));
-
     describe('MocDetails', function() {
-        var mockBackend, service, data, window;
         beforeEach(inject(function(_$httpBackend_, MocDetails, $window) {
             mockBackend = _$httpBackend_;
             service = MocDetails;

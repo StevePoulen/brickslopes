@@ -3,10 +3,6 @@ describe('service', function() {
 
     beforeEach(module('brickSlopes'));
 
-    beforeEach(inject(function(_EventSelectionFactory_) {
-        spyOn(_EventSelectionFactory_, 'getSelectedEvent').andReturn(2);
-    }));
-
     describe('Registered Afols', function() {
         describe('Get', function() {
             var mockBackend, service, data;

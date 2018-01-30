@@ -1,13 +1,13 @@
 describe('controllers', function() {
     'use strict';
-    var scope, ctrl, location;
+    var scope, location;
 
     beforeEach(module('brickSlopes'));
 
     describe('bsIndex Default Variables', function() {
         beforeEach(inject(function($controller, $rootScope) {
             scope = $rootScope.$new();
-            ctrl = $controller('bsIndex', {
+            $controller('bsIndex', {
                 $scope: scope
             });
         }));
@@ -33,7 +33,7 @@ describe('controllers', function() {
         beforeEach(inject(function($controller, $rootScope, $location) {
             scope = $rootScope.$new();
             location = $location;
-            ctrl = $controller('bsIndex', {
+            $controller('bsIndex', {
                 $scope: scope
             });
         }));
@@ -73,10 +73,13 @@ describe('controllers', function() {
 
     describe('bsIndex Flush', function() {
         var mockBackend;
-        beforeEach(inject(function($controller, $rootScope, _$httpBackend_, _EventSelectionFactory_) {
-            spyOn(_EventSelectionFactory_, 'getSelectedEvent').andReturn(2);
+        beforeEach(inject(function(
+            $controller,
+            $rootScope,
+            _$httpBackend_
+        ) {
             scope = $rootScope.$new();
-            ctrl = $controller('bsIndex', {
+            $controller('bsIndex', {
                 $scope: scope
             });
             mockBackend = _$httpBackend_;

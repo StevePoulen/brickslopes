@@ -29,7 +29,7 @@ describe('directives', function() {
             });
 
             it('should have a visible play button', function() {
-                expect($(element).find('.actionButtonGames').text()).toContain('');
+                expect($(element).find('.actionButtonGames').text()).toBe('');
             });
 
             it('should have a visible play button', function() {
@@ -37,7 +37,7 @@ describe('directives', function() {
             });
 
             it('should have a hidden Remove button', function() {
-                expect($(element).find('.actionButtonDeleteGames').text()).toContain('');
+                expect($(element).find('.actionButtonDeleteGames').text()).toBe('');
             });
 
             it('should have a hidden Remove button', function() {
@@ -59,7 +59,7 @@ describe('directives', function() {
                 }
                 element = compile(element)(scope);
                 scope.$digest();
-                spyOn(scope, 'canRegister').andReturn(true);
+                spyOn(scope, 'canRegister').and.returnValue(true);
                 scope.$digest();
             });
 

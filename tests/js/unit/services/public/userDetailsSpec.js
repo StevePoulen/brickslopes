@@ -3,14 +3,6 @@ describe('service', function() {
 
     beforeEach(module('brickSlopes'));
 
-    beforeEach(function() {
-        this.addMatchers({
-            toEqualData: function(expected) {
-                return angular.equals(this.actual, expected);
-            }
-        });
-    });
-
     describe('User Details', function() {
         describe('Get', function() {
             var mockBackend, service, data;
@@ -29,7 +21,7 @@ describe('service', function() {
 
                 mockBackend.flush();
                 singleUser.memberSince = 'May 16th, 2014'
-                expect(data).toEqualData(singleUser);
+                expect(data).toEqual(singleUser);
             });
         });
 
@@ -61,7 +53,7 @@ describe('service', function() {
                 mockBackend.flush();
                 registeredUsers[0].memberSince = 'May 16th, 2014';
                 registeredUsers[1].memberSince = 'May 16th, 2013';
-                expect(data).toEqualData(registeredUsers);
+                expect(data).toEqual(registeredUsers);
             });
         });
 

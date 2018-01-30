@@ -3,9 +3,6 @@ describe('controllers', function() {
     var scope, ctrl, location;
 
     beforeEach(module('brickSlopes'));
-    beforeEach(inject(function(_EventSelectionFactory_) {
-        spyOn(_EventSelectionFactory_, 'getSelectedEvent').andReturn(2);
-    }));
 
     describe('adminRegisteredGames Controller', function() {
         var mockBackend;

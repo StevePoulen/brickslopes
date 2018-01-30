@@ -1,20 +1,16 @@
-describe('service', function() {
+describe('Email Us service', function() {
     'use strict';
+
+    var mockBackend, emailUsService, data, emailJson;
 
     beforeEach(module('brickSlopes'));
 
-    beforeEach(function() {
-        this.addMatchers({
-            toEqualData: function(expected) {
-                return angular.equals(this.actual, expected);
-            }
-        });
-    });
-
     describe('EmailUs', function() {
         describe('create', function() {
-            var mockBackend, loader, data, emailJson;
-            beforeEach(inject(function(_$httpBackend_, EmailUs) {
+            beforeEach(inject(function(
+                _emailUsService_,
+                _$httpBackend_
+            ) {
                 emailJson = {
                     'firstName': 'Steve',
                     'lastName': 'Poulsen',
@@ -22,19 +18,19 @@ describe('service', function() {
                     'comments': 'LEGO is awesome'
                 };
                 mockBackend = _$httpBackend_;
-                loader = EmailUs;
+                emailUsService = _emailUsService_;
                 mockBackend.expectPOST('/controllers/public/emailUs.php', emailJson).respond('success');
             }));
 
             it('should post an email', function() {
-                var load = loader.create(emailJson);
+                var load = emailUsService.create(emailJson);
 
                 load.then(function(_data) {
                     data = _data;
                 });
 
                 mockBackend.flush();
-                expect(data).toEqualData('success');
+                expect(data).toEqual('success');
             });
         });
     });

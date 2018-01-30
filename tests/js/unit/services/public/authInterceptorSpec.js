@@ -2,14 +2,6 @@ describe('service', function() {
     'use strict';
     beforeEach(module('brickSlopes'));
 
-    beforeEach(function() {
-        this.addMatchers({
-            toEqualData: function(expected) {
-                return angular.equals(this.actual, expected);
-            }
-        });
-    });
-
     describe('authInterceptor', function() {
         var auth, window, location, request;
         beforeEach(inject(function(authInterceptor, _$window_, $location) {

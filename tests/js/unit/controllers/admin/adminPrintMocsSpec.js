@@ -4,10 +4,6 @@ describe('controllers', function() {
 
     beforeEach(module('brickSlopes'));
 
-    beforeEach(inject(function(_EventSelectionFactory_) {
-        spyOn(_EventSelectionFactory_, 'getSelectedEvent').andReturn(2);
-    }));
-
     describe('adminRegisteredMocs Controller', function() {
         var mockBackend;
         beforeEach(inject(function($controller, $rootScope, $location, _$httpBackend_) {
@@ -32,7 +28,7 @@ describe('controllers', function() {
                 var open = false;
                 var write = false;
                 var close = false;
-                spyOn(window, "open").andReturn({
+                spyOn(window, "open").and.returnValue({
                     document: {
                         open: function() {
                             open = true;
@@ -45,7 +41,7 @@ describe('controllers', function() {
                         }
                     }
                 });
-                spyOn(document, "getElementById").andReturn({
+                spyOn(document, "getElementById").and.returnValue({
                     innerHTML: 'hello'
                 });
                 scope.printMocs();
