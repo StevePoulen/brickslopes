@@ -22,7 +22,7 @@ class vendorContact {
         if (WEBSITE === 'mybrickslopes.com') {
             $email =  'Brian <brianpilati@gmail.com>';
         } else {
-             $email =  'Brian <brian@brickslopes.com>,Steve <steve@brickslopes.com>,Cody <cody@brickslopes.com>';
+            $email =  'Brian <brian@brickslopes.com>,Steve <steve@brickslopes.com>,Cody <cody@brickslopes.com>';
         }
         $emailObj = new mail($email);
         $emailObj->sendVendorContactMessage($payload);
