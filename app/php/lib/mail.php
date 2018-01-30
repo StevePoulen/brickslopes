@@ -76,6 +76,58 @@
             );
         }
 
+        public function sendVendorContactMessage($data) {
+            $this->subject = "BrickSlopes Vendor Request";
+            $this->message = "
+                <!doctype html>
+                <html>
+                    <head>
+                        <title>BrickSlopes Vendor Request</title>
+                    </head>
+                    <body>
+                        {$this->getFontWrapper(16, '#000000')}
+                            Cody,
+                            <p>
+                            {$data['contactName']} has requested vendor information for:
+                            <p>
+                            Business name: {$data['businessName']}
+                            <p>
+                            Contact name: {$data['contactName']}
+                            <p>
+                            Phone number: {$data['email']}
+                            <p>
+                            Phone number: {$data['phoneNumber']}
+                            <p>
+                            Type of Products: {$data['typeOfProducts']}
+                            <p>
+                            Space Requested: {$data['space']}
+                            <p>
+                            Associates: {$data['associates']}
+                            <p>
+                            webSite: {$data['webSite']}
+                        {$this->getFontClosure()}
+            ";
+
+            $this->message .= $this->getDisclaimer('brian@brickslopes.com');
+
+            $this->message .= "
+                    </body>
+                </html>
+            ";
+
+            $this->emailHistoryObj->addEmailHistoryInformation (
+                array (
+                    'creatorId' => $this->creatorId,
+                    'recipientId' => 1,
+                    'type' => __METHOD__,
+                    'priority' => 10,
+                    'emailAddress' => 'undetermined',
+                    'subject' => $this->subject,
+                    'body' => $this->message
+                )
+            );
+        }
+
         public function sendUserRegistrationMessage($userId, $display=false) {
             $usersObj = new users();
             $usersObj->getUserInformation($userId);

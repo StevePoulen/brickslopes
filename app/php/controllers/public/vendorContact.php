@@ -1,12 +1,12 @@
 <?php
 
-class emailUs {
+class vendorContact {
     public function __construct() {
         $this->determineRequestMethod();
     }
 
     private function determineRequestMethod() {
-        $requestMethod = ISSET($_SERVER['REQUEST_METHOD']) 
+        $requestMethod = ISSET($_SERVER['REQUEST_METHOD'])
             ? $_SERVER['REQUEST_METHOD']
             : 'error';
 
@@ -22,12 +22,14 @@ class emailUs {
         if (WEBSITE === 'mybrickslopes.com') {
             $email =  'Brian <brianpilati@gmail.com>';
         } else {
-            $email =  'Brian <brian@brickslopes.com>,Steve <steve@brickslopes.com>,Cody <cody@brickslopes.com>';
+             $email =  'Brian <brian@brickslopes.com>,Steve <steve@brickslopes.com>,Cody <cody@brickslopes.com>';
         }
         $emailObj = new mail($email);
-        $emailObj->sendEmailUsMessage($payload);
+        $emailObj->sendVendorContactMessage($payload);
         header("HTTP/1.0 200 Success");
     }
 }
 
-new emailUs();
+new vendorContact();
+
+?>

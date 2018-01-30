@@ -28,6 +28,6 @@ class MailCronProcessTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($updateHistory['errorMessage'], NULL);
 
         $this->assertEquals($subject, 'This is my subject');
-        $this->assertEquals($body, 'This is my body');
+        $this->assertContains('BrickSlopes Question', $emailOutput['body']);
     }
 }

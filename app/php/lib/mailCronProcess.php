@@ -95,7 +95,9 @@
         private function addEmails($emailAddress, $type) {
             $strToMailName = '';
             $emailString  = "";
-            if ($type === 'mail::sendEmailUsMessage') {
+            if ($type === 'mail::sendEmailUsMessage' ||
+                $type === 'mail::sendVendorContactMessage'
+            ) {
                 $emails = array('brian@brickslopes.com', 'steve@brickslopes.com', 'cody@brickslopes.com');
             } else {
                 $emails = array($emailAddress);
