@@ -1,7 +1,7 @@
 describe('Event Dates Factory', function() {
     'use strict';
 
-    var service, fakeWindow;
+    var service;
     var mockBackend, data;
 
     beforeEach(module('brickSlopes'));
@@ -9,10 +9,8 @@ describe('Event Dates Factory', function() {
     beforeEach(inject(function(
         _EventDates_,
         _EventSelectionFactory_,
-        _$httpBackend_,
-        _$window_
+        _$httpBackend_
     ) {
-        fakeWindow = _$window_;
         data = null;
         service = _EventDates_;
         mockBackend = _$httpBackend_;
@@ -20,7 +18,7 @@ describe('Event Dates Factory', function() {
 
     describe('Event Dates Success', function() {
         beforeEach(function() {
-            mockBackend.expectGET('/controllers/public/eventDates.php').respond(201, fakeWindow.eventDates);
+            mockBackend.expectGET('/controllers/public/eventDates.php').respond(201, eventDates);
         });
 
         it('should get all the events', function() {
@@ -28,7 +26,7 @@ describe('Event Dates Factory', function() {
                 data = _data_;
             });
             mockBackend.flush();
-            expect(data).toEqual(fakeWindow.eventDates);
+            expect(data).toEqual(eventDates);
         });
 
         describe('getEventYear', function() {

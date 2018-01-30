@@ -2,30 +2,26 @@ describe('service', function() {
     'use strict';
 
     var mockBackend, registrationLineItemsService, data, dto;
-    var mockWindow;
+
+    beforeEach(module('brickSlopes'));
 
     beforeEach(inject(function(
         _$httpBackend_,
-        _RegistrationLineItems_,
-        _$window_
+        _RegistrationLineItems_
     ) {
         mockBackend = _$httpBackend_;
         registrationLineItemsService = _RegistrationLineItems_;
-        mockWindow = _$window_;
     }));
 
-    beforeEach(module('brickSlopes'));
 
     describe('Registration Line Items', function() {
         describe('Get', function() {
             beforeEach(function() {
-                mockBackend.expectGET('/controllers/registered/registrationLineItems.php?eventId=2').respond(mockWindow.registrationLineItems);
+                mockBackend.expectGET('/controllers/registered/registrationLineItems.php?eventId=2').respond(window.registrationLineItems);
             });
 
             it('should get registration line items', function() {
-                var load = registrationLineItemsService.get();
-
-                load.then(function(_data) {
+                registrationLineItemsService.get().then(function(_data) {
                     data = _data;
                 });
 
@@ -52,9 +48,7 @@ describe('service', function() {
             });
 
             it('should patch a registration line item confirm payment', function() {
-                var load = registrationLineItemsService.confirmPayment(dto);
-
-                load.then(function(_data) {
+                registrationLineItemsService.confirmPayment(dto).then(function(_data) {
                     data = _data;
                 });
 
@@ -77,9 +71,7 @@ describe('service', function() {
             });
 
             it('should patch a registration line item confirm payment', function() {
-                var load = registrationLineItemsService.revokePayment(dto);
-
-                load.then(function(_data) {
+                registrationLineItemsService.revokePayment(dto).then(function(_data) {
                     data = _data;
                 });
 

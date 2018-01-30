@@ -1,7 +1,7 @@
 (function(angular) {
     'use strict';
 
-    angular.module('brickSlopes').factory('emailUsService', [
+    angular.module('brickSlopes').factory('vendorContactService', [
         '$q',
         '$http',
         function(
@@ -10,13 +10,13 @@
         ) {
             var service = Object({});
 
-            service.create= function(emailDTO) {
+            service.create = function(vendorContactDTO) {
                 var delay= $q.defer();
                 $http (
                     {
                         method: 'POST',
-                        url: '/controllers/public/emailUs.php',
-                        data: emailDTO,
+                        url: '/controllers/public/vendorContact.php',
+                        data: vendorContactDTO,
                         headers: {'Content-Type': 'application/x-www-form-urlencoded'}
                     }
                 ).success(function(data) {
@@ -27,6 +27,5 @@
             };
 
             return service;
-        }
-    ])
+        }])
 })(angular);
