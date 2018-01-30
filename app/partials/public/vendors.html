@@ -20,45 +20,45 @@
               <form name="vendorContactForm" ng-submit="vendorContactForm.$valid && submitVendorInformation()">
                 <div class="row">
                   <div class="form-group col-md-offset-2 col-md-8">
-                    <input type="text" class="form-control" bs-placeholder="Business Name (required)" ng-model="businessName" required>
+                    <input type="text" class="form-control" bs-placeholder="Business Name (required)" ng-model="data.businessName" required>
                   </div>
                 </div>
                 <div class="row">
                   <div class="form-group col-md-offset-2 col-md-8">
-                    <input type="text" class="form-control" bs-placeholder="Contact Name (required)" ng-model="contactName" required>
+                    <input type="text" class="form-control" bs-placeholder="Contact Name (required)" ng-model="data.contactName" required>
                   </div>
                 </div>
                 <div class="row">
                   <div class="form-group col-md-offset-2 col-md-8">
-                    <input type="email" class="form-control" bs-placeholder="E-mail Address (required)" ng-model="email" required>
+                    <input type="email" class="form-control" bs-placeholder="E-mail Address (required)" ng-model="data.email" required>
                   </div>
                 </div>
                 <div class="row">
                   <div class="form-group col-md-offset-2 col-md-8">
-                    <input type="text" class="form-control" bs-placeholder="Phone Number (required)" ng-model="phoneNumber" required>
+                    <input type="text" class="form-control" bs-placeholder="Phone Number (required)" ng-model="data.phoneNumber" required>
                   </div>
                 </div>
                 <div class="row">
                   <div class="form-group col-md-offset-2 col-md-8">
-                    <textarea class="form-control" ng-model="typeOfProducts" required></textarea>
+                    <textarea class="form-control" ng-model="data.typeOfProducts" required></textarea>
                   </div>
                 </div>
                 <div class="row">
                   <div class="form-group col-md-offset-2 col-md-4">
-                    <input type="text" class="form-control" bs-placeholder="Amount of Space" ng-model="space" required>
+                    <input type="text" class="form-control" bs-placeholder="Amount of Space" ng-model="data.space" required>
                   </div>
                   <div class="form-group col-md-4">
-                    <input type="text" class="form-control" bs-placeholder="Number of Associates" ng-model="associates" required>
+                    <input type="text" class="form-control" bs-placeholder="Number of Associates" ng-model="data.associates" required>
                   </div>
                 </div>
                 <div class="row">
                   <div class="form-group col-md-offset-2 col-md-8">
-                    <input type="text" class="form-control" bs-placeholder="Company Website" ng-model="webSite">
+                    <input type="text" class="form-control" bs-placeholder="Company Website" ng-model="data.webSite">
                   </div>
                 </div>
                 <div class="row margin-bottom-small">
                   <div class="col-md-offset-2 col-md-4">
-                    <input class="form-control" bs-placeholder="Captcha (required)" ng-model="captcha" required equals="{{captchaInit}}">
+                    <input class="form-control" bs-placeholder="Captcha (required)" ng-model="data.captcha" required equals="{{captchaInit}}">
                   </div>
                   <div class="col-md-4 oneEMFont">
                     <span>Captcha Text:</span>

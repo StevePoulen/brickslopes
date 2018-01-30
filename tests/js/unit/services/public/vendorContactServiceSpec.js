@@ -1,7 +1,7 @@
 describe('Vendor Contact service', function() {
     'use strict';
 
-    var mockBackend, vendorContactService, data, emailJson;
+    var mockBackend, vendorContactService, data, expectedPost;
 
     beforeEach(module('brickSlopes'));
 
@@ -10,7 +10,7 @@ describe('Vendor Contact service', function() {
             _vendorContactService_,
             _$httpBackend_
         ) {
-            emailJson = {
+            expectedPost = {
                 firstName: 'Steve',
                 lastName: 'Poulsen',
                 email: 'steve@bs.com',
@@ -18,11 +18,11 @@ describe('Vendor Contact service', function() {
             };
             mockBackend = _$httpBackend_;
             vendorContactService = _vendorContactService_;
-            mockBackend.expectPOST('/controllers/public/vendorContact.php', emailJson).respond('success');
+            mockBackend.expectPOST('/controllers/public/vendorContact.php', expectedPost).respond('success');
         }));
 
         it('should post an email', function() {
-            vendorContactService.create(emailJson).then(function(_data) {
+            vendorContactService.create(expectedPost).then(function(_data) {
                 data = _data;
             });
 

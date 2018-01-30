@@ -15,12 +15,13 @@ describe('Vendor Contact', function() {
             _$controller_('vendorContactController', {
                 $scope: scope
             });
+            scope.$digest();
             mockBackend = _$httpBackend_;
         }));
 
         describe('Default Values', function() {
-            it('should have a comments variable', function() {
-                expect(scope.comments).toBe('Comments ...');
+            it('should have a typeOfProducts variable', function() {
+                expect(scope.data.typeOfProducts).toBe('Type of Products ...');
             });
 
             it('should have a captchaInit variable', function() {
@@ -38,33 +39,50 @@ describe('Vendor Contact', function() {
 
         describe('Submit an email', function() {
             beforeEach(function() {
-                scope.firstName = 'Cody';
-                scope.lastName = 'Ottley';
-                scope.email = 'cody.ottley@bs.com';
-                scope.comments = 'Everything is Awesome!';
+                scope.data = Object({
+                    businessName: 'Cody Emporium',
+                    contactName: 'Cody Ottley',
+                    email: 'cody.ottley@bs.com',
+                    phoneNumber: '8013334444',
+                    typeOfProducts: 'Everything is Awesome!',
+                    space: '4 tables',
+                    associates: '3 associates',
+                    webSite: '',
+                    captcha: 'bingo'
+                });
             });
 
             it('should submit an email on success', function() {
-                var dto = {
-                    firstName: 'Cody',
-                    lastName: 'Ottley',
+                var expectedPost = {
+                    businessName: 'Cody Emporium',
+                    contactName: 'Cody Ottley',
                     email: 'cody.ottley@bs.com',
-                    comments: 'Everything is Awesome!'
+                    phoneNumber: '8013334444',
+                    typeOfProducts: 'Everything is Awesome!',
+                    space: '4 tables',
+                    associates: '3 associates',
+                    webSite: '',
+                    captcha: 'bingo'
                 };
                 scope.vendorContactForm = {
                     '$setPristine': function() {}
                 };
                 scope.submitEmail();
-                mockBackend.expectPOST('/controllers/public/emailUs.php', dto).respond(201);
+                mockBackend.expectPOST('/controllers/public/vendorContact.php', expectedPost).respond(201);
                 mockBackend.flush();
                 expect(scope.displayMessage).toBe('Your e-mail has been sent.');
                 expect(scope.timer).toBe(true);
-                expect(scope.firstName).toBe('');
-                expect(scope.lastName).toBe('');
-                expect(scope.email).toBe('');
-                expect(scope.comments).toBe('Comments ...');
-                expect(scope.captchaInit).toBe('WylDstYl3');
-                expect(scope.captcha).toBe('');
+                expect(scope.data).toEqual(Object({
+                    businessName: '',
+                    contactName: '',
+                    email: '',
+                    phoneNumber: '',
+                    typeOfProducts: 'Type of Products ...',
+                    space: '',
+                    associates: '',
+                    webSite: '',
+                    captcha: ''
+                }));
             });
         });
     });

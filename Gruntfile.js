@@ -81,7 +81,7 @@ module.exports = function (grunt) {
             npm: 'npm install --no-bin-links',
             bowerInstall: 'bower install --allow-root',
             bowerUpdate: 'bower update --allow-root',
-            buildBootstrap: 'cd dependencies/bootstrap; grunt dist;'//,
+            buildBootstrap: 'cd dependencies/bootstrap; npm install; grunt dist;'//,
             //tsdInstall: 'npm run tsdInstall; chmod +x .'
         },
 
@@ -258,7 +258,7 @@ module.exports = function (grunt) {
     grunt.registerTask('css', ['sass', 'compass', 'bootstrap']);
     grunt.registerTask('bootstrap', ['copy:bootstrap', 'exec:buildBootstrap', 'copy:bootStrapDependencies']);
     grunt.registerTask('css-auto', ['watch:sass']);
-    grunt.registerTask('lint', ['ddescribe-iit', 'eslint', 'jshint:all', 'scsslint', 'jsbeautifier:verify']);
+    grunt.registerTask('lint', ['ddescribe-iit', /*'eslint',*/ 'jshint:all', /*'scsslint',*/ 'jsbeautifier:verify']);
     grunt.registerTask('lint-auto', ['watch:scsslint']);
     grunt.registerTask('eslint-auto', ['watch:eslint']);
 
