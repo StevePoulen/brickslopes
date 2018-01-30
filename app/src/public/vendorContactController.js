@@ -26,7 +26,7 @@
                 });
             }
 
-            $scope.submitEmail = function () {
+            $scope.submitVendorInformation = function () {
                 $scope.verifying = true;
                 vendorContactService.create($scope.data).then(function(response) {
                     $scope.vendorContactForm.$setPristine();

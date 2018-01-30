@@ -67,7 +67,7 @@ describe('Vendor Contact', function() {
                 scope.vendorContactForm = {
                     '$setPristine': function() {}
                 };
-                scope.submitEmail();
+                scope.submitVendorInformation();
                 mockBackend.expectPOST('/controllers/public/vendorContact.php', expectedPost).respond(201);
                 mockBackend.flush();
                 expect(scope.displayMessage).toBe('Your e-mail has been sent.');
