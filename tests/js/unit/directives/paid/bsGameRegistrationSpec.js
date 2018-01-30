@@ -14,16 +14,17 @@ describe('directives', function() {
 
         describe('Contents - actual', function() {
             beforeEach(function() {
-                scope.game = {
+                scope.game = Object({
                     showCTAButton: true,
                     gameId: 2
-                };
-                scope.userGameList = {
+                });
+
+                scope.userGameList = Object({
                     1: {
                         gameId: 1,
                         userId: 3
                     }
-                }
+                });
                 element = compile(element)(scope);
                 scope.$digest();
             });
@@ -47,16 +48,17 @@ describe('directives', function() {
 
         describe('Contents - always true', function() {
             beforeEach(function() {
-                scope.game = {
+                scope.game = Object({
                     showCTAButton: true,
                     gameId: 2
-                };
-                scope.userGameList = {
+                });
+
+                scope.userGameList = Object({
                     1: {
                         gameId: 1,
                         userId: 3
                     }
-                }
+                });
                 element = compile(element)(scope);
                 scope.$digest();
                 spyOn(scope, 'canRegister').and.returnValue(true);

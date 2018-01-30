@@ -12,10 +12,10 @@ describe('Email Us service', function() {
                 _$httpBackend_
             ) {
                 emailJson = {
-                    'firstName': 'Steve',
-                    'lastName': 'Poulsen',
-                    'email': 'steve@bs.com',
-                    'comments': 'LEGO is awesome'
+                    firstName: 'Steve',
+                    lastName: 'Poulsen',
+                    email: 'steve@bs.com',
+                    comments: 'LEGO is awesome'
                 };
                 mockBackend = _$httpBackend_;
                 emailUsService = _emailUsService_;

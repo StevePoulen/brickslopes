@@ -1,29 +1,34 @@
 describe('service', function() {
     'use strict';
 
+    var mockBackend, authService, data, credentials;
+
     beforeEach(module('brickSlopes'));
+
+    beforeEach(inject(function(
+        _Auth_,
+        _$httpBackend_
+    ) {
+        mockBackend = _$httpBackend_;
+        authService = _Auth_;
+    }));
 
     describe('Authentication', function() {
         describe('Login', function() {
-            var mockBackend, loader, data, credentials;
-            beforeEach(inject(function(_$httpBackend_, Auth) {
+            beforeEach(function() {
                 credentials = {
-                    'email': 'brian@bs.com',
-                    'password': 'LEGO'
+                    email: 'brian@bs.com',
+                    password: 'LEGO'
                 };
-                mockBackend = _$httpBackend_;
-                loader = Auth;
                 var payload = {
                     email: 'brian@bs.com',
                     password: 'LEGO'
                 };
                 mockBackend.expectPOST('/controllers/public/authentication.php', payload).respond('success');
-            }));
+            });
 
             it('should register a user', function() {
-                var load = loader.login(credentials);
-
-                load.then(function(_data) {
+                authService.login(credentials).then(function(_data) {
                     data = _data;
                 });
 
@@ -34,20 +39,15 @@ describe('service', function() {
 
 
         describe('Reset', function() {
-            var mockBackend, loader, data, credentials;
-            beforeEach(inject(function(_$httpBackend_, Auth) {
+            beforeEach(function() {
                 credentials = {
-                    'email': 'steve@bs.com'
+                    email: 'steve@bs.com'
                 };
-                mockBackend = _$httpBackend_;
-                loader = Auth;
                 mockBackend.expectPUT('/controllers/public/authentication.php', credentials).respond('success');
-            }));
+            });
 
             it('should register a user', function() {
-                var load = loader.reset(credentials);
-
-                load.then(function(_data) {
+                authService.reset(credentials).then(function(_data) {
                     data = _data;
                 });
 
@@ -57,21 +57,16 @@ describe('service', function() {
         });
 
         describe('Update', function() {
-            var mockBackend, loader, data, credentials;
-            beforeEach(inject(function(_$httpBackend_, Auth) {
+            beforeEach(function() {
                 credentials = {
-                    'oldPassword': 'oldSecure',
-                    'newPassword': 'newSecure'
+                    oldPassword: 'oldSecure',
+                    newPassword: 'newSecure'
                 };
-                mockBackend = _$httpBackend_;
-                loader = Auth;
                 mockBackend.expectPATCH('/controllers/public/authentication.php', credentials).respond('success');
-            }));
+            });
 
             it('should update a user\'s password', function() {
-                var load = loader.update(credentials);
-
-                load.then(function(_data) {
+                authService.update(credentials).then(function(_data) {
                     data = _data;
                 });
 

@@ -1,27 +1,34 @@
-describe('service', function() {
+describe('vendorDetailsService', function() {
     'use strict';
+
+    var mockBackend, vendorDetailsService, data, dto;
+    var tableDTO, vendorDTO;
+
     beforeEach(module('brickSlopes'));
+
+    beforeEach(inject(function(
+        _$httpBackend_,
+        _VendorDetails_
+    ) {
+        mockBackend = _$httpBackend_;
+        vendorDetailsService = _VendorDetails_;
+    }));
 
     describe('Vendors', function() {
         describe('Get', function() {
-            var mockBackend, service, data;
-            beforeEach(inject(function(_$httpBackend_, VendorDetails) {
-                mockBackend = _$httpBackend_;
-                mockBackend.expectGET('/controllers/registered/vendors/vendors.php?eventId=2').respond(201, vendors);
-                service = VendorDetails;
-            }));
+            beforeEach(function() {
+                mockBackend.expectGET('/controllers/registered/vendors/vendors.php?eventId=2').respond(window.vendors);
+            });
 
             it('should get a list of vendors for an event', function() {
-                var load = service.getList(2);
-
-                load.then(function(_data) {
-                    data = _data;
+                vendorDetailsService.getList(2).then(function(_data_) {
+                    data = _data_;
                 });
 
                 mockBackend.flush();
                 expect(data[0].storeId).toBe(2);
-                expect(data[0].name).toBe("A Boy's Mission");
-                expect(data[0].description.$$unwrapTrustedValue()).toBe("All LEGO Bro");
+                expect(data[0].name).toBe('A Boy\'s Mission');
+                expect(data[0].description.$$unwrapTrustedValue()).toBe('All LEGO Bro');
                 expect(data[0].url).toBe('http://www.brickshelf.com/abm');
                 expect(data[0].hasLogo).toBe(true);
                 expect(data[0].logo).toBe('http://www.mylogo.com');
@@ -50,9 +57,8 @@ describe('service', function() {
             });
 
             it('should load the game list count', function() {
-                var load = service.getCount(2);
-                load.then(function(_data) {
-                    data = _data;
+                vendorDetailsService.getCount(2).then(function(_data_) {
+                    data = _data_;
                 });
 
                 mockBackend.flush();
@@ -61,22 +67,17 @@ describe('service', function() {
         });
 
         describe('Delete Associate', function() {
-            var mockBackend, service, data, dto;
-            beforeEach(inject(function(_$httpBackend_, VendorDetails) {
-                dto = {
+            beforeEach(function() {
+                dto = Object({
                     associateId: 22,
-                    userId: 23,
-                }
-                mockBackend = _$httpBackend_;
+                    userId: 23
+                });
                 mockBackend.expectDELETE('/controllers/registered/vendors/vendorAssociates.php?associateId=22&eventId=2&userId=23').respond(200, 'Success');
-                service = VendorDetails;
-            }));
+            });
 
             it('should delete an associate', function() {
-                var load = service.deleteAssociate(dto);
-
-                load.then(function(_data) {
-                    data = _data;
+                vendorDetailsService.deleteAssociate(dto).then(function(_data_) {
+                    data = _data_;
                 });
 
                 mockBackend.flush();
@@ -85,27 +86,21 @@ describe('service', function() {
         });
 
         describe('Create Associate error', function() {
-            var mockBackend, service, data, dto;
-            beforeEach(inject(function(_$httpBackend_, VendorDetails) {
-                dto = {
-                    associateId: 22,
-                }
+            beforeEach(function() {
+                dto = Object({
+                    associateId: 22
+                });
 
-                mockBackend = _$httpBackend_;
                 mockBackend.expectDELETE('/controllers/registered/vendors/vendorAssociates.php?associateId=22&eventId=2').respond(412, {
                     error: 'this is bad'
                 });
-                service = VendorDetails;
-            }));
+            });
 
             it('should delete an associate', function() {
-                var tableDTO;
-                var load = service.deleteAssociate(dto);
-
-                load.then(function(_data) {
+                vendorDetailsService.deleteAssociate(dto).then(function() {
                     data = 'This is wrong';
-                }, function(_data) {
-                    data = _data;
+                }, function(_data_) {
+                    data = _data_;
                 });
 
                 mockBackend.flush();
@@ -114,19 +109,13 @@ describe('service', function() {
         });
 
         describe('Create Associate', function() {
-            var mockBackend, service, data;
-            beforeEach(inject(function(_$httpBackend_, VendorDetails) {
-                mockBackend = _$httpBackend_;
-                mockBackend.expectPOST('/controllers/registered/vendors/vendorAssociates.php').respond(201, 'Success');
-                service = VendorDetails;
-            }));
+            beforeEach(function() {
+                mockBackend.expectPOST('/controllers/registered/vendors/vendorAssociates.php').respond('Success');
+            });
 
             it('should create a table order for an event', function() {
-                var tableDTO;
-                var load = service.createAssociate(tableDTO);
-
-                load.then(function(_data) {
-                    data = _data;
+                vendorDetailsService.createAssociate(tableDTO).then(function(_data_) {
+                    data = _data_;
                 });
 
                 mockBackend.flush();
@@ -135,23 +124,17 @@ describe('service', function() {
         });
 
         describe('Create Associate error', function() {
-            var mockBackend, service, data;
-            beforeEach(inject(function(_$httpBackend_, VendorDetails) {
-                mockBackend = _$httpBackend_;
+            beforeEach(function() {
                 mockBackend.expectPOST('/controllers/registered/vendors/vendorAssociates.php').respond(412, {
                     error: 'this is bad'
                 });
-                service = VendorDetails;
-            }));
+            });
 
             it('should create a table order for an event', function() {
-                var tableDTO;
-                var load = service.createAssociate(tableDTO);
-
-                load.then(function(_data) {
+                vendorDetailsService.createAssociate(tableDTO).then(function() {
                     data = 'This is wrong';
-                }, function(_data) {
-                    data = _data;
+                }, function(_data_) {
+                    data = _data_;
                 });
 
                 mockBackend.flush();
@@ -160,19 +143,15 @@ describe('service', function() {
         });
 
         describe('Get Associate', function() {
-            var mockBackend, service, data, storeId;
-            beforeEach(inject(function(_$httpBackend_, VendorDetails) {
+            var storeId;
+            beforeEach(function() {
                 storeId = 3;
-                mockBackend = _$httpBackend_;
-                mockBackend.expectGET('/controllers/registered/vendors/vendorAssociates.php?eventId=2&storeId=' + storeId).respond(201, associatesMock);
-                service = VendorDetails;
-            }));
+                mockBackend.expectGET('/controllers/registered/vendors/vendorAssociates.php?eventId=2&storeId=' + storeId).respond(window.associatesMock);
+            });
 
             it('should get all the associates for an event', function() {
-                var load = service.getAssociates(storeId);
-
-                load.then(function(_data) {
-                    data = _data;
+                vendorDetailsService.getAssociates(storeId).then(function(_data_) {
+                    data = _data_;
                 });
 
                 mockBackend.flush();
@@ -184,19 +163,13 @@ describe('service', function() {
         });
 
         describe('Create Table', function() {
-            var mockBackend, service, data;
-            beforeEach(inject(function(_$httpBackend_, VendorDetails) {
-                mockBackend = _$httpBackend_;
-                mockBackend.expectPOST('/controllers/registered/vendors/tableRegistration.php').respond(201, 'Success');
-                service = VendorDetails;
-            }));
+            beforeEach(function() {
+                mockBackend.expectPOST('/controllers/registered/vendors/tableRegistration.php').respond('Success');
+            });
 
             it('should create a table order for an event', function() {
-                var tableDTO;
-                var load = service.createTableOrder(tableDTO);
-
-                load.then(function(_data) {
-                    data = _data;
+                vendorDetailsService.createTableOrder(tableDTO).then(function(_data_) {
+                    data = _data_;
                 });
 
                 mockBackend.flush();
@@ -205,19 +178,13 @@ describe('service', function() {
         });
 
         describe('Update Table', function() {
-            var mockBackend, service, data;
-            beforeEach(inject(function(_$httpBackend_, VendorDetails) {
-                mockBackend = _$httpBackend_;
+            beforeEach(function() {
                 mockBackend.expectPATCH('/controllers/registered/vendors/tableRegistration.php').respond(200);
-                service = VendorDetails;
-            }));
+            });
 
             it('should create a table order for an event', function() {
-                var tableDTO;
-                var load = service.updateTableOrder(tableDTO);
-
-                load.then(function(_data) {
-                    data = _data;
+                vendorDetailsService.updateTableOrder(tableDTO).then(function(_data_) {
+                    data = _data_;
                 });
 
                 mockBackend.flush();
@@ -226,18 +193,13 @@ describe('service', function() {
         });
 
         describe('Get Table', function() {
-            var mockBackend, service, data;
-            beforeEach(inject(function(_$httpBackend_, VendorDetails) {
-                mockBackend = _$httpBackend_;
-                mockBackend.expectGET('/controllers/registered/vendors/tableRegistration.php?tableId=2').respond(201, tables);
-                service = VendorDetails;
-            }));
+            beforeEach(function() {
+                mockBackend.expectGET('/controllers/registered/vendors/tableRegistration.php?tableId=2').respond(window.tables);
+            });
 
             it('should get a number of tables for an event', function() {
-                var load = service.getTableById(2);
-
-                load.then(function(_data) {
-                    data = _data;
+                vendorDetailsService.getTableById(2).then(function(_data_) {
+                    data = _data_;
                 });
 
                 mockBackend.flush();
@@ -249,19 +211,13 @@ describe('service', function() {
         });
 
         describe('Create a new store', function() {
-            var mockBackend, service, data;
-            beforeEach(inject(function(_$httpBackend_, VendorDetails) {
-                mockBackend = _$httpBackend_;
-                mockBackend.expectPOST('/controllers/registered/vendors/vendorRegistration.php').respond(201, 'Success');
-                service = VendorDetails;
-            }));
+            beforeEach(function() {
+                mockBackend.expectPOST('/controllers/registered/vendors/vendorRegistration.php').respond('Success');
+            });
 
             it('should get a list of vendors for an event', function() {
-                var vendorDTO;
-                var load = service.createStore(vendorDTO);
-
-                load.then(function(_data) {
-                    data = _data;
+                vendorDetailsService.createStore(vendorDTO).then(function(_data_) {
+                    data = _data_;
                 });
 
                 mockBackend.flush();
@@ -270,24 +226,19 @@ describe('service', function() {
         });
 
         describe('Get Store', function() {
-            var mockBackend, service, data;
-            beforeEach(inject(function(_$httpBackend_, VendorDetails) {
-                mockBackend = _$httpBackend_;
-                mockBackend.expectGET('/controllers/registered/vendors/vendorRegistration.php?storeId=2').respond(201, vendors[0]);
-                service = VendorDetails;
-            }));
+            beforeEach(function() {
+                mockBackend.expectGET('/controllers/registered/vendors/vendorRegistration.php?storeId=2').respond(window.vendors[0]);
+            });
 
             it('should get a single vendor store', function() {
-                var load = service.getStore(2);
-
-                load.then(function(_data) {
-                    data = _data;
+                vendorDetailsService.getStore(2).then(function(_data_) {
+                    data = _data_;
                 });
 
                 mockBackend.flush();
                 expect(data.storeId).toBe(2);
-                expect(data.name).toBe("A Boy's Mission");
-                expect(data.description.$$unwrapTrustedValue()).toBe("All LEGO Bro");
+                expect(data.name).toBe('A Boy\'s Mission');
+                expect(data.description.$$unwrapTrustedValue()).toBe('All LEGO Bro');
                 expect(data.url).toBe('http://www.brickshelf.com/abm');
                 expect(data.hasLogo).toBe(true);
                 expect(data.logo).toBe('http://www.mylogo.com');
@@ -297,19 +248,13 @@ describe('service', function() {
         });
 
         describe('Update new store', function() {
-            var mockBackend, service, data;
-            beforeEach(inject(function(_$httpBackend_, VendorDetails) {
-                mockBackend = _$httpBackend_;
+            beforeEach(function() {
                 mockBackend.expectPATCH('/controllers/registered/vendors/vendorRegistration.php').respond(200);
-                service = VendorDetails;
-            }));
+            });
 
             it('should get a list of vendors for an event', function() {
-                var vendorDTO;
-                var load = service.updateStore(vendorDTO);
-
-                load.then(function(_data) {
-                    data = _data;
+                vendorDetailsService.updateStore(vendorDTO).then(function(_data_) {
+                    data = _data_;
                 });
 
                 mockBackend.flush();
@@ -318,24 +263,20 @@ describe('service', function() {
         });
 
         describe('Get Event Me Vendor Information', function() {
-            var mockBackend, data;
-            beforeEach(inject(function(_$httpBackend_, VendorDetails) {
-                mockBackend = _$httpBackend_;
-                mockBackend.expectGET('/controllers/registered/vendors/vendorMeInformation.php?eventId=2').respond(201, eventMeVendor);
-                var load = VendorDetails.getEventMeVendorInformation();
-
-                load.then(function(_data) {
-                    data = _data;
+            beforeEach(function() {
+                mockBackend.expectGET('/controllers/registered/vendors/vendorMeInformation.php?eventId=2').respond(window.eventMeVendor);
+                vendorDetailsService.getEventMeVendorInformation().then(function(_data_) {
+                    data = _data_;
                 });
 
                 mockBackend.flush();
-            }));
+            });
 
             describe('Vendor Store', function() {
                 it('should get a single vendor store', function() {
                     var store = data.store;
                     expect(store.storeId).toBe('4');
-                    expect(store.name).toBe("My Store");
+                    expect(store.name).toBe('My Store');
                     expect(store.url).toBe('https://www.brickshelf.com/url');
                     expect(store.logo).toBe('https://www.logo.com/logo');
                     expect(store.creationDate).toBe('2014-08-30 17:16:49');
@@ -371,24 +312,20 @@ describe('service', function() {
         });
 
         describe('Get Event Me Vendor Information Empty', function() {
-            var mockBackend, data;
-            beforeEach(inject(function(_$httpBackend_, VendorDetails) {
-                mockBackend = _$httpBackend_;
-                mockBackend.expectGET('/controllers/registered/vendors/vendorMeInformation.php?eventId=2').respond(201, eventMeVendorEmpty);
-                var load = VendorDetails.getEventMeVendorInformation();
-
-                load.then(function(_data) {
-                    data = _data;
+            beforeEach(function() {
+                mockBackend.expectGET('/controllers/registered/vendors/vendorMeInformation.php?eventId=2').respond(window.eventMeVendorEmpty);
+                vendorDetailsService.getEventMeVendorInformation().then(function(_data_) {
+                    data = _data_;
                 });
 
                 mockBackend.flush();
-            }));
+            });
 
             describe('Vendor Store', function() {
                 it('should get a single vendor store', function() {
                     var store = data.store;
                     expect(store.storeId).toBe('4');
-                    expect(store.name).toBe("My Store");
+                    expect(store.name).toBe('My Store');
                     expect(store.url).toBe('https://www.brickshelf.com/url');
                     expect(store.logo).toBe('https://www.logo.com/logo');
                     expect(store.creationDate).toBe('2014-08-30 17:16:49');

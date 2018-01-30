@@ -1,40 +1,42 @@
-describe('service', function() {
+describe('feedbackService', function() {
     'use strict';
+
+    var mockBackend, feedbackService, data, dto;
 
     beforeEach(module('brickSlopes'));
 
+    beforeEach(inject(function(
+        Feedback,
+        _$httpBackend_
+    ) {
+        mockBackend = _$httpBackend_;
+        feedbackService = Feedback;
+    }));
+
     describe('Get All Feedback', function() {
-        var mockBackend, service, data;
-        beforeEach(inject(function(_$httpBackend_, Feedback) {
-            mockBackend = _$httpBackend_;
-            service = Feedback;
-            mockBackend.expectGET('/controllers/public/feedback.php').respond(feedback);
-        }));
+        beforeEach(function() {
+            mockBackend.expectGET('/controllers/public/feedback.php').respond(window.feedback);
+        });
 
         it('should load all feedback', function() {
-            var load = service.get();
-            load.then(function(_data) {
-                data = _data;
+            feedbackService.get().then(function(_data_) {
+                data = _data_;
             });
 
             mockBackend.flush();
-            expect(data).toEqual(feedback);
+            expect(data).toEqual(window.feedback);
         });
     });
 
     describe('Create Feedback', function() {
-        var mockBackend, service, data, dto;
-        beforeEach(inject(function(_$httpBackend_, Feedback) {
-            dto = {};
-            mockBackend = _$httpBackend_;
-            service = Feedback;
+        beforeEach(function() {
+            dto = Object({});
             mockBackend.expectPOST('/controllers/public/feedback.php', dto).respond(201);
-        }));
+        });
 
         it('should create a user moc', function() {
-            var load = service.create(dto);
-            load.then(function(_data) {
-                data = _data;
+            feedbackService.create(dto).then(function(_data_) {
+                data = _data_;
             });
 
             mockBackend.flush();

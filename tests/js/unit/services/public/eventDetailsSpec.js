@@ -1,18 +1,20 @@
-describe('service', function() {
+describe('eventDetailsService', function() {
     'use strict';
 
-    var mockBackend, service, data, eventId;
+    var mockBackend, eventDetailsService, data, eventId;
 
     beforeEach(module('brickSlopes'));
 
     describe('Event Details', function() {
         describe('Get', function() {
-            beforeEach(inject(function(_$httpBackend_, EventDetails) {
+            beforeEach(inject(function(
+                EventDetails,
+                _$httpBackend_
+            ) {
                 mockBackend = _$httpBackend_;
-                service = EventDetails;
-                mockBackend.expectGET('/controllers/public/event.php?eventId=2').respond(eventDetails);
-                var load = service.get(eventId)
-                load.then(function(_data) {
+                eventDetailsService = EventDetails;
+                mockBackend.expectGET('/controllers/public/event.php?eventId=2').respond(window.eventDetails);
+                eventDetailsService.get(eventId).then(function(_data) {
                     data = _data;
                 });
 

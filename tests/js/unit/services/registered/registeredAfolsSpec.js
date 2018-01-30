@@ -1,21 +1,27 @@
-describe('service', function() {
+describe('registeredAfolsService', function() {
     'use strict';
+
+    var mockBackend, registeredAfolsService, data;
 
     beforeEach(module('brickSlopes'));
 
+    beforeEach(inject(function(
+        _$httpBackend_,
+        _RegisteredAfols_
+    ) {
+        mockBackend = _$httpBackend_;
+        registeredAfolsService = _RegisteredAfols_;
+    }));
+
     describe('Registered Afols', function() {
         describe('Get', function() {
-            var mockBackend, service, data;
-            beforeEach(inject(function(_$httpBackend_, RegisteredAfols) {
-                mockBackend = _$httpBackend_;
-                service = RegisteredAfols;
-                mockBackend.expectGET('/controllers/registered/registeredAfols.php?eventId=2').respond(201, registeredAfols);
-            }));
+            beforeEach(function() {
+                mockBackend.expectGET('/controllers/registered/registeredAfols.php?eventId=2').respond(window.registeredAfols);
+            });
 
             it('should load registered afols count', function() {
-                var load = service.getCount(2);
-                load.then(function(_data) {
-                    data = _data;
+                registeredAfolsService.getCount(2).then(function(_data_) {
+                    data = _data_;
                 });
 
                 mockBackend.flush();
@@ -23,29 +29,23 @@ describe('service', function() {
             });
 
             it('should get all of the registered afols', function() {
-                var load = service.get(2);
-
-                load.then(function(_data) {
-                    data = _data;
+                registeredAfolsService.get(2).then(function(_data_) {
+                    data = _data_;
                 });
 
                 mockBackend.flush();
-                expect(data).toEqual(registeredAfols);
+                expect(data).toEqual(window.registeredAfols);
             });
         });
 
         describe('Get - No Afols', function() {
-            var mockBackend, service, data;
-            beforeEach(inject(function(_$httpBackend_, RegisteredAfols) {
-                mockBackend = _$httpBackend_;
-                service = RegisteredAfols;
-                mockBackend.expectGET('/controllers/registered/registeredAfols.php?eventId=2').respond(201, []);
-            }));
+            beforeEach(function() {
+                mockBackend.expectGET('/controllers/registered/registeredAfols.php?eventId=2').respond([]);
+            });
 
             it('should load registered afols count', function() {
-                var load = service.getCount(2);
-                load.then(function(_data) {
-                    data = _data;
+                registeredAfolsService.getCount(2).then(function(_data_) {
+                    data = _data_;
                 });
 
                 mockBackend.flush();
@@ -53,10 +53,8 @@ describe('service', function() {
             });
 
             it('should get all of the registered afols', function() {
-                var load = service.get(2);
-
-                load.then(function(_data) {
-                    data = _data;
+                registeredAfolsService.get(2).then(function(_data_) {
+                    data = _data_;
                 });
 
                 mockBackend.flush();
@@ -65,22 +63,17 @@ describe('service', function() {
         });
 
         describe('SendEmailPayment', function() {
-            var mockBackend, service, data;
-            beforeEach(inject(function(_$httpBackend_, RegisteredAfols) {
-                mockBackend = _$httpBackend_;
-                service = RegisteredAfols;
+            beforeEach(function() {
                 mockBackend.expectGET('/controllers/admin/sendEmail.php?eventId=2&type=registrationPaid&userId=2').respond(201);
-            }));
+            });
 
             it('should send a request for an email', function() {
-                var load = service.sendPaymentEmail(2);
-
-                load.then(function(_data) {
-                    data = _data;
+                registeredAfolsService.sendPaymentEmail(2).then(function(_data_) {
+                    data = _data_;
                 });
 
                 mockBackend.flush();
-                expect(data).toBe(undefined);
+                expect(data).toBeUndefined();
             });
         });
     });
