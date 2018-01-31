@@ -1,0 +1,10 @@
+-- MySQL dump 10.11
+--
+-- Host: localhost    Database: mysql
+-- ------------------------------------------------------
+-- Server version	5.0.83
+
+USE `brickslopes`;
+
+ALTER TABLE `mocs` add isTfol ENUM('true', 'false');
+ALTER TABLE `mocs` add isSet ENUM('true', 'false');

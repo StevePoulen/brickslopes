@@ -1183,9 +1183,9 @@
                             url: '/controllers/paid/mocs.php',
                             data: mocDTO
                         }
-                    ).success(function(data, status, headers, config) {
+                    ).success(function(data, status) {
                         delay.resolve(status);
-                    }).error(function(data, status, headers, config) {
+                    }).error(function(data, status) {
                         delay.reject(status);
                     });
 
@@ -1200,9 +1200,9 @@
                             url: '/controllers/paid/mocs.php',
                             data: mocDTO
                         }
-                    ).success(function(data, status, headers, config) {
+                    ).success(function(data, status) {
                         delay.resolve(status);
-                    }).error(function(data, status, headers, config) {
+                    }).error(function(data, status) {
                         delay.reject(status);
                     });
 

@@ -42,7 +42,8 @@ class registrationLineItems {
     }
 
     private function calculateTotal($amount, $quantity) {
-        return money_format('%i', $quantity * $amount);
+        //return money_format('%i', $quantity * $amount);
+        return number_format($quantity * $amount, 2);
     }
 
     private function buildTotalAmounts($lineItemMap) {

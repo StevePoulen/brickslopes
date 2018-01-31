@@ -38,5 +38,7 @@ class MocsMock extends modelObjects {
     public function baseplateDepth() { return $this->getData(8); }
     public function description() { return $this->getData(9); }
     public function theme() { return $this->getData(10); }
+    public function isTfol() { return $this->getData(11); }
+    public function isSet() { return $this->getData(12); }
 }
 ?>

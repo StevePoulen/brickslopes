@@ -3,6 +3,7 @@
     "describe": true,
     "beforeEach": true,
     "it": true,
+    "for": true,
     "spyOn": true,
     "expect": true,
     "angular": true,

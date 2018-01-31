@@ -45,6 +45,8 @@ class Mocs {
                         'baseplateWidth' => $dbObj->baseplateWidth,
                         'baseplateDepth' => $dbObj->baseplateDepth,
                         'description' => $dbObj->description,
+                        'isTfol' => $dbObj->isTfol,
+                        'isSet' => $dbObj->isSet,
                         'theme' => $dbObj->theme
                     )    
                 );

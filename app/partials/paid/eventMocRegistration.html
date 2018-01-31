@@ -1,58 +1,112 @@
-<div id="eventDashboard" class="height800">
-    <div class="dashboardText height800">
-        <div>
-            <h1>
-                <bs-logo font-size="1.25"></bs-logo> &#8226; <bs-text text="MOC Registration" font-color=black></bs-text>
-            </h1>
-        </div>
-        <div id="mocForm">
-            <div class="loginForm">
-                <form name="registrationForm" ng-submit="registrationForm.$valid && submitRegistration()">
-                    <div><bs-text text="MOC Title" font-size=1.25></bs-text></div>
-                    <div class="loginField">
-                        <input ng-model="title" type="text" bs-placeholder="MOC Title (required)" ng-maxlength=47 required maxlength=47>
-                    </div>
-                    <div><bs-text text="MOC Theme" font-size=1.25></bs-text></div>
-                    <div class="loginField">
-                        <select class="large" ng-model="theme" ng-options="theme as theme.theme for theme in themeList"></select>
-                    </div>
-                    <div><bs-text text="MOC Creator" font-size=1.25></bs-text></div>
-                    <div class="loginField">
-                        <input ng-model="displayName" type="text" bs-placeholder="DisplayName ({{firstName}} {{lastName}})" required maxlength=33 ng-maxlength=33>
-                    </div>
-                    <div><bs-text text="MOC Image" font-size=1.25></bs-text></div>
-                    <div class="loginField">
-                        <input type="text" ng-model="mocImageUrl" bs-placeholder="Moc Image URL (flickr?)">
-                    </div>
-                    <div><bs-text text="MOC Dimensions in 32x32 baseplates" font-size=1.25></bs-text></div>
-                    <div class="optionField">
-                        Width: <select class="small" ng-model="baseplateWidth" ng-options="width for width in width"></select>
-                        Depth: <select class="small" ng-model="baseplateDepth" ng-options="depth for depth in depth"></select>
-                    </div>
-                    <div><bs-text text="MOC Description" font-size=1.25></bs-text></div>
-                    <div class="commentsField">
-                        <textarea bs-placeholder="Description ..."  ng-model="description" maxlength=146></textarea>
-                    </div>
-                    <div class="formButtonPosition"> 
-                        <button class="formButton" type="submit" ng-class="{disabled: verifying}" ng-disabled="verifying">
-                            <bs-text text="{{buttonText}}" font-color=white font-size=1.75></bs-text>
-                        </button>
-                    </div>
-                </form>
+<div id="eventDashboard" class="height850">
+  <div class="dashboardText">
+    <div class="row">
+      <div class="col-lg-12">
+        <h1>
+          <bs-logo font-size="1.25"></bs-logo> &#8226; <bs-text text="MOC Registration" font-color=black></bs-text>
+        </h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <form name="registrationForm" ng-submit="registrationForm.$valid && submitRegistration()">
+          <div class="row">
+            <div class="form-group col-md-offset-2 col-md-8">
+              <label for="title"><bs-text text="MOC Title" font-size=1.25></bs-text></label>
+              <input class="form-control" id="title" ng-model="data.title" type="text" bs-placeholder="MOC Title (required)" ng-maxlength=47 required maxlength=47>
             </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-offset-2 col-md-8">
+              <label for="theme"><bs-text text="MOC Theme" font-size=1.25></bs-text></label>
+              <select id="theme" class="form-control" ng-model="data.theme" ng-options="theme as theme.theme for theme in themeList"></select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-offset-2 col-md-8">
+              <label for="displayName"><bs-text text="MOC Creator" font-size=1.25></bs-text></label>
+              <input id="displayName" class="form-control" ng-model="data.displayName" type="text" bs-placeholder="DisplayName ({{firstName}} {{lastName}})" required maxlength=33 ng-maxlength=33>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-offset-2 col-md-8">
+              <label for="mocImageUrl"><bs-text text="MOC Image" font-size=1.25></bs-text></label>
+              <input type="text" class="form-control" id="mocImageUrl" ng-model="data.mocImageUrl" bs-placeholder="Moc Image URL (flickr?)">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-offset-2 col-md-10">
+              <label for="width"><bs-text text="MOC Dimensions in 32x32 baseplates" font-size=1.25></bs-text></label>
+            </div>
+            <div class="form-group col-md-offset-2 col-md-4">
+              Width: <select class="form-control" id="width" ng-model="data.baseplateWidth" ng-options="width for width in width"></select>
+            </div>
+            <div class="form-group col-md-4">
+              Depth: <select id="depth" class="form-control" ng-model="data.baseplateDepth" ng-options="depth for depth in depth"></select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-offset-2 col-md-8">
+              <label for="description"><bs-text text="MOC Description" font-size=1.25></bs-text></label>
+              <textarea class="form-control" id="description" bs-placeholder="Description ..."  ng-model="data.description" maxlength=146></textarea>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-offset-2 col-md-8">
+              <label for="description"><bs-text text="My MOC is a set?" font-size=1.25></bs-text></label>
+              <br>
+              <label class="radio-inline">
+                <input type="radio" name="isSet" id="isSetYes" ng-model="data.isSet" value="true"> Yes
+              </label>
+              <label class="radio-inline">
+                <input type="radio" name="isSet" id="isSetNo" ng-model="data.isSet" value="false"> No
+              </label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-offset-2 col-md-8">
+              <label for="description"><bs-text text="This MOC is by a TFOL?" font-size=1.25></bs-text></label>
+              <br>
+              <label class="radio-inline">
+                <input type="radio" name="isTfol" id="isTfolYes" ng-model="data.isTfol" value="true"> Yes
+              </label>
+              <label class="radio-inline">
+                <input type="radio" name="isTfol" id="isTfolNo" ng-model="data.isTfol" value="false"> No
+              </label>
+            </div>
+          </div>
+          <div class="row margin-top-medium">
+            <div class="col-md-offset-2 col-md-8 text-center">
+              <button class="formButton" type="submit" ng-class="{disabled: verifying}" ng-disabled="verifying">
+                <bs-text text="{{buttonText}}" font-color=white font-size=1.25></bs-text>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="col-md-6">
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <div id="mocRegistrationCard">
+              <div class="sampleFont">Sample</div>
+              <div><bs-logo font-size=2></bs-logo></div>
+              <div class="sampleMocTitle">{{data.title}}</div>
+              <div class="sampleMocDescription">{{data.description}}</div>
+              <div class="sampleMocCreator">{{data.displayName}}</div>
+              <div id="sampleMocIsSet" ng-bind="isSet()"></div>
+              <div id="sampleMocIsTfol" ng-bind="isTfol()"></div>
+              <div id="sampleBrickSlopesLogo"><img src="/images/logo/brickSlopes_noword_50px.png"></div>
+            </div>
+          </div>
         </div>
-        <div id="mocRegistrationCard">
-            <div class="sampleFont">Sample</div>
-            <div><bs-logo font-size=2></bs-logo></div>
-            <div class="sampleMocTitle">{{title}}</div>
-            <div class="sampleMocDescription">{{description}}</div>
-            <div class="sampleMocCreator">{{displayName}}</div>
-            <div id="sampleBrickSlopesLogo"><img src="/images/logo/brickSlopes_noword_50px.png"></div>
-        </div>
-        <div id="mocRegistrationCatagoriesCard">
+        <div class="row margin-top-medium">
+          <div class="col-md-12">
             <bs-theme></bs-theme>
+          </div>
         </div>
+      </div>
     </div>
     <div><bs-modal title="Success">Congratulations! Your MOC has been submitted.<p>Would you like to add another MOC?</bs-modal></div>
     <div id="dashboardCloseButton" ng-click="closeDialog()"></div>
+  </div>
 </div>

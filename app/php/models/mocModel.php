@@ -30,7 +30,9 @@
                     mocImageUrl,
                     baseplateWidth,
                     baseplateDepth,
-                    description
+                    description,
+                    isTfol,
+                    isSet
                 )
             VALUES
                 (
@@ -42,7 +44,9 @@
                     '{$this->escapeCharacters($data['mocImageUrl'])}',
                     '{$this->escapeCharacters($data['baseplateWidth'])}',
                     '{$this->escapeCharacters($data['baseplateDepth'])}',
-                    '{$this->escapeCharacters($data['description'])}'
+                    '{$this->escapeCharacters($data['description'])}',
+                    '{$this->escapeCharacters($data['isTfol'])}',
+                    '{$this->escapeCharacters($data['isSet'])}'
                 )
             ;
         ";
@@ -59,7 +63,9 @@
                 mocImageUrl = '{$this->escapeCharacters($data['mocImageUrl'])}',
                 baseplateWidth = '{$this->escapeCharacters($data['baseplateWidth'])}',
                 baseplateDepth = '{$this->escapeCharacters($data['baseplateDepth'])}',
-                description = '{$this->escapeCharacters($data['description'])}'
+                description = '{$this->escapeCharacters($data['description'])}',
+                isTfol = '{$this->escapeCharacters($data['isTfol'])}',
+                isSet = '{$this->escapeCharacters($data['isSet'])}'
             WHERE
                 mocId = '{$this->escapeCharacters($data['mocId'])}'
             ;
@@ -79,7 +85,9 @@
                 m.baseplateWidth,
                 m.baseplateDepth,
                 m.description,
-                t.theme
+                t.theme,
+                m.isTfol,
+                m.isSet
             FROM
                 mocs m,
                 themes t
