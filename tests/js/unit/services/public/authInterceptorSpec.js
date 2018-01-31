@@ -28,14 +28,14 @@ describe('service', function() {
         describe('request', function() {
             it('should add an Auth_Token header', function() {
                 mockWindow.sessionStorage.token = 123456789;
-                expect(auth.request(request).headers.Auth_Token).toBe('123456789');
+                expect(auth.request(request).headers['Auth-Token']).toBe('123456789');
             });
 
             it('should not have an Auth_Token header', function() {
                 request = {
                     url: 'partials/registered/index.html'
                 };
-                expect(auth.request(request).headers.Auth_Token).toBeUndefined();
+                expect(auth.request(request).headers['Auth-Token']).toBeUndefined();
             });
 
             describe('Google Analytics', function() {
@@ -48,7 +48,7 @@ describe('service', function() {
                         request = {
                             url: 'partials/registered/index.html'
                         };
-                        expect(auth.request(request).headers.Auth_Token).toBeUndefined();
+                        expect(auth.request(request).headers['Auth-Token']).toBeUndefined();
                         expect(mockWindow._gaq.push).toHaveBeenCalledWith(['_trackPageview', 'partials/registered/index.html']);
                     });
 
@@ -60,7 +60,7 @@ describe('service', function() {
                         request = {
                             url: 'partials/registered/index.html'
                         };
-                        expect(auth.request(request).headers.Auth_Token).toBeUndefined();
+                        expect(auth.request(request).headers['Auth-Token']).toBeUndefined();
                         expect(mockWindow._gaq.push).toHaveBeenCalledWith(['_trackPageview', 'partials/registered/index.html']);
                     });
                 });
@@ -74,7 +74,7 @@ describe('service', function() {
                         request = {
                             url: 'partials/registered/index.html'
                         };
-                        expect(auth.request(request).headers.Auth_Token).toBeUndefined();
+                        expect(auth.request(request).headers['Auth-Token']).toBeUndefined();
                         expect(mockWindow._gaq.push).not.toHaveBeenCalled();
                     });
 
@@ -86,7 +86,7 @@ describe('service', function() {
                         request = {
                             url: '/controllers/registered/index.html'
                         };
-                        expect(auth.request(request).headers.Auth_Token).toBeUndefined();
+                        expect(auth.request(request).headers['Auth-Token']).toBeUndefined();
                         expect(mockWindow._gaq.push).not.toHaveBeenCalled();
                     });
 
@@ -98,7 +98,7 @@ describe('service', function() {
                         request = {
                             url: '/partials/public/feedback.html'
                         };
-                        expect(auth.request(request).headers.Auth_Token).toBeUndefined();
+                        expect(auth.request(request).headers['Auth-Token']).toBeUndefined();
                         expect(mockWindow._gaq.push).not.toHaveBeenCalled();
                     });
 
@@ -110,7 +110,7 @@ describe('service', function() {
                         request = {
                             url: '/partials/public/header.html'
                         };
-                        expect(auth.request(request).headers.Auth_Token).toBeUndefined();
+                        expect(auth.request(request).headers['Auth-Token']).toBeUndefined();
                         expect(mockWindow._gaq.push).not.toHaveBeenCalled();
                     });
 
@@ -122,7 +122,7 @@ describe('service', function() {
                         request = {
                             url: '/partials/public/footer.html'
                         };
-                        expect(auth.request(request).headers.Auth_Token).toBeUndefined();
+                        expect(auth.request(request).headers['Auth-Token']).toBeUndefined();
                         expect(mockWindow._gaq.push).not.toHaveBeenCalled();
                     });
 
@@ -134,7 +134,7 @@ describe('service', function() {
                         request = {
                             url: '/partials/directives/index.html'
                         };
-                        expect(auth.request(request).headers.Auth_Token).toBeUndefined();
+                        expect(auth.request(request).headers['Auth-Token']).toBeUndefined();
                         expect(mockWindow._gaq.push).not.toHaveBeenCalled();
                     });
                 });
