@@ -1,61 +1,76 @@
 <!doctype html>
 <meta charset="utf-8">
 <html xmlns:ng="http://angularjs.org" lang="en" class="ng-app:brickSlopes" id="ng-app" ng-app="brickSlopes">
-    <head>
-        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-        <link rel="icon" href="/favicon.ico" type="image/x-icon">
-        <link rel="icon" href="/favicon.ico" type="image/ico">
-        <link rel="shortcut icon" href="/favicon.ico" type="image/ico">
-        <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
-        <meta name="description" content="BrickSlopes is a LEGO Fan Event held in Salt Lake City, Utah May 15th and 16th, 2015">
-        <meta name="keywords" content="BrickSlopes LEGO Fan Event Salt Lake City, Utah May 2015 AFOL SNOT BURP LURP">
+<head>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/ico">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/ico">
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    <meta name="description" content="BrickSlopes is a LEGO Fan Event held in Salt Lake City, Utah June 29rd and 30th, 2018">
+    <meta name="keywords" content="BrickSlopes LEGO Fan Event Salt Lake City, Utah June 2017 AFOL SNOT BURP LURP">
 
-        <meta property="og:title" content="BrickSlopes - A LEGO Fan Event" />
-        <meta property="og:description" content="BrickSlopes is a LEGO Fan Event held in Salt Lake City, Utah May 15th and 16th, 2015">
-        <meta property="og:image" content="https://www.brickslopes.com/images/brickslopes_no_words.png"/>
+    <meta property="og:title" content="BrickSlopes - A LEGO Fan Event" />
+    <meta property="og:description" content="BrickSlopes is a LEGO Fan Event held in Salt Lake City, Utah June 29rd and 30th, 2018">
+    <meta property="og:image" content="https://www.brickslopes.com/images/brickslopes_no_words.png"/>
 
-        <title>BrickSlopes - A LEGO Fan Event</title>
+    <title>BrickSlopes - A LEGO Fan Event</title>
 
-        <LINK href="/lib/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <LINK href="/build/brickslopes.min.css" rel="stylesheet" type="text/css"/>
-        <LINK href="/build/icons.css" rel="stylesheet" type="text/css"/>
-        <script src="/lib/jquery.min.js"></script>
-        <base href="/">
+    <LINK href="/lib/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <LINK href="/build/brickslopes.min.css" rel="stylesheet" type="text/css"/>
+    <LINK href="/build/icons.css" rel="stylesheet" type="text/css"/>
+    <script src="/lib/jquery.min.js"></script>
+    <base href="/">
 
-    </head>
-    <body>
-        <div id="brickslopes">
-            <bs-header></bs-header>
-            <div class="animationContainer">
-                <div ng-view class="view-animate-fade"></div>
-            </div>
-            <bs-footer></bs-footer>
-        </div>
-        <bs-feedback></bs-feedback>
-        <bs-tour></bs-tour>
-        <script type="text/javascript" src="/lib/googleAnalytics.js"></script>
-        <script src="/lib/lodash.min.js"></script>
-        <script src="/lib/moment.min.js"></script>
-        <script src="/lib/angular.min.js"></script>
-        <script src="/lib/angular-route.min.js"></script>
-        <script src="/lib/angular-resource.min.js"></script>
-        <script src="/lib/angular-animate.min.js"></script>
-        <script src="/lib/bootstrap.min.js"></script>
-        <script src="/lib/ui-bootstrap.min.js"></script>
-        <script src="/lib/ui-bootstrap-tpls.min.js"></script>
-        <script src="/build/brickslopes.min.js"></script>
+</head>
+<body>
+<div id="brickslopes">
+    <bs-header></bs-header>
+    <div class="animationContainer">
+        <div ng-view class="view-animate-fade"></div>
+    </div>
+    <div>
+        <bs-splash-page-cta></bs-splash-page-cta>
+    </div>
+    <bs-footer></bs-footer>
+</div>
+<bs-feedback></bs-feedback>
+<bs-tour></bs-tour>
+<script type="text/javascript" src="/lib/googleAnalytics.js"></script>
+<script src="/lib/lodash.min.js"></script>
+<script src="/lib/moment.min.js"></script>
+<script src="/lib/angular.min.js"></script>
+<script src="/lib/angular-route.min.js"></script>
+<script src="/lib/angular-resource.min.js"></script>
+<script src="/lib/angular-animate.min.js"></script>
+<script src="/lib/bootstrap.min.js"></script>
+<script src="/lib/ui-bootstrap.min.js"></script>
+<script src="/lib/ui-bootstrap-tpls.min.js"></script>
+<script src="/src/brickslopes/brickslopes.js"></script>
+<script src="/src/brickslopes/brickslopesController.js"></script>
 
-        <script src="/js/services.js"></script>
-        <script src="/js/controllers.js"></script>
-        <script src="/js/controllers/admin/printRegisteredMocsController.js"></script>
-        <script src="/js/controllers/admin/afolAdminController.js"></script>
-        <script src="/js/controllers/admin/registeredGamesController.js"></script>
-        <script src="/js/controllers/public/aboutUs.js"></script>
-        <script src="/js/controllers/public/topten.js"></script>
-        <script src="/js/factory/admin/registeredGamesFactory.js"></script>
-        <script src="/js/directives.js"></script>
-        <script src="/js/brickslopes.js"></script>
-        <script src="/js/countdownRings.js"></script>
-    </body>
+<script src="/js/services.js"></script>
+<script src="/js/controllers.js"></script>
+<script src="/js/controllers/admin/printRegisteredMocsController.js"></script>
+<script src="/js/controllers/admin/afolAdminController.js"></script>
+<script src="/js/controllers/admin/registeredGamesController.js"></script>
+<script src="/js/controllers/public/aboutUs.js"></script>
+<script src="/js/controllers/public/topten.js"></script>
+<script src="/js/factory/admin/registeredGamesFactory.js"></script>
+<script src="/js/directives.js"></script>
+<script src="/js/brickslopes.js"></script>
+<script src="/js/countdownRings.js"></script>
+
+<script src="/src/shared/constants.js"></script>
+<script src="/src/shared/factory/eventSelectionFactory.js"></script>
+<script src="/src/shared/factory/eventDatesFactory.js"></script>
+<script src="/src/shared/factory/eventDatesFactory.js"></script>
+<script src="/src/admin/registeredEventDatesController.js"></script>
+<script src="/src/admin/registeredEventDatesFactory.js"></script>
+<script src="/src/public/emailUsController.js"></script>
+<script src="/src/public/vendorContactController.js"></script>
+<script src="/src/paid/afolMocRegistrationController.js"></script>
+<script src="/src/services/emailUsService.js"></script>
+<script src="/src/services/vendorContactService.js"></script>
+</body>
 </html>
-
