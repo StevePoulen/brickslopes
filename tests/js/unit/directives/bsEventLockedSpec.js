@@ -15,7 +15,7 @@ describe('directives', function() {
         }));
 
         afterEach(function() {
-            deleteSession(window);
+            window.deleteSession(window);
         });
 
         describe('Contents', function() {

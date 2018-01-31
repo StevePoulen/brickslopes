@@ -176,7 +176,7 @@ describe('controllers', function() {
 
             it('should create a moc', function() {
                 scope.registrationForm = {
-                    '$setPristine': function() {}
+                    $setPristine: function() {}
                 };
                 scope.title = 'My Fine Title';
                 scope.mocImageUrl = 'https://www.smile.com';
@@ -258,7 +258,7 @@ describe('controllers', function() {
                 expect(scope.baseplateDepth).toBe(3);
                 expect(scope.description).toBe('My out-of-this-world castle with peeps!');
                 scope.registrationForm = {
-                    '$setPristine': function() {}
+                    $setPristine: function() {}
                 };
                 expect(scope.isMocUpdate).toBe(true);
 
@@ -342,7 +342,7 @@ describe('controllers', function() {
                 expect(scope.mocImageUrl).toBeUndefined();
                 expect(scope.description).toBeUndefined();
                 scope.registrationForm = {
-                    '$setPristine': function() {}
+                    $setPristine: function() {}
                 };
 
                 scope.submitRegistration();

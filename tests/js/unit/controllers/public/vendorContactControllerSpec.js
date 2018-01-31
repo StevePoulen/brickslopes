@@ -65,7 +65,7 @@ describe('Vendor Contact', function() {
                     captcha: 'bingo'
                 };
                 scope.vendorContactForm = {
-                    '$setPristine': function() {}
+                    $setPristine: function() {}
                 };
                 scope.submitVendorInformation();
                 mockBackend.expectPOST('/controllers/public/vendorContact.php', expectedPost).respond(201);

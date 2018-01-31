@@ -140,11 +140,12 @@ var showAfolLogin = true;
                     if(($window.sessionStorage.redirectUrl).match('\/partials\/registered/*')) {
                         var newRedirectUrl = $window.sessionStorage.redirectUrl.replace('\/partials', '');
                         $location.path(newRedirectUrl);
+                        delete $window.sessionStorage.redirectUrl;
+                        return;
                     }
-                    delete $window.sessionStorage.redirectUrl;
-                } else {
-                    $location.path('/registered/index.html');
                 }
+
+                $location.path('/registered/index.html');
 
                 $scope.verifying = false;
             }, function() {

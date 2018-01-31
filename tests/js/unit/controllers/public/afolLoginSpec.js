@@ -210,7 +210,7 @@ describe('controllers', function() {
             it('should reset a user password', function() {
                 scope.resetPassword();
                 scope.resetPasswordForm = {
-                    '$setPristine': function() {}
+                    $setPristine: function() {}
                 };
                 expect(scope.verifying).toBe(true);
                 mockBackend.expectPUT('/controllers/public/authentication.php').respond(201);

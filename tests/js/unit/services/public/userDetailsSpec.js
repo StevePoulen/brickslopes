@@ -1,41 +1,49 @@
-describe('service', function() {
+describe('userDetailsService', function() {
     'use strict';
+
+    var mockBackend, userDetailsService, data, credentials;
+    var mockWindow;
 
     beforeEach(module('brickSlopes'));
 
+    beforeEach(inject(function(
+        _$httpBackend_,
+        _UserDetails_,
+        _$window_
+    ) {
+        mockBackend = _$httpBackend_;
+        userDetailsService = _UserDetails_;
+        mockWindow = _$window_;
+    }));
+
+    afterEach(function() {
+        window.deleteSession(window);
+    });
+
     describe('User Details', function() {
         describe('Get', function() {
-            var mockBackend, service, data;
-            beforeEach(inject(function(_$httpBackend_, UserDetails) {
-                mockBackend = _$httpBackend_;
-                service = UserDetails;
-                mockBackend.expectGET('/controllers/public/user.php').respond(singleUser);
-            }));
+            beforeEach(function() {
+                mockBackend.expectGET('/controllers/public/user.php').respond(window.singleUser);
+            });
 
             it('should get userdetails', function() {
-                var load = service.getUser();
-
-                load.then(function(_data) {
+                userDetailsService.getUser().then(function(_data) {
                     data = _data;
                 });
 
                 mockBackend.flush();
-                singleUser.memberSince = 'May 16th, 2014'
-                expect(data).toEqual(singleUser);
+                window.singleUser.memberSince = 'May 16th, 2014';
+                expect(data).toEqual(window.singleUser);
             });
         });
 
         describe('Get All', function() {
-            var mockBackend, service, data;
-            beforeEach(inject(function(_$httpBackend_, UserDetails) {
-                mockBackend = _$httpBackend_;
-                service = UserDetails;
-                mockBackend.expectGET('/controllers/admin/registeredUsers.php').respond(registeredUsers);
-            }));
+            beforeEach(function() {
+                mockBackend.expectGET('/controllers/admin/registeredUsers.php').respond(window.registeredUsers);
+            });
 
             it('should load registered users count', function() {
-                var load = service.getCount(2);
-                load.then(function(_data) {
+                userDetailsService.getCount(2).then(function(_data) {
                     data = _data;
                 });
 
@@ -44,37 +52,30 @@ describe('service', function() {
             });
 
             it('should get all userdetails', function() {
-                var load = service.getAll();
-
-                load.then(function(_data) {
+                userDetailsService.getAll().then(function(_data) {
                     data = _data;
                 });
 
                 mockBackend.flush();
-                registeredUsers[0].memberSince = 'May 16th, 2014';
-                registeredUsers[1].memberSince = 'May 16th, 2013';
-                expect(data).toEqual(registeredUsers);
+                window.registeredUsers[0].memberSince = 'May 16th, 2014';
+                window.registeredUsers[1].memberSince = 'May 16th, 2013';
+                expect(data).toEqual(window.registeredUsers);
             });
         });
 
         describe('Register', function() {
-            var mockBackend, service, data, credentials;
-            beforeEach(inject(function(_$httpBackend_, UserDetails) {
+            beforeEach(function() {
                 credentials = {
-                    'firstName': 'Steve',
-                    'lastName': 'Poulsen',
-                    'email': 'steve@bs.com',
-                    'password': 'LEGO'
+                    firstName: 'Steve',
+                    lastName: 'Poulsen',
+                    email: 'steve@bs.com',
+                    password: 'LEGO'
                 };
-                mockBackend = _$httpBackend_;
-                service = UserDetails;
                 mockBackend.expectPOST('/controllers/public/user.php', credentials).respond('success');
-            }));
+            });
 
             it('should register a user', function() {
-                var load = service.register(credentials);
-
-                load.then(function(_data) {
+                userDetailsService.register(credentials).then(function(_data) {
                     data = _data;
                 });
 
@@ -84,17 +85,9 @@ describe('service', function() {
         });
 
         describe('Hide Tour', function() {
-            var mockBackend, service, data;
-            beforeEach(inject(function(_$httpBackend_, UserDetails) {
-                mockBackend = _$httpBackend_;
-                service = UserDetails;
-            }));
-
             it('should NOT hide (show) the user tour', function() {
-                mockBackend.expectGET('/controllers/public/user.php').respond(getUser(0));
-                var load = service.hideTour();
-
-                load.then(function(_data) {
+                mockBackend.expectGET('/controllers/public/user.php').respond(window.getUser(0));
+                userDetailsService.hideTour().then(function(_data) {
                     data = _data;
                 });
 
@@ -103,10 +96,8 @@ describe('service', function() {
             });
 
             it('should NOT hide the user tour', function() {
-                mockBackend.expectGET('/controllers/public/user.php').respond(getUser(1));
-                var load = service.hideTour();
-
-                load.then(function(_data) {
+                mockBackend.expectGET('/controllers/public/user.php').respond(window.getUser(1));
+                userDetailsService.hideTour().then(function(_data) {
                     data = _data;
                 });
 
@@ -116,42 +107,31 @@ describe('service', function() {
         });
 
         describe('Tour Started', function() {
-            var mockBackend, service, data, user;
-            beforeEach(inject(function(_$httpBackend_, UserDetails) {
-                mockBackend = _$httpBackend_;
-                service = UserDetails;
-                mockBackend.expectGET('/controllers/public/user.php').respond(singleUser);
-            }));
+            beforeEach(function() {
+                mockBackend.expectGET('/controllers/public/user.php').respond(window.singleUser);
+            });
 
             it('should determine if a tour is started', function() {
-                service.getUser().then(function(_user_) {
-                    user = _user_;
-                });
+                userDetailsService.getUser();
                 mockBackend.flush();
 
-                expect(service.tourStarted()).toBe(true);
-                expect(service.tourStarted()).toBe(false);
+                expect(userDetailsService.tourStarted()).toBe(true);
+                expect(userDetailsService.tourStarted()).toBe(false);
             });
         });
 
         describe('Update Tour', function() {
-            var mockBackend, service, data, user;
-            beforeEach(inject(function(_$httpBackend_, UserDetails) {
-                mockBackend = _$httpBackend_;
-                service = UserDetails;
-                mockBackend.expectGET('/controllers/public/user.php').respond(singleUser);
+            beforeEach(function() {
+                mockBackend.expectGET('/controllers/public/user.php').respond(window.singleUser);
                 mockBackend.expectPATCH('/controllers/registered/tour.php', {
                     tourOption: 'YES'
                 }).respond(200);
-            }));
+            });
 
             it('should update a user tour', function() {
-                service.getUser().then(function(_user_) {
-                    user = _user_;
-                });
-                var load = service.updateTour('YES');
+                userDetailsService.getUser();
 
-                load.then(function(_data) {
+                userDetailsService.updateTour('YES').then(function(_data) {
                     data = _data;
                 });
 
@@ -161,23 +141,18 @@ describe('service', function() {
         });
 
         describe('Update Profile', function() {
-            var mockBackend, service, data, credentials;
-            beforeEach(inject(function(_$httpBackend_, UserDetails) {
+            beforeEach(function() {
                 credentials = {
-                    'firstName': 'Steve',
-                    'lastName': 'Poulsen',
-                    'email': 'steve@bs.com',
-                    'password': 'LEGO'
+                    firstName: 'Steve',
+                    lastName: 'Poulsen',
+                    email: 'steve@bs.com',
+                    password: 'LEGO'
                 };
-                mockBackend = _$httpBackend_;
-                service = UserDetails;
                 mockBackend.expectPATCH('/controllers/public/user.php', credentials).respond('success');
-            }));
+            });
 
             it('should update a user', function() {
-                var load = service.update(credentials);
-
-                load.then(function(_data) {
+                userDetailsService.update(credentials).then(function(_data) {
                     data = _data;
                 });
 
@@ -187,46 +162,26 @@ describe('service', function() {
         });
 
         describe('User Registration Validation', function() {
-            var service, window;
-            beforeEach(inject(function($window, UserDetails) {
-                window = $window;
-                service = UserDetails;
-            }));
-
-            afterEach(function() {
-                deleteSession(window);
-            });
-
             it('should validate a user registration', function() {
-                window.sessionStorage.registered = 'YES';
-                expect(service.isUserRegistered()).toBe(true);
+                mockWindow.sessionStorage.registered = 'YES';
+                expect(userDetailsService.isUserRegistered()).toBe(true);
             });
 
             it('should validate a user is not registered', function() {
-                window.sessionStorage.registered = 'yes';
-                expect(service.isUserRegistered()).toBe(false);
+                mockWindow.sessionStorage.registered = 'yes';
+                expect(userDetailsService.isUserRegistered()).toBe(false);
             });
         });
 
         describe('User Registration Payment Validation', function() {
-            var service, window;
-            beforeEach(inject(function($window, UserDetails) {
-                window = $window;
-                service = UserDetails;
-            }));
-
-            afterEach(function() {
-                deleteSession(window);
-            });
-
             it('should validate a user registration payment', function() {
-                window.sessionStorage.paid = 'YES';
-                expect(service.isUserPaid()).toBe(true);
+                mockWindow.sessionStorage.paid = 'YES';
+                expect(userDetailsService.isUserPaid()).toBe(true);
             });
 
             it('should validate a user has not paid for registered', function() {
-                window.sessionStorage.paid = 'yes';
-                expect(service.isUserPaid()).toBe(false);
+                mockWindow.sessionStorage.paid = 'yes';
+                expect(userDetailsService.isUserPaid()).toBe(false);
             });
         });
     });

@@ -1,24 +1,26 @@
 describe('Factory', function() {
     'use strict';
 
-    var mockBackend, service, data;
+    var mockBackend, registeredGamesService, data;
 
     beforeEach(module('brickSlopes'));
 
-    beforeEach(inject(function(_$httpBackend_, RegisteredGames) {
+    beforeEach(inject(function(
+        _$httpBackend_,
+        _RegisteredGames_
+    ) {
         mockBackend = _$httpBackend_;
-        service = RegisteredGames;
+        registeredGamesService = _RegisteredGames_;
     }));
 
     describe('Registered Games', function() {
         describe('Get', function() {
             beforeEach(function() {
-                mockBackend.expectGET('/controllers/admin/registeredGames.php?eventId=2').respond(201, registeredGames);
+                mockBackend.expectGET('/controllers/admin/registeredGames.php?eventId=2').respond(window.registeredGames);
             });
 
             it('should load registered games count', function() {
-                var load = service.getCount(2);
-                load.then(function(_data) {
+                registeredGamesService.getCount(2).then(function(_data) {
                     data = _data;
                 });
 
@@ -27,25 +29,22 @@ describe('Factory', function() {
             });
 
             it('should get all of the registered games', function() {
-                var load = service.get(2);
-
-                load.then(function(_data) {
+                registeredGamesService.get(2).then(function(_data) {
                     data = _data;
                 });
 
                 mockBackend.flush();
-                expect(data).toEqual(registeredGames);
+                expect(data).toEqual(window.registeredGames);
             });
         });
 
         describe('Get - No Games', function() {
             beforeEach(function() {
-                mockBackend.expectGET('/controllers/admin/registeredGames.php?eventId=2').respond(201, []);
+                mockBackend.expectGET('/controllers/admin/registeredGames.php?eventId=2').respond([]);
             });
 
             it('should load registered games count', function() {
-                var load = service.getCount(2);
-                load.then(function(_data) {
+                registeredGamesService.getCount(2).then(function(_data) {
                     data = _data;
                 });
 
@@ -54,9 +53,7 @@ describe('Factory', function() {
             });
 
             it('should get all of the registered games', function() {
-                var load = service.get(2);
-
-                load.then(function(_data) {
+                registeredGamesService.get(2).then(function(_data) {
                     data = _data;
                 });
 

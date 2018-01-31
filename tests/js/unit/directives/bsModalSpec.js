@@ -19,7 +19,7 @@ describe('directives', function() {
             });
 
             it('should have the close button', function() {
-                expect($(element.find('#modalCloseButton')).html()).toBeUndefined;
+                expect($(element.find('#modalCloseButton')).html()).toBe('');
             });
 
             it('should have the title', function() {

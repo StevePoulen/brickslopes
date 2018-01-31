@@ -1,13 +1,23 @@
 describe('controllers', function() {
     'use strict';
-    var window, scope, ctrl;
+    var rootScope, route, location, mockBackend, mockWindow;
+
     beforeEach(module('brickSlopes'));
 
+    afterEach(function() {
+        window.deleteSession(mockWindow);
+    });
+
     describe('RouteProvider', function() {
-        var rootScope, route, location, mockBackend, window;
-        beforeEach(inject(function(_$rootScope_, _$route_, _$location_, _$httpBackend_, _$window_) {
-            window = _$window_;
-            window._ga = {
+        beforeEach(inject(function(
+            _$httpBackend_,
+            _$location_,
+            _$rootScope_,
+            _$route_,
+            _$window_
+        ) {
+            mockWindow = _$window_;
+            mockWindow._ga = {
                 push: function(data) {}
             };
             mockBackend = _$httpBackend_;
@@ -42,137 +52,133 @@ describe('controllers', function() {
     });
 
     describe('brickslopes', function() {
-        beforeEach(inject(function(_$window_) {
-            window = _$window_;
-            storeSession(window, sessionData);
-        }));
-
-        afterEach(function() {
-            deleteSession(window);
+        beforeEach(function() {
+            storeSession(mockWindow, sessionData);
         });
+
 
         describe('BrickSlopes storeSession', function() {
             it('should have an undefined token', function() {
-                expect(window.sessionStorage.token).toBe('1234567890');
+                expect(mockWindow.sessionStorage.token).toBe('1234567890');
             });
 
             it('should have an undefined firstName', function() {
-                expect(window.sessionStorage.firstName).toBe('Ember');
+                expect(mockWindow.sessionStorage.firstName).toBe('Ember');
             });
 
             it('should have an undefined lastName', function() {
-                expect(window.sessionStorage.lastName).toBe('Pilati');
+                expect(mockWindow.sessionStorage.lastName).toBe('Pilati');
             });
 
             it('should have an undefined Admin', function() {
-                expect(window.sessionStorage.admin).toBe('NO');
+                expect(mockWindow.sessionStorage.admin).toBe('NO');
             });
 
             it('should have an undefined Registered', function() {
-                expect(window.sessionStorage.registered).toBe('YES');
+                expect(mockWindow.sessionStorage.registered).toBe('YES');
             });
 
             it('should have an undefined userId', function() {
-                expect(window.sessionStorage.userId).toBe('080898');
+                expect(mockWindow.sessionStorage.userId).toBe('080898');
             });
 
             it('should have an undefined paid', function() {
-                expect(window.sessionStorage.paid).toBe('YES');
+                expect(mockWindow.sessionStorage.paid).toBe('YES');
             });
         });
 
         describe('BrickSlopes deleteSession', function() {
             it('should have an undefined token', function() {
-                deleteSession(window);
-                expect(window.sessionStorage.token).toBeUndefined();
+                deleteSession(mockWindow);
+                expect(mockWindow.sessionStorage.token).toBeUndefined();
             });
 
             it('should have an undefined firstName', function() {
-                deleteSession(window);
-                expect(window.sessionStorage.firstName).toBeUndefined();
+                deleteSession(mockWindow);
+                expect(mockWindow.sessionStorage.firstName).toBeUndefined();
             });
 
             it('should have an undefined lastName', function() {
-                deleteSession(window);
-                expect(window.sessionStorage.lastName).toBeUndefined();
+                deleteSession(mockWindow);
+                expect(mockWindow.sessionStorage.lastName).toBeUndefined();
             });
 
             it('should have an undefined Admin', function() {
-                deleteSession(window);
-                expect(window.sessionStorage.admin).toBeUndefined();
+                deleteSession(mockWindow);
+                expect(mockWindow.sessionStorage.admin).toBeUndefined();
             });
 
             it('should have an undefined Registered', function() {
-                deleteSession(window);
-                expect(window.sessionStorage.registered).toBeUndefined();
+                deleteSession(mockWindow);
+                expect(mockWindow.sessionStorage.registered).toBeUndefined();
             });
 
             it('should have an undefined paid', function() {
-                deleteSession(window);
-                expect(window.sessionStorage.paid).toBeUndefined();
+                deleteSession(mockWindow);
+                expect(mockWindow.sessionStorage.paid).toBeUndefined();
             });
 
             it('should have an undefined userId', function() {
-                deleteSession(window);
-                expect(window.sessionStorage.userId).toBeUndefined();
+                deleteSession(mockWindow);
+                expect(mockWindow.sessionStorage.userId).toBeUndefined();
             });
         });
 
         describe('BrickSlopes deleteSession if jwt data is missing', function() {
             it('should have an undefined token', function() {
-                expect(window.sessionStorage.token).toBe('1234567890');
-                storeSession(window, {
+                expect(mockWindow.sessionStorage.token).toBe('1234567890');
+                storeSession(mockWindow, {
                     token: '1234567890'
                 });
-                expect(window.sessionStorage.token).toBeUndefined();
+                expect(mockWindow.sessionStorage.token).toBeUndefined();
             });
 
             it('should have an undefined firstName', function() {
-                expect(window.sessionStorage.firstName).toBe('Ember');
-                storeSession(window, {
+                expect(mockWindow.sessionStorage.firstName).toBe('Ember');
+                storeSession(mockWindow, {
                     firstName: 'Ember'
                 });
-                expect(window.sessionStorage.firstName).toBeUndefined();
+                expect(mockWindow.sessionStorage.firstName).toBeUndefined();
             });
 
             it('should have an undefined lastName', function() {
-                expect(window.sessionStorage.lastName).toBe('Pilati');
-                storeSession(window, {
+                expect(mockWindow.sessionStorage.lastName).toBe('Pilati');
+                storeSession(mockWindow, {
                     lastName: 'Ember'
                 });
-                expect(window.sessionStorage.lastName).toBeUndefined();
+                expect(mockWindow.sessionStorage.lastName).toBeUndefined();
             });
 
             it('should have an undefined Admin', function() {
-                expect(window.sessionStorage.admin).toBe('NO');
-                storeSession(window, {
+                expect(mockWindow.sessionStorage.admin).toBe('NO');
+                storeSession(mockWindow, {
                     admin: 'NO'
                 });
-                expect(window.sessionStorage.admin).toBeUndefined();
+                expect(mockWindow.sessionStorage.admin).toBeUndefined();
             });
 
             it('should have an undefined Registered', function() {
-                expect(window.sessionStorage.registered).toBe('YES');
-                storeSession(window, {
+                expect(mockWindow.sessionStorage.registered).toBe('YES');
+                storeSession(mockWindow, {
                     registered: 'YES'
                 });
-                expect(window.sessionStorage.registered).toBeUndefined();
+                expect(mockWindow.sessionStorage.registered).toBeUndefined();
             });
 
             it('should have an undefined paid', function() {
-                expect(window.sessionStorage.paid).toBe('YES');
-                storeSession(window, {
+                expect(mockWindow.sessionStorage.paid).toBe('YES');
+                storeSession(mockWindow, {
                     paid: 'YES'
                 });
-                expect(window.sessionStorage.paid).toBeUndefined();
+                expect(mockWindow.sessionStorage.paid).toBeUndefined();
             });
 
             it('should have an undefined userId', function() {
-                expect(window.sessionStorage.userId).toBe('080898');
-                storeSession(window, {
+                expect(mockWindow.sessionStorage.userId).toBe('080898');
+                storeSession(mockWindow, {
                     userId: '051675'
                 });
-                expect(window.sessionStorage.userId).toBeUndefined();
+                expect(mockWindow.sessionStorage.userId).toBeUndefined();
             });
         });
     });

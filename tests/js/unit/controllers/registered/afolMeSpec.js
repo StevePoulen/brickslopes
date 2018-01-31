@@ -350,7 +350,7 @@ describe('controllers', function() {
             it('should change a user\'s password', function() {
                 scope.changePassword();
                 scope.changePasswordForm = {
-                    '$setPristine': function() {}
+                    $setPristine: function() {}
                 };
                 expect(scope.verifying).toBe(true);
                 mockBackend.expectGET('/controllers/public/eventDates.php').respond(eventDates);
@@ -375,7 +375,7 @@ describe('controllers', function() {
             it('should change a user\'s password', function() {
                 scope.changePassword();
                 scope.changePasswordForm = {
-                    '$setPristine': function() {}
+                    $setPristine: function() {}
                 };
                 expect(scope.verifying).toBe(true);
                 mockBackend.expectGET('/controllers/public/eventDates.php').respond(eventDates);

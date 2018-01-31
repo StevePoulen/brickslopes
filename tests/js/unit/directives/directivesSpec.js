@@ -5,8 +5,6 @@ describe('directives', function() {
     beforeEach(module('brickSlopes'));
 
     describe('bsLogo', function() {
-        var expectedOutput;
-
         describe('no text', function() {
             beforeEach(inject(function($compile, $rootScope) {
                 scope = $rootScope.$new();
@@ -43,7 +41,6 @@ describe('directives', function() {
     });
 
     describe('bsText', function() {
-        var expectedOutput;
         beforeEach(inject(function($compile, $rootScope) {
             scope = $rootScope.$new();
             element = angular.element('<bs-text text="hello"></bs-text>');

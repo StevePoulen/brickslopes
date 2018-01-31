@@ -1,6 +1,8 @@
 // Karma configuration
 // Generated on Wed Apr 02 2014 15:53:09 GMT-0600 (MDT)
 module.exports = function(config) {
+    'use strict';
+
     config.set({
         // base path, that will be used to resolve files and exclude
         basePath: '../../../',

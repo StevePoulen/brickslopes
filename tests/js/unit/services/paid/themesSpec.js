@@ -8,7 +8,7 @@ describe('service', function() {
             beforeEach(inject(function(_$httpBackend_, Themes) {
                 mockBackend = _$httpBackend_;
                 service = Themes;
-                mockBackend.expectGET('/controllers/paid/themes.php?eventId=2').respond(201, themes);
+                mockBackend.expectGET('/controllers/paid/themes.php?eventId=2').respond(201, window.themes);
             }));
 
             it('should get a list of themes and awards for an event', function() {
@@ -38,9 +38,8 @@ describe('service', function() {
                 });
 
                 mockBackend.flush();
-                expect(data.theme).toBe("Castle");
+                expect(data.theme).toBe('Castle');
             });
-
         });
     });
 });

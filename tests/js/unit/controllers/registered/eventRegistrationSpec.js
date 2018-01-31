@@ -163,7 +163,7 @@ describe('controllers', function() {
                     draftTwoId: 24,
                     ageVerification: 'YES',
                     tShirtSize: 'X-Large',
-                    comments: "This is my comment",
+                    comments: 'This is my comment',
                     type: 'afol',
                     discountDate: '2015-03-25 14:23:22',
                     isOwner: 'YES'
@@ -186,7 +186,7 @@ describe('controllers', function() {
                 scope.draftTwo = 'Yes';
                 scope.ageVerification = 'Yes';
                 scope.tShirtSize = 'X-Large';
-                scope.comments = "Can't Wait!";
+                scope.comments = 'Can\'t Wait!';
                 scope.type = 'afol';
             });
 
@@ -204,7 +204,7 @@ describe('controllers', function() {
                     draftTwoId: 24,
                     ageVerification: 'Yes',
                     tShirtSize: 'X-Large',
-                    comments: "Can't Wait!",
+                    comments: 'Can\'t Wait!',
                     type: 'afol',
                     discountDate: '2015-03-25 14:23:22',
                     isOwner: 'YES'
@@ -239,11 +239,11 @@ describe('controllers', function() {
             });
 
             it('should change the badgeName to NO and undefined badgeLine1 and badgeLine2', function() {
-                scope.badgeLine2 = "hello";
-                scope.badgeLine3 = "there";
+                scope.badgeLine2 = 'hello';
+                scope.badgeLine3 = 'there';
                 expect(scope.nameBadge).toBe('NO');
                 scope.$digest();
-                scope.nameBadge = "NO";
+                scope.nameBadge = 'NO';
                 scope.$digest();
                 expect(scope.nameBadge).toBe('NO');
                 expect(scope.badgeLine2).toBeUndefined();
@@ -251,11 +251,11 @@ describe('controllers', function() {
             });
 
             it('should change the badgeName to YES and no change to badgeLine1 and badgeLine2', function() {
-                scope.badgeLine2 = "hello";
-                scope.badgeLine3 = "there";
+                scope.badgeLine2 = 'hello';
+                scope.badgeLine3 = 'there';
                 expect(scope.nameBadge).toBe('NO');
                 scope.$digest();
-                scope.nameBadge = "YES";
+                scope.nameBadge = 'YES';
                 scope.$digest();
                 expect(scope.nameBadge).toBe('YES');
                 expect(scope.badgeLine2).toBe('hello');
@@ -270,14 +270,14 @@ describe('controllers', function() {
 
             it('should change the badgeName to YES when badgeLine2 is changed', function() {
                 expect(scope.nameBadge).toBe('NO');
-                scope.badgeLine2 = "hello";
+                scope.badgeLine2 = 'hello';
                 scope.$digest();
                 expect(scope.nameBadge).toBe('YES');
             });
 
             it('should change the badgeName to YES when badgeLine3 is changed', function() {
                 expect(scope.nameBadge).toBe('NO');
-                scope.badgeLine3 = "there";
+                scope.badgeLine3 = 'there';
                 scope.$digest();
                 expect(scope.nameBadge).toBe('YES');
             });
@@ -285,14 +285,14 @@ describe('controllers', function() {
             it('should change the badgeName to YES when badgeLine2 is empty', function() {
                 expect(scope.nameBadge).toBe('NO');
                 scope.badgeLine2 = undefined;
-                scope.badgeLine3 = "Hello";
+                scope.badgeLine3 = 'Hello';
                 scope.$digest();
                 expect(scope.nameBadge).toBe('YES');
             });
 
             it('should change the badgeName to YES when badgeLine3 is empty', function() {
                 expect(scope.nameBadge).toBe('NO');
-                scope.badgeLine2 = "Hello";
+                scope.badgeLine2 = 'Hello';
                 scope.badgeLine3 = undefined;
                 scope.$digest();
                 expect(scope.nameBadge).toBe('YES');

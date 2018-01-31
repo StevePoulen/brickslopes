@@ -18,7 +18,7 @@ describe('Event Dates Factory', function() {
 
     describe('Event Dates Success', function() {
         beforeEach(function() {
-            mockBackend.expectGET('/controllers/public/eventDates.php').respond(201, eventDates);
+            mockBackend.expectGET('/controllers/public/eventDates.php').respond(201, window.eventDates);
         });
 
         it('should get all the events', function() {
@@ -26,7 +26,7 @@ describe('Event Dates Factory', function() {
                 data = _data_;
             });
             mockBackend.flush();
-            expect(data).toEqual(eventDates);
+            expect(data).toEqual(window.eventDates);
         });
 
         describe('getEventYear', function() {

@@ -1,58 +1,63 @@
-describe('service', function() {
+describe('eventRegistrationService', function() {
     'use strict';
+
+    var mockBackend, eventRegistrationService, eventList;
+    var data, eventDetails;
 
     beforeEach(module('brickSlopes'));
 
+    beforeEach(inject(function(
+        _EventRegistration_,
+        _$httpBackend_
+    ) {
+        mockBackend = _$httpBackend_;
+        eventRegistrationService = _EventRegistration_;
+    }));
+
     describe('Event Registration', function() {
         describe('Create', function() {
-            var mockBackend, service, data, eventDetails;
-            beforeEach(inject(function(_$httpBackend_, EventRegistration) {
+            beforeEach(function() {
                 eventDetails = {
-                    'userId': '1',
-                    'eventId': '2'
+                    userId: 1,
+                    eventId: 2
                 };
-                mockBackend = _$httpBackend_;
-                service = EventRegistration;
-            }));
+            });
 
             it('should register a user for an event', function() {
-                mockBackend.expectPOST('/controllers/registered/eventRegistration.php', eventDetails).respond(201);
-                var load = service.submitRegistration(true, eventDetails);
+                mockBackend.expectPOST('/controllers/registered/eventRegistration.php', eventDetails).respond();
+                var load = eventRegistrationService.submitRegistration(true, eventDetails);
 
                 load.then(function(_data) {
                     data = _data;
                 });
 
                 mockBackend.flush();
-                expect(data).toBe(undefined);
+                expect(data).toBeUndefined();
             });
 
             it('should update a user for an event', function() {
-                mockBackend.expectPATCH('/controllers/registered/eventRegistration.php', eventDetails).respond(201);
-                var load = service.submitRegistration(false, eventDetails);
+                mockBackend.expectPATCH('/controllers/registered/eventRegistration.php', eventDetails).respond();
+                var load = eventRegistrationService.submitRegistration(false, eventDetails);
 
                 load.then(function(_data) {
                     data = _data;
                 });
 
                 mockBackend.flush();
-                expect(data).toBe(undefined);
+                expect(data).toBeUndefined();
             });
         });
 
         describe('Get', function() {
-            var mockBackend, service, eventList;
-            beforeEach(inject(function(_$httpBackend_, EventRegistration) {
-                mockBackend = _$httpBackend_;
-                service = EventRegistration;
-                mockBackend.expectGET('/controllers/registered/eventRegistration.php').respond(201, eventRegistration);
+            beforeEach(function() {
+                mockBackend.expectGET('/controllers/registered/eventRegistration.php').respond(window.eventRegistration);
 
-                service.get(2).then(function(_data) {
+                eventRegistrationService.get(2).then(function(_data) {
                     eventList = _data['2'];
                 });
 
                 mockBackend.flush();
-            }));
+            });
 
             it('should have an age verification attribue in eventList', function() {
                 expect(eventList.ageVerification).toBe('YES');
@@ -132,15 +137,9 @@ describe('service', function() {
         });
 
         describe('Digest Without add-ons', function() {
-            var mockBackend, service, eventList;
-            beforeEach(inject(function(_$httpBackend_, EventRegistration) {
-                mockBackend = _$httpBackend_;
-                service = EventRegistration;
-            }));
-
             it('should have no tShirtSize attribute in eventList', function() {
-                mockBackend.expectGET('/controllers/registered/eventRegistration.php').respond(eventRegistrationNoTShirt);
-                service.get(2).then(function(_data) {
+                mockBackend.expectGET('/controllers/registered/eventRegistration.php').respond(window.eventRegistrationNoTShirt);
+                eventRegistrationService.get(2).then(function(_data) {
                     eventList = _data['3'];
                 });
                 mockBackend.flush();
@@ -148,8 +147,8 @@ describe('service', function() {
             });
 
             it('should have no meetAndGreet attribute in eventList', function() {
-                mockBackend.expectGET('/controllers/registered/eventRegistration.php').respond(eventRegistrationNoMeetAndGreet);
-                service.get(2).then(function(_data) {
+                mockBackend.expectGET('/controllers/registered/eventRegistration.php').respond(window.eventRegistrationNoMeetAndGreet);
+                eventRegistrationService.get(2).then(function(_data) {
                     eventList = _data['2'];
                 });
                 mockBackend.flush();
@@ -157,8 +156,8 @@ describe('service', function() {
             });
 
             it('should have no badgeLine1 attribute in eventList', function() {
-                mockBackend.expectGET('/controllers/registered/eventRegistration.php').respond(eventRegistrationNoMeetAndGreet);
-                service.get(2).then(function(_data) {
+                mockBackend.expectGET('/controllers/registered/eventRegistration.php').respond(window.eventRegistrationNoMeetAndGreet);
+                eventRegistrationService.get(2).then(function(_data) {
                     eventList = _data['2'];
                 });
                 mockBackend.flush();
@@ -167,8 +166,8 @@ describe('service', function() {
             });
 
             it('should have no badgeLine2 attribute in eventList', function() {
-                mockBackend.expectGET('/controllers/registered/eventRegistration.php').respond(eventRegistrationNoMeetAndGreet);
-                service.get(2).then(function(_data) {
+                mockBackend.expectGET('/controllers/registered/eventRegistration.php').respond(window.eventRegistrationNoMeetAndGreet);
+                eventRegistrationService.get(2).then(function(_data) {
                     eventList = _data['2'];
                 });
                 mockBackend.flush();
@@ -177,8 +176,8 @@ describe('service', function() {
             });
 
             it('should have a badgeLine1 and no badgeLine2 attribute in eventList', function() {
-                mockBackend.expectGET('/controllers/registered/eventRegistration.php').respond(eventRegistrationBadgeLineOneOnly);
-                service.get(2).then(function(_data) {
+                mockBackend.expectGET('/controllers/registered/eventRegistration.php').respond(window.eventRegistrationBadgeLineOneOnly);
+                eventRegistrationService.get(2).then(function(_data) {
                     eventList = _data['4'];
                 });
                 mockBackend.flush();
@@ -191,8 +190,8 @@ describe('service', function() {
             });
 
             it('should have a paidCTA attribute of true', function() {
-                mockBackend.expectGET('/controllers/registered/eventRegistration.php').respond(eventRegistrationPaid);
-                service.get(2).then(function(_data) {
+                mockBackend.expectGET('/controllers/registered/eventRegistration.php').respond(window.eventRegistrationPaid);
+                eventRegistrationService.get(2).then(function(_data) {
                     eventList = _data['1'];
                 });
                 mockBackend.flush();

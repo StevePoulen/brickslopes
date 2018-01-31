@@ -1284,7 +1284,7 @@
             request: function(config) {
                 config.headers = config.headers || {};
                 if ($window.sessionStorage.token) {
-                    config.headers['Auth-Token'] = $window.sessionStorage.token;
+                    config.headers.Auth_Token = $window.sessionStorage.token;
                 }
 
                 if (! $location.host().match(/mybrickslopes.com/)) {

@@ -1,6 +1,7 @@
 describe('controllers', function() {
     'use strict';
-    var scope, ctrl, location, mockBackend, route;
+    var scope, location, mockBackend, route;
+    var vendorDTO;
 
     beforeEach(module('brickSlopes'));
 
@@ -15,22 +16,28 @@ describe('controllers', function() {
     }));
 
     describe('vendorRegistration Controller', function() {
-        beforeEach(inject(function($controller, $rootScope, $location, _$httpBackend_, $route) {
-            route = $route;
-            route = {
+        beforeEach(inject(function(
+            _$controller_,
+            _$httpBackend_,
+            _$location_,
+            _$rootScope_,
+            _$route_
+        ) {
+            route = _$route_;
+            route = Object({
                 current: {
                     params: {
                         eventId: 2,
                         storeId: 'undefined'
                     }
                 }
-            };
-            scope = $rootScope.$new();
-            ctrl = $controller('vendorRegistration', {
+            });
+            scope = _$rootScope_.$new();
+            _$controller_('vendorRegistration', {
                 $scope: scope,
                 $route: route
             });
-            location = $location;
+            location = _$location_;
             mockBackend = _$httpBackend_;
         }));
 
@@ -80,21 +87,20 @@ describe('controllers', function() {
         });
 
         describe('Create Vendor', function() {
-            var vendorDTO;
             beforeEach(function() {
-                vendorDTO = {
+                vendorDTO = Object({
                     eventId: 2,
                     storeId: 'undefined',
                     name: 'My Store',
                     description: 'The sweet life',
                     url: 'https://www.url.com',
                     logo: 'https://www.logo.com'
-                }
+                });
             });
 
             it('should create a store', function() {
                 scope.registrationForm = {
-                    '$setPristine': function() {}
+                    $setPristine: function() {}
                 };
                 scope.name = 'My Store';
                 scope.description = 'The sweet life';
@@ -127,24 +133,25 @@ describe('controllers', function() {
         });
 
         describe('Update Vendor', function() {
-            var vendorDTO;
-            beforeEach(inject(function($controller) {
-                vendorDTO = {
+            beforeEach(inject(function(
+                _$controller_
+            ) {
+                vendorDTO = Object({
                     eventId: 2,
                     storeId: 2,
                     name: 'My Store',
                     description: 'The sweet life',
                     url: 'https://www.url.com',
                     logo: 'https://www.logo.com'
-                }
-                route = {
+                });
+                route = Object({
                     current: {
                         params: {
                             storeId: 2
                         }
                     }
-                };
-                ctrl = $controller('vendorRegistration', {
+                });
+                _$controller_('vendorRegistration', {
                     $scope: scope,
                     $route: route
                 });
@@ -154,7 +161,7 @@ describe('controllers', function() {
                 scope.isStoreUpdate = true;
                 scope.called = true;
                 scope.registrationForm = {
-                    '$setPristine': function() {}
+                    $setPristine: function() {}
                 };
                 scope.name = 'My Store';
                 scope.description = 'The sweet life';

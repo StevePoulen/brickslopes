@@ -116,7 +116,7 @@ describe('controllers', function() {
 
             it('should create an associate', function() {
                 scope.registrationForm = {
-                    '$setPristine': function() {}
+                    $setPristine: function() {}
                 };
                 scope.firstName = 'Steve';
                 scope.lastName = 'Poulsen';

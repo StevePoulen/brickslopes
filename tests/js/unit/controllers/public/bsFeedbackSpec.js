@@ -112,7 +112,7 @@ describe('controllers', function() {
 
         it('should submit a user feedback form', function() {
             scope.feedbackForm = {
-                '$setPristine': function() {}
+                $setPristine: function() {}
             };
             scope.email = 'steve@brickslopes.com';
             scope.feedback = 'This sight rox!';

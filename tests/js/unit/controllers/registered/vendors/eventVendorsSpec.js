@@ -1,28 +1,34 @@
 describe('controllers', function() {
     'use strict';
-    var scope, ctrl, location;
+    var scope, location;
     var mockBackend, route;
 
     beforeEach(module('brickSlopes'));
 
     describe('eventAfols Controller', function() {
-        beforeEach(inject(function($controller, $rootScope, $location, _$httpBackend_, $route) {
-            route = $route;
-            route = {
+        beforeEach(inject(function(
+            _$controller_,
+            _$httpBackend_,
+            _$location_,
+            _$rootScope_,
+            _$route_
+        ) {
+            route = _$route_;
+            route = Object({
                 current: {
                     params: {
                         eventId: 2
                     }
                 }
-            }
-            scope = $rootScope.$new();
-            ctrl = $controller('afolEventVendors', {
+            });
+            scope = _$rootScope_.$new();
+            _$controller_('afolEventVendors', {
                 $scope: scope,
                 $route: route
             });
-            location = $location;
+            location = _$location_;
             mockBackend = _$httpBackend_;
-            mockBackend.expectGET('/controllers/registered/vendors/vendors.php?eventId=2').respond(201, vendors);
+            mockBackend.expectGET('/controllers/registered/vendors/vendors.php?eventId=2').respond(window.vendors);
         }));
 
         describe('Close Dialog', function() {
@@ -50,9 +56,8 @@ describe('controllers', function() {
 
             it('should have a vendorListvariable', function() {
                 mockBackend.flush();
-                expect(scope.vendorList[0].name).toBe(vendors[0].name);
+                expect(scope.vendorList[0].name).toBe(window.vendors[0].name);
             });
         });
-
     });
 });

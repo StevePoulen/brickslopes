@@ -1,18 +1,18 @@
 describe('controllers', function() {
     'use strict';
-    var scope, ctrl;
+    var scope;
 
     beforeEach(module('brickSlopes'));
 
     describe('emailUs Controller', function() {
         var mockBackend;
         beforeEach(inject(function(
-            $controller,
-            $rootScope,
-            _$httpBackend_
+            _$controller_,
+            _$httpBackend_,
+            _$rootScope_
         ) {
-            scope = $rootScope.$new();
-            ctrl = $controller('emailUsController', {
+            scope = _$rootScope_.$new();
+            _$controller_('emailUsController', {
                 $scope: scope
             });
             mockBackend = _$httpBackend_;
@@ -52,7 +52,7 @@ describe('controllers', function() {
                     comments: 'Everything is Awesome!'
                 };
                 scope.emailUsForm = {
-                    '$setPristine': function() {}
+                    $setPristine: function() {}
                 };
                 scope.submitEmail();
                 mockBackend.expectPOST('/controllers/public/emailUs.php', dto).respond(201);
