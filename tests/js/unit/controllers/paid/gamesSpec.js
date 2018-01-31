@@ -1,21 +1,30 @@
 describe('controllers', function() {
     'use strict';
-    var scope, ctrl;
+    var scope, controller;
+    var mockBackend, location;
 
     beforeEach(module('brickSlopes'));
 
+    beforeEach(inject(function(
+        _$controller_,
+        _$rootScope_,
+        _$httpBackend_,
+        _$location_
+    ) {
+        scope = _$rootScope_.$new();
+        controller = _$controller_;
+        mockBackend = _$httpBackend_;
+        location = _$location_;
+    }));
+
     describe('afolEventGames Controller', function() {
-        var mockBackend, location;
-        beforeEach(inject(function($controller, $rootScope, _$httpBackend_, $location) {
-            scope = $rootScope.$new();
-            ctrl = $controller('afolEventGames', {
+        beforeEach(function() {
+            controller('afolEventGames', {
                 $scope: scope
             });
-            mockBackend = _$httpBackend_;
-            mockBackend.expectGET('/controllers/paid/games.php?eventId=2').respond(201, games);
-            mockBackend.expectGET('/controllers/paid/gameUser.php?eventId=2').respond(userGames);
-            location = $location;
-        }));
+            mockBackend.expectGET('/controllers/paid/games.php?eventId=2').respond(201, window.games);
+            mockBackend.expectGET('/controllers/paid/gameUser.php?eventId=2').respond(window.userGames);
+        });
 
         describe('Close Dialog', function() {
             it('should redirect to index page', function() {
@@ -54,29 +63,25 @@ describe('controllers', function() {
     });
 
     describe('Game Registration', function() {
-        var mockBackend, location;
-        beforeEach(inject(function($controller, $rootScope, _$httpBackend_, $location) {
-            location = $location;
-            scope = $rootScope.$new();
-            ctrl = $controller('afolEventGames', {
+        beforeEach(function() {
+            controller('afolEventGames', {
                 $scope: scope
             });
-            mockBackend = _$httpBackend_;
-            var expectedPayload = {
+            var expectedPayload = Object({
                 eventId: 2,
                 gameId: 1,
                 type: 'PARTICIPANT'
-            }
-            mockBackend.expectGET('/controllers/paid/games.php?eventId=2').respond(201, games);
-            mockBackend.expectGET('/controllers/paid/gameUser.php?eventId=2').respond(userGames);
+            });
+            mockBackend.expectGET('/controllers/paid/games.php?eventId=2').respond(201, window.games);
+            mockBackend.expectGET('/controllers/paid/gameUser.php?eventId=2').respond(window.userGames);
             mockBackend.expectPOST('/controllers/paid/gameUser.php', expectedPayload).respond(201);
-        }));
+        });
 
         it('should register for a game', function() {
-            scope.game = {
+            scope.game = Object({
                 gameId: 1,
                 fee: 'NO'
-            }
+            });
             scope.clickGameRegistration();
             expect(scope.verifying).toBe(true);
             mockBackend.flush();
@@ -86,10 +91,10 @@ describe('controllers', function() {
         });
 
         it('should register for a game and redirect to payments', function() {
-            scope.game = {
+            scope.game = Object({
                 gameId: 1,
                 fee: 'YES'
-            }
+            });
             scope.clickGameRegistration();
             expect(scope.verifying).toBe(true);
             mockBackend.flush();
@@ -100,22 +105,19 @@ describe('controllers', function() {
     });
 
     describe('Game Deletion', function() {
-        var mockBackend;
-        beforeEach(inject(function($controller, $rootScope, _$httpBackend_) {
-            scope = $rootScope.$new();
-            ctrl = $controller('afolEventGames', {
+        beforeEach(function() {
+            controller('afolEventGames', {
                 $scope: scope
             });
-            mockBackend = _$httpBackend_;
-            mockBackend.expectGET('/controllers/paid/games.php?eventId=2').respond(201, games);
-            mockBackend.expectGET('/controllers/paid/gameUser.php?eventId=2').respond(userGames);
-            mockBackend.expectDELETE('/controllers/paid/gameUser.php?eventId=2&gameId=1').respond(200);
-        }));
+            mockBackend.expectGET('/controllers/paid/games.php?eventId=2').respond(201, window.games);
+            mockBackend.expectGET('/controllers/paid/gameUser.php?eventId=2').respond(window.userGames);
+            mockBackend.expectDELETE('/controllers/paid/gameUser.php?eventId=2&gameId=1').respond();
+        });
 
         it('should delete a game', function() {
-            scope.game = {
+            scope.game = Object({
                 gameId: 1
-            }
+            });
             scope.clickGameDeletion();
             expect(scope.verifying).toBe(true);
             mockBackend.flush();

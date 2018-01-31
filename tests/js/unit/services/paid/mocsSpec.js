@@ -1,21 +1,27 @@
-describe('service', function() {
+describe('mocDetailsService', function() {
     'use strict';
 
-    var mockBackend, service, data, window;
+    var mockBackend, mocDetailsService, data, mockWindow, dto;
 
     beforeEach(module('brickSlopes'));
 
+    beforeEach(inject(function(
+        _$httpBackend_,
+        _MocDetails_,
+        _$window_
+    ) {
+        mockBackend = _$httpBackend_;
+        mocDetailsService = _MocDetails_;
+        mockWindow = _$window_;
+    }));
+
     describe('MocDetails', function() {
-        beforeEach(inject(function(_$httpBackend_, MocDetails, $window) {
-            mockBackend = _$httpBackend_;
-            service = MocDetails;
-            window = $window;
-            mockBackend.expectGET('/controllers/paid/mocs.php?eventId=2').respond(mocs);
-        }));
+        beforeEach(function() {
+            mockBackend.expectGET('/controllers/paid/mocs.php?eventId=2').respond(window.mocs);
+        });
 
         it('should load registered afol moc list count', function() {
-            var load = service.getCount(2);
-            load.then(function(_data) {
+            mocDetailsService.getCount(2).then(function(_data) {
                 data = _data;
             });
 
@@ -24,30 +30,27 @@ describe('service', function() {
         });
 
         it('should load registered afol moc list count', function() {
-            var load = service.getList(2);
-            load.then(function(_data) {
+            mocDetailsService.getList(2).then(function(_data) {
                 data = _data;
             });
 
             mockBackend.flush();
-            expect(data).toEqual(mocs);
+            expect(data).toEqual(window.mocs);
         });
 
         it('should load an individuals afol moc list', function() {
-            window.sessionStorage.userId = 2;
-            var load = service.getListByUserId(2);
-            load.then(function(_data) {
+            mockWindow.sessionStorage.userId = 2;
+            mocDetailsService.getListByUserId(2).then(function(_data) {
                 data = _data;
             });
 
             mockBackend.flush();
-            expect(data).toEqual(userTwoMoc);
+            expect(data).toEqual(window.userTwoMoc);
         });
 
         it('should load individual afol moc list count', function() {
-            window.sessionStorage.userId = 2;
-            var load = service.getCountByUser(2);
-            load.then(function(_data) {
+            mockWindow.sessionStorage.userId = 2;
+            mocDetailsService.getCountByUser(2).then(function(_data) {
                 data = _data;
             });
 
@@ -56,8 +59,8 @@ describe('service', function() {
         });
 
         it('should load individual moc', function() {
-            window.sessionStorage.userId = 1;
-            service.getMocById(3).then(function(_data) {
+            mockWindow.sessionStorage.userId = 1;
+            mocDetailsService.getMocById(3).then(function(_data) {
                 data = _data;
             });
 
@@ -66,8 +69,8 @@ describe('service', function() {
         });
 
         it('should return undefined if the moc is not found', function() {
-            window.sessionStorage.userId = 2;
-            service.getMocById(3).then(function(_data) {
+            mockWindow.sessionStorage.userId = 2;
+            mocDetailsService.getMocById(3).then(function(_data) {
                 data = _data;
             });
 
@@ -76,8 +79,8 @@ describe('service', function() {
         });
 
         it('should return undefined if the moc is not found', function() {
-            window.sessionStorage.userId = 2;
-            service.getMocById(3).then(function(_data) {
+            mockWindow.sessionStorage.userId = 2;
+            mocDetailsService.getMocById(3).then(function(_data) {
                 data = _data;
             });
 
@@ -87,17 +90,13 @@ describe('service', function() {
     });
 
     describe('Create Moc', function() {
-        var mockBackend, service, data, dto;
-        beforeEach(inject(function(_$httpBackend_, MocDetails) {
-            dto = {};
-            mockBackend = _$httpBackend_;
-            service = MocDetails;
+        beforeEach(function() {
+            dto = Object({});
             mockBackend.expectPOST('/controllers/paid/mocs.php', dto).respond(201);
-        }));
+        });
 
         it('should create a user moc', function() {
-            var load = service.create(dto);
-            load.then(function(_data) {
+            mocDetailsService.create(dto).then(function(_data) {
                 data = _data;
             });
 
@@ -107,17 +106,13 @@ describe('service', function() {
     });
 
     describe('Update Moc', function() {
-        var mockBackend, service, data, dto;
-        beforeEach(inject(function(_$httpBackend_, MocDetails) {
-            dto = {};
-            mockBackend = _$httpBackend_;
-            service = MocDetails;
-            mockBackend.expectPATCH('/controllers/paid/mocs.php', dto).respond(200);
-        }));
+        beforeEach(function() {
+            dto = Object({});
+            mockBackend.expectPATCH('/controllers/paid/mocs.php', dto).respond();
+        });
 
         it('should update a user moc', function() {
-            var load = service.update(dto);
-            load.then(function(_data) {
+            mocDetailsService.update(dto).then(function(_data) {
                 data = _data;
             });
 
@@ -127,24 +122,20 @@ describe('service', function() {
     });
 
     describe('MocDetails Cached', function() {
-        var mockBackend, service, data, window;
-        beforeEach(inject(function(_$httpBackend_, MocDetails, $window) {
-            mockBackend = _$httpBackend_;
-            service = MocDetails;
-            window = $window;
-            mockBackend.expectGET('/controllers/paid/mocs.php?eventId=2').respond(mocs);
-        }));
+        beforeEach(function() {
+            mockBackend.expectGET('/controllers/paid/mocs.php?eventId=2').respond(window.mocs);
+        });
 
         it('should only call the api once with the cache enabled', function() {
-            var load = service.getCount(2);
-            load.then(function(_data) {
+            mocDetailsService.getCount(2).then(function(_data) {
                 data = _data;
             });
 
             mockBackend.flush();
             expect(data).toBe(3);
 
-            var load = service.getCount(2);
+            mocDetailsService.getCount(2);
+
             var flushError = false;
             try {
                 mockBackend.flush();
@@ -156,15 +147,14 @@ describe('service', function() {
         });
 
         it('should only call the api twice with the cache disabled', function() {
-            var load = service.getCount(2);
-            load.then(function(_data) {
+            mocDetailsService.getCount(2).then(function(_data) {
                 data = _data;
             });
 
             mockBackend.flush();
             expect(data).toBe(3);
 
-            var load = service.getCount(2);
+            mocDetailsService.getCount(2);
             var flushError = false;
             try {
                 mockBackend.flush();
@@ -174,10 +164,9 @@ describe('service', function() {
 
             expect(flushError).toBe(true);
 
-            mockBackend.expectGET('/controllers/paid/mocs.php?eventId=2').respond(mocs);
-            service.expireCache(2);
+            mockBackend.expectGET('/controllers/paid/mocs.php?eventId=2').respond(window.mocs);
+            mocDetailsService.expireCache(2);
             mockBackend.flush();
         });
     });
-
 });

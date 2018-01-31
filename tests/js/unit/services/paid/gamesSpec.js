@@ -1,22 +1,28 @@
-describe('service', function() {
+describe('GamesService', function() {
     'use strict';
+
+    var mockBackend, GamesService, data;
+    var payload;
+
     beforeEach(module('brickSlopes'));
+
+    beforeEach(inject(function(
+        _$httpBackend_,
+        _Games_
+    ) {
+        mockBackend = _$httpBackend_;
+        GamesService = _Games_;
+    }));
 
     describe('Games', function() {
         describe('Get', function() {
-            var mockBackend, service, data, gameDetails, eventId;
-            beforeEach(inject(function(_$httpBackend_, Games) {
-                eventId = 2;
-                mockBackend = _$httpBackend_;
-                mockBackend.expectGET('/controllers/paid/games.php?eventId=2').respond(201, games);
-                service = Games;
-            }));
+            beforeEach(function() {
+                mockBackend.expectGET('/controllers/paid/games.php?eventId=2').respond(201, window.games);
+            });
 
             it('should get a list of games and awards for an event', function() {
-                var load = service.getList(2);
-
-                load.then(function(_data) {
-                    data = _data;
+                GamesService.getList(2).then(function(_data_) {
+                    data = _data_;
                 });
 
                 mockBackend.flush();
@@ -32,9 +38,8 @@ describe('service', function() {
             });
 
             it('should load the game list count', function() {
-                var load = service.getCount(2);
-                load.then(function(_data) {
-                    data = _data;
+                GamesService.getCount(2).then(function(_data_) {
+                    data = _data_;
                 });
 
                 mockBackend.flush();
@@ -43,24 +48,18 @@ describe('service', function() {
         });
 
         describe('Create', function() {
-            var mockBackend, service, data, gameDetails, eventId, payload;
-            beforeEach(inject(function(_$httpBackend_, Games) {
-                eventId = 2;
-                mockBackend = _$httpBackend_;
+            beforeEach(function() {
                 payload = {
                     eventId: 2,
                     gameId: 2,
                     type: 'PARTICIPANT'
                 };
                 mockBackend.expectPOST('/controllers/paid/gameUser.php', payload).respond(201);
-                service = Games;
-            }));
+            });
 
             it('should get a list of games and awards for an event', function() {
-                var load = service.gameRegistration(payload);
-
-                load.then(function(_data) {
-                    data = _data;
+                GamesService.gameRegistration(payload).then(function(_data_) {
+                    data = _data_;
                 });
 
                 mockBackend.flush();
@@ -69,18 +68,13 @@ describe('service', function() {
         });
 
         describe('Get UserGames', function() {
-            var mockBackend, service, data;
-            beforeEach(inject(function(_$httpBackend_, Games) {
-                mockBackend = _$httpBackend_;
-                mockBackend.expectGET('/controllers/paid/gameUser.php?eventId=2').respond(userGames);
-                service = Games;
-            }));
+            beforeEach(function() {
+                mockBackend.expectGET('/controllers/paid/gameUser.php?eventId=2').respond(window.userGames);
+            });
 
             it('should get a list of games and awards for an event', function() {
-                var load = service.getUserGameList(2);
-
-                load.then(function(_data) {
-                    data = _data;
+                GamesService.getUserGameList(2).then(function(_data_) {
+                    data = _data_;
                 });
 
                 mockBackend.flush();

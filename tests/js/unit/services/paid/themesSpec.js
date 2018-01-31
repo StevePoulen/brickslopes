@@ -1,20 +1,21 @@
-describe('service', function() {
+describe('themesService', function() {
     'use strict';
     beforeEach(module('brickSlopes'));
+    var mockBackend, themesService, data;
 
     describe('Themes', function() {
         describe('Get', function() {
-            var mockBackend, service, data;
-            beforeEach(inject(function(_$httpBackend_, Themes) {
+            beforeEach(inject(function(
+                _$httpBackend_,
+                _Themes_
+            ) {
                 mockBackend = _$httpBackend_;
-                service = Themes;
-                mockBackend.expectGET('/controllers/paid/themes.php?eventId=2').respond(201, window.themes);
+                themesService = _Themes_;
+                mockBackend.expectGET('/controllers/paid/themes.php?eventId=2').respond(window.themes);
             }));
 
             it('should get a list of themes and awards for an event', function() {
-                var load = service.getList();
-
-                load.then(function(_data) {
+                themesService.getList().then(function(_data) {
                     data = _data;
                 });
 
@@ -23,8 +24,7 @@ describe('service', function() {
             });
 
             it('should load the game list count', function() {
-                var load = service.getCount();
-                load.then(function(_data) {
+                themesService.getCount().then(function(_data) {
                     data = _data;
                 });
 
@@ -33,7 +33,7 @@ describe('service', function() {
             });
 
             it('should load individual moc by theme', function() {
-                service.getThemeObject('Castle').then(function(_data) {
+                themesService.getThemeObject('Castle').then(function(_data) {
                     data = _data;
                 });
 
