@@ -288,6 +288,8 @@
 
                 $title = $moc['title'] == "" ? '' : "\"{$moc['title']}\"";
                 $builder = $moc['displayName'] == "" ? '' : "by {$moc['displayName']}";
+                $isTfol = $moc['isTfol'] == "true" ? 'T' : '';
+                $isSet = $moc['isSet'] == "true" ? 'S' : '';
 
                 $txt = "
                     <div class='printMocContainer'>
@@ -301,10 +303,14 @@
                             <div class='mocTheme'>{$moc['theme']}</div>
                             <div class='minorDetails'>
                                 <div class='minorDetailYear'>
-                                    2017
+                                    2018
                                 </div>
                                 <div class='minorDetailNumber'>
-                                    #{$moc_number}
+                                    <span>{$isSet}</span>
+                                    &nbsp;
+                                    <span>{$isTfol}</span>
+                                    &nbsp;
+                                    <span>#{$moc_number}</span>
                                 </div>
                             </div>
                             <div class='banner'>
