@@ -52,7 +52,7 @@
     "karma-ng-html2js-preprocessor" : "~0.1.0",
     "load-grunt-tasks": "3.4.0",
     "markdown-it" : "8.4.0",
-    "phantomjs": "1.9.18",
+    "phantomjs": "2.1.7",
     "protractor": "2.5.1"
   }
 }

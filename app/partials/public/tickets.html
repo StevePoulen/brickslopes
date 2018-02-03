@@ -1,45 +1,175 @@
 <div id="dashboard">
-    <div id="splashPage">
-        <div class="banner">
-            <img class="bannerImage" src="/images/publicPics/banners/bs-2018-horizontal-banner.png">
-        </div>
-        <div class="imageLeft">
-            <img class="publicImage" src="/images/publicPics/2014/sw_sets_public.jpg">
-        </div>
-        <div class="imageRight">
-            <img class="publicImage" src="/images/publicPics/2014/bricks_public.jpg">
-        </div>
-        <div class="splashTextHome">
-            <div>
-                <h2><bs-text text="Tickets"></bs-text></h2>
+  <div id="splashPage">
+    <div class="row margin-top-medium">
+      <div class="col-sm-offset-1 col-sm-6">
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th class="col-md-6"></th>
+              <th class="col-md-2 text-center">
+                <bs-text text="Public" font-size=1.25></bs-text>
+              </th>
+              <th class="col-md-2 text-center">
+                <bs-text text="AFOL" font-size=1.25></bs-text>
+              </th>
+              <th class="col-md-2 text-center">
+                <bs-text text="Vendor" font-size=1.25></bs-text>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="text-left">Cost</td>
+              <td>$8</td>
+              <td>$60/$70</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td class="text-left">Admission</td>
+              <td>per Day</td>
+              <td>3 Days</td>
+              <td>3 Days</td>
+            </tr>
+            <tr>
+              <td class="text-left">Public Door Prizes</td>
+              <td><span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td class="text-left">Public Games and Activities</td>
+              <td><span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span></td>
+              <td><span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td class="text-left">Event Brick</td>
+              <td></td>
+              <td><span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td class="text-left">
+                Complete Name Badge<br>
+                2 Custom Engraved Bricks<br>
+                Magnet
+              </td>
+              <td></td>
+              <td>Extra Fee</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td class="text-left">MOC Registration & Prizes</td>
+              <td></td>
+              <td><span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td class="text-left">AFOL Games & Prizes</td>
+              <td></td>
+              <td><span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td class="text-left">AFOL Presentations</td>
+              <td></td>
+              <td><span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td class="text-left">Opening & Closing Ceremonies</td>
+              <td></td>
+              <td><span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td class="text-left">Meet and Greet</td>
+              <td></td>
+              <td>Extra Fee</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td class="text-left">Vendor Booth (10 x 10)</td>
+              <td></td>
+              <td></td>
+              <td>Varies</td>
+            </tr>
+            <tr>
+              <td class="text-left">Vendor Associate Passes</td>
+              <td></td>
+              <td></td>
+              <td>$15/person</td>
+            </tr>
+            <tr>
+              <td class="text-left">Upgradeable to AFOL Pass</td>
+              <td></td>
+              <td></td>
+              <td>Extra Fee</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-sm-5 margin-top-large">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="row">
+              <div class="col-lg-12">
+                <span class="btn btn-success">
+                  <bs-text text="Buy Public Tickets" font-color=white font-size=1.25></bs-text>
+                </span>
+              </div>
             </div>
-            <div>
-                Purchase your {{eventYear}} tickets on-line today!
+            <div class="row margin-top-medium margin-bottom-large">
+              <div class="col-lg-12 text-left">
+                  Get access to the show floor, Including: The BrickPit, the LEGO Derby Track, Minifig Trading
+                  Center, Our Graffiti Wall, Mini-Kit Hunt, and random prizes, and more! Public tickets are sold
+                  online, and at the door. Kids 7 and under are free, with accompanying adult.
+              </div>
             </div>
-            <p>
-            <div ng-repeat="date in publicDateList">
-                <p>
-                    <div>
-                        <span ng-bind="date.date"></span>
-                        <br>
-                        <span ng-bind="date.hours"></span>
-                        <span>*</span>
-                    </div>
-                    <div class="buyTicketsButton" ng-if="$index==0">
-                        <button class="actionButtonSquare" ng-click="purchaseTickets()">
-                            <bs-text text="Buy Tickets" font-color=white font-size=.75></bs-text>
-                        </button>
-                    </div>
-                    <div class="buyTicketsButton" ng-if="$index==1">
-                        <button class="actionButtonSquare" ng-click="purchaseTickets()">
-                            <bs-text text="Buy Tickets" font-color=white font-size=.75></bs-text>
-                        </button>
-                    </div>
-                </p>
-            </div>
-            <p>
-            <h6>* Ticket sales will end at 7 pm each night</h6>
-            <div class="splashFigJackSparrow"><img src="/images/publicPics/JackSparrow150px.png"></div>
+          </div>
         </div>
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="row">
+              <div class="col-lg-12">
+                <span class="btn btn-success">
+                  <a href="/registered/login.html">
+                    <bs-text text="Buy AFOL/TFOL Tickets" font-color=white font-size=1.25></bs-text>
+                  </a>
+                </span>
+              </div>
+            </div>
+            <div class="row margin-top-medium margin-bottom-large">
+              <div class="col-lg-12 text-left">
+                AFOL/TFOL tickets are intended for those wish a unique convention like experience. Attendees
+                12 to 16 Must be accompanied by an Adult (18+), with an AFOL/TFOL pass. Some AFOL
+                games require registration, and an additional fee, AFOL/TFOL passes do not guarantee space
+                in AFOL/TFOL games. Children under 12 are not permitted.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="row">
+              <div class="col-lg-12">
+                <span class="btn btn-success">
+                  <a href="vendors">
+                    <bs-text text="Apply For Vendor Space" font-color=white font-size=1.25></bs-text>
+                  </a>
+                </span>
+              </div>
+            </div>
+            <div class="row margin-top-medium margin-bottom-large">
+              <div class="col-lg-12 text-left">
+                For those looking to engage with LEGO fans. A limited number of both spaces are available.
+                Fees depend on type of business and activity. Additional fees are required for non-LEGO
+                related products and services.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </div>

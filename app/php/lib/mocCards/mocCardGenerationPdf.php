@@ -6,6 +6,7 @@
 
     class mocCardGeneration {
         public function __construct() {
+            $this->eventId = 5;
             $this->mocObj = new mocModel();
             $this->mocs = array();
             $this->buildMocs();
@@ -28,7 +29,7 @@
         }
 
         private function buildMocs() {
-            $this->mocObj->getMocInformation(4);
+            $this->mocObj->getMocInformation($this->eventId);
             if ($this->mocObj->result) {
                 while($dbObj = $this->mocObj->result->fetch_object()) {
                     array_push (
@@ -44,6 +45,8 @@
                             'baseplateWidth' => $dbObj->baseplateWidth,
                             'baseplateDepth' => $dbObj->baseplateDepth,
                             'description' => $dbObj->description,
+                            'isTfol' => $dbObj->isTfol,
+                            'isSet' => $dbObj->isSet,
                             'theme' => $dbObj->theme
                         )
                     );
