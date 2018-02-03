@@ -63,7 +63,7 @@ describe('controllers', function() {
 
         it('should redirect to the packages page', function() {
             scope.packages();
-            expect(location.path()).toBe('/packages.html');
+            expect(location.path()).toBe('/tickets.html');
         });
 
         it('should determine to show online tickets', function() {

@@ -44,7 +44,7 @@
             }
 
             $scope.packages = function() {
-                $location.path("/packages.html");
+                $location.path("/tickets.html");
             };
 
             $scope.showOnlineTickets = function() {
