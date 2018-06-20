@@ -60,71 +60,73 @@
             <bs-text text="Add-ons" font-size=1.25></bs-text>
           </div>
         </div>
-        <div class="row">
-          <div class="col-md-12 optionField">
-            <label><bs-logo></bs-logo> Name Badge:</label> Yes <input type="radio" ng-model="nameBadge" value="YES" checked> No <input type="radio" ng-model="nameBadge" value="NO">
+        <div ng-if="false">
+          <div class="row">
+            <div class="col-md-12 optionField">
+              <label><bs-logo></bs-logo> Name Badge:</label> Yes <input type="radio" ng-model="nameBadge" value="YES" checked> No <input type="radio" ng-model="nameBadge" value="NO">
+            </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12 fullBadgeOptionField">
-            <div class="brickCenter">
-              <div class="brickHolder">
-                <div class="legoBrick red">
-                  <div class="studs">
-                    <div class="stud red"></div>
-                    <div class="stud red"></div>
-                    <div class="stud red"></div>
-                    <div class="stud red"></div>
-                    <div class="stud red"></div>
-                    <div class="stud red"></div>
-                    <div class="stud red"></div>
-                    <div class="stud red"></div>
-                  </div>
-                  <div class="logoBrick">
-                    {{eventYear}} <bs-logo font-color=white></bs-logo>
+          <div class="row">
+            <div class="col-md-12 fullBadgeOptionField">
+              <div class="brickCenter">
+                <div class="brickHolder">
+                  <div class="legoBrick red">
+                    <div class="studs">
+                      <div class="stud red"></div>
+                      <div class="stud red"></div>
+                      <div class="stud red"></div>
+                      <div class="stud red"></div>
+                      <div class="stud red"></div>
+                      <div class="stud red"></div>
+                      <div class="stud red"></div>
+                      <div class="stud red"></div>
+                    </div>
+                    <div class="logoBrick">
+                      {{eventYear}} <bs-logo font-color=white></bs-logo>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="brickHolder interlock">
-                <div class="legoBrick blue">
-                  <div class="studs">
-                    <div class="stud blue"></div>
-                    <div class="stud blue"></div>
-                    <div class="stud blue"></div>
-                    <div class="stud blue"></div>
-                    <div class="stud blue"></div>
-                    <div class="stud blue"></div>
-                    <div class="stud blue"></div>
-                    <div class="stud blue"></div>
+                <div class="brickHolder interlock">
+                  <div class="legoBrick blue">
+                    <div class="studs">
+                      <div class="stud blue"></div>
+                      <div class="stud blue"></div>
+                      <div class="stud blue"></div>
+                      <div class="stud blue"></div>
+                      <div class="stud blue"></div>
+                      <div class="stud blue"></div>
+                      <div class="stud blue"></div>
+                      <div class="stud blue"></div>
+                    </div>
+                    <input type="text" name="badgeLine2" bs-placeholder="Badge Line 1:" ng-model="badgeLine2" ng-required="nameBadge=='YES'" maxlength="26" ng-maxlength="26">
                   </div>
-                  <input type="text" name="badgeLine2" bs-placeholder="Badge Line 1:" ng-model="badgeLine2" ng-required="nameBadge=='YES'" maxlength="26" ng-maxlength="26">
                 </div>
-              </div>
-              <div class="brickHolder interlock2">
-                <div class="legoBrick yellow">
-                  <div class="studs">
-                    <div class="stud yellow"></div>
-                    <div class="stud yellow"></div>
-                    <div class="stud yellow"></div>
-                    <div class="stud yellow"></div>
-                    <div class="stud yellow"></div>
-                    <div class="stud yellow"></div>
-                    <div class="stud yellow"></div>
-                    <div class="stud yellow"></div>
+                <div class="brickHolder interlock2">
+                  <div class="legoBrick yellow">
+                    <div class="studs">
+                      <div class="stud yellow"></div>
+                      <div class="stud yellow"></div>
+                      <div class="stud yellow"></div>
+                      <div class="stud yellow"></div>
+                      <div class="stud yellow"></div>
+                      <div class="stud yellow"></div>
+                      <div class="stud yellow"></div>
+                      <div class="stud yellow"></div>
+                    </div>
+                    <input type="text" name="badgeLine3" bs-placeholder="Badge Line 2:" ng-model="badgeLine3" ng-required="nameBadge=='YES'" maxlength="26" ng-maxlength="26">
                   </div>
-                  <input type="text" name="badgeLine3" bs-placeholder="Badge Line 2:" ng-model="badgeLine3" ng-required="nameBadge=='YES'" maxlength="26" ng-maxlength="26">
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12 text-center">
-            <div class="errorFont" ng-show="registration.badgeLine2.$error.maxlength">
-              Your badge line 1 text cannot be longer than 26 characters
-            </div>
-            <div class="errorFont" ng-show="registration.badgeLine3.$error.maxlength">
-              Your badge line 2 text cannot be longer than 26 characters
+          <div class="row">
+            <div class="col-md-12 text-center">
+              <div class="errorFont" ng-show="registration.badgeLine2.$error.maxlength">
+                Your badge line 1 text cannot be longer than 26 characters
+              </div>
+              <div class="errorFont" ng-show="registration.badgeLine3.$error.maxlength">
+                Your badge line 2 text cannot be longer than 26 characters
+              </div>
             </div>
           </div>
         </div>
