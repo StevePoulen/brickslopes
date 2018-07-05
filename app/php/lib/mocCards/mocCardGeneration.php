@@ -178,5 +178,5 @@
     $mocCard = new mocCardGeneration();
     //$mocCard->buildImage('myfile');
     //exec('phantomjs ../../lib/rasterize.js ../../lib/index.html ../../lib/index.pdf A4');
-    exec('phantomjs ../../lib/rasterize.js http://mybrickslopes.com/index.html ../../lib/index.pdf A4');
+    exec('phantomjs ./rasterize.js http://mybrickslopes.com/index.html ../../lib/index.pdf A4');
 ?>
