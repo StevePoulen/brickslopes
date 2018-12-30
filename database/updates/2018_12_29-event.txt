@@ -1,0 +1,121 @@
+-- MySQL dump 10.11
+--
+-- Host: localhost    Database: mysql
+-- ------------------------------------------------------
+-- Server version	5.0.83
+
+USE `brickslopes`;
+
+
+-- Important Information
+
+-- discount date
+-- select year, discountDate  from events where eventId =6;
+
+-- event dates 
+-- select CONVERT_TZ(startDate,'+00:00','-07:00') as start, CONVERT_TZ(endDate, '+00:00', '-07:00') as end, type from eventDates where eventId =6;
+
+-- fees
+-- select lineItem, cost, discount from eventLineItems where eventId = 6;
+
+-- themes
+-- select theme, type from themes where eventId = 6;
+
+-- included games
+-- select game from games where gameId in (3,4,5,6,7,10,11,12,13,14,15,16);
+
+-- excluded games
+-- select game from games where gameId not in (3,4,5,6,7,10,11,12,13,14,15,16,8);
+
+insert into `events` (name, city, state, year, discountDate) VALUES ('BrickSlopes', 'Salt Lake City', 'Utah', 2019, '2019-04-15 23:59:59');
+
+insert into `eventDates` (eventId, startDate, endDate, type) VALUES 
+(6, '2019-05-02 19:00:00', '2019-05-03 02:00:00', 'AFOL'),
+(6, '2019-05-03 16:00:00', '2019-05-04 06:59:59', 'AFOL'),
+(6, '2019-05-04 16:00:00', '2019-05-05 06:59:59', 'AFOL'),
+(6, '2019-05-03 18:00:00', '2019-05-04 02:00:00', 'PUBLIC'),
+(6, '2019-05-04 16:00:00', '2019-05-05 02:00:00', 'PUBLIC');
+
+INSERT INTO `eventLineItems` (eventId, eventLineItemCodeId, lineItem, cost, discount, linkType, linkId, active) VALUES 
+(6,1,'3 Day Event Pass',70.00,55.00,'NONE',0,'YES'),
+(6,2,'T-Shirt',20.00,15.00,'NONE',0,'YES'),
+(6,3,'Meet And Greet',15.00,10.00,'NONE',0,'YES'),
+(6,4,'Complete Name Badge',15.00,10.00,'NONE',0,'YES'),
+(6,5,'1st Badge Brick',0.00,0.00,'NONE',0,'YES'),
+(6,6,'2nd Badge Brick',0.00,0.00,'NONE',0,'YES'),
+(6,7,'Event Badge Brick',0.00,0.00,'NONE',0,'YES'),
+(6,8,'Draft - $15',15.00,15.00,'GAME',3,'YES'),
+(6,9,'Draft - $25',25.00,25.00,'GAME',4,'YES'),
+(6,10,'1st Vendor Table',200.00,200.00,'NONE',0,'YES'),
+(6,11,'Vendor Pass',0.00,0.00,'NONE',0,'YES'),
+(6,12,'Additional Vendor Tables',100.00,100.00,'NONE',0,'YES'),
+(6,13,'Associate Pass',15.00,10.00,'NONE',0,'YES');
+
+INSERT INTO `gamesEventsConnector` (gameId, eventId, display) VALUES
+(3, 6, 'YES'),
+(4, 6, 'YES'),
+(5, 6, 'YES'),
+(6, 6, 'YES'),
+(7, 6, 'YES'),
+(10, 6, 'YES'),
+(11, 6, 'YES'),
+(12, 6, 'YES'),
+(13, 6, 'YES'),
+(14, 6, 'YES'),
+(15, 6, 'YES'),
+(16, 6, 'YES');
+
+INSERT INTO `themes` (eventId, theme, type, selectable) VALUES
+(6, 'Castle and Adventure', 'AFOL', 'YES'),
+(6, 'City and Train', 'AFOL', 'YES'),
+(6, 'Technic', 'AFOL', 'YES'),
+(6, 'Space', 'AFOL', 'YES'),
+(6, 'Sculpture and Mosaic', 'AFOL', 'YES'),
+(6, 'BrickSlopes Awards', 'AFOL', 'NO'),
+(6, 'Public Awards', 'PUBLIC', 'NO'),
+(6, 'TFOL Awards', 'TFOL', 'NO'),
+(6, 'BCS Awards', 'BCS', 'NO');
+
+INSERT INTO `themeAwards` (themeId, award, place) VALUES
+(41, 'Overall Best Castle and Adventure', 1),
+(41, 'Best Castle', 2),
+(41, 'Best Pirate', 3),
+(41, 'Best Historical', 4),
+(41, 'Best Steam Punk', 5),
+
+(42, 'Overall Best City and Train', 1),
+(42, 'Best Building', 2),
+(42, 'Best Train', 3),
+(42, 'Best Vehicle (Non Train)', 4),
+(42, 'Best Modern Military', 5),
+
+(43, 'Overall Best Technic', 1),
+(43, 'Best Technic', 2),
+(43, 'Best GBC Module (aka Steve\'s Award)', 3),
+
+(44, 'Overall Best of Space', 1),
+(44, 'Best Space Ship', 2),
+(44, 'Best Space Base', 3),
+(44, 'Best Space Vehicle', 4),
+
+(45, 'Best Sculpture', 1),
+(45, 'Best Mosiac (1 Baseplate or smaller)', 2),
+
+(46, 'AFOL Choice', 1),
+(46, 'Best Part Usage', 2),
+(46, 'Best Collaboration', 3),
+(46, 'Best Custom Fig', 4),
+(46, 'Best Scene', 5),
+(46, 'Pop Culture 1st', 6),
+(46, 'Best Video Game Related', 7),
+(46, 'Best Small', 8),
+
+(47, 'Public Choice - 1st Place', 1),
+(47, 'Public Choice - 2nd Place', 2),
+(47, 'Public Choice - 3rd Place', 3),
+
+(48, 'Best TFOL', 1),
+
+(49, 'The Steve Award', 1),
+(49, 'The Cody Award', 2),
+(49, 'The Brian Award', 3);

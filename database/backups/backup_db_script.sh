@@ -47,7 +47,7 @@ mysqlRootPassword() {
 }
 
 localDevelopment() {
-    /opt/local/bin/mysqldump5 --add-drop-table --routines -u root --password=$MYSQL_ROOT_PASSWORD $BRICKSLOPES_DATABASE | /opt/local/bin/bzip2 -c > $OUTPUT_FILE
+    /opt/local/lib/mariadb-10.1/bin/mysqldump --add-drop-table --routines -u root --password=$MYSQL_ROOT_PASSWORD $BRICKSLOPES_DATABASE | /opt/local/bin/bzip2 -c > $OUTPUT_FILE
 }
 
 liveServer() {

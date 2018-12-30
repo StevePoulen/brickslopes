@@ -81,7 +81,8 @@ module.exports = function (grunt) {
             npm: 'npm install --no-bin-links',
             bowerInstall: 'bower install --allow-root',
             bowerUpdate: 'bower update --allow-root',
-            buildBootstrap: 'cd dependencies/bootstrap; npm install; grunt dist;'//,
+            buildBootstrap: 'cd dependencies/bootstrap;'//,
+            //buildBootstrap: 'cd dependencies/bootstrap; npm install; grunt dist;'//,
             //tsdInstall: 'npm run tsdInstall; chmod +x .'
         },
 

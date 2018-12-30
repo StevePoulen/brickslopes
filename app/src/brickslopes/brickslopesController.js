@@ -11,7 +11,7 @@
             $location,
             $scope
         ) {
-            $scope.eventYear = '2014';
+            $scope.eventYear = '2019';
             $scope.publicEventDates = undefined;
             $scope.publicDateList = [];
 

@@ -303,7 +303,7 @@
                             <div class='mocTheme'>{$moc['theme']}</div>
                             <div class='minorDetails'>
                                 <div class='minorDetailYear'>
-                                    2018
+                                    2019
                                 </div>
                                 <div class='minorDetailNumber'>
                                     <span>{$isSet}</span>

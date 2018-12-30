@@ -1,5 +1,5 @@
 var ringer = {
-    countdown_to: "6/28/2018",
+    countdown_to: "5/4/2019",
     rings: {
         'DAYS': {
             s: 86400000, // mseconds in a day,

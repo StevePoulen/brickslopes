@@ -24,7 +24,7 @@ executeDBStatementExtended() {
     echo "Executing: $DB_FILE in $DB";
     if [[ "$LOCAL_DB" == "Y" ]]
     then
-        /opt/local/lib/mysql56/bin/mysql -u root $DB $PASSWORD$MYSQL_ROOT_PASSWORD < $DB_FILE
+        /opt/local/lib/mariadb-10.1/bin/mysql -u root $DB $PASSWORD$MYSQL_ROOT_PASSWORD < $DB_FILE
     else
         mysql -u 7hiez8ei $BRICKSLOPES_DATABASE -h mysql.brickslopes.com $PASSWORD$MYSQL_ROOT_PASSWORD < $DB_FILE
     fi
@@ -253,7 +253,12 @@ createAdmin() {
     then
         echo "Create ADMIN";
         executeMySQLStatement "01_dbCreateAdminAndUsers.txt"
-        mysqladmin -u brickslopes password $ADMIN_PASSWORD
+        if [[ "$LOCAL_DB" == "Y" ]]
+        then
+            /opt/local/lib/mariadb-10.1/bin/mysqladmin -u brickslopes password $ADMIN_PASSWORD
+        else
+            mysqladmin -u brickslopes password $ADMIN_PASSWORD
+        fi
     fi
 }
 
