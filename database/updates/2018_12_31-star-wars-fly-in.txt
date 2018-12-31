@@ -1,0 +1,11 @@
+-- MySQL dump 10.11
+--
+-- Host: localhost    Database: mysql
+-- ------------------------------------------------------
+-- Server version	5.0.83
+
+USE `brickslopes`;
+
+INSERT INTO `eventLineItemCodes` (code, lineItem) VALUES (10013, 'Star Wars Fly-In');
+
+INSERT INTO `eventLineItems` (eventId, eventLineItemCodeId, lineItem, cost, discount, linkType, linkId, active) VALUES (6,14,'Star Wars Fly-In Pass',35.00,25.00,'NONE',0,'YES');

@@ -1,0 +1,6191 @@
+-- MySQL dump 10.11
+--
+-- Host: localhost    Database: mysql
+-- ------------------------------------------------------
+-- Server version	5.0.83
+
+USE `brickslopes`;
+
+DROP TABLE starWarsSets;
+
+CREATE TABLE `starWarsSets` (
+  `starWarsSetsId` INT(10) UNSIGNED UNIQUE NOT NULL auto_increment,
+  `userId` INT(10) UNSIGNED NULL,
+  `setId` INT(10) UNSIGNED NOT NULL,
+  `description` VARCHAR(255),
+  `genre` VARCHAR(255),
+  `year` VARCHAR(4),
+  `image` VARCHAR(255),
+  `availability` VARCHAR(255),
+  `displayType` ENUM('built', 'box'),
+  PRIMARY KEY (`starWarsSetsId`),
+  INDEX (userId),
+  UNIQUE KEY `starWarsSetsId_UNIQUE` (`starWarsSetsId`),
+  FOREIGN KEY (`userId`) REFERENCES `users` (`userId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='The Star Wars Sets Table';
+
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "3219-1",
+          "Mini TIE Fighter",
+          "Mini Building Set",
+          "2002",
+          "/images/starWars/3219-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "3340-1",
+          "Emperor Palpatine, Darth Maul and Darth Vader Minifig Pack - Star Wars #1",
+          "Minifig Pack",
+          "2000",
+          "/images/starWars/3340-1.jpg",
+          "LEGO exclusive"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "3341-1",
+          "Luke Skywalker, Han Solo and Boba Fett Minifig Pack - Star Wars #2",
+          "Minifig Pack",
+          "2000",
+          "/images/starWars/3341-1.jpg",
+          "LEGO exclusive"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "3342-1",
+          "Chewbacca and 2 Biker Scouts Minifig Pack - Star Wars #3",
+          "Minifig Pack",
+          "2000",
+          "/images/starWars/3342-1.jpg",
+          "LEGO exclusive"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "3343-1",
+          "2 Battle Droids and Command Officer Minifig Pack - Star Wars #4",
+          "Minifig Pack",
+          "2000",
+          "/images/starWars/3343-1.jpg",
+          "LEGO exclusive"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "4475-1",
+          "Jabba's Message",
+          "Episode VI",
+          "2003",
+          "/images/starWars/4475-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "4476-1",
+          "Jabba's Prize",
+          "Episode VI",
+          "2003",
+          "/images/starWars/4476-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "4477-1",
+          "T-16 Skyhopper ",
+          "Episode IV",
+          "2003",
+          "/images/starWars/4477-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "4478-1",
+          "Geonosian Fighter",
+          "Episode II",
+          "2003",
+          "/images/starWars/4478-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "4479-1",
+          "TIE Bomber",
+          "Episode V",
+          "2003",
+          "/images/starWars/4479-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "4480-1",
+          "Jabba's Palace",
+          "Episode VI",
+          "2003",
+          "/images/starWars/4480-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "4481-1",
+          "Hailfire Droid",
+          "Episode II",
+          "2003",
+          "/images/starWars/4481-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "4482-1",
+          "AT-TE",
+          "Episode II",
+          "2003",
+          "/images/starWars/4482-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "4483-1",
+          "AT-AT",
+          "Episode V",
+          "2003",
+          "/images/starWars/4483-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "4484-1",
+          "X-Wing Fighter & TIE Advanced",
+          "Mini Building Set",
+          "2003",
+          "/images/starWars/4484-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "4485-1",
+          "Sebulba's Podracer & Anakin's Podracer",
+          "Mini Building Set",
+          "2003",
+          "/images/starWars/4485-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "4486-1",
+          "AT-ST & Snowspeeder",
+          "Mini Building Set",
+          "2003",
+          "/images/starWars/4486-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "4487-1",
+          "Jedi Starfighter & Slave I",
+          "Mini Building Set",
+          "2003",
+          "/images/starWars/4487-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "4488-1",
+          "Millennium Falcon",
+          "Mini Building Set",
+          "2003",
+          "/images/starWars/4488-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "4489-1",
+          "AT-AT",
+          "Mini Building Set",
+          "2003",
+          "/images/starWars/4489-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "4490-1",
+          "Republic Gunship",
+          "Mini Building Set",
+          "2003",
+          "/images/starWars/4490-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "4491-1",
+          "MTT",
+          "Mini Building Set",
+          "2003",
+          "/images/starWars/4491-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "4492-1",
+          "Star Destroyer",
+          "Mini Building Set",
+          "2004",
+          "/images/starWars/4492-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "4493-1",
+          "Sith Infiltrator",
+          "Mini Building Set",
+          "2004",
+          "/images/starWars/4493-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "4494-1",
+          "Imperial Shuttle",
+          "Mini Building Set",
+          "2004",
+          "/images/starWars/4494-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "4495-1",
+          "AT-TE",
+          "Mini Building Set",
+          "2004",
+          "/images/starWars/4495-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "4500-1",
+          "Rebel Snowspeeder",
+          "Episode V",
+          "2004",
+          "/images/starWars/4500-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "4501-1",
+          "Mos Eisley Cantina",
+          "Episode IV",
+          "2004",
+          "/images/starWars/4501-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "4502-1",
+          "X-wing Fighter",
+          "Episode V",
+          "2004",
+          "/images/starWars/4502-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "4504-1",
+          "Millennium Falcon",
+          "Episode V",
+          "2004",
+          "/images/starWars/4504-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "6205-1",
+          "V-wing Fighter",
+          "Episode III",
+          "2006",
+          "/images/starWars/6205-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "6206-1",
+          "TIE Interceptor",
+          "Episode VI",
+          "2006",
+          "/images/starWars/6206-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "6207-1",
+          "A-wing Fighter",
+          "Episode VI",
+          "2006",
+          "/images/starWars/6207-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "6208-1",
+          "B-wing Fighter",
+          "Episode VI",
+          "2006",
+          "/images/starWars/6208-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "6209-1",
+          "Slave I",
+          "Episode V",
+          "2006",
+          "/images/starWars/6209-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "6210-1",
+          "Jabba's Sail Barge",
+          "Episode VI",
+          "2006",
+          "/images/starWars/6210-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "6211-1",
+          "Imperial Star Destroyer",
+          "Episode IV",
+          "2006",
+          "/images/starWars/6211-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "6212-1",
+          "X-wing Fighter",
+          "Episode V",
+          "2006",
+          "/images/starWars/6212-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "6963-1",
+          "X-wing Fighter",
+          "Mini Building Set",
+          "2004",
+          "/images/starWars/6963-1.jpg",
+          "Promotional"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "6964-1",
+          "Boba Fett's Slave I",
+          "Mini Building Set",
+          "2004",
+          "/images/starWars/6964-1.jpg",
+          "Promotional"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "6965-1",
+          "TIE Interceptor",
+          "Mini Building Set",
+          "2004",
+          "/images/starWars/6965-1.jpg",
+          "Promotional"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "6966-1",
+          "Jedi Starfighter",
+          "Episode III",
+          "2005",
+          "/images/starWars/6966-1.jpg",
+          "Promotional"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "6967-1",
+          "ARC  Fighter",
+          "Episode III",
+          "2005",
+          "/images/starWars/6967-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "6968-1",
+          "Wookiee Attack",
+          "Episode III",
+          "2005",
+          "/images/starWars/6968-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7101-1",
+          "Lightsaber Duel",
+          "Episode I",
+          "1999",
+          "/images/starWars/7101-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7103-1",
+          "Jedi Duel",
+          "Episode II",
+          "2002",
+          "/images/starWars/7103-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7104-1",
+          "Desert Skiff",
+          "Episode VI",
+          "2000",
+          "/images/starWars/7104-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7106-1",
+          "Droid Escape",
+          "Episode IV",
+          "2001",
+          "/images/starWars/7106-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7110-1",
+          "Landspeeder",
+          "Episode IV",
+          "1999",
+          "/images/starWars/7110-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7111-1",
+          "Droid Fighter",
+          "Episode I",
+          "1999",
+          "/images/starWars/7111-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7113-1",
+          "Tusken Raider Encounter",
+          "Episode II",
+          "2002",
+          "/images/starWars/7113-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7115-1",
+          "Gungan Patrol",
+          "Episode I",
+          "2000",
+          "/images/starWars/7115-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7119-1",
+          "Twin-Pod Cloud Car",
+          "Episode V",
+          "2002",
+          "/images/starWars/7119-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7121-1",
+          "Naboo Swamp",
+          "Episode I",
+          "1999",
+          "/images/starWars/7121-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7124-1",
+          "Flash Speeder",
+          "Episode I",
+          "2000",
+          "/images/starWars/7124-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7126-1",
+          "Battle Droid Carrier",
+          "Episode I",
+          "2001",
+          "/images/starWars/7126-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7127-1",
+          "Imperial AT-ST",
+          "Episode VI",
+          "2001",
+          "/images/starWars/7127-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7128-1",
+          "Speeder Bikes",
+          "Episode VI",
+          "1999",
+          "/images/starWars/7128-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7130-1",
+          "Snowspeeder",
+          "Episode V",
+          "1999",
+          "/images/starWars/7130-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7131-1",
+          "Anakin's Podracer",
+          "Episode I",
+          "1999",
+          "/images/starWars/7131-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7133-1",
+          "Bounty Hunter Pursuit",
+          "Episode II",
+          "2002",
+          "/images/starWars/7133-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7134-1",
+          "A-wing Fighter",
+          "Episode VI",
+          "2000",
+          "/images/starWars/7134-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7139-1",
+          "Ewok Attack",
+          "Episode VI",
+          "2002",
+          "/images/starWars/7139-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7140-1",
+          "X-wing Fighter",
+          "Episode IV",
+          "1999",
+          "/images/starWars/7140-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7141-1",
+          "Naboo Fighter",
+          "Episode I",
+          "1999",
+          "/images/starWars/7141-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7142-1",
+          "X-wing Fighter",
+          "Episode IV",
+          "2002",
+          "/images/starWars/7142-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7143-1",
+          "Jedi Starfighter",
+          "Episode II",
+          "2002",
+          "/images/starWars/7143-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7144-1",
+          "Slave I",
+          "Episode V",
+          "2000",
+          "/images/starWars/7144-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7146-1",
+          "TIE Fighter",
+          "Episode IV",
+          "2001",
+          "/images/starWars/7146-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7150-1",
+          "TIE Fighter & Y-wing",
+          "Episode IV",
+          "1999",
+          "/images/starWars/7150-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7151-1",
+          "Sith Infiltrator",
+          "Episode I",
+          "1999",
+          "/images/starWars/7151-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7152-1",
+          "TIE Fighter & Y-wing",
+          "Episode IV",
+          "2002",
+          "/images/starWars/7152-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7153-1",
+          "Jango Fett's Slave I",
+          "Episode II",
+          "2002",
+          "/images/starWars/7153-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7155-1",
+          "Trade Federation AAT",
+          "Episode I",
+          "2000",
+          "/images/starWars/7155-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7159-1",
+          "Star Wars Bucket",
+          "Episode I",
+          "2000",
+          "/images/starWars/7159-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7161-1",
+          "Gungan Sub",
+          "Episode I",
+          "1999",
+          "/images/starWars/7161-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7163-1",
+          "Republic Gunship",
+          "Episode II",
+          "2002",
+          "/images/starWars/7163-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7166-1",
+          "Imperial Shuttle",
+          "Episode VI",
+          "2001",
+          "/images/starWars/7166-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7171-1",
+          "Mos Espa Podrace",
+          "Episode I",
+          "1999",
+          "/images/starWars/7171-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7180-1",
+          "B-wing at Rebel Control Center",
+          "Episode VI",
+          "2000",
+          "/images/starWars/7180-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7181-1",
+          "TIE Interceptor",
+          "Ultimate Collector Series",
+          "2000",
+          "/images/starWars/7181-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7184-1",
+          "Trade Federation MTT",
+          "Episode I",
+          "2000",
+          "/images/starWars/7184-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7186-1",
+          "Watto's Junkyard",
+          "Episode I",
+          "2001",
+          "/images/starWars/7186-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7190-1",
+          "Millennium Falcon",
+          "Episode IV",
+          "2000",
+          "/images/starWars/7190-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7191-1",
+          "X-wing Fighter",
+          "Ultimate Collector Series",
+          "2000",
+          "/images/starWars/7191-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7194-1",
+          "Yoda",
+          "Ultimate Collector Series",
+          "2002",
+          "/images/starWars/7194-1.jpg",
+          "LEGO exclusive"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7200-1",
+          "Final Duel I",
+          "Episode VI",
+          "2002",
+          "/images/starWars/7200-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7201-1",
+          "Final Duel II",
+          "Episode VI",
+          "2002",
+          "/images/starWars/7201-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7203-1",
+          "Jedi Defense I",
+          "Episode I",
+          "2002",
+          "/images/starWars/7203-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7204-1",
+          "Jedi Defense II",
+          "Episode I",
+          "2002",
+          "/images/starWars/7204-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7250-1",
+          "Clone Scout Walker",
+          "Episode III",
+          "2005",
+          "/images/starWars/7250-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7251-1",
+          "Darth Vader Transformation",
+          "Episode III",
+          "2005",
+          "/images/starWars/7251-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7252-1",
+          "Droid Tri-Fighter",
+          "Episode III",
+          "2005",
+          "/images/starWars/7252-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7255-1",
+          "General Grievous Chase",
+          "Episode III",
+          "2005",
+          "/images/starWars/7255-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7256-1",
+          "Jedi Starfighter and Vulture Droid",
+          "Episode III",
+          "2005",
+          "/images/starWars/7256-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7257-1",
+          "Ultimate Lightsaber Duel",
+          "Episode III",
+          "2005",
+          "/images/starWars/7257-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7258-1",
+          "Wookiee Attack",
+          "Episode III",
+          "2005",
+          "/images/starWars/7258-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7259-1",
+          "ARC-170 Fighter",
+          "Episode III",
+          "2005",
+          "/images/starWars/7259-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7260-1",
+          "Wookiee Catamaran",
+          "Episode III",
+          "2005",
+          "/images/starWars/7260-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7261-1",
+          "Clone Turbo Tank",
+          "Episode III",
+          "2005",
+          "/images/starWars/7261-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7261-2",
+          "Clone Turbo Tank (non-light-up, 2006 edition)",
+          "Episode III",
+          "2006",
+          "/images/starWars/7261-2.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7262-1",
+          "TIE Fighter and Y-Wing",
+          "Episode IV",
+          "2004",
+          "/images/starWars/7262-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7263-1",
+          "TIE Fighter",
+          "Episode IV",
+          "2005",
+          "/images/starWars/7263-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7264-1",
+          "Imperial Inspection",
+          "Episode VI",
+          "2005",
+          "/images/starWars/7264-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7283-1",
+          "Ultimate Space Battle",
+          "Episode III",
+          "2005",
+          "/images/starWars/7283-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7654-1",
+          "Droids Battle Pack",
+          "Episode III",
+          "2007",
+          "/images/starWars/7654-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7655-1",
+          "Clone Troopers Battle Pack",
+          "Episode III",
+          "2007",
+          "/images/starWars/7655-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7656-1",
+          "General Grievous Starfighter",
+          "Episode III",
+          "2007",
+          "/images/starWars/7656-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7657-1",
+          "AT-ST",
+          "Episode VI",
+          "2007",
+          "/images/starWars/7657-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7658-1",
+          "Y-wing Fighter",
+          "Episode IV",
+          "2007",
+          "/images/starWars/7658-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7659-1",
+          "Imperial Landing Craft",
+          "Episode IV",
+          "2007",
+          "/images/starWars/7659-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7660-1",
+          "Naboo N-1 Starfighter with Vulture Droid",
+          "Episode I",
+          "2007",
+          "/images/starWars/7660-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7661-1",
+          "Jedi Starfighter with Hyperdrive Booster Ring",
+          "Episode III",
+          "2007",
+          "/images/starWars/7661-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7662-1",
+          "Trade Federation MTT",
+          "Episode I",
+          "2007",
+          "/images/starWars/7662-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7663-1",
+          "Sith Infiltrator",
+          "Episode I",
+          "2007",
+          "/images/starWars/7663-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7664-1",
+          "TIE Crawler",
+          "Legends",
+          "2007",
+          "/images/starWars/7664-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7665-1",
+          "Republic Cruiser",
+          "Episode I",
+          "2007",
+          "/images/starWars/7665-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7666-1",
+          "Hoth Rebel Base",
+          "Episode V",
+          "2007",
+          "/images/starWars/7666-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7667-1",
+          "Imperial Dropship",
+          "Legends",
+          "2008",
+          "/images/starWars/7667-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7668-1",
+          "Rebel Scout Speeder",
+          "Legends",
+          "2008",
+          "/images/starWars/7668-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7669-1",
+          "Anakin's Jedi Starfighter",
+          "The Clone Wars",
+          "2008",
+          "/images/starWars/7669-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7670-1",
+          "Hailfire Droid & Spider Droid",
+          "The Clone Wars",
+          "2008",
+          "/images/starWars/7670-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7671-1",
+          "AT-AP Walker",
+          "Episode III",
+          "2008",
+          "/images/starWars/7671-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7672-1",
+          "Rogue Shadow",
+          "Legends",
+          "2008",
+          "/images/starWars/7672-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7673-1",
+          "MagnaGuard Starfighter",
+          "The Clone Wars",
+          "2008",
+          "/images/starWars/7673-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7674-1",
+          "V-19 Torrent",
+          "The Clone Wars",
+          "2008",
+          "/images/starWars/7674-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7675-1",
+          "AT-TE Walker",
+          "The Clone Wars",
+          "2008",
+          "/images/starWars/7675-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7676-1",
+          "Republic Attack Gunship",
+          "The Clone Wars",
+          "2008",
+          "/images/starWars/7676-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7678-1",
+          "Droid Gunship",
+          "The Clone Wars",
+          "2008",
+          "/images/starWars/7678-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7679-1",
+          "Republic Fighter Tank",
+          "The Clone Wars",
+          "2008",
+          "/images/starWars/7679-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7680-1",
+          "The Twilight",
+          "The Clone Wars",
+          "2008",
+          "/images/starWars/7680-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7681-1",
+          "Separatist Spider Droid",
+          "The Clone Wars",
+          "2008",
+          "/images/starWars/7681-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7748-1",
+          "Corporate Alliance Tank Droid",
+          "The Clone Wars",
+          "2009",
+          "/images/starWars/7748-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7749-1",
+          "Echo Base",
+          "Episode V",
+          "2009",
+          "/images/starWars/7749-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7751-1",
+          "Ahsoka's Starfighter and Vulture Droid",
+          "The Clone Wars",
+          "2009",
+          "/images/starWars/7751-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7752-1",
+          "Count Dooku's Solar Sailer",
+          "The Clone Wars",
+          "2009",
+          "/images/starWars/7752-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7753-1",
+          "Pirate Tank",
+          "The Clone Wars",
+          "2009",
+          "/images/starWars/7753-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7754-1",
+          "Home One Mon Calamari Star Cruiser",
+          "Episode VI",
+          "2009",
+          "/images/starWars/7754-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7778-1",
+          "Midi-scale Millennium Falcon",
+          "Miscellaneous",
+          "2009",
+          "/images/starWars/7778-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7868-1",
+          "Mace Windu's Jedi Starfighter",
+          "The Clone Wars",
+          "2011",
+          "/images/starWars/7868-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7869-1",
+          "Battle for Geonosis",
+          "The Clone Wars",
+          "2011",
+          "/images/starWars/7869-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7877-1",
+          "Naboo Starfighter",
+          "Episode I",
+          "2011",
+          "/images/starWars/7877-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7879-1",
+          "Hoth Echo Base",
+          "Episode V",
+          "2011",
+          "/images/starWars/7879-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7913-1",
+          "Clone Trooper Battle Pack",
+          "The Clone Wars",
+          "2011",
+          "/images/starWars/7913-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7914-1",
+          "Mandalorian Battle Pack",
+          "The Clone Wars",
+          "2011",
+          "/images/starWars/7914-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7915-1",
+          "Imperial V-wing Starfighter",
+          "Legends",
+          "2011",
+          "/images/starWars/7915-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7929-1",
+          "The Battle of Naboo",
+          "Episode I",
+          "2011",
+          "/images/starWars/7929-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7930-1",
+          "Bounty Hunter Assault Gunship",
+          "The Clone Wars",
+          "2011",
+          "/images/starWars/7930-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7931-1",
+          "T-6 Jedi Shuttle",
+          "The Clone Wars",
+          "2011",
+          "/images/starWars/7931-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7956-1",
+          "Ewok Attack",
+          "Episode VI",
+          "2011",
+          "/images/starWars/7956-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7957-1",
+          "Sith Nightspeeder",
+          "The Clone Wars",
+          "2011",
+          "/images/starWars/7957-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7958-1",
+          "Star Wars Advent Calendar",
+          "Seasonal",
+          "2011",
+          "/images/starWars/7958-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7959-1",
+          "Geonosian Starfighter",
+          "The Clone Wars",
+          "2011",
+          "/images/starWars/7959-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7961-1",
+          "Darth Maul's Sith Infiltrator",
+          "Episode I",
+          "2011",
+          "/images/starWars/7961-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7962-1",
+          "Anakin Skywalker and Sebulba's Podracers",
+          "Episode I",
+          "2011",
+          "/images/starWars/7962-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7964-1",
+          "Republic Frigate",
+          "The Clone Wars",
+          "2011",
+          "/images/starWars/7964-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "7965-1",
+          "Millennium Falcon",
+          "Episode IV",
+          "2011",
+          "/images/starWars/7965-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "8000-1",
+          "Pit Droid",
+          "Technic",
+          "2000",
+          "/images/starWars/8000-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "8001-1",
+          "Battle Droid",
+          "Technic",
+          "2000",
+          "/images/starWars/8001-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "8002-1",
+          "Destroyer Droid",
+          "Technic",
+          "2000",
+          "/images/starWars/8002-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "8007-1",
+          "C-3PO",
+          "Technic",
+          "2001",
+          "/images/starWars/8007-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "8008-1",
+          "Stormtrooper",
+          "Technic",
+          "2001",
+          "/images/starWars/8008-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "8009-1",
+          "R2-D2",
+          "Technic",
+          "2002",
+          "/images/starWars/8009-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "8010-1",
+          "Darth Vader",
+          "Technic",
+          "2002",
+          "/images/starWars/8010-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "8011-1",
+          "Jango Fett",
+          "Technic",
+          "2002",
+          "/images/starWars/8011-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "8012-1",
+          "Super Battle Droid",
+          "Technic",
+          "2002",
+          "/images/starWars/8012-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "8014-1",
+          "Clone Walker Battle Pack",
+          "The Clone Wars",
+          "2009",
+          "/images/starWars/8014-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "8015-1",
+          "Assassin Droids Battle Pack",
+          "The Clone Wars",
+          "2009",
+          "/images/starWars/8015-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "8016-1",
+          "Hyena Droid Bomber",
+          "The Clone Wars",
+          "2009",
+          "/images/starWars/8016-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "8017-1",
+          "Darth Vader's TIE Fighter",
+          "Episode IV",
+          "2009",
+          "/images/starWars/8017-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "8018-1",
+          "Armored Assault Tank (AAT)",
+          "The Clone Wars",
+          "2009",
+          "/images/starWars/8018-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "8019-1",
+          "Republic Attack Shuttle",
+          "The Clone Wars",
+          "2009",
+          "/images/starWars/8019-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "8028-1",
+          "TIE Fighter",
+          "Mini Building Set",
+          "2008",
+          "/images/starWars/8028-1.jpg",
+          "Promotional"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "8029-1",
+          "Mini Snowspeeder",
+          "Episode V",
+          "2008",
+          "/images/starWars/8029-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "8031-1",
+          "V-19 Torrent",
+          "The Clone Wars",
+          "2008",
+          "/images/starWars/8031-1.jpg",
+          "Promotional"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "8033-1",
+          "General Grievous' Starfighter",
+          "The Clone Wars",
+          "2009",
+          "/images/starWars/8033-1.jpg",
+          "Promotional"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "8036-1",
+          "Separatist Shuttle",
+          "The Clone Wars",
+          "2009",
+          "/images/starWars/8036-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "8037-1",
+          "Anakin's Y-wing Starfighter",
+          "The Clone Wars",
+          "2009",
+          "/images/starWars/8037-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "8038-1",
+          "The Battle of Endor",
+          "Episode VI",
+          "2009",
+          "/images/starWars/8038-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "8039-1",
+          "Venator-Class Republic Attack Cruiser",
+          "The Clone Wars",
+          "2009",
+          "/images/starWars/8039-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "8083-1",
+          "Rebel Trooper Battle Pack",
+          "Episode V",
+          "2010",
+          "/images/starWars/8083-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "8084-1",
+          "Snowtrooper Battle Pack",
+          "Episode V",
+          "2010",
+          "/images/starWars/8084-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "8085-1",
+          "Freeco Speeder",
+          "The Clone Wars",
+          "2010",
+          "/images/starWars/8085-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "8086-1",
+          "Droid Tri-Fighter",
+          "The Clone Wars",
+          "2010",
+          "/images/starWars/8086-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "8087-1",
+          "TIE Defender",
+          "Legends",
+          "2010",
+          "/images/starWars/8087-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "8088-1",
+          "ARC-170 Starfighter",
+          "Episode III",
+          "2010",
+          "/images/starWars/8088-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "8089-1",
+          "Hoth Wampa Cave",
+          "Episode V",
+          "2010",
+          "/images/starWars/8089-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "8091-1",
+          "Republic Swamp Speeder",
+          "Episode III",
+          "2010",
+          "/images/starWars/8091-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "8092-1",
+          "Luke's Landspeeder",
+          "Episode IV",
+          "2010",
+          "/images/starWars/8092-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "8093-1",
+          "Plo Koon's Jedi Starfighter",
+          "The Clone Wars",
+          "2010",
+          "/images/starWars/8093-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "8095-1",
+          "General Grievous' Starfighter",
+          "The Clone Wars",
+          "2010",
+          "/images/starWars/8095-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "8096-1",
+          "Emperor Palpatine's Shuttle",
+          "Episode III",
+          "2010",
+          "/images/starWars/8096-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "8097-1",
+          "Slave I",
+          "Episode V",
+          "2010",
+          "/images/starWars/8097-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "8098-1",
+          "Clone Turbo Tank",
+          "The Clone Wars",
+          "2010",
+          "/images/starWars/8098-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "8099-1",
+          "Midi-scale Imperial Star Destroyer",
+          "Miscellaneous",
+          "2010",
+          "/images/starWars/8099-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "8128-1",
+          "Cad Bane's Speeder",
+          "The Clone Wars",
+          "2010",
+          "/images/starWars/8128-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "8129-1",
+          "AT-AT Walker",
+          "Episode V",
+          "2010",
+          "/images/starWars/8129-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "9488-1",
+          "Elite Clone Trooper & Commando Droid Battle Pack",
+          "The Clone Wars",
+          "2012",
+          "/images/starWars/9488-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "9489-1",
+          "Endor Rebel Trooper & Imperial Trooper Battle Pack",
+          "Episode VI",
+          "2012",
+          "/images/starWars/9489-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "9490-1",
+          "Droid Escape",
+          "Episode IV",
+          "2012",
+          "/images/starWars/9490-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "9491-1",
+          "Geonosian Cannon",
+          "The Clone Wars",
+          "2012",
+          "/images/starWars/9491-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "9492-1",
+          "TIE Fighter",
+          "Episode IV",
+          "2012",
+          "/images/starWars/9492-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "9493-1",
+          "X-wing Starfighter",
+          "Episode IV",
+          "2012",
+          "/images/starWars/9493-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "9494-1",
+          "Anakin's Jedi Interceptor",
+          "Episode III",
+          "2012",
+          "/images/starWars/9494-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "9495-1",
+          "Gold Leader's Y-wing Starfighter",
+          "Episode IV",
+          "2012",
+          "/images/starWars/9495-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "9496-1",
+          "Desert Skiff",
+          "Episode VI",
+          "2012",
+          "/images/starWars/9496-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "9497-1",
+          "Republic Striker-class Starfighter",
+          "The Old Republic",
+          "2012",
+          "/images/starWars/9497-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "9498-1",
+          "Saesee Tiin's Jedi Starfighter",
+          "The Clone Wars",
+          "2012",
+          "/images/starWars/9498-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "9499-1",
+          "Gungan Sub",
+          "Episode I",
+          "2012",
+          "/images/starWars/9499-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "9500-1",
+          "Sith Fury-class Interceptor",
+          "The Old Republic",
+          "2012",
+          "/images/starWars/9500-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "9509-1",
+          "Star Wars Advent Calendar",
+          "Seasonal",
+          "2012",
+          "/images/starWars/9509-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "9515-1",
+          "Malevolence",
+          "The Clone Wars",
+          "2012",
+          "/images/starWars/9515-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "9516-1",
+          "Jabba's Palace",
+          "Episode VI",
+          "2012",
+          "/images/starWars/9516-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "9525-1",
+          "Pre Vizsla's Mandalorian Fighter",
+          "The Clone Wars",
+          "2012",
+          "/images/starWars/9525-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "9526-1",
+          "Palpatine's Arrest",
+          "Episode III",
+          "2012",
+          "/images/starWars/9526-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "9674-1",
+          "Naboo Starfighter & Naboo",
+          "Planet Set",
+          "2012",
+          "/images/starWars/9674-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "9675-1",
+          "Sebulba's Podracer & Tatooine",
+          "Planet Set",
+          "2012",
+          "/images/starWars/9675-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "9676-1",
+          "TIE Interceptor & Death Star",
+          "Planet Set",
+          "2012",
+          "/images/starWars/9676-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "9677-1",
+          "X-wing Starfighter & Yavin 4",
+          "Planet Set",
+          "2012",
+          "/images/starWars/9677-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "9678-1",
+          "Twin-Pod Cloud Car & Bespin",
+          "Planet Set",
+          "2012",
+          "/images/starWars/9678-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "9679-1",
+          "AT-ST & Endor",
+          "Planet Set",
+          "2012",
+          "/images/starWars/9679-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "10018-1",
+          "Darth Maul",
+          "Ultimate Collector Series",
+          "2001",
+          "/images/starWars/10018-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "10019-1",
+          "Rebel Blockade Runner",
+          "Ultimate Collector Series",
+          "2001",
+          "/images/starWars/10019-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "10026-1",
+          "Special Edition Naboo Starfighter",
+          "Ultimate Collector Series",
+          "2002",
+          "/images/starWars/10026-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "10030-1",
+          "Imperial Star Destroyer",
+          "Ultimate Collector Series",
+          "2002",
+          "/images/starWars/10030-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "10123-1",
+          "Cloud City",
+          "Episode V",
+          "2003",
+          "/images/starWars/10123-1.jpg",
+          "LEGO exclusive"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "10129-1",
+          "Rebel Snowspeeder",
+          "Ultimate Collector Series",
+          "2003",
+          "/images/starWars/10129-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "10131-1",
+          "TIE Fighter Collection",
+          "Legends",
+          "2004",
+          "/images/starWars/10131-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "10134-1",
+          "Y-wing Attack Starfighter",
+          "Ultimate Collector Series",
+          "2004",
+          "/images/starWars/10134-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "10143-1",
+          "Death Star II",
+          "Ultimate Collector Series",
+          "2005",
+          "/images/starWars/10143-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "10144-1",
+          "Sandcrawler",
+          "Episode IV",
+          "2005",
+          "/images/starWars/10144-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "10174-1",
+          "Imperial AT-ST",
+          "Ultimate Collector Series",
+          "2006",
+          "/images/starWars/10174-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "10175-1",
+          "Vader's TIE Advanced",
+          "Ultimate Collector Series",
+          "2006",
+          "/images/starWars/10175-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "10178-1",
+          "Motorised Walking AT-AT",
+          "Episode V",
+          "2007",
+          "/images/starWars/10178-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "10179-1",
+          "Ultimate Collector's Millennium Falcon",
+          "Ultimate Collector Series",
+          "2007",
+          "/images/starWars/10179-1.jpg",
+          "LEGO exclusive"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "10186-1",
+          "General Grievous",
+          "Ultimate Collector Series",
+          "2008",
+          "/images/starWars/10186-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "10188-1",
+          "Death Star",
+          "Ultimate Collector Series",
+          "2008",
+          "/images/starWars/10188-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "10195-1",
+          "Republic Dropship with AT-OT Walker",
+          "The Clone Wars",
+          "2009",
+          "/images/starWars/10195-1.jpg",
+          "LEGO exclusive"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "10198-1",
+          "Tantive IV",
+          "Episode IV",
+          "2009",
+          "/images/starWars/10198-1.jpg",
+          "LEGO exclusive"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "10212-1",
+          "Imperial Shuttle",
+          "Ultimate Collector Series",
+          "2010",
+          "/images/starWars/10212-1.jpg",
+          "LEGO exclusive"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "10215-1",
+          "Obi-Wan's Jedi Starfighter",
+          "Ultimate Collector Series",
+          "2010",
+          "/images/starWars/10215-1.jpg",
+          "LEGO exclusive"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "10221-1",
+          "Super Star Destroyer ",
+          "Ultimate Collector Series",
+          "2011",
+          "/images/starWars/10221-1.jpg",
+          "LEGO exclusive"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "10225-1",
+          "R2-D2",
+          "Ultimate Collector Series",
+          "2012",
+          "/images/starWars/10225-1.jpg",
+          "LEGO exclusive"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "10227-1",
+          "B-Wing Starfighter",
+          "Ultimate Collector Series",
+          "2012",
+          "/images/starWars/10227-1.jpg",
+          "LEGO exclusive"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "10236-1",
+          "Ewok Village",
+          "Ultimate Collector Series",
+          "2013",
+          "/images/starWars/10236-1.jpg",
+          "LEGO exclusive"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "10240-1",
+          "Red Five X-wing Starfighter",
+          "Ultimate Collector Series",
+          "2013",
+          "/images/starWars/10240-1.jpg",
+          "LEGO exclusive"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "11905-1",
+          "Brickmaster Star Wars",
+          "The Clone Wars",
+          "2013",
+          "/images/starWars/11905-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "11912-1",
+          "LEGO Star Wars",
+          "Miscellaneous",
+          "2016",
+          "/images/starWars/blankbox.gif",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "20006-1",
+          "Clone Turbo Tank",
+          "The Clone Wars",
+          "2008",
+          "/images/starWars/20006-1.jpg",
+          "LEGO exclusive"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "20007-1",
+          "Republic Attack Cruiser",
+          "The Clone Wars",
+          "2009",
+          "/images/starWars/20007-1.jpg",
+          "LEGO exclusive"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "20009-1",
+          "AT-TE Walker",
+          "The Clone Wars",
+          "2009",
+          "/images/starWars/20009-1.jpg",
+          "LEGO exclusive"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "20010-1",
+          "Republic Gunship",
+          "The Clone Wars",
+          "2009",
+          "/images/starWars/20010-1.jpg",
+          "LEGO exclusive"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "20016-1",
+          "Imperial Shuttle",
+          "Mini Building Set",
+          "2010",
+          "/images/starWars/20016-1.jpg",
+          "LEGO exclusive"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "20018-1",
+          "AT-AT Walker",
+          "Episode V",
+          "2010",
+          "/images/starWars/20018-1.jpg",
+          "LEGO exclusive"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "20019-1",
+          "Slave I",
+          "Episode V",
+          "2011",
+          "/images/starWars/20019-1.jpg",
+          "LEGO exclusive"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "20021-1",
+          "Bounty Hunter Assault Gunship",
+          "The Clone Wars",
+          "2011",
+          "/images/starWars/20021-1.jpg",
+          "LEGO exclusive"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "30004-1",
+          "Battle Droid on STAP",
+          "The Clone Wars",
+          "2009",
+          "/images/starWars/30004-1.jpg",
+          "Promotional"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "30005-1",
+          "Imperial Speeder Bike",
+          "Legends",
+          "2009",
+          "/images/starWars/30005-1.jpg",
+          "Promotional"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "30006-1",
+          "Clone Walker",
+          "The Clone Wars",
+          "2009",
+          "/images/starWars/30006-1.jpg",
+          "Promotional"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "30050-1",
+          "Republic Attack Shuttle",
+          "The Clone Wars",
+          "2010",
+          "/images/starWars/30050-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "30051-1",
+          "Mini X-wing",
+          "Mini Building Set",
+          "2011",
+          "/images/starWars/30051-1.jpg",
+          "Promotional"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "30052-1",
+          "AAT",
+          "Episode I ",
+          "2011",
+          "/images/starWars/30052-1.jpg",
+          "Promotional"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "30053-1",
+          "Republic Attack Cruiser",
+          "The Clone Wars",
+          "2011",
+          "/images/starWars/30053-1.jpg",
+          "Promotional"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "30054-1",
+          "AT-ST",
+          "Episode VI",
+          "2011",
+          "/images/starWars/30054-1.jpg",
+          "Promotional"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "30055-1",
+          "Vulture Droid",
+          "Mini Building Set",
+          "2011",
+          "/images/starWars/30055-1.jpg",
+          "Promotional"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "30056-1",
+          "Star Destroyer",
+          "Mini Building Set",
+          "2012",
+          "/images/starWars/30056-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "30057-1",
+          "Anakin's Pod Racer",
+          "Episode I",
+          "2012",
+          "/images/starWars/30057-1.jpg",
+          "Promotional"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "30058-1",
+          "STAP",
+          "Episode I",
+          "2012",
+          "/images/starWars/30058-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "30059-1",
+          "MTT",
+          "The Clone Wars",
+          "2012",
+          "/images/starWars/30059-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "30240-1",
+          "Z-95 Headhunter",
+          "The Clone Wars",
+          "2013",
+          "/images/starWars/30240-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "30241-1",
+          "Mandalorian Fighter",
+          "The Clone Wars",
+          "2013",
+          "/images/starWars/30241-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "30242-1",
+          "Republic Frigate",
+          "The Clone Wars",
+          "2013",
+          "/images/starWars/30242-1.jpg",
+          "Promotional"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "30243-1",
+          "Umbaran MHC",
+          "The Clone Wars",
+          "2013",
+          "/images/starWars/30243-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "30244-1",
+          "Anakin's Jedi Interceptor",
+          "Episode III",
+          "2014",
+          "/images/starWars/30244-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "30246-1",
+          "Imperial Shuttle",
+          "Episode VI",
+          "2014",
+          "/images/starWars/30246-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "30247-1",
+          "ARC-170 Starfighter",
+          "Episode III",
+          "2014",
+          "/images/starWars/30247-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "30272-1",
+          "A-Wing Starfighter",
+          "Episode VI",
+          "2015",
+          "/images/starWars/30272-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "30274-1",
+          "AT-DP",
+          "Rebels",
+          "2015",
+          "/images/starWars/30274-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "30275-1",
+          "TIE Advanced Prototype",
+          "Rebels",
+          "2015",
+          "/images/starWars/30275-1.jpg",
+          "Promotional"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "30276-1",
+          "First Order Special Forces TIE Fighter",
+          "The Force Awakens",
+          "2015",
+          "/images/starWars/30276-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "30277-1",
+          "First Order Star Destroyer",
+          "The Force Awakens",
+          "2016",
+          "/images/starWars/30277-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "30278-1",
+          "Poe's X-wing Fighter",
+          "The Force Awakens",
+          "2016",
+          "/images/starWars/30278-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "30279-1",
+          "Kylo Ren's Command Shuttle",
+          "The Force Awakens",
+          "2016",
+          "/images/starWars/30279-1.jpg",
+          "Promotional"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "30380-1",
+          "Kylo Ren's Shuttle",
+          "The Last Jedi",
+          "2018",
+          "/images/starWars/30380-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "30381-1",
+          "Imperial TIE Fighter",
+          "Solo",
+          "2018",
+          "/images/starWars/30381-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "30496-1",
+          "U-Wing Fighter",
+          "Rogue One",
+          "2017",
+          "/images/starWars/30496-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "30497-1",
+          "First Order Heavy Assault Walker",
+          "The Last Jedi",
+          "2017",
+          "/images/starWars/30497-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "30498-1",
+          "Imperial AT-Hauler",
+          "Solo",
+          "2018",
+          "/images/starWars/30498-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "30602-1",
+          "First Order Stormtrooper",
+          "The Force Awakens",
+          "2016",
+          "/images/starWars/30602-1.jpg",
+          "Promotional"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "30605-1",
+          "Finn (FN-2187)",
+          "The Force Awakens",
+          "2016",
+          "/images/starWars/30605-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "30611-1",
+          "R2-D2",
+          "Promotional",
+          "2017",
+          "/images/starWars/30611-1.jpg",
+          "LEGO exclusive"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "40176-1",
+          "Scarif Stormtrooper",
+          "Rogue One",
+          "2017",
+          "/images/starWars/40176-1.jpg",
+          "LEGO exclusive"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "40268-1",
+          "R3-M2",
+          "Rogue One",
+          "2017",
+          "/images/starWars/40268-1.jpg",
+          "Promotional"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "40288-1",
+          "BB-8",
+          "Promotional",
+          "2018",
+          "/images/starWars/40288-1.jpg",
+          "LEGO exclusive"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "40298-1",
+          "DJ",
+          "The Last Jedi",
+          "2018",
+          "/images/starWars/40298-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "40299-1",
+          "Kessel Mine Worker",
+          "Solo",
+          "2018",
+          "/images/starWars/40299-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "40300-1",
+          "Han Solo Mudtrooper",
+          "Solo",
+          "2018",
+          "/images/starWars/40300-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "65081-1",
+          "R2-D2 / C-3PO Droid Collectors Set",
+          "Product Collection",
+          "2002",
+          "/images/starWars/65081-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "65145-1",
+          "X-wing Fighter / TIE Fighter & Y-wing Collectors Set",
+          "Product Collection",
+          "2002",
+          "/images/starWars/blankbox.gif",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "65153-1",
+          "Jango Fett's Slave I with Bonus Cargo Case",
+          "Product Collection",
+          "2002",
+          "/images/starWars/65153-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "65707-1",
+          "Bonus/Value Pack",
+          "Product Collection",
+          "2004",
+          "/images/starWars/blankbox.gif",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "65771-1",
+          "Episode III Collectors' Set",
+          "Product Collection",
+          "2005",
+          "/images/starWars/65771-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "65828-1",
+          "Bonus/Value Pack",
+          "Product Collection",
+          "2005",
+          "/images/starWars/blankbox.gif",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "65844-1",
+          "Bonus/Value Pack",
+          "Product Collection",
+          "2005",
+          "/images/starWars/blankbox.gif",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "65845-1",
+          "Bonus/Value Pack",
+          "Product Collection",
+          "2005",
+          "/images/starWars/blankbox.gif",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "66142-1",
+          "Bonus/Value Pack",
+          "Product Collection",
+          "2006",
+          "/images/starWars/blankbox.gif",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "66150-1",
+          "Bonus/Value Pack",
+          "Product Collection",
+          "2006",
+          "/images/starWars/blankbox.gif",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "66221-1",
+          "Bonus/Value Pack",
+          "Product Collection",
+          "2006",
+          "/images/starWars/66221-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "66308-1",
+          "3 in 1 Superpack",
+          "Product Collection",
+          "2009",
+          "/images/starWars/66308-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "66341-1",
+          "Star Wars Super Pack 3 in 1",
+          "Product Collection",
+          "2010",
+          "/images/starWars/66341-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "66364-1",
+          "Star Wars Super Pack 3 in 1",
+          "Product Collection",
+          "2010",
+          "/images/starWars/66364-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "66366-1",
+          "Star Wars Super Pack 3 in 1",
+          "Product Collection",
+          "2010",
+          "/images/starWars/66366-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "66368-1",
+          "Star Wars Super Pack 3 in 1",
+          "Product Collection",
+          "2010",
+          "/images/starWars/66368-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "66377-1",
+          "Star Wars Super Pack 3 in 1",
+          "Product Collection",
+          "2011",
+          "/images/starWars/66377-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "66378-1",
+          "Star Wars Super Pack 3 in 1",
+          "Product Collection",
+          "2011",
+          "/images/starWars/66378-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "66395-1",
+          "Star Wars Super Pack 3 in 1",
+          "Product Collection",
+          "2011",
+          "/images/starWars/66395-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "66396-1",
+          "Star Wars Super Pack 3 in 1",
+          "Product Collection",
+          "2011",
+          "/images/starWars/66396-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "66411-1",
+          "Super Pack 3-in-1",
+          "Product Collection",
+          "2012",
+          "/images/starWars/66411-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "66431-1",
+          "Super Pack 3-in-1",
+          "Product Collection",
+          "2012",
+          "/images/starWars/66431-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "66432-1",
+          "Super Pack 3-in-1",
+          "Product Collection",
+          "2012",
+          "/images/starWars/66432-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "66449-1",
+          "Super Pack 3-in-1",
+          "Product Collection",
+          "2013",
+          "/images/starWars/66449-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "66456-1",
+          "Star Wars Value Pack",
+          "Product Collection",
+          "2013",
+          "/images/starWars/66456-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "66473-1",
+          "LEGO Star Wars Super Pack",
+          "Product Collection",
+          "2013",
+          "/images/starWars/66473-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "66479-1",
+          "Value Pack",
+          "Product Collection",
+          "2014",
+          "/images/starWars/66479-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "66495-1",
+          "Star Wars Value Pack",
+          "Product Collection",
+          "2014",
+          "/images/starWars/66495-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "66512-1",
+          "Rebels Co-Pack",
+          "Product Collection",
+          "2014",
+          "/images/starWars/66512-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "66514-1",
+          "Microfighter Super Pack 3 in 1",
+          "Product Collection",
+          "2014",
+          "/images/starWars/66514-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "66515-1",
+          "Microfighter Super Pack 3 in 1",
+          "Product Collection",
+          "2014",
+          "/images/starWars/66515-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "66533-1",
+          "Microfighter 3 in 1 Super Pack",
+          "Product Collection",
+          "2015",
+          "/images/starWars/66533-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "66534-1",
+          "Microfighter 3 in 1 Super Pack",
+          "Product Collection",
+          "2015",
+          "/images/starWars/66534-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "66535-1",
+          "Battle Pack 2 in 1",
+          "Product Collection",
+          "2015",
+          "/images/starWars/66535-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "66536-1",
+          "Luke Skywalker and Darth Vader",
+          "Product Collection",
+          "2015",
+          "/images/starWars/66536-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "66542-1",
+          "Microfighters Super Pack 3 in 1",
+          "Product Collection",
+          "2016",
+          "/images/starWars/66542-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "66543-1",
+          "Microfighters Super Pack 3 in 1",
+          "Product Collection",
+          "2016",
+          "/images/starWars/blankbox.gif",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "66555-1",
+          "Super Pack 2 in 1",
+          "Product Collection",
+          "2017",
+          "/images/starWars/66555-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "66556-1",
+          "Super Pack 2 in 1",
+          "Product Collection",
+          "2017",
+          "/images/starWars/66556-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "66596-1",
+          "Super Pack 2-in-1",
+          "Product Collection",
+          "2018",
+          "/images/starWars/66596-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "66597-1",
+          "2-in-1 Super Pack",
+          "Product Collection",
+          "2018",
+          "/images/starWars/66597-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75000-1",
+          "Clone Troopers vs. Droidekas",
+          "Episode II",
+          "2013",
+          "/images/starWars/75000-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75001-1",
+          "Republic Troopers vs. Sith Troopers",
+          "The Old Republic",
+          "2013",
+          "/images/starWars/75001-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75002-1",
+          "AT-RT",
+          "The Clone Wars",
+          "2013",
+          "/images/starWars/75002-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75003-1",
+          "A-wing Starfighter",
+          "Episode VI",
+          "2013",
+          "/images/starWars/75003-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75004-1",
+          "Z-95 Headhunter",
+          "The Clone Wars",
+          "2013",
+          "/images/starWars/75004-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75005-1",
+          "Rancor Pit",
+          "Episode VI",
+          "2013",
+          "/images/starWars/75005-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75006-1",
+          "Jedi Starfighter & Planet Kamino",
+          "Planet Set",
+          "2013",
+          "/images/starWars/75006-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75007-1",
+          "Republic Assault Ship & Planet Coruscant",
+          "Planet Set",
+          "2013",
+          "/images/starWars/75007-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75008-1",
+          "TIE Bomber & Asteroid Field",
+          "Planet Set",
+          "2013",
+          "/images/starWars/75008-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75009-1",
+          "Snowspeeder & Hoth",
+          "Planet Set",
+          "2013",
+          "/images/starWars/75009-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75010-1",
+          "B-Wing Starfighter & Planet Endor",
+          "Planet Set",
+          "2013",
+          "/images/starWars/75010-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75011-1",
+          "Tantive IV & Planet Alderaan",
+          "Planet Set",
+          "2013",
+          "/images/starWars/75011-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75012-1",
+          "BARC Speeder with Sidecar",
+          "The Clone Wars",
+          "2013",
+          "/images/starWars/75012-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75013-1",
+          "Umbaran MHC (Mobile Heavy Cannon)",
+          "The Clone Wars",
+          "2013",
+          "/images/starWars/75013-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75014-1",
+          "Battle of Hoth",
+          "Episode V",
+          "2013",
+          "/images/starWars/75014-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75015-1",
+          "Corporate Alliance Tank Droid",
+          "Episode II",
+          "2013",
+          "/images/starWars/75015-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75016-1",
+          "Homing Spider Droid",
+          "Episode II",
+          "2013",
+          "/images/starWars/75016-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75017-1",
+          "Duel on Geonosis",
+          "Episode II",
+          "2013",
+          "/images/starWars/75017-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75018-1",
+          "JEK-14's Stealth Starfighter",
+          "Original Content",
+          "2013",
+          "/images/starWars/75018-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75019-1",
+          "AT-TE ",
+          "Episode II",
+          "2013",
+          "/images/starWars/75019-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75020-1",
+          "Jabba's Sail Barge",
+          "Episode VI",
+          "2013",
+          "/images/starWars/75020-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75021-1",
+          "Republic Gunship",
+          "Episode II",
+          "2013",
+          "/images/starWars/75021-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75022-1",
+          "Mandalorian Speeder",
+          "The Clone Wars",
+          "2013",
+          "/images/starWars/75022-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75023-1",
+          "Star Wars Advent Calendar",
+          "Seasonal",
+          "2013",
+          "/images/starWars/75023-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75024-1",
+          "HH-87 Starhopper",
+          "The Clone Wars",
+          "2013",
+          "/images/starWars/75024-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75025-1",
+          "Jedi Defender-class Cruiser",
+          "The Old Republic",
+          "2013",
+          "/images/starWars/75025-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75028-1",
+          "Clone Turbo Tank",
+          "MicroFighters",
+          "2014",
+          "/images/starWars/75028-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75029-1",
+          "AAT",
+          "MicroFighters",
+          "2014",
+          "/images/starWars/75029-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75030-1",
+          "Millennium Falcon",
+          "MicroFighters",
+          "2014",
+          "/images/starWars/75030-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75031-1",
+          "TIE Interceptor",
+          "MicroFighters",
+          "2014",
+          "/images/starWars/75031-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75032-1",
+          "X-Wing Fighter",
+          "MicroFighters",
+          "2014",
+          "/images/starWars/75032-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75033-1",
+          "Star Destroyer",
+          "MicroFighters",
+          "2014",
+          "/images/starWars/75033-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75034-1",
+          "Death Star Troopers",
+          "Episode IV",
+          "2014",
+          "/images/starWars/75034-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75035-1",
+          "Kashyyyk Troopers",
+          "Episode III",
+          "2014",
+          "/images/starWars/75035-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75036-1",
+          "Utapau Troopers",
+          "Episode III",
+          "2014",
+          "/images/starWars/75036-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75037-1",
+          "Battle on Saleucami",
+          "Episode III",
+          "2014",
+          "/images/starWars/75037-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75038-1",
+          "Jedi Interceptor",
+          "Episode III",
+          "2014",
+          "/images/starWars/75038-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75039-1",
+          "V-Wing Starfighter",
+          "Episode III",
+          "2014",
+          "/images/starWars/75039-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75040-1",
+          "General Grievous' Wheel Bike",
+          "Episode III",
+          "2014",
+          "/images/starWars/75040-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75041-1",
+          "Vulture Droid",
+          "Episode III",
+          "2014",
+          "/images/starWars/75041-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75042-1",
+          "Droid Gunship",
+          "Episode III",
+          "2014",
+          "/images/starWars/75042-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75043-1",
+          "AT-AP",
+          "Episode III",
+          "2014",
+          "/images/starWars/75043-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75044-1",
+          "Droid Tri-Fighter",
+          "Episode III",
+          "2014",
+          "/images/starWars/75044-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75045-1",
+          "Republic AV-7 Anti-Vehicle Cannon",
+          "The Clone Wars",
+          "2014",
+          "/images/starWars/75045-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75046-1",
+          "Coruscant Police Gunship",
+          "The Clone Wars",
+          "2014",
+          "/images/starWars/75046-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75048-1",
+          "The Phantom",
+          "Rebels",
+          "2014",
+          "/images/starWars/75048-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75049-1",
+          "Snowspeeder",
+          "Episode V",
+          "2014",
+          "/images/starWars/75049-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75050-1",
+          "B-Wing",
+          "Episode VI",
+          "2014",
+          "/images/starWars/75050-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75051-1",
+          "Jedi Scout Fighter",
+          "Original Content",
+          "2014",
+          "/images/starWars/75051-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75052-1",
+          "Mos Eisley Cantina",
+          "Episode IV",
+          "2014",
+          "/images/starWars/75052-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75053-1",
+          "The Ghost",
+          "Rebels",
+          "2014",
+          "/images/starWars/75053-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75054-1",
+          "AT-AT",
+          "Episode V",
+          "2014",
+          "/images/starWars/75054-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75055-1",
+          "Imperial Star Destroyer",
+          "Episode IV",
+          "2014",
+          "/images/starWars/75055-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75056-1",
+          "Star Wars Advent Calendar",
+          "Seasonal",
+          "2014",
+          "/images/starWars/75056-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75058-1",
+          "MTT",
+          "Episode I",
+          "2014",
+          "/images/starWars/75058-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75059-1",
+          "Sandcrawler",
+          "Ultimate Collector Series",
+          "2014",
+          "/images/starWars/75059-1.jpg",
+          "LEGO exclusive"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75060-1",
+          "Slave I",
+          "Ultimate Collector Series",
+          "2015",
+          "/images/starWars/75060-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75072-1",
+          "ARC-170 Starfighter",
+          "MicroFighters",
+          "2015",
+          "/images/starWars/75072-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75073-1",
+          "Vulture Droid",
+          "MicroFighters",
+          "2015",
+          "/images/starWars/75073-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75074-1",
+          "Snowspeeder",
+          "MicroFighters",
+          "2015",
+          "/images/starWars/75074-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75075-1",
+          "AT-AT",
+          "MicroFighters",
+          "2015",
+          "/images/starWars/75075-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75076-1",
+          "Republic Gunship",
+          "MicroFighters",
+          "2015",
+          "/images/starWars/75076-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75077-1",
+          "Homing Spider Droid",
+          "MicroFighters",
+          "2015",
+          "/images/starWars/75077-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75078-1",
+          "Imperial Troop Transport",
+          "Rebels",
+          "2015",
+          "/images/starWars/75078-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75079-1",
+          "Shadow Troopers",
+          "Legends",
+          "2015",
+          "/images/starWars/75079-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75080-1",
+          "AAT",
+          "Episode I",
+          "2015",
+          "/images/starWars/75080-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75081-1",
+          "T-16 Skyhopper",
+          "Episode IV",
+          "2015",
+          "/images/starWars/75081-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75082-1",
+          "TIE Advanced Prototype",
+          "Rebels",
+          "2015",
+          "/images/starWars/75082-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75083-1",
+          "AT-DP",
+          "Rebels",
+          "2015",
+          "/images/starWars/75083-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75084-1",
+          "Wookiee Gunship",
+          "Rebels",
+          "2015",
+          "/images/starWars/75084-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75085-1",
+          "Hailfire Droid",
+          "Episode II",
+          "2015",
+          "/images/starWars/75085-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75086-1",
+          "Battle Droid Troop Carrier",
+          "Episode I",
+          "2015",
+          "/images/starWars/75086-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75087-1",
+          "Anakin's Custom Jedi Starfighter",
+          "Miscellaneous",
+          "2015",
+          "/images/starWars/75087-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75088-1",
+          "Senate Commando Troopers",
+          "Legends",
+          "2015",
+          "/images/starWars/75088-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75089-1",
+          "Geonosis Troopers",
+          "Legends",
+          "2015",
+          "/images/starWars/75089-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75090-1",
+          "Ezra's Speeder Bike",
+          "Rebels",
+          "2015",
+          "/images/starWars/75090-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75091-1",
+          "Flash Speeder",
+          "Episode I",
+          "2015",
+          "/images/starWars/75091-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75092-1",
+          "Naboo Starfighter",
+          "Episode I",
+          "2015",
+          "/images/starWars/75092-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75093-1",
+          "Death Star Final Duel",
+          "Episode VI",
+          "2015",
+          "/images/starWars/75093-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75094-1",
+          " Imperial Shuttle Tydirium",
+          "Episode VI",
+          "2015",
+          "/images/starWars/75094-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75095-1",
+          "TIE Fighter",
+          "Ultimate Collector Series",
+          "2015",
+          "/images/starWars/75095-1.jpg",
+          "LEGO exclusive"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75096-1",
+          "Sith Infiltrator",
+          "Episode I",
+          "2015",
+          "/images/starWars/75096-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75097-1",
+          "Star Wars Advent Calendar",
+          "Seasonal",
+          "2015",
+          "/images/starWars/75097-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75098-1",
+          "Assault on Hoth",
+          "Ultimate Collector Series",
+          "2016",
+          "/images/starWars/75098-1.jpg",
+          "LEGO exclusive"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75099-1",
+          "Rey's Speeder",
+          "The Force Awakens",
+          "2015",
+          "/images/starWars/75099-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75100-1",
+          "First Order Snowspeeder",
+          "The Force Awakens",
+          "2015",
+          "/images/starWars/75100-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75101-1",
+          "First Order Special Forces TIE Fighter",
+          "The Force Awakens",
+          "2015",
+          "/images/starWars/75101-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75102-1",
+          "Poe's X-wing Fighter",
+          "The Force Awakens",
+          "2015",
+          "/images/starWars/75102-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75103-1",
+          "First Order Transporter",
+          "The Force Awakens",
+          "2015",
+          "/images/starWars/75103-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75104-1",
+          "Kylo Ren's Command Shuttle",
+          "The Force Awakens",
+          "2015",
+          "/images/starWars/75104-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75105-1",
+          "Millennium Falcon",
+          "The Force Awakens",
+          "2015",
+          "/images/starWars/75105-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75106-1",
+          "Imperial Assault Carrier",
+          "Rebels",
+          "2015",
+          "/images/starWars/75106-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75107-1",
+          "Jango Fett",
+          "Buildable Figures",
+          "2015",
+          "/images/starWars/75107-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75108-1",
+          "Clone Commander Cody",
+          "Buildable Figures",
+          "2015",
+          "/images/starWars/75108-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75109-1",
+          "Obi-Wan Kenobi",
+          "Buildable Figures",
+          "2015",
+          "/images/starWars/75109-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75110-1",
+          "Luke Skywalker",
+          "Buildable Figures",
+          "2015",
+          "/images/starWars/75110-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75111-1",
+          "Darth Vader",
+          "Buildable Figures",
+          "2015",
+          "/images/starWars/75111-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75112-1",
+          "General Grievous",
+          "Buildable Figures",
+          "2015",
+          "/images/starWars/75112-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75113-1",
+          "Rey",
+          "Buildable Figures",
+          "2016",
+          "/images/starWars/75113-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75114-1",
+          "First Order Stormtrooper",
+          "Buildable Figures",
+          "2016",
+          "/images/starWars/75114-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75115-1",
+          "Poe Dameron",
+          "Buildable Figures",
+          "2016",
+          "/images/starWars/75115-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75116-1",
+          "Finn",
+          "Buildable Figures",
+          "2016",
+          "/images/starWars/75116-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75117-1",
+          "Kylo Ren",
+          "Buildable Figures",
+          "2016",
+          "/images/starWars/75117-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75118-1",
+          "Captain Phasma",
+          "Buildable Figures",
+          "2016",
+          "/images/starWars/75118-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75119-1",
+          "Sergeant Jyn Erso",
+          "Buildable Figures",
+          "2016",
+          "/images/starWars/75119-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75120-1",
+          "K-2SO",
+          "Buildable Figures",
+          "2016",
+          "/images/starWars/75120-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75121-1",
+          "Imperial Death Trooper",
+          "Buildable Figures",
+          "2016",
+          "/images/starWars/75121-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75125-1",
+          "Resistance X-wing Fighter",
+          "MicroFighters",
+          "2016",
+          "/images/starWars/75125-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75126-1",
+          "First Order Snowspeeder",
+          "MicroFighters",
+          "2016",
+          "/images/starWars/75126-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75127-1",
+          "The Ghost",
+          "MicroFighters",
+          "2016",
+          "/images/starWars/75127-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75128-1",
+          "TIE Advanced Prototype",
+          "MicroFighters",
+          "2016",
+          "/images/starWars/75128-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75129-1",
+          "Wookiee Gunship",
+          "MicroFighters",
+          "2016",
+          "/images/starWars/75129-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75130-1",
+          "AT-DP",
+          "MicroFighters",
+          "2016",
+          "/images/starWars/75130-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75131-1",
+          "Resistance Trooper Battle Pack",
+          "The Force Awakens",
+          "2016",
+          "/images/starWars/75131-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75132-1",
+          "First Order Battle Pack",
+          "The Force Awakens",
+          "2016",
+          "/images/starWars/75132-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75133-1",
+          "Rebel Alliance Battle Pack",
+          "Battlefront",
+          "2016",
+          "/images/starWars/75133-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75134-1",
+          "Galactic Empire Battle Pack",
+          "Battlefront",
+          "2016",
+          "/images/starWars/75134-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75135-1",
+          "Obi-Wan's Jedi Interceptor",
+          "Episode III",
+          "2016",
+          "/images/starWars/75135-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75136-1",
+          "Droid Escape Pod",
+          "Episode IV",
+          "2016",
+          "/images/starWars/75136-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75137-1",
+          "Carbon-Freezing Chamber",
+          "Episode V",
+          "2016",
+          "/images/starWars/75137-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75138-1",
+          "Hoth Attack",
+          "Episode V",
+          "2016",
+          "/images/starWars/75138-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75139-1",
+          "Battle on Takodana",
+          "The Force Awakens",
+          "2016",
+          "/images/starWars/75139-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75140-1",
+          "Resistance Troop Transporter",
+          "The Force Awakens",
+          "2016",
+          "/images/starWars/75140-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75141-1",
+          "Kanan's Speeder Bike",
+          "Rebels",
+          "2016",
+          "/images/starWars/75141-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75142-1",
+          "Homing Spider Droid",
+          "Episode III",
+          "2016",
+          "/images/starWars/75142-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75143-1",
+          "{?}",
+          "null",
+          "2016",
+          "/images/starWars/blankbox.gif",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75144-1",
+          "Snowspeeder",
+          "Ultimate Collector Series",
+          "2017",
+          "/images/starWars/75144-1.jpg",
+          "LEGO exclusive"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75145-1",
+          "Eclipse Fighter",
+          "Original Content",
+          "2016",
+          "/images/starWars/75145-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75146-1",
+          "Star Wars Advent Calendar",
+          "Seasonal",
+          "2016",
+          "/images/starWars/75146-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75147-1",
+          "StarScavenger",
+          "Original Content",
+          "2016",
+          "/images/starWars/75147-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75148-1",
+          "Encounter on Jakku",
+          "The Force Awakens",
+          "2016",
+          "/images/starWars/75148-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75149-1",
+          "Resistance X-wing Fighter",
+          "The Force Awakens",
+          "2016",
+          "/images/starWars/75149-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75150-1",
+          "Vader's TIE Advanced vs. A-wing Starfighter",
+          "Rebels",
+          "2016",
+          "/images/starWars/75150-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75151-1",
+          "Clone Turbo Tank",
+          "Episode III",
+          "2016",
+          "/images/starWars/75151-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75152-1",
+          "Imperial Assault Hovertank",
+          "Rogue One",
+          "2016",
+          "/images/starWars/75152-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75153-1",
+          "AT-ST Walker",
+          "Rogue One",
+          "2016",
+          "/images/starWars/75153-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75154-1",
+          "TIE Striker",
+          "Rogue One",
+          "2016",
+          "/images/starWars/75154-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75155-1",
+          "Rebel U-wing Fighter",
+          "Rogue One",
+          "2016",
+          "/images/starWars/75155-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75156-1",
+          "Krennic's Imperial Shuttle",
+          "Rogue One",
+          "2016",
+          "/images/starWars/75156-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75157-1",
+          "Captain Rex's AT-TE",
+          "Rebels",
+          "2016",
+          "/images/starWars/75157-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75158-1",
+          "Rebel Combat Frigate",
+          "Rebels",
+          "2016",
+          "/images/starWars/75158-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75159-1",
+          "Death Star",
+          "Ultimate Collector Series",
+          "2016",
+          "/images/starWars/75159-1.jpg",
+          "LEGO exclusive"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75160-1",
+          "U-wing",
+          "MicroFighters",
+          "2017",
+          "/images/starWars/75160-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75161-1",
+          "TIE Striker",
+          "MicroFighters",
+          "2017",
+          "/images/starWars/75161-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75162-1",
+          "Y-wing",
+          "MicroFighters",
+          "2017",
+          "/images/starWars/75162-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75163-1",
+          "Krennic's Imperial Shuttle",
+          "MicroFighters",
+          "2017",
+          "/images/starWars/75163-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75164-1",
+          "Rebel Trooper Battle Pack",
+          "Rogue One",
+          "2017",
+          "/images/starWars/75164-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75165-1",
+          "Imperial Trooper Battle Pack",
+          "Rogue One",
+          "2017",
+          "/images/starWars/75165-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75166-1",
+          "First Order Transport Speeder Battle Pack",
+          "The Force Awakens",
+          "2017",
+          "/images/starWars/75166-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75167-1",
+          "Bounty Hunter Speeder Bike Battle Pack",
+          "Original Content",
+          "2017",
+          "/images/starWars/75167-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75168-1",
+          "Yoda's Jedi Starfighter",
+          "The Clone Wars",
+          "2017",
+          "/images/starWars/75168-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75169-1",
+          "Duel on Naboo",
+          "Episode I",
+          "2017",
+          "/images/starWars/75169-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75170-1",
+          "The Phantom",
+          "Rebels",
+          "2017",
+          "/images/starWars/75170-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75171-1",
+          "Battle on Scarif",
+          "Rogue One",
+          "2017",
+          "/images/starWars/75171-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75172-1",
+          "Y-wing Starfighter",
+          "Rogue One",
+          "2017",
+          "/images/starWars/75172-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75173-1",
+          "Luke's Landspeeder",
+          "Episode IV",
+          "2017",
+          "/images/starWars/75173-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75174-1",
+          "Desert Skiff Escape",
+          "Episode VI",
+          "2017",
+          "/images/starWars/75174-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75175-1",
+          "A-wing Starfighter",
+          "Episode VI",
+          "2017",
+          "/images/starWars/75175-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75176-1",
+          "Resistance Transport Pod",
+          "The Last Jedi",
+          "2017",
+          "/images/starWars/75176-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75177-1",
+          "First Order Heavy Scout Walker",
+          "The Last Jedi",
+          "2017",
+          "/images/starWars/75177-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75178-1",
+          "Jakku Quadjumper",
+          "The Force Awakens",
+          "2017",
+          "/images/starWars/75178-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75179-1",
+          "Kylo Ren's TIE Fighter",
+          "The Last Jedi",
+          "2017",
+          "/images/starWars/75179-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75180-1",
+          "Rathtar Escape",
+          "The Force Awakens",
+          "2017",
+          "/images/starWars/75180-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75181-1",
+          " Y-wing Starfighter",
+          "Ultimate Collector Series",
+          "2018",
+          "/images/starWars/75181-1.jpg",
+          "LEGO exclusive"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75182-1",
+          "Republic Fighter Tank",
+          "Legends",
+          "2017",
+          "/images/starWars/75182-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75183-1",
+          "Darth Vader Transformation ",
+          "Episode III",
+          "2017",
+          "/images/starWars/75183-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75184-1",
+          "Star Wars Advent Calendar",
+          "Seasonal",
+          "2017",
+          "/images/starWars/75184-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75185-1",
+          "Tracker I",
+          "Original Content",
+          "2017",
+          "/images/starWars/75185-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75186-1",
+          "The Arrowhead",
+          "Original Content",
+          "2017",
+          "/images/starWars/75186-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75187-1",
+          "BB-8",
+          "The Last Jedi",
+          "2017",
+          "/images/starWars/75187-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75188-1",
+          "Resistance Bomber",
+          "The Last Jedi",
+          "2017",
+          "/images/starWars/75188-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75189-1",
+          "First Order Heavy Assault Walker",
+          "The Last Jedi",
+          "2017",
+          "/images/starWars/75189-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75190-1",
+          "First Order Star Destroyer",
+          "The Last Jedi",
+          "2017",
+          "/images/starWars/75190-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75191-1",
+          "Jedi Starfighter with Hyperdrive",
+          "Episode II",
+          "2017",
+          "/images/starWars/75191-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75192-1",
+          "Millennium Falcon",
+          "Ultimate Collector Series",
+          "2017",
+          "/images/starWars/75192-1.jpg",
+          "LEGO exclusive"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75193-1",
+          "Millennium Falcon Microfighter",
+          "MicroFighters",
+          "2018",
+          "/images/starWars/75193-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75194-1",
+          "First Order TIE Fighter Microfighter",
+          "MicroFighters",
+          "2018",
+          "/images/starWars/75194-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75195-1",
+          "Ski Speeder vs. First Order Walker Microfighters",
+          "MicroFighters",
+          "2018",
+          "/images/starWars/75195-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75196-1",
+          "A-Wing vs. TIE Silencer Microfighters",
+          "MicroFighters",
+          "2018",
+          "/images/starWars/75196-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75197-1",
+          "First Order Specialists Battle Pack",
+          "The Last Jedi",
+          "2018",
+          "/images/starWars/75197-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75198-1",
+          "Tatooine Battle Pack",
+          "Episode IV",
+          "2018",
+          "/images/starWars/75198-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75199-1",
+          "General Grievous' Combat Speeder",
+          "The Clone Wars",
+          "2018",
+          "/images/starWars/75199-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75200-1",
+          "Ahch-To Island Training",
+          "The Last Jedi",
+          "2018",
+          "/images/starWars/75200-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75201-1",
+          "First Order AT-ST",
+          "The Last Jedi",
+          "2018",
+          "/images/starWars/75201-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75202-1",
+          "Defense of Crait",
+          "The Last Jedi",
+          "2018",
+          "/images/starWars/75202-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75203-1",
+          "Hoth Medical Chamber",
+          "Episode V",
+          "2018",
+          "/images/starWars/75203-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75204-1",
+          "Sandspeeder",
+          "Legends",
+          "2018",
+          "/images/starWars/75204-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75205-1",
+          "Mos Eisley Cantina",
+          "Episode IV",
+          "2018",
+          "/images/starWars/75205-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75206-1",
+          "Jedi and Clone Troopers Battle Pack",
+          "Episode II",
+          "2018",
+          "/images/starWars/75206-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75207-1",
+          "Imperial Patrol Battle Pack",
+          "Solo",
+          "2018",
+          "/images/starWars/75207-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75208-1",
+          "Yoda's Hut",
+          "Episode V",
+          "2018",
+          "/images/starWars/75208-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75209-1",
+          "Han Solo's Landspeeder",
+          "Solo",
+          "2018",
+          "/images/starWars/75209-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75210-1",
+          "Moloch's Landspeeder",
+          "Solo",
+          "2018",
+          "/images/starWars/75210-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75211-1",
+          "Imperial TIE Fighter",
+          "Solo",
+          "2018",
+          "/images/starWars/75211-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75212-1",
+          "Kessel Run Millennium Falcon",
+          "Solo",
+          "2018",
+          "/images/starWars/75212-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75213-1",
+          "Star Wars Advent Calendar",
+          "Seasonal",
+          "2018",
+          "/images/starWars/75213-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75214-1",
+          "Anakin's Jedi Starfighter",
+          "The Clone Wars",
+          "2018",
+          "/images/starWars/75214-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75215-1",
+          "Cloud-Rider Swoop Bikes",
+          "Solo",
+          "2018",
+          "/images/starWars/75215-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75216-1",
+          "Snoke's Throne Room",
+          "The Last Jedi",
+          "2018",
+          "/images/starWars/75216-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75217-1",
+          "Imperial Conveyex Transport",
+          "Solo",
+          "2018",
+          "/images/starWars/75217-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75218-1",
+          "X-wing Starfighter",
+          "Episode IV",
+          "2018",
+          "/images/starWars/75218-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75219-1",
+          "Imperial AT-Hauler",
+          "Solo",
+          "2018",
+          "/images/starWars/75219-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75220-1",
+          "Sandcrawler",
+          "Episode IV",
+          "2018",
+          "/images/starWars/75220-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75221-1",
+          "Imperial Landing Craft",
+          "Episode IV",
+          "2018",
+          "/images/starWars/75221-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75222-1",
+          "Betrayal at Cloud City",
+          "Master Builder Series",
+          "2018",
+          "/images/starWars/75222-1.jpg",
+          "LEGO exclusive"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75223-1",
+          "Naboo Starfighter Microfighter",
+          "MicroFighters",
+          "2019",
+          "/images/starWars/75223-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75224-1",
+          "Sith Infiltrator Microfighter",
+          "MicroFighters",
+          "2019",
+          "/images/starWars/75224-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75225-1",
+          "Elite Praetorian Guard Battle Pack",
+          "The Last Jedi",
+          "2019",
+          "/images/starWars/75225-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75226-1",
+          "Inferno Squad Battle Pack",
+          "Battlefront",
+          "2019",
+          "/images/starWars/75226-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75228-1",
+          "Escape Pod vs. Dewback Microfighters",
+          "MicroFighters",
+          "2019",
+          "/images/starWars/75228-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75229-1",
+          "Death Star Escape",
+          "Episode IV",
+          "2019",
+          "/images/starWars/75229-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75230-1",
+          "Porg",
+          "The Last Jedi",
+          "2018",
+          "/images/starWars/75230-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75233-1",
+          "Droid Gunship",
+          "Episode III",
+          "2019",
+          "/images/starWars/75233-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75234-1",
+          "AT-AP Walker",
+          "Episode III",
+          "2019",
+          "/images/starWars/75234-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75235-1",
+          "X-wing Starfighter Trench Run",
+          "4+",
+          "2019",
+          "/images/starWars/75235-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75237-1",
+          "TIE Fighter Attack",
+          "4+",
+          "2019",
+          "/images/starWars/75237-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75247-1",
+          "Rebel A-wing Starfighter",
+          "4+",
+          "2019",
+          "/images/starWars/75247-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75251-1",
+          "Darth Vader's Castle",
+          "null",
+          "2019",
+          "/images/starWars/75251-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75252-1",
+          "{Star Wars D2C set}",
+          "null",
+          "2019",
+          "/images/starWars/blankbox.gif",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75512-1",
+          "Millennium Falcon Cockpit",
+          "Promotional",
+          "2018",
+          "/images/starWars/75512-1.jpg",
+          "Promotional"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75523-1",
+          "Scarif Stormtrooper",
+          "Buildable Figures",
+          "2017",
+          "/images/starWars/75523-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75524-1",
+          "Chirrut Îmwe",
+          "Buildable Figures",
+          "2017",
+          "/images/starWars/75524-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75525-1",
+          "Baze Malbus",
+          "Buildable Figures",
+          "2017",
+          "/images/starWars/75525-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75526-1",
+          "Elite TIE Fighter Pilot",
+          "Buildable Figures",
+          "2017",
+          "/images/starWars/75526-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75528-1",
+          "Rey",
+          "Buildable Figures",
+          "2017",
+          "/images/starWars/75528-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75529-1",
+          "Elite Praetorian Guard",
+          "Buildable Figures",
+          "2017",
+          "/images/starWars/75529-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75530-1",
+          "Chewbacca",
+          "Buildable Figures",
+          "2017",
+          "/images/starWars/75530-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75531-1",
+          "Stormtrooper Commander",
+          "Buildable Figures",
+          "2017",
+          "/images/starWars/75531-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75532-1",
+          "Scout Trooper & Speeder Bike",
+          "Buildable Figures",
+          "2017",
+          "/images/starWars/75532-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75533-1",
+          "Boba Fett",
+          "Buildable Figures",
+          "2018",
+          "/images/starWars/75533-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75534-1",
+          "Darth Vader",
+          "Buildable Figures",
+          "2018",
+          "/images/starWars/75534-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75535-1",
+          "Han Solo",
+          "Buildable Figures",
+          "2018",
+          "/images/starWars/75535-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75536-1",
+          "Range Trooper",
+          "Buildable Figures",
+          "2018",
+          "/images/starWars/75536-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75537-1",
+          "Darth Maul",
+          "Buildable Figures",
+          "2018",
+          "/images/starWars/75537-1.jpg",
+          "Retail"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75538-1",
+          "Super Battle Droid",
+          "Buildable Figures",
+          "2018",
+          "/images/starWars/blankbox.gif",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "75539-1",
+          "501st Legion Clone Trooper & AT-RT Walker",
+          "Buildable Figures",
+          "2018",
+          "/images/starWars/blankbox.gif",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "2853590-1",
+          "Chrome Stormtrooper",
+          "Minifig Pack",
+          "2010",
+          "/images/starWars/2853590-1.jpg",
+          "Promotional"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "2853835-1",
+          "White Boba Fett Figure",
+          "Minifig Pack",
+          "2010",
+          "/images/starWars/2853835-1.jpg",
+          "Promotional"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "2856197-1",
+          "Shadow ARF Trooper",
+          "Minifig Pack",
+          "2011",
+          "/images/starWars/2856197-1.jpg",
+          "Promotional"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "4207901-1",
+          "Star Wars MINI Bonus Pack",
+          "Product Collection",
+          "2003",
+          "/images/starWars/4207901-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "4521221-1",
+          "Gold chrome plated C-3PO",
+          "Minifig Pack",
+          "2007",
+          "/images/starWars/4521221-1.jpg",
+          "Promotional"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "4547551-1",
+          "Chrome  Darth Vader",
+          "Minifig Pack",
+          "2009",
+          "/images/starWars/4547551-1.jpg",
+          "Promotional"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "5000062-1",
+          "Darth Maul",
+          "Minifig Pack",
+          "2012",
+          "/images/starWars/5000062-1.jpg",
+          "Promotional"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "5000063-1",
+          "TC-14",
+          "Episode I",
+          "2012",
+          "/images/starWars/5000063-1.jpg",
+          "LEGO exclusive"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "5001621-1",
+          "Han Solo (Hoth)",
+          "Episode V",
+          "2013",
+          "/images/starWars/5001621-1.jpg",
+          "LEGO exclusive"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "5001709-1",
+          "Clone Trooper Lieutenant",
+          "Episode II",
+          "2013",
+          "/images/starWars/5001709-1.jpg",
+          "Promotional"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "5002122-1",
+          "TC-4",
+          "Minifig Pack",
+          "2014",
+          "/images/starWars/5002122-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "5002123-1",
+          "Darth Revan",
+          "The Old Republic",
+          "2014",
+          "/images/starWars/5002123-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "5002938-1",
+          "Stormtrooper Sergeant",
+          "Rebels",
+          "2015",
+          "/images/starWars/5002938-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "5002939-1",
+          "The Phantom",
+          "Rebels",
+          "2015",
+          "/images/starWars/5002939-1.jpg",
+          "Promotional"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "5002947-1",
+          "Admiral Yularen",
+          "Episode IV",
+          "2015",
+          "/images/starWars/5002947-1.jpg",
+          "Promotional"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "5002948-1",
+          "C-3PO",
+          "The Force Awakens",
+          "2015",
+          "/images/starWars/5002948-1.jpg",
+          "Promotional"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "5004406-1",
+          "First Order General",
+          "The Force Awakens",
+          "2016",
+          "/images/starWars/5004406-1.jpg",
+          "Promotional"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "5004408-1",
+          "Rebel A-wing Pilot",
+          "Rebels",
+          "2016",
+          "/images/starWars/5004408-1.jpg",
+          "Promotional"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "5005376-1",
+          "Star Wars Anniversary Pod",
+          "Promotional",
+          "2018",
+          "/images/starWars/5005376-1.jpg",
+          "LEGO exclusive"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "5005747-1",
+          "Black Card Display Stand",
+          "Promotional",
+          "2018",
+          "/images/starWars/5005747-1.jpg",
+          "Promotional"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "5005754-1",
+          "LEGO Star Wars Life of Luke Skywalker bundle",
+          "Virtual Product Collection",
+          "2018",
+          "/images/starWars/5005754-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "6176782-1",
+          "Escape the Space Slug",
+          "Promotional",
+          "2016",
+          "/images/starWars/6176782-1.jpg",
+          "LEGO exclusive"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "6252770-1",
+          "Leia Organa",
+          "null",
+          "2018",
+          "/images/starWars/6252770-1.jpg",
+          "LEGOLAND exclusive"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "6252808-1",
+          "Chewbacca",
+          "null",
+          "2018",
+          "/images/starWars/6252808-1.jpg",
+          "LEGOLAND exclusive"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "6252810-1",
+          "Han Solo",
+          "null",
+          "2018",
+          "/images/starWars/6252810-1.jpg",
+          "LEGOLAND exclusive"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "6252811-1",
+          "Obi-Wan Kenobi",
+          "null",
+          "2018",
+          "/images/starWars/6252811-1.jpg",
+          "LEGOLAND exclusive"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "6252812-1",
+          "Luke Skywalker",
+          "null",
+          "2018",
+          "/images/starWars/6252812-1.jpg",
+          "LEGOLAND exclusive"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "BOBAFETT1-1",
+          "White Boba Fett minifig and Star Wars book",
+          "Miscellaneous",
+          "2010",
+          "/images/starWars/BOBAFETT1-1.jpg",
+          "Promotional"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "CELEB2015-1",
+          "Tatooine Mini-build",
+          "Promotional",
+          "2015",
+          "/images/starWars/CELEB2015-1.jpg",
+          "Promotional"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "CELEB2017-1",
+          "Detention Block Rescue",
+          "Promotional",
+          "2017",
+          "/images/starWars/CELEB2017-1.jpg",
+          "Promotional"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "CELEBVI-1",
+          "Mini Slave I",
+          "Episode V",
+          "2012",
+          "/images/starWars/CELEBVI-1.jpg",
+          "Promotional"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "COMCON001-1",
+          "Clone Wars (SDCC 2008 exclusive)",
+          "Miscellaneous",
+          "2008",
+          "/images/starWars/COMCON001-1.jpg",
+          "Promotional"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "COMCON004-1",
+          "Collectable Display Set 1",
+          "Miscellaneous",
+          "2009",
+          "/images/starWars/COMCON004-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "COMCON005-1",
+          "Collectable Display Set 2",
+          "Miscellaneous",
+          "2009",
+          "/images/starWars/COMCON005-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "COMCON006-1",
+          "Collectable Display Set 4",
+          "Miscellaneous",
+          "2009",
+          "/images/starWars/COMCON006-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "COMCON007-1",
+          "Collectable Display Set 5",
+          "Miscellaneous",
+          "2009",
+          "/images/starWars/COMCON007-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "COMCON008-1",
+          "Collectable Display Set 3",
+          "Miscellaneous",
+          "2009",
+          "/images/starWars/COMCON008-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "COMCON009-1",
+          "Collectable Display Set 6",
+          "Miscellaneous",
+          "2009",
+          "/images/starWars/COMCON009-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "COMCON010-1",
+          "Mini Republic Dropship Mini AT-TE Brickmaster Pack (SDCC 2009 exclusive)",
+          "The Clone Wars",
+          "2009",
+          "/images/starWars/blankbox.gif",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "COMCON011-1",
+          "Holo-Brick Archives (SDCC 2009 exclusive)",
+          "Miscellaneous",
+          "2009",
+          "/images/starWars/blankbox.gif",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "COMCON015-1",
+          "Advent calendar (SDCC 2011 exclusive)",
+          "Seasonal",
+          "2011",
+          "/images/starWars/COMCON015-1.jpg",
+          "unknown"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "COMCON019-1",
+          "Sith Infiltrator (SDCC 2012 exclusive)",
+          "Episode I",
+          "2012",
+          "/images/starWars/COMCON019-1.jpg",
+          "Promotional"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "COMCON024-1",
+          "Luke Skywalker's Landspeeder - Mini - New York Comic-Con 2012 Exclusive",
+          "Episode IV",
+          "2012",
+          "/images/starWars/COMCON024-1.jpg",
+          "Promotional"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "COMCON032-1",
+          "Jek-14 Mini Stealth Starfighter",
+          "Original Content",
+          "2013",
+          "/images/starWars/COMCON032-1.jpg",
+          "Promotional"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "COMCON039-1",
+          "The Ghost Starship",
+          "Rebels",
+          "2014",
+          "/images/starWars/COMCON039-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "FANEXPO001-1",
+          "The Ghost Starship (FAN EXPO edition)",
+          "Rebels",
+          "2014",
+          "/images/starWars/FANEXPO001-1.jpg",
+          "Promotional"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "FANEXPO2015-1",
+          "Tatooine Mini Build",
+          "Promotional",
+          "2015",
+          "/images/starWars/FANEXPO2015-1.jpg",
+          "Promotional"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "MAY2013-1",
+          "Holocron Droid",
+          "Original Content",
+          "2013",
+          "/images/starWars/MAY2013-1.jpg",
+          "Promotional"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "NYCC2013-1",
+          "Yoda display box",
+          "Promotional",
+          "2013",
+          "/images/starWars/NYCC2013-1.jpg",
+          "Promotional"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "PORG-1",
+          "Porg",
+          "Promotional",
+          "2018",
+          "/images/starWars/PORG-1.jpg",
+          "Not sold"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "PROMOSW002-1",
+          "Anakin Skywalker (International Toy Fair 2005 Exclusive Figure)",
+          "Promotional",
+          "2005",
+          "/images/starWars/blankbox.gif",
+          "Promotional"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "PROMOSW003-1",
+          "Luminara Unduli (International Toy Fair 2005 Exclusive Figure)",
+          "Promotional",
+          "2005",
+          "/images/starWars/blankbox.gif",
+          "Promotional"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "PROMOSW004-1",
+          "Star Wars Celebration IV Exclusive",
+          "Minifig Pack",
+          "2007",
+          "/images/starWars/blankbox.gif",
+          "Promotional"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "PROMOSW007-1",
+          "Star Wars Miniland Figures (Toy Fair 2011 Collector's Party) ",
+          "Miscellaneous",
+          "2011",
+          "/images/starWars/PROMOSW007-1.jpg",
+          "Promotional"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "SDCC2015-2",
+          "Dagobah Mini Build",
+          "Promotional",
+          "2015",
+          "/images/starWars/SDCC2015-2.jpg",
+          "Promotional"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "SW117PROMO-1",
+          "Darth Vader (Nürnberg Toy Fair 2005 Exclusive Figure)",
+          "Promotional",
+          "2005",
+          "/images/starWars/SW117PROMO-1.jpg",
+          "Promotional"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "SW911506-1",
+          "Snowspeeder",
+          "Magazine Gift",
+          "2015",
+          "/images/starWars/SW911506-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "SW911508-1",
+          "Mini Slave I",
+          "Magazine Gift",
+          "2015",
+          "/images/starWars/SW911508-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "SW911509-1",
+          "Imperial Shooter",
+          "Magazine Gift",
+          "2015",
+          "/images/starWars/SW911509-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "SW911510-1",
+          "Micro Star Destroyer and TIE Fighter",
+          "Magazine Gift",
+          "2015",
+          "/images/starWars/SW911510-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "SW911511-1",
+          "Jedi Weapon Stand",
+          "Magazine Gift",
+          "2015",
+          "/images/starWars/SW911511-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "SW911607-1",
+          "Millennium Falcon",
+          "Magazine Gift",
+          "2016",
+          "/images/starWars/SW911607-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "SW911608-1",
+          "Landspeeder",
+          "Magazine Gift",
+          "2016",
+          "/images/starWars/SW911608-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "SW911609-1",
+          "Naboo Starfighter",
+          "Magazine Gift",
+          "2016",
+          "/images/starWars/SW911609-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "SW911610-1",
+          "Probe Droid",
+          "Magazine Gift",
+          "2016",
+          "/images/starWars/SW911610-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "SW911611-1",
+          "AAT",
+          "Magazine Gift",
+          "2016",
+          "/images/starWars/SW911611-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "SW911612-1",
+          "Acklay",
+          "Magazine Gift",
+          "2016",
+          "/images/starWars/SW911612-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "SW911613-1",
+          "TIE Bomber",
+          "Magazine Gift",
+          "2016",
+          "/images/starWars/SW911613-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "SW911614-1",
+          "Yoda's Hut",
+          "Magazine Gift",
+          "2016",
+          "/images/starWars/SW911614-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "SW911615-1",
+          "AT-AT",
+          "Magazine Gift",
+          "2016",
+          "/images/starWars/SW911615-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "SW911616-1",
+          "MTT",
+          "Magazine Gift",
+          "2016",
+          "/images/starWars/SW911616-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "SW911617-1",
+          "Palpatine's Shuttle",
+          "Magazine Gift",
+          "2016",
+          "/images/starWars/SW911617-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "SW911618-1",
+          "Flash Speeder",
+          "Magazine Gift",
+          "2017",
+          "/images/starWars/SW911618-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "SW911719-1",
+          "Kanan Jarrus",
+          "Magazine Gift",
+          "2017",
+          "/images/starWars/SW911719-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "SW911720-1",
+          "The Ghost",
+          "Magazine Gift",
+          "2017",
+          "/images/starWars/SW911720-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "SW911721-1",
+          "Imperial Combat Driver",
+          "Magazine Gift",
+          "2017",
+          "/images/starWars/SW911721-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "SW911722-1",
+          "TIE Advanced",
+          "Magazine Gift",
+          "2017",
+          "/images/starWars/SW911722-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "SW911723-1",
+          "Vulture Droid",
+          "Magazine Gift",
+          "2017",
+          "/images/starWars/SW911723-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "SW911724-1",
+          "A-Wing",
+          "Magazine Gift",
+          "2017",
+          "/images/starWars/SW911724-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "SW911725-1",
+          "Sandcrawler",
+          "Magazine Gift",
+          "2017",
+          "/images/starWars/SW911725-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "SW911726-1",
+          "Imperial Snowtrooper",
+          "Magazine Gift",
+          "2017",
+          "/images/starWars/SW911726-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "SW911727-1",
+          "Rey's Speeder",
+          "Magazine Gift",
+          "2017",
+          "/images/starWars/SW911727-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "SW911728-1",
+          "First Order Snowspeeder",
+          "Magazine Gift",
+          "2017",
+          "/images/starWars/SW911728-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "SW911729-1",
+          "Droid Gunship",
+          "Magazine Gift",
+          "2017",
+          "/images/starWars/SW911729-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "SW911730-1",
+          "Y-Wing",
+          "Magazine Gift",
+          "2017",
+          "/images/starWars/SW911730-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "SW911831-1",
+          "Kylo Ren's Shuttle",
+          "Magazine Gift",
+          "2018",
+          "/images/starWars/SW911831-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "SW911832-1",
+          "Imperial Shuttle Pilot",
+          "Magazine Gift",
+          "2018",
+          "/images/starWars/SW911832-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "SW911833-1",
+          "Imperial Shuttle",
+          "Magazine Gift",
+          "2018",
+          "/images/starWars/SW911833-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "SW911834-1",
+          "Finn",
+          "Magazine Gift",
+          "2018",
+          "/images/starWars/SW911834-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "SW911835-1",
+          "Dwarf Spider Droid",
+          "Magazine Gift",
+          "2018",
+          "/images/starWars/SW911835-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "SW911836-1",
+          "Quadjumper",
+          "Magazine Gift",
+          "2018",
+          "/images/starWars/SW911836-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "SW911837-1",
+          "AT-ST",
+          "Magazine Gift",
+          "2018",
+          "/images/starWars/SW911837-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "SW911838-1",
+          "Probe Droid",
+          "Magazine Gift",
+          "2018",
+          "/images/starWars/SW911838-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "SW911839-1",
+          "Obi-Wan Kenobi",
+          "Magazine Gift",
+          "2018",
+          "/images/starWars/SW911839-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "SW911840-1",
+          "Droideka",
+          "Magazine Gift",
+          "2018",
+          "/images/starWars/SW911840-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "SW911841-1",
+          "Poe Dameron's X-Wing",
+          "Magazine Gift",
+          "2018",
+          "/images/starWars/SW911841-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "SW911842-1",
+          "Star Destroyer",
+          "Magazine Gift",
+          "2018",
+          "/images/starWars/SW911842-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "SWCOMIC1-1",
+          "Mini X-Wing Starfighter",
+          "Magazine Gift",
+          "2015",
+          "/images/starWars/SWCOMIC1-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "SWMF-1",
+          "Millennium Falcon",
+          "Promotional",
+          "2017",
+          "/images/starWars/SWMF-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "TF05-1",
+          "Toy Fair 2005 Star Wars V.I.P. Gala Set",
+          "Promotional",
+          "2005",
+          "/images/starWars/blankbox.gif",
+          "Promotional"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "TRU03-1",
+          "Mini Jek-14 Stealth Fighter",
+          "Original Content",
+          "2013",
+          "/images/starWars/TRU03-1.jpg",
+          "Promotional"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "TRUBB8-1",
+          "BB 8",
+          "null",
+          "2017",
+          "/images/starWars/TRUBB8-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "TRUFALCON-1",
+          "Millennium Falcon",
+          "Promotional",
+          "2016",
+          "/images/starWars/TRUFALCON-1.jpg",
+          "Promotional"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "TRUGHOST-1",
+          "The Ghost micro-model",
+          "Promotional",
+          "2014",
+          "/images/starWars/TRUGHOST-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "TRULEIA-1",
+          "Princess Leia",
+          "Promotional",
+          "2017",
+          "/images/starWars/TRULEIA-1.jpg",
+          "Retail - limited"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "TRUTIE-1",
+          "TIE Fighter",
+          "Promotional",
+          "2014",
+          "/images/starWars/TRUTIE-1.jpg",
+          "Promotional"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "TRUWOOKIEE-1",
+          "Wookiee Gunship",
+          "Promotional",
+          "2015",
+          "/images/starWars/TRUWOOKIEE-1.jpg",
+          "Promotional"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "TRUXWING-2",
+          "Poe's X-wing Fighter",
+          "Promotional",
+          "2015",
+          "/images/starWars/TRUXWING-2.jpg",
+          "Promotional"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "TRUXWING-1",
+          "X-wing",
+          "Promotional",
+          "2014",
+          "/images/starWars/TRUXWING-1.jpg",
+          "Promotional"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "YODA-1",
+          "Yoda minifig, NY I Heart Torso",
+          "Promotional",
+          "2013",
+          "/images/starWars/YODA-1.jpg",
+          "Promotional"
+          )
+        ;
+INSERT INTO starWarsSets (setId, description, genre, year, image, availability) VALUES (
+          "YODACHRON-1",
+          "Yoda Chronicles Promotional Set",
+          "Original Content",
+          "2013",
+          "/images/starWars/YODACHRON-1.jpg",
+          "Promotional"
+          )
+        ;

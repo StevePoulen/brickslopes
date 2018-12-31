@@ -2,7 +2,7 @@
 
 angular.module('brickSlopes').controller('PrintMocs', ['$scope', '$location', 'MocDetails', function($scope, $location, MocDetails) {
     $scope.registeredMocs = undefined;
-    $scope.eventId = 2;
+    $scope.eventId = 6;
 
     MocDetails.getList($scope.eventId).then(function(data) {
         $scope.registeredMocs = data;

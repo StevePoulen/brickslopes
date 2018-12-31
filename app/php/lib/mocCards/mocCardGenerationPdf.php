@@ -6,7 +6,7 @@
 
     class mocCardGeneration {
         public function __construct() {
-            $this->eventId = 5;
+            $this->eventId = 6;
             $this->mocObj = new mocModel();
             $this->mocs = array();
             $this->buildMocs();

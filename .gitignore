@@ -65,3 +65,6 @@ credentials_token.json
 testing_first_email.txt
 
 .idea
+
+starwars/page*
+starwars/queries.txt
