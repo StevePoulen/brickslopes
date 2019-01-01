@@ -4,18 +4,22 @@
         '$scope',
         '$location',
         'StarWars',
+        '$window',
         function(
             $scope,
             $location,
-            StarWars
+            StarWars,
+            $window
         ) {
             $scope.setDisplayList = [];
+            $scope.showExplanation = true;
 
             StarWars.getList().then(function(sets) {
                 $scope.setList = sets;
                 $scope.setDisplayList = sets.filter(set => {
-                    return set.availability === 'Retail' || 
-                        set.availability === 'Retail - limited';
+                    return (set.availability === 'Retail' || 
+                        set.availability === 'Retail - limited') &&
+                        set.claimed === false;
                     /*
                         set.packaging !== 'Box' &&
                         set.packaging !== 'Polybag' &&
@@ -83,35 +87,58 @@
                 $scope.setDisplayList = $scope.setList.filter(set => {
                     return set.genre === $scope.filterGenreItem;
                 });
-            }
+            };
 
             $scope.setAvailabilityFilter = function() {
                 $scope.setDisplayList = $scope.setList.filter(set => {
                     return set.availability === $scope.filterAvailabilityItem;
                 });
-            }
+            };
 
             $scope.setPackagingFilter = function() {
                 $scope.setDisplayList = $scope.setList.filter(set => {
                     return set.packaging === $scope.filterPackagingItem;
                 });
-            }
+            };
 
             $scope.setYearFilter = function() {
                 $scope.setDisplayList = $scope.setList.filter(set => {
                     return set.year === $scope.filterYearItem;
                 });
-            }
+            };
 
             $scope.setClaimedFilter = function() {
                 $scope.setDisplayList = $scope.setList.filter(set => {
                     if ($scope.filterClaimedItem === 'claimed') {
                         return set.user !== null;
+                    } else if ($scope.filterClaimedItem === 'claimedByMe') {
+                        return set.userId === $window.sessionStorage.userId;
                     } else {
                         return set.user === null;
                     }
                 });
-            }
+            };
+
+            $scope.toggleExplanation = function() {
+                $scope.showExplanation = !$scope.showExplanation;
+            };
+
+            $scope.claimSet = function(set) {
+                StarWars.claim(set.id).then(() => {
+                    set.claimed = true;
+                    set.claim = false;
+                    set.unclaim = true;
+                    set.user = `${$window.sessionStorage.firstName} ${$window.sessionStorage.lastName.substring(0, 1)}` ;
+                });
+            };
+
+            $scope.unclaimSet = function(set) {
+                StarWars.unclaim(set.id).then(() => {
+                    set.claimed = false;
+                    set.claim = true;
+                    set.unclaim = false;
+                });
+            };
         }
     ]);
 })(angular);

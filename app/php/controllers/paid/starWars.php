@@ -17,8 +17,10 @@ $starWarsObj->selectAllStarWarsSets($reservedId);
 class StarWars {
     private $starWarsObject;
     private $requestMethod;
+    private $userId;
 
-    public function __construct() {
+    public function __construct($userId) {
+        $this->userId = $userId;
         $this->starWarsObject = new starWarsModel();
         $this->determineRequestMethod();
     }
@@ -30,6 +32,10 @@ class StarWars {
 
         if ($requestMethod == "GET") {
             $this->get();
+        } else if ($requestMethod == "POST") {
+            $this->post();
+        } else if ($requestMethod == "PATCH") {
+            $this->patch();
         } else {
             header("HTTP/1.0 405 Method Not Allowed");
         }
@@ -49,6 +55,7 @@ class StarWars {
                 'availability' => $dbObj->availability,
                 'packaging' => $dbObj->packaging,
                 'image' => $dbObj->image,
+                'userId' => $dbObj->userId,
                 'user' => $dbObj->user
               );
 
@@ -65,8 +72,38 @@ class StarWars {
             header("HTTP/1.0 400 Bad Request");
         }
     }
+
+    private function post() {
+        $payload = json_decode(file_get_contents("php://input"), true);
+        if (sizeof($payload) == 0) {
+            $payload = $_POST;
+        }
+        $payload['userId'] = $this->userId;
+        $response = $this->starWarsObject->claimStarWarsSet($payload);
+
+        if (preg_match ( '/^\d+/', $response )) {
+            header("HTTP/1.0 201 Created");
+        } else {
+            header("HTTP/1.0 400 Bad Request");
+        }
+    }
+
+    private function patch() {
+        $payload = json_decode(file_get_contents("php://input"), true);
+        if (sizeof($payload) == 0) {
+            $payload = $_POST;
+        }
+        $payload['userId'] = $this->userId;
+        $response = $this->starWarsObject->unclaimStarWarsSet($payload);
+
+        if (preg_match ( '/^\d+/', $response )) {
+            header("HTTP/1.0 201 Created");
+        } else {
+            header("HTTP/1.0 400 Bad Request");
+        }
+    }
 }
 
-new StarWars();
+new StarWars($this->userId);
 
 ?>

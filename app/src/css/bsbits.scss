@@ -138,6 +138,18 @@ textarea::-moz-placeholder {
     padding-top: 6px;
 }
 
+.actionButtonClaimStarWars {
+    @extend .actionButton;
+    height: 25px;
+    width: 100px;
+    padding-top: 2px;
+}
+
+.actionButtonUnclaimStarWars {
+    @extend .actionButtonClaimStarWars;
+    background: $bs_red;
+}
+
 .actionButtonGames {
     @extend .actionButton;
     height: 30px;

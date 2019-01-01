@@ -2,11 +2,15 @@
     'use strict';
     angular.module('brickSlopes')
     .factory('StarWars', [
-        '$q',
+        'EventSelectionFactory',
         '$http',
+        '$q',
+        '$window',
         function(
+            EventSelectionFactory,
+            $http,
             $q,
-            $http
+            $window
         ) {
             var starWarsList = undefined;
             return {
@@ -18,6 +22,32 @@
                             return starWarsList.length;
                         }));
                     }
+                },
+
+                claim: function(setId) {
+                    return $q.when($http (
+                        {
+                            method: 'POST',
+                            url: '/controllers/paid/starWars.php',
+                            data: {
+                                setId: setId,
+                                eventId: EventSelectionFactory.getSelectedEvent()
+                            }
+                        }
+                    ));
+                },
+
+                unclaim: function(setId) {
+                    return $q.when($http (
+                        {
+                            method: 'PATCH',
+                            url: '/controllers/paid/starWars.php',
+                            data: {
+                                setId: setId,
+                                eventId: EventSelectionFactory.getSelectedEvent()
+                            }
+                        }
+                    ));
                 },
 
                 getList: function() {
@@ -32,6 +62,19 @@
                         ).then(function(sets) {
                             if (sets.data) {
                                 starWarsList = sets.data.map(set => {
+                                    set.claimed = false;
+                                    set.claim = true;
+                                    set.unclaim = false;
+
+                                    if (set.userId) {
+                                        set.claimed = true;
+                                        set.claim = false;
+                                    }
+
+                                    if (set.userId === $window.sessionStorage.userId) {
+                                        set.unclaim = true;
+                                    }
+
                                     if (set.setId === '0') {
                                         set.setId = 'No Set Number';
                                     }

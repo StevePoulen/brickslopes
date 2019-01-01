@@ -313,10 +313,10 @@ config(['$routeProvider', '$httpProvider', '$locationProvider', function($routeP
         }
     )
     .when(
-        '/paid/:eventId/starWarsFlyIn.html',
+        '/paid/starWarsFlyIn.html',
         {
-            templateUrl: function(params) {
-                return '/partials/paid/starWarsFlyIn.html?eventId='+params.eventId
+            templateUrl: function() {
+                return '/partials/paid/starWarsFlyIn.html'
             },
             controller: 'starWarsRegistration'
         }

@@ -25,9 +25,9 @@ CREATE TABLE `starWarsSets` (
 
 CREATE TABLE `starWarsUsersConnector` (
   `starWarsUsersConnectorId` INT(10) UNSIGNED UNIQUE NOT NULL auto_increment,
-  `starWarsSetsId` INT(10) UNSIGNED NULL,
+  `starWarsSetsId` INT(10) UNSIGNED NOT NULL,
   `userId` INT(10) UNSIGNED NULL,
-  `eventId` INT(10) UNSIGNED NULL,
+  `eventId` INT(10) UNSIGNED NOT NULL,
   PRIMARY KEY (`starWarsUsersConnectorId`),
   INDEX (starWarsSetsId, userId, eventId),
   UNIQUE KEY `starWarsUsersConnectorId_UNIQUE` (`starWarsUsersConnectorId`),

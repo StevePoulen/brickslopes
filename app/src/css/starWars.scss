@@ -29,6 +29,12 @@
             word-wrap: break-word;
             width: 40vw;
         }
+
+        .setDisplayed {
+            font-size: 1em;
+            font-weight: bold;
+            margin-top: 5px;
+        }
     }
 
 
@@ -87,4 +93,16 @@
     font-size: 1.5em;
     margin-bottom: 10px;
     line-height: 1.5em;
+}
+
+.star-wars-icons {
+    transform: scale(0.5, 0.5);
+}
+
+.star-wars-toggle-explanation
+ {
+    position: absolute;
+    right: 10px;
+    height: 100px;
+    top: 78px;
 }

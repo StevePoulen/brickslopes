@@ -6,32 +6,44 @@
             </h1>
         </div>
         <div class="explanation">
+            <div class="star-wars-icons star-wars-toggle-explanation" ng-click="toggleExplanation()" ng-if="!showExplanation">
+                <i class="icons-arrow-down icons-sprite-bg"></i>
+            </div>
+            <div class="star-wars-icons star-wars-toggle-explanation" ng-click="toggleExplanation()" ng-if="showExplanation">
+                <i class="icons-arrow-up icons-sprite-bg"></i>
+            </div>
             <p>
                 <bs-logo></bs-logo> is hosting a "Star Wars Fly-In" for the 20th Anniversary of Star Wars LEGO.
             </p>
-            <p>
-                <bs-text font-color=blue text="Details..."></bs-text><br>
-                A "Fly-In" event is a community of fans displaying ALL the sets ever produced in a theme. <bs-logo></bs-logo> successfully held a Star Wars fly-in for their inaugural year in 2014. However, the bar was a bit lower with only 319 sets produced. Entering 2019 there are 509 'Retail and Retail - Limited' sets (Technically 683 exist with 174 represented by "LEGOLAND Exclusives", "Not Sold", "promotional", "Retail - Boxed (duplicates)" and "Unknown").
-            </p>
-            <p>
-                <bs-text font-color=blue text="Participation..."></bs-text><br>
-                You may sign-up for as many sets as you would like to <i><b>display</b></i> at <bs-logo></bs-logo> 2019. The displayed sets can be built or boxed. 
-            </p>
-            <p>
-                <bs-text font-color=blue text="Raffle..."></bs-text><br>
-                <ul>
-                    <li>
-                        "Retail" and "Retail - Limited" sets - 1 raffle ticket.
-                    </li>
-                    <li>
-                        "Promotional" and "Retail - Boxed" sets - 2 raffle tickets.
-                    </li>
-                    <li>
-                        "LEGOLAND Exclusives", "Not Sold" and "Unknown" sets - 5 raffle tickets.
-                    </li>
+            <div ng-if="showExplanation">
+                <p>
+                    <bs-text font-color=blue text="Details..."></bs-text><br>
+                    A "Fly-In" event is a community of fans displaying ALL the sets ever produced in a theme. <bs-logo></bs-logo> successfully held a Star Wars fly-in for their inaugural year in 2014. However, the bar was a bit lower with only 319 sets produced. Entering 2019 there are 509 'Retail and Retail - Limited' sets (Technically 683 exist with 174 represented by "LEGOLAND Exclusives", "Not Sold", "promotional", "Retail - Boxed (duplicates)" and "Unknown").
+                </p>
+                <p>
+                    <bs-text font-color=blue text="Participation..."></bs-text><br>
+                    You may sign-up for as many sets as you would like to <i><b>display</b></i> at <bs-logo></bs-logo> 2019. The displayed sets can be built or boxed. 
+                </p>
+                <p>
+                    <bs-text font-color=blue text="Raffle..."></bs-text><br>
+                    <ul>
+                        <li>
+                            "Retail" and "Retail - Limited" sets - 1 raffle ticket.
+                        </li>
+                        <li>
+                            "Promotional" and "Retail - Boxed" sets - 2 raffle tickets.
+                        </li>
+                        <li>
+                            "LEGOLAND Exclusives", "Not Sold" and "Unknown" sets - 5 raffle tickets.
+                        </li>
 
-                </ul>
-            </p>
+                    </ul>
+                </p>
+                <p>
+                    <bs-text font-color=blue text="Commemorative Brick..."></bs-text><br>
+                    Everyone who brings at least one Star Wars set to <i><b>display</b></i> at <bs-logo></bs-logo> 2019 will receive a "Commemorative Star Wars <bs-logo></bs-logo> 2019 brick".
+                </p>
+            </div>
         </div>
         <div class="setSearch"> 
             <div class="searchField bold">
@@ -41,6 +53,7 @@
                 <select class="select" ng-change="setClaimedFilter()" ng-model="filterClaimedItem">
                     <option value="">-- Claimed Filter --</option>
                     <option value="claimed">Claimed</option>
+                    <option value="claimedByMe">Claimed By Me</option>
                     <option value="unclaimed">Unclaimed</option>
                 </select>
                 <select class="select" ng-change="setGenreFilter()" ng-model="filterGenreItem">
@@ -145,6 +158,9 @@
                         <div class="setDescription">
                             {{set.description}}
                         </div>
+                        <div ng-if="set.claimed" class="setDisplayed">
+                            Displayed by {{set.user}}
+                        </div>
                     </div>
                 </div>
                 <div class="setInfo rightPosition">
@@ -157,6 +173,16 @@
                     </div>
                     <div>
                         Packaging: <span ng-bind="set.packaging"></span>
+                    </div>
+                    <div ng-if="set.claim">
+                        <button class="actionButtonClaimStarWars" ng-click="claimSet(set)">
+                            <bs-text text="Claim" font-color=white font-size=1></bs-text>
+                        </button>
+                    </div>
+                    <div ng-if="set.unclaim">
+                        <button class="actionButtonUnclaimStarWars" ng-click="unclaimSet(set)">
+                            <bs-text text="Unclaim" font-color=white font-size=1></bs-text>
+                        </button>
                     </div>
                 </div>
             </div>

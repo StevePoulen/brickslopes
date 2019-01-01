@@ -23,20 +23,87 @@
       return $this->query($this->getStarWarsSetsCountQuery(" reserved = '' "));
     }
 
-    public function setReservedStarWarsSetByEmail($starWarsSetId, $emailAddress) {
-      return $this->query($this->setStarWarsSetsReserveEmailQuery($starWarsSetId, $emailAddress));
+    public function claimStarWarsSet($data) {
+      $setId = $data['setId'] != "" ? $data['setId'] : null;
+      $userId = $data['userId'] != "" ? $data['userId'] : null;
+      $eventId = $data['eventId'] != "" ? $data['eventId'] : null;
+      return $this->query($this->claimStarWarsSetQuery($setId, $userId, $eventId));
     }
 
-    private function setStarWarsSetsReserveEmailQuery($starWarsSetId, $emailAddress) {
-      return "
-        UPDATE
-         starWarsSets
-        SET
-          reserved = '$emailAddress'
+    public function unclaimStarWarsSet($data) {
+      $setId = $data['setId'] != "" ? $data['setId'] : null;
+      $userId = $data['userId'] != "" ? $data['userId'] : null;
+      $eventId = $data['eventId'] != "" ? $data['eventId'] : null;
+      return $this->query($this->unclaimStarWarsSetQuery($setId, $userId, $eventId));
+    }
+
+    private function claimStarWarsSetQuery($setId, $userId, $eventId) {
+      $claimedQuery = "
+        SELECT 
+          starWarsUsersConnectorId as id
+        FROM
+          starWarsUsersConnector
         WHERE
-          starWarsSetsId = $starWarsSetId
+          starWarsSetsId = '$setId' AND
+          eventId = '$eventId'
         ;
       ";
+
+      $this->query($claimedQuery);
+      if ($this->numRows) {
+        $dbObj = $this->result->fetch_object();
+
+        return "
+          UPDATE 
+            starWarsUsersConnector
+          SET
+            userId = '$userId' 
+          WHERE
+            starWarsUsersConnectorId = '$dbObj->id'
+          ;
+        ";
+      } else {
+        return "
+          INSERT INTO 
+            starWarsUsersConnector
+            (userId, starWarsSetsId, eventId)
+          VALUES 
+            ('$userId', '$setId', '$eventId')
+          ;
+        ";
+      }
+
+    }
+
+    private function unclaimStarWarsSetQuery($setId, $userId, $eventId) {
+      $claimedQuery = "
+        SELECT 
+          starWarsUsersConnectorId as id
+        FROM
+          starWarsUsersConnector
+        WHERE
+          userId = '$userId' AND
+          starWarsSetsId = '$setId' AND
+          eventId = '$eventId'
+        ;
+      ";
+
+      $this->query($claimedQuery);
+      if ($this->numRows) {
+        $dbObj = $this->result->fetch_object();
+
+        return "
+          UPDATE 
+            starWarsUsersConnector
+          SET
+            userId = NULL
+          WHERE
+            starWarsUsersConnectorId = '$dbObj->id'
+          ;
+        ";
+      }
+
+      return '';
     }
 
     private function getStarWarsSetsCountQuery($reservedWhereStmt) {
@@ -74,7 +141,8 @@
           sws.image as image,
           sws.availability as availability,
           sws.packaging as packaging,
-          concat(u.firstName, ' ', SUBString(u.lastName, 0, 1)) as user
+          u.userId as userId,
+          concat(u.firstName, ' ', SUBSTRING(u.lastName, 1, 1)) as user
         FROM
          starWarsSets sws
             LEFT JOIN starWarsUsersConnector swsuc ON 
