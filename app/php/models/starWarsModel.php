@@ -1,13 +1,14 @@
 <?php
   //require_once('../lib/db.php');
 
-  class StarWars extends db {
+  class starWarsModel extends db {
     function __construct() {
         parent::__construct();
     }
 
-    public function selectAllStarWarsSets($reservedFilter) {
-       return $this->query($this->selectQuery(null, $reservedFilter));
+    public function selectAllStarWarsSets($data) {
+      $reservedId = $data['filter'] != "" ? $data['filter'] : null;
+       return $this->query($this->selectQuery(null, $reservedId));
     }
 
     public function selectStarWarsSetById($starWarsSetId) {
@@ -71,7 +72,8 @@
           genre,
           year,
           image,
-          reserved 
+          availability,
+          packaging 
         FROM
          starWarsSets
         $setWhereStmt

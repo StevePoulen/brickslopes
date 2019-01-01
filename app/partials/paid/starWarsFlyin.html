@@ -1,0 +1,133 @@
+<div id="eventDashboard">
+    <div class="dashboardText">
+        <div>
+            <h1>
+                <bs-logo font-size="1.25"></bs-logo> &#8226; <bs-text text="Star Wars - Fly In" font-color=black></bs-text>
+            </h1>
+        </div>
+        <div class="setSearch"> 
+            <div class="searchField bold">
+                <input ng-model="searchText" bs-placeholder="Search">
+            </div>
+            <div class="searchFilter">
+                <select class="select" ng-change="setGenreFilter()" ng-model="filterGenreItem">
+                    <option value="">--Select Genre Filter--</option>
+                    <option value="4+">4+</option>
+                    <option value="Battlefront">Battlefront</option>
+                    <option value="Buildable Figures">Buildable Figures</option>
+                    <option value="Episode I">Episode I</option>
+                    <option value="Episode II">Episode II</option>
+                    <option value="Episode III">Episode III</option>
+                    <option value="Episode IV">Episode IV</option>
+                    <option value="Episode V">Episode V</option>
+                    <option value="Episode VI">Episode VI</option>
+                    <option value="Legends">Legends</option>
+                    <option value="LEGOLAND exclusive">LEGOLAND Exclusive</option>
+                    <option value="Miscellaneous">Miscellaneous</option>
+                    <option value="Magazine Gift">Magazine Gift</option>
+                    <option value="Master Builder Series">Master Builder Series</option>
+                    <option value="MicroFighters">MicroFighters</option>
+                    <option value="Mini Building Set">Mini Building Set</option>
+                    <option value="Minifig Pack">Minifig Pack</option>
+                    <option value="Original Content">Original Content</option>
+                    <option value="Planet Set">Planet Set</option>
+                    <option value="Product Collection">Product Collection</option>
+                    <option value="Promotional">Promotional</option>
+                    <option value="Rebels">Rebels</option>
+                    <option value="Rogue One">Rogue One</option>
+                    <option value="Solo">Solo</option>
+                    <option value="Seasonal">Seasonal</option>
+                    <option value="Technic">Technic</option>
+                    <option value="The Clone Wars">The Clone Wars</option>
+                    <option value="The Old Republic">The Old Republic</option>
+                    <option value="The Force Awakens">The Force Awakens</option>
+                    <option value="The Last Jedi">The Last Jedi</option>
+                    <option value="Ultimate Collector Series">Ultimate Collector Series</option>
+                    <option value="Virtual Product Collection">Virtual Product Collection</option>
+                </select>
+            </div>
+            <div class="searchFilter">
+                <select class="select" ng-change="setAvailabilityFilter()" ng-model="filterAvailabilityItem">
+                    <option value="">--Select Availability Filter--</option>
+                    <option value="LEGOLAND exclusive">LEGOLAND Exclusive</option>
+                    <option value="Not sold">Not Sold</option>
+                    <option value="Promotional">Promotional</option>
+                    <option value="Retail">Retail</option>
+                    <option value="Retail - boxed">Retail - Boxed</option>
+                    <option value="Retail - limited">Retail - Limited</option>
+                    <option value="unknown">Unknown</option>
+                </select>
+            </div>
+            <div class="searchFilter">
+                <select class="select" ng-change="setPackagingFilter()" ng-model="filterPackagingItem">
+                    <option value="">--Select Packaging Filter--</option>
+                    <option value="Blister pack">Blister Pack</option>
+                    <option value="Box">Box</option>
+                    <option value="Bucket">Bucket</option>
+                    <option value="Foil pack">Foil Pack</option>
+                    <option value="None (loose parts)">None (Loose Parts)</option>
+                    <option value="Plastic box">Plastic Box</option>
+                    <option value="Polybag">Polybag</option>
+                    <option value="unknown">Unknown</option>
+                    <option value="Zip-lock bag">Zip-lock Bag</option>
+                </select>
+            </div>
+            <div class="searchFilter">
+                <select class="select" ng-change="setYearFilter()" ng-model="filterYearItem">
+                    <option value="">--Select Year Filter--</option>
+                    <option value="1999">1999</option>
+                    <option value="2000">2000</option>
+                    <option value="2001">2001</option>
+                    <option value="2002">2002</option>
+                    <option value="2003">2003</option>
+                    <option value="2004">2004</option>
+                    <option value="2005">2005</option>
+                    <option value="2006">2006</option>
+                    <option value="2007">2007</option>
+                    <option value="2008">2008</option>
+                    <option value="2009">2009</option>
+                    <option value="2010">2010</option>
+                    <option value="2011">2011</option>
+                    <option value="2012">2012</option>
+                    <option value="2013">2013</option>
+                    <option value="2014">2014</option>
+                    <option value="2015">2015</option>
+                    <option value="2016">2016</option>
+                    <option value="2017">2017</option>
+                    <option value="2018">2018</option>
+                    <option value="2019">2019</option>
+                </select>
+            </div>
+        </div>
+        <div ng-class="{evenRow: $even}" ng-repeat="set in setDisplayList | filter:searchText:strict | orderBy:'year'">
+            <div class="starWarsRow">
+                <div class="leftPosition">
+                    <div class="setImageContainer">
+                        <img class="setImage" src="{{set.image}}">
+                    </div>
+                    <div class="setTitle">
+                        <div class="setId">
+                            {{set.setId}}
+                        </div>
+                        <div class="setDescription">
+                            {{set.description}}
+                        </div>
+                    </div>
+                </div>
+                <div class="setInfo rightPosition">
+                    <div ng-bind="set.genre"></div> 
+                    <div>
+                        Year: <span ng-bind="set.year"></span>
+                    </div>
+                    <div>
+                        Availability: <span ng-bind="set.availability"></span>
+                    </div>
+                    <div>
+                        Packaging: <span ng-bind="set.packaging"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="dashboardCloseButton" ng-click="closeDialog()"></div>
+</div>

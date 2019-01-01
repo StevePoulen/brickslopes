@@ -1341,6 +1341,10 @@ var showAfolLogin = true;
                 determineClickAction("/paid/" + $scope.eventId + "/eventMocRegistration.html");
             }
 
+            $scope.clickStarWars = function() {
+                determineClickAction("/paid/" + $scope.eventId + "/starWarsFlyIn.html");
+            }
+
             $scope.clickMocList = function() {
                 determineClickAction("/paid/eventMocList.html");
             }

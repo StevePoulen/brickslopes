@@ -313,6 +313,15 @@ config(['$routeProvider', '$httpProvider', '$locationProvider', function($routeP
         }
     )
     .when(
+        '/paid/:eventId/starWarsFlyIn.html',
+        {
+            templateUrl: function(params) {
+                return '/partials/paid/starWarsFlyIn.html?eventId='+params.eventId
+            },
+            controller: 'starWarsRegistration'
+        }
+    )
+    .when(
         '/paid/:eventId/eventMocRegistration.html',
         {
             templateUrl: function(params) {
