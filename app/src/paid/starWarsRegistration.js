@@ -14,7 +14,10 @@
             StarWars.getList().then(function(sets) {
                 $scope.setList = sets;
                 $scope.setDisplayList = sets.filter(set => {
-                    return set.packaging !== 'Box' &&
+                    return set.availability === 'Retail' || 
+                        set.availability === 'Retail - limited';
+                    /*
+                        set.packaging !== 'Box' &&
                         set.packaging !== 'Polybag' &&
                         set.packaging !== 'Plastic box' &&
                         set.packaging !== 'None (loose parts)' &&
@@ -24,6 +27,7 @@
                         set.packaging !== 'Zip-lock bag' &&
                         set.packaging !== 'unknown' &&
                         set.packaging !== 'Bucket'
+                    */
                     /*
                         set.availability !== 'Retail' &&
                         set.availability !== 'Retail - limited' &&
@@ -78,25 +82,31 @@
             $scope.setGenreFilter = function() {
                 $scope.setDisplayList = $scope.setList.filter(set => {
                     return set.genre === $scope.filterGenreItem;
-                })
+                });
             }
 
             $scope.setAvailabilityFilter = function() {
                 $scope.setDisplayList = $scope.setList.filter(set => {
                     return set.availability === $scope.filterAvailabilityItem;
-                })
+                });
             }
 
             $scope.setPackagingFilter = function() {
                 $scope.setDisplayList = $scope.setList.filter(set => {
                     return set.packaging === $scope.filterPackagingItem;
-                })
+                });
             }
 
             $scope.setYearFilter = function() {
                 $scope.setDisplayList = $scope.setList.filter(set => {
                     return set.year === $scope.filterYearItem;
-                })
+                });
+            }
+
+            $scope.setClaimedFilter = function() {
+                $scope.setDisplayList = $scope.setList.filter(set => {
+                    return set.year === $scope.filterYearItem;
+                });
             }
         }
     ]);

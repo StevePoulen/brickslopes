@@ -6,6 +6,18 @@
 
 USE `brickslopes`;
 
-INSERT INTO `eventLineItemCodes` (code, lineItem) VALUES (10013, 'Star Wars Fly-In');
+INSERT INTO `eventLineItemCodes` (code, lineItem) VALUES (10013, 'Star Wars Limited');
 
-INSERT INTO `eventLineItems` (eventId, eventLineItemCodeId, lineItem, cost, discount, linkType, linkId, active) VALUES (6,14,'Star Wars Fly-In Pass',35.00,25.00,'NONE',0,'YES');
+INSERT INTO `eventLineItems` (eventId, eventLineItemCodeId, lineItem, cost, discount, linkType, linkId, active) VALUES (6,14,'Star Wars Limited Pass',35.00,25.00,'NONE',0,'YES');
+
+INSERT INTO `eventLineItemCodes` (code, lineItem) VALUES (10014, 'Very Important Builder');
+
+INSERT INTO `eventLineItems` (eventId, eventLineItemCodeId, lineItem, cost, discount, linkType, linkId, active) VALUES (6,15,'VIB Pass', 90.00, 80.00, 'NONE', 0, 'YES');
+
+INSERT INTO `eventLineItemCodes` (code, lineItem) VALUES (10015, 'Very Important Builder - Expert');
+
+INSERT INTO `eventLineItems` (eventId, eventLineItemCodeId, lineItem, cost, discount, linkType, linkId, active) VALUES (6,16,'VIB Master Pass', 115.00, 95.00, 'NONE', 0, 'YES');
+
+INSERT INTO `eventLineItemCodes` (code, lineItem) VALUES (10016, 'Star Wars Commemorative Brick');
+
+INSERT INTO `eventLineItems` (eventId, eventLineItemCodeId, lineItem, cost, discount, linkType, linkId, active) VALUES (6,17,'Star Wars Commemorative Brick', 0.00, 0.00, 'NONE', 0, 'YES');

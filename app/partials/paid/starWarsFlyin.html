@@ -10,8 +10,13 @@
                 <input ng-model="searchText" bs-placeholder="Search">
             </div>
             <div class="searchFilter">
+                <select class="select" ng-change="setClaimedFilter()" ng-model="filterClaimedItem">
+                    <option value="">-- Claimed Filter --</option>
+                    <option value="claimed">Claimed</option>
+                    <option value="unclaimed">Unclaimed</option>
+                </select>
                 <select class="select" ng-change="setGenreFilter()" ng-model="filterGenreItem">
-                    <option value="">--Select Genre Filter--</option>
+                    <option value="">-- Genre Filter--</option>
                     <option value="4+">4+</option>
                     <option value="Battlefront">Battlefront</option>
                     <option value="Buildable Figures">Buildable Figures</option>
@@ -23,32 +28,32 @@
                     <option value="Episode VI">Episode VI</option>
                     <option value="Legends">Legends</option>
                     <option value="LEGOLAND exclusive">LEGOLAND Exclusive</option>
-                    <option value="Miscellaneous">Miscellaneous</option>
                     <option value="Magazine Gift">Magazine Gift</option>
                     <option value="Master Builder Series">Master Builder Series</option>
                     <option value="MicroFighters">MicroFighters</option>
                     <option value="Mini Building Set">Mini Building Set</option>
                     <option value="Minifig Pack">Minifig Pack</option>
+                    <option value="Miscellaneous">Miscellaneous</option>
                     <option value="Original Content">Original Content</option>
                     <option value="Planet Set">Planet Set</option>
                     <option value="Product Collection">Product Collection</option>
                     <option value="Promotional">Promotional</option>
                     <option value="Rebels">Rebels</option>
                     <option value="Rogue One">Rogue One</option>
-                    <option value="Solo">Solo</option>
                     <option value="Seasonal">Seasonal</option>
+                    <option value="Solo">Solo</option>
                     <option value="Technic">Technic</option>
                     <option value="The Clone Wars">The Clone Wars</option>
-                    <option value="The Old Republic">The Old Republic</option>
                     <option value="The Force Awakens">The Force Awakens</option>
                     <option value="The Last Jedi">The Last Jedi</option>
+                    <option value="The Old Republic">The Old Republic</option>
                     <option value="Ultimate Collector Series">Ultimate Collector Series</option>
                     <option value="Virtual Product Collection">Virtual Product Collection</option>
                 </select>
             </div>
             <div class="searchFilter">
                 <select class="select" ng-change="setAvailabilityFilter()" ng-model="filterAvailabilityItem">
-                    <option value="">--Select Availability Filter--</option>
+                    <option value="">-- Availability Filter--</option>
                     <option value="LEGOLAND exclusive">LEGOLAND Exclusive</option>
                     <option value="Not sold">Not Sold</option>
                     <option value="Promotional">Promotional</option>
@@ -60,7 +65,7 @@
             </div>
             <div class="searchFilter">
                 <select class="select" ng-change="setPackagingFilter()" ng-model="filterPackagingItem">
-                    <option value="">--Select Packaging Filter--</option>
+                    <option value="">-- Packaging Filter--</option>
                     <option value="Blister pack">Blister Pack</option>
                     <option value="Box">Box</option>
                     <option value="Bucket">Bucket</option>
@@ -74,7 +79,7 @@
             </div>
             <div class="searchFilter">
                 <select class="select" ng-change="setYearFilter()" ng-model="filterYearItem">
-                    <option value="">--Select Year Filter--</option>
+                    <option value="">-- Year Filter--</option>
                     <option value="1999">1999</option>
                     <option value="2000">2000</option>
                     <option value="2001">2001</option>
@@ -99,7 +104,7 @@
                 </select>
             </div>
         </div>
-        <div ng-class="{evenRow: $even}" ng-repeat="set in setDisplayList | filter:searchText:strict | orderBy:'year'">
+        <div ng-class="{evenRow: $even}" ng-repeat="set in setDisplayList | filter:searchText:strict | orderBy:'setId'">
             <div class="starWarsRow">
                 <div class="leftPosition">
                     <div class="setImageContainer">

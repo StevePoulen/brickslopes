@@ -35,7 +35,7 @@
                                     set.setId = 'No Set Number';
                                 }
                                 return set;
-                            })
+                            });
                             return starWarsList;
                         }));
                     }
