@@ -8,7 +8,7 @@
 
     public function selectAllStarWarsSets($data) {
       $reservedId = $data['filter'] != "" ? $data['filter'] : null;
-       return $this->query($this->selectQuery(null, $reservedId));
+      return $this->query($this->selectQuery(null, $reservedId));
     }
 
     public function selectStarWarsSetById($starWarsSetId) {
@@ -66,20 +66,25 @@
 
       return "
         SELECT
-          starWarsSetsId,
-          setId,
-          description,
-          genre,
-          year,
-          image,
-          availability,
-          packaging 
+          sws.starWarsSetsId as id,
+          sws.setId as setId,
+          sws.description as description,
+          sws.genre as genre,
+          sws.year as year,
+          sws.image as image,
+          sws.availability as availability,
+          sws.packaging as packaging,
+          concat(u.firstName, ' ', SUBString(u.lastName, 0, 1)) as user
         FROM
-         starWarsSets
+         starWarsSets sws
+            LEFT JOIN starWarsUsersConnector swsuc ON 
+              sws.starWarsSetsId = swsuc.starWarsSetsId
+                LEFT JOIN users u ON 
+                  swsuc.userId = u.userId
         $setWhereStmt
         $setWhereFilterStmt
         ORDER BY
-          setId
+          sws.setId
         ;
       ";
     }

@@ -105,7 +105,11 @@
 
             $scope.setClaimedFilter = function() {
                 $scope.setDisplayList = $scope.setList.filter(set => {
-                    return set.year === $scope.filterYearItem;
+                    if ($scope.filterClaimedItem === 'claimed') {
+                        return set.user !== null;
+                    } else {
+                        return set.user === null;
+                    }
                 });
             }
         }

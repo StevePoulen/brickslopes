@@ -40,14 +40,16 @@ class StarWars {
         if ($this->starWarsObject->result) {
             $starWarsMap = array();
             while($dbObj = $this->starWarsObject->result->fetch_object()) {
-              $starWarsMap[$dbObj->starWarsSetsId] = array (
+              $starWarsMap[$dbObj->id] = array (
+                'id' => $dbObj->id,
                 'setId' => $dbObj->setId,
                 'description' => $dbObj->description,
                 'genre' => $dbObj->genre,
                 'year' => $dbObj->year,
                 'availability' => $dbObj->availability,
                 'packaging' => $dbObj->packaging,
-                'image' => $dbObj->image
+                'image' => $dbObj->image,
+                'user' => $dbObj->user
               );
 
             }

@@ -30,12 +30,14 @@
                                 url: '/controllers/paid/starWars.php'
                             }
                         ).then(function(sets) {
-                            starWarsList = sets.data.map(set => {
-                                if (set.setId === '0') {
-                                    set.setId = 'No Set Number';
-                                }
-                                return set;
-                            });
+                            if (sets.data) {
+                                starWarsList = sets.data.map(set => {
+                                    if (set.setId === '0') {
+                                        set.setId = 'No Set Number';
+                                    }
+                                    return set;
+                                });
+                            }
                             return starWarsList;
                         }));
                     }

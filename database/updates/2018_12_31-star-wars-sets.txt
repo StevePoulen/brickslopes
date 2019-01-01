@@ -6,11 +6,11 @@
 
 USE `brickslopes`;
 
+DROP TABLE starWarsUsersConnector;
 DROP TABLE starWarsSets;
 
 CREATE TABLE `starWarsSets` (
   `starWarsSetsId` INT(10) UNSIGNED UNIQUE NOT NULL auto_increment,
-  `userId` INT(10) UNSIGNED NULL,
   `setId` VARCHAR(25) NOT NULL,
   `description` VARCHAR(255),
   `genre` VARCHAR(255),
@@ -20,10 +20,21 @@ CREATE TABLE `starWarsSets` (
   `packaging` VARCHAR(255),
   `displayType` ENUM('built', 'box'),
   PRIMARY KEY (`starWarsSetsId`),
-  INDEX (userId),
-  UNIQUE KEY `starWarsSetsId_UNIQUE` (`starWarsSetsId`),
-  FOREIGN KEY (`userId`) REFERENCES `users` (`userId`)
+  UNIQUE KEY `starWarsSetsId_UNIQUE` (`starWarsSetsId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='The Star Wars Sets Table';
+
+CREATE TABLE `starWarsUsersConnector` (
+  `starWarsUsersConnectorId` INT(10) UNSIGNED UNIQUE NOT NULL auto_increment,
+  `starWarsSetsId` INT(10) UNSIGNED NULL,
+  `userId` INT(10) UNSIGNED NULL,
+  `eventId` INT(10) UNSIGNED NULL,
+  PRIMARY KEY (`starWarsUsersConnectorId`),
+  INDEX (starWarsSetsId, userId, eventId),
+  UNIQUE KEY `starWarsUsersConnectorId_UNIQUE` (`starWarsUsersConnectorId`),
+  FOREIGN KEY (`userId`) REFERENCES `users` (`userId`),
+  FOREIGN KEY (`starWarsSetsId`) REFERENCES `starWarsSets` (`starWarsSetsId`),
+  FOREIGN KEY (`eventId`) REFERENCES `events` (`eventId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='The Star Wars Users Connector Table';
 
 INSERT INTO starWarsSets (setId, description, genre, year, image, availability, packaging) VALUES (
             "3219",
