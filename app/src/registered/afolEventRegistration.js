@@ -10,18 +10,26 @@ var showAfolLogin = true;
         'EventRegistrationService',
         'EventDates',
         'EventSelectionFactory',
+        '$timeout',
+        '$window',
         function(
             $scope,
             $location,
             EventDetailsService,
             EventRegistrationService,
             EventDates,
-            EventSelectionFactory
+            EventSelectionFactory,
+            $timeout,
+            $window
         ) {
             $scope.displayRegistrationForm = false;
-            $scope.displayVIBMaster = true;
-            $scope.displayVIB = true;
-            $scope.displayStarWars = true;
+            $scope.displayVIBMaster = false;
+            $scope.displayVIB = false;
+            $scope.displayStarWars = false;
+
+            $scope.displayVIBMasterBuffer = false;
+            $scope.displayVIBBuffer = false;
+            $scope.displayStarWarsBuffer = false;
 
             $scope.verifying = false;
             $scope.displayMessage = "";
@@ -112,7 +120,6 @@ var showAfolLogin = true;
             }
 
             EventDetailsService.getV2().then(function(data) {
-                console.log(data)
                 $scope.eventDetails=data;
                 $scope.discountDate = data.formattedDiscountDate;
                 $scope.draftOneId = data.draftOneId;
@@ -140,24 +147,40 @@ var showAfolLogin = true;
             };
 
             $scope.registerVIBMaster = function() {
-                $scope.displayVIBMaster = true;
-                $scope.displayStarWars = false;
-                $scope.displayVIB = false;
+                $window.scrollTo(0,0);
+                $scope.displayVIBMaster = false;
+                $scope.displayStarWars = true;
+                $scope.displayVIB = true;
+                $scope.displayVIBMasterBuffer = true;
+                $scope.displayStarWarsBuffer = false;
+                $scope.displayVIBBuffer = false;
                 $scope.displayRegistrationForm = true;
             };
 
             $scope.registerVIB = function() {
-                $scope.displayVIBMaster = false;
-                $scope.displayStarWars = false;
-                $scope.displayVIB = true;
+                $scope.displayVIBMaster = true;
+                $scope.displayStarWars = true;
+                $scope.displayVIB = false;
+                $scope.displayVIBMasterBuffer = false;
+                $scope.displayStarWarsBuffer = false;
+                $scope.displayVIBBuffer = true;
                 $scope.displayRegistrationForm = true;
+                $timeout(() => {
+                    $window.scrollTo(0, 750);
+                }, 0);
             };
 
             $scope.registerStarWars = function() {
-                $scope.displayVIBMaster = false;
-                $scope.displayStarWars = true;
-                $scope.displayVIB = false;
+                $scope.displayVIBMaster = true;
+                $scope.displayStarWars = false;
+                $scope.displayVIB = true;
+                $scope.displayVIBMasterBuffer = false;
+                $scope.displayStarWarsBuffer = true;
+                $scope.displayVIBBuffer = false;
                 $scope.displayRegistrationForm = true;
+                $timeout(() => {
+                    $window.scrollTo(0, 2000);
+                }, 0);
             };
 
             EventRegistrationService.get().then(function(data) {

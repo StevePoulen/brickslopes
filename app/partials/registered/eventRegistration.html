@@ -4,392 +4,286 @@
       <h1><bs-logo font-size=1.25 text=" - {{eventDetails.city}}"></bs-logo> &#8226; <bs-text text="Event Registration" font-color=red></bs-text></h1>
     </div>
   </div>
-  <span ng-if="displayVIBMaster">
-    <div class="row">
-      <div class="col-md-12 passContainer">
-        <bs-text text="VIB Master Pass" font-size="2" font-color=black></bs-text> 
-        <p class="details">
-          The <i><b>Very Important Builder Master Pass</b></i> is for the AFOL who wants to experience everything at <bs-logo></bs-logo> {{eventYear}}.
-        </p>
-        <p class="details">
-          You get full-access to all AFOLS events, speakers, games, merchandise, commemorative bricks, name badges, swag and food available to <bs-logo></bs-logo> participants.
-        </p>
+  <div class="row">
+    <div class="col-md-6">
+      <div ng-class="{registrationMask: displayVIBMaster}">
+        <hr>
+        <div class="passContainer">
+          <bs-text text="VIB Master Pass" font-size="2" font-color=black></bs-text> 
+          <p class="details">
+            The <i><b>Very Important Builder Master Pass</b></i> is for the AFOL who wants to experience everything at <bs-logo></bs-logo> {{eventYear}}.
+          </p>
+          <p class="details">
+            You get full-access to all AFOLS events, speakers, games, merchandise, commemorative bricks, name badges, swag and food available to <bs-logo></bs-logo> participants.
+          </p>
+        </div>
+        <div class="registrationContainer">
+          <h2 ng-if="eventDetails.isDiscount">Before {{discountDate}}</h2>
+          <div>
+            <span class="blueFont">VIB Master {{passType}} Event Pass</span> -- <span class="bold">{{eventDetails.costs.vibMasterPass | currency}}</span> per person
+          </div>
+          <p>
+          <div>
+            <span class="blueFont">{{eventYear}} <bs-logo></bs-logo> Engraved Brick</span> -- <span class="bold">
+              Included</span>
+          </div>
+          <p>
+          <div>
+            {{eventYear}} <bs-logo></bs-logo> <span class="blueFont">T-Shirt</span> -- <span class="bold">
+              Included</span>
+          </div>
+          <p>
+          <div>
+            <span class="blueFont">Name Badge with 2 custom bricks</span> -- <span class="bold">
+              Included</span>
+          </div>
+          <p>
+          <div>
+            <span class="blueFont">Meet & Greet Event Pass</span> -- <span class="bold">
+              Included</span>
+          </div>
+          <p>
+          <div>
+            <span class="blueFont">Swag Bag</span> -- <span class="bold">
+              Included</span>
+          </div>
+          <p>
+          <div>
+            <span class="blueFont">Games and Presentations</span> -- <span class="bold">
+              Included</span>
+          </div>
+          <p>
+          <div>
+            <span class="blueFont">MOC Display Space</span> -- <span class="bold">
+              Included</span>
+          </div>
+          <p>
+          <div>
+            <span class="blueFont">MOC Prizes</span> -- <span class="bold">
+              Included</span>
+          </div>
+          <p>
+          <div>
+            <span class="blueFont">Raffles</span> -- <span class="bold">
+              Included</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 registerContainer">
+            <button class="btn btn-success" ng-click="registerVIBMaster()">
+              <bs-text text="Register" font-color=white font-size=1.5></bs-text>
+            </button>
+          </div>
+        </div>
+        <hr>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-md-6 registrationContainer">
-        <h2>Before {{discountDate}}</h2>
-        <div>
-          <span class="blueFont">VIB Master {{passType}} Event Pass</span> -- <span class="bold">{{eventDetails.costs.vibMasterPassDiscount | currency}}</span> per person
+      <div ng-class="{registrationMask: displayVIB}">
+        <div class="passContainer">
+          <bs-text text="VIB Pass" font-size="2" font-color=black></bs-text> 
+          <p class="details">
+            You get access to AFOL events, speakers, games, swag and food available to <bs-logo></bs-logo> participants.
+          </p>
         </div>
-        <p>
-        <div>
-          <span class="blueFont">{{eventYear}} <bs-logo></bs-logo> Engraved Brick</span> -- <span class="bold">
-            Included</span>
+        <div class="registrationContainer">
+          <h2 ng-if="eventDetails.isDiscount">Before {{discountDate}}</h2>
+          <div>
+            <span class="blueFont">VIB {{passType}} Event Pass</span> -- <span class="bold">{{eventDetails.costs.vibPass | currency}}</span> per person
+          </div>
+          <p>
+          <div>
+            <span class="blueFont">{{eventYear}} <bs-logo></bs-logo> Engraved Brick</span> -- <span class="bold">
+              Included</span>
+          </div>
+          <p>
+          <div>
+            <span class="blueFont">Meet & Greet Event Pass</span> -- <span class="bold">
+              Included</span>
+          </div>
+          <p>
+          <div>
+            <span class="blueFont">Swag Bag</span> -- <span class="bold">
+              Included</span>
+          </div>
+          <p>
+          <div>
+            <span class="blueFont">Games and Presentations</span> -- <span class="bold">
+              Included</span>
+          </div>
+          <p>
+          <div>
+            <span class="blueFont">MOC Display Space</span> -- <span class="bold">
+              Included</span>
+          </div>
+          <p>
+          <div>
+            <span class="blueFont">MOC Prizes</span> -- <span class="bold">
+              Included</span>
+          </div>
+          <p>
+          <div>
+            <span class="blueFont">Raffles</span> -- <span class="bold">
+              Included</span>
+          </div>
         </div>
-        <p>
-        <div>
-          {{eventYear}} <bs-logo></bs-logo> <span class="blueFont">T-Shirt</span> -- <span class="bold">
-            Included</span>
+        <div class="row">
+          <div class="col-md-12 registerContainer">
+            <button class="btn btn-success" ng-click="registerVIB()">
+              <bs-text text="Register" font-color=white font-size=1.5></bs-text>
+            </button>
+          </div>
         </div>
-        <p>
-        <div>
-          <span class="blueFont">Name Badge with 2 custom bricks</span> -- <span class="bold">
-            Included</span>
-        </div>
-        <p>
-        <div>
-          <span class="blueFont">Meet & Greet Event Pass</span> -- <span class="bold">
-            Included</span>
-        </div>
-        <p>
-        <div>
-          <span class="blueFont">Swag Bag</span> -- <span class="bold">
-            Included</span>
-        </div>
-        <p>
-        <div>
-          <span class="blueFont">Games and Presentations</span> -- <span class="bold">
-            Included</span>
-        </div>
-        <p>
-        <div>
-          <span class="blueFont">MOC Display Space</span> -- <span class="bold">
-            Included</span>
-        </div>
-        <p>
-        <div>
-          <span class="blueFont">MOC Prizes</span> -- <span class="bold">
-            Included</span>
-        </div>
-        <p>
-        <div>
-          <span class="blueFont">Raffles</span> -- <span class="bold">
-            Included</span>
-        </div>
+        <hr>
       </div>
-      <div class="col-md-6 registrationContainer">
-        <h2>After {{discountDate}}</h2>
-        <div>
-          <span class="blueFont">VIB Master {{passType}} Event Pass</span> -- <span class="bold">{{eventDetails.costs.vibMasterPass | currency}}</span> per person
+      <div ng-class="{registrationMask: displayStarWars}">
+        <div class="passContainer">
+          <bs-text text="Star Wars Limited Pass" font-size="2" font-color=black></bs-text> 
+          <p class="details">
+            For those who want to participate <i>only</i> in the Star Wars LEGO Fly-In. 
+          </p>
+          <p class="details">
+            You get access to the event, a commemorative brick and display space.
+          </p>
         </div>
-        <p>
-        <div>
-          <span class="blueFont">{{eventYear}} <bs-logo></bs-logo> Engraved Brick</span> -- <span class="bold">
-            Included</span>
+        <div class="registrationContainer">
+          <h2 ng-if="eventDetails.isDiscount">Before {{discountDate}}</h2>
+          <div>
+            <span class="blueFont">Star Wars Limited {{passType}} Event Pass</span> -- <span class="bold">{{eventDetails.costs.starWarsPass | currency}}</span> per person
+          </div>
+          <p>
+          <div>
+            <span class="blueFont">{{eventYear}} <bs-logo></bs-logo> Star Wars Commemorative Brick</span> -- <span class="bold">
+              Included</span>
+          </div>
+          <p>
+          <div>
+            <span class="blueFont">MOC Display Space</span> -- <span class="bold">
+              Included</span>
+          </div>
         </div>
-        <p>
-        <div>
-          {{eventYear}} <bs-logo></bs-logo> <span class="blueFont">T-Shirt</span> -- <span class="bold">
-            Included</span>
-        </div>
-        <p>
-        <div>
-          <span class="blueFont">Name Badge with 2 custom bricks</span> -- <span class="bold">
-            Included</span>
-        </div>
-        <p>
-        <div>
-          <span class="blueFont">Meet & Greet Event Pass</span> -- <span class="bold">
-            Included</span>
-        </div>
-        <p>
-        <div>
-          <span class="blueFont">Swag Bag</span> -- <span class="bold">
-            Included</span>
-        </div>
-        <p>
-        <div>
-          <span class="blueFont">Games and Presentations</span> -- <span class="bold">
-            Included</span>
-        </div>
-        <p>
-        <div>
-          <span class="blueFont">MOC Display Space</span> -- <span class="bold">
-            Included</span>
-        </div>
-        <p>
-        <div>
-          <span class="blueFont">MOC Prizes</span> -- <span class="bold">
-            Included</span>
-        </div>
-        <p>
-        <div>
-          <span class="blueFont">Raffles</span> -- <span class="bold">
-            Included</span>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12 registerContainer">
-        <button class="btn btn-success" ng-click="registerVIBMaster()">
-          <bs-text text="Register" font-color=white font-size=1.5></bs-text>
-        </button>
-      </div>
-    </div>
-    <hr>
-  </span>
-  <span ng-if="displayVIB">
-    <div class="row">
-      <div class="col-md-12 passContainer">
-        <bs-text text="VIB Pass" font-size="2" font-color=black></bs-text> 
-        <p class="details">
-          You get access to AFOL events, speakers, games, swag and food available to <bs-logo></bs-logo> participants.
-        </p>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-6 registrationContainer">
-        <h2>Before {{discountDate}}</h2>
-        <div>
-          <span class="blueFont">VIB {{passType}} Event Pass</span> -- <span class="bold">{{eventDetails.costs.vibPassDiscount | currency}}</span> per person
-        </div>
-        <p>
-        <div>
-          <span class="blueFont">{{eventYear}} <bs-logo></bs-logo> Engraved Brick</span> -- <span class="bold">
-            Included</span>
-        </div>
-        <p>
-        <div>
-          <span class="blueFont">Meet & Greet Event Pass</span> -- <span class="bold">
-            Included</span>
-        </div>
-        <p>
-        <div>
-          <span class="blueFont">Swag Bag</span> -- <span class="bold">
-            Included</span>
-        </div>
-        <p>
-        <div>
-          <span class="blueFont">Games and Presentations</span> -- <span class="bold">
-            Included</span>
-        </div>
-        <p>
-        <div>
-          <span class="blueFont">MOC Display Space</span> -- <span class="bold">
-            Included</span>
-        </div>
-        <p>
-        <div>
-          <span class="blueFont">MOC Prizes</span> -- <span class="bold">
-            Included</span>
-        </div>
-        <p>
-        <div>
-          <span class="blueFont">Raffles</span> -- <span class="bold">
-            Included</span>
-        </div>
-      </div>
-      <div class="col-md-6 registrationContainer">
-        <h2>After {{discountDate}}</h2>
-        <div>
-          <span class="blueFont">VIB {{passType}} Event Pass</span> -- <span class="bold">{{eventDetails.costs.vibPass | currency}}</span> per person
-        </div>
-        <p>
-        <div>
-          <span class="blueFont">{{eventYear}} <bs-logo></bs-logo> Engraved Brick</span> -- <span class="bold">
-            Included</span>
-        </div>
-        <p>
-        <div>
-          <span class="blueFont">Meet & Greet Event Pass</span> -- <span class="bold">
-            Included</span>
-        </div>
-        <p>
-        <div>
-          <span class="blueFont">Swag Bag</span> -- <span class="bold">
-            Included</span>
-        </div>
-        <p>
-        <div>
-          <span class="blueFont">Games and Presentations</span> -- <span class="bold">
-            Included</span>
-        </div>
-        <p>
-        <div>
-          <span class="blueFont">MOC Display Space</span> -- <span class="bold">
-            Included</span>
-        </div>
-        <p>
-        <div>
-          <span class="blueFont">MOC Prizes</span> -- <span class="bold">
-            Included</span>
-        </div>
-        <p>
-        <div>
-          <span class="blueFont">Raffles</span> -- <span class="bold">
-            Included</span>
+        <div class="row">
+          <div class="col-md-12 registerContainer">
+            <button class="btn btn-success" ng-click="registerStarWars()">
+              <bs-text text="Register" font-color=white font-size=1.5></bs-text>
+            </button>
+          </div>
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-12 registerContainer">
-        <button class="btn btn-success" ng-click="registerVIB()">
-          <bs-text text="Register" font-color=white font-size=1.5></bs-text>
-        </button>
-      </div>
-    </div>
-    <hr>
-  </span>
-  <span ng-if="displayStarWars">
-    <div class="row">
-      <div class="col-md-12 passContainer">
-        <bs-text text="Star Wars Limited Pass" font-size="2" font-color=black></bs-text> 
-        <p class="details">
-          For those who want to participate <i>only</i> in the Star Wars LEGO Fly-In. 
-        </p>
-        <p class="details">
-          You get access to the event, a commemorative brick and display space.
-        </p>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-6 registrationContainer">
-        <h2>Before {{discountDate}}</h2>
-        <div>
-          <span class="blueFont">Star Wars Limited {{passType}} Event Pass</span> -- <span class="bold">{{eventDetails.costs.starWarsPassDiscount | currency}}</span> per person
-        </div>
-        <p>
-        <div>
-          <span class="blueFont">{{eventYear}} <bs-logo></bs-logo> Star Wars Commemorative Brick</span> -- <span class="bold">
-            Included</span>
-        </div>
-        <p>
-        <div>
-          <span class="blueFont">MOC Display Space</span> -- <span class="bold">
-            Included</span>
-        </div>
-      </div>
-      <div class="col-md-6 registrationContainer">
-        <h2>After {{discountDate}}</h2>
-        <div>
-          <span class="blueFont">Star Wars Limited {{passType}} Event Pass</span> -- <span class="bold">{{eventDetails.costs.starWarsPass | currency}}</span> per person
-        </div>
-        <p>
-        <div>
-          <span class="blueFont">{{eventYear}} <bs-logo></bs-logo> Star Wars Commemorative Brick</span> -- <span class="bold">
-            Included</span>
-        </div>
-        <p>
-        <div>
-          <span class="blueFont">MOC Display Space</span> -- <span class="bold">
-            Included</span>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12 registerContainer">
-        <button class="btn btn-success" ng-click="registerStarWars()">
-          <bs-text text="Register" font-color=white font-size=1.5></bs-text>
-        </button>
-      </div>
-    </div>
-    <hr>
-  </span>
-  <div class="row" ng-if="displayRegistrationForm">
-    <div class="col-md-6 registrationForm">
+    <div class="vibMasterBuffer" ng-if="displayVIBMasterBuffer"></div>
+    <div class="vibBuffer" ng-if="displayVIBBuffer"></div>
+    <div class="starWarsBuffer" ng-if="displayStarWarsBuffer"></div>
+    <div class="col-md-6 registrationForm" ng-if="displayRegistrationForm">
       <div class="row">
         <div class="col-md-12">
           <h2>AFOL Event Registration Form</h2>
         </div>
       </div>
       <form name="registration" ng-submit="registration.$valid && submitRegistration()">
-        <div class="row">
-          <div class="col-md-12 group">
-            <bs-text text="Add-ons" font-size=1.25></bs-text>
+        <div ng-if="displayStarWars">
+          <div class="row">
+            <div class="col-md-12 group">
+              <bs-text text="Information" font-size=1.25></bs-text>
+            </div>
           </div>
-        </div>
-        <div ng-if="true">
           <div class="row">
             <div class="col-md-12 optionField">
-              <label><bs-logo></bs-logo> Name Badge:</label> Yes <input type="radio" ng-model="nameBadge" value="YES" checked> No <input type="radio" ng-model="nameBadge" value="NO">
+              <label>Meet & Greet Event: Included</label>
+            </div>
+          </div>
+        </div>
+        <div ng-if="!displayVIBMaster">
+          <div ng-if="true">
+            <div class="row">
+              <div class="col-md-12 optionField">
+                <label><bs-logo></bs-logo> Name Badge: Included</label> 
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12 fullBadgeOptionField">
+                <div class="brickCenter">
+                  <div class="brickHolder">
+                    <div class="legoBrick red">
+                      <div class="studs">
+                        <div class="stud red"></div>
+                        <div class="stud red"></div>
+                        <div class="stud red"></div>
+                        <div class="stud red"></div>
+                        <div class="stud red"></div>
+                        <div class="stud red"></div>
+                        <div class="stud red"></div>
+                        <div class="stud red"></div>
+                      </div>
+                      <div class="logoBrick">
+                        {{eventYear}} <bs-logo font-color=white></bs-logo>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="brickHolder interlock">
+                    <div class="legoBrick blue">
+                      <div class="studs">
+                        <div class="stud blue"></div>
+                        <div class="stud blue"></div>
+                        <div class="stud blue"></div>
+                        <div class="stud blue"></div>
+                        <div class="stud blue"></div>
+                        <div class="stud blue"></div>
+                        <div class="stud blue"></div>
+                        <div class="stud blue"></div>
+                      </div>
+                      <input type="text" name="badgeLine2" bs-placeholder="Badge Line 1:" ng-model="badgeLine2" ng-required="nameBadge=='YES'" maxlength="26" ng-maxlength="26">
+                    </div>
+                  </div>
+                  <div class="brickHolder interlock2">
+                    <div class="legoBrick yellow">
+                      <div class="studs">
+                        <div class="stud yellow"></div>
+                        <div class="stud yellow"></div>
+                        <div class="stud yellow"></div>
+                        <div class="stud yellow"></div>
+                        <div class="stud yellow"></div>
+                        <div class="stud yellow"></div>
+                        <div class="stud yellow"></div>
+                        <div class="stud yellow"></div>
+                      </div>
+                      <input type="text" name="badgeLine3" bs-placeholder="Badge Line 2:" ng-model="badgeLine3" ng-required="nameBadge=='YES'" maxlength="26" ng-maxlength="26">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12 text-center">
+                <div class="errorFont" ng-show="registration.badgeLine2.$error.maxlength">
+                  Your badge line 1 text cannot be longer than 26 characters
+                </div>
+                <div class="errorFont" ng-show="registration.badgeLine3.$error.maxlength">
+                  Your badge line 2 text cannot be longer than 26 characters
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row" ng-if="true">
+            <div class="col-md-12 optionField">
+              <label><bs-logo></bs-logo> T-Shirt Size:</label>
+              <select class="select" ng-model="tShirtSize" ng-options="size for size in shirtSizes"></select>
+            </div>
+          </div>
+        </div>
+        <div ng-if="displayStarWars">
+          <div class="row">
+            <div class="col-md-12 group">
+              <bs-text text="Add Ons" font-size=1.25></bs-text>
             </div>
           </div>
           <div class="row">
-            <div class="col-md-12 fullBadgeOptionField">
-              <div class="brickCenter">
-                <div class="brickHolder">
-                  <div class="legoBrick red">
-                    <div class="studs">
-                      <div class="stud red"></div>
-                      <div class="stud red"></div>
-                      <div class="stud red"></div>
-                      <div class="stud red"></div>
-                      <div class="stud red"></div>
-                      <div class="stud red"></div>
-                      <div class="stud red"></div>
-                      <div class="stud red"></div>
-                    </div>
-                    <div class="logoBrick">
-                      {{eventYear}} <bs-logo font-color=white></bs-logo>
-                    </div>
-                  </div>
-                </div>
-                <div class="brickHolder interlock">
-                  <div class="legoBrick blue">
-                    <div class="studs">
-                      <div class="stud blue"></div>
-                      <div class="stud blue"></div>
-                      <div class="stud blue"></div>
-                      <div class="stud blue"></div>
-                      <div class="stud blue"></div>
-                      <div class="stud blue"></div>
-                      <div class="stud blue"></div>
-                      <div class="stud blue"></div>
-                    </div>
-                    <input type="text" name="badgeLine2" bs-placeholder="Badge Line 1:" ng-model="badgeLine2" ng-required="nameBadge=='YES'" maxlength="26" ng-maxlength="26">
-                  </div>
-                </div>
-                <div class="brickHolder interlock2">
-                  <div class="legoBrick yellow">
-                    <div class="studs">
-                      <div class="stud yellow"></div>
-                      <div class="stud yellow"></div>
-                      <div class="stud yellow"></div>
-                      <div class="stud yellow"></div>
-                      <div class="stud yellow"></div>
-                      <div class="stud yellow"></div>
-                      <div class="stud yellow"></div>
-                      <div class="stud yellow"></div>
-                    </div>
-                    <input type="text" name="badgeLine3" bs-placeholder="Badge Line 2:" ng-model="badgeLine3" ng-required="nameBadge=='YES'" maxlength="26" ng-maxlength="26">
-                  </div>
-                </div>
-              </div>
+            <div class="col-md-12 optionField">
+              <label ng-bind="eventDetails.costs.draftOneDescription"></label> Yes <input type="radio" ng-model="draftOne" value="YES" checked> No <input type="radio" ng-model="draftOne" value="NO">
             </div>
           </div>
           <div class="row">
-            <div class="col-md-12 text-center">
-              <div class="errorFont" ng-show="registration.badgeLine2.$error.maxlength">
-                Your badge line 1 text cannot be longer than 26 characters
-              </div>
-              <div class="errorFont" ng-show="registration.badgeLine3.$error.maxlength">
-                Your badge line 2 text cannot be longer than 26 characters
-              </div>
+            <div class="col-md-12 optionField">
+              <label ng-bind="eventDetails.costs.draftTwoDescription"></label> Yes <input type="radio" ng-model="draftTwo" value="YES" checked> No <input type="radio" ng-model="draftTwo" value="NO">
             </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12 optionField">
-            <label>Meet & Greet Event:</label>
-              Yes <input type="radio" ng-model="meetAndGreet" value="YES" checked>
-              No <input type="radio" ng-model="meetAndGreet" value="NO">
-          </div>
-        </div>
-        <div class="row" ng-if="true">
-          <div class="col-md-12 optionField">
-            <label><bs-logo></bs-logo> T-Shirt Size:</label>
-            <select class="select" ng-model="tShirtSize" ng-options="size for size in shirtSizes"></select>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12 optionField">
-            <label ng-bind="eventDetails.costs.draftOneDescription"></label> Yes <input type="radio" ng-model="draftOne" value="YES" checked> No <input type="radio" ng-model="draftOne" value="NO">
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12 optionField">
-            <label ng-bind="eventDetails.costs.draftTwoDescription"></label> Yes <input type="radio" ng-model="draftTwo" value="YES" checked> No <input type="radio" ng-model="draftTwo" value="NO">
           </div>
         </div>
         <div class="row">
@@ -425,51 +319,6 @@
           </div>
         </div>
       </form>
-    </div>
-    <div class="col-md-6">
-      <div class="row row-bottom-15">
-        <div class="col-md-12 registrationContainer">
-          <h2>{{passType}} Event Registration</h2>
-          <ol class="text-left">
-            <li>{{passType}} Event Pass, {{passDates}}</li>
-            <li>Keynote Speaker, Panel and Other Speakers Access</li>
-            <li>MOC Display Space</li>
-            <li>{{eventYear}} <bs-logo></bs-logo> Engraved Brick</li>
-            <li>Access to LEGO Fan Games</li>
-            <li>MOC Prizes & Swag</li>
-          </ol>
-        </div>
-      </div>
-      <div class="row row-bottom-15">
-        <div class="col-md-12 registrationContainer">
-          <h2>Meet & Greet Event <span class="smallFont">(add-on)</span></h2>
-          <ol class="text-left">
-            <li>Dinner {{meetAndGreetDinnerDate}}</li>
-            <li>Door Prizes & Swag</li>
-            <li>Mingling with AFOLs and Vendors</li>
-          </ol>
-        </div>
-      </div>
-      <div class="row row-bottom-15">
-        <div class="col-lg-12 registrationContainer">
-          <h2><bs-logo></bs-logo> Name Badge <span class="smallFont">(add-on)</span></h2>
-          <ol class="text-left">
-            <li>Event Slopes Logo</li>
-            <li>{{eventYear}} <bs-logo></bs-logo> Engraved Brick</li>
-            <li>2 Customized Engraved Bricks</li>
-            <li>Magnet</li>
-          </ol>
-        </div>
-      </div>
-      <div class="row row-bottom-15">
-        <div class="col-lg-12 registrationContainer">
-          <h2><bs-logo></bs-logo> T-Shirt <span class="smallFont">(add-on)</span></h2>
-          <ol class="text-left">
-            <li>{{eventYear}} Design</li>
-            <li>Always a classic!</li>
-          </ol>
-        </div>
-      </div>
     </div>
   </div>
   <div id="dashboardCloseButton" ng-click="closeDialog()"></div>

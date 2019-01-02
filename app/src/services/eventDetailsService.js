@@ -51,32 +51,24 @@
 
         function parseEventDetailsDataV2(data) {
             data.formattedDiscountDate = moment(data.discountDate).format('MMMM Do, YYYY');
+            data.isDiscount = new Date(data.discountDate) > new Date();
+
             data.costs = {
                 'vibPass': undefined,
-                'vibPassDiscount': undefined,
                 'vibMasterPass': undefined,
-                'vibMasterPassDiscount': undefined,
-                'starWarsPass': undefined,
-                'starWarsPassDiscount': undefined
+                'starWarsPass': undefined
             };
             _.each(data.lineItems, function(lineItem, key) {
                 if (key === '10014') {
-                    data.costs.vibPass = lineItem.cost;
-                    data.costs.vibPassDiscount = lineItem.discount;
+                    data.costs.vibPass = data.isDiscount ? lineItem.discount : lineItem.cost;
                 } else if (key === '10015') {
-                    data.costs.vibMasterPass = lineItem.cost;
-                    data.costs.vibMasterPassDiscount = lineItem.discount;
+                    data.costs.vibMasterPass = data.isDiscount ? lineItem.discount : lineItem.cost;
                 } else if (key === '10013') {
-                    data.costs.starWarsPass = lineItem.cost;
-                    data.costs.starWarsPassDiscount = lineItem.discount;
+                    data.costs.starWarsPass = data.isDiscount ? lineItem.discount : lineItem.cost;
                 } else if (key === '10007') {
-                    data.costs.draftOneCost = lineItem.cost;
-                    data.costs.draftOneDiscount = lineItem.discount;
                     data.costs.draftOneDescription = lineItem.lineItem;
                     data.draftOneId = lineItem.gameId;
                 } else if (key === '10008') {
-                    data.costs.draftTwoCost = lineItem.cost;
-                    data.costs.draftTwoDiscount = lineItem.discount;
                     data.costs.draftTwoDescription = lineItem.lineItem;
                     data.draftTwoId = lineItem.gameId;
                 }

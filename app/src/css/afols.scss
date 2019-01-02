@@ -246,13 +246,13 @@ $pane_width: 1238px;
     .passContainer {
         padding-left: 4px;
         text-align: left;
-        width: 1125px;
+        width: 550px;
         padding-bottom: 25px;
         margin-left: 45px;
 
         .details {
             margin-top: 10px;
-            font-size: 1.25em;
+            font-size: 1em;
         }
     }
 
@@ -267,9 +267,26 @@ $pane_width: 1238px;
         }
     }
 
+    .vibMasterBuffer {
+        height: 25px;
+    }
+
+    .vibBuffer {
+        height: 700px;
+    }
+
+    .starWarsBuffer {
+        height: 1255px;
+    }
+
+    .registrationMask {
+        opacity: .5;
+    }
+
     .registrationContainer {
         border: 1px solid black;
         padding-left: 4px;
+        padding-top: 10px;
         background: lightgreen;
         border-radius: 4px;
         text-align: center;
@@ -292,12 +309,13 @@ $pane_width: 1238px;
 
     .registrationForm {
         width: 550px;
-        height: 1050px;
+        height: auto;
         padding-left: 4px;
         background: white;
         border: 1px solid black;
         border-radius: 5px;
         margin-left: 45px;
+        padding-bottom: 10px;
 
         .optionField {
             position: relative;
