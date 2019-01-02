@@ -14,7 +14,7 @@ INSERT INTO `eventLineItemCodes` (code, lineItem) VALUES (10014, 'Very Important
 
 INSERT INTO `eventLineItems` (eventId, eventLineItemCodeId, lineItem, cost, discount, linkType, linkId, active) VALUES (6,15,'VIB Pass', 90.00, 80.00, 'NONE', 0, 'YES');
 
-INSERT INTO `eventLineItemCodes` (code, lineItem) VALUES (10015, 'Very Important Builder - Expert');
+INSERT INTO `eventLineItemCodes` (code, lineItem) VALUES (10015, 'Very Important Builder - Master');
 
 INSERT INTO `eventLineItems` (eventId, eventLineItemCodeId, lineItem, cost, discount, linkType, linkId, active) VALUES (6,16,'VIB Master Pass', 115.00, 105.00, 'NONE', 0, 'YES');
 

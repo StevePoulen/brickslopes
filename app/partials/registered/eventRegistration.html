@@ -4,50 +4,289 @@
       <h1><bs-logo font-size=1.25 text=" - {{eventDetails.city}}"></bs-logo> &#8226; <bs-text text="Event Registration" font-color=red></bs-text></h1>
     </div>
   </div>
-  <div class="row">
-    <div class="col-md-6 registrationContainer">
-      <h2>Before {{discountDate}}</h2>
-      <div>
-        <span class="blueFont">AFOL {{passType}} Event Pass</span> -- <span class="bold">{{eventDetails.costs.eventDiscount | currency}}</span> per person
-      </div>
-      <p>
-      <div>
-        <span class="blueFont">Meet & Greet Event Pass</span> -- <span class="bold">{{eventDetails.costs.meetAndGreetDiscount | currency}}</span> per person
-      </div>
-      <p>
-      <div>
-        <bs-logo></bs-logo> <span class="blueFont">T-Shirt</span> -- <span class="bold">{{eventDetails.costs.tShirtDiscount | currency}}</span> per person
-      </div>
-      <p>
-      <div>
-        <bs-logo></bs-logo> <span class="blueFont">Name Badge</span> -- <span class="bold">{{eventDetails.costs.completeNameBadgeDiscount | currency}}</span> per person
+  <span ng-if="displayVIBMaster">
+    <div class="row">
+      <div class="col-md-12 passContainer">
+        <bs-text text="VIB Master Pass" font-size="2" font-color=black></bs-text> 
+        <p class="details">
+          The <i><b>Very Important Builder Master Pass</b></i> is for the AFOL who wants to experience everything at <bs-logo></bs-logo> {{eventYear}}.
+        </p>
+        <p class="details">
+          You get full-access to all AFOLS events, speakers, games, merchandise, commemorative bricks, name badges, swag and food available to <bs-logo></bs-logo> participants.
+        </p>
       </div>
     </div>
-    <div class="col-md-6 registrationContainer">
-      <h2>After {{discountDate}}</h2>
-      <div>
-        <span class="blueFont">AFOL {{passType}} Event Pass</span> -- <span class="bold">{{eventDetails.costs.eventCost | currency}}</span> per person
+    <div class="row">
+      <div class="col-md-6 registrationContainer">
+        <h2>Before {{discountDate}}</h2>
+        <div>
+          <span class="blueFont">VIB Master {{passType}} Event Pass</span> -- <span class="bold">{{eventDetails.costs.vibMasterPassDiscount | currency}}</span> per person
+        </div>
+        <p>
+        <div>
+          <span class="blueFont">{{eventYear}} <bs-logo></bs-logo> Engraved Brick</span> -- <span class="bold">
+            Included</span>
+        </div>
+        <p>
+        <div>
+          {{eventYear}} <bs-logo></bs-logo> <span class="blueFont">T-Shirt</span> -- <span class="bold">
+            Included</span>
+        </div>
+        <p>
+        <div>
+          <span class="blueFont">Name Badge with 2 custom bricks</span> -- <span class="bold">
+            Included</span>
+        </div>
+        <p>
+        <div>
+          <span class="blueFont">Meet & Greet Event Pass</span> -- <span class="bold">
+            Included</span>
+        </div>
+        <p>
+        <div>
+          <span class="blueFont">Swag Bag</span> -- <span class="bold">
+            Included</span>
+        </div>
+        <p>
+        <div>
+          <span class="blueFont">Games and Presentations</span> -- <span class="bold">
+            Included</span>
+        </div>
+        <p>
+        <div>
+          <span class="blueFont">MOC Display Space</span> -- <span class="bold">
+            Included</span>
+        </div>
+        <p>
+        <div>
+          <span class="blueFont">MOC Prizes</span> -- <span class="bold">
+            Included</span>
+        </div>
+        <p>
+        <div>
+          <span class="blueFont">Raffles</span> -- <span class="bold">
+            Included</span>
+        </div>
       </div>
-      <p>
-      <div>
-        <span class="blueFont">Meet & Greet Event Pass</span> -- <span class="bold">{{eventDetails.costs.meetAndGreetCost | currency}}</span> per person
-      </div>
-      <p>
-      <div>
-        <bs-logo></bs-logo> <span class="blueFont">T-Shirt</span> -- <span class="bold">{{eventDetails.costs.tShirtCost | currency}}</span> per person
-      </div>
-      <p>
-      <div>
-        <bs-logo></bs-logo> <span class="blueFont">Name Badge</span> -- <span class="bold">{{eventDetails.costs.completeNameBadgeCost | currency}}</span> per person
+      <div class="col-md-6 registrationContainer">
+        <h2>After {{discountDate}}</h2>
+        <div>
+          <span class="blueFont">VIB Master {{passType}} Event Pass</span> -- <span class="bold">{{eventDetails.costs.vibMasterPass | currency}}</span> per person
+        </div>
+        <p>
+        <div>
+          <span class="blueFont">{{eventYear}} <bs-logo></bs-logo> Engraved Brick</span> -- <span class="bold">
+            Included</span>
+        </div>
+        <p>
+        <div>
+          {{eventYear}} <bs-logo></bs-logo> <span class="blueFont">T-Shirt</span> -- <span class="bold">
+            Included</span>
+        </div>
+        <p>
+        <div>
+          <span class="blueFont">Name Badge with 2 custom bricks</span> -- <span class="bold">
+            Included</span>
+        </div>
+        <p>
+        <div>
+          <span class="blueFont">Meet & Greet Event Pass</span> -- <span class="bold">
+            Included</span>
+        </div>
+        <p>
+        <div>
+          <span class="blueFont">Swag Bag</span> -- <span class="bold">
+            Included</span>
+        </div>
+        <p>
+        <div>
+          <span class="blueFont">Games and Presentations</span> -- <span class="bold">
+            Included</span>
+        </div>
+        <p>
+        <div>
+          <span class="blueFont">MOC Display Space</span> -- <span class="bold">
+            Included</span>
+        </div>
+        <p>
+        <div>
+          <span class="blueFont">MOC Prizes</span> -- <span class="bold">
+            Included</span>
+        </div>
+        <p>
+        <div>
+          <span class="blueFont">Raffles</span> -- <span class="bold">
+            Included</span>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-md-12">
-      <hr>
+    <div class="row">
+      <div class="col-md-12 registerContainer">
+        <button class="btn btn-success" ng-click="registerVIBMaster()">
+          <bs-text text="Register" font-color=white font-size=1.5></bs-text>
+        </button>
+      </div>
     </div>
-  </div>
-  <div class="row">
+    <hr>
+  </span>
+  <span ng-if="displayVIB">
+    <div class="row">
+      <div class="col-md-12 passContainer">
+        <bs-text text="VIB Pass" font-size="2" font-color=black></bs-text> 
+        <p class="details">
+          You get access to AFOL events, speakers, games, swag and food available to <bs-logo></bs-logo> participants.
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 registrationContainer">
+        <h2>Before {{discountDate}}</h2>
+        <div>
+          <span class="blueFont">VIB {{passType}} Event Pass</span> -- <span class="bold">{{eventDetails.costs.vibPassDiscount | currency}}</span> per person
+        </div>
+        <p>
+        <div>
+          <span class="blueFont">{{eventYear}} <bs-logo></bs-logo> Engraved Brick</span> -- <span class="bold">
+            Included</span>
+        </div>
+        <p>
+        <div>
+          <span class="blueFont">Meet & Greet Event Pass</span> -- <span class="bold">
+            Included</span>
+        </div>
+        <p>
+        <div>
+          <span class="blueFont">Swag Bag</span> -- <span class="bold">
+            Included</span>
+        </div>
+        <p>
+        <div>
+          <span class="blueFont">Games and Presentations</span> -- <span class="bold">
+            Included</span>
+        </div>
+        <p>
+        <div>
+          <span class="blueFont">MOC Display Space</span> -- <span class="bold">
+            Included</span>
+        </div>
+        <p>
+        <div>
+          <span class="blueFont">MOC Prizes</span> -- <span class="bold">
+            Included</span>
+        </div>
+        <p>
+        <div>
+          <span class="blueFont">Raffles</span> -- <span class="bold">
+            Included</span>
+        </div>
+      </div>
+      <div class="col-md-6 registrationContainer">
+        <h2>After {{discountDate}}</h2>
+        <div>
+          <span class="blueFont">VIB {{passType}} Event Pass</span> -- <span class="bold">{{eventDetails.costs.vibPass | currency}}</span> per person
+        </div>
+        <p>
+        <div>
+          <span class="blueFont">{{eventYear}} <bs-logo></bs-logo> Engraved Brick</span> -- <span class="bold">
+            Included</span>
+        </div>
+        <p>
+        <div>
+          <span class="blueFont">Meet & Greet Event Pass</span> -- <span class="bold">
+            Included</span>
+        </div>
+        <p>
+        <div>
+          <span class="blueFont">Swag Bag</span> -- <span class="bold">
+            Included</span>
+        </div>
+        <p>
+        <div>
+          <span class="blueFont">Games and Presentations</span> -- <span class="bold">
+            Included</span>
+        </div>
+        <p>
+        <div>
+          <span class="blueFont">MOC Display Space</span> -- <span class="bold">
+            Included</span>
+        </div>
+        <p>
+        <div>
+          <span class="blueFont">MOC Prizes</span> -- <span class="bold">
+            Included</span>
+        </div>
+        <p>
+        <div>
+          <span class="blueFont">Raffles</span> -- <span class="bold">
+            Included</span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 registerContainer">
+        <button class="btn btn-success" ng-click="registerVIB()">
+          <bs-text text="Register" font-color=white font-size=1.5></bs-text>
+        </button>
+      </div>
+    </div>
+    <hr>
+  </span>
+  <span ng-if="displayStarWars">
+    <div class="row">
+      <div class="col-md-12 passContainer">
+        <bs-text text="Star Wars Limited Pass" font-size="2" font-color=black></bs-text> 
+        <p class="details">
+          For those who want to participate <i>only</i> in the Star Wars LEGO Fly-In. 
+        </p>
+        <p class="details">
+          You get access to the event, a commemorative brick and display space.
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 registrationContainer">
+        <h2>Before {{discountDate}}</h2>
+        <div>
+          <span class="blueFont">Star Wars Limited {{passType}} Event Pass</span> -- <span class="bold">{{eventDetails.costs.starWarsPassDiscount | currency}}</span> per person
+        </div>
+        <p>
+        <div>
+          <span class="blueFont">{{eventYear}} <bs-logo></bs-logo> Star Wars Commemorative Brick</span> -- <span class="bold">
+            Included</span>
+        </div>
+        <p>
+        <div>
+          <span class="blueFont">MOC Display Space</span> -- <span class="bold">
+            Included</span>
+        </div>
+      </div>
+      <div class="col-md-6 registrationContainer">
+        <h2>After {{discountDate}}</h2>
+        <div>
+          <span class="blueFont">Star Wars Limited {{passType}} Event Pass</span> -- <span class="bold">{{eventDetails.costs.starWarsPass | currency}}</span> per person
+        </div>
+        <p>
+        <div>
+          <span class="blueFont">{{eventYear}} <bs-logo></bs-logo> Star Wars Commemorative Brick</span> -- <span class="bold">
+            Included</span>
+        </div>
+        <p>
+        <div>
+          <span class="blueFont">MOC Display Space</span> -- <span class="bold">
+            Included</span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 registerContainer">
+        <button class="btn btn-success" ng-click="registerStarWars()">
+          <bs-text text="Register" font-color=white font-size=1.5></bs-text>
+        </button>
+      </div>
+    </div>
+    <hr>
+  </span>
+  <div class="row" ng-if="displayRegistrationForm">
     <div class="col-md-6 registrationForm">
       <div class="row">
         <div class="col-md-12">

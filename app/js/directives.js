@@ -285,7 +285,7 @@ angular.module('brickSlopes')
         }
     }
 }])
-.directive('bsTour', ['$rootScope', 'UserDetails', '$window', '$sce', 'BrickSlopesText', '$timeout', 'EventDetails', function($rootScope, UserDetails, $window, $sce, BrickSlopesText, $timeout, EventDetails) {
+.directive('bsTour', ['$rootScope', 'UserDetails', '$window', '$sce', 'BrickSlopesText', '$timeout', 'EventDetailsService', function($rootScope, UserDetails, $window, $sce, BrickSlopesText, $timeout, EventDetailsService) {
     return {
         restrict: 'E',
         replace: true,
@@ -323,7 +323,7 @@ angular.module('brickSlopes')
                         $scope.initializeMask();
                     });
 
-                    EventDetails.get().then(function(data) {
+                    EventDetailsService.get().then(function(data) {
                         $scope.eventName = data.name;
                         $scope.eventYear = data.year;
                         $scope.discountDate = moment(data.discountDate).format('MMMM Do, YYYY');

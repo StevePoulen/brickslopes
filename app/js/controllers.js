@@ -252,147 +252,6 @@ var showAfolLogin = true;
             }
         }
     ])
-    .controller('afolEventRegistration', [
-        '$scope',
-        '$location',
-        'EventDetails',
-        'EventRegistration',
-        '$route',
-        'EventDates',
-        'EventSelectionFactory',
-        function(
-            $scope,
-            $location,
-            EventDetails,
-            EventRegistration,
-            $route,
-            EventDates,
-            EventSelectionFactory
-        ) {
-            $scope.verifying = false;
-            $scope.displayMessage = "";
-            $scope.success = true;
-            $scope.timer = false;
-            $scope.registrationId = undefined;
-            $scope.eventId = EventSelectionFactory.getSelectedEvent();
-            $scope.eventDetails = {city: 'loading'};
-            $scope.nameBadge = 'NO';
-            $scope.meetAndGreet = 'YES';
-            $scope.draftOne = 'YES';
-            $scope.draftTwo = 'YES';
-            $scope.comments = 'Comments ...';
-            $scope.ageVerification = 'YES';
-            $scope.discountDate = undefined;
-            $scope.passDates = undefined;
-            $scope.eventYear = undefined;
-            $scope.passType = undefined;
-            $scope.meetAndGreetDinnerDate = undefined;
-            $scope.isCreate = true;
-            $scope.shirtSizes = ['No Thanks', 'Small', 'Medium', 'Large', 'X-Large', 'XX-Large', 'XXX-Large'];
-            $scope.tShirtSize = "X-Large";
-
-            $scope.$watchCollection("[badgeLine3, badgeLine2]", function() {
-                if (angular.isDefined($scope.badgeLine3) || angular.isDefined($scope.badgeLine2)) {
-                    $scope.nameBadge = 'YES';
-                } else if ($scope.badgeLine3 === undefined && $scope.badgeLine2 === undefined) {
-                    $scope.nameBadge = 'NO';
-                }
-            });
-
-            $scope.$watch("nameBadge", function(currentValue, oldValue) {
-                if (currentValue == 'NO') {
-                    $scope.badgeLine2 = undefined;
-                    $scope.badgeLine3 = undefined;
-                }
-            });
-
-            function deSerializeRegistrationJson(data) {
-                $scope.registrationId = data.registrationId,
-                $scope.badgeLine2 = data.badgeLine2,
-                $scope.badgeLine3 = data.badgeLine3,
-                $scope.nameBadge = data.nameBadge,
-                $scope.meetAndGreet = data.meetAndGreet,
-                $scope.draftOne = data.draftOne,
-                $scope.draftTwo = data.draftTwo,
-                $scope.ageVerification = data.ageVerification,
-                $scope.tShirtSize = data.tShirtSize,
-                $scope.comments = data.comments
-            }
-
-            function serializeRegistrationJson() {
-                try {
-                    return {
-                        registrationId: $scope.registrationId,
-                        eventId: $scope.eventId,
-                        badgeLine1: $scope.eventYear + " BrickSlopes",
-                        badgeLine2: $scope.badgeLine2,
-                        badgeLine3: $scope.badgeLine3,
-                        nameBadge: $scope.nameBadge,
-                        meetAndGreet: $scope.meetAndGreet,
-                        draftOne: $scope.draftOne,
-                        draftTwo: $scope.draftTwo,
-                        draftOneId: $scope.draftOneId,
-                        draftTwoId: $scope.draftTwoId,
-                        ageVerification: $scope.ageVerification,
-                        tShirtSize: $scope.tShirtSize,
-                        comments: $scope.comments,
-                        type: 'afol',
-                        discountDate: $scope.eventDetails.discountDate,
-                        isOwner: 'YES'
-                    }
-                } catch (err) {
-                    return {};
-                }
-            }
-
-            $scope.submitRegistration = function() {
-                $scope.verifying = true;
-                EventRegistration.submitRegistration($scope.isCreate, serializeRegistrationJson()).then(function(response) {
-                    $location.path('/registered/eventPayment.html');
-                }, function() {
-                    $scope.verifying = false;
-                    $scope.displayMessage = "There was an error submitting your data. Please try again.";
-                    $scope.success = false;
-                    $scope.timer = true;
-                });
-            }
-
-            EventDetails.get().then(function(data) {
-                $scope.eventDetails=data;
-                $scope.discountDate = data.formattedDiscountDate;
-                $scope.draftOneId = data.draftOneId;
-                $scope.draftTwoId = data.draftTwoId;
-            });
-
-            EventDates.getPassType().then(function(passType) {
-                $scope.passType = passType;
-            });
-
-            EventDates.getPassDates().then(function(passDates) {
-                $scope.passDates = passDates;
-            });
-
-            EventDates.getEventYear().then(function(eventYear) {
-                $scope.eventYear = eventYear;
-            });
-
-            EventDates.getMeetAndGreetDinnerDate().then(function(meetAndGreetDinnerDate) {
-                $scope.meetAndGreetDinnerDate = meetAndGreetDinnerDate;
-            });
-
-            $scope.closeDialog = function() {
-                $location.path("/registered/index.html");
-            }
-
-            EventRegistration.get().then(function(data) {
-                var isRegistered = (Object.keys(data).length ? true : false);
-                if (isRegistered) {
-                    $scope.isCreate = false;
-                    deSerializeRegistrationJson(data[$scope.eventId]);
-                }
-            });
-        }
-    ])
     .controller('afolEventVendors', [
         '$scope',
         '$location',
@@ -533,7 +392,7 @@ var showAfolLogin = true;
         '$scope',
         '$location',
         'Auth',
-        'EventRegistration',
+        'EventRegistrationService',
         'EventDates',
         'UserDetails',
         'MocDetails',
@@ -545,7 +404,7 @@ var showAfolLogin = true;
             $scope,
             $location,
             Auth,
-            EventRegistration,
+            EventRegistrationService,
             EventDates,
             UserDetails,
             MocDetails,
@@ -683,7 +542,7 @@ var showAfolLogin = true;
                 return Object.keys($scope.vendorModel).length;
             }
 
-            EventRegistration.get().then(function(data) {
+            EventRegistrationService.get().then(function(data) {
                 $scope.eventList = data;
                 $scope.displayRegisterEventCTA = ! displayRegisterEventButton();
             });
@@ -729,7 +588,7 @@ var showAfolLogin = true;
         'VendorDetails',
         '$route',
         '$sce',
-        'EventDetails',
+        'EventDetailsService',
         'EventDates',
         'EventSelectionFactory',
         function(
@@ -738,7 +597,7 @@ var showAfolLogin = true;
             VendorDetails,
             $route,
             $sce,
-            EventDetails,
+            EventDetailsService,
             EventDates,
             EventSelectionFactory
         ) {
@@ -836,7 +695,7 @@ var showAfolLogin = true;
                 $scope.associates = data;
             });
 
-            EventDetails.get().then(function(data) {
+            EventDetailsService.get().then(function(data) {
                 $scope.formattedDiscountDate = data.formattedDiscountDate;
                 $scope.vendorEventCost = data.lineItems['10012'].cost;
                 $scope.vendorEventDiscount = data.lineItems['10012'].discount;
@@ -848,14 +707,12 @@ var showAfolLogin = true;
         '$location',
         'VendorDetails',
         '$route',
-        'EventDetails',
         'EventSelectionFactory',
         function(
             $scope,
             $location,
             VendorDetails,
             $route,
-            EventDetails,
             EventSelectionFactory
         ) {
             $scope.eventId = EventSelectionFactory.getSelectedEvent();
@@ -956,14 +813,14 @@ var showAfolLogin = true;
         '$location',
         'VendorDetails',
         '$route',
-        'EventDetails',
+        'EventDetailsService',
         'EventSelectionFactory',
         function(
             $scope,
             $location,
             VendorDetails,
             $route,
-            EventDetails,
+            EventDetailsService,
             EventSelectionFactory
         ) {
         $scope.eventId = EventSelectionFactory.getSelectedEvent();
@@ -974,7 +831,7 @@ var showAfolLogin = true;
         $scope.buttonText = 'Register';
         $scope.tableRange = [1,2,3,4,5,6,7,8,9,10,11,12];
 
-        EventDetails.get().then(function(data) {
+        EventDetailsService.get().then(function(data) {
             $scope.firstTableCost = data.lineItems['10009'].cost;
             $scope.additionalTableCost = data.lineItems['10011'].cost;
             $scope.eventPass = data.lineItems['10000'].lineItem;
@@ -1273,7 +1130,7 @@ var showAfolLogin = true;
         'RegisteredAfols',
         '$window',
         'EventDates',
-        'EventRegistration',
+        'EventRegistrationService',
         'UserDetails',
         'Themes',
         'VendorDetails',
@@ -1287,7 +1144,7 @@ var showAfolLogin = true;
             RegisteredAfols,
             $window,
             EventDates,
-            EventRegistration,
+            EventRegistrationService,
             UserDetails,
             Themes,
             VendorDetails,
@@ -1311,7 +1168,7 @@ var showAfolLogin = true;
                 $scope.eventMonthYear = monthYear;
             });
 
-            EventRegistration.get().then(function(data) {
+            EventRegistrationService.get().then(function(data) {
                 $scope.isRegistered = (Object.keys(data).length ? true : false);
             });
 

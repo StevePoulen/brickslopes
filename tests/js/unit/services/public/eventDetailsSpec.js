@@ -8,11 +8,11 @@ describe('eventDetailsService', function() {
     describe('Event Details', function() {
         describe('Get', function() {
             beforeEach(inject(function(
-                EventDetails,
+                EventDetailsService,
                 _$httpBackend_
             ) {
                 mockBackend = _$httpBackend_;
-                eventDetailsService = EventDetails;
+                eventDetailsService = EventDetailsService;
                 mockBackend.expectGET('/controllers/public/event.php?eventId=2').respond(window.eventDetails);
                 eventDetailsService.get(eventId).then(function(_data) {
                     data = _data;
