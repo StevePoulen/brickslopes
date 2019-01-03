@@ -31,7 +31,7 @@ class RegistrationLineItemHelperVIBTest extends PHPUnit_Framework_TestCase
         $GLOBALS['db_query'] = '1';
         $this->helper->addRegistrationLineItems($this->dto);
         $lineItemObj = $GLOBALS['addRegistrationLineItems'][0];
-        $this->assertEquals($lineItemObj['eventLineItemCodeId'], '1');
+        $this->assertEquals($lineItemObj['eventLineItemCodeId'], 15);
         $this->assertEquals($lineItemObj['eventId'], 2);
         $this->assertEquals($lineItemObj['userId'], 3);
         $this->assertEquals($lineItemObj['lineItem'], 'VIB Pass');
@@ -54,7 +54,7 @@ class RegistrationLineItemHelperVIBTest extends PHPUnit_Framework_TestCase
         $GLOBALS['db_query'] = '1';
         $this->helper->addRegistrationLineItems($this->dto);
         $lineItemObj = $GLOBALS['addRegistrationLineItems'][0];
-        $this->assertEquals($lineItemObj['eventLineItemCodeId'], '1');
+        $this->assertEquals($lineItemObj['eventLineItemCodeId'], 15);
         $this->assertEquals($lineItemObj['eventId'], 2);
         $this->assertEquals($lineItemObj['userId'], 3);
         $this->assertEquals($lineItemObj['lineItem'], 'VIB Pass');

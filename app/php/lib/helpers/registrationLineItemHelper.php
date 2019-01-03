@@ -35,6 +35,7 @@
             $this->determineEventLineItem($data);
             $this->addMeetAndGreetLineItem($data);
             $this->addTShirtLineItem($data);
+            $this->addStarWarsBrick($data);
             $this->addDraftOneLineItem($data);
             $this->addDraftTwoLineItem($data);
             $this->addBricks($data);
@@ -79,6 +80,7 @@
                 $data['eventVendorAmount'] = $this->eventLineItemCodes['10010']['discount'];
                 $data['additionalVendorTableAmount'] = $this->eventLineItemCodes['10011']['discount'];
                 $data['eventAssociateAmount'] = $this->eventLineItemCodes['10012']['discount'];
+                $data['starWarsBrickAmount'] = $this->eventLineItemCodes['10016']['discount'];
                 $data['discount'] = 'YES';
             } else {
                 $data['eventAmount'] = $this->eventLineItemCodes[$eventCode]['cost'];
@@ -94,6 +96,7 @@
                 $data['eventVendorAmount'] = $this->eventLineItemCodes['10010']['cost'];
                 $data['additionalVendorTableAmount'] = $this->eventLineItemCodes['10011']['cost'];
                 $data['eventAssociateAmount'] = $this->eventLineItemCodes['10012']['cost'];
+                $data['starWarsBrickAmount'] = $this->eventLineItemCodes['10016']['cost'];
                 $data['discount'] = 'NO';
             }
 
@@ -110,6 +113,7 @@
             $data['eventVendorLineItem'] = $this->eventLineItemCodes['10010']['lineItem'];
             $data['additionalVendorTableLineItem'] = $this->eventLineItemCodes['10011']['lineItem'];
             $data['eventAssociateLineItem'] = $this->eventLineItemCodes['10012']['lineItem'];
+            $data['starWarsBrickLineItem'] = $this->eventLineItemCodes['10016']['lineItem'];
 
             if (ISSET($data['nocost']) && $data['nocost']) {
                 $data['eventAmount'] = '0.00';
@@ -217,10 +221,24 @@
             } catch (exception $err) { }
         }
 
+        private function determineEventLineItemCodeId($data) {
+            if (ISSET($data['package'])) {
+                if ($data['package'] === 'VIB') {
+                    return 15;
+                } else if ($data['package'] === 'VIBMASTER') {
+                    return 16;
+                } else if ($data['package'] === 'STARWARS') {
+                    return 14;
+                }
+            }
+
+            return 1;
+        }
+
         private function addEventLineItem($data) {
             try {
                 $dto = $this->getDTO($data);
-                $dto['eventLineItemCodeId'] = 1;
+                $dto['eventLineItemCodeId'] = $this->determineEventLineItemCodeId($data);
                 $dto['amount'] = $data['eventAmount'];
                 $dto['discount'] = $data['discount'];
                 $dto['lineItem'] =  $data['eventLineItem'];
@@ -250,6 +268,19 @@
                     $dto['discount'] = $data['discount'];
                     $dto['lineItem'] =  $data['tShirtLineItem'];
                     $dto['size'] = $data['tShirtSize'];
+                    $this->registrationLineItemObj->addRegistrationLineItems($dto);
+                }
+            } catch (exception $err) { }
+        }
+
+        private function addStarWarsBrick($data) {
+            try {
+                if (ISSET($data['package']) && $data['package'] === 'STARWARS') {
+                    $dto = $this->getDTO($data);
+                    $dto['eventLineItemCodeId'] = 17;
+                    $dto['amount'] = $data['starWarsBrickAmount'];
+                    $dto['discount'] = $data['discount'];
+                    $dto['lineItem'] =  $data['starWarsBrickLineItem'];
                     $this->registrationLineItemObj->addRegistrationLineItems($dto);
                 }
             } catch (exception $err) { }

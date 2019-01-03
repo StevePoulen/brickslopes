@@ -151,6 +151,11 @@
           </div>
           <p>
           <div>
+            <span class="blueFont">{{eventYear}} <bs-logo></bs-logo> Engraved Brick</span> -- <span class="bold">
+              Included</span>
+          </div>
+          <p>
+          <div>
             <span class="blueFont">{{eventYear}} <bs-logo></bs-logo> Star Wars Commemorative Brick</span> -- <span class="bold">
               Included</span>
           </div>
@@ -192,61 +197,59 @@
           </div>
         </div>
         <div ng-if="!displayVIBMaster">
-          <div ng-if="true">
-            <div class="row">
-              <div class="col-md-12 optionField">
-                <label><bs-logo></bs-logo> Name Badge: Included</label> 
-              </div>
+          <div class="row">
+            <div class="col-md-12 optionField">
+              <label><bs-logo></bs-logo> Name Badge: Included</label> 
             </div>
-            <div class="row">
-              <div class="col-md-12 fullBadgeOptionField">
-                <div class="brickCenter">
-                  <div class="brickHolder">
-                    <div class="legoBrick red">
-                      <div class="studs">
-                        <div class="stud red"></div>
-                        <div class="stud red"></div>
-                        <div class="stud red"></div>
-                        <div class="stud red"></div>
-                        <div class="stud red"></div>
-                        <div class="stud red"></div>
-                        <div class="stud red"></div>
-                        <div class="stud red"></div>
-                      </div>
-                      <div class="logoBrick">
-                        {{eventYear}} <bs-logo font-color=white></bs-logo>
-                      </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 fullBadgeOptionField">
+              <div class="brickCenter">
+                <div class="brickHolder">
+                  <div class="legoBrick red">
+                    <div class="studs">
+                      <div class="stud red"></div>
+                      <div class="stud red"></div>
+                      <div class="stud red"></div>
+                      <div class="stud red"></div>
+                      <div class="stud red"></div>
+                      <div class="stud red"></div>
+                      <div class="stud red"></div>
+                      <div class="stud red"></div>
+                    </div>
+                    <div class="logoBrick">
+                      {{eventYear}} <bs-logo font-color=white></bs-logo>
                     </div>
                   </div>
-                  <div class="brickHolder interlock">
-                    <div class="legoBrick blue">
-                      <div class="studs">
-                        <div class="stud blue"></div>
-                        <div class="stud blue"></div>
-                        <div class="stud blue"></div>
-                        <div class="stud blue"></div>
-                        <div class="stud blue"></div>
-                        <div class="stud blue"></div>
-                        <div class="stud blue"></div>
-                        <div class="stud blue"></div>
-                      </div>
-                      <input type="text" name="badgeLine2" bs-placeholder="Badge Line 1:" ng-model="badgeLine2" ng-required="nameBadge=='YES'" maxlength="26" ng-maxlength="26">
+                </div>
+                <div class="brickHolder interlock">
+                  <div class="legoBrick blue">
+                    <div class="studs">
+                      <div class="stud blue"></div>
+                      <div class="stud blue"></div>
+                      <div class="stud blue"></div>
+                      <div class="stud blue"></div>
+                      <div class="stud blue"></div>
+                      <div class="stud blue"></div>
+                      <div class="stud blue"></div>
+                      <div class="stud blue"></div>
                     </div>
+                    <input type="text" name="badgeLine2" bs-placeholder="Badge Line 1:" ng-model="$parent.$parent.badgeLine2" ng-required="$parent.$parent.nameBadge=='YES'" maxlength="26" ng-maxlength="26">
                   </div>
-                  <div class="brickHolder interlock2">
-                    <div class="legoBrick yellow">
-                      <div class="studs">
-                        <div class="stud yellow"></div>
-                        <div class="stud yellow"></div>
-                        <div class="stud yellow"></div>
-                        <div class="stud yellow"></div>
-                        <div class="stud yellow"></div>
-                        <div class="stud yellow"></div>
-                        <div class="stud yellow"></div>
-                        <div class="stud yellow"></div>
-                      </div>
-                      <input type="text" name="badgeLine3" bs-placeholder="Badge Line 2:" ng-model="badgeLine3" ng-required="nameBadge=='YES'" maxlength="26" ng-maxlength="26">
+                </div>
+                <div class="brickHolder interlock2">
+                  <div class="legoBrick yellow">
+                    <div class="studs">
+                      <div class="stud yellow"></div>
+                      <div class="stud yellow"></div>
+                      <div class="stud yellow"></div>
+                      <div class="stud yellow"></div>
+                      <div class="stud yellow"></div>
+                      <div class="stud yellow"></div>
+                      <div class="stud yellow"></div>
+                      <div class="stud yellow"></div>
                     </div>
+                    <input type="text" name="badgeLine3" bs-placeholder="Badge Line 2:" ng-model="$parent.$parent.badgeLine3" ng-required="$parent.$parent.nameBadge=='YES'" maxlength="26" ng-maxlength="26">
                   </div>
                 </div>
               </div>
@@ -262,11 +265,9 @@
               </div>
             </div>
           </div>
-          <div class="row" ng-if="true">
-            <div class="col-md-12 optionField">
-              <label><bs-logo></bs-logo> T-Shirt Size:</label>
-              <select class="select" ng-model="tShirtSize" ng-options="size for size in shirtSizes"></select>
-            </div>
+          <div class="col-md-12 optionField">
+            <label><bs-logo></bs-logo> T-Shirt Size:</label>
+            <select class="select" ng-model="$parent.$parent.tShirtSize" ng-options="size for size in shirtSizes"></select>
           </div>
         </div>
         <div ng-if="displayStarWars">
@@ -277,12 +278,12 @@
           </div>
           <div class="row">
             <div class="col-md-12 optionField">
-              <label ng-bind="eventDetails.costs.draftOneDescription"></label> Yes <input type="radio" ng-model="draftOne" value="YES" checked> No <input type="radio" ng-model="draftOne" value="NO">
+              <label ng-bind="eventDetails.costs.draftOneDescription"></label> Yes <input type="radio" ng-model="$parent.$parent.draftOne" value="YES" checked> No <input type="radio" ng-model="$parent.$parent.draftOne" value="NO">
             </div>
           </div>
           <div class="row">
             <div class="col-md-12 optionField">
-              <label ng-bind="eventDetails.costs.draftTwoDescription"></label> Yes <input type="radio" ng-model="draftTwo" value="YES" checked> No <input type="radio" ng-model="draftTwo" value="NO">
+              <label ng-bind="eventDetails.costs.draftTwoDescription"></label> Yes <input type="radio" ng-model="$parent.$parent.draftTwo" value="YES" checked> No <input type="radio" ng-model="$parent.$parent.draftTwo" value="NO">
             </div>
           </div>
         </div>
@@ -293,7 +294,7 @@
         </div>
         <div class="row">
           <div class="col-md-12 optionField">
-            <label>I am over 18 years old*:</label> Yes <input type="radio" ng-model="ageVerification" value="YES" checked> No <input type="radio" ng-model="ageVerification" value="NO">
+            <label>I am over 18 years old*:</label> Yes <input type="radio" ng-model="$parent.ageVerification" value="YES" checked> No <input type="radio" ng-model="$parent.ageVerification" value="NO">
           </div>
         </div>
         <div class="row">
@@ -303,7 +304,7 @@
         </div>
         <div class="row">
           <div class="col-md-12 commentsField">
-            <textarea id="comments" class="greyFont" ng-model="comments"></textarea>
+            <textarea id="comments" class="greyFont" ng-model="$parent.comments"></textarea>
           </div>
         </div>
         <div class="row row-bottom-15">

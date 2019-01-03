@@ -68,7 +68,7 @@ INSERT INTO `themes` (eventId, theme, type, selectable) VALUES
 (6, 'Castle and Adventure', 'AFOL', 'YES'),
 (6, 'City and Train', 'AFOL', 'YES'),
 (6, 'Technic', 'AFOL', 'YES'),
-(6, 'Space', 'AFOL', 'YES'),
+(6, 'Star Wars', 'AFOL', 'YES'),
 (6, 'Sculpture and Mosaic', 'AFOL', 'YES'),
 (6, 'BrickSlopes Awards', 'AFOL', 'NO'),
 (6, 'Public Awards', 'PUBLIC', 'NO'),
@@ -92,10 +92,10 @@ INSERT INTO `themeAwards` (themeId, award, place) VALUES
 (43, 'Best Technic', 2),
 (43, 'Best GBC Module (aka Steve\'s Award)', 3),
 
-(44, 'Overall Best of Space', 1),
-(44, 'Best Space Ship', 2),
-(44, 'Best Space Base', 3),
-(44, 'Best Space Vehicle', 4),
+(44, 'Overall Best of Star Wars', 1),
+(44, 'Best Star Wars Ship', 2),
+(44, 'Best Star Wars Base', 3),
+(44, 'Best Star Wars Vehicle', 4),
 
 (45, 'Best Sculpture', 1),
 (45, 'Best Mosiac (1 Baseplate or smaller)', 2),

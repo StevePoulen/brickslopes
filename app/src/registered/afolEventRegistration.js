@@ -63,7 +63,7 @@ var showAfolLogin = true;
             });
 
             $scope.$watch("nameBadge", function(currentValue, oldValue) {
-                if (currentValue == 'NO') {
+                if (currentValue === 'NO') {
                     $scope.badgeLine2 = undefined;
                     $scope.badgeLine3 = undefined;
                 }
@@ -111,9 +111,9 @@ var showAfolLogin = true;
 
             $scope.submitRegistration = function() {
                 $scope.verifying = true;
-                EventRegistrationService.submitRegistration($scope.isCreate, serializeRegistrationJson()).then(function(response) {
+                EventRegistrationService.submitRegistration($scope.isCreate, serializeRegistrationJson()).then(() => {
                     $location.path('/registered/eventPayment.html');
-                }, function() {
+                }, () => {
                     $scope.verifying = false;
                     $scope.displayMessage = "There was an error submitting your data. Please try again.";
                     $scope.success = false;
@@ -198,6 +198,8 @@ var showAfolLogin = true;
                 $scope.nameBadge = 'NO';
                 $scope.meetAndGreet = 'NO';
                 $scope.tShirtSize = 'No Thanks';
+                $scope.draftOne = 'NO';
+                $scope.draftTwo = 'NO';
             };
 
             EventRegistrationService.get().then(function(data) {

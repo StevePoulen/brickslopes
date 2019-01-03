@@ -31,7 +31,7 @@ class RegistrationLineItemHelperStarWarsTest extends PHPUnit_Framework_TestCase
         $GLOBALS['db_query'] = '1';
         $this->helper->addRegistrationLineItems($this->dto);
         $lineItemObj = $GLOBALS['addRegistrationLineItems'][0];
-        $this->assertEquals($lineItemObj['eventLineItemCodeId'], '1');
+        $this->assertEquals($lineItemObj['eventLineItemCodeId'], 14);
         $this->assertEquals($lineItemObj['eventId'], 2);
         $this->assertEquals($lineItemObj['userId'], 3);
         $this->assertEquals($lineItemObj['lineItem'], 'Star Wars Limited Pass');
@@ -45,7 +45,23 @@ class RegistrationLineItemHelperStarWarsTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($lineItemObj['isOwner'], 'YES');
         $this->assertEquals($lineItemObj['ownerId'], 3);
         $this->assertEquals(sizeOf($lineItemObj), 13);
-        $this->assertEquals(sizeOf($GLOBALS['addRegistrationLineItems']), 7);
+
+        $lineItemObj = $GLOBALS['addRegistrationLineItems'][3];
+        $this->assertEquals($lineItemObj['eventLineItemCodeId'], 17);
+        $this->assertEquals($lineItemObj['eventId'], 2);
+        $this->assertEquals($lineItemObj['userId'], 3);
+        $this->assertEquals($lineItemObj['lineItem'], 'Star Wars Commemorative Brick');
+        $this->assertEquals($lineItemObj['amount'], '0.00');
+        $this->assertEquals($lineItemObj['paid'], 'NO');
+        $this->assertEquals($lineItemObj['discount'], 'YES');
+        $this->assertEquals($lineItemObj['description'], null);
+        $this->assertEquals($lineItemObj['size'], null);
+        $this->assertEquals($lineItemObj['quantity'], 1);
+        $this->assertEquals($lineItemObj['active'], 'YES');
+        $this->assertEquals($lineItemObj['isOwner'], 'YES');
+        $this->assertEquals($lineItemObj['ownerId'], 3);
+        $this->assertEquals(sizeOf($lineItemObj), 13);
+        $this->assertEquals(sizeOf($GLOBALS['addRegistrationLineItems']), 8);
     }
 
     public function testAddRegistrationLineItemsEventPassWithoutDiscount() 
@@ -54,7 +70,7 @@ class RegistrationLineItemHelperStarWarsTest extends PHPUnit_Framework_TestCase
         $GLOBALS['db_query'] = '1';
         $this->helper->addRegistrationLineItems($this->dto);
         $lineItemObj = $GLOBALS['addRegistrationLineItems'][0];
-        $this->assertEquals($lineItemObj['eventLineItemCodeId'], '1');
+        $this->assertEquals($lineItemObj['eventLineItemCodeId'], 14);
         $this->assertEquals($lineItemObj['eventId'], 2);
         $this->assertEquals($lineItemObj['userId'], 3);
         $this->assertEquals($lineItemObj['lineItem'], 'Star Wars Limited Pass');
@@ -68,6 +84,22 @@ class RegistrationLineItemHelperStarWarsTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($lineItemObj['isOwner'], 'YES');
         $this->assertEquals($lineItemObj['ownerId'], 3);
         $this->assertEquals(sizeOf($lineItemObj), 13);
-        $this->assertEquals(sizeOf($GLOBALS['addRegistrationLineItems']), 7);
+
+        $lineItemObj = $GLOBALS['addRegistrationLineItems'][3];
+        $this->assertEquals($lineItemObj['eventLineItemCodeId'], 17);
+        $this->assertEquals($lineItemObj['eventId'], 2);
+        $this->assertEquals($lineItemObj['userId'], 3);
+        $this->assertEquals($lineItemObj['lineItem'], 'Star Wars Commemorative Brick');
+        $this->assertEquals($lineItemObj['amount'], '0.00');
+        $this->assertEquals($lineItemObj['paid'], 'NO');
+        $this->assertEquals($lineItemObj['discount'], 'NO');
+        $this->assertEquals($lineItemObj['description'], null);
+        $this->assertEquals($lineItemObj['size'], null);
+        $this->assertEquals($lineItemObj['quantity'], 1);
+        $this->assertEquals($lineItemObj['active'], 'YES');
+        $this->assertEquals($lineItemObj['isOwner'], 'YES');
+        $this->assertEquals($lineItemObj['ownerId'], 3);
+        $this->assertEquals(sizeOf($lineItemObj), 13);
+        $this->assertEquals(sizeOf($GLOBALS['addRegistrationLineItems']), 8);
     }
 }
