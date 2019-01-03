@@ -49,9 +49,24 @@
             return (ISSET($data['isOwner']) ? $data['isOwner'] : 'YES');
         }
 
+        private function determineEventCode($data) {
+            if (ISSET($data['package'])) {
+                if ($data['package'] === 'VIB') {
+                    return 10014;
+                } else if ($data['package'] === 'VIBMASTER') {
+                    return 10015;
+                } else if ($data['package'] === 'STARWARS') {
+                    return 10013;
+                }
+            }
+
+            return 10000;
+        }
+
         private function determineLineItemAmounts($data) {
+            $eventCode = $this->determineEventCode($data);
             if ($this->registrarGetsADiscount($data['discountDate'])) {
-                $data['eventAmount'] = $this->eventLineItemCodes['10000']['discount'];
+                $data['eventAmount'] = $this->eventLineItemCodes[$eventCode]['discount'];
                 $data['tShirtAmount'] = $this->eventLineItemCodes['10001']['discount'];
                 $data['meetAndGreetAmount'] = $this->eventLineItemCodes['10002']['discount'];
                 $data['completeNameBadgeAmount'] = $this->eventLineItemCodes['10003']['discount'];
@@ -66,7 +81,7 @@
                 $data['eventAssociateAmount'] = $this->eventLineItemCodes['10012']['discount'];
                 $data['discount'] = 'YES';
             } else {
-                $data['eventAmount'] = $this->eventLineItemCodes['10000']['cost'];
+                $data['eventAmount'] = $this->eventLineItemCodes[$eventCode]['cost'];
                 $data['tShirtAmount'] = $this->eventLineItemCodes['10001']['cost'];
                 $data['meetAndGreetAmount'] = $this->eventLineItemCodes['10002']['cost'];
                 $data['completeNameBadgeAmount'] = $this->eventLineItemCodes['10003']['cost'];
@@ -82,7 +97,7 @@
                 $data['discount'] = 'NO';
             }
 
-            $data['eventLineItem'] = $this->eventLineItemCodes['10000']['lineItem'];
+            $data['eventLineItem'] = $this->eventLineItemCodes[$eventCode]['lineItem'];
             $data['tShirtLineItem'] = $this->eventLineItemCodes['10001']['lineItem'];
             $data['meetAndGreetLineItem'] = $this->eventLineItemCodes['10002']['lineItem'];
             $data['completeNameBadgeLineItem'] = $this->eventLineItemCodes['10003']['lineItem'];

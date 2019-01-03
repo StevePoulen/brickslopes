@@ -11,3 +11,7 @@ Draft - $25,25.00,26.00,YES,10008,GAME,54
 Vendor Pass,7.00,8.00,YES,10010,NONE
 Additional Vendor Tables,75.00,76.00,YES,10011,NONE
 Associate Pass,5.00,6.00,YES,10012,NONE
+Star Wars Limited Pass,35.00,25.00,YES,10013,NONE
+VIB Pass,90.00,80.00,YES,10014,NONE
+VIB Master Pass,115.00,105.00,YES,10015,NONE
+Star Wars Commemorative Briack,0.00,0.00,YES,10016,NONE

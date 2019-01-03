@@ -26,6 +26,7 @@ var showAfolLogin = true;
             $scope.displayVIBMaster = false;
             $scope.displayVIB = false;
             $scope.displayStarWars = false;
+            $scope.package = 'VIBMASTER';
 
             $scope.displayVIBMasterBuffer = false;
             $scope.displayVIBBuffer = false;
@@ -50,7 +51,7 @@ var showAfolLogin = true;
             $scope.passType = undefined;
             $scope.meetAndGreetDinnerDate = undefined;
             $scope.isCreate = true;
-            $scope.shirtSizes = ['No Thanks', 'Small', 'Medium', 'Large', 'X-Large', 'XX-Large', 'XXX-Large'];
+            $scope.shirtSizes = ['Small', 'Medium', 'Large', 'X-Large', 'XX-Large', 'XXX-Large'];
             $scope.tShirtSize = "X-Large";
 
             $scope.$watchCollection("[badgeLine3, badgeLine2]", function() {
@@ -100,7 +101,8 @@ var showAfolLogin = true;
                         comments: $scope.comments,
                         type: 'afol',
                         discountDate: $scope.eventDetails.discountDate,
-                        isOwner: 'YES'
+                        isOwner: 'YES',
+                        package: $scope.package
                     }
                 } catch (err) {
                     return {};
@@ -147,6 +149,7 @@ var showAfolLogin = true;
             };
 
             $scope.registerVIBMaster = function() {
+                $scope.package = 'VIBMASTER';
                 $window.scrollTo(0,0);
                 $scope.displayVIBMaster = false;
                 $scope.displayStarWars = true;
@@ -155,9 +158,14 @@ var showAfolLogin = true;
                 $scope.displayStarWarsBuffer = false;
                 $scope.displayVIBBuffer = false;
                 $scope.displayRegistrationForm = true;
+
+
+                $scope.nameBadge = 'YES';
+                $scope.meetAndGreet = 'YES';
             };
 
             $scope.registerVIB = function() {
+                $scope.package = 'VIB';
                 $scope.displayVIBMaster = true;
                 $scope.displayStarWars = true;
                 $scope.displayVIB = false;
@@ -168,9 +176,14 @@ var showAfolLogin = true;
                 $timeout(() => {
                     $window.scrollTo(0, 750);
                 }, 0);
+
+                $scope.nameBadge = 'NO';
+                $scope.meetAndGreet = 'YES';
+                $scope.tShirtSize = 'No Thanks';
             };
 
             $scope.registerStarWars = function() {
+                $scope.package = 'STARWARS';
                 $scope.displayVIBMaster = true;
                 $scope.displayStarWars = false;
                 $scope.displayVIB = true;
@@ -181,6 +194,10 @@ var showAfolLogin = true;
                 $timeout(() => {
                     $window.scrollTo(0, 2000);
                 }, 0);
+
+                $scope.nameBadge = 'NO';
+                $scope.meetAndGreet = 'NO';
+                $scope.tShirtSize = 'No Thanks';
             };
 
             EventRegistrationService.get().then(function(data) {
