@@ -5,6 +5,23 @@ bunch of activity until June and then nothing until February and the token expir
 
 The same token can be used locally and on the server.
 
+
+Step 1- go to https://developers.google.com/oauthplayground/
+Step 2- login as brickslopes@gmail.com
+Step 3- "Use your own OAuth credentials"
+Step 4- Input the Oauth Client Id and OAuth Client secret from the config/config.php file
+Step 5- "Step 1 Select & authorize APIs"
+Step 6- Select Gmail API v1 > https://mail.google.com
+Step 7- Authorize APIs
+Step 8- "Step 2 Exchange authorization doe for tokens"
+Step 9- Click "Exchange authorization code for tokens" button
+Step 10- Copy "Refresh token" and "Access Token" to the config/credentials_token.json file
+Step 11- Push the code to the server
+
+
+
+
+//this is old
 Step 1- rename the config/credentials_token.json
 Step 2- php /app/php/lib/gmailOAuth.php
 Step 3- copy the url
