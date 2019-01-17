@@ -33,6 +33,11 @@ and (max-device-width : 480px) {
         height: $dashboard_height;
     }
 
+    #ticketsDashboard {
+        width: $dashboard_width;
+        height: 1050px;
+    }
+
     #panes {
         height: $pane_height;
     }
@@ -78,6 +83,11 @@ and (min-width : 481px) {
     #dashboard {
         width: $dashboard_width;
         height: $dashboard_height;
+    }
+
+    #ticketsDashboard {
+        width: $dashboard_width;
+        height: 1050px;
     }
 
     #panes {
@@ -127,6 +137,11 @@ and (max-width : 320px) {
         height: $dashboard_height;
     }
 
+    #ticketsDashboard {
+        width: $dashboard_width;
+        height: 1050px;
+    }
+
     #panes {
         height: $pane_height;
     }
@@ -173,6 +188,11 @@ and (max-device-width : 1024px) {
     #dashboard {
         width: $dashboard_width;
         height: $dashboard_height;
+    }
+
+    #ticketsDashboard {
+        width: $dashboard_width;
+        height: 1050px;
     }
 
     #panes {
@@ -224,6 +244,11 @@ and (orientation : landscape) {
         height: $dashboard_height;
     }
 
+    #ticketsDashboard {
+        width: $dashboard_width;
+        height: 1050px;
+    }
+
     #panes {
         height: $pane_height;
     }
@@ -271,6 +296,11 @@ and (orientation : portrait) {
     #dashboard {
         width: $dashboard_width;
         height: $dashboard_height;
+    }
+
+    #ticketsDashboard {
+        width: $dashboard_width;
+        height: 1050px;
     }
 
     #panes {
@@ -321,6 +351,11 @@ only screen and (min-device-pixel-ratio : 1.5) {
         height: $dashboard_height;
     }
 
+    #ticketsDashboard {
+        width: $dashboard_width;
+        height: 1050px;
+    }
+
     #panes {
         height: $pane_height;
     }
@@ -367,6 +402,11 @@ only screen and (min-device-pixel-ratio : 1.5) {
         height: $dashboard_height;
     }
 
+    #ticketsDashboard {
+        width: $dashboard_width;
+        height: 1050px;
+    }
+
     #panes {
         height: $pane_height;
     }
@@ -411,6 +451,11 @@ only screen and (min-device-pixel-ratio : 1.5) {
     #dashboard {
         width: $dashboard_width;
         height: $dashboard_height;
+    }
+
+    #ticketsDashboard {
+        width: $dashboard_width;
+        height: 1050px;
     }
 
     #panes {
@@ -566,6 +611,7 @@ only screen and (min-device-pixel-ratio : 1.5) {
         text-align: center;
     }
 
+    #ticketsDashboard, 
     #dashboard {
         position: relative;
         margin-left: auto;
