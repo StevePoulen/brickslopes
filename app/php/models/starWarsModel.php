@@ -153,6 +153,7 @@
         $setWhereFilterStmt
         ORDER BY
           sws.setId
+        LIMIT 25
         ;
       ";
     }
