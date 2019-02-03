@@ -16,7 +16,7 @@
 
             StarWars.getList().then(function(sets) {
                 $scope.setList = sets;
-                $scope.setDisplayList = sets.filter(set => {
+                $scope.setDisplayList = sets.filter(function(set) {
                     return (set.availability === 'Retail' || 
                         set.availability === 'Retail - limited') &&
                         set.claimed === false;
@@ -84,31 +84,31 @@
             };
 
             $scope.setGenreFilter = function() {
-                $scope.setDisplayList = $scope.setList.filter(set => {
+                $scope.setDisplayList = $scope.setList.filter(function(set) {
                     return set.genre === $scope.filterGenreItem;
                 });
             };
 
             $scope.setAvailabilityFilter = function() {
-                $scope.setDisplayList = $scope.setList.filter(set => {
+                $scope.setDisplayList = $scope.setList.filter(function(set) {
                     return set.availability === $scope.filterAvailabilityItem;
                 });
             };
 
             $scope.setPackagingFilter = function() {
-                $scope.setDisplayList = $scope.setList.filter(set => {
+                $scope.setDisplayList = $scope.setList.filter(function(set) {
                     return set.packaging === $scope.filterPackagingItem;
                 });
             };
 
             $scope.setYearFilter = function() {
-                $scope.setDisplayList = $scope.setList.filter(set => {
+                $scope.setDisplayList = $scope.setList.filter(function(set) {
                     return set.year === $scope.filterYearItem;
                 });
             };
 
             $scope.setClaimedFilter = function() {
-                $scope.setDisplayList = $scope.setList.filter(set => {
+                $scope.setDisplayList = $scope.setList.filter(function(set) {
                     if ($scope.filterClaimedItem === 'claimed') {
                         return set.user !== null;
                     } else if ($scope.filterClaimedItem === 'claimedByMe') {
@@ -124,16 +124,16 @@
             };
 
             $scope.claimSet = function(set) {
-                StarWars.claim(set.id).then(() => {
+                StarWars.claim(set.id).then(function() {
                     set.claimed = true;
                     set.claim = false;
                     set.unclaim = true;
-                    set.user = `${$window.sessionStorage.firstName} ${$window.sessionStorage.lastName.substring(0, 1)}` ;
+                    set.user = $window.sessionStorage.firstName + ' ' + $window.sessionStorage.lastName.substring(0, 1);
                 });
             };
 
             $scope.unclaimSet = function(set) {
-                StarWars.unclaim(set.id).then(() => {
+                StarWars.unclaim(set.id).then(function() {
                     set.claimed = false;
                     set.claim = true;
                     set.unclaim = false;

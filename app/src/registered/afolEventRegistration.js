@@ -111,9 +111,9 @@ var showAfolLogin = true;
 
             $scope.submitRegistration = function() {
                 $scope.verifying = true;
-                EventRegistrationService.submitRegistration($scope.isCreate, serializeRegistrationJson()).then(() => {
+                EventRegistrationService.submitRegistration($scope.isCreate, serializeRegistrationJson()).then(function() {
                     $location.path('/registered/eventPayment.html');
-                }, () => {
+                }, function() {
                     $scope.verifying = false;
                     $scope.displayMessage = "There was an error submitting your data. Please try again.";
                     $scope.success = false;
@@ -173,7 +173,7 @@ var showAfolLogin = true;
                 $scope.displayStarWarsBuffer = false;
                 $scope.displayVIBBuffer = true;
                 $scope.displayRegistrationForm = true;
-                $timeout(() => {
+                $timeout(function() {
                     $window.scrollTo(0, 750);
                 }, 0);
 
@@ -191,7 +191,7 @@ var showAfolLogin = true;
                 $scope.displayStarWarsBuffer = true;
                 $scope.displayVIBBuffer = false;
                 $scope.displayRegistrationForm = true;
-                $timeout(() => {
+                $timeout(function() {
                     $window.scrollTo(0, 2000);
                 }, 0);
 

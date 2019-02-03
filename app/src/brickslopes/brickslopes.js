@@ -315,9 +315,7 @@ config(['$routeProvider', '$httpProvider', '$locationProvider', function($routeP
     .when(
         '/paid/starWarsFlyIn.html',
         {
-            templateUrl: function() {
-                return '/partials/paid/starWarsFlyIn.html'
-            },
+            templateUrl: '/partials/paid/starWarsFlyIn.html',
             controller: 'starWarsRegistration'
         }
     )

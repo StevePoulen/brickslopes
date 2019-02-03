@@ -18,7 +18,7 @@
                     if (starWarsList) {
                         return $q.when(starWarsList.length);
                     } else {
-                        return $q.when(this.getList().then(() => {
+                        return $q.when(this.getList().then(function() {
                             return starWarsList.length;
                         }));
                     }
@@ -61,7 +61,7 @@
                             }
                         ).then(function(sets) {
                             if (sets.data) {
-                                starWarsList = sets.data.map(set => {
+                                starWarsList = sets.data.map(function(set) {
                                     set.claimed = false;
                                     set.claim = true;
                                     set.unclaim = false;
