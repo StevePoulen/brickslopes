@@ -15,7 +15,6 @@
             $scope.showExplanation = true;
 
             StarWars.getList().then(function(sets) {
-                console.log(sets);
                 $scope.setList = sets;
                 $scope.setDisplayList = sets.filter(function(set) {
                     return (set.availability === 'Retail' || 
@@ -80,44 +79,63 @@
                 });
             });
 
+            $scope.filterExists = function(filter) {
+                if (filter) {
+                    return true;
+                } else {
+                    $scope.setDisplayList = $scope.setList;
+                }
+
+            }
+
             $scope.closeDialog = function() {
                 $location.path('/registered/index.html');
             };
 
             $scope.setGenreFilter = function() {
-                $scope.setDisplayList = $scope.setList.filter(function(set) {
-                    return set.genre === $scope.filterGenreItem;
-                });
+                if ($scope.filterExists($scope.filterGenreItem)) {
+                    $scope.setDisplayList = $scope.setList.filter(function(set) {
+                        return set.genre === $scope.filterGenreItem;
+                    });
+                }
             };
 
             $scope.setAvailabilityFilter = function() {
-                $scope.setDisplayList = $scope.setList.filter(function(set) {
-                    return set.availability === $scope.filterAvailabilityItem;
-                });
+                if ($scope.filterExists($scope.filterAvailabilityItem)) {
+                    $scope.setDisplayList = $scope.setList.filter(function(set) {
+                        return set.availability === $scope.filterAvailabilityItem;
+                    });
+                }
             };
 
             $scope.setPackagingFilter = function() {
-                $scope.setDisplayList = $scope.setList.filter(function(set) {
-                    return set.packaging === $scope.filterPackagingItem;
-                });
+                if ($scope.filterExists($scope.filterPackagingItem)) {
+                    $scope.setDisplayList = $scope.setList.filter(function(set) {
+                        return set.packaging === $scope.filterPackagingItem;
+                    });
+                }
             };
 
             $scope.setYearFilter = function() {
-                $scope.setDisplayList = $scope.setList.filter(function(set) {
-                    return set.year === $scope.filterYearItem;
-                });
+                if ($scope.filterExists($scope.filterYearItem)) {
+                    $scope.setDisplayList = $scope.setList.filter(function(set) {
+                        return set.year === $scope.filterYearItem;
+                    });
+                }
             };
 
             $scope.setClaimedFilter = function() {
-                $scope.setDisplayList = $scope.setList.filter(function(set) {
-                    if ($scope.filterClaimedItem === 'claimed') {
-                        return set.user !== null;
-                    } else if ($scope.filterClaimedItem === 'claimedByMe') {
-                        return set.userId === $window.sessionStorage.userId;
-                    } else {
-                        return set.user === null;
-                    }
-                });
+                if ($scope.filterExists($scope.filterClaimedItem)) {
+                    $scope.setDisplayList = $scope.setList.filter(function(set) {
+                        if ($scope.filterClaimedItem === 'claimed') {
+                            return set.user !== null;
+                        } else if ($scope.filterClaimedItem === 'claimedByMe') {
+                            return set.userId === $window.sessionStorage.userId;
+                        } else {
+                            return set.user === null;
+                        }
+                    });
+                }
             };
 
             $scope.toggleExplanation = function() {
