@@ -1,0 +1,12 @@
+-- MySQL dump 10.11
+--
+-- Host: localhost    Database: mysql
+-- ------------------------------------------------------
+-- Server version	5.0.83
+
+USE `brickslopes`;
+
+UPDATE starWarsSets SET description = 'Darth Vader (Nurnberg Toy Fair 2005 Exclusive Figure)' where starWarsSetsId = 628;
+
+UPDATE starWarsSets SET description = 'Chirrut Imwe' where starWarsSetsId = 558;
+

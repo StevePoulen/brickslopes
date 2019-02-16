@@ -139,7 +139,7 @@
 
       $setWhereLimitStmt= "";
       if ($page != null) {
-        $pageSize = 100;
+        $pageSize = 200;
         $start = $page * $pageSize;
         $setWhereLimitStmt = " LIMIT $start, $pageSize ";
       }
