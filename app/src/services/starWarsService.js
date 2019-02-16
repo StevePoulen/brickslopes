@@ -5,11 +5,13 @@
         'EventSelectionFactory',
         '$http',
         '$q',
+        '$timeout',
         '$window',
         function(
             EventSelectionFactory,
             $http,
             $q,
+            $timeout,
             $window
         ) {
             var starWarsList = undefined;
@@ -83,27 +85,26 @@
                     }));
                 },
 
+                $$queryByPageTimeout: function(page)  {
+                    return $timeout(this.$$queryByPage, 1000, true, [page]).then(function(sets) {
+                        return sets;
+                    });
+                },
+
                 getList: function() {
                     if (starWarsList) {
                         return $q.when(starWarsList);
                     } else {
                         starWarsList = [];
                         return $q.all([
-                            this.$$queryByPage(0),
-                            this.$$queryByPage(1),
-                            this.$$queryByPage(2),
-                            this.$$queryByPage(3),
-                            this.$$queryByPage(4),
-                            this.$$queryByPage(5),
-                            this.$$queryByPage(6),
-                            this.$$queryByPage(7),
-                            this.$$queryByPage(8),
-                            this.$$queryByPage(9),
-                            this.$$queryByPage(10),
-                            this.$$queryByPage(11),
-                            this.$$queryByPage(12),
-                            this.$$queryByPage(13),
-                            this.$$queryByPage(14)
+                            this.$$queryByPageTimeout(0),
+                            this.$$queryByPageTimeout(1),
+                            this.$$queryByPageTimeout(2),
+                            this.$$queryByPageTimeout(3),
+                            this.$$queryByPageTimeout(4),
+                            this.$$queryByPageTimeout(5),
+                            this.$$queryByPageTimeout(6),
+                            this.$$queryByPageTimeout(7)
                         ]).then(function(data) {
                             data.map(function(group) {
                                 group.map(function(set) {
