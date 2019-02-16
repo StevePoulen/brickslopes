@@ -8,7 +8,8 @@
 
     public function selectAllStarWarsSets($data) {
       $reservedId = $data['filter'] != "" ? $data['filter'] : null;
-      return $this->query($this->selectQuery(null, $reservedId));
+      $page = $data['page'] != "" ? $data['page'] : null;
+      return $this->query($this->selectQuery(null, $reservedId, $page));
     }
 
     public function selectStarWarsSetById($starWarsSetId) {
@@ -120,7 +121,7 @@
       ";
     }
 
-    private function selectQuery($starWarsSetId=null, $reservedId=null) {
+    private function selectQuery($starWarsSetId=null, $reservedId=null, $page = null) {
       $setWhereStmt = "";
       if ($starWarsSetId) {
         $setWhereStmt = " WHERE starWarsSetsId = '$starWarsSetId'";
@@ -129,6 +130,18 @@
       $setWhereFilterStmt = "";
       if ($reservedId) {
         $setWhereFilterStmt = " WHERE reserved = '$reservedId'";
+      }
+
+      $setWhereFilterStmt = "";
+      if ($reservedId) {
+        $setWhereFilterStmt = " WHERE reserved = '$reservedId'";
+      }
+
+      $setWhereLimitStmt= "";
+      if ($page != null) {
+        $pageSize = 50;
+        $start = $page * $pageSize;
+        $setWhereLimitStmt = " LIMIT $start, $pageSize ";
       }
 
       return "
@@ -153,7 +166,7 @@
         $setWhereFilterStmt
         ORDER BY
           sws.setId
-        LIMIT 25
+        $setWhereLimitStmt
         ;
       ";
     }

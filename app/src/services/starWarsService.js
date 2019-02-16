@@ -50,39 +50,68 @@
                     ));
                 },
 
+                $$queryByPage: function(page)  {
+                    return $q.when($http (
+                        {
+                            method: 'GET',
+                            url: '/controllers/paid/starWars.php?page=' + page
+                        }
+                    ).then(function(sets) {
+                        var localStarWarsList = [];
+                        if (sets.data) {
+                            sets.data.map(function(set) {
+                                set.claimed = false;
+                                set.claim = true;
+                                set.unclaim = false;
+
+                                if (set.userId) {
+                                    set.claimed = true;
+                                    set.claim = false;
+                                }
+
+                                if (set.userId === $window.sessionStorage.userId) {
+                                    set.unclaim = true;
+                                }
+
+                                if (set.setId === '0') {
+                                    set.setId = 'No Set Number';
+                                }
+                                localStarWarsList.push(set);
+                            });
+                        }
+                        return localStarWarsList;
+                    }));
+                },
+
                 getList: function() {
                     if (starWarsList) {
                         return $q.when(starWarsList);
                     } else {
-                        return $q.when($http (
-                            {
-                                method: 'GET',
-                                url: '/controllers/paid/starWars.php'
-                            }
-                        ).then(function(sets) {
-                            if (sets.data) {
-                                starWarsList = sets.data.map(function(set) {
-                                    set.claimed = false;
-                                    set.claim = true;
-                                    set.unclaim = false;
-
-                                    if (set.userId) {
-                                        set.claimed = true;
-                                        set.claim = false;
-                                    }
-
-                                    if (set.userId === $window.sessionStorage.userId) {
-                                        set.unclaim = true;
-                                    }
-
-                                    if (set.setId === '0') {
-                                        set.setId = 'No Set Number';
-                                    }
-                                    return set;
-                                });
-                            }
+                        starWarsList = [];
+                        return $q.all([
+                            this.$$queryByPage(0),
+                            this.$$queryByPage(1),
+                            this.$$queryByPage(2),
+                            this.$$queryByPage(3),
+                            this.$$queryByPage(4),
+                            this.$$queryByPage(5),
+                            this.$$queryByPage(6),
+                            this.$$queryByPage(7),
+                            this.$$queryByPage(8),
+                            this.$$queryByPage(9),
+                            this.$$queryByPage(10),
+                            this.$$queryByPage(11),
+                            this.$$queryByPage(12),
+                            this.$$queryByPage(13),
+                            this.$$queryByPage(14)
+                        ]).then(function(data) {
+                            data.map(function(group) {
+                                group.map(function(set) {
+                                    starWarsList.push(set);
+                                })
+                            })
                             return starWarsList;
-                        }));
+                        })
                     }
                 }
             }

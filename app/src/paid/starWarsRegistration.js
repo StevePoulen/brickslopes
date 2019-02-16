@@ -15,6 +15,7 @@
             $scope.showExplanation = true;
 
             StarWars.getList().then(function(sets) {
+                console.log(sets);
                 $scope.setList = sets;
                 $scope.setDisplayList = sets.filter(function(set) {
                     return (set.availability === 'Retail' || 
