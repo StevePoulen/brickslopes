@@ -1,0 +1,14 @@
+-- MySQL dump 10.11
+--
+-- Host: localhost    Database: mysql
+-- ------------------------------------------------------
+-- Server version	5.0.83
+
+USE `brickslopes`;
+
+
+INSERT INTO `themeAwards` (themeId, award, place) VALUES
+
+(44, 'Best Space Ship', 5),
+(44, 'Best Space Base', 6),
+(44, 'Best Space Vehicle', 7);
